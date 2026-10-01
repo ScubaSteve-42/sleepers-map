@@ -178,7 +178,8 @@ body.intro-open #labels { opacity: .12; }
 #nogl p { margin: 0; color: #f4c9d2; }
 
 /* ---------- labels ---------- */
-.lbl { position: absolute; left: 0; top: 0; max-width: 300px; opacity: 0; transition: opacity .28s ease; pointer-events: auto; cursor: pointer; will-change: transform; text-align: center; }
+.region { position: absolute; left: 0; top: 0; opacity: 0; pointer-events: none; white-space: nowrap; font: 600 clamp(10px, 1.05vw, 15px)/1 var(--ui); letter-spacing: .36em; text-transform: uppercase; color: var(--c); text-shadow: 0 0 18px var(--c), 0 0 3px rgba(0, 0, 0, .8); transition: opacity .5s ease; will-change: transform; }
+.lbl { position: absolute; left: 0; top: 0; max-width: 300px; opacity: 0; transition: opacity .28s ease; pointer-events: none; will-change: transform; text-align: center; }
 .lbl.on { opacity: var(--op, 1); }
 .lbl-head { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font: 600 12.5px/1.25 var(--ui); color: color-mix(in oklab, var(--c) 16%, #fff); text-shadow: 0 0 10px rgba(2, 3, 10, .95), 0 1px 3px rgba(0, 0, 0, .9); padding: 1px 4px; }
 .lbl-head .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c); box-shadow: 0 0 8px var(--c); flex: none; }

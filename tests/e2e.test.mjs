@@ -96,6 +96,29 @@ test('clicking a node flies to it and opens its details', withPage({}, async ({ 
   const after = await state(page); assert.ok(after.cam.dist < 120, `camera did not move in (distance ${after.cam.dist.toFixed(0)})`);
 }));
 
+test('clicking a title label selects its node, and dragging over labels still orbits', withPage({}, async ({ page }) => {
+  await page.evaluate(() => window.__mapTest.jumpOverview()); await page.waitForTimeout(700);
+  const rects = (await page.evaluate(() => window.__mapTest.labels())).rects;
+  let target = null;
+  for (const r of rects) {
+    const x = r.x + r.w / 2, y = r.y + r.h / 2;
+    if (x < 330 || x > 1440 - 470 || y < 110 || y > 770) continue;
+    const owner = await page.evaluate(([px, py]) => window.__mapTest.hit(px, py), [x, y]);
+    const node = await page.evaluate(([px, py]) => window.__mapTest.pick(px, py), [x, y]);
+    if (owner === r.id && node === null) { target = { id: r.id, x, y }; break; }
+  }
+  assert.ok(target, 'no clickable title label found');
+  await page.mouse.click(target.x, target.y);
+  await page.waitForFunction((id) => window.__mapTest.state().selected === id, target.id);
+  // a drag that starts on top of a label must still move the camera
+  await page.keyboard.press('Escape'); await page.evaluate(() => window.__mapTest.jumpOverview()); await page.waitForTimeout(500);
+  const before = (await state(page)).cam.pos;
+  await page.mouse.move(target.x, target.y); await page.mouse.down(); await page.mouse.move(target.x + 160, target.y + 40, { steps: 8 }); await page.mouse.up();
+  await page.waitForTimeout(400);
+  const after = (await state(page)).cam.pos;
+  assert.ok(Math.hypot(...after.map((v, i) => v - before[i])) > 20, 'dragging across a label did not orbit the camera');
+}));
+
 test('connection chips navigate and the back button returns', withPage({}, async ({ page }) => {
   await page.evaluate(() => window.__mapTest.select('lang.python')); await settle(page);
   const chip = page.locator('#panel .conn button').first(); const name = (await chip.textContent()).trim();

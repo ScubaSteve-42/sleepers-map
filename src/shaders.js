@@ -86,6 +86,7 @@ void main(){
 
 export const haloFrag = /* glsl */ `
 ${common}
+uniform float uHaloGain;
 varying vec2 vUv; varying vec3 vColor; varying float vVis; varying float vEmph; varying float vDim; varying float vTier; varying float vBirth; varying float vNear;
 void main(){
   float r = length(vUv);
@@ -98,7 +99,8 @@ void main(){
     sp = (ax * (1. - abs(vUv.y)) + ay * (1. - abs(vUv.x))) * .5 * (1. - r);
   }
   float a = (g * .4 + tight * .13 + sp * .8) * vVis * vNear;
-  float strength = (.5 + 1.1 * vEmph + 1.8 * vBirth) * (1. - vDim * .88);
+  float tierGain = vTier < 2.5 ? 1. : .7;
+  float strength = (.5 * mix(uHaloGain * tierGain, 1., vEmph) + 1.1 * vEmph + 1.8 * vBirth) * (1. - vDim * .88);
   gl_FragColor = vec4(vColor * a * strength, 1.);
 }`;
 
@@ -137,7 +139,7 @@ void main(){
 
 export const edgeFrag = /* glsl */ `
 ${common}
-uniform float uTime; uniform float uPulse; uniform float uReveal;
+uniform float uTime; uniform float uPulse; uniform float uReveal; uniform float uEdgeGain;
 varying vec3 vCol; varying float vSide; varying float vT; varying float vVis; varying float vDim; varying float vEmph; varying float vW; varying float vSeed;
 void main(){
   if (vT > uReveal * 1.25 - vSeed * .25) discard;
@@ -147,7 +149,7 @@ void main(){
   float dd = abs(vT - head); dd = min(dd, 1. - dd);
   float pulse = exp(-dd * dd * 700.) * uPulse * (.3 + .7 * vW) * soft;
   float inten = base + pulse * 1.9;
-  inten *= smoothstep(0., 1., vVis) * (1. - vDim * .93) * (1. + vEmph * 2.4);
+  inten *= smoothstep(0., 1., vVis) * (1. - vDim * .93) * (1. + vEmph * 2.4) * mix(uEdgeGain, 1., vEmph);
   gl_FragColor = vec4(vCol * inten, 1.);
 }`;
 
@@ -193,6 +195,33 @@ void main(){
   vec2 p = gl_PointCoord - .5; float r = length(p) * 2.;
   float a = smoothstep(1., 0., r); a *= a * vA * .5;
   gl_FragColor = vec4(vec3(.62, .72, 1.) * a, 1.);
+}`;
+
+// soft coloured clouds behind each category's cluster, so the territories read at a glance
+export const cloudVert = /* glsl */ `
+${common}
+uniform float uTime;
+attribute vec3 aColor; attribute vec4 aCloud; // aCloud: size, alpha, seed, spare
+attribute vec3 aCenter;
+varying vec2 vUv; varying vec3 vColor; varying float vAlpha; varying float vSeed;
+void main(){
+  vec3 right = vec3(viewMatrix[0][0], viewMatrix[1][0], viewMatrix[2][0]);
+  vec3 up = vec3(viewMatrix[0][1], viewMatrix[1][1], viewMatrix[2][1]);
+  vec3 world = aCenter + (right * position.x + up * position.y) * aCloud.x;
+  vUv = position.xy; vColor = aColor; vAlpha = aCloud.y; vSeed = aCloud.z;
+  gl_Position = projectionMatrix * viewMatrix * vec4(world, 1.);
+}`;
+
+export const cloudFrag = /* glsl */ `
+${common}
+uniform float uTime;
+varying vec2 vUv; varying vec3 vColor; varying float vAlpha; varying float vSeed;
+void main(){
+  float r = length(vUv); if (r > 1.) discard;
+  float fall = pow(1. - smoothstep(0., 1., r), 1.7);
+  float n = fbm(vec3(vUv * 1.7 + vSeed * 9., uTime * .015 + vSeed));
+  float a = fall * (.35 + 1.1 * n) * vAlpha;
+  gl_FragColor = vec4(vColor * a, 1.);
 }`;
 
 export const bgVert = /* glsl */ `

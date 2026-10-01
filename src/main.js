@@ -31,10 +31,7 @@ try {
 const scene = app.scene;
 app.ui = createUI(app);
 const ui = app.ui;
-if (scene) app.labels = createLabels({
-  container: $('#labels'), scene, graph, cats,
-  onHover: (i) => scene.setHover(i), onSelect: (i) => app.select(i),
-});
+if (scene) app.labels = createLabels({ container: $('#labels'), scene, graph, cats });
 
 // ---------- visibility (category filter + time travel) ----------
 function applyFilter(birth = false) {
@@ -109,19 +106,21 @@ app.exitTour = () => { app.tourActive = false; clearTimeout(app.tourTimer); ui.h
 
 // ---------- input ----------
 let down = null, lastMove = 0;
+// the node under the pointer, or failing that the node whose title label is under it
+const targetAt = (x, y) => { const i = scene.pick(x, y); return i >= 0 ? i : app.labels.hitTest(x, y); };
 if (scene) {
   const cv = canvas;
   const local = (ev) => { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; };
   cv.addEventListener('pointerdown', (ev) => { down = { x: ev.clientX, y: ev.clientY, t: performance.now() }; app.idle = 0; scene.stopFlight(); });
   cv.addEventListener('pointermove', (ev) => {
     app.idle = 0; const now = performance.now(); if (now - lastMove < 24 || (ev.buttons && ev.pointerType === 'mouse')) return; lastMove = now;
-    const [x, y] = local(ev); const i = scene.pick(x, y); scene.setHover(i); cv.style.cursor = i >= 0 ? 'pointer' : 'grab';
+    const [x, y] = local(ev); const i = targetAt(x, y); scene.setHover(i); cv.style.cursor = i >= 0 ? 'pointer' : 'grab';
   });
   cv.addEventListener('pointerleave', () => scene.setHover(-1));
   cv.addEventListener('pointerup', (ev) => {
     if (!down) return; const moved = Math.hypot(ev.clientX - down.x, ev.clientY - down.y), dt = performance.now() - down.t; down = null;
     if (moved > 6 || dt > 600) return;
-    const [x, y] = local(ev); const i = scene.pick(x, y);
+    const [x, y] = local(ev); const i = targetAt(x, y);
     if (i >= 0) { if (app.tourActive) app.exitTour(); app.select(i); } else if (app.selected >= 0) app.select(-1);
   });
   cv.addEventListener('wheel', () => { app.idle = 0; scene.stopFlight(); }, { passive: true });
@@ -223,6 +222,7 @@ if (test) {
     startTour: () => app.startTour(), tourStep: (d) => app.tourStep(d),
     screenOf: (id) => { const i = indexOf.get(id); const s = scene.screen; return { x: s[i * 4], y: s[i * 4 + 1], depth: s[i * 4 + 2], r: s[i * 4 + 3] }; },
     pick: (x, y) => { const i = scene.pick(x, y); return i >= 0 ? graph.nodes[i].id : null; },
+    hit: (x, y) => { const i = targetAt(x, y); return i >= 0 ? graph.nodes[i].id : null; },
     hover: (id) => scene.setHover(id ? indexOf.get(id) : -1),
     setQuality: (q) => scene.setQuality(q),
     freezeTime: () => { scene.state.still = true; },

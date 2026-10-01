@@ -4,7 +4,7 @@ const MIN_RADIUS_PX = [0, 0, 2.2, 4, 6.5];      // smallest on-screen node radiu
 const DESC_START = 24, DESC_FULL = 38;           // on-screen radius (px) where a description starts and finishes fading in
 const MAX_DESCS = 5;
 
-export function createLabels({ container, scene, graph, cats, onHover, onSelect }) {
+export function createLabels({ container, scene, graph, cats }) {
   const nodes = graph.nodes, n = nodes.length;
   const els = new Array(n), st = new Array(n);
   const frag = document.createDocumentFragment();
@@ -17,17 +17,31 @@ export function createLabels({ container, scene, graph, cats, onHover, onSelect 
     el.querySelector('.yr').textContent = nd.tier > 1 ? String(nd.year) : '';
     el.querySelector('.cat').textContent = cats.get(nd.cat)?.label ?? '';
     el.querySelector('.d').textContent = nd.short;
-    el.addEventListener('pointerenter', () => onHover(i));
-    el.addEventListener('pointerleave', () => onHover(-1));
-    el.addEventListener('click', (ev) => { ev.stopPropagation(); onSelect(i); });
     frag.appendChild(el); els[i] = el;
     st[i] = { on: false, desc: false, focus: false, tf: '', op: 1, dop: 1 };
   });
   container.appendChild(frag);
 
+  // faint territory names that float over each category's cluster while zoomed out, like a map
+  const regionEls = scene.regions.map((r) => {
+    const e = document.createElement('div'); e.className = 'region'; e.style.setProperty('--c', cats.get(r.key)?.color ?? '#fff');
+    e.textContent = (cats.get(r.key)?.label ?? r.key).replace(/:.*$/, ''); container.prepend(e); return e;
+  });
+  function updateRegions(focus, enabled) {
+    const fit = scene.fitDistance();
+    scene.regions.forEach((r, k) => {
+      const e = regionEls[k];
+      if (!enabled || r.depth < 0 || r.w < 0.05) { e.style.opacity = '0'; return; }
+      const f = Math.min(1, Math.max(0, (r.depth / fit - 0.45) * 2.4));
+      e.style.opacity = (f * 0.3 * r.w * (focus >= 0 ? 0.3 : 1)).toFixed(2);
+      e.style.transform = `translate3d(${Math.round(r.x)}px,${Math.round(r.y)}px,0) translate(-50%,-50%)`;
+    });
+  }
+
   const CELL = 110;
   let enabled = true;
   const rects = [];
+  let placedRects = [];   // [node index, screen rectangle] for every label shown this frame, strongest first
 
   function overlaps(a, b) { return a.x0 < b.x1 && a.x1 > b.x0 && a.y0 < b.y1 && a.y1 > b.y0; }
 
@@ -62,7 +76,7 @@ export function createLabels({ container, scene, graph, cats, onHover, onSelect 
         .sort((a, b) => sc[b[1] * 4 + 3] - sc[a[1] * 4 + 3]);
       for (const [, i] of byR) { if (descSet.size >= MAX_DESCS) break; descSet.add(i); }
     }
-    const grid = new Map(), placed = new Set(), want = new Map();
+    const grid = new Map(), placed = new Set(), want = new Map(), order = [];
     rects.length = 0;
     for (const [, i] of cand) {
       if (placed.size >= maxLabels) break;
@@ -87,8 +101,10 @@ export function createLabels({ container, scene, graph, cats, onHover, onSelect 
       for (let gx = cx0; gx <= cx1; gx++) for (let gy = cy0; gy <= cy1; gy++) {
         const key = gx * 7919 + gy; let b = grid.get(key); if (!b) grid.set(key, (b = [])); b.push(rect);
       }
-      placed.add(i); want.set(i, { x: lx, ay, wantDesc, isFocus });
+      placed.add(i); want.set(i, { x: lx, ay, wantDesc, isFocus }); order.push([i, rect]);
     }
+    updateRegions(focus, enabled);
+    placedRects = order;
     // apply to the DOM, touching only what changed
     const nearDepth = scene.camera.position.length();
     for (let i = 0; i < n; i++) {
@@ -111,6 +127,11 @@ export function createLabels({ container, scene, graph, cats, onHover, onSelect 
 
   return {
     update,
+    // labels let pointer events through so dragging to orbit works anywhere; clicks on a title are matched here instead
+    hitTest(px, py) {
+      for (const [i, r] of placedRects) if (px >= r.x0 && px <= r.x1 && py >= r.y0 && py <= r.y1) return i;
+      return -1;
+    },
     setEnabled(v) { enabled = !!v; },
     visibleIds() { const out = []; for (let i = 0; i < n; i++) if (st[i].on) out.push(nodes[i].id); return out; },
     describedIds() { const out = []; for (let i = 0; i < n; i++) if (st[i].on && st[i].desc) out.push(nodes[i].id); return out; },

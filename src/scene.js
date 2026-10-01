@@ -71,7 +71,11 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   const uniforms = {
     uPos: { value: posTex }, uFx: { value: fxTex }, uTime: { value: 0 }, uRes: { value: new THREE.Vector2(1, 1) },
     uPx: { value: 1 }, uPulse: { value: state.pulse }, uReveal: { value: 1 },
+    // additive glow piles up in dense graphs, so ease the brightness down as the node and edge counts grow
+    uEdgeGain: { value: Math.min(1, Math.max(0.16, Math.pow(260 / Math.max(1, edgePairs.length), 0.7))) },
+    uHaloGain: { value: Math.min(1, Math.max(0.3, Math.pow(140 / n, 0.5))) },
   };
+  const bloomStrength = 0.55 * Math.pow(Math.max(1, n / 150), -0.2);
   const defines = { TEXW };
 
   // ---------- nodes (instanced spheres) + halos ----------
@@ -171,6 +175,38 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   const stars = mkPoints(3200, 2600, 6000, [1.1, 3.4], SH.starVert, SH.starFrag, true); stars.renderOrder = -9; scene.add(stars);
   const dust = mkPoints(700, 60, 560, [1.2, 3.2], SH.dustVert, SH.dustFrag, false); dust.renderOrder = -8; scene.add(dust);
 
+  // ---------- category clouds and region anchors ----------
+  const catKeys = graph.categories.filter((c) => c.key !== 'root').map((c) => c.key), K = catKeys.length;
+  const catOf = graph.nodes.map((nd) => catKeys.indexOf(nd.cat));
+  const regions = catKeys.map((key) => ({ key, x: 0, y: 0, depth: -1, r: 0, w: 0, cx: 0, cy: 0, cz: 0, rad: 0 }));
+  const cloudCenter = new Float32Array(K * 3), cloudInfo = new Float32Array(K * 4), cloudColor = new Float32Array(K * 3);
+  catKeys.forEach((key, k) => { const c = new THREE.Color(cats.get(key).color); cloudColor.set([c.r, c.g, c.b], k * 3); cloudInfo[k * 4 + 2] = seedOf(k + 40); });
+  const cloudGeo = new THREE.InstancedBufferGeometry();
+  cloudGeo.index = quad.index; cloudGeo.setAttribute('position', quad.getAttribute('position'));
+  const centerAttr = new THREE.InstancedBufferAttribute(cloudCenter, 3), infoAttr = new THREE.InstancedBufferAttribute(cloudInfo, 4);
+  centerAttr.setUsage(THREE.DynamicDrawUsage); infoAttr.setUsage(THREE.DynamicDrawUsage);
+  cloudGeo.setAttribute('aCenter', centerAttr); cloudGeo.setAttribute('aCloud', infoAttr);
+  cloudGeo.setAttribute('aColor', new THREE.InstancedBufferAttribute(cloudColor, 3));
+  cloudGeo.instanceCount = K;
+  const cloudMesh = new THREE.Mesh(cloudGeo, new THREE.ShaderMaterial({
+    vertexShader: SH.cloudVert, fragmentShader: SH.cloudFrag, uniforms, transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending,
+  }));
+  cloudMesh.frustumCulled = false; cloudMesh.renderOrder = -7; scene.add(cloudMesh);
+  function updateRegions() {
+    const sx = new Float32Array(K * 3), wsum = new Float32Array(K);
+    for (let i = 0; i < n; i++) { const k = catOf[i]; if (k < 0) continue; const w = vis[i]; sx[k * 3] += pos[i * 3] * w; sx[k * 3 + 1] += pos[i * 3 + 1] * w; sx[k * 3 + 2] += pos[i * 3 + 2] * w; wsum[k] += w; }
+    const var2 = new Float32Array(K);
+    for (let k = 0; k < K; k++) if (wsum[k] > 0.01) { regions[k].cx = sx[k * 3] / wsum[k]; regions[k].cy = sx[k * 3 + 1] / wsum[k]; regions[k].cz = sx[k * 3 + 2] / wsum[k]; }
+    for (let i = 0; i < n; i++) { const k = catOf[i]; if (k < 0) continue; const dx = pos[i * 3] - regions[k].cx, dy = pos[i * 3 + 1] - regions[k].cy, dz = pos[i * 3 + 2] - regions[k].cz; var2[k] += (dx * dx + dy * dy + dz * dz) * vis[i]; }
+    for (let k = 0; k < K; k++) {
+      const w = Math.min(1, wsum[k] / 3), rad = wsum[k] > 0.01 ? Math.sqrt(var2[k] / wsum[k]) : 0;
+      regions[k].rad = rad; regions[k].w = w;
+      cloudCenter.set([regions[k].cx, regions[k].cy, regions[k].cz], k * 3);
+      cloudInfo[k * 4] = Math.max(40, rad * 2.1); cloudInfo[k * 4 + 1] = 0.13 * w * uniforms.uHaloGain.value * (state.quality === 'low' ? 0.6 : 1);
+    }
+    centerAttr.needsUpdate = true; infoAttr.needsUpdate = true;
+  }
+
   // ---------- post-processing ----------
   let composer, bloom, finalPass, rt;
   const finalUniforms = { tDiffuse: { value: null }, uTime: { value: 0 }, uVig: { value: 0.55 }, uGrain: { value: 0.018 }, uCA: { value: 0.012 }, uRes: { value: new THREE.Vector2(1, 1) } };
@@ -179,7 +215,7 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
     rt = new THREE.WebGLRenderTarget(w, h, { type: THREE.HalfFloatType, samples: state.quality === 'high' ? 4 : 0 });
     composer = new EffectComposer(renderer, rt);
     composer.addPass(new RenderPass(scene, camera));
-    bloom = new UnrealBloomPass(new THREE.Vector2(w, h), 0.55, 0.55, 0.62);
+    bloom = new UnrealBloomPass(new THREE.Vector2(w, h), bloomStrength, 0.55, 0.66);
     composer.addPass(bloom);
     finalPass = new ShaderPass(new THREE.ShaderMaterial({ uniforms: finalUniforms, vertexShader: SH.finalVert, fragmentShader: SH.finalFrag }));
     composer.addPass(finalPass);
@@ -296,6 +332,13 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
       screen[i * 4] = (cx * 0.5 + 0.5) * cssW; screen[i * 4 + 1] = (1 - (cy * 0.5 + 0.5)) * cssH; screen[i * 4 + 2] = w;
       screen[i * 4 + 3] = (rad[i] * (1 + 0.22 * emph[i]) * vis[i] * scale) / w;
     }
+    for (const r of regions) {
+      const w = e[3] * r.cx + e[7] * r.cy + e[11] * r.cz + e[15];
+      if (w <= 0.01) { r.depth = -1; continue; }
+      r.x = ((e[0] * r.cx + e[4] * r.cy + e[8] * r.cz + e[12]) / w * 0.5 + 0.5) * cssW;
+      r.y = (1 - ((e[1] * r.cx + e[5] * r.cy + e[9] * r.cz + e[13]) / w * 0.5 + 0.5)) * cssH;
+      r.depth = w; r.r = (r.rad * scale) / w;
+    }
   }
   function pick(px, py) {
     let best = -1, bestScore = Infinity;
@@ -368,6 +411,7 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
       r.rotation.set(tilt, t * speed + k, k * 0.6);
       r.material.opacity = (graph.nodes[i].tier === 0 ? 0.5 : 0.3) * vis[i] * (1 - dim[i] * 0.9) * (1 + emph[i]);
     }
+    updateRegions();
     updateScreen();
 
     // frame-time governor
@@ -404,7 +448,7 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   for (let i = 0; i < n; i++) vis[i] = tVis[i];
 
   return {
-    camera, controls, renderer, graph, indexOf, adj, pos, rad, screen, vis, state, uniforms,
+    camera, controls, renderer, graph, indexOf, adj, pos, rad, screen, vis, state, uniforms, regions,
     update, render, resize, pick, setHover, setSelected, setVisibleMask, isVisible, setLayout, startIntro, finishIntro,
     flyToNode, flyToPoint, overview, stopFlight, nodePoint, setQuality, layoutBounds, fitDistance,
     setBloom(strength) { if (bloom) bloom.strength = strength; },
