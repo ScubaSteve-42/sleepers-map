@@ -1,0 +1,3139 @@
+{
+ "slice": "s06-math-ai",
+ "nodes": [
+  {
+   "id": "math.matmul",
+   "title": "Matrix Multiplication",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 1858,
+   "short": "Combining two matrices: each entry is a row of the first multiplied term by term with a column of the second. Graphics and neural networks are built from it.",
+   "long": "In the product of two matrices, entry (i, j) is the dot product of row i of the first with column j of the second: multiply matching entries, then add them up. Arthur Cayley's 1858 memoir on matrices gave the first abstract definition of a matrix algebra. Read as transformations, the product means 'apply the right-hand matrix first, then the left-hand one', so order matters and A times B is generally not B times A. The same operation chains 3D graphics transformations, advances a neural-network layer and computes attention in a Transformer. Multiplying two 4096 by 4096 matrices takes about 137 billion floating-point operations, which is why tuned libraries, GPUs and specialized chips exist to speed it up.",
+   "sleeper": "Python got a matrix-multiply operator late: PEP 465 (proposed in 2014, shipped in Python 3.5) added @, because * could mean only elementwise or matrix multiplication, and NumPy's arrays and its older matrix class chose differently.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\nint main(void) {\n    double A[2][3] = {{1,2,3},{4,5,6}}, B[3][2] = {{7,8},{9,10},{11,12}}, C[2][2] = {{0}};\n    for (int i = 0; i < 2; i++)\n        for (int j = 0; j < 2; j++)\n            for (int k = 0; k < 3; k++)\n                C[i][j] += A[i][k] * B[k][j];\n    printf(\"%g %g\\n%g %g\\n\", C[0][0], C[0][1], C[1][0], C[1][1]);  /* 58 64 and 139 154 */\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "gemm",
+    "dot product",
+    "linear algebra",
+    "composition",
+    "product"
+   ],
+   "refs": [
+    {
+     "label": "3Blue1Brown: Matrix multiplication as composition",
+     "url": "https://www.3blue1brown.com/lessons/matrix-multiplication"
+    },
+    {
+     "label": "MacTutor: Matrices and determinants",
+     "url": "https://mathshistory.st-andrews.ac.uk/HistTopics/Matrices_and_determinants/"
+    }
+   ]
+  },
+  {
+   "id": "math.matrix-ops",
+   "title": "Determinant, Inverse and Eigenvalues",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1858,
+   "short": "What a square matrix does to space: the determinant says how much areas scale, the inverse undoes it, and eigenvectors are the directions it only stretches.",
+   "long": "The determinant is the factor by which a matrix scales areas; a negative value flips orientation, and zero means space is squashed onto a line or a point, so the matrix cannot be undone. The inverse is the matrix that undoes the transformation, and solving A x = v means applying the inverse to v. An eigenvector is a direction the matrix only stretches or squishes, and its eigenvalue is the stretch factor. For the matrix [[2, 1], [1, 2]] the determinant is 3, and the eigenvalues are 3 (direction [1, 1]) and 1 (direction [1, -1]), which multiply to the determinant. James Sylvester coined the word matrix in 1850, and Arthur Cayley published the first formula for an inverse by 1853 and his abstract treatment in 1858.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\nM = np.array([[2, 1], [1, 2]])\nprint(np.linalg.det(M))            # about 3.0\nprint(np.linalg.eigvalsh(M))       # [1. 3.]\nprint(np.linalg.solve(M, [3, 3]))  # [1. 1.]"
+   },
+   "status": "thriving",
+   "tags": [
+    "linear algebra",
+    "det",
+    "inverse",
+    "eigenvector",
+    "solve",
+    "sylvester",
+    "cayley"
+   ],
+   "refs": [
+    {
+     "label": "3Blue1Brown: The determinant",
+     "url": "https://www.3blue1brown.com/lessons/determinant"
+    },
+    {
+     "label": "3Blue1Brown: Eigenvectors and eigenvalues",
+     "url": "https://www.3blue1brown.com/lessons/eigenvalues"
+    }
+   ]
+  },
+  {
+   "id": "math.matrix-storage",
+   "title": "Row-Major and Column-Major Storage",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1957,
+   "short": "Memory is one long line, so a grid of numbers needs a layout rule. C and NumPy store row by row; Fortran, MATLAB, Julia and R store column by column.",
+   "long": "A matrix in memory is a flat run of numbers plus a rule for finding element (i, j). Row-major order, used by C and by NumPy by default, stores each row after the previous one, while column-major order, used by Fortran, MATLAB, Julia and R, stores each column in turn. The 2 by 3 matrix [[1, 2, 3], [4, 5, 6]] lies in memory as 1 2 3 4 5 6 in row-major order and as 1 4 2 5 3 6 in column-major order. Fortran, first released in 1957, uses the column convention, and the numerical libraries written in it kept it, so mixing languages means transposing or reading layouts carefully. NumPy records a layout as strides, the byte distances between neighboring rows and columns, and can hold either order; sparse formats such as SciPy's CSR store only the nonzero entries.",
+   "sleeper": "Fortran's 1957 column-major layout has outlived Fortran as a default: MATLAB, Julia and R use it too, and NumPy can store arrays in either order so that Fortran and C libraries can read its data directly.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.int64)\nprint(a.ravel(order=\"C\"))   # [1 2 3 4 5 6]  row by row\nprint(a.ravel(order=\"F\"))   # [1 4 2 5 3 6]  column by column\nprint(a.strides)            # (24, 8): 24 bytes to the next row, 8 to the next column"
+   },
+   "status": "thriving",
+   "tags": [
+    "strides",
+    "memory layout",
+    "c order",
+    "fortran order",
+    "sparse",
+    "csr",
+    "transpose"
+   ],
+   "refs": [
+    {
+     "label": "NumPy docs: ndarray internal memory layout",
+     "url": "https://numpy.org/doc/stable/reference/arrays.ndarray.html"
+    },
+    {
+     "label": "Julia manual: Performance tips",
+     "url": "https://docs.julialang.org/en/v1/manual/performance-tips/"
+    }
+   ]
+  },
+  {
+   "id": "math.tensor",
+   "title": "Tensor",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2015,
+   "short": "In machine learning code, an array with any number of dimensions. Mathematicians use the word more narrowly, for a coordinate-free object such as a stress tensor.",
+   "long": "Programmers use a ladder of names for arrays: a scalar is a single number, a vector is a list, a matrix is a grid, and a tensor is the general case with any number of axes, such as a color video indexed by frame, row, column and color channel. In frameworks such as PyTorch a tensor is an array that can also live on a GPU and record the operations applied to it, so that gradients can be computed. The 'n-way array' sense is older than the frameworks, as in Kolda and Bader's 2009 survey of tensor methods, but TensorFlow (2015) put the word in a major framework's name. Mathematics means something narrower: an object describing a multilinear relationship, defined without reference to coordinates, like the stress tensor of a material. NumPy's guide advises avoiding the mathematical names for plain arrays.",
+   "sleeper": "In C or Fortran terms, a machine-learning tensor is simply a multidimensional array. The extras are GPU placement and gradient tracking, not new mathematics.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\nvideo = np.zeros((10, 480, 640, 3))   # frames, rows, columns, color channels\nprint(video.ndim, video.shape)        # 4 (10, 480, 640, 3)"
+   },
+   "status": "thriving",
+   "tags": [
+    "scalar",
+    "vector",
+    "ndarray",
+    "n-dimensional array",
+    "dot product"
+   ],
+   "refs": [
+    {
+     "label": "NumPy docs: The absolute basics for beginners",
+     "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+    },
+    {
+     "label": "Kolda and Bader: Tensor Decompositions and Applications",
+     "url": "https://www.kolda.net/publication/koba09/"
+    }
+   ]
+  },
+  {
+   "id": "math.pagerank",
+   "title": "PageRank",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1998,
+   "short": "Google's original ranking method. A page's score is the principal eigenvector of the web's link matrix, found by repeated multiplication.",
+   "long": "Sergey Brin and Larry Page described PageRank in a 1998 paper on the Google search engine. Each page passes its score along its outgoing links, and the scores form a probability distribution over pages. The result corresponds to the principal eigenvector of the normalized link matrix of the web, and a simple iterative algorithm computes it; the paper reported 26 million pages processed in a few hours on a medium-size workstation. In miniature, three pages with links A to B, A to C, B to C and C to A settle at scores 0.4, 0.2 and 0.4 when a starting guess is multiplied by the link matrix over and over. The paper's formula adds a damping factor d, which this miniature leaves out.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\nL = np.array([[0, 0, 1], [0.5, 0, 0], [0.5, 1, 0]])   # column j: where page j sends its score\nr = np.ones(3) / 3                                      # start with equal scores\nfor _ in range(100):\n    r = L @ r                                           # pass scores along the links\nprint(r)   # [0.4 0.2 0.4]"
+   },
+   "status": "n/a",
+   "tags": [
+    "link analysis",
+    "eigenvector",
+    "search ranking",
+    "brin",
+    "page"
+   ]
+  },
+  {
+   "id": "math.netflix-prize",
+   "title": "Matrix Factorization and the Netflix Prize",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2006,
+   "short": "A 2006 contest with a US$1 million prize for better movie recommendations, and the matrix factorization used to predict ratings from a mostly empty matrix.",
+   "long": "In 2006 Netflix released more than 100 million ratings from about 500,000 anonymous customers on more than 17,000 movies, and offered US$1 million to the first team to beat its own recommendation algorithm by 10 percent. The data forms a very large users-by-movies matrix that is almost entirely empty, because each customer rates only a small share of the films. Matrix factorization places every user and every movie in a shared space of a few hidden factors, so that a predicted rating is the inner product of a user vector and a movie vector. The two main training methods were stochastic gradient descent and alternating least squares. Koren, Bell and Volinsky summarized the approach in a 2009 IEEE Computer article.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\nP = np.array([[1, 0], [0, 1], [1, 1]])   # three users, two hidden factors each\nQ = np.array([[5, 2], [1, 4], [3, 3]])   # three movies, two hidden factors each\nprint(P @ Q.T)   # predicted ratings: [[5 1 3] [2 4 3] [7 5 6]]"
+   },
+   "status": "n/a",
+   "tags": [
+    "recommender",
+    "ratings",
+    "latent factors",
+    "sparse",
+    "sgd"
+   ],
+   "refs": [
+    {
+     "label": "Koren, Bell and Volinsky: Matrix Factorization Techniques for Recommender Systems",
+     "url": "https://datajobs.com/data-science-repo/Recommender-Systems-%5BNetflix%5D.pdf"
+    }
+   ]
+  },
+  {
+   "id": "math.vectorization",
+   "title": "Vectorization",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 1995,
+   "short": "Writing whole-array operations so the looping happens in compiled code, not in the interpreter. In Python it can be hundreds of times faster than an explicit loop.",
+   "long": "Vectorized code states an operation on whole arrays, such as 1.0 / x, with no explicit loop; the loop still runs, but inside precompiled C or Fortran, which avoids the interpreter's cost for each element. The idea reached Python with Numeric in 1995 and carried on in NumPy. In one published test, reciprocals of one million integers took 2.91 seconds in a Python loop and 4.6 milliseconds vectorized, about 630 times faster. In an MIT course benchmark, multiplying two 4096 by 4096 matrices took 21,042 seconds in nested Python loops and 0.41 seconds in Intel MKL, about 51,000 times faster; most of that gap came from cache use, parallel threads and vector instructions rather than from C itself. Loop-heavy code is the worst case, so typical programs gain less.",
+   "sleeper": "In 1990, speed meant writing the loop in Fortran or C. In scientific Python the advice runs the other way: avoid writing the loop at all, and hand whole arrays to a compiled library.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\nx = np.arange(1, 1_000_001)\nslow = [1.0 / v for v in x]   # interpreted loop, one element at a time\nfast = 1.0 / x                # one expression; the loop runs in compiled C"
+   },
+   "status": "thriving",
+   "tags": [
+    "broadcasting",
+    "numpy",
+    "array programming",
+    "speed",
+    "loops"
+   ],
+   "refs": [
+    {
+     "label": "NumPy docs: What is NumPy?",
+     "url": "https://numpy.org/doc/stable/user/whatisnumpy.html"
+    },
+    {
+     "label": "MIT 6.172 Lecture 1: matrix multiplication speedups",
+     "url": "https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/d0c73dd51c79b95196a2e6faa824e1b4_MIT6_172F18_lec1.pdf"
+    }
+   ]
+  },
+  {
+   "id": "math.eispack",
+   "title": "EISPACK",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1974,
+   "short": "A 1970s Fortran library for the eigenvalues and eigenvectors of matrices, from Argonne National Laboratory and collaborators. LAPACK largely replaced it.",
+   "long": "EISPACK is a collection of Fortran subroutines that compute the eigenvalues and eigenvectors of nine classes of matrices. Its documentation dates from 1974 ('How to Use EISPACK') and 1976, when Springer published the EISPACK guide by Smith, Boyle, Dongarra, Garbow, Ikebe, Klema and Moler. Netlib, the online repository that hosts it, says it has been superseded for the most part by LAPACK. Cleve Moler wrote the first MATLAB so that his students could use EISPACK and LINPACK without writing Fortran programs.",
+   "status": "legacy",
+   "tags": [
+    "eigenvalues",
+    "fortran",
+    "netlib",
+    "argonne",
+    "matrix library"
+   ],
+   "refs": [
+    {
+     "label": "netlib: EISPACK",
+     "url": "https://www.netlib.org/eispack/"
+    }
+   ]
+  },
+  {
+   "id": "math.linpack",
+   "title": "LINPACK",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1979,
+   "short": "A Fortran library for linear equations and least squares, documented in 1979. LAPACK replaced it, but the name lives on as a benchmark.",
+   "long": "LINPACK is a collection of Fortran subroutines that analyze and solve linear equations and linear least-squares problems. Its users' guide was published by SIAM in 1979, written by Dongarra, Bunch, Moler and Stewart. It was designed for the supercomputers of the 1970s and early 1980s and used column-oriented algorithms to keep data close together in memory, matching Fortran's column-major layout. Netlib describes it as largely superseded by LAPACK, which reorganized the same kind of work around blocks of data. Moler built MATLAB as a friendlier front end to LINPACK and EISPACK, and the LINPACK name survives as a benchmark.",
+   "status": "legacy",
+   "tags": [
+    "linear equations",
+    "least squares",
+    "fortran",
+    "benchmark",
+    "netlib"
+   ],
+   "refs": [
+    {
+     "label": "netlib: LINPACK",
+     "url": "https://www.netlib.org/linpack/"
+    }
+   ]
+  },
+  {
+   "id": "math.blas",
+   "title": "BLAS",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 1979,
+   "short": "Basic Linear Algebra Subprograms: a standard set of vector and matrix routines. Vendors tune them once, and every program that calls them runs fast on that machine.",
+   "long": "The BLAS are a standard interface for the basic operations of linear algebra. Level 1, published in 1979 by Lawson, Hanson, Kincaid and Krogh, covers scalar and vector operations, Level 2 (1988) covers matrix-vector operations, and Level 3 (1990) covers matrix-matrix operations such as C = alpha*A*B + beta*C. The reference version on netlib is portable but not fast, so vendors and projects supply tuned versions with the same interface: OpenBLAS, Intel MKL, Apple Accelerate and, on GPUs, NVIDIA's cuBLAS. Because the interface stays fixed, libraries such as LAPACK and SciPy are written against it once and inherit the tuning. Jack Dongarra co-authored the Level 2 and 3 specifications.",
+   "sleeper": "The names have outlived the Fortran era. GEMM, the Level 3 matrix multiply, is the routine NVIDIA's guides still cite as the building block of neural-network layers.",
+   "status": "thriving",
+   "tags": [
+    "gemm",
+    "level 1",
+    "level 2",
+    "level 3",
+    "linear algebra",
+    "netlib"
+   ],
+   "refs": [
+    {
+     "label": "netlib: BLAS",
+     "url": "https://www.netlib.org/blas/"
+    }
+   ]
+  },
+  {
+   "id": "math.lapack",
+   "title": "LAPACK",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 1992,
+   "short": "The standard library for dense linear algebra (solving equations, least squares, eigenvalues, SVD), first released in 1992 and built on blocked BLAS operations.",
+   "long": "LAPACK, the Linear Algebra PACKage, had its first public release on 29 February 1992, provided by the University of Tennessee, UC Berkeley, the University of Colorado Denver and NAG. Its original goal was to make EISPACK and LINPACK run efficiently on shared-memory vector and parallel processors, because the older code ignored the memory hierarchy and spent too much time moving data. LAPACK reorganized the work into blocks that use Level 3 BLAS. It is written in Fortran 90, handles dense and banded matrices but not general sparse ones, and offers LU, Cholesky, QR, SVD and Schur factorizations in real and complex, single and double precision. Version 3.12.1, released in January 2025, was still the latest on netlib in September 2026.",
+   "status": "thriving",
+   "tags": [
+    "linear algebra",
+    "svd",
+    "qr",
+    "cholesky",
+    "lu",
+    "fortran",
+    "netlib"
+   ],
+   "refs": [
+    {
+     "label": "netlib: LAPACK",
+     "url": "https://www.netlib.org/lapack/"
+    },
+    {
+     "label": "LAPACK Users' Guide",
+     "url": "https://www.netlib.org/lapack/lug/"
+    }
+   ]
+  },
+  {
+   "id": "math.tuned-blas",
+   "title": "ATLAS, OpenBLAS and Intel MKL",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1998,
+   "short": "Faster, hardware-specific builds of the BLAS. ATLAS tunes itself at install time, OpenBLAS descends from GotoBLAS, and Intel MKL is the chip maker's own.",
+   "long": "The reference BLAS on netlib are portable but slow, so tuned versions exist with the same interface. ATLAS (Whaley, Petitet and Dongarra, described in a 2001 paper) generates its kernels by automated search at install time; its last stable release is 3.10.3 of July 2016. GotoBLAS, by Kazushige Goto, used register and cache blocking, described in a 2008 paper with Robert van de Geijn, and lives on as OpenBLAS, a BSD-licensed fork of GotoBLAS2 maintained by developers including Zhang Xianyi and Martin Kroeker. Intel MKL is Intel's tuned BLAS and LAPACK; in an MIT benchmark it multiplied two 4096 by 4096 matrices in 0.41 seconds, about 40 percent of the machine's peak.",
+   "sleeper": "In Python you rarely choose a BLAS yourself. NumPy and SciPy pick one when they are built, and SciPy's build documentation lists OpenBLAS (the default), MKL, Apple Accelerate, BLIS and ATLAS as options.",
+   "status": "thriving",
+   "tags": [
+    "atlas",
+    "openblas",
+    "mkl",
+    "gotoblas",
+    "accelerate",
+    "gemm"
+   ],
+   "refs": [
+    {
+     "label": "OpenBLAS project page",
+     "url": "https://www.openmathlib.org/OpenBLAS/"
+    },
+    {
+     "label": "SciPy docs: BLAS and LAPACK",
+     "url": "https://docs.scipy.org/doc/scipy/building/blas_lapack.html"
+    }
+   ]
+  },
+  {
+   "id": "math.scipy",
+   "title": "SciPy",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2001,
+   "short": "Python's library of scientific algorithms on top of NumPy: optimization, linear algebra, sparse matrices, signal processing and statistics. Much of it wraps Fortran.",
+   "long": "SciPy grew out of packages that Travis Oliphant wrote on top of Numeric, joined by Pearu Peterson's F2PY tool for binding Python to Fortran. In 2001 Eric Jones and Travis Vaught founded Enthought and started the SciPy project to bring these pieces together, and the 0.1 announcement came on 20 August 2001. It offers optimization, sparse and dense linear algebra, signal processing, statistics and fast Fourier transforms. Much of that rests on established Fortran libraries such as QUADPACK, FITPACK and ODEPACK, and on BLAS and LAPACK. The 2020 SciPy paper counted over 600 contributors and over 100,000 dependent repositories.",
+   "sleeper": "In 2020 about a quarter of SciPy's code was Fortran. Its roadmap now aims to remove all of it, because Fortran 77 is hard to maintain and complicates builds on platforms such as macOS arm64 and Windows on Arm.",
+   "code": {
+    "lang": "python",
+    "text": "from scipy.optimize import minimize\nresult = minimize(lambda x: (x[0] - 3) ** 2, x0=[0.0])\nprint(result.x)   # close to [3.]"
+   },
+   "status": "thriving",
+   "tags": [
+    "scientific computing",
+    "optimization",
+    "sparse",
+    "enthought",
+    "f2py",
+    "fft"
+   ],
+   "refs": [
+    {
+     "label": "Virtanen et al.: SciPy 1.0 (Nature Methods, 2020)",
+     "url": "https://doi.org/10.1038/s41592-019-0686-2"
+    },
+    {
+     "label": "SciPy detailed roadmap",
+     "url": "https://docs.scipy.org/doc/scipy/dev/roadmap-detailed.html"
+    }
+   ]
+  },
+  {
+   "id": "math.pandas",
+   "title": "pandas",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2008,
+   "short": "Wes McKinney's DataFrame library for Python: tables with named columns that can be read from files, cleaned, joined, grouped and summarized.",
+   "long": "Wes McKinney began pandas in 2008 at AQR Capital Management and open-sourced it by the end of 2009. Its central object, the DataFrame, is a table with named columns held in memory, with operations to read files such as CSV, clean and join data, and group and summarize it. It is built on NumPy arrays. McKinney's 2010 SciPy conference paper, 'Data Structures for Statistical Computing in Python', has been cited about 9,600 times. In September 2026 pandas was downloaded about 547 million times from PyPI, ranking 40th overall and second to NumPy among scientific packages, and version 3.0.6 appeared on 17 September 2026.",
+   "code": {
+    "lang": "python",
+    "text": "import pandas as pd\ndf = pd.DataFrame({\"region\": [\"east\", \"west\", \"east\"], \"total\": [10, 20, 30]})\nprint(df.groupby(\"region\")[\"total\"].sum())   # east 40, west 20"
+   },
+   "status": "thriving",
+   "tags": [
+    "dataframe",
+    "tables",
+    "data analysis",
+    "mckinney",
+    "csv"
+   ],
+   "refs": [
+    {
+     "label": "pandas: About, history of development",
+     "url": "https://pandas.pydata.org/about/"
+    },
+    {
+     "label": "McKinney: Data Structures for Statistical Computing in Python",
+     "url": "https://doi.org/10.25080/Majora-92bf1922-00a"
+    }
+   ]
+  },
+  {
+   "id": "math.polars",
+   "title": "Polars",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2020,
+   "short": "A DataFrame library written from scratch in Rust, started in 2020 by Ritchie Vink. It runs queries in parallel and exchanges data with Arrow.",
+   "long": "Polars is a DataFrame library written from scratch in Rust, with a Python interface. Ritchie Vink made the first commit on 10 May 2020. It runs queries in parallel across cores and can consume and produce Apache Arrow data, often without copying. It is a newer alternative to pandas, and part of a pattern of the early 2020s in which a Python front end sits on compiled code written in Rust or C++, as with Ruff, uv and DuckDB. Polars downloads rose from about 0.1 million in September 2022 to 25 million in September 2025 and 52 million in September 2026.",
+   "code": {
+    "lang": "python",
+    "text": "import polars as pl\ndf = pl.DataFrame({\"region\": [\"east\", \"west\", \"east\"], \"total\": [10, 20, 30]})\nprint(df.group_by(\"region\").agg(pl.col(\"total\").sum()))"
+   },
+   "status": "thriving",
+   "tags": [
+    "dataframe",
+    "rust",
+    "arrow",
+    "parallel",
+    "vink"
+   ],
+   "refs": [
+    {
+     "label": "Polars user guide",
+     "url": "https://docs.pola.rs/"
+    }
+   ]
+  },
+  {
+   "id": "math.matplotlib",
+   "title": "Matplotlib",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2003,
+   "short": "Python's foundational plotting library, begun by John D. Hunter around 2002 to 2003, which turns arrays and tables into line plots, histograms and other charts.",
+   "long": "Matplotlib draws charts from Python data. The documentation names John D. Hunter (1968 to 2012) as the original author, its copyright notice runs from 2002, and Wikipedia gives 2003 as the first release. Other plotting libraries build on it, such as Seaborn for statistical charts, and it plots NumPy arrays and pandas tables. Hunter's 2007 paper in Computing in Science and Engineering has been cited about 25,900 times. Matplotlib 3.11.2 appeared on 11 September 2026, and the package had about 162 million downloads that month.",
+   "code": {
+    "lang": "python",
+    "text": "import matplotlib.pyplot as plt\nplt.plot([1, 2, 3], [1, 4, 9])\nplt.show()"
+   },
+   "status": "thriving",
+   "tags": [
+    "plotting",
+    "charts",
+    "pyplot",
+    "visualization",
+    "hunter"
+   ],
+   "refs": [
+    {
+     "label": "Matplotlib history",
+     "url": "https://matplotlib.org/stable/project/history.html"
+    },
+    {
+     "label": "Hunter: Matplotlib, a 2D graphics environment (2007)",
+     "url": "https://doi.org/10.1109/MCSE.2007.55"
+    }
+   ]
+  },
+  {
+   "id": "math.sympy",
+   "title": "SymPy",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2007,
+   "short": "A pure-Python library for symbolic mathematics: it manipulates formulas, so differentiating x cubed gives 3 times x squared, not a number.",
+   "long": "SymPy does algebra with symbols instead of numbers: asked to differentiate x cubed, it returns the exact formula, 3 times x squared, not an approximation. It is written in pure Python by a community known as the SymPy Development Team; Wikipedia dates it to about 2007, and PyPI's first upload is dated 26 April 2008. A 2017 paper in PeerJ Computer Science describes it, with authors including Meurer, Smith, Paprocki and Rocklin. Its latest PyPI release was 1.14.0 in April 2025, although the project's repository was still receiving changes in October 2026, and it had about 130 million downloads in September 2026.",
+   "code": {
+    "lang": "python",
+    "text": "from sympy import symbols, diff\nx = symbols(\"x\")\nprint(diff(x**3, x))   # 3*x**2"
+   },
+   "status": "thriving",
+   "tags": [
+    "symbolic",
+    "algebra",
+    "computer algebra",
+    "calculus",
+    "formula"
+   ],
+   "refs": [
+    {
+     "label": "SymPy: computer algebra in Python (PeerJ CS, 2017)",
+     "url": "https://doi.org/10.7717/peerj-cs.103"
+    }
+   ]
+  },
+  {
+   "id": "math.ipython",
+   "title": "IPython",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2001,
+   "short": "Fernando Pérez's enhanced interactive Python shell, started in 2001. It added 'magic' commands and became the kernel inside Jupyter.",
+   "long": "IPython is an interactive Python shell that adds conveniences to the plain prompt, such as 'magic' commands: %timeit sum(range(1000)) times an expression. Fernando Pérez started it in 2001. The IPython Notebook, a browser document mixing code, results and prose, first appeared in 2011, and in 2014 that part was spun off as Project Jupyter, with IPython remaining as the kernel that runs the Python code. Pérez and Granger's 2007 paper about it has been cited about 2,900 times, and version 9.17.1 was released on 1 September 2026.",
+   "status": "thriving",
+   "tags": [
+    "shell",
+    "repl",
+    "kernel",
+    "magic commands",
+    "perez"
+   ],
+   "refs": [
+    {
+     "label": "Pérez and Granger: IPython (CiSE, 2007)",
+     "url": "https://doi.org/10.1109/MCSE.2007.53"
+    }
+   ]
+  },
+  {
+   "id": "math.jupyter",
+   "title": "Jupyter Notebook",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2014,
+   "short": "A notebook is a web page mixing code, results and prose. Jupyter, spun out of IPython in 2014, is the usual notebook tool for data science and AI work.",
+   "long": "A notebook is a document opened in a web browser that mixes code cells, their output and explanatory text, so an analysis can be read and run as one page. The IPython Notebook appeared in 2011, and in 2014 it was spun off as Project Jupyter by seven founding members including Fernando Pérez, Brian Granger and Min Ragan-Kelley. GitHub counted 2.42 million repositories containing a notebook in 2025, up 75 percent from 1.4 million in 2024. Cells can be run in any order, which causes trouble: of 936 published notebooks that should have been runnable, 73 percent could not be reproduced by straightforward means, and only 879 of 22,578 Python notebooks from biomedical papers gave identical results when re-run.",
+   "sleeper": "In 1990 a program was a file run from start to finish. A notebook keeps state between cells and lets you run them in any order, which makes exploration easy and results hard to repeat.",
+   "status": "thriving",
+   "tags": [
+    "notebook",
+    "jupyterlab",
+    "ipynb",
+    "data science",
+    "cells"
+   ],
+   "refs": [
+    {
+     "label": "Wang et al.: Assessing and Restoring Reproducibility of Jupyter Notebooks (ASE 2020)",
+     "url": "https://doi.org/10.1145/3324884.3416585"
+    },
+    {
+     "label": "GitHub Octoverse 2025",
+     "url": "https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/"
+    }
+   ]
+  },
+  {
+   "id": "math.colab",
+   "title": "Google Colab",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2017,
+   "short": "Google's hosted Jupyter notebook service, released in 2017. It needs no setup and offers free access to GPUs and TPUs.",
+   "long": "Google Colab, short for Colaboratory, is a hosted Jupyter notebook service from Google Research. Google describes it as needing no setup and providing free access to computing resources, including GPUs and TPUs, so a browser is enough to run machine-learning code on accelerator hardware. It is proprietary and freemium, it is not distributed on PyPI, and Wikipedia gives 2017 as its release year.",
+   "status": "thriving",
+   "tags": [
+    "colaboratory",
+    "hosted notebook",
+    "free gpu",
+    "google research"
+   ],
+   "refs": [
+    {
+     "label": "Colaboratory FAQ",
+     "url": "https://research.google.com/colaboratory/faq.html"
+    }
+   ]
+  },
+  {
+   "id": "math.scikit-learn",
+   "title": "scikit-learn",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2007,
+   "short": "Python's general-purpose toolkit for classical machine learning: regression, classification, clustering and preprocessing behind one fit and predict interface.",
+   "long": "scikit-learn began in 2007 as a Google Summer of Code project by David Cournapeau. Its first public release came on 1 February 2010 from Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort and Vincent Michel of INRIA. It provides regression, classification, clustering and data preprocessing, and models such as random forests and support vector machines all share the same fit and predict calls. It builds on NumPy and SciPy and uses the BSD license. The 2011 paper describing it has about 95,000 citations, and the package had about 188 million downloads in September 2026.",
+   "code": {
+    "lang": "python",
+    "text": "from sklearn.tree import DecisionTreeClassifier\nX = [[0, 0], [0, 1], [1, 0], [1, 1]]\ny = [0, 0, 0, 1]                        # logical AND\nmodel = DecisionTreeClassifier().fit(X, y)\nprint(model.predict([[1, 1]]))          # [1]"
+   },
+   "status": "thriving",
+   "tags": [
+    "sklearn",
+    "machine learning",
+    "classification",
+    "regression",
+    "clustering"
+   ],
+   "refs": [
+    {
+     "label": "scikit-learn: About us",
+     "url": "https://scikit-learn.org/stable/about.html"
+    }
+   ]
+  },
+  {
+   "id": "math.xgboost",
+   "title": "XGBoost and LightGBM",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2014,
+   "short": "Libraries for gradient-boosted decision trees: XGBoost (2014) and LightGBM (2016). Boosted trees remain a strong choice for tables of data.",
+   "long": "Gradient boosting builds many small decision trees in sequence, each correcting the errors of the earlier ones; Friedman published the method in 2001. XGBoost, whose first commit by Tianqi Chen is dated 6 February 2014, made it fast and easy to use, and its 2016 paper with Guestrin has about 62,800 citations. LightGBM, begun by Guolin Ke at Microsoft in August 2016, is a faster alternative. A 2022 study across 45 tabular datasets found tree-based models still state of the art on medium-sized data of about 10,000 samples. In September 2026 XGBoost had about 30 million PyPI downloads and LightGBM about 19 million.",
+   "status": "thriving",
+   "tags": [
+    "gradient boosting",
+    "decision trees",
+    "lightgbm",
+    "tabular data",
+    "chen"
+   ],
+   "refs": [
+    {
+     "label": "Chen and Guestrin: XGBoost (KDD 2016)",
+     "url": "https://arxiv.org/abs/1603.02754"
+    }
+   ]
+  },
+  {
+   "id": "math.tensorflow",
+   "title": "TensorFlow",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2015,
+   "short": "Google's machine-learning framework, open-sourced in November 2015. It built models as dataflow graphs, and PyTorch overtook it in research papers by 2019.",
+   "long": "Google Brain released TensorFlow as open source on 9 November 2015. The 2016 paper describes it as an interface for expressing machine-learning algorithms and an implementation for running them on anything from mobile devices to thousands of GPU cards. TensorFlow 1.x had users define a graph of operations and then run it; TensorFlow 2.0, released on 30 September 2019, made line-by-line eager execution the default. Counts of papers at top conferences show PyTorch overtaking it in research during 2018 and 2019. TensorFlow remains maintained and widely installed, with about 12 million PyPI downloads in September 2026 against 62 million for torch, and its only 2026 minor release so far was 2.21.0 in March.",
+   "sleeper": "TensorFlow 1.x made you describe a computation as a graph first and run it afterwards, unlike ordinary code. Version 2 (2019) switched to running line by line, which is how PyTorch had worked from the start. PyTorch 2 (2023) later added compilation, so the two designs have converged.",
+   "status": "legacy",
+   "tags": [
+    "google brain",
+    "dataflow graph",
+    "eager execution",
+    "deep learning framework"
+   ],
+   "refs": [
+    {
+     "label": "Abadi et al.: TensorFlow (2016)",
+     "url": "https://arxiv.org/abs/1603.04467"
+    }
+   ]
+  },
+  {
+   "id": "math.keras",
+   "title": "Keras",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2015,
+   "short": "François Chollet's high-level neural-network API, begun in March 2015. Keras 3 runs on top of JAX, TensorFlow or PyTorch.",
+   "long": "Keras is a library for assembling neural networks from layers, created by François Chollet; its first commit is dated 28 March 2015. For years it ran on top of other engines: up to version 2.3 it supported TensorFlow, Microsoft's CNTK, Theano and PlaidML as back ends. Keras 3, described as a full rewrite, runs on JAX, TensorFlow or PyTorch, plus OpenVINO for inference only. The package uses the Apache-2.0 license, had about 64,300 stars on GitHub in October 2026 and about 12 million downloads in September 2026.",
+   "code": {
+    "lang": "python",
+    "text": "import keras\nmodel = keras.Sequential([keras.Input(shape=(3,)), keras.layers.Dense(1)])\nmodel.summary()   # one Dense layer: a 3-by-1 weight matrix plus one bias"
+   },
+   "status": "thriving",
+   "tags": [
+    "chollet",
+    "layers",
+    "neural network api",
+    "high-level",
+    "backend"
+   ],
+   "refs": [
+    {
+     "label": "Keras 3 announcement",
+     "url": "https://keras.io/keras_3/"
+    }
+   ]
+  },
+  {
+   "id": "math.jax",
+   "title": "JAX",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2018,
+   "short": "Google's library for array computation with automatic differentiation and program transformations, aimed at accelerators such as GPUs and TPUs.",
+   "long": "JAX, begun at Google in 2018, describes itself as a Python library for accelerator-oriented array computation and program transformation. Its README names eleven authors, including James Bradbury, Roy Frostig, Peter Hawkins, Matthew Johnson, Dougal Maclaurin and Adam Paszke. Code is ordinary array code, and functions such as jax.grad turn a function into one that computes its derivative. JAX uses the Apache-2.0 license. It is small next to PyTorch in downloads, about 8.6 million on PyPI in September 2026 against 12 million a year earlier, and it is one of the back ends of Keras 3.",
+   "code": {
+    "lang": "python",
+    "text": "import jax\nprint(jax.grad(lambda x: x ** 2)(3.0))   # 6.0"
+   },
+   "status": "niche",
+   "tags": [
+    "grad",
+    "accelerators",
+    "array computation",
+    "program transformation"
+   ],
+   "refs": [
+    {
+     "label": "JAX README",
+     "url": "https://github.com/jax-ml/jax"
+    }
+   ]
+  },
+  {
+   "id": "math.hf-transformers",
+   "title": "Hugging Face Transformers",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2018,
+   "short": "The Python library that downloads and runs pretrained models such as BERT and later large language models. Begun in 2018 by Hugging Face.",
+   "long": "Transformers began with a first commit by Thomas Wolf on 29 October 2018. It was first released as pytorch-pretrained-bert, then as pytorch-transformers in 2019, and then simply as transformers. It downloads pretrained models from the Hugging Face Hub and runs them in a few lines of Python, which made the Transformer architecture a pip install away. Hugging Face was founded in 2016 by Clément Delangue, Julien Chaumond and Thomas Wolf. The library uses the Apache-2.0 license and had about 96 million downloads in September 2026, with its companion huggingface-hub package at about 232 million.",
+   "code": {
+    "lang": "python",
+    "text": "from transformers import pipeline\nclassify = pipeline(\"sentiment-analysis\")\nprint(classify(\"I love this\"))   # a label such as POSITIVE, with a score"
+   },
+   "status": "thriving",
+   "tags": [
+    "hugging face",
+    "pretrained models",
+    "pipeline",
+    "nlp",
+    "model hub"
+   ],
+   "refs": [
+    {
+     "label": "Wolf et al.: HuggingFace's Transformers (2019)",
+     "url": "https://arxiv.org/abs/1910.03771"
+    }
+   ]
+  },
+  {
+   "id": "math.langchain",
+   "title": "LangChain",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2022,
+   "short": "A Python framework for chaining language-model calls, prompts, tools and document retrieval. Harrison Chase made the first commit in October 2022.",
+   "long": "LangChain is a framework for building applications around language models by chaining model calls, prompt templates, tools and retrieval of documents. Harrison Chase made the first commit on 24 October 2022, about five weeks before ChatGPT's release on 30 November 2022. The package uses the MIT license. Downloads grew from about 5.2 million in September 2023 to 80 million in September 2025 and 171 million in September 2026, with the langchain-core package at 147 million. LlamaIndex, begun in November 2022 by Jerry Liu, is a similar framework for connecting your own documents to a model, a technique called retrieval-augmented generation.",
+   "status": "thriving",
+   "tags": [
+    "llm framework",
+    "rag",
+    "agents",
+    "prompt templates",
+    "llamaindex"
+   ],
+   "refs": [
+    {
+     "label": "LangChain on GitHub",
+     "url": "https://github.com/langchain-ai/langchain"
+    }
+   ]
+  },
+  {
+   "id": "math.vllm",
+   "title": "vLLM",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2023,
+   "short": "An open-source engine from UC Berkeley for serving language models to many users. PagedAttention manages memory the way an operating system pages virtual memory.",
+   "long": "vLLM runs language models for many users at once at high throughput. Woosuk Kwon made the first commit on 9 February 2023 at the Sky Computing Lab of UC Berkeley. Its PagedAttention technique manages the memory cache that attention needs the way an operating system manages virtual memory, and the 2023 SOSP paper reports that it improves the throughput of popular models by 2 to 4 times at the same latency. It uses the Apache-2.0 license and is hosted by the PyTorch Foundation, with about 2.1 million PyPI downloads in September 2026 and about 93,000 GitHub stars.",
+   "sleeper": "The operating-system idea of virtual memory reappears here as a way to manage the memory that attention needs.",
+   "status": "thriving",
+   "tags": [
+    "inference",
+    "serving",
+    "pagedattention",
+    "throughput",
+    "llm serving"
+   ],
+   "refs": [
+    {
+     "label": "Kwon et al.: Efficient Memory Management for LLM Serving with PagedAttention",
+     "url": "https://arxiv.org/abs/2309.06180"
+    }
+   ]
+  },
+  {
+   "id": "math.onnx",
+   "title": "ONNX",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2017,
+   "short": "Open Neural Network Exchange: a file format that lets a model trained in one framework run in another runtime. Started by Facebook and Microsoft in 2017.",
+   "long": "ONNX, started in September 2017 by Facebook and Microsoft and now under the Linux Foundation, is a shared file format for neural networks, so that a model trained in one framework can run in a different runtime. Microsoft's ONNX Runtime executes such files and had about 70 million PyPI downloads in September 2026, against 13 million for the onnx package itself. When Microsoft ended its CNTK framework with release 2.7 in 2019, the README encouraged users to operationalize models through ONNX and ONNX Runtime. The onnx package uses the Apache-2.0 license; the project initially used MIT.",
+   "status": "thriving",
+   "tags": [
+    "model exchange",
+    "onnx runtime",
+    "interoperability",
+    "file format"
+   ],
+   "refs": [
+    {
+     "label": "ONNX on GitHub",
+     "url": "https://github.com/onnx/onnx"
+    }
+   ]
+  },
+  {
+   "id": "math.perceptron",
+   "title": "Perceptron",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 1958,
+   "short": "Frank Rosenblatt's 1958 learning machine: weighted inputs, a threshold, and a rule that nudges the weights after each mistake.",
+   "long": "The perceptron is a single artificial neuron. It multiplies each input by a weight, adds the results and fires if the total passes a threshold; when its answer is wrong, the learning rule adjusts the weights toward the right one. Frank Rosenblatt of the Cornell Aeronautical Laboratory published it in Psychological Review in 1958, after obtaining funding in 1957 to build the Mark I Perceptron, a custom analog computer. Marvin Minsky and Seymour Papert's 1969 book Perceptrons showed that a single layer cannot learn XOR. The book is often blamed for the first neural-network lull, though that reading is disputed, since both authors already knew that multi-layer networks can produce XOR.",
+   "sleeper": "A perceptron's weighted sum is the same dot product that each layer of a modern network computes, for thousands of neurons at once, as one matrix multiplication.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\nX, y = np.array([[0, 0], [0, 1], [1, 0], [1, 1]]), np.array([0, 0, 0, 1])   # logical AND\nw, b = np.zeros(2), 0.0\nfor _ in range(20):\n    for xi, yi in zip(X, y):\n        err = yi - int(w @ xi + b > 0)       # 0 if right, +1 or -1 if wrong\n        w += err * xi; b += err              # nudge the weights toward the right answer\nprint(w, b)   # [2. 1.] -2.0"
+   },
+   "status": "legacy",
+   "tags": [
+    "rosenblatt",
+    "neuron",
+    "xor",
+    "mark i perceptron",
+    "linear classifier"
+   ],
+   "refs": [
+    {
+     "label": "Rosenblatt: The perceptron (Psychological Review, 1958)",
+     "url": "https://doi.org/10.1037/h0042519"
+    }
+   ]
+  },
+  {
+   "id": "math.backprop",
+   "title": "Backpropagation",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 1986,
+   "short": "The method of computing how much each weight in a multi-layer network contributed to the error, by applying the chain rule backward from the output.",
+   "long": "Backpropagation computes how much each weight in a multi-layer network contributed to its error by applying the chain rule backward from the output. Rumelhart, Hinton and Williams published 'Learning representations by back-propagating errors' in Nature in 1986, a paper cited about 32,500 times. Earlier roots exist: Seppo Linnainmaa's 1970 master's thesis introduced reverse-mode automatic differentiation, and Paul Werbos applied backpropagation to multi-layer perceptrons in 1982. Training repeats four steps: run examples forward, measure the error, backpropagate to get gradients, and adjust every weight slightly. In PyTorch the backward step is the call loss.backward().",
+   "sleeper": "The 1986 method is the one still in use; what changed is scale. GPT-3 (2020) has 175 billion parameters, and training costs about six floating-point operations per parameter for each training token.",
+   "code": {
+    "lang": "python",
+    "text": "import torch\nmodel = torch.nn.Linear(3, 1)                 # weights: a 1x3 matrix plus a bias\nx, y = torch.randn(8, 3), torch.randn(8, 1)   # a batch of 8 examples with known answers\nloss = ((model(x) - y) ** 2).mean()           # forward pass (a matrix multiply) and the error\nloss.backward()                               # backpropagation: gradients of the error\nwith torch.no_grad():\n    model.weight -= 0.1 * model.weight.grad   # gradient descent: a small step downhill"
+   },
+   "status": "thriving",
+   "tags": [
+    "gradient",
+    "chain rule",
+    "training",
+    "rumelhart",
+    "neural networks",
+    "loss"
+   ],
+   "refs": [
+    {
+     "label": "Rumelhart, Hinton and Williams: Learning representations by back-propagating errors (Nature, 1986)",
+     "url": "https://doi.org/10.1038/323533a0"
+    }
+   ]
+  },
+  {
+   "id": "math.autodiff",
+   "title": "Automatic Differentiation",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1970,
+   "short": "Computing exact derivatives of a program by applying the chain rule to each operation it performs. The reverse mode, from 1970, is what neural-network training uses.",
+   "long": "Automatic differentiation obtains the derivative of a computed result by applying the chain rule to each operation the program performs, rather than by manipulating a formula or by approximating with small differences. Seppo Linnainmaa's 1970 master's thesis introduced the reverse mode, which sweeps backward from the output and underlies backpropagation. Frameworks now offer it as a built-in feature: PyTorch's autograd collects the derivatives of the error with respect to the model's parameters, and JAX provides jax.grad. SymPy differentiates symbolically and produces a formula, whereas automatic differentiation produces numbers.",
+   "code": {
+    "lang": "python",
+    "text": "import torch\nx = torch.tensor(3.0, requires_grad=True)\ny = x ** 2\ny.backward()\nprint(x.grad)   # tensor(6.)"
+   },
+   "status": "thriving",
+   "tags": [
+    "autograd",
+    "reverse mode",
+    "gradient",
+    "derivative",
+    "linnainmaa"
+   ],
+   "refs": [
+    {
+     "label": "PyTorch tutorial: Automatic differentiation with autograd",
+     "url": "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
+    }
+   ]
+  },
+  {
+   "id": "math.cnn",
+   "title": "Convolutional Neural Networks",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1989,
+   "short": "Neural networks that apply the same small learned filters across an image. LeCun and colleagues' 1989 and 1998 papers describe early examples.",
+   "long": "A convolutional neural network applies the same small set of learned weights, called a filter, at every position of an image, so it can respond to an edge or a shape wherever it appears. LeCun and colleagues trained such networks by backpropagation for handwritten zip-code recognition in a 1989 paper, and a 1998 paper applied the approach to document recognition. AlexNet in 2012, with five convolutional and three fully connected layers, carried the idea to large photographs. Convolutional layers are among the operations built on GEMM, the general matrix multiplication. The Caffe framework, from UC Berkeley, was built to train and deploy convolutional networks.",
+   "status": "n/a",
+   "tags": [
+    "convolution",
+    "filter",
+    "vision",
+    "zip code",
+    "image recognition"
+   ],
+   "refs": [
+    {
+     "label": "LeCun et al.: Backpropagation Applied to Handwritten Zip Code Recognition (1989)",
+     "url": "https://doi.org/10.1162/neco.1989.1.4.541"
+    },
+    {
+     "label": "LeCun et al.: Gradient-based learning applied to document recognition (1998)",
+     "url": "https://doi.org/10.1109/5.726791"
+    }
+   ]
+  },
+  {
+   "id": "math.classical-ml",
+   "title": "SVMs, Random Forests and Boosting",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 1992,
+   "short": "The pre-deep-learning toolkit that still does well on medium-sized tables: support vector machines (1992), random forests (2001) and boosting.",
+   "long": "Boser, Guyon and Vapnik introduced support vector machines in 1992, and Cortes and Vapnik's 'Support-vector networks' followed in 1995. Breiman's 2001 'Random Forests' defined a combination of tree predictors in which each tree depends on the values of a random vector sampled independently. Gradient boosting, from Friedman's 2001 paper, was later turned into the fast libraries XGBoost and LightGBM. None of these disappeared when neural networks returned: across 45 tabular datasets, a 2022 study found tree-based models still state of the art on medium-sized data of about 10,000 samples. scikit-learn, XGBoost and LightGBM remain among the most downloaded machine-learning packages.",
+   "status": "thriving",
+   "tags": [
+    "svm",
+    "random forest",
+    "gradient boosting",
+    "decision trees",
+    "tabular data"
+   ],
+   "refs": [
+    {
+     "label": "Breiman: Random Forests (Machine Learning, 2001)",
+     "url": "https://doi.org/10.1023/A:1010933404324"
+    },
+    {
+     "label": "Grinsztajn et al.: tree-based models on tabular data (2022)",
+     "url": "https://arxiv.org/abs/2207.08815"
+    }
+   ]
+  },
+  {
+   "id": "math.deep-learning",
+   "title": "Deep Learning",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2006,
+   "short": "Neural networks with many layers, trained on large data sets using GPUs. Hinton's 2006 deep-belief-net paper is the usual marker of the revival.",
+   "long": "Deep learning means neural networks with many layers, trained by backpropagation on large amounts of data. Hinton, Osindero and Teh's 2006 paper on deep belief nets is the usual marker of its revival, though that is an interpretation rather than a formal date. Three things made it practical: GPUs, which in 2009 cut one network's training time from several weeks to about a day in work by Raina, Madhavan and Ng; the ImageNet data set (2009); and AlexNet, which won the ImageNet contest in 2012. Open frameworks (Theano, TensorFlow, PyTorch) then let researchers write networks as ordinary code, and the 2017 Transformer made the approach scale to language.",
+   "sleeper": "The neural networks you may remember from the 1980s had few layers and ran on ordinary processors. Their descendants have many layers and up to hundreds of billions of parameters (AlexNet 60 million, GPT-3 175 billion), and they run on GPUs.",
+   "status": "thriving",
+   "tags": [
+    "neural networks",
+    "gpu training",
+    "hinton",
+    "layers"
+   ],
+   "refs": [
+    {
+     "label": "Hinton, Osindero and Teh: A fast learning algorithm for deep belief nets (2006)",
+     "url": "https://doi.org/10.1162/neco.2006.18.7.1527"
+    },
+    {
+     "label": "Raina, Madhavan and Ng: Large-scale deep unsupervised learning using graphics processors (ICML 2009)",
+     "url": "https://ai.stanford.edu/~ang/papers/icml09-LargeScaleUnsupervisedDeepLearningGPU.pdf"
+    }
+   ]
+  },
+  {
+   "id": "math.imagenet",
+   "title": "ImageNet",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2009,
+   "short": "A labeled image data set from 2009 that gave computer vision a shared benchmark. AlexNet won its 2012 contest.",
+   "long": "ImageNet, described by Deng and colleagues at CVPR 2009, is a large collection of labeled images. AlexNet's authors describe it as over 15 million labeled high-resolution images in roughly 22,000 categories. The yearly ImageNet Large Scale Visual Recognition Challenge, ILSVRC, gave researchers a shared test on the same data: in 2012 AlexNet won it with a top-5 error rate of 15.3 percent against 26.2 percent for the second-best entry. The CVPR paper has been cited about 76,300 times.",
+   "status": "n/a",
+   "tags": [
+    "dataset",
+    "ilsvrc",
+    "benchmark",
+    "computer vision",
+    "labeled images"
+   ],
+   "refs": [
+    {
+     "label": "Deng et al.: ImageNet (CVPR 2009)",
+     "url": "https://doi.org/10.1109/CVPR.2009.5206848"
+    }
+   ]
+  },
+  {
+   "id": "math.alexnet",
+   "title": "AlexNet",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2012,
+   "short": "The 2012 convolutional network that won the ImageNet contest with a 15.3 percent top-5 error, against 26.2 percent for the runner-up, after training on two GPUs.",
+   "long": "Alex Krizhevsky, Ilya Sutskever and Geoffrey Hinton at the University of Toronto entered AlexNet in the 2012 ImageNet contest (ILSVRC-2012) and won with a top-5 test error of 15.3 percent; the second-best entry reached 26.2 percent. It has 60 million parameters and 650,000 neurons, with five convolutional and three fully connected layers, and took five to six days to train on two GTX 580 GPUs with 3 GB of memory each. The authors wrote that their results could be improved simply by waiting for faster GPUs and bigger datasets. Presented at NIPS 2012, the paper has been cited about 131,600 times, counting its later reprint in Communications of the ACM.",
+   "status": "n/a",
+   "tags": [
+    "krizhevsky",
+    "sutskever",
+    "ilsvrc",
+    "gtx 580",
+    "toronto"
+   ],
+   "refs": [
+    {
+     "label": "Krizhevsky, Sutskever and Hinton: ImageNet Classification with Deep Convolutional Neural Networks (NIPS 2012)",
+     "url": "https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf"
+    }
+   ]
+  },
+  {
+   "id": "math.gpu",
+   "title": "GPUs for Computing",
+   "cat": "mathai",
+   "tier": 2,
+   "year": 2001,
+   "short": "Graphics chips with thousands of simple cores that turned out to be matrix-multiplication engines. They are the hardware that made deep learning practical.",
+   "long": "A graphics processing unit, or GPU, is a chip with thousands of simple cores built for graphics, where every vertex of a 3D scene is multiplied by a transformation matrix, so matrix arithmetic was already its daily work. Larsen and McAllister published 'Fast matrix multiplies using graphics hardware' at the SC 2001 supercomputing conference, and Ian Buck and colleagues published Brook for GPUs in 2004. NVIDIA's CUDA (2007) then made the hardware programmable as an extension of C. In 2009 Raina, Madhavan and Ng reported training up to 70 times faster than on a dual-core CPU, and in 2012 AlexNet was trained on two GPUs. The year here follows the first published GPU matrix multiplication; 2007, the CUDA release, is the other date in use.",
+   "sleeper": "Where you would once have expected the CPU to do all the arithmetic, a modern machine-learning job sends its heavy matrix multiplication to GPUs or TPUs.",
+   "status": "thriving",
+   "tags": [
+    "graphics card",
+    "gpgpu",
+    "parallel",
+    "accelerator",
+    "stream computing"
+   ],
+   "refs": [
+    {
+     "label": "Larsen and McAllister: Fast matrix multiplies using graphics hardware (SC 2001)",
+     "url": "https://doi.org/10.1145/582034.582089"
+    },
+    {
+     "label": "Buck et al.: Brook for GPUs (SIGGRAPH 2004)",
+     "url": "https://doi.org/10.1145/1186562.1015800"
+    }
+   ]
+  },
+  {
+   "id": "math.cuda",
+   "title": "CUDA",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2007,
+   "short": "NVIDIA's platform for general computation on GPUs, programmed as an extension of C. Released in 2007, it sits beneath PyTorch and other frameworks.",
+   "long": "CUDA, short for Compute Unified Device Architecture, is NVIDIA's platform for running general computation on its GPUs. It was led by Ian Buck, a Stanford PhD student who had developed Brook and joined NVIDIA in 2004, and by John Nickolls, then director of architecture for GPU computing. The CUDA 1.0 programming guide says its API is an extension to the C programming language for a minimum learning curve. Wikipedia lists the first release as February 2007, while NVIDIA's CUDA 1.0 manuals are dated June 2007, so 2007 is the safe year. CUDA can be programmed from C++, Python and Fortran or through libraries such as PyTorch, and CUDA 13.4 Update 1 was current in September 2026.",
+   "sleeper": "GPUs once ran only graphics code. CUDA let C programmers use them for general computation, and libraries such as cuBLAS and cuDNN, and frameworks such as PyTorch, now sit on top of it.",
+   "status": "thriving",
+   "tags": [
+    "nvidia",
+    "gpgpu",
+    "kernels",
+    "buck",
+    "nickolls"
+   ],
+   "refs": [
+    {
+     "label": "NVIDIA: About CUDA",
+     "url": "https://developer.nvidia.com/about-cuda"
+    },
+    {
+     "label": "NVIDIA CUDA Programming Guide 1.0",
+     "url": "https://developer.download.nvidia.com/compute/cuda/1.0/NVIDIA_CUDA_Programming_Guide_1.0.pdf"
+    }
+   ]
+  },
+  {
+   "id": "math.cublas-cudnn",
+   "title": "cuBLAS and cuDNN",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2014,
+   "short": "NVIDIA's GPU versions of the BLAS (cuBLAS, 2007) and of deep-learning primitives (cuDNN, 2014), the vendor kernel libraries beneath PyTorch and other frameworks.",
+   "long": "cuBLAS, first documented in June 2007 as CUBLAS 1.0, implements the BLAS on top of CUDA. To stay compatible with Fortran environments it uses column-major storage and one-based indexing, and its manual even includes Fortran bindings and a Fortran 77 example. cuDNN, described in a 2014 paper, supplies optimized deep-learning primitives; its authors argued that kernels must be reoptimized for each new processor, the same reasoning that created the BLAS. In the usual stack, Python code calls a framework such as PyTorch, which calls cuDNN and cuBLAS, which run on CUDA and the GPU.",
+   "sleeper": "NVIDIA's GPU library of 2007 used column-major storage and counted from 1, to stay compatible with Fortran, whose first compiler dates from 1957.",
+   "status": "thriving",
+   "tags": [
+    "gemm",
+    "convolution",
+    "nvidia libraries",
+    "kernel library"
+   ],
+   "refs": [
+    {
+     "label": "NVIDIA: CUDA CUBLAS Library 1.0 (June 2007)",
+     "url": "https://developer.download.nvidia.com/compute/cuda/1.0/CUBLAS_Library_1.0.pdf"
+    },
+    {
+     "label": "Chetlur et al.: cuDNN, efficient primitives for deep learning (2014)",
+     "url": "https://arxiv.org/abs/1410.0759"
+    }
+   ]
+  },
+  {
+   "id": "math.tensor-cores",
+   "title": "Tensor Cores",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2017,
+   "short": "Matrix-multiply units inside NVIDIA GPUs, introduced with the Volta V100 in 2017, that multiply small blocks of numbers in a single step.",
+   "long": "Tensor Cores first appeared in NVIDIA's Volta generation, the V100 of 2017. Each one is a 4 by 4 by 4 matrix processing array that computes D = A * B + C, taking half-precision inputs and accumulating in 16-bit or 32-bit floating point, and performing 64 fused multiply-add operations per clock. A V100 holds 640 of them, eight per streaming multiprocessor, and NVIDIA quoted up to 125 Tensor TFLOPS. Performance is best when matrix dimensions are multiples of 16 bytes, or 128 bytes on the later A100. Tensor Cores put the central operation of neural networks directly into the silicon.",
+   "sleeper": "Numerical computing once defaulted to double precision. Tensor Cores multiply half-precision inputs, and Google's bfloat16 keeps FP32's exponent range with only 7 mantissa bits, because neural networks care more about the exponent.",
+   "status": "thriving",
+   "tags": [
+    "volta",
+    "v100",
+    "mixed precision",
+    "half precision",
+    "fma"
+   ],
+   "refs": [
+    {
+     "label": "NVIDIA: Programming Tensor Cores in CUDA 9",
+     "url": "https://developer.nvidia.com/blog/programming-tensor-cores-cuda-9/"
+    }
+   ]
+  },
+  {
+   "id": "math.tpu",
+   "title": "TPUs",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2015,
+   "short": "Google's custom chips for neural-network arithmetic, running in its data centers since 2015. At the core is a large matrix-multiply unit.",
+   "long": "The Tensor Processing Unit is a custom chip that Google designed to accelerate neural networks, and it had been running in Google's data centers since 2015. Its first generation handled inference, the running of trained networks. In the 2017 paper by Jouppi and colleagues, the heart of that chip was a matrix multiply unit with 65,536 8-bit multiply-accumulators, a peak of 92 trillion operations per second and 28 MiB of software-managed on-chip memory. Cloud TPU v2 and v3 use Google's bfloat16 format in a 128 by 128 grid of arithmetic units called a systolic array. Ironwood, the seventh generation, was announced on 9 April 2025 and is described as the first designed specifically for inference, with pods of up to 9,216 chips.",
+   "status": "thriving",
+   "tags": [
+    "google",
+    "asic",
+    "bfloat16",
+    "ironwood",
+    "inference",
+    "accelerator"
+   ],
+   "refs": [
+    {
+     "label": "Jouppi et al.: In-Datacenter Performance Analysis of a Tensor Processing Unit (2017)",
+     "url": "https://arxiv.org/abs/1704.04760"
+    },
+    {
+     "label": "Google: Ironwood TPU",
+     "url": "https://blog.google/products/google-cloud/ironwood-tpu-age-of-inference/"
+    }
+   ]
+  },
+  {
+   "id": "math.transformer",
+   "title": "The Transformer",
+   "cat": "mathai",
+   "tier": 2,
+   "year": 2017,
+   "short": "Google's 2017 architecture built on attention, not recurrence. It is mostly matrix multiplication, so it scales on GPUs, and today's language models use it.",
+   "long": "Vaswani and colleagues at Google introduced the Transformer in June 2017, describing a model 'based solely on attention mechanisms, dispensing with recurrence and convolutions entirely'. It scored 28.4 BLEU (a translation-quality score) on WMT 2014 English-to-German, and 41.8 on English-to-French after 3.5 days of training on eight GPUs. Attention packs all the queries into a matrix Q and is computed with two matrix products, softmax(QK^T / sqrt(d)) V, which the authors say can use highly optimized matrix multiplication code. BERT, GPT-3 and the large language models that followed are built on the design. The paper has been cited about 194,600 times.",
+   "sleeper": "Earlier sequence models used recurrence, stepping through a sentence one word at a time. The Transformer dropped recurrence, so it can process every position at once with large matrix products, which suits GPUs.",
+   "status": "thriving",
+   "tags": [
+    "attention is all you need",
+    "vaswani",
+    "self-attention",
+    "encoder",
+    "bleu"
+   ],
+   "refs": [
+    {
+     "label": "Vaswani et al.: Attention Is All You Need (2017)",
+     "url": "https://arxiv.org/abs/1706.03762"
+    }
+   ]
+  },
+  {
+   "id": "math.bert",
+   "title": "BERT",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2018,
+   "short": "Google's October 2018 language model, pretrained on text and then fine-tuned for tasks. The name means Bidirectional Encoder Representations from Transformers.",
+   "long": "BERT, from Devlin and colleagues at Google in October 2018, is a Transformer model that is first pretrained on large amounts of text and then fine-tuned for specific tasks. Its paper contrasts the approach with earlier work by Peters and colleagues and with OpenAI's first GPT (Radford and colleagues, 2018). It has been cited about 121,700 times. The library that became Hugging Face Transformers was first released as pytorch-pretrained-bert in November 2018.",
+   "sleeper": "Older models still dominate downloads on the Hugging Face Hub: on 1 October 2026 bert-base-uncased had about 40.6 million recent downloads and gpt2 about 15.7 million.",
+   "status": "thriving",
+   "tags": [
+    "bidirectional",
+    "pretraining",
+    "fine-tuning",
+    "google",
+    "devlin"
+   ],
+   "refs": [
+    {
+     "label": "Devlin et al.: BERT (2018)",
+     "url": "https://arxiv.org/abs/1810.04805"
+    }
+   ]
+  },
+  {
+   "id": "math.gpt3",
+   "title": "GPT-3",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2020,
+   "short": "OpenAI's May 2020 language model with 175 billion parameters, ten times more than any earlier non-sparse language model.",
+   "long": "GPT-3, described by Brown and colleagues at OpenAI in May 2020, is an autoregressive language model, meaning that it predicts the next piece of text from the text so far, with 175 billion parameters. The paper calls this 10 times more than any previous non-sparse language model, and it has been cited about 64,000 times. It followed OpenAI's first GPT of 2018 and Google's BERT. ChatGPT, the OpenAI chat product, was released on 30 November 2022, and Meta's LLaMA paper of February 2023 reported that its 13-billion-parameter model outperformed GPT-3 on most benchmarks.",
+   "status": "n/a",
+   "tags": [
+    "openai",
+    "autoregressive",
+    "language model",
+    "parameters",
+    "175 billion"
+   ],
+   "refs": [
+    {
+     "label": "Brown et al.: Language Models are Few-Shot Learners (2020)",
+     "url": "https://arxiv.org/abs/2005.14165"
+    }
+   ]
+  },
+  {
+   "id": "math.llm",
+   "title": "Large Language Models",
+   "cat": "mathai",
+   "tier": 2,
+   "year": 2020,
+   "short": "Neural networks with billions of parameters, trained on text to predict what comes next. They run on matrix multiplication, from chatbots to coding assistants.",
+   "long": "A large language model, or LLM, is a Transformer network with billions of parameters, trained on very large amounts of text to predict what comes next. GPT-3 in 2020, with 175 billion parameters, was ten times larger than any earlier non-sparse language model, and OpenAI released ChatGPT on 30 November 2022. Training is a loop of forward pass, error, gradient and small weight update repeated enormously often, costing about six floating-point operations per parameter per training token; inference runs only the forward pass, through the same matrix multiplications. The software stack is shared: Python code on PyTorch, Hugging Face Transformers to load models, vLLM to serve them. The Chinchilla study of 2022 found that each doubling of model size should come with a doubling of training tokens.",
+   "sleeper": "In the 1980s 'AI' meant rules written by experts. Here nothing is written by hand: behavior comes from billions of numbers learned from text, applied by repeated matrix multiplication.",
+   "status": "thriving",
+   "tags": [
+    "llm",
+    "language model",
+    "parameters",
+    "tokens",
+    "training",
+    "inference",
+    "chatgpt"
+   ],
+   "refs": [
+    {
+     "label": "Brown et al.: Language Models are Few-Shot Learners (2020)",
+     "url": "https://arxiv.org/abs/2005.14165"
+    },
+    {
+     "label": "PyTorch Foundation",
+     "url": "https://pytorch.org/foundation/"
+    }
+   ]
+  },
+  {
+   "id": "math.scaling-laws",
+   "title": "Scaling Laws",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2020,
+   "short": "Empirical findings that a language model's loss falls as a smooth power law in model size, data and compute, which made scaling up a predictable recipe.",
+   "long": "In January 2020 Kaplan and colleagues reported that the loss of a language model scales as a power law with model size, dataset size and the compute used for training, with some trends spanning more than seven orders of magnitude. Training compute is roughly C = 6NBS, where N is the number of parameters, B the batch size and S the number of steps, which works out to about six floating-point operations per parameter per training token. In March 2022 Hoffmann and colleagues, in the Chinchilla study, concluded that for every doubling of model size the number of training tokens should also be doubled; a 70-billion-parameter model trained on four times more data than the 280-billion-parameter Gopher outperformed it.",
+   "status": "n/a",
+   "tags": [
+    "kaplan",
+    "chinchilla",
+    "compute",
+    "power law",
+    "hoffmann"
+   ],
+   "refs": [
+    {
+     "label": "Kaplan et al.: Scaling Laws for Neural Language Models (2020)",
+     "url": "https://arxiv.org/abs/2001.08361"
+    },
+    {
+     "label": "Hoffmann et al.: Training Compute-Optimal Large Language Models (2022)",
+     "url": "https://arxiv.org/abs/2203.15556"
+    }
+   ]
+  },
+  {
+   "id": "math.open-weight",
+   "title": "Open-Weight Models",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2023,
+   "short": "Models whose trained parameters can be downloaded and run, such as LLaMA, Mistral 7B and DeepSeek-R1. The code, data and license may differ from open source.",
+   "long": "Open weights means that a model's trained parameters are published for download, while the training code, data and license terms may differ. Meta's LLaMA, in February 2023, was trained on publicly available datasets only, and its paper reports that LLaMA-13B outperforms GPT-3 (175B) on most benchmarks. Llama 2 followed in July 2023 under a custom license, Mistral 7B in September 2023 under Apache-2.0, DeepSeek-R1 in January 2025 under MIT, and OpenAI's gpt-oss-120b in August 2025 under Apache-2.0. These models run on a shared Python stack: PyTorch, Hugging Face Transformers and its Hub, and vLLM, with PyTorch and vLLM hosted by the PyTorch Foundation.",
+   "sleeper": "Open weights is not open source in the sense you may know. The numbers can be downloaded and run, but the training code, data and license may be closed or restricted: Llama 2, for example, has a custom license.",
+   "status": "thriving",
+   "tags": [
+    "llama",
+    "mistral",
+    "deepseek",
+    "gpt-oss",
+    "weights",
+    "hugging face hub"
+   ],
+   "refs": [
+    {
+     "label": "Touvron et al.: LLaMA (2023)",
+     "url": "https://arxiv.org/abs/2302.13971"
+    },
+    {
+     "label": "Jiang et al.: Mistral 7B (2023)",
+     "url": "https://arxiv.org/abs/2310.06825"
+    }
+   ]
+  },
+  {
+   "id": "math.two-language-problem",
+   "title": "The Two-Language Problem",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2012,
+   "short": "The split between a friendly high-level language for prototyping and a fast low-level one for production. Julia was designed to remove it; Python works around it.",
+   "long": "In numerical computing the common practice was to prototype in a high-level language and then rewrite for speed or deployment. The Julia language, announced on 14 February 2012 by Bezanson, Karpinski, Shah and Edelman and released as version 1.0 on 8 August 2018, was built to remove that split. Their 2017 SIAM Review paper lists it among the 'laws of nature' that Julia questions: that high-level dynamic programs have to be slow, and that one must prototype in one language and then rewrite in another for speed or deployment. Python took the other route, keeping a friendly front end and pushing the loops into compiled libraries such as NumPy and BLAS, or into Cython, Numba and Pythran. The cost shows in SciPy, which in 2020 was about half Python, a quarter Fortran and a fifth C.",
+   "status": "n/a",
+   "tags": [
+    "julia",
+    "prototype",
+    "performance",
+    "numba",
+    "cython"
+   ],
+   "refs": [
+    {
+     "label": "Why We Created Julia (2012)",
+     "url": "https://julialang.org/blog/2012/02/why-we-created-julia/"
+    },
+    {
+     "label": "Bezanson et al.: Julia, a fresh approach to numerical computing (SIAM Review)",
+     "url": "https://arxiv.org/abs/1411.1607"
+    }
+   ]
+  },
+  {
+   "id": "math.expert-systems",
+   "title": "Expert Systems",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 1978,
+   "short": "1980s programs that encoded a specialist's knowledge as if-then rules. XCON, which configured DEC VAX orders, was the flagship before the AI winter.",
+   "long": "An expert system is a program that encodes a specialist's knowledge as if-then rules. The flagship was XCON, or R1, written in the OPS5 rule language by John McDermott of Carnegie Mellon in 1978 to configure orders for DEC's VAX computers. It entered use in 1980 at DEC's plant in Salem, New Hampshire, held about 2,500 rules and had processed 80,000 orders by 1986 at 95 to 98 percent accuracy, according to Wikipedia. Its reported savings differ between sources ($25 million a year versus $40 million over six years), so treat them as unverified. The boom was tied to Lisp machines and Japan's Fifth Generation project; the Lisp-machine market collapsed in 1987, and many expert systems were abandoned in the 1990s.",
+   "sleeper": "If you remember 1980s AI, it was this: rules typed in by engineers and domain experts. Today's systems instead learn billions of numeric parameters from data, as in large language models.",
+   "status": "legacy",
+   "tags": [
+    "xcon",
+    "r1",
+    "rule-based",
+    "ops5",
+    "knowledge engineering",
+    "mcdermott"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Xcon",
+     "url": "https://en.wikipedia.org/wiki/Xcon"
+    }
+   ]
+  },
+  {
+   "id": "math.opencv",
+   "title": "OpenCV",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2000,
+   "short": "An open-source computer-vision library in C++ with Python bindings, first released in June 2000 according to Wikipedia.",
+   "long": "OpenCV is a library of computer-vision routines written in C++ with Python bindings, released under the Apache-2.0 license; in Python, cv2.imread reads an image file. Its developers have included Intel, Willow Garage and Itseez, and Wikipedia gives June 2000 as its first release, while a start at Intel in 1999 could not be verified. Because an image is a grid of numbers, many of its operations are matrix operations on pixels. The unofficial opencv-python wheels on PyPI had about 31 million downloads in September 2026 and the headless variant about 38 million, and the repository had about 91,000 GitHub stars.",
+   "status": "thriving",
+   "tags": [
+    "computer vision",
+    "images",
+    "cv2",
+    "intel",
+    "willow garage"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: OpenCV",
+     "url": "https://en.wikipedia.org/wiki/OpenCV"
+    }
+   ]
+  },
+  {
+   "id": "math.dask",
+   "title": "Dask",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2014,
+   "short": "A Python library that splits NumPy- and pandas-style work across many cores or machines. Matthew Rocklin's first commit is dated December 2014.",
+   "long": "Dask lets code written in the style of NumPy arrays and pandas tables run in pieces across the cores of one machine or across a cluster. Matthew Rocklin made the first commit on 21 December 2014, and the first PyPI upload followed on 29 January 2015. A call such as dd.read_csv('sales-*.csv').groupby('region').total.sum().compute() reads many files in pieces and combines the results. Dask uses the BSD-3 license, had about 25.7 million downloads in September 2026 and about 13,900 GitHub stars. PySpark, a comparable tool, had about 48.3 million downloads that month.",
+   "code": {
+    "lang": "python",
+    "text": "import dask.array as da\nx = da.ones((10000, 10000), chunks=(1000, 1000))   # 100 blocks of 1000 by 1000\nprint(x.sum().compute())                            # 100000000.0"
+   },
+   "status": "niche",
+   "tags": [
+    "parallel",
+    "out-of-core",
+    "cluster",
+    "rocklin",
+    "task graph"
+   ],
+   "refs": [
+    {
+     "label": "Dask on GitHub",
+     "url": "https://github.com/dask/dask"
+    }
+   ]
+  },
+  {
+   "id": "math.attention",
+   "title": "Attention Mechanism",
+   "cat": "mathai",
+   "tier": 4,
+   "year": 2014,
+   "short": "A way for a network to weigh which parts of its input matter for each output. Introduced for translation in 2014, it became the core of the Transformer.",
+   "long": "In 2014 Bahdanau, Cho and Bengio let a translation network look back at the input words that matter while it produces each output word, learning to align the two at the same time. The Transformer of 2017 kept only this idea. Each query is compared with every key by a dot product, the scores are turned into weights that add up to one by a function called softmax, and the output is the weighted sum of the values. Written with matrices this is softmax(QK^T / sqrt(d)) V, two matrix products, which is why GPUs handle it well. The 2014 paper has been cited about 30,100 times.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\n\ndef attention(Q, K, V):\n    scores = Q @ K.T / np.sqrt(K.shape[1])   # compare every query with every key\n    w = np.exp(scores)\n    w = w / w.sum(axis=1, keepdims=True)     # softmax: each row sums to 1\n    return w @ V                             # weighted sum of the values\n\nI = np.eye(2)\nprint(attention(I, I, I))   # about [[0.67 0.33] [0.33 0.67]]"
+   },
+   "status": "thriving",
+   "tags": [
+    "softmax",
+    "queries keys values",
+    "bahdanau",
+    "self-attention",
+    "alignment"
+   ],
+   "refs": [
+    {
+     "label": "Bahdanau, Cho and Bengio: Neural Machine Translation by Jointly Learning to Align and Translate (2014)",
+     "url": "https://arxiv.org/abs/1409.0473"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "math.matmul",
+   "t": "math.matrix",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.matmul",
+   "t": "lang.python",
+   "w": 2,
+   "k": "influenced",
+   "note": "PEP 465 added the @ operator in Python 3.5"
+  },
+  {
+   "s": "math.matmul",
+   "t": "lang.matlab",
+   "w": 1,
+   "k": "related",
+   "note": "* is matrix multiplication in MATLAB"
+  },
+  {
+   "s": "math.matmul",
+   "t": "math.matrix-ops",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.matrix-ops",
+   "t": "math.matrix",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.matrix-ops",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related",
+   "note": "np.linalg has det, inv, eigvalsh and solve"
+  },
+  {
+   "s": "math.matrix-storage",
+   "t": "math.matrix",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.matrix-storage",
+   "t": "conc.array",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.matrix-storage",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "related",
+   "note": "column-major order comes from Fortran"
+  },
+  {
+   "s": "math.matrix-storage",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related",
+   "note": "C stores arrays row by row"
+  },
+  {
+   "s": "math.matrix-storage",
+   "t": "math.numpy",
+   "w": 1,
+   "k": "related",
+   "note": "either order, described by strides"
+  },
+  {
+   "s": "math.matrix-storage",
+   "t": "lang.matlab",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.matrix-storage",
+   "t": "lang.julia",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.tensor",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.tensor",
+   "t": "math.matrix",
+   "w": 3,
+   "k": "related",
+   "note": "a tensor generalizes a matrix to any number of axes"
+  },
+  {
+   "s": "math.tensor",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.tensor",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "related",
+   "note": "the fundamental data structure of PyTorch"
+  },
+  {
+   "s": "math.tensor",
+   "t": "conc.array",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.pagerank",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses",
+   "note": "repeated multiplication by the link matrix"
+  },
+  {
+   "s": "math.pagerank",
+   "t": "math.matrix-ops",
+   "w": 2,
+   "k": "related",
+   "note": "the score vector is a principal eigenvector"
+  },
+  {
+   "s": "math.pagerank",
+   "t": "org.google",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.pagerank",
+   "t": "data.graph",
+   "w": 1,
+   "k": "related",
+   "note": "the web as a graph of links"
+  },
+  {
+   "s": "math.pagerank",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.netflix-prize",
+   "t": "math.matrix",
+   "w": 2,
+   "k": "uses",
+   "note": "a sparse users-by-movies ratings matrix"
+  },
+  {
+   "s": "math.netflix-prize",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses",
+   "note": "a predicted rating is an inner product"
+  },
+  {
+   "s": "math.netflix-prize",
+   "t": "math.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "math.netflix-prize",
+   "t": "math.matrix-storage",
+   "w": 1,
+   "k": "related",
+   "note": "sparse matrices"
+  },
+  {
+   "s": "math.vectorization",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.vectorization",
+   "t": "math.blas",
+   "w": 2,
+   "k": "uses",
+   "note": "a vectorized matrix product reaches a tuned BLAS"
+  },
+  {
+   "s": "math.vectorization",
+   "t": "conc.array-programming",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.vectorization",
+   "t": "found.simd",
+   "w": 2,
+   "k": "related",
+   "note": "the same word describes compiler-generated vector instructions"
+  },
+  {
+   "s": "math.vectorization",
+   "t": "math.two-language-problem",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.vectorization",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related",
+   "note": "the central technique of NumPy"
+  },
+  {
+   "s": "math.vectorization",
+   "t": "lang.matlab",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.vectorization",
+   "t": "fail.numeric-numarray",
+   "w": 1,
+   "k": "related",
+   "note": "Numeric (1995) brought array operations to Python"
+  },
+  {
+   "s": "math.eispack",
+   "t": "math.lapack",
+   "w": 2,
+   "k": "replaced-by"
+  },
+  {
+   "s": "math.eispack",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.eispack",
+   "t": "math.matrix-ops",
+   "w": 2,
+   "k": "implements",
+   "note": "eigenvalues and eigenvectors"
+  },
+  {
+   "s": "math.eispack",
+   "t": "ppl.dongarra",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.eispack",
+   "t": "ppl.moler",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.eispack",
+   "t": "lang.matlab",
+   "w": 2,
+   "k": "influenced",
+   "note": "MATLAB began as a friendlier front end to EISPACK and LINPACK"
+  },
+  {
+   "s": "math.linpack",
+   "t": "math.lapack",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "math.linpack",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.linpack",
+   "t": "math.matrix-ops",
+   "w": 2,
+   "k": "implements",
+   "note": "linear equations and least squares"
+  },
+  {
+   "s": "math.linpack",
+   "t": "ppl.dongarra",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.linpack",
+   "t": "ppl.moler",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.linpack",
+   "t": "lang.matlab",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.linpack",
+   "t": "math.eispack",
+   "w": 2,
+   "k": "related",
+   "note": "sister library for eigenproblems"
+  },
+  {
+   "s": "math.blas",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.blas",
+   "t": "ppl.dongarra",
+   "w": 2,
+   "k": "created-by",
+   "note": "co-authored the Level 2 and 3 specifications"
+  },
+  {
+   "s": "math.blas",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "uses",
+   "note": "first defined for Fortran"
+  },
+  {
+   "s": "math.blas",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "implements",
+   "note": "Level 3 includes the general matrix multiply"
+  },
+  {
+   "s": "math.lapack",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.lapack",
+   "t": "math.blas",
+   "w": 3,
+   "k": "uses",
+   "note": "blocked algorithms built on Level 3 BLAS"
+  },
+  {
+   "s": "math.lapack",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.lapack",
+   "t": "ppl.dongarra",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.lapack",
+   "t": "org.berkeley",
+   "w": 1,
+   "k": "created-by",
+   "note": "one of four providers"
+  },
+  {
+   "s": "math.lapack",
+   "t": "math.matrix-ops",
+   "w": 2,
+   "k": "implements",
+   "note": "solvers, factorizations and eigenvalue routines"
+  },
+  {
+   "s": "math.tuned-blas",
+   "t": "math.blas",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "math.tuned-blas",
+   "t": "org.intel",
+   "w": 1,
+   "k": "related",
+   "note": "Intel makes MKL"
+  },
+  {
+   "s": "math.tuned-blas",
+   "t": "found.simd",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.scipy",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.scipy",
+   "t": "math.numpy",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "math.scipy",
+   "t": "math.lapack",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.scipy",
+   "t": "math.tuned-blas",
+   "w": 2,
+   "k": "uses",
+   "note": "OpenBLAS is the default build option"
+  },
+  {
+   "s": "math.scipy",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "uses",
+   "note": "wraps QUADPACK, FITPACK and other Fortran libraries"
+  },
+  {
+   "s": "math.scipy",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.scipy",
+   "t": "ppl.oliphant",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.scipy",
+   "t": "conc.abi-ffi",
+   "w": 1,
+   "k": "related",
+   "note": "F2PY binds Python to Fortran"
+  },
+  {
+   "s": "math.pandas",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.pandas",
+   "t": "math.numpy",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "math.pandas",
+   "t": "ppl.mckinney",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.pandas",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.pandas",
+   "t": "data.arrow",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.pandas",
+   "t": "data.csv",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.pandas",
+   "t": "mod.pypi-rankings",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.polars",
+   "t": "math.pandas",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "math.polars",
+   "t": "data.arrow",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.polars",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.polars",
+   "t": "data.duckdb",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.polars",
+   "t": "mod.rust-rewrite-wave",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.matplotlib",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.matplotlib",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.matplotlib",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.matplotlib",
+   "t": "lang.matlab",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.matplotlib",
+   "t": "math.pandas",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.matplotlib",
+   "t": "math.jupyter",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.sympy",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.sympy",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.sympy",
+   "t": "lang.mathematica",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.sympy",
+   "t": "math.autodiff",
+   "w": 1,
+   "k": "related",
+   "note": "symbolic versus automatic differentiation"
+  },
+  {
+   "s": "math.ipython",
+   "t": "math.jupyter",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "the notebook was spun off as Project Jupyter in 2014"
+  },
+  {
+   "s": "math.ipython",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.ipython",
+   "t": "math.matplotlib",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.jupyter",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.jupyter",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.jupyter",
+   "t": "fail.notebook-repro",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.jupyter",
+   "t": "plat.web",
+   "w": 1,
+   "k": "uses",
+   "note": "a notebook is a web page"
+  },
+  {
+   "s": "math.colab",
+   "t": "math.jupyter",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "math.colab",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.colab",
+   "t": "math.gpu",
+   "w": 2,
+   "k": "related",
+   "note": "free GPUs in the browser"
+  },
+  {
+   "s": "math.colab",
+   "t": "math.tpu",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.colab",
+   "t": "plat.cloud",
+   "w": 1,
+   "k": "uses",
+   "note": "a hosted service"
+  },
+  {
+   "s": "math.scikit-learn",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.scikit-learn",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.scikit-learn",
+   "t": "math.scipy",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.scikit-learn",
+   "t": "math.classical-ml",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "math.scikit-learn",
+   "t": "math.pandas",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.scikit-learn",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "began as a Google Summer of Code project"
+  },
+  {
+   "s": "math.xgboost",
+   "t": "math.classical-ml",
+   "w": 2,
+   "k": "implements",
+   "note": "gradient boosting"
+  },
+  {
+   "s": "math.xgboost",
+   "t": "math.scikit-learn",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.xgboost",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "LightGBM began at Microsoft"
+  },
+  {
+   "s": "math.classical-ml",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.classical-ml",
+   "t": "math.deep-learning",
+   "w": 2,
+   "k": "competes-with",
+   "note": "trees still lead on medium-sized tables"
+  },
+  {
+   "s": "math.classical-ml",
+   "t": "fail.ai-winters",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "math.gpu",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "math.tpu",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "math.autodiff",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "math.tensor",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "comp.torch-compile",
+   "w": 1,
+   "k": "related",
+   "note": "eager by default in TensorFlow 2, compilation added in PyTorch 2"
+  },
+  {
+   "s": "math.keras",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.keras",
+   "t": "math.tensorflow",
+   "w": 2,
+   "k": "uses",
+   "note": "a back end"
+  },
+  {
+   "s": "math.keras",
+   "t": "math.jax",
+   "w": 1,
+   "k": "uses",
+   "note": "a back end in Keras 3"
+  },
+  {
+   "s": "math.keras",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "uses",
+   "note": "a back end in Keras 3"
+  },
+  {
+   "s": "math.keras",
+   "t": "fail.theano",
+   "w": 1,
+   "k": "uses",
+   "note": "a back end up to version 2.3"
+  },
+  {
+   "s": "math.keras",
+   "t": "fail.ml-graveyard",
+   "w": 1,
+   "k": "uses",
+   "note": "CNTK was a back end up to version 2.3"
+  },
+  {
+   "s": "math.jax",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.jax",
+   "t": "math.autodiff",
+   "w": 2,
+   "k": "uses",
+   "note": "jax.grad"
+  },
+  {
+   "s": "math.jax",
+   "t": "math.tpu",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.jax",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.jax",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "math.jax",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.onnx",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.onnx",
+   "t": "org.meta",
+   "w": 2,
+   "k": "created-by",
+   "note": "started with Microsoft in 2017"
+  },
+  {
+   "s": "math.onnx",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.onnx",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.onnx",
+   "t": "math.tensorflow",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.onnx",
+   "t": "fail.ml-graveyard",
+   "w": 1,
+   "k": "related",
+   "note": "CNTK pointed its users to ONNX"
+  },
+  {
+   "s": "math.onnx",
+   "t": "org.linux-foundation",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.hf-transformers",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.hf-transformers",
+   "t": "org.hugging-face",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.hf-transformers",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.hf-transformers",
+   "t": "math.transformer",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "math.hf-transformers",
+   "t": "math.bert",
+   "w": 2,
+   "k": "related",
+   "note": "first released as pytorch-pretrained-bert"
+  },
+  {
+   "s": "math.hf-transformers",
+   "t": "math.open-weight",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.hf-transformers",
+   "t": "mod.nvidia-hugging-face",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.langchain",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.langchain",
+   "t": "math.llm",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.langchain",
+   "t": "data.vector-db",
+   "w": 1,
+   "k": "related",
+   "note": "document retrieval"
+  },
+  {
+   "s": "math.langchain",
+   "t": "mod.chatgpt",
+   "w": 1,
+   "k": "related",
+   "note": "first commit five weeks before ChatGPT"
+  },
+  {
+   "s": "math.vllm",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.vllm",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.vllm",
+   "t": "org.berkeley",
+   "w": 2,
+   "k": "created-by",
+   "note": "Sky Computing Lab"
+  },
+  {
+   "s": "math.vllm",
+   "t": "math.llm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.vllm",
+   "t": "math.hf-transformers",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.vllm",
+   "t": "conc.memory",
+   "w": 1,
+   "k": "related",
+   "note": "paging, an operating-system idea"
+  },
+  {
+   "s": "math.vllm",
+   "t": "org.linux-foundation",
+   "w": 1,
+   "k": "related",
+   "note": "hosted by the PyTorch Foundation"
+  },
+  {
+   "s": "math.opencv",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.opencv",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.opencv",
+   "t": "org.intel",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.opencv",
+   "t": "math.matrix",
+   "w": 1,
+   "k": "related",
+   "note": "an image is a matrix of pixel values"
+  },
+  {
+   "s": "math.opencv",
+   "t": "pkg.pillow",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.dask",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.dask",
+   "t": "math.pandas",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.dask",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.dask",
+   "t": "conc.concurrency",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.perceptron",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.perceptron",
+   "t": "math.backprop",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.perceptron",
+   "t": "fail.ai-winters",
+   "w": 2,
+   "k": "related",
+   "note": "Perceptrons (1969) and the first lull"
+  },
+  {
+   "s": "math.perceptron",
+   "t": "math.matmul",
+   "w": 1,
+   "k": "uses",
+   "note": "the weighted sum is a dot product"
+  },
+  {
+   "s": "math.backprop",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.backprop",
+   "t": "ppl.hinton",
+   "w": 2,
+   "k": "created-by",
+   "note": "Rumelhart, Hinton and Williams"
+  },
+  {
+   "s": "math.backprop",
+   "t": "math.cnn",
+   "w": 2,
+   "k": "influenced",
+   "note": "the 1989 networks were trained with it"
+  },
+  {
+   "s": "math.backprop",
+   "t": "math.deep-learning",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.backprop",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "related",
+   "note": "loss.backward() runs it"
+  },
+  {
+   "s": "math.backprop",
+   "t": "fail.ai-winters",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.autodiff",
+   "t": "math.backprop",
+   "w": 2,
+   "k": "influenced",
+   "note": "reverse mode underlies backpropagation"
+  },
+  {
+   "s": "math.autodiff",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "related",
+   "note": "autograd"
+  },
+  {
+   "s": "math.autodiff",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.cnn",
+   "t": "math.deep-learning",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.cnn",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.cnn",
+   "t": "fail.ml-graveyard",
+   "w": 1,
+   "k": "related",
+   "note": "Caffe was built for convolutional networks"
+  },
+  {
+   "s": "math.deep-learning",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.deep-learning",
+   "t": "math.gpu",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "math.deep-learning",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.deep-learning",
+   "t": "math.llm",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.deep-learning",
+   "t": "ppl.hinton",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.imagenet",
+   "t": "math.deep-learning",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.imagenet",
+   "t": "math.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "math.imagenet",
+   "t": "math.cnn",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.alexnet",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.alexnet",
+   "t": "ppl.hinton",
+   "w": 2,
+   "k": "created-by",
+   "note": "with Krizhevsky and Sutskever"
+  },
+  {
+   "s": "math.alexnet",
+   "t": "math.imagenet",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "math.alexnet",
+   "t": "math.gpu",
+   "w": 2,
+   "k": "uses",
+   "note": "two GTX 580 cards"
+  },
+  {
+   "s": "math.alexnet",
+   "t": "math.cnn",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "math.alexnet",
+   "t": "math.cuda",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.alexnet",
+   "t": "math.deep-learning",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.gpu",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.gpu",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.gpu",
+   "t": "org.nvidia",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.gpu",
+   "t": "found.multicore",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.gpu",
+   "t": "conc.concurrency",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.cuda",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.cuda",
+   "t": "org.nvidia",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.cuda",
+   "t": "math.gpu",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.cuda",
+   "t": "lang.c",
+   "w": 2,
+   "k": "uses",
+   "note": "an extension of C"
+  },
+  {
+   "s": "math.cuda",
+   "t": "lang.cpp",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.cuda",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.cuda",
+   "t": "pkg.conda",
+   "w": 1,
+   "k": "related",
+   "note": "conda can install CUDA libraries"
+  },
+  {
+   "s": "math.cublas-cudnn",
+   "t": "math.cuda",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.cublas-cudnn",
+   "t": "math.blas",
+   "w": 3,
+   "k": "implements",
+   "note": "cuBLAS"
+  },
+  {
+   "s": "math.cublas-cudnn",
+   "t": "org.nvidia",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.cublas-cudnn",
+   "t": "math.tuned-blas",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.cublas-cudnn",
+   "t": "math.cnn",
+   "w": 1,
+   "k": "related",
+   "note": "cuDNN supplies convolution primitives"
+  },
+  {
+   "s": "math.cublas-cudnn",
+   "t": "math.matrix-storage",
+   "w": 2,
+   "k": "related",
+   "note": "cuBLAS keeps Fortran column-major order"
+  },
+  {
+   "s": "math.cublas-cudnn",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.tensor-cores",
+   "t": "math.gpu",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.tensor-cores",
+   "t": "org.nvidia",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.tensor-cores",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.tensor-cores",
+   "t": "found.ieee754",
+   "w": 1,
+   "k": "related",
+   "note": "half-precision formats"
+  },
+  {
+   "s": "math.tpu",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.tpu",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.tpu",
+   "t": "math.gpu",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.tpu",
+   "t": "math.tensor-cores",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.tpu",
+   "t": "found.ieee754",
+   "w": 1,
+   "k": "related",
+   "note": "bfloat16"
+  },
+  {
+   "s": "math.transformer",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.transformer",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.transformer",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.transformer",
+   "t": "math.gpu",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.transformer",
+   "t": "math.bert",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "math.transformer",
+   "t": "math.gpt3",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.transformer",
+   "t": "math.llm",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "math.attention",
+   "t": "math.transformer",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "math.attention",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.attention",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.bert",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.bert",
+   "t": "math.llm",
+   "w": 2,
+   "k": "influenced",
+   "note": "pretraining, then fine-tuning"
+  },
+  {
+   "s": "math.bert",
+   "t": "math.gpt3",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.gpt3",
+   "t": "math.llm",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.gpt3",
+   "t": "org.openai",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.gpt3",
+   "t": "mod.chatgpt",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.llm",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.llm",
+   "t": "math.gpu",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.llm",
+   "t": "math.matmul",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.llm",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses",
+   "note": "the usual stack is Python on top"
+  },
+  {
+   "s": "math.llm",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.llm",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "influenced",
+   "note": "coding assistants run on language models"
+  },
+  {
+   "s": "math.scaling-laws",
+   "t": "math.llm",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.scaling-laws",
+   "t": "math.gpt3",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.scaling-laws",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.open-weight",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.open-weight",
+   "t": "math.llm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.open-weight",
+   "t": "org.meta",
+   "w": 2,
+   "k": "related",
+   "note": "LLaMA"
+  },
+  {
+   "s": "math.open-weight",
+   "t": "org.hugging-face",
+   "w": 2,
+   "k": "related",
+   "note": "the Hub distributes the weights"
+  },
+  {
+   "s": "math.open-weight",
+   "t": "org.openai",
+   "w": 1,
+   "k": "related",
+   "note": "gpt-oss"
+  },
+  {
+   "s": "math.open-weight",
+   "t": "proc.open-source",
+   "w": 2,
+   "k": "related",
+   "note": "open weights are not the same as open source"
+  },
+  {
+   "s": "math.open-weight",
+   "t": "math.vllm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.open-weight",
+   "t": "math.gpt3",
+   "w": 1,
+   "k": "related",
+   "note": "LLaMA-13B was reported to beat GPT-3"
+  },
+  {
+   "s": "math.two-language-problem",
+   "t": "lang.julia",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "math.two-language-problem",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related",
+   "note": "Python pushes loops into compiled libraries"
+  },
+  {
+   "s": "math.two-language-problem",
+   "t": "math.scipy",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.two-language-problem",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.expert-systems",
+   "t": "math.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "math.expert-systems",
+   "t": "fail.ai-winters",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.expert-systems",
+   "t": "fail.lisp-machines",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "math.expert-systems",
+   "t": "fail.fifth-generation",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.expert-systems",
+   "t": "lang.prolog",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.expert-systems",
+   "t": "lang.lisp",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "math.expert-systems",
+   "t": "org.dec",
+   "w": 1,
+   "k": "related",
+   "note": "XCON configured DEC VAX orders"
+  }
+ ]
+}

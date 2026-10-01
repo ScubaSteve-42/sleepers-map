@@ -36,7 +36,7 @@ export function validateGraph(graph, { strict = false } = {}) {
     for (const f of ['title', 'short', 'long', 'sleeper']) {
       const v = nd[f]; if (!v) continue;
       if (/\bTODO\b|\bTBD\b|lorem ipsum/i.test(v)) err(`${where}: placeholder text in ${f}`);
-      if (v !== v.trim() || /\s{2,}/.test(v.replace(/\n/g, ' '))) warn(`${where}: odd whitespace in ${f}`);
+      if (v !== v.trim() || /\s{2,}/.test(v.replace(/\n\n/g, ' ').replace(/\n/g, ' '))) warn(`${where}: odd whitespace in ${f}`);
     }
     for (const r of nd.refs ?? []) if (!/^https:\/\/\S+$/.test(r.url ?? '') || !r.label) err(`${where}: bad ref ${JSON.stringify(r)}`);
   }
@@ -73,6 +73,10 @@ export function validateGraph(graph, { strict = false } = {}) {
     if (strict && nd.tier === 1 && d < 8) err(`hub "${nd.id}" has ${d} edges (need 8+)`);
   }
   for (const s of graph.tour ?? []) if (!ids.has(s.node)) err(`tour stop references unknown node "${s.node}"`);
+  for (const s of graph.questions ?? []) {
+    if (!ids.has(s.node)) err(`question "${s.q}" references unknown node "${s.node}"`);
+    if (!s.q || s.q.length > 70) err(`question "${s.q}" must be 1 to 70 characters`);
+  }
 
   const byCat = {}, byTier = [0, 0, 0, 0, 0];
   graph.nodes.forEach((n) => { byCat[n.cat] = (byCat[n.cat] ?? 0) + 1; byTier[n.tier]++; });
@@ -81,6 +85,7 @@ export function validateGraph(graph, { strict = false } = {}) {
     if (graph.edges.length < 1500) err(`only ${graph.edges.length} edges (need 1500+)`);
     for (const c of graph.categories) if (c.key !== 'root' && (byCat[c.key] ?? 0) < 8) err(`category "${c.key}" has only ${byCat[c.key] ?? 0} nodes (need 8+)`);
     if ((graph.tour ?? []).length < 10) err('tour needs 10+ stops');
+    if ((graph.questions ?? []).length < 10) err('starter questions need 10+ entries');
     const reqPath = path.join(root, 'data/required-topics.json');
     if (existsSync(reqPath)) {
       for (const [topic, list] of Object.entries(JSON.parse(readFileSync(reqPath, 'utf8')))) {

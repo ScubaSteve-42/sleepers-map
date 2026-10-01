@@ -1,0 +1,3481 @@
+{
+  "slice": "s04-concepts",
+  "nodes": [
+    {
+      "id": "conc.types",
+      "title": "Type Systems",
+      "cat": "concepts",
+      "tier": 1,
+      "year": 1960,
+      "short": "The rules a language uses to reject meaningless operations, such as adding a number to a customer record, either before the program runs or while it runs.",
+      "long": "A type system is the set of rules a language uses to stop meaningless operations. Static languages check the rules before the program runs, dynamic languages check them as it runs, and many languages now mix the two. Robin Milner's 1978 paper proved that in a well-designed static system, well-typed programs cannot go wrong. Type inference and generics came out of ML in the 1970s and reached mainstream languages from the mid-2000s, and null is now being designed out. The evidence that static typing prevents defects is real but modest: the cleanest study found that about 15 percent of already-public JavaScript bugs could have been caught by a type checker.",
+      "sleeper": "TypeScript 1.0 (April 2014) put optional types on JavaScript, and by GitHub's own contributor count it was the most used language there in August 2025. TIOBE, using a different measure, ranks it 39th.",
+      "status": "thriving",
+      "tags": [
+        "type checking",
+        "static",
+        "dynamic",
+        "soundness"
+      ],
+      "refs": [
+        {
+          "label": "Milner, A Theory of Type Polymorphism in Programming (1978)",
+          "url": "https://homepages.inf.ed.ac.uk/wadler/papers/papers-we-love/milner-type-polymorphism.pdf"
+        },
+        {
+          "label": "Gao, Bird and Barr, To Type or Not to Type (ICSE 2017)",
+          "url": "https://earlbarr.com/publications/typestudy.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.memory",
+      "title": "Memory Management",
+      "cat": "concepts",
+      "tier": 1,
+      "year": 1958,
+      "short": "How a program gets memory and gives it back: by hand, by counting, by a collector, by compiler-checked ownership, or by freeing a whole region at once.",
+      "long": "Every program must decide when borrowed memory can be given back. Five answers exist: the programmer says so, as with C's malloc and free; a counter on each object says so, as in Python and Swift; a collector finds what is unreachable, as in Lisp from 1958 to 1960 and later Java; the compiler proves it from ownership rules, as in Rust; or a whole region is released at once, as with arenas. The history is a steady shift of work from the programmer to the machine, driven by the cost of memory bugs more than by speed. Chromium reports that about 70 percent of its serious security bugs are memory-safety problems.",
+      "sleeper": "Automatic memory management is no longer exotic: Java made garbage collection normal in the 1990s, and Rust now offers a third path with no collector and no manual freeing. CISA's December 2023 call for memory-safe roadmaps shows the choice has become policy.",
+      "status": "thriving",
+      "tags": [
+        "heap",
+        "stack",
+        "allocation",
+        "arena",
+        "garbage collection",
+        "leak"
+      ],
+      "refs": [
+        {
+          "label": "McCarthy, History of Lisp: implementation",
+          "url": "https://www-formal.stanford.edu/jmc/history/lisp/node3.html"
+        },
+        {
+          "label": "Chromium, Memory safety",
+          "url": "https://www.chromium.org/Home/chromium-security/memory-safety/"
+        }
+      ]
+    },
+    {
+      "id": "conc.concurrency",
+      "title": "Concurrency and Parallelism",
+      "cat": "concepts",
+      "tier": 1,
+      "year": 1965,
+      "short": "Doing several things in overlapping time. Threads and locks, actors, channels and async/await are the main ways to structure it, and none has won outright.",
+      "long": "Concurrency means structuring a program as several activities in progress at once, while parallelism means using several processors at the same instant. The models differ on whether activities share memory, as threads and locks do, exchange only messages, as Erlang's actors and Go's channels do, or take turns on one thread, as async/await does. Shared memory brings deadlocks and race conditions. Herb Sutter's 2005 essay \"The Free Lunch Is Over\" argued that clock speeds had stopped rising, so only concurrent programs would keep getting faster, and Amdahl's law limits the gain. No single model has won.",
+      "sleeper": "Before about 2003 programs got faster whenever the clock did. Chips now add cores instead, so concurrency is the main route to speed, and CPython 3.14 (2025) officially supports a free-threaded build.",
+      "status": "thriving",
+      "tags": [
+        "parallelism",
+        "multicore",
+        "threads",
+        "synchronization",
+        "concurrent"
+      ],
+      "refs": [
+        {
+          "label": "What is new in Python 3.14",
+          "url": "https://docs.python.org/3/whatsnew/3.14.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.data-types",
+      "title": "Data Types",
+      "cat": "concepts",
+      "tier": 2,
+      "year": 1957,
+      "short": "Integers, floating-point numbers, characters and strings: how bits in memory are read as values, and why each language reads them differently.",
+      "long": "A data type tells the machine how to read the bits stored in a variable. FORTRAN, as described in 1957, decided the type from the first letter of a name: names starting with I to N were integers and the rest were floating-point. Languages still differ in their defaults. C uses fixed-width integers, Python integers can grow without limit, and JavaScript has one 64-bit floating-point Number type for ordinary numbers. Text is the hardest case: the string \"héllo\" followed by a smiley emoji is 11 bytes in UTF-8, 8 UTF-16 code units and 7 Unicode code points, so even asking for its length needs a definition.",
+      "sleeper": "Text is now almost always UTF-8, used by 99.1 percent of websites whose encoding is known (W3Techs). The code pages of the 1980s are gone, and floating point follows one standard, IEEE 754.",
+      "code": {
+        "lang": "python",
+        "text": "s = \"héllo 😀\"\nprint(len(s))                            # 7 code points\nprint(len(s.encode(\"utf-8\")))            # 11 bytes\nprint(len(s.encode(\"utf-16-le\")) // 2)   # 8 UTF-16 code units"
+      },
+      "status": "thriving",
+      "tags": [
+        "integer",
+        "float",
+        "string",
+        "unicode",
+        "utf-8",
+        "boolean",
+        "character"
+      ],
+      "refs": [
+        {
+          "label": "Backus et al., The FORTRAN Automatic Coding System (1957)",
+          "url": "https://softwarepreservation.computerhistory.org/FORTRAN/paper/BackusEtAl-FortranAutomaticCodingSystem-1957.pdf"
+        },
+        {
+          "label": "Spolsky, The Absolute Minimum About Unicode and Character Sets",
+          "url": "https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/"
+        }
+      ]
+    },
+    {
+      "id": "conc.static-typing",
+      "title": "Static Typing",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1960,
+      "short": "Types are checked before the program runs, so a whole class of mistakes is rejected at compile time. C, Java, C#, Rust and Go work this way.",
+      "long": "In a statically typed language every expression has a type known before the program runs, and the compiler rejects programs that misuse them. FORTRAN in 1957 already separated integer from floating-point names, and ALGOL 60 blocks opened with typed declarations such as integer i, k and real w. Static types document the code and let editors complete and rename it, at the price of some extra writing and without catching every bug. In the cleanest study, Flow and TypeScript flagged about 15 percent of real JavaScript bugs, and the authors argue even that understates the benefit. A large GitHub study of programming languages and defects was replicated, and its authors and the replicators now agree the effects found are small.",
+      "code": {
+        "lang": "java",
+        "text": "public class Demo {\n    public static void main(String[] args) {\n        int count = \"three\";   // error: incompatible types: String cannot be converted to int\n        System.out.println(count + 1);\n    }\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "compile time",
+        "declarations",
+        "type checker"
+      ],
+      "refs": [
+        {
+          "label": "ALGOL 60 report",
+          "url": "https://www.masswerk.at/algol60/report.htm"
+        },
+        {
+          "label": "Gao, Bird and Barr, To Type or Not to Type (ICSE 2017)",
+          "url": "https://earlbarr.com/publications/typestudy.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.dynamic-typing",
+      "title": "Dynamic Typing",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1958,
+      "short": "Types belong to values and are checked as the program runs, so one variable can hold anything. Lisp, Smalltalk, Python, Ruby and JavaScript work this way.",
+      "long": "In a dynamically typed language a variable has no declared type, and a value is checked for suitability only when an operation uses it. Lisp (1958) needed no declarations because it had a single kind of value, the address, and Smalltalk (1972) was dynamically typed too. Python, Ruby and JavaScript work the same way. Programs are shorter and quicker to try out, and mistakes show up as run-time errors instead of compile-time ones. Python's own type-hint proposal says the language will remain dynamically typed and that the authors have no desire to make type hints mandatory, even by convention.",
+      "code": {
+        "lang": "python",
+        "text": "x = 5\nx = \"five\"       # fine: the type belongs to the value, not the name\nprint(x + 1)     # TypeError: can only concatenate str (not \"int\") to str"
+      },
+      "status": "thriving",
+      "tags": [
+        "run time",
+        "duck typing",
+        "scripting"
+      ],
+      "refs": [
+        {
+          "label": "PEP 484, Type Hints",
+          "url": "https://peps.python.org/pep-0484/"
+        }
+      ]
+    },
+    {
+      "id": "conc.type-inference",
+      "title": "Type Inference",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1978,
+      "short": "The compiler works out types so you do not write them. Milner's ML introduced the method, and C#, Java, C++ and Rust all use it now.",
+      "long": "Type inference lets the compiler deduce the type of each expression, so a statically typed language needs few annotations. Robin Milner's ML, developed at Edinburgh from 1973 to 1978 as the metalanguage of the LCF theorem prover, introduced the method now called Hindley-Milner. Hindley had found the same algorithm in 1969, but Milner arrived at it independently and added polymorphic let-bindings. His 1978 paper showed that well-typed programs cannot go wrong. Mainstream languages adopted the idea late: C# 3.0 added implicitly typed locals in November 2007, and Java 10 added local-variable type inference with var.",
+      "sleeper": "In the Pascal and C era every declaration spelled out its type. In C# 3.0, C++11 (auto), Java 10 (var) and Rust you usually leave it out, and the compiler still checks everything.",
+      "code": {
+        "lang": "sml",
+        "text": "fun twice f x = f (f x);              (* inferred: ('a -> 'a) -> 'a -> 'a *)\nval six = twice (fn n => n + 1) 4;    (* 6 *)"
+      },
+      "status": "thriving",
+      "tags": [
+        "hindley-milner",
+        "polymorphism",
+        "var",
+        "auto"
+      ],
+      "refs": [
+        {
+          "label": "The History of Standard ML (HOPL IV, 2020)",
+          "url": "https://smlfamily.github.io/history/SML-history.pdf"
+        },
+        {
+          "label": "Milner, A Theory of Type Polymorphism in Programming (1978)",
+          "url": "https://homepages.inf.ed.ac.uk/wadler/papers/papers-we-love/milner-type-polymorphism.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.gradual-typing",
+      "title": "Gradual Typing",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 2014,
+      "short": "Mix typed and untyped code in one program and add types over time. TypeScript (2014) and Python's type hints (2015) made it the norm for dynamic languages.",
+      "long": "Gradual typing lets a program mix typed and untyped code and tighten the types over time. TypeScript 1.0, announced on 2 April 2014, put optional static types on JavaScript and compiles them away. Python's PEP 484, created in September 2014 and shipped in Python 3.5, borrowed the idea of a special type, Any, that is compatible with every other type, and states that no type checking happens at run time because hints serve outside checkers. By GitHub's contributor counts TypeScript passed Python in August 2025, which GitHub attributes partly to typed code being more reliable for AI-assisted work. That is GitHub's interpretation, not a measured cause.",
+      "sleeper": "In 1990 you picked a typed or an untyped language. Today one codebase can start untyped and gain types file by file, and editors use the types for completion and refactoring.",
+      "code": {
+        "lang": "python",
+        "text": "def double(x: int) -> int:\n    return x * 2\n\nprint(double(\"ab\"))   # runs and prints abab; a checker such as mypy reports an error"
+      },
+      "status": "thriving",
+      "tags": [
+        "type hints",
+        "optional types",
+        "annotations"
+      ],
+      "refs": [
+        {
+          "label": "Announcing TypeScript 1.0",
+          "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-1-0/"
+        },
+        {
+          "label": "PEP 484, Type Hints",
+          "url": "https://peps.python.org/pep-0484/"
+        }
+      ]
+    },
+    {
+      "id": "conc.generics",
+      "title": "Generics",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1978,
+      "short": "One definition that works for many types while staying type-safe, such as a list of strings or of integers. Theory from ML around 1978, mainstream by 2005.",
+      "long": "Generics, formally parametric polymorphism, let one function or container work for many types without giving up type checking. The term goes back to Christopher Strachey's 1967 lectures and Milner's ML put the idea into a working language in the 1970s, so the theory dates to 1978 or earlier, while mainstream arrival came decades later. C# 2.0 shipped generics in November 2005, after the .NET generics project began at Microsoft Research Cambridge in 1998, and Java added them in Java 5 in 2004. Go added type parameters only in version 1.18, and its FAQ explains the delay as the cost in complexity in the type system and at run time.",
+      "sleeper": "In the C era a reusable container held untyped void pointers, and mistakes surfaced as crashes. Generic code is now checked by the compiler, and Go, which resisted for years, added it in 2022.",
+      "code": {
+        "lang": "cpp",
+        "text": "#include <algorithm>\n#include <cstdio>\n#include <vector>\n\ntemplate <typename T>   // one definition, many types\nT largest(const std::vector<T> &v) { return *std::max_element(v.begin(), v.end()); }\n\nint main() {\n    std::printf(\"%d %.1f\\n\", largest(std::vector<int>{3, 9, 4, 11}), largest(std::vector<double>{2.5, 1.5}));   // 11 2.5\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "parametric polymorphism",
+        "templates",
+        "type parameters"
+      ],
+      "refs": [
+        {
+          "label": "Syme, The Early History of F# (HOPL IV)",
+          "url": "https://fsharp.org/history/hopl-final/hopl-fsharp.pdf"
+        },
+        {
+          "label": "Go FAQ",
+          "url": "https://go.dev/doc/faq"
+        }
+      ]
+    },
+    {
+      "id": "conc.pattern-matching",
+      "title": "Pattern Matching and Algebraic Data Types",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1977,
+      "short": "Take a value apart by its shape and let the compiler check every case is handled. From ML and Haskell to Rust, Swift, Java 21 and Python 3.10.",
+      "long": "An algebraic data type defines a value as a choice among named shapes, for example a Shape that is either a Square holding a side or a Rect holding a width and height. Pattern matching takes such a value apart by shape, and the compiler can warn when a case is missing. The Standard ML history traces datatypes with pattern matching through Burstall and Darlington's NPL (1977) and HOPE (1980) into ML, which popularized them along with Hindley-Milner inference and generics. The feature has since spread: Rust 1.0 (2015), Swift, C# 9 (2020), Python 3.10 (2021) and Java 21 (2023) all have forms of it.",
+      "sleeper": "Once an academic feature of ML and Haskell, pattern matching on sum types has reached mainstream languages: Rust, Swift, C# 9, Python 3.10 and Java 21 all offer it.",
+      "code": {
+        "lang": "haskell",
+        "text": "data Shape = Square Int | Rect Int Int\n\narea :: Shape -> Int\narea (Square s) = s * s\narea (Rect w h) = w * h\n\nmain :: IO ()\nmain = print (sum (map area [Square 3, Rect 2 4]))   -- 17"
+      },
+      "status": "thriving",
+      "tags": [
+        "algebraic data types",
+        "sum types",
+        "enum",
+        "match",
+        "sealed"
+      ],
+      "refs": [
+        {
+          "label": "The History of Standard ML (HOPL IV, 2020)",
+          "url": "https://smlfamily.github.io/history/SML-history.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.null",
+      "title": "Null Reference",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1965,
+      "short": "A reference that points at nothing. Tony Hoare added it to ALGOL W in 1965 and later called it his billion-dollar mistake.",
+      "long": "Tony Hoare introduced the null reference in 1965 while designing ALGOL W, \"simply because it was so easy to implement\", and in a 2009 talk called it his billion-dollar mistake. The talk's own timeline gives 1964 in one place, so the exact year is 1964 or 1965. The cost is that any reference might secretly be empty, so programs must check everywhere or risk a crash. Newer languages remove the problem in the type system: Rust has no null and uses Option, Kotlin separates nullable from non-nullable types, Swift has optionals, and C# 8 (2019) added nullable reference types. SQL's NULL is a related but different idea, meaning unknown.",
+      "sleeper": "The check-everything era is ending. A reference that may be missing is now a distinct type in Rust, Kotlin, Swift and C# 8, so the compiler forces you to handle the empty case.",
+      "code": {
+        "lang": "rust",
+        "text": "fn main() {\n    let v = vec![10, 20, 30];\n    match v.get(7) {\n        Some(x) => println!(\"got {x}\"),\n        None => println!(\"no element 7\"),\n    }\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "option",
+        "optional",
+        "nullable",
+        "billion dollar mistake"
+      ],
+      "refs": [
+        {
+          "label": "Hoare, Null References: The Billion Dollar Mistake (QCon talk)",
+          "url": "https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/"
+        },
+        {
+          "label": "The Rust Book, Option",
+          "url": "https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.integer-overflow",
+      "title": "Integer Overflow",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1957,
+      "short": "Fixed-width integers wrap around or break when a result does not fit. It sank Ariane 5's first flight and hid in Java's binary search for years.",
+      "long": "Hardware integers have a fixed number of bits, so a result that does not fit must be wrapped, trapped or left undefined. In C, unsigned arithmetic wraps modulo 2 to the power n, and signed overflow is undefined behavior. Python integers grow without limit, while a JavaScript Number is a 64-bit float that is exact only up to 2^53 minus 1. Ariane 5's first flight (4 June 1996) failed after a 64-bit float was converted to a 16-bit integer. In 2006 Joshua Bloch reported that the binary search in the JDK computed (low + high) / 2, which overflows for arrays of about a billion elements or more, and that Bentley's proved-correct version in Programming Pearls had the same flaw.",
+      "code": {
+        "lang": "c",
+        "text": "#include <stdio.h>\n#include <stdint.h>\n\nint main(void) {\n    uint8_t b = 255;  b++;           /* unsigned arithmetic wraps around */\n    uint32_t u = 4294967295u;  u++;\n    printf(\"%d %u\\n\", b, u);          /* 0 0 */\n    return 0;\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "wraparound",
+        "bigint",
+        "int",
+        "64-bit"
+      ],
+      "refs": [
+        {
+          "label": "Bloch, Nearly All Binary Searches and Mergesorts are Broken (2006)",
+          "url": "https://research.google/blog/extra-extra-read-all-about-it-nearly-all-binary-searches-and-mergesorts-are-broken/"
+        },
+        {
+          "label": "Ariane 501 inquiry board report",
+          "url": "https://www-users.cse.umn.edu/~arnold/disasters/ariane5rep.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.float-rounding",
+      "title": "Floating-Point Rounding (0.1 + 0.2)",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1985,
+      "short": "0.1 + 0.2 is not exactly 0.3 in binary floating point. IEEE 754 (1985) standardized the format, and the surprise is the same in every language.",
+      "long": "Computers store decimal fractions as binary ones, and 0.1 has no exact binary form: the stored double is 3602879701896397 divided by 2 to the power 55, close to but not equal to one tenth. So 0.1 + 0.2 gives 0.30000000000000004 in Python, JavaScript and C alike. IEEE 754-1985, shaped by William Kahan's work with Intel, replaced each vendor's own float format with one standard. Remedies are to compare with a tolerance, use an exact decimal type for money, or keep cents as integers. On 25 February 1991 a Patriot battery at Dhahran failed to stop a Scud that killed 28 soldiers, after a clock error built from inexact tenths of a second grew to about 0.34 seconds.",
+      "code": {
+        "lang": "python",
+        "text": "import math\nfrom decimal import Decimal\n\nprint(0.1 + 0.2)                        # 0.30000000000000004\nprint(0.1 + 0.2 == 0.3)                 # False\nprint(math.isclose(0.1 + 0.2, 0.3))     # True\nprint(Decimal(\"0.1\") + Decimal(\"0.2\"))  # 0.3"
+      },
+      "status": "thriving",
+      "tags": [
+        "ieee 754",
+        "double",
+        "decimal",
+        "precision"
+      ],
+      "refs": [
+        {
+          "label": "Python tutorial, Floating-Point Arithmetic: Issues and Limitations",
+          "url": "https://docs.python.org/3/tutorial/floatingpoint.html"
+        },
+        {
+          "label": "Kahan, IEEE Standard 754 for Binary Floating-Point Arithmetic",
+          "url": "https://people.eecs.berkeley.edu/~wkahan/ieee754status/754story.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.cstring",
+      "title": "Null-Terminated Strings",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1972,
+      "short": "C has no string type: a string is bytes ending in a zero byte. Finding its length means scanning for that zero, and forgetting it causes classic bugs.",
+      "long": "C represents text as a null-terminated byte string, a sequence of nonzero bytes followed by a byte with the value zero. The string \"cat\" is therefore a four-element array holding c, a, t and a zero byte, and strlen finds the length by scanning for that zero. Nothing stores the length or checks the bounds, so copying with strcpy or reading with gets can run past the end of a buffer. The same layout means strlen counts bytes, not letters. Careful C code uses bounded functions such as snprintf instead, which always terminates the result.",
+      "code": {
+        "lang": "c",
+        "text": "#include <stdio.h>\n#include <string.h>\n\nint main(void) {\n    char a[] = \"hi\";                 /* 3 bytes: 'h' 'i' and a zero byte */\n    const char *b = \"hi\";            /* a pointer to a read-only string literal */\n    printf(\"strlen=%zu sizeof a=%zu sizeof b=%zu\\n\", strlen(a), sizeof a, sizeof b);\n    return 0;                        /* on 64-bit: strlen=2 sizeof a=3 sizeof b=8 */\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "nul",
+        "strlen",
+        "char array",
+        "text"
+      ],
+      "refs": [
+        {
+          "label": "cppreference, Null-terminated byte strings",
+          "url": "https://en.cppreference.com/w/c/string/byte"
+        }
+      ]
+    },
+    {
+      "id": "conc.zero-indexing",
+      "title": "Zero-Based Indexing",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1967,
+      "short": "Arrays start at index 0 in C, Java and Python. The reason is address arithmetic, and Dijkstra's 1982 argument for half-open ranges is the best-known defense.",
+      "long": "Martin Richards, who designed BCPL in 1966 and first implemented it in 1967, is credited with starting array subscripts at zero because the element at index i sits at the start address plus i. Fortran and COBOL count from one so that subscripts match ordinary ordinal numbers. In 1982 Edsger Dijkstra's note EWD 831 argued that 2 <= i < 13 is the best way to write a range. It gives a sequence of length N the subscripts 0 up to N minus 1 and makes an element's subscript equal the number of elements before it. Python's slices, such as a[1:3], are half-open in exactly that way.",
+      "code": {
+        "lang": "python",
+        "text": "a = [10, 20, 30, 40, 50]\nprint(a[0], a[-1], a[1:3], a[:2] + a[2:] == a)   # 10 50 [20, 30] True"
+      },
+      "status": "thriving",
+      "tags": [
+        "index",
+        "offset",
+        "subscript",
+        "half-open"
+      ],
+      "refs": [
+        {
+          "label": "Dijkstra, EWD 831: Why numbering should start at zero",
+          "url": "https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD831.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.scope",
+      "title": "Scope and Lifetime",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1960,
+      "short": "Scope is where in the program a name is visible, and lifetime is how long its value exists. Lexical scope won, but a few languages still surprise you.",
+      "long": "Scope is the part of the program text where a name can be used, and lifetime is how long the thing it names exists. ALGOL 60 gave each begin and end block its own local declarations, and nearly every language since uses lexical scope, meaning a name is looked up where the code is written. Early Lisp got dynamic scope by accident, and Steve Russell's FUNARG device fixed it by taking the lexical environment along. Shell functions are still dynamic. JavaScript's let is block-scoped while the old var is function-scoped, so closures created in a var loop all share one variable, and Python has no block scope at all.",
+      "sleeper": "Block scope is now the norm: in JavaScript, let replaced var as the recommended declaration. Python remains the exception, since a for loop's variable is still visible after the loop.",
+      "code": {
+        "lang": "javascript",
+        "text": "const fns = [];\nfor (var i = 0; i < 3; i++) fns.push(() => i);\nconsole.log(fns.map(f => f()));   // [ 3, 3, 3 ]: every closure shares one i\n// declare i with let instead of var and it prints [ 0, 1, 2 ]"
+      },
+      "status": "thriving",
+      "tags": [
+        "lexical scope",
+        "dynamic scope",
+        "block scope",
+        "lifetime",
+        "visibility"
+      ],
+      "refs": [
+        {
+          "label": "McCarthy, History of Lisp",
+          "url": "https://www-formal.stanford.edu/jmc/history/lisp/node4.html"
+        },
+        {
+          "label": "MDN, let",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+        }
+      ]
+    },
+    {
+      "id": "conc.immutability",
+      "title": "Constants and Immutability",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1990,
+      "short": "Data that cannot change after it is created. Rust makes variables immutable by default, and Haskell and Clojure build everything on it.",
+      "long": "Immutable data is never modified after creation; \"changing\" it means building a new value that shares the unchanged parts. That makes shared data safe to read from many threads at once. The Haskell committee, whose first report appeared in 1990, was resolute in keeping the language pure, with no side effects, and Clojure makes all its data structures immutable and persistent. The Rust Book says variables are immutable by default and calls this one of many nudges toward safe, easy concurrency. Constants differ in strength: Java's final and Rust's let reject reassignment, but JavaScript's const protects only the name, so a const array can still be changed.",
+      "sleeper": "Rust (2015) made immutable the default, the reverse of Pascal or C, and Java 16 and C# 9 added record types that make immutable data classes easy to write.",
+      "code": {
+        "lang": "rust",
+        "text": "fn main() {\n    let x = 5;\n    x = 6;   // error[E0384]: cannot assign twice to immutable variable\n    println!(\"{x}\");\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "const",
+        "final",
+        "persistent data",
+        "pure",
+        "side effects"
+      ],
+      "refs": [
+        {
+          "label": "The Rust Book, Variables and Mutability",
+          "url": "https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html"
+        },
+        {
+          "label": "Hudak et al., A History of Haskell (HOPL III)",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.function",
+      "title": "Functions and Subroutines",
+      "cat": "concepts",
+      "tier": 2,
+      "year": 1957,
+      "short": "A named, reusable block of steps with inputs and a result. Subroutine libraries came first, and today functions are values you can pass around.",
+      "long": "A function packages steps under a name, takes parameters and returns a result. The idea predates high-level languages: EDSAC at Cambridge had a subroutine library, and the first programming textbook (1951) built its teaching on it. ALGOL 60 distinguished value parameters from call by name, and in 1973 Hoare lamented that the name parameter was the default. Lisp (1958) made functions values that can be passed and returned. Languages differ on whether a parameter is a copy or a reference to the caller's object, and on how a function reports failure. Python evaluates a default argument once, when the function is defined, so a default list is shared between calls, and Go functions can return several values.",
+      "sleeper": "Functions are now ordinary values. You can store one in a variable, pass it to another function and return it, which is how callbacks, map and filter work in Python, JavaScript, Java and C++.",
+      "code": {
+        "lang": "python",
+        "text": "def add(x, acc=[]):\n    acc.append(x)\n    return acc\n\nprint(add(1), add(2))   # [1, 2] [1, 2]  (the default list is created only once)"
+      },
+      "status": "thriving",
+      "tags": [
+        "subroutine",
+        "procedure",
+        "parameters",
+        "return value",
+        "first-class"
+      ],
+      "refs": [
+        {
+          "label": "ALGOL 60 report",
+          "url": "https://www.masswerk.at/algol60/report.htm"
+        }
+      ]
+    },
+    {
+      "id": "conc.control-flow",
+      "title": "Conditionals and Loops",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1957,
+      "short": "Choosing and repeating: if statements and loops. FORTRAN's 1957 DO loop and three-way IF began the line that leads to today's for and while.",
+      "long": "Control flow is how a program chooses between paths and repeats steps. FORTRAN's 1957 language gave programmers the DO loop and a three-way arithmetic IF that branched to one of three numbered statements depending on whether a value was negative, zero or positive. ALGOL 60 added compound statements between begin and end, and a for statement, and Pascal's if and for are what many returning readers will remember. Structured programming reduced all control flow to sequence, choice and repetition, and the for-each loops in today's languages are driven by iterators.",
+      "code": {
+        "lang": "pascal",
+        "text": "program SumSquares;\nvar\n  n, total: integer;\nbegin\n  total := 0;\n  for n := 1 to 10 do\n    if odd(n) then\n      total := total + n * n;\n  writeln(total);   { 165 }\nend."
+      },
+      "status": "thriving",
+      "tags": [
+        "if",
+        "loop",
+        "for",
+        "while",
+        "branch",
+        "conditional"
+      ],
+      "refs": [
+        {
+          "label": "Backus et al., The FORTRAN Automatic Coding System (1957)",
+          "url": "https://softwarepreservation.computerhistory.org/FORTRAN/paper/BackusEtAl-FortranAutomaticCodingSystem-1957.pdf"
+        },
+        {
+          "label": "ALGOL 60 report",
+          "url": "https://www.masswerk.at/algol60/report.htm"
+        }
+      ]
+    },
+    {
+      "id": "conc.recursion",
+      "title": "Recursion",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1958,
+      "short": "A function that solves a problem by calling itself on a smaller piece. Lisp used it from the start, and ALGOL 60 added it late and controversially.",
+      "long": "Recursion solves a problem by calling the same function on a smaller piece of it. The FORTRAN-based list-processing system that preceded Lisp had neither conditional expressions nor recursion, and McCarthy's Lisp (1958) made recursion the normal way to repeat. ALGOL 60 got it late: around 10 February 1960 van Wijngaarden proposed adding one sentence to the report, which F. L. Bauer called an Amsterdam plot and Dijkstra later said was inserted sneakily. Recursion and loops are equal in power, but each pending call uses stack space. Python raises RecursionError for a call 100,000 levels deep, while a ten-million-step tail-recursive loop in Racket finished normally.",
+      "code": {
+        "lang": "python",
+        "text": "def f(n):\n    return f(n - 1) if n else 0\n\nprint(f(500))      # 0\nprint(f(100000))   # RecursionError: maximum recursion depth exceeded"
+      },
+      "status": "thriving",
+      "tags": [
+        "stack",
+        "tail call",
+        "base case",
+        "divide and conquer"
+      ],
+      "refs": [
+        {
+          "label": "van Emden, How Recursion Got into Programming",
+          "url": "https://vanemden.wordpress.com/2014/06/18/how-recursion-got-into-programming-a-comedy-of-errors-3/"
+        },
+        {
+          "label": "McCarthy, History of Lisp: prehistory",
+          "url": "https://www-formal.stanford.edu/jmc/history/lisp/node2.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.error-handling",
+      "title": "Exceptions and Error Handling",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1975,
+      "short": "A way to report that something went wrong. Exceptions unwind to a handler, while the alternative is an error value that every caller must check.",
+      "long": "An exception is a signal that something went wrong; it unwinds the call stack to the nearest handler. Barbara Liskov's CLU, from the mid-1970s, is the origin of the modern form: a call terminates either normally or in one of several named exceptional conditions, and the designers rejected the resumption model of PL/I and Mesa as too complex. The alternative is to return an error value that every caller must inspect. Erlang takes a third route, summed up in Joe Armstrong's advice to let some other process do the error recovery: if you cannot do what you want, die. Each style trades visible failures against clutter in the normal code.",
+      "sleeper": "Opinion has moved toward errors as ordinary values. Go (2009) and Rust (2015) return them explicitly, and C# and Kotlin declined to copy Java's compulsory checked exceptions.",
+      "code": {
+        "lang": "python",
+        "text": "try:\n    n = int(\"12x\")\nexcept ValueError as e:\n    print(\"bad input:\", e)   # bad input: invalid literal for int() with base 10: '12x'"
+      },
+      "status": "thriving",
+      "tags": [
+        "exception",
+        "try catch",
+        "throw",
+        "failure",
+        "unwind"
+      ],
+      "refs": [
+        {
+          "label": "Pike, Errors are values (Go blog, 2015)",
+          "url": "https://go.dev/blog/errors-are-values"
+        },
+        {
+          "label": "Armstrong, Making reliable distributed systems in the presence of software errors",
+          "url": "https://erlang.org/download/armstrong_thesis_2003.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.information-hiding",
+      "title": "Modules and Information Hiding",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1972,
+      "short": "Cut a program into modules around design decisions likely to change, and hide each decision behind a small interface. David Parnas argued this in 1972.",
+      "long": "David Parnas's December 1972 paper \"On the Criteria To Be Used in Decomposing Systems into Modules\" compared two ways of dividing a small keyword-index program. The conventional split followed the steps of the processing. The alternative gave each module responsibility for one design decision, hidden from all the others, with an interface chosen to reveal as little as possible about its inner workings. Parnas concluded that it is almost always wrong to begin a decomposition from a flowchart, and that one should begin from the decisions most likely to change. Niklaus Wirth later called Parnas's information hiding and Liskov's abstract data types probably the most important contribution to building systems with large teams. Java gained a module system only in Java 9.",
+      "status": "thriving",
+      "tags": [
+        "module",
+        "encapsulation",
+        "interface",
+        "namespace",
+        "modularity"
+      ],
+      "refs": [
+        {
+          "label": "Parnas, On the Criteria To Be Used in Decomposing Systems into Modules (CACM, 1972)",
+          "url": "https://dl.acm.org/doi/10.1145/361598.361623"
+        }
+      ]
+    },
+    {
+      "id": "conc.closures",
+      "title": "Closures and Lambdas",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1960,
+      "short": "A function bundled with the variables it captured where it was written. Lisp had the idea around 1960, and every major language has it now.",
+      "long": "A closure is a function bundled together with references to its surrounding state, the variables in scope where the function was written. Early Lisp passed functions as arguments but looked variables up in the wrong place, and Steve Russell's FUNARG device fixed that by taking the lexical environment along. A counter function built on a captured variable looks much the same in Python, Rust and Go. The JavaScript surprise where callbacks created in a var loop all print the same number is the same mechanism: every closure captured the one shared variable. By 2014 lambdas and closures were in every major language, with C# 3.0, C++11 and Java 8 among the last to add them.",
+      "code": {
+        "lang": "python",
+        "text": "def make_counter():\n    n = 0\n    def inc():\n        nonlocal n\n        n += 1\n        return n\n    return inc\n\nc = make_counter()\nprint(c(), c(), c())   # 1 2 3"
+      },
+      "status": "thriving",
+      "tags": [
+        "lambda",
+        "captured variable",
+        "funarg",
+        "callback",
+        "anonymous function"
+      ],
+      "refs": [
+        {
+          "label": "MDN, Closures",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures"
+        },
+        {
+          "label": "McCarthy, History of Lisp",
+          "url": "https://www-formal.stanford.edu/jmc/history/lisp/node4.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.iterators",
+      "title": "Iterators and Generators",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1975,
+      "short": "An iterator hands out a collection's items one at a time, and a generator produces them lazily with yield. Both came from Liskov's CLU in the 1970s.",
+      "long": "An iterator hands out the items of a collection one at a time, so a for loop does not need to know how the collection is stored. A generator is a function that produces its items with yield, pausing between them, so the sequence can be huge or endless. Liskov's CLU, from the mid-1970s, had iterators as a single operation that yields its results incrementally and is called from a for statement. Python added generators in version 2.2 (PEP 255, May 2001), and C# 2.0 added iterators with yield in 2005. Because items are produced on demand, iterators are the part of lazy evaluation that reached the mainstream.",
+      "code": {
+        "lang": "python",
+        "text": "def squares_of_odds(limit):\n    for n in range(1, limit + 1):\n        if n % 2 == 1:\n            yield n * n\n\nprint(list(squares_of_odds(10)), sum(squares_of_odds(10)))   # [1, 9, 25, 49, 81] 165"
+      },
+      "status": "thriving",
+      "tags": [
+        "generator",
+        "yield",
+        "for each",
+        "stream",
+        "lazy sequence"
+      ],
+      "refs": [
+        {
+          "label": "PEP 255, Simple Generators",
+          "url": "https://peps.python.org/pep-0255/"
+        }
+      ]
+    },
+    {
+      "id": "conc.lazy-evaluation",
+      "title": "Lazy Evaluation",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1976,
+      "short": "Compute a value only when it is needed. Haskell made it the default, and the part that reached the mainstream is lazy sequences such as generators.",
+      "long": "Lazy evaluation computes an expression only when its value is needed. The Haskell history is careful to say that Haskell is a language with non-strict semantics and that laziness is one way to implement that. It traces the 1980s interest to Friedman and Wise's 1976 paper \"Cons should not evaluate its arguments\" and to David Turner's languages SASL, KRC and Miranda, and by 1987 there were more than a dozen non-strict, purely functional languages, which led to the committee that designed Haskell. Laziness by default stayed essentially Haskell-only, but lazy sequences such as generators, streams and iterators are routine elsewhere.",
+      "code": {
+        "lang": "haskell",
+        "text": "main :: IO ()\nmain = print (take 5 (map (* 2) [1 ..]))   -- [2,4,6,8,10]: the list [1 ..] is never built in full"
+      },
+      "status": "niche",
+      "tags": [
+        "non-strict",
+        "thunk",
+        "infinite list",
+        "call by need"
+      ],
+      "refs": [
+        {
+          "label": "Hudak et al., A History of Haskell (HOPL III)",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.monad",
+      "title": "Monads",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1989,
+      "short": "A pattern for chaining steps that run inside a context, such as a value that may be missing. Haskell uses it to mark input and output.",
+      "long": "A monad is a pattern for chaining steps in which every step runs inside a context: the value might be missing, the step might fail, it might finish later, or it might do input and output. The monad supplies the glue, written >>= and called bind, which passes one step's result to the next while handling the context. Haskell's authors say monads were not in the original design because they were then an obscure feature of category theory. Eugenio Moggi used them to describe language features in 1989 and 1991, and Haskell's input and output adopted them from about 1993. Similar chaining appears elsewhere as Option handling, promises, async/await, Rust's question-mark operator and LINQ.",
+      "code": {
+        "lang": "haskell",
+        "text": "safeDiv :: Int -> Int -> Maybe Int\nsafeDiv _ 0 = Nothing\nsafeDiv a b = Just (div a b)\n\nmain :: IO ()\nmain = do\n  print (safeDiv 100 5 >>= safeDiv 1000)   -- Just 50\n  print (safeDiv 100 0 >>= safeDiv 1000)   -- Nothing: the failure skips the next step"
+      },
+      "status": "niche",
+      "tags": [
+        "bind",
+        "maybe",
+        "option",
+        "category theory",
+        "moggi"
+      ],
+      "refs": [
+        {
+          "label": "Hudak et al., A History of Haskell (HOPL III)",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.composition",
+      "title": "Composition over Inheritance",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1994,
+      "short": "Build objects by combining parts instead of inheriting from parent classes. The 1994 Design Patterns book urged it, and Go builds on it.",
+      "long": "The Gang of Four's Design Patterns, published on 31 October 1994, advised programmers to favor object composition over class inheritance. In a 2005 interview Erich Gamma said he still thought it true after ten years: inheritance is a cool way to change behavior but brittle, because a subclass can easily make assumptions about the context in which an overridden method is called, whereas composition is black-box reuse in which you get customization by configuration. Go's designers wrote in 2012 that the language encourages composition over inheritance, using simple, often one-method interfaces. The history of object orientation can be read as keeping objects while slowly dropping deep inheritance hierarchies.",
+      "code": {
+        "lang": "python",
+        "text": "class Engine:\n    def start(self):\n        return \"engine running\"\n\nclass Car:\n    def __init__(self, engine):\n        self.engine = engine          # a Car has an Engine, instead of being one\n    def start(self):\n        return self.engine.start()\n\nprint(Car(Engine()).start())   # engine running"
+      },
+      "status": "thriving",
+      "tags": [
+        "has-a",
+        "inheritance",
+        "gang of four",
+        "design principle",
+        "interfaces"
+      ],
+      "refs": [
+        {
+          "label": "Artima, Design Principles from Design Patterns (Gamma interview, 2005)",
+          "url": "https://www.artima.com/articles/design-principles-from-design-patterns"
+        },
+        {
+          "label": "Pike, Go at Google (2012)",
+          "url": "https://go.dev/talks/2012/splash.article"
+        }
+      ]
+    },
+    {
+      "id": "conc.adt",
+      "title": "Abstract Data Types",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1974,
+      "short": "A type defined by its operations, not its representation, such as a stack with push and pop. Barbara Liskov's CLU made it a language feature in the 1970s.",
+      "long": "An abstract data type is defined by the operations you can perform on it, not by how it is stored. A stack with push and pop can sit on an array today and a linked list tomorrow without any caller noticing. Barbara Liskov's CLU, developed in 1974 and 1975 at MIT, built abstract data types into the language, along with iterators and exceptions, and she received the Turing Award in 2008. Fred Brooks's 1986 essay No Silver Bullet split object-oriented programming into two independent ideas, abstract data types, which hide a representation behind operations, and hierarchical types such as classes and subclasses, and called both real advances.",
+      "code": {
+        "lang": "python",
+        "text": "class Stack:\n    def __init__(self):\n        self._items = []          # the representation is hidden behind push and pop\n\n    def push(self, x):\n        self._items.append(x)\n\n    def pop(self):\n        return self._items.pop()"
+      },
+      "status": "thriving",
+      "tags": [
+        "clu",
+        "stack",
+        "encapsulation",
+        "abstraction",
+        "interface"
+      ],
+      "refs": [
+        {
+          "label": "Brooks, No Silver Bullet (1986)",
+          "url": "https://worrydream.com/refs/Brooks_1986_-_No_Silver_Bullet.pdf"
+        },
+        {
+          "label": "Wirth, Computer science education: Where do we stand and where do we go (IEEE Annals, 2008)",
+          "url": "https://people.inf.ethz.ch/wirth/Miscellaneous/IEEE-Annals.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.design-by-contract",
+      "title": "Design by Contract",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1992,
+      "short": "State what each routine requires and guarantees as checked preconditions, postconditions and invariants. Eiffel built it in, and Meyer described it in 1992.",
+      "long": "Design by Contract treats each routine as a contract: a precondition says what the caller must guarantee, a postcondition says what the routine guarantees in return, and a class invariant must always hold. Bertrand Meyer's October 1992 article in IEEE Computer, Applying Design by Contract, presents it as a way to reduce bugs in object-oriented components, and his language Eiffel, from 1986, builds contracts into its syntax with require and ensure clauses. Eiffel Software describes it as expected behavior that is explicitly defined, checked and enforced. Ada compilers can check preconditions when asked, and C++26 adds contracts.",
+      "sleeper": "What Eiffel pioneered is back in mainstream form: C++26 adds contracts, with preconditions, postconditions and contract_assert, and Ada compilers check Pre conditions when asked.",
+      "code": {
+        "lang": "eiffel",
+        "text": "half (x: INTEGER): INTEGER\n    require\n        even: x \\\\ 2 = 0\n    do\n        Result := x // 2\n    ensure\n        exact: Result * 2 = x\n    end"
+      },
+      "status": "niche",
+      "tags": [
+        "precondition",
+        "postcondition",
+        "invariant",
+        "eiffel",
+        "assertions"
+      ],
+      "refs": [
+        {
+          "label": "Meyer, Applying Design by Contract (IEEE Computer, 1992)",
+          "url": "https://se.inf.ethz.ch/~meyer/publications/computer/contract.pdf"
+        },
+        {
+          "label": "Eiffel Software, Design by Contract",
+          "url": "https://www.eiffel.com/values/design-by-contract/"
+        }
+      ]
+    },
+    {
+      "id": "conc.structured-programming",
+      "title": "Structured Programming",
+      "cat": "concepts",
+      "tier": 2,
+      "year": 1968,
+      "short": "Build programs from sequence, choice and loops instead of arbitrary jumps. Dijkstra's 1968 goto letter started the argument.",
+      "long": "Structured programming builds control flow only from sequence, choice and repetition, rather than arbitrary jumps. Edsger Dijkstra's letter \"A Case against the GO TO Statement\", retitled \"Go To Statement Considered Harmful\" by the editor Niklaus Wirth, appeared in Communications of the ACM in March 1968. His \"Notes on Structured Programming\" followed in August 1969, which is why some sources date the movement to 1969. Bohm and Jacopini had shown in 1966 that sequence, conditional and iteration are enough for any program. Knuth's 1974 reply argued for eliminating gotos in some cases and keeping them in others, quoting Dijkstra's own warning against making a religion of it.",
+      "status": "thriving",
+      "tags": [
+        "goto",
+        "sequence",
+        "selection",
+        "iteration",
+        "dijkstra",
+        "procedures"
+      ],
+      "refs": [
+        {
+          "label": "Dijkstra, EWD 215: A Case against the GO TO Statement",
+          "url": "https://www.cs.utexas.edu/users/EWD/transcriptions/EWD02xx/EWD215.html"
+        },
+        {
+          "label": "Knuth, Structured Programming with go to Statements (1974)",
+          "url": "https://pic.plover.com/knuth-GOTO.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.mvc",
+      "title": "Model-View-Controller",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1978,
+      "short": "Split an interface into model, view and controller. Trygve Reenskaug devised it at Xerox PARC in 1978 and 1979, and many frameworks still follow it.",
+      "long": "Model-View-Controller divides a user-interface program into the model that holds the data, the view that displays it, and the controller that handles input. Trygve Reenskaug, a visitor to Alan Kay's Learning Research Group at Xerox PARC in 1978 and 1979, made the first implementation and wrote the original note defining Model, View, Controller and Editor. Jim Althoff and others implemented an MVC version for Smalltalk-80. The graphical user interface and object-oriented programming grew up together at PARC, and the pattern still names the structure of many GUI and web frameworks.",
+      "status": "thriving",
+      "tags": [
+        "model view controller",
+        "gui",
+        "framework",
+        "pattern",
+        "reenskaug"
+      ],
+      "refs": [
+        {
+          "label": "Reenskaug, MVC at Xerox PARC",
+          "url": "https://folk.universitetetioslo.no/trygver/themes/mvc/mvc-index.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.threads-locks",
+      "title": "Threads, Locks and Race Conditions",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1965,
+      "short": "Several threads share one memory, and locks keep them from trampling each other. Simple to start with, and the source of deadlocks and race conditions.",
+      "long": "A thread is a flow of execution that shares its program's memory with other threads, and a lock, or mutex, lets only one thread at a time into a critical section. Edsger Dijkstra's THE multiprogramming system (1965 to 1968) introduced layering and semaphores. The two classic failures are deadlock, where threads wait for each other forever, and the race condition, where the result depends on timing. In one test, two Node.js worker threads each added one million times to a shared integer, and a plain increment lost updates and ended near 1.3 million instead of 2 million, while an atomic add gave exactly 2 million. The Therac-25 radiation machine, blamed on race conditions, reportedly gave doses up to 250 times the normal level.",
+      "code": {
+        "lang": "python",
+        "text": "import threading\ntotal, lock = 0, threading.Lock()\ndef work():\n    global total\n    for _ in range(100_000):\n        with lock:                      # drop the lock and updates can be lost\n            total += 1\nts = [threading.Thread(target=work) for _ in range(4)]\nfor t in ts: t.start()\nfor t in ts: t.join()\nprint(total)   # 400000"
+      },
+      "status": "thriving",
+      "tags": [
+        "mutex",
+        "deadlock",
+        "race condition",
+        "semaphore",
+        "critical section",
+        "shared memory"
+      ],
+      "refs": [
+        {
+          "label": "Java Tutorials, Deadlock",
+          "url": "https://docs.oracle.com/javase/tutorial/essential/concurrency/deadlock.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.actor-model",
+      "title": "Actor Model",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1973,
+      "short": "Independent actors that share nothing and communicate only by sending messages. Hewitt proposed it in 1973, and Erlang built a telephone system on similar ideas.",
+      "long": "In the actor model everything is an actor, a private unit with its own state, and actors interact only by sending messages. Carl Hewitt, Peter Bishop and Richard Steiger proposed it at IJCAI in 1973 in an architecture that needed no goto, interrupt or semaphore. Erlang's rules, from Joe Armstrong's thesis, are that processes are strongly isolated, creating them is cheap, message passing is the only way they interact, and error handling is non-local. On 7 September 2022 the creator of Akka, a JVM actor toolkit, moved it from the Apache license to the Business Source License, so production use now needs a commercial license from Lightbend.",
+      "sleeper": "A 1973 research proposal became production software: Ericsson's AXD301 switch had over 1.7 million lines of Erlang by 2003, and Erlang's default limit is 1,048,576 simultaneous processes.",
+      "code": {
+        "lang": "erlang",
+        "text": "%% Erlang escript: a child process sends its answer to the parent, which prints 165\nmain(_) ->\n    Parent = self(),\n    spawn(fun() -> Parent ! {done, lists:sum([X * X || X <- lists:seq(1, 10), X rem 2 =:= 1])} end),\n    receive {done, S} -> io:format(\"~p~n\", [S]) end."
+      },
+      "status": "niche",
+      "tags": [
+        "message passing",
+        "erlang",
+        "akka",
+        "isolation",
+        "processes",
+        "mailbox"
+      ],
+      "refs": [
+        {
+          "label": "Hewitt, Bishop and Steiger, A Universal Modular ACTOR Formalism (IJCAI-73)",
+          "url": "https://www.ijcai.org/Proceedings/73/Papers/027B.pdf"
+        },
+        {
+          "label": "Armstrong, Making reliable distributed systems in the presence of software errors",
+          "url": "https://erlang.org/download/armstrong_thesis_2003.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.csp",
+      "title": "CSP and Channels",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1978,
+      "short": "Independent processes that communicate over channels. Hoare's 1978 paper is the root of Go's goroutines and channels.",
+      "long": "Tony Hoare's 1978 paper \"Communicating Sequential Processes\" suggested that input and output are basic primitives of programming and that parallel composition of communicating sequential processes is a fundamental program structuring method. Go's designers say its approach to concurrency originates in CSP and can also be seen as a type-safe generalization of Unix pipes. Effective Go gives the slogan \"Do not communicate by sharing memory; instead, share memory by communicating\", then adds that the approach can be taken too far, since a reference count may be best done by putting a mutex around an integer.",
+      "sleeper": "Go (2009) turned a 1978 research idea into everyday syntax: the go keyword starts a goroutine, and channels carry values between goroutines.",
+      "code": {
+        "lang": "go",
+        "text": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    ch := make(chan int)\n    go func() { sum := 0; for i := 1; i <= 10; i += 2 { sum += i * i }; ch <- sum }()\n    fmt.Println(<-ch) // 165\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "channels",
+        "goroutines",
+        "hoare",
+        "pipes",
+        "occam"
+      ],
+      "refs": [
+        {
+          "label": "Hoare, Communicating Sequential Processes (CACM, 1978)",
+          "url": "https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf"
+        },
+        {
+          "label": "Effective Go",
+          "url": "https://go.dev/doc/effective_go"
+        }
+      ]
+    },
+    {
+      "id": "conc.async-await",
+      "title": "Async/Await and Event Loops",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 2012,
+      "short": "One thread runs many tasks and switches only when a task must wait. C# 5.0 added await in 2012, and Python, Rust and Swift followed.",
+      "long": "Async/await lets one thread run many tasks, switching only when a task has to wait for the network, a disk or a timer; the await keyword marks the wait. It suits many mostly-waiting connections, not heavy computation. C# 5.0 (August 2012) put it into a mainstream language, building on Don Syme's F# async work, and Python 3.5 (PEP 492), Rust 1.39 (7 November 2019) and Swift 5.5 (20 September 2021) followed. JavaScript's event loop runs a function to completion before any other code, so logging A, scheduling a promise and a zero-delay timeout, then logging B prints A, B, the promise and then the timeout.",
+      "sleeper": "Windows 3.x and the classic Mac OS used a similar cooperative scheme, in which programs took turns by yielding. What is new is the syntax: await makes the switching points visible while the code still reads top to bottom.",
+      "code": {
+        "lang": "python",
+        "text": "import asyncio\n\nasync def square(n):\n    await asyncio.sleep(0)      # stands in for waiting on the network\n    return n * n\n\nasync def main():\n    results = await asyncio.gather(*(square(n) for n in range(1, 11, 2)))\n    print(sum(results))         # 165\n\nasyncio.run(main())"
+      },
+      "status": "thriving",
+      "tags": [
+        "promise",
+        "event loop",
+        "coroutine",
+        "callback",
+        "asyncio",
+        "non-blocking"
+      ],
+      "refs": [
+        {
+          "label": "MDN, The event loop",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop"
+        },
+        {
+          "label": "Rust blog, async-await on stable Rust (2019)",
+          "url": "https://blog.rust-lang.org/2019/11/07/Async-await-stable/"
+        }
+      ]
+    },
+    {
+      "id": "conc.amdahl",
+      "title": "Amdahl's Law",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1967,
+      "short": "If part of a job must run serially, extra processors cannot beat a fixed ceiling. A job that is 5 percent serial can never run 20 times faster.",
+      "long": "Gene Amdahl's 1967 argument says that if a fraction s of a job must run serially, the best speedup on N processors is 1 / (s + (1 - s) / N), and even with unlimited processors it is only 1 / s. With 95 percent of the work parallel, 8 cores give 5.93 times, 64 give 15.42 times and 1024 give 19.64 times, against a ceiling of 20. John Gustafson replied in 1988, using a 1024-processor system, that if the problem grows with the machine the serial share shrinks and scaled speedup is a straight line. Sutter's 2005 essay makes the same practical point: most multi-threaded applications will not run twice as fast on a dual-core machine.",
+      "code": {
+        "lang": "python",
+        "text": "def amdahl(p, cores):               # p is the fraction of the work that runs in parallel\n    return 1 / ((1 - p) + p / cores)\n\nprint([round(amdahl(0.95, n), 2) for n in (8, 64, 1024)])   # [5.93, 15.42, 19.64]"
+      },
+      "status": "thriving",
+      "tags": [
+        "speedup",
+        "parallel fraction",
+        "gustafson",
+        "scaling",
+        "serial"
+      ]
+    },
+    {
+      "id": "conc.gil",
+      "title": "Global Interpreter Lock",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1996,
+      "short": "CPython's global interpreter lock lets only one thread run Python code at a time. A free-threaded build became officially supported in Python 3.14.",
+      "long": "The global interpreter lock, or GIL, is a mechanism in language interpreters that synchronizes threads so that only one native thread can execute basic operations at a time. PEP 703 calls it an obstacle to using multi-core CPUs from Python efficiently and says that for scientific computing the lack of concurrency is often a bigger issue than speed. Greg Stein published a patch removing the GIL against Python 1.4 in 1996. PEP 703, created in January 2023, added an optional free-threaded build in Python 3.13, and Python 3.14 lists free-threaded Python as officially supported, though packages with extension modules may re-enable the GIL. Older workarounds are separate processes with multiprocessing and compiled libraries that run their loops outside Python.",
+      "sleeper": "Python code in separate threads has long been unable to run in parallel. That limit is now optional: the free-threaded build, officially supported in Python 3.14 (2025), is still not the default.",
+      "status": "legacy",
+      "tags": [
+        "cpython",
+        "free-threaded",
+        "pep 703",
+        "interpreter lock",
+        "multiprocessing"
+      ],
+      "refs": [
+        {
+          "label": "PEP 703, Making the Global Interpreter Lock Optional in CPython",
+          "url": "https://peps.python.org/pep-0703/"
+        },
+        {
+          "label": "PEP 779, Criteria for supported status for free-threaded Python",
+          "url": "https://peps.python.org/pep-0779/"
+        }
+      ]
+    },
+    {
+      "id": "conc.memory-safety",
+      "title": "Memory Safety",
+      "cat": "concepts",
+      "tier": 2,
+      "year": 2019,
+      "short": "Preventing programs from reading or writing memory they do not own. About 70 percent of serious vulnerabilities at Microsoft and in Chromium were memory bugs.",
+      "long": "A memory-safe language prevents out-of-bounds access, use-after-free and similar errors. In July 2019 Microsoft reported that about 70 percent of the security vulnerabilities it fixes and assigns a CVE number to come from memory-safety issues, and Chromium reports a similar share of its high-severity bugs. Governments followed: CISA published its case for memory-safe roadmaps in December 2023, and the White House report arrived in February 2024. Google says memory-safety vulnerabilities fell from 76 percent of Android's total in 2019 to under 20 percent in 2025 as new code moved to memory-safe languages. Skeptics, including Herb Sutter, argue that the problem belongs mostly to C rather than C++ and is one factor among many.",
+      "sleeper": "What you would remember as a coding mistake is now a policy issue. CISA and the FBI call writing new critical-infrastructure products in C or C++ dangerous where memory-safe alternatives are readily available.",
+      "code": {
+        "lang": "c",
+        "text": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int *p = malloc(sizeof *p);\n    *p = 42;\n    free(p);\n    printf(\"%d\\n\", *p);   /* use after free: AddressSanitizer reports heap-use-after-free */\n    return 0;\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "use after free",
+        "bounds checking",
+        "cve",
+        "secure by design",
+        "vulnerabilities"
+      ],
+      "refs": [
+        {
+          "label": "Microsoft MSRC, We need a safer systems programming language (2019)",
+          "url": "https://www.microsoft.com/en-us/msrc/blog/2019/07/we-need-a-safer-systems-programming-language"
+        },
+        {
+          "label": "Google Security Blog, Rust in Android: move fast and fix things (2025)",
+          "url": "https://security.googleblog.com/2025/11/rust-in-android-move-fast-fix-things.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.ownership",
+      "title": "Ownership and Borrow Checking",
+      "cat": "concepts",
+      "tier": 2,
+      "year": 2015,
+      "short": "Rust's rule that every value has one owner and is freed when the owner goes out of scope, with the compiler checking borrows. Memory safety with no collector.",
+      "long": "In Rust each value has one owner, and when the owner goes out of scope the value is dropped. Other code may borrow the value, and the compiler checks that no borrow outlives the owner and that at any time there is either one mutable reference or any number of read-only ones. Violations are compile errors, such as using a moved value or taking two mutable borrows, and the Rust Book says ownership does not slow the program down while it runs. Rust 1.0 was announced on 15 May 2015. The price is a learning curve that the Rust Book itself concedes takes some time to get used to.",
+      "sleeper": "Garbage collection and manual free were the two choices you knew. Rust added a third in 2015: ownership rules checked at compile time, now used in the Linux kernel, Android and Chromium.",
+      "code": {
+        "lang": "rust",
+        "text": "fn main() {\n    let s = String::from(\"hello\");\n    let t = s;               // ownership moves from s to t\n    println!(\"{s} {t}\");     // error[E0382]: borrow of moved value: s\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "borrow checker",
+        "move",
+        "lifetimes",
+        "drop",
+        "compile time"
+      ],
+      "refs": [
+        {
+          "label": "The Rust Book, What is Ownership?",
+          "url": "https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html"
+        },
+        {
+          "label": "Announcing Rust 1.0",
+          "url": "https://blog.rust-lang.org/2015/05/15/Rust-1.0/"
+        }
+      ]
+    },
+    {
+      "id": "conc.manual-memory",
+      "title": "Manual Memory Management",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1972,
+      "short": "The programmer asks for memory with malloc and returns it with free. Fast and predictable, and the source of leaks, double frees and use-after-free bugs.",
+      "long": "In C the programmer calls malloc to take memory from the heap and free to return it, exactly once. The approach is fast and predictable, but it makes four classic bugs possible: a leak, a double free, use after free, where the dangling pointer still holds the old address, and a buffer overflow. Pascal's New and Dispose follow the same idea. C appeared in 1972 and the Unix kernel was rewritten in it in 1973, so sources date the practice to either year. AddressSanitizer found over 300 previously unknown bugs in Chromium in its first ten months, 210 of them heap use-after-free.",
+      "code": {
+        "lang": "c",
+        "text": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int n = 5;\n    int *a = malloc(n * sizeof *a);   /* ask the heap for room for 5 ints */\n    if (a == NULL) return 1;\n    for (int i = 0; i < n; i++) a[i] = i * i;\n    printf(\"%d\\n\", a[3]);             /* 9 */\n    free(a);                          /* give it back exactly once */\n    return 0;\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "malloc",
+        "free",
+        "heap",
+        "leak",
+        "dangling pointer",
+        "double free"
+      ],
+      "refs": [
+        {
+          "label": "Serebryany et al., AddressSanitizer (USENIX ATC 2012)",
+          "url": "https://www.usenix.org/system/files/conference/atc12/atc12-final39.pdf"
+        },
+        {
+          "label": "cppreference, malloc",
+          "url": "https://en.cppreference.com/w/c/memory/malloc"
+        }
+      ]
+    },
+    {
+      "id": "conc.raii",
+      "title": "RAII",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1989,
+      "short": "Tie a resource to an object's lifetime: acquire it in the constructor, release it in the destructor. C++'s answer to manual cleanup.",
+      "long": "Resource Acquisition Is Initialization, or RAII, is a C++ idiom in which an object acquires a resource, such as a file, in its constructor and releases it in its destructor, which runs automatically when the object leaves its scope. Stroustrup's history says the idea was present in the earliest C with Classes, which began in 1979, and was named about a decade later. It replaces the manual goto-based cleanup paths that C needs. Smart pointers such as unique_ptr apply the same pattern to memory, and Rust's drop function is a close descendant.",
+      "code": {
+        "lang": "cpp",
+        "text": "#include <cstdio>\nclass File {                         // RAII: constructor acquires, destructor releases\n    std::FILE *f_;\npublic:\n    explicit File(const char *path) : f_(std::fopen(path, \"r\")) {}\n    ~File() { if (f_) std::fclose(f_); }\n    File(const File &) = delete;     // copying would lead to a double close\n};\nint main() {\n    File f(\"data.txt\");\n}                                    // f is closed here, with no fclose call written"
+      },
+      "status": "thriving",
+      "tags": [
+        "destructor",
+        "constructor",
+        "smart pointer",
+        "unique_ptr",
+        "scope",
+        "cleanup"
+      ],
+      "refs": [
+        {
+          "label": "Stroustrup, Thriving in a Crowded and Changing World: C++ 2006-2020 (HOPL IV)",
+          "url": "https://www.stroustrup.com/hopl20main-p5-p-bfc9cd4--final.pdf"
+        }
+      ]
+    },
+    {
+      "id": "conc.reference-counting",
+      "title": "Reference Counting",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1960,
+      "short": "Each object keeps a count of references to it and is freed the moment the count hits zero. Python and Swift use it, with extra care for cycles.",
+      "long": "With reference counting, each object carries a count of the references to it and is freed the instant the count reaches zero. McCarthy's history of Lisp mentions it as the alternative Lisp did not take, noting that Collins used it in 1960 and that it seemed infeasible on the 704 without a drastic change. Its weakness is cycles: two objects that point at each other never reach zero. Python therefore adds a backup cycle collector, and Swift documents strong reference cycles between class instances, fixed with weak and unowned references. In a Swift test, a lone reference set to nil printed freed at once, while two objects referring to each other never did.",
+      "code": {
+        "lang": "python",
+        "text": "import gc\n\nclass Node:\n    pass\n\na, b = Node(), Node()\na.other, b.other = b, a    # each object refers to the other: a cycle\ndel a, b                   # the counts never reach zero...\nprint(gc.collect() > 0)    # ...so the cycle collector reclaims them: True"
+      },
+      "status": "thriving",
+      "tags": [
+        "refcount",
+        "arc",
+        "cycles",
+        "weak reference",
+        "swift",
+        "python"
+      ],
+      "refs": [
+        {
+          "label": "Python docs, gc: Garbage Collector interface",
+          "url": "https://docs.python.org/3/library/gc.html"
+        },
+        {
+          "label": "The Swift Programming Language, Automatic Reference Counting",
+          "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/"
+        }
+      ]
+    },
+    {
+      "id": "conc.undefined-behavior",
+      "title": "Undefined Behavior",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1989,
+      "short": "Code the C standard places no limits on, such as out-of-bounds access or signed overflow. Compilers may assume it never happens, which can break programs.",
+      "long": "The C standard calls a behavior undefined when it places no restrictions on what a program may do. Examples are memory accesses outside array bounds, signed integer overflow and null pointer dereference. Compilers are not required to diagnose it and may assume it never happens, so with optimization turned on a program that really has such a bug can behave in unexpected ways. Chris Lattner explains that undefined behavior exists because C's designers wanted an extremely efficient low-level language: defining out-of-bounds access, for instance, would require a range check on every array access. He concludes that C is not a high-level assembler. The term is defined by the C standard, whose first edition was ANSI C in 1989.",
+      "sleeper": "C++26 removes one source: reading an uninitialized local variable is no longer undefined behavior but erroneous behavior, and hardened standard libraries add bounds checks at about 0.3 percent average cost.",
+      "code": {
+        "lang": "c",
+        "text": "#include <stdio.h>\n\nint main(int argc, char **argv) {\n    (void)argv;\n    int a[4] = {1, 2, 3, 4};\n    a[argc + 3] = 99;        /* index 4 when run with no arguments: one past the end */\n    printf(\"a[0]=%d\\n\", a[0]);\n    return 0;\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "ub",
+        "optimization",
+        "signed overflow",
+        "null dereference",
+        "sanitizer"
+      ],
+      "refs": [
+        {
+          "label": "Lattner, What Every C Programmer Should Know About Undefined Behavior",
+          "url": "https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html"
+        },
+        {
+          "label": "cppreference, Undefined behavior",
+          "url": "https://en.cppreference.com/w/c/language/behavior"
+        }
+      ]
+    },
+    {
+      "id": "conc.buffer-overflow",
+      "title": "Buffer Overflow",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1988,
+      "short": "Writing past the end of a memory buffer, which can overwrite a return address and hand control to an attacker. The 1988 Morris worm used one.",
+      "long": "A buffer overflow happens when a program writes more data into a block of memory than it can hold. On the stack the excess can overwrite the saved return address and redirect execution. The Morris worm of 2 November 1988 exploited, among other things, such a hole in the finger network service on BSD systems. Aleph One's \"Smashing The Stack For Fun And Profit\" (Phrack 49, 8 November 1996) explained the technique step by step, using a function that copies a string with strcpy and no bounds check. The White House's February 2024 report lists the Morris worm, Slammer (2003), Heartbleed (2014) and BLASTPASS (2023) as incidents facilitated by memory-safety bugs.",
+      "code": {
+        "lang": "c",
+        "text": "#include <string.h>\n\nint main(void) {\n    char buf[8];\n    strcpy(buf, \"this string is far longer than eight bytes\");   /* no bounds check */\n    return 0;\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "stack smashing",
+        "strcpy",
+        "buffer",
+        "exploit",
+        "return address"
+      ],
+      "refs": [
+        {
+          "label": "Aleph One, Smashing The Stack For Fun And Profit (Phrack 49)",
+          "url": "https://archives.phrack.org/issues/49/14.txt"
+        }
+      ]
+    },
+    {
+      "id": "conc.abi-ffi",
+      "title": "C ABI and FFI",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1973,
+      "short": "The binary contract between compiled code, and the way other languages call C. The C ABI is the common glue that Rust, Swift, Go and Python all speak.",
+      "long": "An ABI, or application binary interface, is the binary-level contract for how arguments are passed, how structures are laid out and how symbols are named. Operating systems expose their services as C functions, so the platform's C ABI became the common denominator, and a foreign function interface, or FFI, is how another language calls into it. The SQLite project argues that libraries written in C are callable from any programming language, while libraries in C++ or Java can generally be used only by applications written in the same language. C++ mangles names, so only functions declared extern C are linkable from other languages. The cost is that memory-safety guarantees end at the boundary, as Go's FAQ notes.",
+      "sleeper": "Where you once chose a compiler per platform, Python, Rust, Swift and Go now reach the operating system and each other through C declarations. One essayist put it as C no longer being a programming language but a protocol.",
+      "code": {
+        "lang": "cpp",
+        "text": "// add.cpp: extern \"C\" gives the function a plain C name and calling convention,\n// so Python, Rust, Go and other languages can link to it.\nextern \"C\" int add(int a, int b) {\n    return a + b;\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "ffi",
+        "abi",
+        "calling convention",
+        "extern c",
+        "interop",
+        "name mangling"
+      ],
+      "refs": [
+        {
+          "label": "SQLite, Why Is SQLite Coded In C",
+          "url": "https://sqlite.org/whyc.html"
+        },
+        {
+          "label": "Desires, C Isn't A Programming Language Anymore",
+          "url": "https://faultlore.com/blah/c-isnt-a-language/"
+        }
+      ]
+    },
+    {
+      "id": "conc.big-o",
+      "title": "Big-O Notation",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1894,
+      "short": "A way to describe how an algorithm's work grows with its input. Doubling the data doubles an O(n) job and quadruples an O(n squared) one.",
+      "long": "Big-O notation describes how the work of an algorithm grows as its input grows. It comes from the German mathematicians Paul Bachmann, who proposed it in 1894, and Edmund Landau, who extended it in 1909, and Donald Knuth popularized the Omega and Theta variants for algorithm analysis in 1976. O(1) means the same work however much data, O(log n) one more step each time the data doubles, O(n) work in step with the data, and O(n squared) four times the work for double the data. In a timing test, comparing every pair to find duplicates took 38.5 milliseconds for 2,000 items and 573.1 for 8,000, while building a set took 0.081 and 0.208.",
+      "code": {
+        "lang": "python",
+        "text": "def has_dup_naive(xs):                # O(n^2): compares every pair\n    for i in range(len(xs)):\n        for j in range(i + 1, len(xs)):\n            if xs[i] == xs[j]: return True\n    return False\n\ndef has_dup_set(xs):                  # O(n): a set remembers what it has seen\n    return len(set(xs)) != len(xs)"
+      },
+      "status": "thriving",
+      "tags": [
+        "complexity",
+        "growth rate",
+        "time complexity",
+        "scaling",
+        "asymptotic"
+      ],
+      "refs": [
+        {
+          "label": "Python wiki, TimeComplexity",
+          "url": "https://wiki.python.org/moin/TimeComplexity"
+        }
+      ]
+    },
+    {
+      "id": "conc.quicksort",
+      "title": "Quicksort",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1959,
+      "short": "Pick a pivot, put smaller items before it and larger ones after, then sort each side the same way. Tony Hoare developed it in 1959.",
+      "long": "Quicksort picks a pivot value, moves smaller items before it and larger ones after, and then sorts each side the same way. Tony Hoare developed it in 1959 and published it in 1961, and it is slightly faster than mergesort and heapsort on randomized data. Early versions used the leftmost element as the pivot, which behaves badly on already sorted input, a common case, and the fix is a random or middle pivot. In C, qsort takes a comparison function, and a classic mistake is returning a minus b, which can overflow: with INT_MIN in the data, one compiler returned the wrong order.",
+      "code": {
+        "lang": "python",
+        "text": "def quicksort(xs):\n    if len(xs) <= 1: return xs\n    pivot, rest = xs[0], xs[1:]\n    return quicksort([x for x in rest if x < pivot]) + [pivot] + quicksort([x for x in rest if x >= pivot])\n\nprint(quicksort([42, 7, 19, 3, 88, 23]))   # [3, 7, 19, 23, 42, 88]"
+      },
+      "status": "thriving",
+      "tags": [
+        "sorting",
+        "pivot",
+        "divide and conquer",
+        "hoare",
+        "qsort"
+      ]
+    },
+    {
+      "id": "conc.mergesort",
+      "title": "Mergesort",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1945,
+      "short": "Split the list, sort each half, then merge the sorted halves. John von Neumann devised it in 1945; it is always O(n log n) and keeps equal items in order.",
+      "long": "Mergesort splits a list in half, sorts each half and merges the two sorted halves. John von Neumann invented it in 1945, and a 1948 report by Goldstine and von Neumann analysed a bottom-up version. It always takes O(n log n) time, needs extra memory and is stable, meaning equal items keep their original order. That last property matters in practice, and Timsort, Python's built-in sort, is an adaptive, stable, natural mergesort. The title of Joshua Bloch's 2006 post, \"Nearly All Binary Searches and Mergesorts are Broken\", shows that the midpoint overflow bug hit mergesort too.",
+      "code": {
+        "lang": "python",
+        "text": "def mergesort(xs):\n    if len(xs) <= 1: return xs\n    mid = len(xs) // 2\n    left, right = mergesort(xs[:mid]), mergesort(xs[mid:])\n    out, i, j = [], 0, 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]: out.append(left[i]); i += 1\n        else: out.append(right[j]); j += 1\n    return out + left[i:] + right[j:]\nprint(mergesort([42, 7, 19, 3, 88, 23]))   # [3, 7, 19, 23, 42, 88]"
+      },
+      "status": "thriving",
+      "tags": [
+        "sorting",
+        "stable sort",
+        "divide and conquer",
+        "von neumann",
+        "merge"
+      ],
+      "refs": [
+        {
+          "label": "Bloch, Nearly All Binary Searches and Mergesorts are Broken (2006)",
+          "url": "https://research.google/blog/extra-extra-read-all-about-it-nearly-all-binary-searches-and-mergesorts-are-broken/"
+        }
+      ]
+    },
+    {
+      "id": "conc.timsort",
+      "title": "Timsort",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 2002,
+      "short": "Tim Peters's adaptive, stable mergesort for Python (2002). It exploits runs already in order and later spread to Java, Android and V8.",
+      "long": "Tim Peters wrote Timsort for Python in 2002. His own description calls it an adaptive, stable, natural mergesort with supernatural performance on many kinds of partially ordered arrays, yet as fast as Python's previous sort on random ones. It was Python's standard sort from version 2.3, and Python 3.11 replaced its merge policy with Powersort. It is also used for object arrays in Java SE 7, Android, GNU Octave, V8 and Swift. V8 made JavaScript's sort stable in version 7.0, in Chrome 70, by moving to Timsort. The built-in sorts are stable and tuned, so what you usually write is only the key or comparison function.",
+      "sleeper": "You rarely write your own sort now. Python's list sort and V8's Array sort both use Timsort. One JavaScript trap persists: the default sort compares items as strings, so [10, 9, 1, 100] sorts to 1, 10, 100, 9.",
+      "code": {
+        "lang": "python",
+        "text": "words = [\"pear\", \"fig\", \"apple\", \"kiwi\", \"date\"]\nprint(sorted(words, key=len))   # ['fig', 'pear', 'kiwi', 'date', 'apple']  (equal lengths keep their order)"
+      },
+      "status": "thriving",
+      "tags": [
+        "sorting",
+        "stable sort",
+        "python",
+        "tim peters",
+        "powersort",
+        "runs"
+      ],
+      "refs": [
+        {
+          "label": "CPython, Objects/listsort.txt",
+          "url": "https://raw.githubusercontent.com/python/cpython/main/Objects/listsort.txt"
+        },
+        {
+          "label": "V8 blog, Getting things sorted in V8",
+          "url": "https://v8.dev/blog/array-sort"
+        }
+      ]
+    },
+    {
+      "id": "conc.binary-search",
+      "title": "Binary Search",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1946,
+      "short": "Look at the middle of a sorted array, discard the half that cannot hold the target, repeat. About 20 steps for a million items, and famously easy to get wrong.",
+      "long": "Binary search finds an item in a sorted array by checking the middle, discarding the half that cannot contain the target and repeating, so a million items take about 20 steps. John Mauchly made the first mention of it in the 1946 Moore School Lectures. Jon Bentley wrote in Programming Pearls that the first binary search that works correctly for all array sizes did not appear until 1962, while another account credits Derrick Lehmer in 1960, so sources disagree on that date. Bentley found that ninety percent of the professional programmers he set the problem failed to solve it correctly after several hours. In 2006 Joshua Bloch reported that the JDK's version, like the one Bentley had proved correct, computed (low + high) / 2, which overflows for arrays of about a billion elements or more.",
+      "code": {
+        "lang": "c",
+        "text": "static int find(const int *a, int n, int key) {\n    int lo = 0, hi = n - 1;\n    while (lo <= hi) {\n        int mid = lo + (hi - lo) / 2;   /* not (lo + hi) / 2, which can overflow */\n        if (a[mid] == key) return mid;\n        if (a[mid] < key) lo = mid + 1; else hi = mid - 1;\n    }\n    return -1;                          /* not found */\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "search",
+        "sorted array",
+        "logarithmic",
+        "bentley",
+        "bloch",
+        "bisect"
+      ],
+      "refs": [
+        {
+          "label": "Bloch, Nearly All Binary Searches and Mergesorts are Broken (2006)",
+          "url": "https://research.google/blog/extra-extra-read-all-about-it-nearly-all-binary-searches-and-mergesorts-are-broken/"
+        }
+      ]
+    },
+    {
+      "id": "conc.dynamic-programming",
+      "title": "Dynamic Programming",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1957,
+      "short": "Solve overlapping subproblems once and remember the answers. Richard Bellman developed it in the 1950s, and \"programming\" there means planning.",
+      "long": "Dynamic programming solves a problem that breaks into overlapping smaller problems by solving each one once and remembering the answer. Richard Bellman developed it in the 1950s. \"Dynamic\" was chosen to capture the time-varying aspect of the problems and because it sounded impressive, while \"programming\" means planning or scheduling, as in linear programming. The memoized Fibonacci function is the smallest example: the naive recursive fib(30) made 2,692,537 calls, while the cached version computes each value once. Edit distance, the number of single-character changes that turn one word into another, is the classic practical case, and the edit distance between kitten and sitting is 3.",
+      "code": {
+        "lang": "python",
+        "text": "def edit_distance(a, b):\n    prev = list(range(len(b) + 1))\n    for i, ca in enumerate(a, 1):\n        cur = [i]\n        for j, cb in enumerate(b, 1):\n            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (ca != cb)))\n        prev = cur\n    return prev[-1]\n\nprint(edit_distance(\"kitten\", \"sitting\"))   # 3"
+      },
+      "status": "thriving",
+      "tags": [
+        "bellman",
+        "memoization",
+        "edit distance",
+        "levenshtein",
+        "optimal substructure"
+      ]
+    },
+    {
+      "id": "conc.checked-exceptions",
+      "title": "Checked Exceptions",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 1996,
+      "short": "Java makes a method declare the errors it may throw and forces callers to handle them. C# and Kotlin deliberately did not copy the idea.",
+      "long": "In Java, a checked exception is any exception class other than the unchecked ones, which are run-time exceptions and errors. A method that can throw IOException must declare it or catch it, or compilation fails with the message \"unreported exception IOException; must be caught or declared to be thrown\". Anders Hejlsberg, the architect of C#, argued in 2003 against what he called \"the handcuffs they put on programmers\", citing versioning and scalability problems. Kotlin treats all exceptions as unchecked by default, and Go and Rust return errors as values instead.",
+      "code": {
+        "lang": "java",
+        "text": "import java.io.*;\n\nclass Demo {\n    static void read() throws IOException {   // callers must catch or declare it\n        new FileReader(\"data.txt\").close();\n    }\n\n    public static void main(String[] args) {\n        read();   // compile error: unreported exception IOException\n    }\n}"
+      },
+      "status": "niche",
+      "tags": [
+        "throws",
+        "java",
+        "api design",
+        "compile time errors"
+      ],
+      "refs": [
+        {
+          "label": "Java Language Specification, chapter 11: Exceptions",
+          "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-11.html"
+        },
+        {
+          "label": "Hejlsberg, The Trouble with Checked Exceptions (Artima, 2003)",
+          "url": "https://www.artima.com/articles/the-trouble-with-checked-exceptions"
+        }
+      ]
+    },
+    {
+      "id": "conc.result-types",
+      "title": "Result Types and Errors as Values",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 2015,
+      "short": "Return success or failure as an ordinary value the caller must unpack. Go and Rust made it mainstream, and Rust's ? operator keeps it short.",
+      "long": "Instead of throwing, a function returns a value that is either a result or an error. Go functions conventionally return both, and Rob Pike's January 2015 essay \"Errors are values\" argued that because errors are ordinary values they can be programmed. Rust 1.0, released on 15 May 2015, has Result with Ok and Err cases and a question-mark operator that hands an error back to the caller in one character, and the compiler makes you deal with the failure case. Swift marks throwing calls with try without checking which errors can occur. Erlang takes a third route: let the process crash and let another process recover.",
+      "code": {
+        "lang": "rust",
+        "text": "fn parse_and_double(s: &str) -> Result<i32, std::num::ParseIntError> {\n    let n: i32 = s.parse()?;   // on failure, return the error to the caller\n    Ok(n * 2)\n}\n\nfn main() {\n    println!(\"{:?} {:?}\", parse_and_double(\"21\"), parse_and_double(\"x\"));\n    // Ok(42) Err(ParseIntError { kind: InvalidDigit })\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "result",
+        "either",
+        "errors as values",
+        "question mark operator"
+      ],
+      "refs": [
+        {
+          "label": "Pike, Errors are values (Go blog, 2015)",
+          "url": "https://go.dev/blog/errors-are-values"
+        },
+        {
+          "label": "The Rust Book, Recoverable Errors with Result",
+          "url": "https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.stm",
+      "title": "Software Transactional Memory",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 2005,
+      "short": "Wrap shared-memory changes in transactions that the runtime retries on conflict, so no locks are needed. Haskell and Clojure have it, and it never spread widely.",
+      "long": "Software transactional memory wraps a group of shared-memory changes in a transaction that the runtime retries if another thread interferes, so programmers write no locks and components compose. The Haskell authors complained that programs built from MVars are not composable, and around 2005 they called STM \"a recent and apparently very promising new approach\". Clojure's Refs provide it: a dosync block that moves 30 from one account to another leaves 70 and 30. STM stayed a niche idea, found mainly in Haskell and Clojure, even though it promised concurrent code without locks, built from parts that compose.",
+      "code": {
+        "lang": "clojure",
+        "text": "(def a (ref 100))\n(def b (ref 0))\n(dosync (alter a - 30) (alter b + 30))   ; both changes happen, or neither does\n(println @a @b)                          ; 70 30"
+      },
+      "status": "niche",
+      "tags": [
+        "transactional memory",
+        "clojure refs",
+        "composable",
+        "haskell"
+      ],
+      "refs": [
+        {
+          "label": "Clojure, Refs and Transactions",
+          "url": "https://clojure.org/reference/refs"
+        }
+      ]
+    },
+    {
+      "id": "conc.declarative",
+      "title": "Declarative Programming",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1970,
+      "short": "Say what result you want and let an engine decide how to get it. SQL, regular expressions, Make and Prolog all work this way.",
+      "long": "A declarative program states the result wanted and leaves the method to an engine. Codd's 1970 relational model began with the principle that users of large data banks must be protected from knowing how the data is organized in the machine. SQL's optimizer picks a query plan, a regular-expression engine runs an automaton or a backtracking search, make walks a dependency graph, and Prolog searches for proofs. The strategy still matters: in Russ Cox's 2007 comparison, Perl needed over sixty seconds on a 29-character match that a Thompson automaton did in twenty microseconds. The grand attempt to make logic the foundation of a computing generation, Japan's Fifth Generation project of 1982, failed commercially.",
+      "code": {
+        "lang": "prolog",
+        "text": "parent(tom, bob).\nparent(bob, ann).\nparent(bob, pat).\ngrandparent(X, Z) :- parent(X, Y), parent(Y, Z).\n\n?- grandparent(tom, W).     % W = ann ; W = pat"
+      },
+      "status": "thriving",
+      "tags": [
+        "sql",
+        "regex",
+        "make",
+        "prolog",
+        "logic programming",
+        "query planner"
+      ],
+      "refs": [
+        {
+          "label": "Codd, A Relational Model of Data for Large Shared Data Banks (1970)",
+          "url": "https://www.seas.upenn.edu/~zives/03f/cis550/codd.pdf"
+        },
+        {
+          "label": "Cox, Regular Expression Matching Can Be Simple And Fast",
+          "url": "https://swtch.com/~rsc/regexp/regexp1.html"
+        }
+      ]
+    },
+    {
+      "id": "conc.array-programming",
+      "title": "Array Programming",
+      "cat": "concepts",
+      "tier": 3,
+      "year": 1960,
+      "short": "Apply an operation to a whole table of numbers at once so loops disappear. From Iverson's APL to MATLAB, R, NumPy and GPUs.",
+      "long": "Array languages let one expression operate on a whole table of numbers, so most loops disappear. Kenneth Iverson's APL grew out of Harvard work in the 1950s, he joined IBM in 1960, and a working manual for APL\\360 appeared in November 1966. The line runs through MATLAB (commercial in 1984), R (announced 1993) and NumPy to Julia (2012). Cleve Moler said that what takes doubly or triply nested loops in Fortran, C or Java becomes a single statement in MATLAB. The same idea at hardware scale is the GPU, which applies one operation to thousands of data elements at once.",
+      "sleeper": "If you remember APL's odd symbols, the idea won quietly. MATLAB, R, NumPy and the deep-learning frameworks all work on whole arrays, and GPUs run those operations in parallel.",
+      "code": {
+        "lang": "python",
+        "text": "import numpy as np\n\nxs = np.arange(1, 11)                 # the numbers 1 to 10 as one array\nprint((xs[xs % 2 == 1] ** 2).sum())   # 165, with no explicit loop"
+      },
+      "status": "thriving",
+      "tags": [
+        "apl",
+        "vectorized",
+        "nested loops",
+        "matrix",
+        "broadcasting"
+      ],
+      "refs": [
+        {
+          "label": "Falkoff and Iverson, The Evolution of APL",
+          "url": "https://www.jsoftware.com/papers/APLEvol1.htm"
+        }
+      ]
+    },
+    {
+      "id": "conc.linq",
+      "title": "LINQ",
+      "cat": "concepts",
+      "tier": 4,
+      "year": 2007,
+      "short": "Query syntax built into C# 3.0 (2007) that filters and transforms collections, inspired by the monad comprehensions in Haskell.",
+      "long": "Language Integrated Query, or LINQ, arrived with C# 3.0 in November 2007 together with lambda expressions, extension methods, anonymous types and implicitly typed locals. It lets a program filter, sort and transform collections, or database tables, with SQL-like syntax checked by the compiler. Erik Meijer, a principal designer of LINQ, says it is directly inspired by the monad comprehensions in Haskell. Microsoft's history of C# says version 3.0 began to lay the groundwork for a hybrid object-oriented and functional language, and that you could now compute the average of a list as list.Average() instead of writing a for loop.",
+      "code": {
+        "lang": "csharp",
+        "text": "using System;\nusing System.Linq;\n\nint[] nums = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };\nvar squares = from n in nums where n % 2 == 1 select n * n;\nConsole.WriteLine(squares.Sum());   // 165"
+      },
+      "status": "thriving",
+      "tags": [
+        "query",
+        "collections",
+        "lambda",
+        "c#",
+        "comprehension"
+      ],
+      "refs": [
+        {
+          "label": "Microsoft Learn, The history of C#",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "s": "conc.types",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.types",
+      "t": "mod.typescript",
+      "w": 2,
+      "k": "related",
+      "note": "optional types gave JavaScript a static checker"
+    },
+    {
+      "s": "conc.types",
+      "t": "proc.static-typing-evidence",
+      "w": 2,
+      "k": "related",
+      "note": "what studies say about whether types prevent bugs"
+    },
+    {
+      "s": "conc.types",
+      "t": "lang.ml",
+      "w": 2,
+      "k": "related",
+      "note": "ML introduced inference and parametric polymorphism"
+    },
+    {
+      "s": "conc.types",
+      "t": "lang.haskell",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.types",
+      "t": "conc.variable",
+      "w": 2,
+      "k": "related",
+      "note": "every variable has a type, declared or inferred"
+    },
+    {
+      "s": "conc.types",
+      "t": "comp.compiler",
+      "w": 1,
+      "k": "related",
+      "note": "the compiler performs static type checking"
+    },
+    {
+      "s": "conc.data-types",
+      "t": "conc.types",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.data-types",
+      "t": "found.utf8",
+      "w": 2,
+      "k": "uses"
+    },
+    {
+      "s": "conc.data-types",
+      "t": "found.ieee754",
+      "w": 2,
+      "k": "related",
+      "note": "the standard that defines float formats"
+    },
+    {
+      "s": "conc.data-types",
+      "t": "lang.fortran",
+      "w": 2,
+      "k": "related",
+      "note": "types chosen by the first letter of a name in 1957"
+    },
+    {
+      "s": "conc.data-types",
+      "t": "conc.variable",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.static-typing",
+      "t": "conc.types",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.static-typing",
+      "t": "conc.dynamic-typing",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "conc.static-typing",
+      "t": "proc.static-typing-evidence",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.static-typing",
+      "t": "lang.java",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.static-typing",
+      "t": "lang.algol60",
+      "w": 2,
+      "k": "related",
+      "note": "blocks opened with typed declarations"
+    },
+    {
+      "s": "conc.dynamic-typing",
+      "t": "conc.types",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.dynamic-typing",
+      "t": "conc.gradual-typing",
+      "w": 2,
+      "k": "evolved-into"
+    },
+    {
+      "s": "conc.dynamic-typing",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.dynamic-typing",
+      "t": "lang.smalltalk",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.dynamic-typing",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.type-inference",
+      "t": "conc.types",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.type-inference",
+      "t": "ppl.milner",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.type-inference",
+      "t": "lang.ml",
+      "w": 2,
+      "k": "related",
+      "note": "ML was the first language built on it"
+    },
+    {
+      "s": "conc.type-inference",
+      "t": "lang.haskell",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.type-inference",
+      "t": "conc.generics",
+      "w": 2,
+      "k": "related",
+      "note": "ML paired inference with parametric polymorphism"
+    },
+    {
+      "s": "conc.type-inference",
+      "t": "lang.csharp",
+      "w": 2,
+      "k": "related",
+      "note": "implicitly typed locals in C# 3.0"
+    },
+    {
+      "s": "conc.gradual-typing",
+      "t": "conc.types",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.gradual-typing",
+      "t": "mod.typescript",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.gradual-typing",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related",
+      "note": "type hints since Python 3.5"
+    },
+    {
+      "s": "conc.gradual-typing",
+      "t": "qual.mypy",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.gradual-typing",
+      "t": "mod.octoverse",
+      "w": 1,
+      "k": "related",
+      "note": "GitHub's 2025 report on TypeScript's rise"
+    },
+    {
+      "s": "conc.generics",
+      "t": "conc.types",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.generics",
+      "t": "lang.ml",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.generics",
+      "t": "lang.csharp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.generics",
+      "t": "lang.cpp-stl",
+      "w": 2,
+      "k": "related",
+      "note": "C++ templates are its generics"
+    },
+    {
+      "s": "conc.generics",
+      "t": "lang.go",
+      "w": 2,
+      "k": "related",
+      "note": "added type parameters in Go 1.18"
+    },
+    {
+      "s": "conc.pattern-matching",
+      "t": "conc.types",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.pattern-matching",
+      "t": "conc.fp",
+      "w": 2,
+      "k": "related",
+      "note": "popularized by ML and Haskell"
+    },
+    {
+      "s": "conc.pattern-matching",
+      "t": "lang.ml",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.pattern-matching",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.pattern-matching",
+      "t": "conc.null",
+      "w": 2,
+      "k": "related",
+      "note": "Option types replace null through sum types"
+    },
+    {
+      "s": "conc.null",
+      "t": "conc.types",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.null",
+      "t": "ppl.hoare",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.null",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related",
+      "note": "no null, uses Option"
+    },
+    {
+      "s": "conc.null",
+      "t": "conc.result-types",
+      "w": 2,
+      "k": "related",
+      "note": "Option and Result are the alternatives"
+    },
+    {
+      "s": "conc.null",
+      "t": "conc.pointer",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.null",
+      "t": "conc.memory-safety",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.null",
+      "t": "data.sql",
+      "w": 1,
+      "k": "related",
+      "note": "SQL NULL means unknown"
+    },
+    {
+      "s": "conc.integer-overflow",
+      "t": "conc.data-types",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.integer-overflow",
+      "t": "fail.ariane5",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.integer-overflow",
+      "t": "conc.binary-search",
+      "w": 2,
+      "k": "related",
+      "note": "the 2006 midpoint bug"
+    },
+    {
+      "s": "conc.integer-overflow",
+      "t": "conc.undefined-behavior",
+      "w": 2,
+      "k": "related",
+      "note": "signed overflow is undefined in C"
+    },
+    {
+      "s": "conc.float-rounding",
+      "t": "conc.data-types",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.float-rounding",
+      "t": "found.ieee754",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.float-rounding",
+      "t": "ppl.kahan",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.float-rounding",
+      "t": "fail.patriot",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.cstring",
+      "t": "conc.data-types",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.cstring",
+      "t": "lang.c",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.cstring",
+      "t": "conc.buffer-overflow",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.cstring",
+      "t": "fail.gets-annex-k",
+      "w": 2,
+      "k": "related",
+      "note": "gets read into a C string with no limit"
+    },
+    {
+      "s": "conc.zero-indexing",
+      "t": "conc.array",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.zero-indexing",
+      "t": "lang.bcpl",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.zero-indexing",
+      "t": "ppl.dijkstra",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.zero-indexing",
+      "t": "conc.pointer",
+      "w": 2,
+      "k": "related",
+      "note": "a[i] is the same as *(a + i)"
+    },
+    {
+      "s": "conc.scope",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.scope",
+      "t": "conc.variable",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.scope",
+      "t": "conc.closures",
+      "w": 2,
+      "k": "related",
+      "note": "a closure keeps the scope where it was written"
+    },
+    {
+      "s": "conc.scope",
+      "t": "lang.algol60",
+      "w": 2,
+      "k": "related",
+      "note": "block structure with local declarations"
+    },
+    {
+      "s": "conc.scope",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related",
+      "note": "dynamic scope by accident, fixed by FUNARG"
+    },
+    {
+      "s": "conc.scope",
+      "t": "lang.js",
+      "w": 2,
+      "k": "related",
+      "note": "let and var differ"
+    },
+    {
+      "s": "conc.immutability",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.immutability",
+      "t": "lang.haskell",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.immutability",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related",
+      "note": "immutable by default"
+    },
+    {
+      "s": "conc.immutability",
+      "t": "conc.fp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.immutability",
+      "t": "conc.threads-locks",
+      "w": 2,
+      "k": "related",
+      "note": "immutable data is safe to share between threads"
+    },
+    {
+      "s": "conc.function",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.function",
+      "t": "found.subroutine-library",
+      "w": 3,
+      "k": "related",
+      "note": "EDSAC's subroutine library"
+    },
+    {
+      "s": "conc.function",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related",
+      "note": "functions as values"
+    },
+    {
+      "s": "conc.function",
+      "t": "lang.algol60",
+      "w": 2,
+      "k": "related",
+      "note": "value and name parameters"
+    },
+    {
+      "s": "conc.function",
+      "t": "conc.recursion",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.function",
+      "t": "conc.closures",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.control-flow",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.control-flow",
+      "t": "conc.structured-programming",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.control-flow",
+      "t": "lang.fortran",
+      "w": 2,
+      "k": "related",
+      "note": "DO loop and arithmetic IF"
+    },
+    {
+      "s": "conc.control-flow",
+      "t": "lang.pascal",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.control-flow",
+      "t": "conc.iterators",
+      "w": 2,
+      "k": "uses",
+      "note": "for-each loops are driven by iterators"
+    },
+    {
+      "s": "conc.recursion",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.recursion",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.recursion",
+      "t": "lang.algol60",
+      "w": 2,
+      "k": "related",
+      "note": "added late and controversially"
+    },
+    {
+      "s": "conc.recursion",
+      "t": "data.bst",
+      "w": 2,
+      "k": "related",
+      "note": "trees are naturally recursive"
+    },
+    {
+      "s": "conc.error-handling",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.error-handling",
+      "t": "ppl.liskov",
+      "w": 2,
+      "k": "related",
+      "note": "CLU's exception model"
+    },
+    {
+      "s": "conc.error-handling",
+      "t": "lang.erlang",
+      "w": 2,
+      "k": "related",
+      "note": "let it crash"
+    },
+    {
+      "s": "conc.error-handling",
+      "t": "lang.go",
+      "w": 2,
+      "k": "related",
+      "note": "errors are values"
+    },
+    {
+      "s": "conc.information-hiding",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.information-hiding",
+      "t": "ppl.parnas",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.information-hiding",
+      "t": "conc.adt",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.information-hiding",
+      "t": "conc.oop",
+      "w": 2,
+      "k": "related",
+      "note": "encapsulation"
+    },
+    {
+      "s": "conc.information-hiding",
+      "t": "lang.modula-oberon",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.information-hiding",
+      "t": "pkg.software-components",
+      "w": 1,
+      "k": "related",
+      "note": "McIlroy's 1968 call for catalogued components"
+    },
+    {
+      "s": "conc.closures",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.closures",
+      "t": "conc.fp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.closures",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.closures",
+      "t": "lang.js",
+      "w": 2,
+      "k": "influenced",
+      "note": "JavaScript took Scheme-style first-class functions"
+    },
+    {
+      "s": "conc.iterators",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.iterators",
+      "t": "ppl.liskov",
+      "w": 2,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.iterators",
+      "t": "conc.lazy-evaluation",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.iterators",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related",
+      "note": "generators with yield"
+    },
+    {
+      "s": "conc.lazy-evaluation",
+      "t": "conc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.lazy-evaluation",
+      "t": "lang.haskell",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.lazy-evaluation",
+      "t": "conc.fp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.monad",
+      "t": "conc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.monad",
+      "t": "lang.haskell",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.monad",
+      "t": "conc.linq",
+      "w": 3,
+      "k": "influenced",
+      "note": "LINQ was inspired by monad comprehensions"
+    },
+    {
+      "s": "conc.monad",
+      "t": "conc.null",
+      "w": 1,
+      "k": "related",
+      "note": "Maybe and Option chaining"
+    },
+    {
+      "s": "conc.monad",
+      "t": "conc.async-await",
+      "w": 1,
+      "k": "related",
+      "note": "promises and await chain delayed steps"
+    },
+    {
+      "s": "conc.composition",
+      "t": "conc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.composition",
+      "t": "conc.oop",
+      "w": 2,
+      "k": "related",
+      "note": "refines how object orientation is used"
+    },
+    {
+      "s": "conc.composition",
+      "t": "proc.design-patterns",
+      "w": 3,
+      "k": "related",
+      "note": "the principle comes from the Gang of Four book"
+    },
+    {
+      "s": "conc.composition",
+      "t": "lang.go",
+      "w": 2,
+      "k": "influenced"
+    },
+    {
+      "s": "conc.composition",
+      "t": "fail.pure-oo",
+      "w": 2,
+      "k": "related",
+      "note": "the walk-back from inheritance-heavy design"
+    },
+    {
+      "s": "conc.adt",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.adt",
+      "t": "ppl.liskov",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.adt",
+      "t": "conc.oop",
+      "w": 2,
+      "k": "related",
+      "note": "one of the two ideas inside object orientation"
+    },
+    {
+      "s": "conc.adt",
+      "t": "data.stack-queue",
+      "w": 2,
+      "k": "related",
+      "note": "the standard example"
+    },
+    {
+      "s": "conc.adt",
+      "t": "proc.no-silver-bullet",
+      "w": 1,
+      "k": "related",
+      "note": "Brooks's two-part analysis of object orientation"
+    },
+    {
+      "s": "conc.design-by-contract",
+      "t": "conc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.design-by-contract",
+      "t": "lang.eiffel",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.design-by-contract",
+      "t": "lang.ada",
+      "w": 2,
+      "k": "related",
+      "note": "precondition aspects checked by the compiler"
+    },
+    {
+      "s": "conc.design-by-contract",
+      "t": "lang.cpp26",
+      "w": 2,
+      "k": "related",
+      "note": "contracts arrive in C++26"
+    },
+    {
+      "s": "conc.design-by-contract",
+      "t": "qual.hoare-logic",
+      "w": 2,
+      "k": "related",
+      "note": "preconditions and postconditions come from Hoare's logic"
+    },
+    {
+      "s": "conc.structured-programming",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.structured-programming",
+      "t": "ppl.dijkstra",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.structured-programming",
+      "t": "proc.goto-harmful",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.structured-programming",
+      "t": "lang.pascal",
+      "w": 2,
+      "k": "influenced",
+      "note": "Pascal was built to support the style"
+    },
+    {
+      "s": "conc.structured-programming",
+      "t": "ppl.knuth",
+      "w": 2,
+      "k": "related",
+      "note": "his 1974 reply on go to statements"
+    },
+    {
+      "s": "conc.mvc",
+      "t": "conc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.mvc",
+      "t": "org.xerox-parc",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.mvc",
+      "t": "lang.smalltalk",
+      "w": 3,
+      "k": "related",
+      "note": "first implemented in Smalltalk"
+    },
+    {
+      "s": "conc.mvc",
+      "t": "plat.gui",
+      "w": 2,
+      "k": "related",
+      "note": "the pattern grew out of early graphical interfaces"
+    },
+    {
+      "s": "conc.mvc",
+      "t": "conc.oop",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.checked-exceptions",
+      "t": "conc.error-handling",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.checked-exceptions",
+      "t": "lang.java",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.checked-exceptions",
+      "t": "ppl.hejlsberg",
+      "w": 2,
+      "k": "related",
+      "note": "argued against them in 2003"
+    },
+    {
+      "s": "conc.checked-exceptions",
+      "t": "conc.result-types",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "conc.result-types",
+      "t": "conc.error-handling",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.result-types",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.result-types",
+      "t": "lang.go",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.result-types",
+      "t": "ppl.pike",
+      "w": 1,
+      "k": "related",
+      "note": "wrote Errors are values in 2015"
+    },
+    {
+      "s": "conc.declarative",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.declarative",
+      "t": "data.sql",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.declarative",
+      "t": "lang.prolog",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.declarative",
+      "t": "lang.regex",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.declarative",
+      "t": "tool.make",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.declarative",
+      "t": "fail.fifth-generation",
+      "w": 2,
+      "k": "related",
+      "note": "the failed attempt to build everything declaratively"
+    },
+    {
+      "s": "conc.array-programming",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.array-programming",
+      "t": "lang.apl",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.array-programming",
+      "t": "ppl.iverson",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.array-programming",
+      "t": "lang.matlab",
+      "w": 2,
+      "k": "influenced"
+    },
+    {
+      "s": "conc.array-programming",
+      "t": "math.numpy",
+      "w": 2,
+      "k": "influenced"
+    },
+    {
+      "s": "conc.array-programming",
+      "t": "conc.array",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.array-programming",
+      "t": "math.gpu",
+      "w": 2,
+      "k": "related",
+      "note": "the same idea in hardware"
+    },
+    {
+      "s": "conc.linq",
+      "t": "lang.csharp",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.linq",
+      "t": "org.microsoft",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.linq",
+      "t": "conc.closures",
+      "w": 2,
+      "k": "uses",
+      "note": "queries are built from lambda expressions"
+    },
+    {
+      "s": "conc.linq",
+      "t": "data.sql-queries",
+      "w": 2,
+      "k": "related",
+      "note": "SQL-like query syntax"
+    },
+    {
+      "s": "conc.linq",
+      "t": "lang.haskell",
+      "w": 2,
+      "k": "related",
+      "note": "inspired by Haskell's monad comprehensions"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "found.multicore",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "proc.free-lunch",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "fail.therac25",
+      "w": 2,
+      "k": "related",
+      "note": "a race-condition failure"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "lang.go",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "lang.erlang",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "math.gpu",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.concurrency",
+      "t": "comp.py-free-threading",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.threads-locks",
+      "t": "conc.concurrency",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.threads-locks",
+      "t": "ppl.dijkstra",
+      "w": 2,
+      "k": "related",
+      "note": "semaphores in the THE system"
+    },
+    {
+      "s": "conc.threads-locks",
+      "t": "fail.therac25",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.actor-model",
+      "t": "conc.concurrency",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.actor-model",
+      "t": "lang.erlang",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.actor-model",
+      "t": "ppl.armstrong",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.actor-model",
+      "t": "lang.elixir",
+      "w": 1,
+      "k": "related",
+      "note": "runs on the Erlang VM"
+    },
+    {
+      "s": "conc.actor-model",
+      "t": "conc.csp",
+      "w": 2,
+      "k": "competes-with",
+      "note": "messages between named actors versus channels"
+    },
+    {
+      "s": "conc.csp",
+      "t": "conc.concurrency",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.csp",
+      "t": "ppl.hoare",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.csp",
+      "t": "lang.go",
+      "w": 3,
+      "k": "influenced"
+    },
+    {
+      "s": "conc.csp",
+      "t": "ppl.pike",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.csp",
+      "t": "plat.unix",
+      "w": 1,
+      "k": "related",
+      "note": "Go's channels generalize Unix pipes"
+    },
+    {
+      "s": "conc.async-await",
+      "t": "conc.concurrency",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.async-await",
+      "t": "lang.csharp",
+      "w": 3,
+      "k": "related",
+      "note": "C# 5.0 introduced it in 2012"
+    },
+    {
+      "s": "conc.async-await",
+      "t": "lang.js",
+      "w": 2,
+      "k": "related",
+      "note": "event loop"
+    },
+    {
+      "s": "conc.async-await",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related",
+      "note": "asyncio"
+    },
+    {
+      "s": "conc.async-await",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.async-await",
+      "t": "lang.fsharp",
+      "w": 2,
+      "k": "related",
+      "note": "Syme's F# async came first"
+    },
+    {
+      "s": "conc.async-await",
+      "t": "plat.nodejs",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.amdahl",
+      "t": "conc.concurrency",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.amdahl",
+      "t": "found.multicore",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.amdahl",
+      "t": "proc.free-lunch",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.amdahl",
+      "t": "found.moores-law",
+      "w": 1,
+      "k": "related",
+      "note": "transistor counts kept growing while clock speeds stalled"
+    },
+    {
+      "s": "conc.gil",
+      "t": "conc.concurrency",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.gil",
+      "t": "lang.python",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.gil",
+      "t": "comp.py-free-threading",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.gil",
+      "t": "conc.threads-locks",
+      "w": 2,
+      "k": "related",
+      "note": "the GIL is itself a lock"
+    },
+    {
+      "s": "conc.stm",
+      "t": "conc.concurrency",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.stm",
+      "t": "conc.threads-locks",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "conc.stm",
+      "t": "lang.haskell",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.stm",
+      "t": "lang.clojure",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.memory",
+      "t": "comp.gc",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory",
+      "t": "conc.pointer",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related",
+      "note": "where garbage collection began"
+    },
+    {
+      "s": "conc.memory",
+      "t": "lang.c",
+      "w": 2,
+      "k": "related",
+      "note": "manual malloc and free"
+    },
+    {
+      "s": "conc.memory",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related",
+      "note": "ownership instead of a collector"
+    },
+    {
+      "s": "conc.memory",
+      "t": "ppl.mccarthy",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory",
+      "t": "mod.cisa",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory",
+      "t": "mod.oncd-report",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory-safety",
+      "t": "conc.memory",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.memory-safety",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory-safety",
+      "t": "mod.android-memory-safety",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory-safety",
+      "t": "mod.oncd-report",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory-safety",
+      "t": "fail.heartbleed",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.memory-safety",
+      "t": "qual.asan-valgrind",
+      "w": 2,
+      "k": "related",
+      "note": "sanitizers find the bugs at test time"
+    },
+    {
+      "s": "conc.ownership",
+      "t": "conc.memory",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.ownership",
+      "t": "conc.memory-safety",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "conc.ownership",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.ownership",
+      "t": "comp.gc",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "conc.ownership",
+      "t": "conc.threads-locks",
+      "w": 2,
+      "k": "related",
+      "note": "data races become compile errors"
+    },
+    {
+      "s": "conc.manual-memory",
+      "t": "conc.memory",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.manual-memory",
+      "t": "lang.c",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.manual-memory",
+      "t": "conc.pointer",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.manual-memory",
+      "t": "lang.pascal",
+      "w": 1,
+      "k": "related",
+      "note": "New and Dispose"
+    },
+    {
+      "s": "conc.manual-memory",
+      "t": "conc.memory-safety",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.manual-memory",
+      "t": "comp.gc",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "conc.raii",
+      "t": "conc.memory",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.raii",
+      "t": "lang.cpp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.raii",
+      "t": "ppl.stroustrup",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.raii",
+      "t": "conc.ownership",
+      "w": 2,
+      "k": "influenced",
+      "note": "Rust's drop is a descendant of RAII"
+    },
+    {
+      "s": "conc.raii",
+      "t": "conc.manual-memory",
+      "w": 2,
+      "k": "related",
+      "note": "replaces manual cleanup"
+    },
+    {
+      "s": "conc.reference-counting",
+      "t": "conc.memory",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.reference-counting",
+      "t": "comp.gc",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "conc.reference-counting",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.reference-counting",
+      "t": "lang.swift",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.undefined-behavior",
+      "t": "conc.memory",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.undefined-behavior",
+      "t": "lang.c",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.undefined-behavior",
+      "t": "conc.buffer-overflow",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.undefined-behavior",
+      "t": "ppl.lattner",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.undefined-behavior",
+      "t": "comp.optimization",
+      "w": 2,
+      "k": "related",
+      "note": "compilers may assume it never happens"
+    },
+    {
+      "s": "conc.undefined-behavior",
+      "t": "lang.cpp26",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.buffer-overflow",
+      "t": "conc.memory",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.buffer-overflow",
+      "t": "fail.morris-worm",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.buffer-overflow",
+      "t": "conc.memory-safety",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.buffer-overflow",
+      "t": "qual.security",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.abi-ffi",
+      "t": "conc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.abi-ffi",
+      "t": "lang.c",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.abi-ffi",
+      "t": "lang.rust",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.abi-ffi",
+      "t": "lang.go",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.abi-ffi",
+      "t": "plat.win32",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.abi-ffi",
+      "t": "comp.toolchain",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.abi-ffi",
+      "t": "data.sqlite",
+      "w": 2,
+      "k": "related",
+      "note": "SQLite argues C libraries are callable from any language"
+    },
+    {
+      "s": "conc.big-o",
+      "t": "conc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.big-o",
+      "t": "ppl.knuth",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.big-o",
+      "t": "data.hash-table",
+      "w": 2,
+      "k": "related",
+      "note": "O(1) average lookup"
+    },
+    {
+      "s": "conc.big-o",
+      "t": "conc.binary-search",
+      "w": 2,
+      "k": "related",
+      "note": "O(log n)"
+    },
+    {
+      "s": "conc.big-o",
+      "t": "data.dynamic-array",
+      "w": 1,
+      "k": "related",
+      "note": "amortized O(1) appends"
+    },
+    {
+      "s": "conc.quicksort",
+      "t": "ppl.hoare",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.quicksort",
+      "t": "conc.mergesort",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "conc.quicksort",
+      "t": "conc.recursion",
+      "w": 2,
+      "k": "uses"
+    },
+    {
+      "s": "conc.quicksort",
+      "t": "conc.big-o",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.quicksort",
+      "t": "conc.integer-overflow",
+      "w": 1,
+      "k": "related",
+      "note": "the classic qsort comparator mistake"
+    },
+    {
+      "s": "conc.mergesort",
+      "t": "ppl.von-neumann",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "conc.mergesort",
+      "t": "conc.timsort",
+      "w": 3,
+      "k": "evolved-into"
+    },
+    {
+      "s": "conc.mergesort",
+      "t": "conc.recursion",
+      "w": 2,
+      "k": "uses"
+    },
+    {
+      "s": "conc.mergesort",
+      "t": "conc.big-o",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.timsort",
+      "t": "lang.python",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "conc.timsort",
+      "t": "comp.v8",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.timsort",
+      "t": "lang.js",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.timsort",
+      "t": "lang.java",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "conc.binary-search",
+      "t": "conc.array",
+      "w": 2,
+      "k": "uses",
+      "note": "needs a sorted array with indexed access"
+    },
+    {
+      "s": "conc.binary-search",
+      "t": "data.bst",
+      "w": 2,
+      "k": "related",
+      "note": "the tree form of the same idea"
+    },
+    {
+      "s": "conc.binary-search",
+      "t": "data.index",
+      "w": 2,
+      "k": "related",
+      "note": "database indexes search the same way"
+    },
+    {
+      "s": "conc.binary-search",
+      "t": "lang.java",
+      "w": 1,
+      "k": "related",
+      "note": "the JDK bug"
+    },
+    {
+      "s": "conc.dynamic-programming",
+      "t": "conc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "conc.dynamic-programming",
+      "t": "conc.recursion",
+      "w": 2,
+      "k": "uses",
+      "note": "memoization removes repeated recursive work"
+    },
+    {
+      "s": "conc.dynamic-programming",
+      "t": "conc.big-o",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "conc.dynamic-programming",
+      "t": "data.hash-table",
+      "w": 1,
+      "k": "related",
+      "note": "memo tables are often hash tables"
+    }
+  ]
+}

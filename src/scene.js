@@ -16,7 +16,8 @@ const easeOutBack = (t, s = 1.2) => 1 + (s + 1) * Math.pow(t - 1, 3) + s * Math.
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
 const seedOf = (i) => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
 
-export function createScene({ canvas, graph, layouts, reduced = false, quality = 'auto', still = false }) {
+// insets() reports how many CSS pixels of the canvas the panels cover on the left; the overview shifts so the map sits in the free area
+export function createScene({ canvas, graph, layouts, reduced = false, quality = 'auto', still = false, insets = () => ({ left: 0 }) }) {
   const n = graph.nodes.length;
   const cats = new Map(graph.categories.map((c) => [c.key, c]));
   const indexOf = new Map(graph.nodes.map((nd, i) => [nd.id, i]));
@@ -122,6 +123,29 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
     }
   });
 
+  // ---------- guides: decade lines and lanes (timeline), era rings (galaxy) ----------
+  const axis = layouts.axis;
+  const guideMix = { timeline: 0, galaxy: 0 };
+  const guideMats = [];
+  const addGuide = (positions, color, base, key) => {
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), 3));
+    const m = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+    const l = new THREE.LineSegments(g, m); l.frustumCulled = false; l.renderOrder = -6; scene.add(l); guideMats.push({ m, base, key });
+  };
+  if (axis) {
+    const tl = axis.timeline, xs = tl.decades.map((d) => d.x), x0 = Math.min(...xs) - 90, x1 = Math.max(...xs) + 60;
+    const dec = [], lane = [];
+    for (const d of tl.decades) dec.push(d.x, tl.bottom, tl.z, d.x, tl.top, tl.z);
+    for (const l of tl.lanes) lane.push(x0, l.y, tl.z, x1, l.y, tl.z);
+    addGuide(dec, 0x8aa0ff, 0.2, 'timeline'); addGuide(lane, 0x8aa0ff, 0.07, 'timeline');
+    const ring = [], [cx, cy, cz] = axis.galaxy.center;
+    for (const r of axis.galaxy.rings) for (let j = 0; j < 96; j++) {
+      const a0 = (j / 96) * Math.PI * 2, a1 = ((j + 1) / 96) * Math.PI * 2;
+      ring.push(cx + Math.cos(a0) * r.r, cy, cz + Math.sin(a0) * r.r, cx + Math.cos(a1) * r.r, cy, cz + Math.sin(a1) * r.r);
+    }
+    addGuide(ring, 0x8aa0ff, 0.14, 'galaxy');
+  }
+
   // ---------- edges (GPU-evaluated ribbons) ----------
   const E = edgePairs.length, S = EDGE_SEGMENTS, vertsPer = (S + 1) * 2;
   const baseGeo = new THREE.InstancedBufferGeometry();
@@ -209,7 +233,7 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
 
   // ---------- post-processing ----------
   let composer, bloom, finalPass, rt;
-  const finalUniforms = { tDiffuse: { value: null }, uTime: { value: 0 }, uVig: { value: 0.55 }, uGrain: { value: 0.018 }, uCA: { value: 0.012 }, uRes: { value: new THREE.Vector2(1, 1) } };
+  const finalUniforms = { tDiffuse: { value: null }, uTime: { value: 0 }, uVig: { value: 0.55 }, uGrain: { value: 0.018 }, uCA: { value: 0.006 }, uRes: { value: new THREE.Vector2(1, 1) } };
   function buildComposer(w, h) {
     composer?.dispose?.(); rt?.dispose?.();
     rt = new THREE.WebGLRenderTarget(w, h, { type: THREE.HalfFloatType, samples: state.quality === 'high' ? 4 : 0 });
@@ -273,10 +297,18 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   // camera distance that frames the whole layout; wide screens are limited by height, narrow ones by width
   function fitDistance(extra = 1) {
     const r = layoutBounds(), half = Math.tan((camera.fov * Math.PI) / 360);
+    if (layoutName === 'timeline') {   // a wide, flat chart: fit its width and height rather than its bounding sphere
+      let mx = 1, my = 1, mz = 1;
+      for (let i = 0; i < n; i++) { mx = Math.max(mx, Math.abs(toPos[i * 3])); my = Math.max(my, Math.abs(toPos[i * 3 + 1])); mz = Math.max(mz, Math.abs(toPos[i * 3 + 2])); }
+      return (Math.max(mx / (half * camera.aspect), my / half) * 1.28 + 0.35 * mz) * extra;   // margin leaves room for the panels around the canvas
+    }
     return (r / Math.min(half, half * camera.aspect)) * 1.02 * extra;
   }
   function overview(extra = 1, elevation = 0.2) {
-    return flyToPoint(new THREE.Vector3(0, 0, 0), fitDistance(extra), { duration: 1.6, dirFrom: new THREE.Vector3(0, elevation, 1) });
+    const dist = fitDistance(extra);
+    const worldPerPx = (2 * dist * Math.tan((camera.fov * Math.PI) / 360)) / cssH;
+    const shift = (insets().left / 2) * worldPerPx;   // aiming left of centre puts the map right of centre on screen
+    return flyToPoint(new THREE.Vector3(-shift, 0, 0), dist, { duration: 1.6, dirFrom: new THREE.Vector3(0, elevation, 1) });
   }
   const stopFlight = () => { if (camTween) { camTween.resolve?.(); camTween = null; } };
 
@@ -299,7 +331,6 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
       tVis[i] = v;
     }
   }
-  const isVisible = (i) => vis[i] > 0.3;
 
   // ---------- intro ----------
   let intro = null;
@@ -339,6 +370,12 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
       r.y = (1 - ((e[1] * r.cx + e[5] * r.cy + e[9] * r.cz + e[13]) / w * 0.5 + 0.5)) * cssH;
       r.depth = w; r.r = (r.rad * scale) / w;
     }
+  }
+  // screen position of a world point (for labels that belong to guides rather than nodes)
+  function project(x, y, z) {
+    const e = vp.elements, w = e[3] * x + e[7] * y + e[11] * z + e[15];
+    if (w <= 0.01) return null;
+    return [((e[0] * x + e[4] * y + e[8] * z + e[12]) / w * 0.5 + 0.5) * cssW, (1 - ((e[1] * x + e[5] * y + e[9] * z + e[13]) / w * 0.5 + 0.5)) * cssH, w];
   }
   function pick(px, py) {
     let best = -1, bestScore = Infinity;
@@ -411,6 +448,8 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
       r.rotation.set(tilt, t * speed + k, k * 0.6);
       r.material.opacity = (graph.nodes[i].tier === 0 ? 0.5 : 0.3) * vis[i] * (1 - dim[i] * 0.9) * (1 + emph[i]);
     }
+    for (const k of ['timeline', 'galaxy']) guideMix[k] += (((layoutName === k && !intro) ? 1 : 0) - guideMix[k]) * ease(3);
+    for (const g of guideMats) g.m.opacity = g.base * guideMix[g.key];
     updateRegions();
     updateScreen();
 
@@ -433,7 +472,7 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
     if (!fromAuto) state.auto = false;
     state.quality = q;
     state.pulse = reduced || q === 'low' ? 0 : 1;
-    finalUniforms.uGrain.value = q === 'low' ? 0 : 0.018; finalUniforms.uCA.value = q === 'low' ? 0 : 0.012;
+    finalUniforms.uGrain.value = q === 'low' ? 0 : 0.018; finalUniforms.uCA.value = q === 'low' ? 0 : 0.006;
     resize();
   }
 
@@ -448,8 +487,8 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   for (let i = 0; i < n; i++) vis[i] = tVis[i];
 
   return {
-    camera, controls, renderer, graph, indexOf, adj, pos, rad, screen, vis, state, uniforms, regions,
-    update, render, resize, pick, setHover, setSelected, setVisibleMask, isVisible, setLayout, startIntro, finishIntro,
+    camera, controls, renderer, graph, indexOf, adj, pos, rad, screen, vis, state, uniforms, regions, guideMix, project,
+    update, render, resize, pick, setHover, setSelected, setVisibleMask, setLayout, startIntro, finishIntro,
     flyToNode, flyToPoint, overview, stopFlight, nodePoint, setQuality, layoutBounds, fitDistance,
     setBloom(strength) { if (bloom) bloom.strength = strength; },
     fxOf: (i) => ({ emph: emph[i], dim: dim[i], tVis: tVis[i] }),

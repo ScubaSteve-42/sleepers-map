@@ -1,0 +1,2965 @@
+{
+ "slice": "s12-modern-era",
+ "nodes": [
+  {
+   "id": "mod.popular-2026",
+   "title": "What Is Popular in 2026",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2026,
+   "short": "No single ranking says which language is most used: TIOBE, Stack Overflow, GitHub, RedMonk and JetBrains each count something different.",
+   "long": "In TIOBE's September 2026 index Python is first, followed by C, C++, Java and C#. In Stack Overflow's 2025 survey JavaScript is the most-used language (66 percent of respondents), and GitHub's 2025 Octoverse reported TypeScript passing both Python and JavaScript by monthly contributors. The orders differ because the methods differ: search-engine hits, survey replies, committers on one platform, or pull requests combined with Stack Overflow tags. Beyond languages, the Stack Overflow survey shows PostgreSQL as the most-used database (55.6 percent), Docker at 71.1 percent and Visual Studio Code at 75.9 percent. A figure should be quoted with its source and date. RedMonk itself says Stack Overflow's relevance to a generation of developers has declined, which weakens its own ranking.",
+   "sleeper": "Several languages from your era are still ranked: C is second in TIOBE, and Fortran, COBOL and Ada remain in its top 20. The two leaders on most lists, Python (1991) and JavaScript (1995), are likely names you never used.",
+   "status": "n/a",
+   "tags": [
+    "rankings",
+    "surveys",
+    "popularity",
+    "statistics"
+   ],
+   "refs": [
+    {
+     "label": "TIOBE Index",
+     "url": "https://www.tiobe.com/tiobe-index/"
+    },
+    {
+     "label": "Stack Overflow Developer Survey 2025",
+     "url": "https://survey.stackoverflow.co/2025/"
+    }
+   ]
+  },
+  {
+   "id": "mod.tiobe",
+   "title": "TIOBE Index",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2001,
+   "short": "A monthly language ranking built from search-engine hit counts. TIOBE says it reflects skilled engineers, courses and vendors, not code volume or quality.",
+   "long": "TIOBE publishes a monthly rating of programming languages computed from search-engine queries (Google, Amazon, Wikipedia, Bing and more than 20 other sites) for phrases such as \"<language> programming\". Its stated basis is the number of skilled engineers, courses and third-party vendors, and it says the index is not about the best language or the one with the most lines of code written. In September 2026 Python was first at 17.76 percent, down 8.22 points in a year, with C, C++, Java and C# next; Rust entered the top 10, and Perl and Ruby left the top 20. TIOBE does not explain Python's drop. Sources date the index's start to 1997 or 2001, and its long-term table reconstructs positions before 2001 from Usenet hits.",
+   "sleeper": "TIOBE counts web chatter, so long-lived teaching material can lift a language: Visual Basic ranks 7th and Delphi 13th, though only 4.4 and 2.5 percent of Stack Overflow's 2025 respondents use them. That reading is an inference.",
+   "status": "thriving",
+   "tags": [
+    "ranking",
+    "search engines",
+    "language of the year"
+   ],
+   "refs": [
+    {
+     "label": "TIOBE Index",
+     "url": "https://www.tiobe.com/tiobe-index/"
+    }
+   ]
+  },
+  {
+   "id": "mod.stackoverflow-survey",
+   "title": "Stack Overflow Developer Survey",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2011,
+   "short": "An annual opt-in survey of developers. The 2025 edition had over 49,000 responses and found 84 percent using or planning to use AI tools.",
+   "long": "Stack Overflow has run its Developer Survey since 2011, and the 2025 edition was its fifteenth. It drew 49,009 responses from 177 countries, fielded from 29 May to 23 June 2025 and covering 314 technologies. Respondents were recruited mainly through Stack Overflow's own channels, so the sample leans toward engaged users of that site. Results: JavaScript 66 percent, HTML/CSS 61.9, SQL 58.6, Python 57.9 (up 7 points) and TypeScript 43.6; PostgreSQL the leading database at 55.6; Visual Studio Code the leading editor at 75.9; uv the most admired tool at 74.2. On AI, 84 percent use or plan to use AI tools, 51 percent of professionals daily, while 46 percent distrust the accuracy of AI output and 33 percent trust it. No 2026 edition had appeared by the end of September 2026.",
+   "sleeper": "Nothing like it existed in 1990, when there was no public question-and-answer site to recruit from. One survey now reaches tens of thousands of developers in 177 countries, though mainly those engaged with Stack Overflow.",
+   "status": "thriving",
+   "tags": [
+    "survey",
+    "developers",
+    "ai adoption",
+    "popularity"
+   ],
+   "refs": [
+    {
+     "label": "Stack Overflow Developer Survey 2025",
+     "url": "https://survey.stackoverflow.co/2025/"
+    },
+    {
+     "label": "Survey 2025 methodology",
+     "url": "https://survey.stackoverflow.co/2025/methodology"
+    }
+   ]
+  },
+  {
+   "id": "mod.octoverse",
+   "title": "GitHub Octoverse",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2014,
+   "short": "GitHub's annual report on activity on its platform. The 2025 edition counted over 180 million developers and ranked TypeScript first by monthly contributors.",
+   "long": "GitHub has published its Octoverse report annually since about 2014. The 2025 edition, released on 28 October 2025, counted more than 180 million developers, with a new one joining about every second, and nearly 1 billion commits in the year. It ranks languages by distinct monthly contributors. In August 2025 TypeScript led with 2,636,006, about 42,000 ahead of Python, and the report called this the most significant language shift in more than a decade. GitHub's explanation is that major front-end frameworks now scaffold TypeScript by default and that types suit AI-assisted work; that is its interpretation, not a tested cause. The report itself warns that other indices may still rank JavaScript and Python higher. It also counted over 1 million pull requests opened by coding agents between May and September 2025.",
+   "sleeper": "GitHub did not exist until 2008, and Git itself dates from 2005. Counting people who commit code is a different measure from counting search hits or survey answers, and it covers only work done on GitHub.",
+   "status": "thriving",
+   "tags": [
+    "report",
+    "github",
+    "contributors",
+    "typescript"
+   ],
+   "refs": [
+    {
+     "label": "GitHub Octoverse 2025",
+     "url": "https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/"
+    }
+   ]
+  },
+  {
+   "id": "mod.jetbrains-survey",
+   "title": "JetBrains Developer Ecosystem Survey",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2012,
+   "short": "JetBrains' annual survey. In 2025 it polled 24,534 developers: 85 percent regularly used AI tools, and Go and Rust led the languages people planned to adopt.",
+   "long": "JetBrains, the maker of IntelliJ IDEA and PyCharm, runs a yearly developer survey that dates from about 2012. The 2025 edition, published in October 2025, drew 24,534 developers in 194 countries who answered between April and June; JetBrains weighted responses for geography, employment, languages and product use, and notes that its own users may have been more likely to respond. Findings: 85 percent regularly use AI tools for coding, 62 percent rely on at least one AI coding assistant, agent or editor, and nearly nine in ten save at least an hour a week. TypeScript showed the most dramatic rise in real use, Go (11 percent) and Rust (10) led the languages developers plan to adopt, and PHP, Ruby and Objective-C were described as in long-term decline.",
+   "status": "thriving",
+   "tags": [
+    "survey",
+    "developers",
+    "ai adoption",
+    "popularity"
+   ],
+   "refs": [
+    {
+     "label": "JetBrains State of Developer Ecosystem 2025",
+     "url": "https://blog.jetbrains.com/research/2025/10/state-of-developer-ecosystem-2025/"
+    }
+   ]
+  },
+  {
+   "id": "mod.redmonk",
+   "title": "RedMonk Language Rankings",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2010,
+   "short": "Ranks languages by correlating GitHub pull requests with Stack Overflow tags. Its January 2026 list had JavaScript first, then Python and Java.",
+   "long": "RedMonk ranks languages by combining GitHub pull-request volume with Stack Overflow tag volume, aiming to show adoption trends rather than a statistically valid count of current usage; tier matters more than exact rank. The January 2026 edition, published on 14 April 2026, put JavaScript first, then Python, Java, PHP and C# (tied for fourth), TypeScript sixth and Rust twentieth, behind Dart. PHP at fourth and Ruby at ninth differ sharply from TIOBE, which has PHP 14th and Ruby outside its top 20. RedMonk says GitHub's pull-request data for the second half of 2025 was anomalously low and that Stack Overflow's relevance to a generation of developers has declined, making its half of the ranking less representative. Sources give the series' first edition as 2010 or 2012.",
+   "status": "niche",
+   "tags": [
+    "ranking",
+    "pull requests",
+    "adoption"
+   ],
+   "refs": [
+    {
+     "label": "RedMonk, January 2026 language rankings",
+     "url": "https://redmonk.com/sogrady/2026/04/14/language-rankings-1-26/"
+    }
+   ]
+  },
+  {
+   "id": "mod.legacy-languages",
+   "title": "Legacy Languages Still Ranked",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2026,
+   "short": "COBOL, Fortran, Ada, Delphi, Visual Basic and Assembly all still rank in TIOBE's September 2026 top 20.",
+   "long": "Decades-old languages have not disappeared from the rankings. In TIOBE's September 2026 index Visual Basic (.NET) is 7th at 2.55 percent, Fortran 11th at 1.24, Delphi/Object Pascal 13th at 1.08, Assembly 16th at 0.89, Ada 17th at 0.85 (down from 14th a year earlier), Objective-C 19th and COBOL 20th at 0.78 (up from 22nd). Fortran's standard is still maintained, with Fortran 2023 current and Fortran 2028 in preparation according to the standards committee's July 2026 page, and its numerical libraries are costly to rewrite. Because TIOBE counts search-engine hits, long-lived teaching and web content may flatter these languages: in Stack Overflow's 2025 survey 4.4 percent of respondents used Visual Basic (.NET), 2.5 percent Delphi and 1 percent COBOL.",
+   "sleeper": "Several languages from your era are still ranked: Fortran, COBOL, Ada, Visual Basic (a BASIC descendant) and Delphi (a Pascal descendant). TIOBE says its index is not about where most lines of code are written.",
+   "status": "legacy",
+   "tags": [
+    "cobol",
+    "fortran",
+    "ada",
+    "delphi",
+    "visual basic"
+   ],
+   "refs": [
+    {
+     "label": "TIOBE Index",
+     "url": "https://www.tiobe.com/tiobe-index/"
+    }
+   ]
+  },
+  {
+   "id": "mod.pypi-rankings",
+   "title": "PyPI Download Rankings",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2026,
+   "short": "In September 2026 PyPI served about 127.6 billion downloads. The most-downloaded packages are plumbing such as boto3, packaging and urllib3, not famous libraries.",
+   "long": "PyPI, the Python Package Index, is the public repository that pip and uv download from. For September 2026 a count from the public ClickPy dataset gave about 127.6 billion downloads across about 932,000 projects, up 52.7 percent and 37.8 percent on September 2025. The top of the list is infrastructure that other packages pull in: boto3 (the AWS library) first with 2,461 million, then packaging, typing-extensions, idna and urllib3, with requests seventh. NumPy ranks 23rd and pandas 40th. Fast risers since 2023 include uv, Ruff, Polars, DuckDB, Pydantic and FastAPI, while TensorFlow's downloads fell to 12 million and PyTorch has about five times its count. Downloads include automated installs by build systems, so they measure installs, not users, and monthly counts can swing by 30 to 40 percent.",
+   "sleeper": "In your day a library came on a disk or as source you typed in. A single repository now handles about 127.6 billion downloads in a month, mostly requested automatically by other software.",
+   "status": "n/a",
+   "tags": [
+    "downloads",
+    "ecosystem",
+    "python",
+    "statistics"
+   ],
+   "refs": [
+    {
+     "label": "ClickHouse PyPI dataset query",
+     "url": "https://sql-clickhouse.clickhouse.com/"
+    },
+    {
+     "label": "hugovk/top-pypi-packages",
+     "url": "https://github.com/hugovk/top-pypi-packages"
+    }
+   ]
+  },
+  {
+   "id": "mod.autocomplete",
+   "title": "Pre-LLM Autocomplete",
+   "cat": "modern",
+   "tier": 4,
+   "year": 1996,
+   "short": "Editor completion before language models: IntelliSense-style member lists from the late 1990s, then statistical tools such as TabNine and IntelliCode around 2018.",
+   "long": "Editors suggested the next name long before language models. Microsoft's IntelliSense completion is commonly dated to 1996 or 1997, with Visual Basic 5 and Visual Studio 97, though that date is unverified. Later came tools trained on code patterns: Kite (about 2014, shut down in 2022), TabNine (2018) and Microsoft's IntelliCode (2018), which ranked likely next tokens or API calls from statistics. These systems completed a name or a call from the code around the cursor. They did not write a whole function from a comment, which arrived with the Codex model and the 2021 preview of GitHub Copilot. The dates for Kite, TabNine and IntelliCode come from general background and were not re-checked.",
+   "status": "legacy",
+   "tags": [
+    "intellisense",
+    "completion",
+    "tabnine",
+    "intellicode",
+    "kite"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: GitHub Copilot",
+     "url": "https://en.wikipedia.org/wiki/GitHub_Copilot"
+    }
+   ]
+  },
+  {
+   "id": "mod.codex-2021",
+   "title": "OpenAI Codex (2021 Model)",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2021,
+   "yearEnd": 2023,
+   "short": "OpenAI's GPT-3 descendant trained on public code. It powered the first GitHub Copilot and came with the HumanEval benchmark in July 2021.",
+   "long": "Codex was an OpenAI language model, a descendant of GPT-3, trained further on public source code. OpenAI described it in the July 2021 paper \"Evaluating Large Language Models Trained on Code\", which also introduced the HumanEval benchmark of 164 hand-written Python problems; Codex solved 28.8 percent of them on the first try. GitHub used it for the first version of Copilot, announced as a technical preview on 29 June 2021. OpenAI is reported to have retired the Codex API model in March 2023, and the name returned in 2025 for a different product, OpenAI's Codex coding agent. The paper's figures and the retirement date come from general background and were not re-checked against the sources.",
+   "status": "dead",
+   "tags": [
+    "gpt-3",
+    "code model",
+    "copilot",
+    "openai"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: GitHub Copilot",
+     "url": "https://en.wikipedia.org/wiki/GitHub_Copilot"
+    }
+   ]
+  },
+  {
+   "id": "mod.chatgpt",
+   "title": "ChatGPT",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2022,
+   "short": "OpenAI's chat assistant, released on 30 November 2022. Developers use it for code questions, and Stack Overflow's 2025 survey lists it as the leading AI tool.",
+   "long": "OpenAI released ChatGPT on 30 November 2022, and GPT-4 followed in March 2023 (that date was not re-checked). It put the large language models behind GPT-3 and Codex into a chat window, so a developer could paste an error message or ask for a function and read the reply. In Stack Overflow's 2025 survey ChatGPT (82 percent) and GitHub Copilot (68 percent) were named most often among AI tools, though the survey page is ambiguous about the base of respondents, and 84 percent of respondents use or plan to use AI tools. Wikipedia reports that questions submitted to Stack Overflow fell 78 percent between December 2024 and December 2025, which it attributes to a perceived hostile moderation culture and to generative AI.",
+   "sleeper": "A help system used to mean a manual or a fixed help file. ChatGPT answers programming questions in conversational English, but 46 percent of Stack Overflow's 2025 respondents say they distrust the accuracy of AI output.",
+   "status": "thriving",
+   "tags": [
+    "chatbot",
+    "llm",
+    "openai",
+    "gpt-4"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: ChatGPT",
+     "url": "https://en.wikipedia.org/wiki/ChatGPT"
+    },
+    {
+     "label": "Stack Overflow 2025: AI",
+     "url": "https://survey.stackoverflow.co/2025/ai"
+    }
+   ]
+  },
+  {
+   "id": "mod.cursor",
+   "title": "Cursor",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2023,
+   "short": "An AI-centered code editor from Anysphere, built as a fork of VS Code. 17.9 percent of Stack Overflow's 2025 respondents used it.",
+   "long": "Cursor, made by Anysphere, is a fork of Visual Studio Code with AI assistance built into the editor. It appeared around 2023 (the launch date was not confirmed), and 17.9 percent of respondents in Stack Overflow's 2025 survey said they used it, against 75.9 percent for VS Code itself. METR's 2025 randomized trial of experienced developers used Cursor Pro with Claude 3.5 and 3.7 Sonnet. Cursor is among the tools that co-developed the AGENTS.md convention. Cursor's own blog says it became part of SpaceX on 14 August 2026; Wikipedia reports that SpaceX announced the deal on 21 April 2026 and that it was an all-stock acquisition at an implied equity value of $60 billion.",
+   "status": "thriving",
+   "tags": [
+    "editor",
+    "anysphere",
+    "ai editor",
+    "vs code fork"
+   ],
+   "refs": [
+    {
+     "label": "Cursor blog",
+     "url": "https://cursor.com/blog"
+    },
+    {
+     "label": "Wikipedia: Anysphere",
+     "url": "https://en.wikipedia.org/wiki/Anysphere"
+    }
+   ]
+  },
+  {
+   "id": "mod.devin",
+   "title": "Devin",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2024,
+   "short": "Cognition's Devin, announced on 12 March 2024 as the first AI software engineer. It resolved 13.86 percent of SWE-bench issues working unassisted.",
+   "long": "Cognition announced Devin on 12 March 2024 and called it the first AI software engineer. Cognition reported that Devin resolved 13.86 percent of issues end to end on a random 25 percent subset of SWE-bench, working unassisted. The previous best result, 1.96 percent, had been obtained by a model that was told which files to edit, and the benchmark itself was only five months old. These figures are Cognition's own, from its announcement, and the fuller technical report it promised is not cited here. Devin is among the tools that the AGENTS.md site lists as supporting that convention. No usage figures for Devin were found in the sources reviewed.",
+   "status": "niche",
+   "tags": [
+    "cognition",
+    "ai software engineer",
+    "agent"
+   ],
+   "refs": [
+    {
+     "label": "Cognition: Introducing Devin",
+     "url": "https://cognition.com/blog/introducing-devin"
+    }
+   ]
+  },
+  {
+   "id": "mod.claude-code",
+   "title": "Claude Code",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2025,
+   "short": "Anthropic's command-line coding agent, released as a research preview on 24 February 2025. It reads a codebase, edits files, runs tests and commits.",
+   "long": "Claude Code is Anthropic's agentic coding tool, introduced on 24 February 2025 as a limited research preview alongside Claude 3.7 Sonnet. It works from the command line and can search and read code, edit files, write and run tests, commit and push code to GitHub, and use command-line tools. General availability came in May 2025. In Stack Overflow's 2025 survey 9.7 percent of respondents listed it, and METR's February 2026 post said roughly 4 percent of GitHub commits were authored by it. Anthropic credited it with $1 billion in run-rate revenue in December 2025, which is a vendor claim. Its documentation, itself vendor guidance and not measured evidence, recommends giving the agent a test or build to run, keeping CLAUDE.md files short, and using permission controls and sandboxing.",
+   "sleeper": "Software tools once did exactly what you typed. An agent such as this one chooses its own next steps, which is why its documentation spends so much space on permissions and on checks the agent can run.",
+   "code": {
+    "lang": "bash",
+    "text": "cd my-project\nclaude                                            # start an interactive session\nclaude -p \"Run the tests and fix any failures\"    # one-shot run, for scripts and CI"
+   },
+   "status": "thriving",
+   "tags": [
+    "anthropic",
+    "agent",
+    "cli",
+    "terminal"
+   ],
+   "refs": [
+    {
+     "label": "Anthropic: Claude 3.7 Sonnet and Claude Code",
+     "url": "https://www.anthropic.com/news/claude-3-7-sonnet"
+    },
+    {
+     "label": "Claude Code best practices",
+     "url": "https://code.claude.com/docs/en/best-practices"
+    }
+   ]
+  },
+  {
+   "id": "mod.codex-agent",
+   "title": "OpenAI Codex Agent and CLI",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "OpenAI's 2025 coding agents: a cloud agent (Codex cloud, later Codex web) from May 2025 and a command-line tool, Codex CLI.",
+   "long": "In May 2025 OpenAI launched an asynchronous cloud coding agent, first called Codex cloud and later renamed Codex web, which works on tasks in the background. A command-line agent, Codex CLI, joined it during 2025, alongside Gemini CLI, Qwen Code and Mistral Vibe as terminal agents that sit beside Claude Code. The name was reused from the 2021 Codex model, but the product is different. On 19 March 2026 Astral, the company behind the Python tools uv and Ruff, announced an agreement to join OpenAI as part of the Codex team; OpenAI said it would keep supporting Ruff, uv and ty as open source. OpenAI's Codex was also one of the co-developers of the AGENTS.md convention. Day-level launch dates for the command-line tool were not verified.",
+   "status": "thriving",
+   "tags": [
+    "openai",
+    "agent",
+    "cli",
+    "cloud agent"
+   ],
+   "refs": [
+    {
+     "label": "Simon Willison: 2025 in LLMs",
+     "url": "https://simonwillison.net/2025/Dec/31/the-year-in-llms/"
+    },
+    {
+     "label": "Astral blog",
+     "url": "https://astral.sh/blog"
+    }
+   ]
+  },
+  {
+   "id": "mod.gemini-cli-jules",
+   "title": "Gemini CLI and Jules",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "Google's 2025 coding agents: Jules, an asynchronous cloud agent from May 2025, and Gemini CLI, a command-line tool.",
+   "long": "Google entered the coding-agent field in 2025 with two products. Jules is an asynchronous cloud agent, one of three that arrived in May 2025 alongside OpenAI's Codex cloud and GitHub's Copilot coding agent. Gemini CLI is a command-line agent, one of several, including Codex CLI, Qwen Code and Mistral Vibe, that joined Claude Code in the terminal during 2025; its launch date was not verified. Jules was one of the developers of the AGENTS.md convention, and GitHub's Spec Kit works with Gemini CLI. Google also introduced the Agent2Agent protocol in April 2025. No public usage figures for either product are cited here.",
+   "status": "niche",
+   "tags": [
+    "google",
+    "agent",
+    "cli",
+    "cloud agent"
+   ],
+   "refs": [
+    {
+     "label": "Simon Willison: 2025 in LLMs",
+     "url": "https://simonwillison.net/2025/Dec/31/the-year-in-llms/"
+    },
+    {
+     "label": "AGENTS.md",
+     "url": "https://agents.md/"
+    }
+   ]
+  },
+  {
+   "id": "mod.coding-agents",
+   "title": "AI Coding Agents",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2024,
+   "short": "Programs that take a coding task, read the repository, run commands and tests, and return a change for review. They arrived in 2024 and spread through 2025.",
+   "long": "A coding agent is a language model wrapped in a loop that can read a codebase, edit files, run commands and tests, and report back, sometimes by opening a pull request. Cognition's Devin (March 2024) was announced as the first AI software engineer; GitHub added Copilot agent mode and Anthropic released Claude Code in February 2025, and cloud agents followed in May 2025 from OpenAI, Google and GitHub. GitHub's Octoverse counted over 1 million pull requests opened by coding agents between May and September 2025. Adoption is uneven: in Stack Overflow's 2025 survey 52 percent of respondents did not use agents or stuck to simpler tools, and 38 percent had no plans to adopt them. Standards such as MCP and AGENTS.md grew up around them.",
+   "sleeper": "A compiler or debugger acts only when told. An agent decides its own sequence of steps and tries them, so people supervise it through tests and permissions rather than by reading every step.",
+   "status": "thriving",
+   "tags": [
+    "agents",
+    "autonomous",
+    "pull requests",
+    "llm"
+   ],
+   "refs": [
+    {
+     "label": "GitHub Octoverse 2025",
+     "url": "https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/"
+    },
+    {
+     "label": "Stack Overflow 2025: AI",
+     "url": "https://survey.stackoverflow.co/2025/ai"
+    }
+   ]
+  },
+  {
+   "id": "mod.mcp",
+   "title": "Model Context Protocol",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2024,
+   "short": "An open standard from Anthropic (25 November 2024) for connecting AI tools to data and software. Since December 2025 it sits under the Linux Foundation.",
+   "long": "Anthropic introduced the Model Context Protocol on 25 November 2024 as an open standard for secure, two-way connections between data sources and AI-powered tools. It shipped with SDKs and reference servers for Google Drive, Slack, GitHub, Git, Postgres and Puppeteer. OpenAI adopted it in March 2025 and Google DeepMind in April 2025. In December 2025 Anthropic donated it to the Agentic AI Foundation, a Linux Foundation fund co-founded by Anthropic, Block and OpenAI. Wikipedia reports more than 10,000 production MCP servers and 97 million monthly SDK downloads by mid-2026, and a July 2026 revision that removed protocol-level sessions; those figures are unverified. Security analyses in 2025 flagged prompt injection and poisoned tools as routes to data theft through MCP servers.",
+   "sleeper": "MCP was reportedly modelled on the Language Server Protocol, which lets one editor support many languages. MCP does the same job one level up: one AI tool can use many data sources and programs.",
+   "status": "thriving",
+   "tags": [
+    "protocol",
+    "standard",
+    "integration",
+    "anthropic"
+   ],
+   "refs": [
+    {
+     "label": "Anthropic: Model Context Protocol",
+     "url": "https://www.anthropic.com/news/model-context-protocol"
+    },
+    {
+     "label": "Wikipedia: Model Context Protocol",
+     "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol"
+    }
+   ]
+  },
+  {
+   "id": "mod.a2a",
+   "title": "Agent2Agent Protocol",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "Google's protocol, announced on 9 April 2025 with over 50 partners, for AI agents to talk to each other. It complements MCP, which connects agents to tools.",
+   "long": "Google announced the Agent2Agent (A2A) protocol on 9 April 2025 with more than 50 partners, among them Atlassian, Box, Cohere, Intuit, LangChain, MongoDB, PayPal, Salesforce, SAP and ServiceNow. It builds on HTTP, server-sent events and JSON-RPC. Google describes it as complementing MCP: MCP supplies tools and context to one agent, while A2A lets agents from different vendors send tasks and results to each other. No adoption figures for A2A were found, whereas MCP was adopted by OpenAI and Google DeepMind within months of its release.",
+   "status": "niche",
+   "tags": [
+    "protocol",
+    "agents",
+    "interoperability",
+    "google"
+   ],
+   "refs": [
+    {
+     "label": "Google Developers Blog: A2A",
+     "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/"
+    }
+   ]
+  },
+  {
+   "id": "mod.agents-md",
+   "title": "AGENTS.md and CLAUDE.md",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2025,
+   "short": "Plain files in a repository that tell a coding agent how to build, test and behave. AGENTS.md is the cross-tool convention; CLAUDE.md is Claude Code's.",
+   "long": "AGENTS.md describes itself as a README for agents: build and test commands, code style, security notes and commit or pull-request rules, kept in the repository where an agent will read them. It was developed collaboratively by OpenAI's Codex, Amp, Google's Jules, Cursor and Factory, and its site reports use in more than 60,000 open-source projects and support from 25 or more tools. It is stewarded by the Agentic AI Foundation. Claude Code reads a file named CLAUDE.md at the start of every conversation; its documentation advises keeping it short, checking it into Git and pruning it like code, because a bloated file leads the model to ignore real instructions. The AGENTS.md site does not mention CLAUDE.md, and no independent trial shows that either file improves results.",
+   "code": {
+    "lang": "markdown",
+    "text": "# AGENTS.md\n\n## Build and test\n- Install: npm install\n- Run all tests: npm test (they must pass before any commit)\n\n## Style\n- TypeScript in strict mode; format with npm run format\n\n## Commits\n- One logical change per commit; mention the issue number"
+   },
+   "status": "thriving",
+   "tags": [
+    "instruction files",
+    "convention",
+    "readme",
+    "cursorrules"
+   ],
+   "refs": [
+    {
+     "label": "AGENTS.md",
+     "url": "https://agents.md/"
+    },
+    {
+     "label": "Claude Code best practices",
+     "url": "https://code.claude.com/docs/en/best-practices"
+    }
+   ]
+  },
+  {
+   "id": "mod.vibe-coding",
+   "title": "Vibe Coding",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2025,
+   "short": "Karpathy's February 2025 name for building software with AI while not looking at the code. Willison's test: if you did not review it, it is vibe coding.",
+   "long": "Andrej Karpathy posted his description of vibe coding on 2 February 2025: to \"fully give in to the vibes, embrace exponentials, and forget that the code even exists\". Simon Willison drew the line that code you have reviewed, tested and could explain to someone else is ordinary software development, and that vibe coding means building with a model without reviewing the code. Merriam-Webster listed the term as slang and trending in March 2025, and Collins named it Word of the Year for 2025. Wikipedia reports failures attributed to unreviewed AI output, among them vulnerabilities in 170 of 1,645 apps examined from the Lovable platform in May 2025 and a Replit agent deleting a production database in July 2025; these reports were not verified one by one.",
+   "sleeper": "A program used to be something its author could explain line by line. Vibe coding accepts code its author has not read, which is the risk that older habits of review and testing exist to catch.",
+   "status": "n/a",
+   "tags": [
+    "karpathy",
+    "prompting",
+    "unreviewed code",
+    "word of the year"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Vibe coding",
+     "url": "https://en.wikipedia.org/wiki/Vibe_coding"
+    },
+    {
+     "label": "Simon Willison on vibe coding",
+     "url": "https://simonwillison.net/2025/Mar/19/vibe-coding/"
+    }
+   ]
+  },
+  {
+   "id": "mod.spec-driven",
+   "title": "Spec-Driven Development",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "A workflow in which a written specification drives the AI agent's work. GitHub released an open-source toolkit for it, Spec Kit, on 2 September 2025.",
+   "long": "In spec-driven development a developer writes a specification first and has an AI agent plan and build from it, instead of steering with loose prompts. GitHub's Spec Kit, released on 2 September 2025, uses /specify, /plan and /tasks commands, holds that \"specs become the shared source of truth\", and works with Copilot, Claude Code and Gemini CLI. GitHub pitches it as a remedy for vibe coding because models are \"exceptional at pattern completion, but not at mind reading\". Anthropic's documentation suggests a variant in which the agent interviews you, writes a SPEC.md file, and then executes it in a fresh session. No independent evidence was found that spec-first workflows improve results; the advice comes from vendors and practitioners.",
+   "status": "niche",
+   "tags": [
+    "spec kit",
+    "specification",
+    "workflow",
+    "planning"
+   ],
+   "refs": [
+    {
+     "label": "GitHub blog: spec-driven development",
+     "url": "https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/"
+    }
+   ]
+  },
+  {
+   "id": "mod.context-engineering",
+   "title": "Context Engineering",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "Managing what a model has in view. For coding agents that means short instruction files, clearing sessions between tasks and delegating research to subagents.",
+   "long": "A language model can attend to only a limited amount of text at once, called its context window. The Claude Code documentation opens with the constraint that this window fills up fast and that performance degrades as it fills. Practices that follow include clearing context between unrelated tasks, delegating investigation to subagents that have their own context windows, compacting a long session deliberately, and keeping standing instructions short in files such as AGENTS.md or CLAUDE.md. MCP servers are one way to bring outside data into the window. The advice comes from a vendor's guidance and from practitioners, and no independent trial of these habits was found.",
+   "status": "n/a",
+   "tags": [
+    "context window",
+    "subagents",
+    "prompting",
+    "instructions"
+   ],
+   "refs": [
+    {
+     "label": "Claude Code best practices",
+     "url": "https://code.claude.com/docs/en/best-practices"
+    }
+   ]
+  },
+  {
+   "id": "mod.agentic-ai-foundation",
+   "title": "Agentic AI Foundation",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "A Linux Foundation fund, co-founded by Anthropic, Block and OpenAI in December 2025, that hosts MCP and the AGENTS.md convention.",
+   "long": "In December 2025 Anthropic donated the Model Context Protocol to the Agentic AI Foundation, a directed fund of the Linux Foundation co-founded by Anthropic, Block and OpenAI. AGENTS.md is also stewarded by the foundation. The move fits a wider pattern of governance shifting to neutral foundations after commercial disputes: Kubernetes went to the CNCF in 2015, Java EE to Eclipse in 2017, PyTorch to the Linux Foundation in 2022, and Python packaging to an elected Packaging Council, accepted in April 2026. One reading is that vendors want shared plumbing rather than lock-in; that is an inference, not a stated motive.",
+   "status": "n/a",
+   "tags": [
+    "foundation",
+    "governance",
+    "linux foundation",
+    "standards"
+   ],
+   "refs": [
+    {
+     "label": "AGENTS.md",
+     "url": "https://agents.md/"
+    },
+    {
+     "label": "Wikipedia: Model Context Protocol",
+     "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol"
+    }
+   ]
+  },
+  {
+   "id": "mod.verification-loops",
+   "title": "Verification Loops with Agents",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2025,
+   "short": "Giving a coding agent a check it can run, such as tests, a build or a screenshot, so its work can be verified without a person watching.",
+   "long": "The most repeated advice for working with coding agents is to give them a way to check their own work. Anthropic's Claude Code documentation says to give the agent a check it can run, such as tests, a build or a screenshot to compare, and lists four ways to enforce it: in the prompt, as a session-long goal, as a Stop hook (a deterministic gate), or through a separate verification subagent, so that the agent doing the work is not the one grading it. It also says that if you cannot verify it, do not ship it, and asks agents to show evidence rather than assert success. Recommended variants include writing a failing test first and having one agent write tests while another writes the code. This is vendor guidance, not measured evidence.",
+   "status": "n/a",
+   "tags": [
+    "tests",
+    "hooks",
+    "subagents",
+    "test-first",
+    "evidence"
+   ],
+   "refs": [
+    {
+     "label": "Claude Code best practices",
+     "url": "https://code.claude.com/docs/en/best-practices"
+    }
+   ]
+  },
+  {
+   "id": "mod.agent-sandboxing",
+   "title": "Agent Sandboxing and Permissions",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2026,
+   "short": "Limits on what a coding agent may do: permission prompts, allowlists, sandboxes and classifier-based auto modes that review each action.",
+   "long": "Agents can run commands, so their reach has to be limited. Claude Code's documentation says that in manual mode \"after the tenth approval you're clicking through rather than reviewing\", and recommends allowlists, operating-system sandboxing and an auto mode in which a separate classifier model blocks scope escalation, unknown infrastructure and hostile-content-driven actions. Auto mode became the default on 8 August 2026. A vendor-reported figure, that auto mode caught 89 percent of harmful actions against 13.6 percent for human review, could not be verified. Simon Willison's notes describe a July 2026 bug report of an agent deleting a user's home directory in a session with no sandbox, and worry about malicious dependencies inside sandboxes. His \"lethal trifecta\", private data plus untrusted content plus outside communication, explains why this matters.",
+   "sleeper": "Programs of your era did what they were written to do. An agent can improvise, so the old idea of least privilege, giving a process only the access it needs, is now applied to a tool that decides for itself.",
+   "status": "n/a",
+   "tags": [
+    "permissions",
+    "auto mode",
+    "sandbox",
+    "least privilege",
+    "security"
+   ],
+   "refs": [
+    {
+     "label": "Claude Code best practices",
+     "url": "https://code.claude.com/docs/en/best-practices"
+    },
+    {
+     "label": "Simon Willison: coding agents",
+     "url": "https://simonwillison.net/tags/coding-agents/"
+    }
+   ]
+  },
+  {
+   "id": "mod.swe-bench",
+   "title": "SWE-bench",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2023,
+   "short": "A test set of 2,294 real GitHub issues from 12 Python projects. Best score: 1.96 percent in October 2023, then 63.7 percent on its Verified subset by February 2025.",
+   "long": "SWE-bench was introduced on 10 October 2023 by Jimenez and colleagues at Princeton. It draws 2,294 tasks from real GitHub issues in 12 popular Python repositories; each task is an actual issue, and a model resolves it by producing a fix. The best model at the time, Claude 2, resolved 1.96 percent. Cognition's Devin reported 13.86 percent on a random 25 percent subset in March 2024, and Claude 3.7 Sonnet scored 63.7 percent in February 2025 on SWE-bench Verified, a 500-task, human-validated subset released in August 2024 (70.3 percent with extra test-time compute). Scores on the full set and on Verified are not directly comparable. Scale AI's harder successor reports much lower scores, and its authors warn that models may have memorized public solutions.",
+   "status": "n/a",
+   "tags": [
+    "benchmark",
+    "github issues",
+    "verified",
+    "princeton"
+   ],
+   "refs": [
+    {
+     "label": "SWE-bench paper (arXiv 2310.06770)",
+     "url": "https://arxiv.org/abs/2310.06770"
+    },
+    {
+     "label": "swebench.com",
+     "url": "https://www.swebench.com/"
+    }
+   ]
+  },
+  {
+   "id": "mod.swe-bench-pro",
+   "title": "SWE-Bench Pro",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "Scale AI's harder successor to SWE-bench, using 41 professional repositories. The top public-set score in an undated snapshot was about 61.5 percent.",
+   "long": "SWE-Bench Pro, whose public leaderboard Scale AI hosts, uses 41 professional repositories and was created to address four weaknesses of earlier benchmarks: data contamination (models may have memorized solutions), narrow task diversity, oversimplified problems and unreliable test environments. It uses GPL-licensed repositories and private proprietary codebases as legal and access barriers against contamination. Scale states that top models scored around 23 percent on the public set, against 70 percent or more on SWE-bench Verified. In an undated leaderboard snapshot the top public-set entries were Muse Spark 1.1 at 61.5 percent (plus or minus 3.1), gpt-5.4 at 59.1, Muse Spark at 55.0, claude-opus-4-6 at 51.9 and gemini-3.1-pro at 46.1; newer models mentioned elsewhere were not on it.",
+   "status": "n/a",
+   "tags": [
+    "benchmark",
+    "scale ai",
+    "leaderboard",
+    "contamination"
+   ],
+   "refs": [
+    {
+     "label": "Scale SWE-Bench Pro leaderboard",
+     "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+    }
+   ]
+  },
+  {
+   "id": "mod.benchmark-contamination",
+   "title": "Benchmark Contamination",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2023,
+   "short": "When test problems or their answers appear in a model's training data, a high score may reflect memory rather than skill. SWE-Bench Pro was built to resist it.",
+   "long": "Models learn from enormous amounts of public text and code, and public benchmarks are public too. If a benchmark's problems or their solutions are in the training data, a model can score well by recall rather than by solving something new. SWE-Bench Pro's authors list contamination first among four weaknesses of earlier benchmarks and respond by using GPL-licensed repositories and private proprietary codebases, which they describe as legal and access barriers. Scale AI's figures show a gap that may follow: top models scored around 23 percent on SWE-Bench Pro's public set against 70 percent or more on SWE-bench Verified. The two sets also differ in difficulty and variety, and the sources do not say how much of the gap contamination explains.",
+   "status": "n/a",
+   "tags": [
+    "training data",
+    "memorization",
+    "benchmarks",
+    "evaluation"
+   ],
+   "refs": [
+    {
+     "label": "Scale SWE-Bench Pro leaderboard",
+     "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+    }
+   ]
+  },
+  {
+   "id": "mod.humaneval",
+   "title": "HumanEval",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2021,
+   "short": "OpenAI's 2021 benchmark of 164 hand-written Python problems. Codex solved 28.8 percent of them on the first try.",
+   "long": "HumanEval was introduced in the July 2021 paper \"Evaluating Large Language Models Trained on Code\", which described OpenAI's Codex model. It consists of 164 hand-written Python programming problems, and Codex solved 28.8 percent of them on the first try; these figures come from general background and were not re-checked. HumanEval tests short, self-contained functions, a long way from the repository-level work that SWE-bench (October 2023) draws from real GitHub issues in 12 Python projects. The progression of benchmarks runs from HumanEval's short functions to SWE-bench's real issues and then to SWE-Bench Pro's professional repositories, which was built to address weaknesses of earlier benchmarks, including contamination and oversimplified problems.",
+   "status": "n/a",
+   "tags": [
+    "benchmark",
+    "python",
+    "code generation",
+    "pass rate"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: GitHub Copilot",
+     "url": "https://en.wikipedia.org/wiki/GitHub_Copilot"
+    }
+   ]
+  },
+  {
+   "id": "mod.metr-trials",
+   "title": "METR Randomized Trials",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2025,
+   "short": "METR's 2025 trial: experienced developers took 19 percent longer with AI tools yet believed they were faster. Its 2026 follow-up was inconclusive.",
+   "long": "METR, an AI-evaluation group, published a randomized trial on 10 July 2025. Sixteen experienced developers worked on 246 real issues, averaging about two hours, in large open-source repositories (averaging over 22,000 stars and a million lines of code); each issue was randomly allowed or disallowed AI, mainly Cursor Pro with Claude 3.5 and 3.7 Sonnet. Tasks took 19 percent longer with AI. Developers had predicted a 24 percent speedup and afterwards still believed AI had saved about 20 percent. METR says this does not show that AI fails to help most developers, in other settings or with later tools. A follow-up on 24 February 2026, with 57 developers and over 800 tasks, estimated 4 to 18 percent less time with AI, with wide intervals. METR called it only very weak evidence, since developers refused to work without AI and withheld tasks, but said developers are likely more sped up now.",
+   "sleeper": "The argument is the one Fred Brooks made in 1986 in \"No Silver Bullet\": no single tool gives a tenfold gain. What is new is testing it with randomized trials on working developers instead of relying on opinion.",
+   "status": "n/a",
+   "tags": [
+    "productivity",
+    "randomized controlled trial",
+    "experienced developers",
+    "perception gap"
+   ],
+   "refs": [
+    {
+     "label": "METR: early-2025 study",
+     "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/"
+    },
+    {
+     "label": "METR: 2026 update",
+     "url": "https://metr.org/blog/2026-02-24-uplift-update/"
+    }
+   ]
+  },
+  {
+   "id": "mod.copilot-experiment",
+   "title": "Copilot 2022 Productivity Experiment",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2022,
+   "short": "GitHub's 2022 controlled experiment with 95 developers: those using Copilot finished a JavaScript HTTP-server task 55 percent faster than those without.",
+   "long": "GitHub Next and Microsoft's Office of the Chief Economist published this study on 7 September 2022. They randomly split 95 professional developers, and the task was to write an HTTP server in JavaScript. The Copilot group finished 55 percent faster (1 hour 11 minutes against 2 hours 41 minutes; 95 percent confidence interval 21 to 89 percent) and had a higher completion rate, 78 percent against 70. Limits to note: one small, self-contained task, run by the vendor, with speed judged against a test suite. It is the best-known evidence for large gains and contrasts with METR's 2025 trial of experienced developers in mature codebases. In June 2022 GitHub also claimed that nearly 40 percent of code in files where Copilot was active, in popular languages such as Python, was written by it; that is a vendor claim.",
+   "status": "n/a",
+   "tags": [
+    "productivity",
+    "controlled experiment",
+    "github next",
+    "vendor study"
+   ],
+   "refs": [
+    {
+     "label": "GitHub research: Copilot and developer productivity",
+     "url": "https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/"
+    }
+   ]
+  },
+  {
+   "id": "mod.cui-experiments",
+   "title": "Field Experiments at Microsoft and Accenture",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2024,
+   "short": "Field experiments at Microsoft, Accenture and a Fortune 100 firm on developers offered Copilot. Reported gains were largest for less experienced staff.",
+   "long": "A draft paper hosted by MIT, led by Cui and colleagues, reports field experiments at three companies: Microsoft, Accenture and an anonymous Fortune 100 firm. It examines the effect of offering GitHub Copilot on task completion and pull requests, split by developers' experience and tenure. The paper's text could not be extracted for checking, so the figures reported here are approximate and unverified: about 4,800 developers, roughly 26 percent more completed pull requests for those offered Copilot, larger gains for less experienced and shorter-tenure developers, and mixed signals on code quality. Unlike GitHub's 2022 controlled task, these experiments ran inside real work, which makes them closer to the setting METR later tested with experienced developers.",
+   "status": "n/a",
+   "tags": [
+    "productivity",
+    "field experiment",
+    "pull requests",
+    "experience"
+   ],
+   "refs": [
+    {
+     "label": "MIT draft: Copilot field experiments",
+     "url": "https://economics.mit.edu/sites/default/files/inline-files/draft_copilot_experiments.pdf"
+    }
+   ]
+  },
+  {
+   "id": "mod.dora-ai",
+   "title": "DORA AI-Assisted Development Report",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2025,
+   "short": "Google Cloud's 2025 DORA report (nearly 5,000 respondents) links AI use to higher delivery throughput but still to lower stability, and calls AI an amplifier.",
+   "long": "DORA, the research program behind the delivery-performance metrics, published its State of AI-assisted Software Development report with Google Cloud on 23 September 2025, drawing on nearly 5,000 respondents and over 100 hours of qualitative data. Ninety percent use AI at work, more than 80 percent believe it raised their productivity, and 30 percent have little or no trust in AI-generated code. AI adoption now shows a positive relationship with delivery throughput and product performance, an improvement on 2024, but a continuing negative one with delivery stability. The headline is that AI is \"the great amplifier\": it magnifies what a team already does well or badly. The report lists seven AI capabilities, including clear AI policy, connecting AI to internal context, strong foundations, safety nets and a quality internal platform. The data are self-reported and correlational.",
+   "status": "n/a",
+   "tags": [
+    "dora",
+    "delivery",
+    "throughput",
+    "stability",
+    "amplifier"
+   ],
+   "refs": [
+    {
+     "label": "DORA 2025 report",
+     "url": "https://dora.dev/research/2025/dora-report/"
+    },
+    {
+     "label": "Google Cloud: Announcing the 2025 DORA report",
+     "url": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report"
+    }
+   ]
+  },
+  {
+   "id": "mod.gitclear",
+   "title": "GitClear Code-Quality Analysis",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "GitClear's 2025 analysis of 211 million changed lines found refactoring fell and copy-pasted code rose from 2021 to 2024. GitClear sells code-analytics tools.",
+   "long": "GitClear, a vendor of code-analytics tools, published a 2025 report analysing 211 million changed lines from January 2020 to December 2024 in repositories owned by Google, Microsoft, Meta and enterprises. It reports that the share of changed lines that were refactoring, meaning moved code, fell from about 25 percent in 2021 to under 10 percent in 2024, while copy-pasted lines rose from 8.3 to 12.3 percent, which it summarizes as four times as many code clones. Caveats apply: the data show a correlation with the years of AI adoption, not that AI caused the change; the page does not define how lines were classified or state its limitations; and GitClear has a commercial interest. No randomized trial supports or refutes the result.",
+   "status": "n/a",
+   "tags": [
+    "code quality",
+    "refactoring",
+    "copy-paste",
+    "code clones"
+   ],
+   "refs": [
+    {
+     "label": "GitClear: AI assistant code quality 2025",
+     "url": "https://www.gitclear.com/ai_assistant_code_quality_2025_research"
+    }
+   ]
+  },
+  {
+   "id": "mod.veracode-genai",
+   "title": "Veracode GenAI Code Security Report",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "Veracode's 2025 report: AI-generated code from over 100 models had risky security flaws in 45 percent of tests, and newer models were no safer.",
+   "long": "Veracode, an application-security vendor, published a GenAI Code Security Report in 2025 (the page is dated October 2025, and an earlier edition appeared in July). It tested code generated by more than 100 large language models across Java, JavaScript, Python and C#, and found that AI-generated code introduced risky security flaws in 45 percent of tests. It also found that larger, newer models did not improve security. Per-language and per-vulnerability numbers sit behind a registration wall. The July edition is reported to have had Java worst, with about 72 percent of tests failing, and very high failure rates for cross-site scripting and log injection; those figures were not verified. A 2021 NYU study is reported to have found about 40 percent of Copilot suggestions in security-sensitive scenarios vulnerable.",
+   "status": "n/a",
+   "tags": [
+    "security",
+    "vulnerabilities",
+    "generated code",
+    "vendor report"
+   ],
+   "refs": [
+    {
+     "label": "Veracode 2025 GenAI Code Security Report",
+     "url": "https://www.veracode.com/resources/analyst-reports/2025-genai-code-security-report/"
+    }
+   ]
+  },
+  {
+   "id": "mod.canaries",
+   "title": "Stanford \"Canaries in the Coal Mine\" Study",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2025,
+   "short": "A 2025 Stanford payroll study: early-career employment in AI-exposed jobs, software developers included, fell about 13 percent relative to other jobs.",
+   "long": "In August 2025 Brynjolfsson, Chandar and Chen of Stanford's Digital Economy Lab published \"Canaries in the Coal Mine\", an analysis of payroll data from ADP. As reported, employment of workers aged 22 to 25 in the most AI-exposed occupations, software developers among them, fell about 13 percent relative to less-exposed jobs after late 2022, with little decline for older workers. The authors caution about causality. The paper's text could not be extracted for checking, so these figures are approximate and unverified. Interest-rate-driven hiring slowdowns and post-pandemic overhiring coincide with the period, so the result is suggestive of an AI effect on junior hiring but is not proof of one.",
+   "status": "n/a",
+   "tags": [
+    "jobs",
+    "junior developers",
+    "payroll data",
+    "ai exposure"
+   ],
+   "refs": [
+    {
+     "label": "Stanford Digital Economy Lab paper",
+     "url": "https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf"
+    }
+   ]
+  },
+  {
+   "id": "mod.layoffs",
+   "title": "Tech Layoffs and the Hiring Reset",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2022,
+   "short": "Since 2022 tech firms have cut staff in waves and hired fewer juniors. The evidence cannot separate AI from interest rates and pandemic overhiring.",
+   "long": "Technology layoffs became a major story in 2022 and continued into the following years. The tracker layoffs.fyi records them, but its figures could not be retrieved; recalled totals of roughly 165,000 (2022), 264,000 (2023) and 150,000 (2024) are approximate and unverified. Other data is mixed. The US Bureau of Labor Statistics (page of August 2026) lists median software developer pay of $135,980 (May 2025), about 1.9 million jobs and projected growth of 10 percent from 2025 to 2035, though projections are model-based and cannot observe 2026 AI effects. In JetBrains' 2025 survey 61 percent of junior and 54 percent of senior developers found the job market challenging, and only 24.5 percent of Stack Overflow respondents said they were happy at their current job.",
+   "status": "n/a",
+   "tags": [
+    "jobs",
+    "hiring",
+    "layoffs",
+    "employment",
+    "juniors"
+   ],
+   "refs": [
+    {
+     "label": "layoffs.fyi",
+     "url": "https://layoffs.fyi/"
+    },
+    {
+     "label": "US BLS: software developers",
+     "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm"
+    }
+   ]
+  },
+  {
+   "id": "mod.remote-hybrid",
+   "title": "Remote and Hybrid Work",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2020,
+   "short": "The strongest randomized evidence, a Nature paper of 2024 on a trial at Trip.com, found hybrid work raised job satisfaction and cut quit rates by a third.",
+   "long": "Working from home became widespread among developers during the pandemic that began in 2020; the best randomized evidence on it was published only in 2024, which is why sources differ on the year. Bloom, Han and Liang's Nature paper reports a six-month trial from August 2021 to January 2022 of 1,612 graduate employees in the Airfare and IT divisions of Trip.com, randomized by birthday into hybrid work (at home on Wednesday and Friday) or full-time office. Hybrid work improved job satisfaction and reduced quit rates by one-third, with no evidence of an effect on performance reviews or promotions over two years and no effect on the lines of code written by software engineers. Managers had expected a 2.6 percent productivity loss and non-managers a 0.7 percent gain. Caveats: one large Chinese company, hybrid rather than fully remote work, and lines of code as an output measure.",
+   "status": "n/a",
+   "tags": [
+    "work from home",
+    "randomized trial",
+    "trip.com",
+    "productivity"
+   ],
+   "refs": [
+    {
+     "label": "Bloom, Han and Liang, Nature (2024)",
+     "url": "https://www.nature.com/articles/s41586-024-07500-2"
+    }
+   ]
+  },
+  {
+   "id": "mod.low-code",
+   "title": "Low-Code and No-Code Platforms",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2014,
+   "short": "Platforms that build applications mostly from visual components and settings. The term dates from 2014; the idea descends from 1980s fourth-generation languages.",
+   "long": "Low-code platforms let people assemble applications from visual components and settings while writing little code. Forrester popularized the term in 2014, and the platforms trace their roots to the fourth-generation languages of the 1980s and the rapid-application-development tools of the 1990s and early 2000s. In 2016 Forrester forecast a $15.5 billion low-code market by 2020. Critics question whether the platforms suit large mission-critical applications, whether they make development cheaper, and whether they create shadow IT, applications built and run outside the central IT department. Each wave of such promises (COBOL in 1959, fourth-generation languages and CASE tools in the 1980s, rapid application development in the 1990s, low-code, now AI assistants) widened who could build software without removing professional developers.",
+   "sleeper": "If you remember fourth-generation languages and CASE tools promising to make programmers unnecessary, low-code is the same promise renewed under a new name.",
+   "status": "niche",
+   "tags": [
+    "no-code",
+    "forrester",
+    "visual development",
+    "citizen developers"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Low-code development platform",
+     "url": "https://en.wikipedia.org/wiki/Low-code_development_platform"
+    }
+   ]
+  },
+  {
+   "id": "mod.rust-rewrite-wave",
+   "title": "The Rust-Rewrite Wave of Tools",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2022,
+   "short": "Developer tools rewritten in Rust or Go for speed: Ruff, uv, Biome, Oxlint and the TypeScript 7 compiler. Vendors report speedups of 10 to 100 times.",
+   "long": "Since about 2022 many tools that developers run constantly have been rewritten in compiled languages. Astral's Ruff (repository created August 2022) replaces Flake8 and Black for Python, and uv (February 2024) replaces pip and virtualenv. Biome and Oxlint replace parts of Prettier and ESLint for JavaScript, SWC replaces Babel, and Microsoft's TypeScript 7 (July 2026) is a native port written in Go. Vendors claim speedups of 10 to 100 times, for example uv at 8 to 10 times faster than pip without caching and Oxlint at 50 to 100 times faster than ESLint; these are vendor-chosen benchmarks that were not independently replicated. Reasons given include native code, multi-threading, caching and single static binaries. Fast feedback also suits AI agents, which run these tools many times, though that link is an inference.",
+   "sleeper": "Python and JavaScript tools were long written in those same slower languages. The wave replaces them with native programs: on Oxlint's own benchmark, 33.5 seconds with ESLint became 0.6 seconds.",
+   "status": "thriving",
+   "tags": [
+    "performance",
+    "ruff",
+    "uv",
+    "biome",
+    "oxlint",
+    "swc"
+   ],
+   "refs": [
+    {
+     "label": "Ruff",
+     "url": "https://github.com/astral-sh/ruff"
+    },
+    {
+     "label": "uv announcement",
+     "url": "https://astral.sh/blog/uv"
+    }
+   ]
+  },
+  {
+   "id": "mod.ts7-native",
+   "title": "TypeScript 7 Native Compiler",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2026,
+   "short": "Microsoft's TypeScript 7, released on 8 July 2026, is a port of the compiler to native Go code, often about 10 times faster than TypeScript 6.",
+   "long": "TypeScript 6.0 (23 March 2026) was described as the last release based on the existing JavaScript codebase. TypeScript 7.0 (8 July 2026, after a beta in April and a release candidate in June) is a native port written in Go, codenamed Project Corsa, which Microsoft says is often about 10 times faster than 6.0. In the 7.0 announcement, running the compiler on the VS Code project fell from 125.7 to 10.6 seconds (11.9 times), Sentry from 139.8 to 15.7 seconds and Playwright from 12.8 to 1.47 seconds, with memory use down 6 to 26 percent; these are Microsoft's own benchmarks. The release makes strict mode the default and drops the es5 target, and frameworks such as Vue, Angular, Astro and Svelte wait for 7.1 for a stable programmatic API. Speed matters for huge codebases and for AI agents that run checks in a loop.",
+   "status": "thriving",
+   "tags": [
+    "compiler",
+    "go",
+    "project corsa",
+    "performance"
+   ],
+   "refs": [
+    {
+     "label": "Announcing TypeScript 7.0",
+     "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+    },
+    {
+     "label": "TypeScript native port announcement",
+     "url": "https://devblogs.microsoft.com/typescript/typescript-native-port/"
+    }
+   ]
+  },
+  {
+   "id": "mod.rust-in-linux",
+   "title": "Rust in the Linux Kernel",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2022,
+   "short": "Rust support entered the Linux kernel in version 6.1 (2022). In December 2025 maintainers dropped the \"experimental\" label after nearly five years.",
+   "long": "The Rust for Linux project was announced on the kernel mailing list in 2020. Linus Torvalds approved the pull request in October 2022 and Rust support landed in Linux 6.1, intentionally minimal; the first Rust drivers were accepted in December 2023 and shipped in 6.8 (March 2024). At the December 2025 Maintainers Summit the experiment was judged a success, and Torvalds said that after nearly five years the time had come to drop the \"experimental\" tag. LWN reported that Android 16 systems on kernel 6.12 ship a Rust-written ashmem module, that the Android Binder driver in Rust was merged for 6.18, and that kernel maintainer Greg Kroah-Hartman said Rust drivers were proving far safer than C ones, with no CVE yet issued for kernel Rust code. The kernel itself remains C.",
+   "sleeper": "Linux has been written in C since 1991, and the kernel itself remains C. Rust is now accepted beside it for new drivers and abstractions.",
+   "status": "thriving",
+   "tags": [
+    "rust for linux",
+    "drivers",
+    "kernel",
+    "memory safety"
+   ],
+   "refs": [
+    {
+     "label": "LWN: The state of the kernel Rust experiment",
+     "url": "https://lwn.net/Articles/1050174/"
+    },
+    {
+     "label": "Rust for Linux",
+     "url": "https://rust-for-linux.com/"
+    }
+   ]
+  },
+  {
+   "id": "mod.android-memory-safety",
+   "title": "Android Memory-Safety Data",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2019,
+   "short": "Google reports memory-safety bugs fell from 76 percent of Android vulnerabilities in 2019 to under 20 percent in 2025 as new code moved to memory-safe languages.",
+   "long": "Google's Security Blog reported on 25 September 2024 that memory-safety vulnerabilities accounted for 76 percent of Android vulnerabilities in 2019 and 24 percent in 2024, well below the 70 percent industry norm, as new code shifted to memory-safe languages from about 2019. Google argues that vulnerabilities decay exponentially with code age: five-year-old code has 3.4 to 7.4 times lower vulnerability density than new code, so writing new code safely helps even while old unsafe code remains. A November 2025 update reported memory-safety vulnerabilities below 20 percent for the first time and a 1000-fold reduction in vulnerability density compared with Android's C and C++ code. These are Google's measurements of its own code, not an independent study. The same post reported a near miss: a buffer overflow in unsafe Rust code, caught before shipping.",
+   "status": "n/a",
+   "tags": [
+    "google",
+    "vulnerabilities",
+    "memory-safe languages",
+    "statistics"
+   ],
+   "refs": [
+    {
+     "label": "Google Security Blog, September 2024",
+     "url": "https://security.googleblog.com/2024/09/eliminating-memory-safety-vulnerabilities-Android.html"
+    },
+    {
+     "label": "Google Security Blog, November 2025",
+     "url": "https://security.googleblog.com/2025/11/rust-in-android-move-fast-fix-things.html"
+    }
+   ]
+  },
+  {
+   "id": "mod.oncd-report",
+   "title": "ONCD Memory-Safe Software Report",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2024,
+   "short": "A February 2024 White House report urging memory-safe languages, citing that up to 70 percent of patched vulnerabilities come from memory-safety bugs.",
+   "long": "The Office of the National Cyber Director published \"Back to the Building Blocks: A Path Toward Secure and Measurable Software\" in February 2024; the White House press title was \"Future Software Should Be Memory Safe\" (26 February 2024). It says the highest-leverage way to reduce memory-safety vulnerabilities is to secure the programming language, names C and C++ as widely used languages that lack memory safety, and cites that up to 70 percent of vulnerabilities patched in memory-unsafe languages are memory-safety issues. It lists the Morris Worm (1988), Slammer (2003), Heartbleed (2014) and BLASTPASS (2023) as incidents facilitated by such bugs, and treats hardware (Arm's Memory Tagging Extension, CHERI) and formal methods as complements. It notes that memory-safe languages cannot eliminate every risk and that Rust has not yet been proven in space systems.",
+   "sleeper": "The Morris Worm of 1988, which you may remember, was one of the incidents the report ties to memory-safety bugs. More than three decades later a White House report names the same class of bug as a national security problem.",
+   "status": "n/a",
+   "tags": [
+    "white house",
+    "policy",
+    "memory-safe languages",
+    "national cyber director"
+   ],
+   "refs": [
+    {
+     "label": "ONCD technical report (PDF)",
+     "url": "https://bidenwhitehouse.archives.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf"
+    }
+   ]
+  },
+  {
+   "id": "mod.cisa",
+   "title": "CISA Secure by Design",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2023,
+   "short": "CISA's push, from 2023, for software makers to own the security of their products, including published roadmaps for moving to memory-safe languages.",
+   "long": "The US Cybersecurity and Infrastructure Security Agency began its Secure by Design initiative in 2023, asking software makers to take responsibility for the security of their products instead of leaving it to customers; that description comes from general background and was not checked against a CISA page. Documents that were checked include \"The Case for Memory Safe Roadmaps\" (6 December 2023); \"Product Security Bad Practices\" from CISA and the FBI (October 2024, revised January 2025), which calls it dangerous to start new critical-infrastructure product lines in C or C++ where memory-safe alternatives exist and recommends publishing a memory-safety roadmap by the end of 2025; and a CISA and NSA guide to memory-safe languages (24 June 2025). Herb Sutter notes that executive-order policy has a default shelf life of one to four years, and no 2026 statement of current policy was found.",
+   "status": "n/a",
+   "tags": [
+    "security",
+    "policy",
+    "memory safety roadmap",
+    "secure by design"
+   ],
+   "refs": [
+    {
+     "label": "CISA: The Case for Memory Safe Roadmaps",
+     "url": "https://www.cisa.gov/resources-tools/resources/case-memory-safe-roadmaps"
+    },
+    {
+     "label": "CISA: Product Security Bad Practices",
+     "url": "https://www.cisa.gov/resources-tools/resources/product-security-bad-practices"
+    }
+   ]
+  },
+  {
+   "id": "mod.eu-cra",
+   "title": "EU Cyber Resilience Act",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2024,
+   "short": "EU law in force since 10 December 2024 that requires products to be built and maintained securely. Its reporting duties began on 11 September 2026.",
+   "long": "The Cyber Resilience Act entered into force on 10 December 2024. Its reporting obligations began on 11 September 2026, and full application follows on 11 December 2027. The European Commission summarizes it as requiring products to be designed, updated and maintained to protect users, with vulnerability handling over the product's lifecycle and CE marking. It takes a special approach to free and open-source software, including a category of open-source stewards, whose details were not in the text reviewed. For ordinary developers it is likely to push practices that are already normal at large vendors, such as software bills of materials, vulnerability disclosure and secure defaults, down to smaller teams; that expectation is an inference.",
+   "sleeper": "Software is now regulated like a physical product: the Act applies CE marking, the conformity mark used on goods sold in Europe, and a duty to handle vulnerabilities for the product's life.",
+   "status": "n/a",
+   "tags": [
+    "regulation",
+    "european union",
+    "vulnerability reporting",
+    "ce marking"
+   ],
+   "refs": [
+    {
+     "label": "European Commission: Cyber Resilience Act",
+     "url": "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act"
+    }
+   ]
+  },
+  {
+   "id": "mod.eu-ai-act",
+   "title": "EU AI Act",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2024,
+   "short": "The EU's AI regulation, in force since 1 August 2024, applies in stages. High-risk rules are scheduled for December 2027 and August 2028, later than first planned.",
+   "long": "The EU AI Act entered into force on 1 August 2024 and applies in stages. Prohibitions and AI-literacy duties began on 2 February 2025 and obligations for general-purpose AI models on 2 August 2025; rules for high-risk systems listed in Annex III are scheduled for 2 December 2027, and those in Annex I for 2 August 2028. The original high-risk date was 2 August 2026, so the later dates show a delay. A ban on AI systems that generate non-consensual intimate imagery or child sexual abuse material becomes enforceable on 2 December 2026. The Act concentrates on model providers and high-risk uses; for ordinary developers the immediate effects are AI-literacy duties and in-house AI policies, which DORA's 2025 model lists as its first AI capability.",
+   "status": "n/a",
+   "tags": [
+    "regulation",
+    "european union",
+    "general-purpose ai",
+    "high-risk"
+   ],
+   "refs": [
+    {
+     "label": "AI Act implementation timeline",
+     "url": "https://artificialintelligenceact.eu/implementation-timeline/"
+    }
+   ]
+  },
+  {
+   "id": "mod.passkeys",
+   "title": "Passkeys",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2022,
+   "short": "Logins based on public-key cryptography that replace passwords, built on the W3C WebAuthn standard of 2019 and backed by Apple, Google and Microsoft since 2022.",
+   "long": "Passkeys are a way to sign in without a password. The device holds a private key and the website holds the matching public key, so there is no shared secret for an attacker to steal from the site or to trick a user into typing into a fake one. They build on the W3C WebAuthn standard of 2019 and FIDO-based public-key login, and Apple, Google and Microsoft have backed them since 2022. The sources reviewed give no adoption figures, so the claim here is only that the direction looks durable and that uptake is gradual.",
+   "sleeper": "In your day a login meant a password typed at a terminal. A passkey replaces the typed secret with a key pair that the device stores.",
+   "status": "thriving",
+   "tags": [
+    "authentication",
+    "webauthn",
+    "fido",
+    "passwords"
+   ]
+  },
+  {
+   "id": "mod.platform-engineering",
+   "title": "Platform Engineering",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2022,
+   "short": "Building a self-service internal platform of ready-made tools for in-house developers. DORA's 2025 survey found 90 percent of organizations have at least one.",
+   "long": "Platform engineering is the practice of building an internal developer platform, a set of self-service tools and standard paths for building, deploying and running software, and treating it as a product for the company's own developers. Sources date its emergence to 2020 or 2022. DORA's 2024 report found that using such a platform improves individual productivity, team performance and organizational performance, but can also decrease change stability and throughput. DORA's 2025 report found that 90 percent of organizations have adopted at least one platform and that high-quality internal platforms are linked to getting value from AI. CNCF's January 2026 survey reported that 82 percent of container users run Kubernetes in production, and one reading of the trend is that platforms hide that complexity. The evidence is survey-based and mixed.",
+   "status": "thriving",
+   "tags": [
+    "internal developer platform",
+    "self-service",
+    "dora",
+    "kubernetes"
+   ],
+   "refs": [
+    {
+     "label": "DORA 2024 report",
+     "url": "https://dora.dev/research/2024/dora-report/"
+    },
+    {
+     "label": "Wikipedia: Platform engineering",
+     "url": "https://en.wikipedia.org/wiki/Platform_engineering"
+    }
+   ]
+  },
+  {
+   "id": "mod.android-verification",
+   "title": "Android Developer Verification",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2026,
+   "short": "Google's plan to verify the identity of developers behind every app on certified Android devices, even apps installed outside Google Play, from September 2026.",
+   "long": "Google says that to protect users from malware and scams it is verifying the identity of developers whose apps run on certified Android 7 and later devices, including apps distributed outside Google Play. Developer tools were due in August 2026, enforcement was scheduled to begin on 30 September 2026 in Brazil, Indonesia, Singapore and Thailand, and verification is to expand globally in 2027. Exceptions include limited distribution accounts for students, teachers and hobbyists (no government ID or fee, up to 20 devices) and an advanced flow for power users who want to install unverified apps. Whether enforcement actually began on schedule is not confirmed in the sources reviewed. Courts and regulators are loosening app-store rules while Google tightens sideloading, the installing of apps from outside the store.",
+   "sleeper": "Software in your day came on a disk you chose to insert. On a phone the platform maker decides, and sideloading, installing from outside the official store, is the part Google is now restricting.",
+   "status": "n/a",
+   "tags": [
+    "sideloading",
+    "google play",
+    "security",
+    "identity"
+   ],
+   "refs": [
+    {
+     "label": "Android Developers: developer verification",
+     "url": "https://developer.android.com/developer-verification"
+    }
+   ]
+  },
+  {
+   "id": "mod.nvidia-hugging-face",
+   "title": "NVIDIA to Acquire Hugging Face",
+   "cat": "modern",
+   "tier": 4,
+   "year": 2026,
+   "short": "On 2 September 2026 NVIDIA signed an agreement to acquire Hugging Face, the AI model hub, for about $11.9 billion, according to its SEC filing.",
+   "long": "According to an NVIDIA Form 8-K dated 2 September 2026, NVIDIA signed a definitive agreement to acquire Hugging Face for about $11.9 billion paid to stockholders, plus up to $1.0 billion in retention payments. Hugging Face was founded in 2016 by Clément Delangue, Julien Chaumond and Thomas Wolf. Its Transformers library, first committed in October 2018 and licensed under Apache 2.0, made pretrained models installable with pip, and its Hub hosts open-weight models for download. Whether the deal has closed, and what it means for the openness of the Hub and the library, is not covered in the sources reviewed.",
+   "status": "n/a",
+   "tags": [
+    "acquisition",
+    "open-weight models",
+    "transformers",
+    "hub"
+   ],
+   "refs": [
+    {
+     "label": "NVIDIA Form 8-K, 2 September 2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "mod.popular-2026",
+   "t": "mod.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related",
+   "note": "First in TIOBE, second on RedMonk, 57.9 percent in Stack Overflow 2025"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "lang.js",
+   "w": 2,
+   "k": "related",
+   "note": "Most used in Stack Overflow 2025 and first on RedMonk"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "mod.typescript",
+   "w": 2,
+   "k": "related",
+   "note": "First on GitHub by monthly contributors in August 2025"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "Tenth in TIOBE, twentieth on RedMonk"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related",
+   "note": "Second in TIOBE in September 2026"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "data.postgres",
+   "w": 1,
+   "k": "related",
+   "note": "Most-used database in Stack Overflow 2025"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "tool.vscode",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "plat.kubernetes",
+   "w": 1,
+   "k": "related",
+   "note": "82 percent of container users in the CNCF survey run it in production"
+  },
+  {
+   "s": "mod.popular-2026",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related",
+   "note": "84 percent of Stack Overflow respondents use or plan to use AI tools"
+  },
+  {
+   "s": "mod.tiobe",
+   "t": "mod.popular-2026",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.tiobe",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related",
+   "note": "First at 17.76 percent in September 2026"
+  },
+  {
+   "s": "mod.tiobe",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.tiobe",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "Rose from 18th to 10th in a year"
+  },
+  {
+   "s": "mod.tiobe",
+   "t": "lang.go",
+   "w": 1,
+   "k": "related",
+   "note": "Fell from 8th to 12th in a year"
+  },
+  {
+   "s": "mod.tiobe",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related",
+   "note": "Only 39th in TIOBE though first on GitHub"
+  },
+  {
+   "s": "mod.tiobe",
+   "t": "mod.redmonk",
+   "w": 1,
+   "k": "competes-with",
+   "note": "RedMonk has PHP fourth; TIOBE has it 14th"
+  },
+  {
+   "s": "mod.stackoverflow-survey",
+   "t": "mod.popular-2026",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.stackoverflow-survey",
+   "t": "org.stack-overflow",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.stackoverflow-survey",
+   "t": "mod.octoverse",
+   "w": 1,
+   "k": "related",
+   "note": "Survey replies versus GitHub activity"
+  },
+  {
+   "s": "mod.stackoverflow-survey",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "related",
+   "note": "84 percent use or plan to use AI tools; 46 percent distrust their accuracy"
+  },
+  {
+   "s": "mod.stackoverflow-survey",
+   "t": "mod.chatgpt",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.stackoverflow-survey",
+   "t": "data.postgres",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.stackoverflow-survey",
+   "t": "tool.vscode",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.stackoverflow-survey",
+   "t": "pkg.uv",
+   "w": 1,
+   "k": "related",
+   "note": "Most admired tool at 74.2 percent"
+  },
+  {
+   "s": "mod.octoverse",
+   "t": "mod.popular-2026",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.octoverse",
+   "t": "plat.github",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.octoverse",
+   "t": "mod.typescript",
+   "w": 2,
+   "k": "related",
+   "note": "Most monthly contributors in August 2025"
+  },
+  {
+   "s": "mod.octoverse",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.octoverse",
+   "t": "mod.coding-agents",
+   "w": 1,
+   "k": "related",
+   "note": "Agents opened over 1 million pull requests, May to September 2025"
+  },
+  {
+   "s": "mod.octoverse",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related",
+   "note": "GitHub says 80 percent of new developers use Copilot in their first week"
+  },
+  {
+   "s": "mod.jetbrains-survey",
+   "t": "mod.popular-2026",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.jetbrains-survey",
+   "t": "org.jetbrains",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.jetbrains-survey",
+   "t": "lang.go",
+   "w": 1,
+   "k": "related",
+   "note": "Most often planned for adoption (11 percent)"
+  },
+  {
+   "s": "mod.jetbrains-survey",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "Second most planned for adoption (10 percent)"
+  },
+  {
+   "s": "mod.jetbrains-survey",
+   "t": "mod.layoffs",
+   "w": 1,
+   "k": "related",
+   "note": "61 percent of juniors find the job market challenging"
+  },
+  {
+   "s": "mod.jetbrains-survey",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related",
+   "note": "85 percent regularly use AI tools for coding"
+  },
+  {
+   "s": "mod.jetbrains-survey",
+   "t": "mod.stackoverflow-survey",
+   "w": 1,
+   "k": "related",
+   "note": "Both find AI use above 80 percent"
+  },
+  {
+   "s": "mod.redmonk",
+   "t": "mod.popular-2026",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.redmonk",
+   "t": "plat.github",
+   "w": 1,
+   "k": "uses",
+   "note": "Pull-request volume"
+  },
+  {
+   "s": "mod.redmonk",
+   "t": "lang.php",
+   "w": 1,
+   "k": "related",
+   "note": "Fourth on RedMonk"
+  },
+  {
+   "s": "mod.redmonk",
+   "t": "lang.objc",
+   "w": 1,
+   "k": "related",
+   "note": "Eighteenth, and may leave the top 20"
+  },
+  {
+   "s": "mod.redmonk",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "Twentieth, passed by Dart"
+  },
+  {
+   "s": "mod.legacy-languages",
+   "t": "mod.popular-2026",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.legacy-languages",
+   "t": "mod.tiobe",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.legacy-languages",
+   "t": "lang.cobol",
+   "w": 2,
+   "k": "related",
+   "note": "20th in September 2026"
+  },
+  {
+   "s": "mod.legacy-languages",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "related",
+   "note": "11th in September 2026"
+  },
+  {
+   "s": "mod.legacy-languages",
+   "t": "lang.objc",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.legacy-languages",
+   "t": "found.assembly",
+   "w": 1,
+   "k": "related",
+   "note": "16th in September 2026"
+  },
+  {
+   "s": "mod.pypi-rankings",
+   "t": "mod.popular-2026",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.pypi-rankings",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "uses",
+   "note": "Counts downloads from PyPI"
+  },
+  {
+   "s": "mod.pypi-rankings",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.pypi-rankings",
+   "t": "math.numpy",
+   "w": 1,
+   "k": "related",
+   "note": "23rd, 802 million downloads in September 2026"
+  },
+  {
+   "s": "mod.pypi-rankings",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "related",
+   "note": "About five times the downloads of TensorFlow"
+  },
+  {
+   "s": "mod.pypi-rankings",
+   "t": "math.tensorflow",
+   "w": 1,
+   "k": "related",
+   "note": "Downloads fell from 27 to 12 million in a year"
+  },
+  {
+   "s": "mod.pypi-rankings",
+   "t": "data.duckdb",
+   "w": 1,
+   "k": "related",
+   "note": "Fast riser"
+  },
+  {
+   "s": "mod.pypi-rankings",
+   "t": "math.polars",
+   "w": 1,
+   "k": "related",
+   "note": "Fast riser"
+  },
+  {
+   "s": "mod.autocomplete",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "replaced-by",
+   "note": "Whole-function generation went beyond next-name completion"
+  },
+  {
+   "s": "mod.autocomplete",
+   "t": "tool.visual-studio",
+   "w": 2,
+   "k": "related",
+   "note": "IntelliSense arrived with Visual Studio 97 (date unverified)"
+  },
+  {
+   "s": "mod.autocomplete",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by",
+   "note": "IntelliSense and IntelliCode"
+  },
+  {
+   "s": "mod.autocomplete",
+   "t": "tool.ide",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.autocomplete",
+   "t": "tool.lsp",
+   "w": 1,
+   "k": "related",
+   "note": "Language servers moved language intelligence out of the editor"
+  },
+  {
+   "s": "mod.codex-2021",
+   "t": "org.openai",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.codex-2021",
+   "t": "mod.copilot",
+   "w": 3,
+   "k": "influenced",
+   "note": "Powered the first GitHub Copilot"
+  },
+  {
+   "s": "mod.codex-2021",
+   "t": "math.gpt3",
+   "w": 2,
+   "k": "related",
+   "note": "Descendant of GPT-3"
+  },
+  {
+   "s": "mod.codex-2021",
+   "t": "math.llm",
+   "w": 1,
+   "k": "implements"
+  },
+  {
+   "s": "mod.chatgpt",
+   "t": "org.openai",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.chatgpt",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.chatgpt",
+   "t": "math.llm",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.chatgpt",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "related",
+   "note": "Chat help and in-editor help now overlap"
+  },
+  {
+   "s": "mod.chatgpt",
+   "t": "mod.coding-agents",
+   "w": 2,
+   "k": "influenced",
+   "note": "Chat was followed by tools that act on a whole codebase"
+  },
+  {
+   "s": "mod.cursor",
+   "t": "tool.vscode",
+   "w": 3,
+   "k": "uses",
+   "note": "A fork of VS Code"
+  },
+  {
+   "s": "mod.cursor",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "mod.cursor",
+   "t": "mod.claude-code",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "mod.cursor",
+   "t": "mod.coding-agents",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.devin",
+   "t": "mod.swe-bench",
+   "w": 2,
+   "k": "uses",
+   "note": "Evaluated on a 25 percent subset"
+  },
+  {
+   "s": "mod.devin",
+   "t": "mod.coding-agents",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.devin",
+   "t": "mod.claude-code",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "mod.devin",
+   "t": "mod.agents-md",
+   "w": 1,
+   "k": "related",
+   "note": "Listed among supporting tools"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "org.anthropic",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "mod.coding-agents",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "mod.mcp",
+   "w": 2,
+   "k": "uses",
+   "note": "Connects to MCP servers"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "mod.agents-md",
+   "w": 2,
+   "k": "uses",
+   "note": "Reads CLAUDE.md at the start of every conversation"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "mod.verification-loops",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "mod.agent-sandboxing",
+   "w": 2,
+   "k": "uses",
+   "note": "Permission modes, sandboxing and auto mode"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "mod.codex-agent",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "mod.gemini-cli-jules",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "mod.claude-code",
+   "t": "tool.git",
+   "w": 1,
+   "k": "uses",
+   "note": "Commits and pushes code"
+  },
+  {
+   "s": "mod.codex-agent",
+   "t": "org.openai",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.codex-agent",
+   "t": "mod.coding-agents",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.codex-agent",
+   "t": "pkg.uv",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.codex-agent",
+   "t": "mod.codex-2021",
+   "w": 1,
+   "k": "related",
+   "note": "Reuses the Codex name for a different product"
+  },
+  {
+   "s": "mod.codex-agent",
+   "t": "mod.gemini-cli-jules",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "mod.gemini-cli-jules",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.gemini-cli-jules",
+   "t": "mod.coding-agents",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.gemini-cli-jules",
+   "t": "mod.a2a",
+   "w": 1,
+   "k": "related",
+   "note": "Same company, complementary protocol"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "mod.mcp",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "mod.agents-md",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "mod.verification-loops",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "mod.agent-sandboxing",
+   "w": 1,
+   "k": "uses"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "mod.swe-bench",
+   "w": 2,
+   "k": "related",
+   "note": "Measured on real repository issues"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "mod.metr-trials",
+   "w": 1,
+   "k": "related",
+   "note": "Trials measure the effect on developer speed"
+  },
+  {
+   "s": "mod.coding-agents",
+   "t": "qual.testing",
+   "w": 1,
+   "k": "uses",
+   "note": "Agents run tests to check their own work"
+  },
+  {
+   "s": "mod.mcp",
+   "t": "org.anthropic",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.mcp",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.mcp",
+   "t": "tool.lsp",
+   "w": 2,
+   "k": "related",
+   "note": "Reportedly modelled on the Language Server Protocol"
+  },
+  {
+   "s": "mod.mcp",
+   "t": "mod.agentic-ai-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "Donated in December 2025"
+  },
+  {
+   "s": "mod.mcp",
+   "t": "org.openai",
+   "w": 1,
+   "k": "related",
+   "note": "Adopted MCP in March 2025"
+  },
+  {
+   "s": "mod.mcp",
+   "t": "pkg.supply-chain",
+   "w": 1,
+   "k": "related",
+   "note": "Look-alike or malicious servers are a supply-chain worry"
+  },
+  {
+   "s": "mod.a2a",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.a2a",
+   "t": "mod.mcp",
+   "w": 2,
+   "k": "related",
+   "note": "MCP gives an agent tools; A2A lets agents talk to each other"
+  },
+  {
+   "s": "mod.a2a",
+   "t": "mod.coding-agents",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.a2a",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.agents-md",
+   "t": "mod.codex-agent",
+   "w": 2,
+   "k": "related",
+   "note": "Co-developed by Codex, Amp, Jules, Cursor and Factory"
+  },
+  {
+   "s": "mod.agents-md",
+   "t": "mod.cursor",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.agents-md",
+   "t": "mod.gemini-cli-jules",
+   "w": 1,
+   "k": "related",
+   "note": "Jules co-developed it"
+  },
+  {
+   "s": "mod.agents-md",
+   "t": "mod.context-engineering",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.agents-md",
+   "t": "mod.agentic-ai-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "Stewarded by the foundation"
+  },
+  {
+   "s": "mod.agents-md",
+   "t": "mod.mcp",
+   "w": 1,
+   "k": "related",
+   "note": "Both are hosted by the Agentic AI Foundation"
+  },
+  {
+   "s": "mod.agents-md",
+   "t": "tool.git",
+   "w": 1,
+   "k": "related",
+   "note": "Instruction files are checked into the repository"
+  },
+  {
+   "s": "mod.vibe-coding",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.vibe-coding",
+   "t": "mod.coding-agents",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.vibe-coding",
+   "t": "mod.verification-loops",
+   "w": 2,
+   "k": "related",
+   "note": "The review and testing discipline that vibe coding skips"
+  },
+  {
+   "s": "mod.vibe-coding",
+   "t": "mod.veracode-genai",
+   "w": 1,
+   "k": "related",
+   "note": "Studies find security flaws in AI-generated code"
+  },
+  {
+   "s": "mod.vibe-coding",
+   "t": "mod.low-code",
+   "w": 1,
+   "k": "related",
+   "note": "The latest of the promises that anyone can build software"
+  },
+  {
+   "s": "mod.vibe-coding",
+   "t": "qual.code-review",
+   "w": 1,
+   "k": "related",
+   "note": "Reviewed and tested code counts as ordinary development"
+  },
+  {
+   "s": "mod.spec-driven",
+   "t": "mod.vibe-coding",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Pitched as the remedy for vibe coding"
+  },
+  {
+   "s": "mod.spec-driven",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related",
+   "note": "Spec Kit works with Copilot"
+  },
+  {
+   "s": "mod.spec-driven",
+   "t": "mod.claude-code",
+   "w": 1,
+   "k": "related",
+   "note": "Spec Kit works with Claude Code"
+  },
+  {
+   "s": "mod.spec-driven",
+   "t": "mod.gemini-cli-jules",
+   "w": 1,
+   "k": "related",
+   "note": "Spec Kit works with Gemini CLI"
+  },
+  {
+   "s": "mod.spec-driven",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.context-engineering",
+   "t": "mod.mcp",
+   "w": 2,
+   "k": "related",
+   "note": "MCP servers bring outside data into the context window"
+  },
+  {
+   "s": "mod.context-engineering",
+   "t": "mod.claude-code",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.context-engineering",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.agentic-ai-foundation",
+   "t": "org.linux-foundation",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.agentic-ai-foundation",
+   "t": "org.anthropic",
+   "w": 1,
+   "k": "related",
+   "note": "Co-founder; donated MCP"
+  },
+  {
+   "s": "mod.agentic-ai-foundation",
+   "t": "org.openai",
+   "w": 1,
+   "k": "related",
+   "note": "Co-founder"
+  },
+  {
+   "s": "mod.agentic-ai-foundation",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.agentic-ai-foundation",
+   "t": "proc.licensing",
+   "w": 1,
+   "k": "related",
+   "note": "Neutral foundations are where projects go after licensing disputes"
+  },
+  {
+   "s": "mod.verification-loops",
+   "t": "qual.tdd",
+   "w": 2,
+   "k": "uses",
+   "note": "Write a failing test first, then the fix"
+  },
+  {
+   "s": "mod.verification-loops",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.verification-loops",
+   "t": "mod.dora-ai",
+   "w": 1,
+   "k": "related",
+   "note": "DORA: strong automated testing is a safety net"
+  },
+  {
+   "s": "mod.verification-loops",
+   "t": "mod.agent-sandboxing",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.verification-loops",
+   "t": "qual.code-review",
+   "w": 1,
+   "k": "related",
+   "note": "Writer and reviewer pattern"
+  },
+  {
+   "s": "mod.verification-loops",
+   "t": "qual.ci",
+   "w": 1,
+   "k": "related",
+   "note": "Headless agent runs in CI"
+  },
+  {
+   "s": "mod.agent-sandboxing",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related",
+   "note": "Containers are a common basis for sandboxes"
+  },
+  {
+   "s": "mod.agent-sandboxing",
+   "t": "mod.mcp",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.agent-sandboxing",
+   "t": "qual.zero-trust",
+   "w": 1,
+   "k": "related",
+   "note": "Least privilege"
+  },
+  {
+   "s": "mod.agent-sandboxing",
+   "t": "pkg.supply-chain",
+   "w": 1,
+   "k": "related",
+   "note": "Malicious dependencies inside a sandbox"
+  },
+  {
+   "s": "mod.agent-sandboxing",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.swe-bench",
+   "t": "mod.swe-bench-pro",
+   "w": 2,
+   "k": "influenced",
+   "note": "Pro was built to address weaknesses of earlier benchmarks"
+  },
+  {
+   "s": "mod.swe-bench",
+   "t": "mod.benchmark-contamination",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.swe-bench",
+   "t": "plat.github",
+   "w": 1,
+   "k": "related",
+   "note": "Tasks come from real GitHub issues"
+  },
+  {
+   "s": "mod.swe-bench",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related",
+   "note": "Twelve Python repositories"
+  },
+  {
+   "s": "mod.swe-bench-pro",
+   "t": "mod.benchmark-contamination",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.swe-bench-pro",
+   "t": "mod.coding-agents",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.swe-bench-pro",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.benchmark-contamination",
+   "t": "mod.humaneval",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.benchmark-contamination",
+   "t": "math.llm",
+   "w": 1,
+   "k": "related",
+   "note": "Models train on huge public corpora"
+  },
+  {
+   "s": "mod.benchmark-contamination",
+   "t": "proc.goodharts-law",
+   "w": 1,
+   "k": "related",
+   "note": "A benchmark that becomes a target"
+  },
+  {
+   "s": "mod.humaneval",
+   "t": "org.openai",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.humaneval",
+   "t": "mod.codex-2021",
+   "w": 2,
+   "k": "related",
+   "note": "Introduced in the Codex paper"
+  },
+  {
+   "s": "mod.humaneval",
+   "t": "mod.swe-bench",
+   "w": 1,
+   "k": "related",
+   "note": "Short functions versus real repository issues"
+  },
+  {
+   "s": "mod.metr-trials",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.metr-trials",
+   "t": "mod.copilot-experiment",
+   "w": 2,
+   "k": "related",
+   "note": "Opposite result in a different setting"
+  },
+  {
+   "s": "mod.metr-trials",
+   "t": "mod.cui-experiments",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.metr-trials",
+   "t": "mod.dora-ai",
+   "w": 2,
+   "k": "related",
+   "note": "Mixed evidence on AI and delivery"
+  },
+  {
+   "s": "mod.metr-trials",
+   "t": "mod.cursor",
+   "w": 1,
+   "k": "uses",
+   "note": "Participants used Cursor Pro"
+  },
+  {
+   "s": "mod.metr-trials",
+   "t": "mod.stackoverflow-survey",
+   "w": 1,
+   "k": "related",
+   "note": "Self-reported gains versus measured time"
+  },
+  {
+   "s": "mod.metr-trials",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.copilot-experiment",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.copilot-experiment",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by",
+   "note": "With the Office of the Chief Economist"
+  },
+  {
+   "s": "mod.copilot-experiment",
+   "t": "plat.github",
+   "w": 1,
+   "k": "related",
+   "note": "GitHub Next ran the study"
+  },
+  {
+   "s": "mod.cui-experiments",
+   "t": "mod.copilot-experiment",
+   "w": 2,
+   "k": "related",
+   "note": "Field setting versus controlled task"
+  },
+  {
+   "s": "mod.cui-experiments",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.cui-experiments",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "One of the three firms studied"
+  },
+  {
+   "s": "mod.dora-ai",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Published with Google Cloud"
+  },
+  {
+   "s": "mod.dora-ai",
+   "t": "mod.platform-engineering",
+   "w": 2,
+   "k": "related",
+   "note": "90 percent of organizations have a platform"
+  },
+  {
+   "s": "mod.dora-ai",
+   "t": "mod.gitclear",
+   "w": 1,
+   "k": "related",
+   "note": "AI may raise output while shifting cost to review and stability"
+  },
+  {
+   "s": "mod.dora-ai",
+   "t": "qual.testing",
+   "w": 1,
+   "k": "related",
+   "note": "Strong automated testing as a safety net"
+  },
+  {
+   "s": "mod.dora-ai",
+   "t": "proc.trunk-based",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.gitclear",
+   "t": "proc.refactoring",
+   "w": 2,
+   "k": "related",
+   "note": "Measured the share of changed lines that were refactoring"
+  },
+  {
+   "s": "mod.gitclear",
+   "t": "mod.veracode-genai",
+   "w": 1,
+   "k": "related",
+   "note": "Both are vendor-run quality studies"
+  },
+  {
+   "s": "mod.gitclear",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.gitclear",
+   "t": "proc.technical-debt",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.veracode-genai",
+   "t": "qual.security",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.veracode-genai",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.canaries",
+   "t": "mod.layoffs",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.canaries",
+   "t": "mod.chatgpt",
+   "w": 1,
+   "k": "related",
+   "note": "Decline measured from late 2022"
+  },
+  {
+   "s": "mod.canaries",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.layoffs",
+   "t": "mod.remote-hybrid",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.layoffs",
+   "t": "mod.stackoverflow-survey",
+   "w": 1,
+   "k": "related",
+   "note": "Only 24.5 percent are happy at their current job"
+  },
+  {
+   "s": "mod.layoffs",
+   "t": "mod.coding-agents",
+   "w": 1,
+   "k": "related",
+   "note": "AI is a possible factor in junior hiring, not separable from other causes"
+  },
+  {
+   "s": "mod.layoffs",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.remote-hybrid",
+   "t": "fail.loc",
+   "w": 1,
+   "k": "related",
+   "note": "The trial used lines of code as an output measure"
+  },
+  {
+   "s": "mod.remote-hybrid",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.low-code",
+   "t": "fail.case",
+   "w": 2,
+   "k": "related",
+   "note": "An earlier promise of less hand coding"
+  },
+  {
+   "s": "mod.low-code",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related",
+   "note": "The latest wave of the promise"
+  },
+  {
+   "s": "mod.low-code",
+   "t": "proc.uml",
+   "w": 1,
+   "k": "related",
+   "note": "Model-driven code generation was another such promise"
+  },
+  {
+   "s": "mod.rust-rewrite-wave",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.rust-rewrite-wave",
+   "t": "lang.go",
+   "w": 1,
+   "k": "uses",
+   "note": "TypeScript 7 is written in Go"
+  },
+  {
+   "s": "mod.rust-rewrite-wave",
+   "t": "qual.lint",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.rust-rewrite-wave",
+   "t": "pkg.manager",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.rust-rewrite-wave",
+   "t": "mod.coding-agents",
+   "w": 1,
+   "k": "related",
+   "note": "Agents run these tools many times"
+  },
+  {
+   "s": "mod.rust-rewrite-wave",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.ts7-native",
+   "t": "mod.typescript",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.ts7-native",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.ts7-native",
+   "t": "lang.go",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.ts7-native",
+   "t": "mod.rust-rewrite-wave",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.ts7-native",
+   "t": "tool.vscode",
+   "w": 1,
+   "k": "related",
+   "note": "Benchmarked on the VS Code codebase"
+  },
+  {
+   "s": "mod.ts7-native",
+   "t": "tool.lsp",
+   "w": 1,
+   "k": "uses",
+   "note": "New language service"
+  },
+  {
+   "s": "mod.ts7-native",
+   "t": "comp.compiler",
+   "w": 1,
+   "k": "implements"
+  },
+  {
+   "s": "mod.rust-in-linux",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.rust-in-linux",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.rust-in-linux",
+   "t": "ppl.torvalds",
+   "w": 2,
+   "k": "related",
+   "note": "Approved the pull request in 2022"
+  },
+  {
+   "s": "mod.rust-in-linux",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.rust-in-linux",
+   "t": "mod.android-memory-safety",
+   "w": 2,
+   "k": "related",
+   "note": "Android Binder and ashmem in Rust"
+  },
+  {
+   "s": "mod.rust-in-linux",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related",
+   "note": "The kernel itself remains C"
+  },
+  {
+   "s": "mod.android-memory-safety",
+   "t": "org.google",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.android-memory-safety",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.android-memory-safety",
+   "t": "plat.android",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.android-memory-safety",
+   "t": "mod.oncd-report",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.oncd-report",
+   "t": "mod.cisa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.oncd-report",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related",
+   "note": "Named as widely used and not memory safe"
+  },
+  {
+   "s": "mod.oncd-report",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "related",
+   "note": "Named as widely used and not memory safe"
+  },
+  {
+   "s": "mod.oncd-report",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "Not yet proven in space systems"
+  },
+  {
+   "s": "mod.oncd-report",
+   "t": "fail.heartbleed",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.cisa",
+   "t": "lang.cpp",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.cisa",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.cisa",
+   "t": "mod.eu-cra",
+   "w": 1,
+   "k": "related",
+   "note": "A parallel regulatory push in the EU"
+  },
+  {
+   "s": "mod.cisa",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.cisa",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.eu-cra",
+   "t": "proc.open-source",
+   "w": 2,
+   "k": "related",
+   "note": "Special approach to open-source software and open-source stewards"
+  },
+  {
+   "s": "mod.eu-cra",
+   "t": "fail.xz",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.eu-cra",
+   "t": "fail.log4shell",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.eu-cra",
+   "t": "qual.security",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.eu-cra",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.eu-ai-act",
+   "t": "mod.eu-cra",
+   "w": 1,
+   "k": "related",
+   "note": "The EU regulates software and AI separately"
+  },
+  {
+   "s": "mod.eu-ai-act",
+   "t": "math.llm",
+   "w": 2,
+   "k": "related",
+   "note": "General-purpose AI model obligations"
+  },
+  {
+   "s": "mod.eu-ai-act",
+   "t": "mod.chatgpt",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.eu-ai-act",
+   "t": "mod.dora-ai",
+   "w": 1,
+   "k": "related",
+   "note": "In-house AI policy is DORA's first AI capability"
+  },
+  {
+   "s": "mod.passkeys",
+   "t": "plat.oauth",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.passkeys",
+   "t": "org.apple",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.passkeys",
+   "t": "org.google",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.passkeys",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.platform-engineering",
+   "t": "plat.kubernetes",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.platform-engineering",
+   "t": "proc.devops",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.platform-engineering",
+   "t": "tool.opentelemetry",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.android-verification",
+   "t": "plat.android",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.android-verification",
+   "t": "org.google",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.android-verification",
+   "t": "plat.app-store",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.android-verification",
+   "t": "plat.epic-apple",
+   "w": 1,
+   "k": "related",
+   "note": "Store rules are loosening elsewhere"
+  },
+  {
+   "s": "mod.android-verification",
+   "t": "qual.security",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.nvidia-hugging-face",
+   "t": "org.nvidia",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.nvidia-hugging-face",
+   "t": "org.hugging-face",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.nvidia-hugging-face",
+   "t": "math.open-weight",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.nvidia-hugging-face",
+   "t": "mod.hub",
+   "w": 1,
+   "k": "part-of"
+  }
+ ]
+}

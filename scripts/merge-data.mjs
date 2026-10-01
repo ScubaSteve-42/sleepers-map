@@ -1,4 +1,4 @@
-// Merges data/src/*.json slices plus categories and tour into data/graph.json.
+// Merges data/src/*.json slices plus categories, tour and starter questions into data/graph.json.
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,8 +10,11 @@ export function mergeData({ write = true } = {}) {
   const categories = readJson(path.join(root, 'data/categories.json'));
   const tourPath = path.join(root, 'data/tour.json');
   const tour = existsSync(tourPath) ? readJson(tourPath) : [];
+  const questionsPath = path.join(root, 'data/questions.json');
+  const questions = existsSync(questionsPath) ? readJson(questionsPath) : [];
   const srcDir = path.join(root, 'data/src');
-  const files = readdirSync(srcDir).filter((f) => f.endsWith('.json')).sort();
+  // the registry lists planned nodes without text; it is a planning file, not a slice
+  const files = readdirSync(srcDir).filter((f) => f.endsWith('.json') && f !== 'registry.json').sort();
   const nodes = [], seen = new Map(), problems = [];
   const edgeMap = new Map();
   for (const f of files) {
@@ -32,7 +35,7 @@ export function mergeData({ write = true } = {}) {
   const edges = [...edgeMap.values()];
   const graph = {
     meta: { title: "The Sleeper's Map", subtitle: 'The history of software engineering, from machine code to AI', generated: new Date().toISOString().slice(0, 10), nodes: nodes.length, edges: edges.length },
-    categories, nodes, edges, tour,
+    categories, nodes, edges, tour, questions,
   };
   if (write) writeFileSync(path.join(root, 'data/graph.json'), JSON.stringify(graph, null, 1) + '\n');
   return { graph, problems };

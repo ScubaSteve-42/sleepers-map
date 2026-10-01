@@ -1,0 +1,3310 @@
+{
+  "slice": "s05-data",
+  "nodes": [
+    {
+      "id": "data.dbms",
+      "title": "Database Management System",
+      "cat": "data",
+      "tier": 1,
+      "year": 1963,
+      "short": "Software that manages stored data: queries, many users at once, integrity rules and crash recovery, so each program does not have to.",
+      "long": "A database management system (DBMS) is the software that sits between programs and stored data. It takes care of storage, querying, simultaneous users, integrity rules and recovery after a crash, so each application does not have to. The first ones appeared in the 1960s: Charles Bachman's Integrated Data Store at General Electric in 1963, and IBM's IMS, built for the Apollo program, whose first version shipped in 1967. Both made programmers follow pointers from record to record. Edgar Codd's 1970 paper argued that users should be protected from knowing how data is laid out inside the machine, an idea called data independence, and the relational systems that followed became the dominant design. Michael Stonebraker and Andrew Pavlo's 2024 survey concludes that SQL databases absorbed the best ideas of their later rivals.",
+      "sleeper": "Around 1990 you chose a commercial server such as Oracle, Informix or Sybase, or a desktop file database such as dBase. Free production-grade servers arrived from 1995, and SQLite, by its developers' estimate, now sits inside every smartphone.",
+      "code": {
+        "lang": "python",
+        "text": "import sqlite3\ndb = sqlite3.connect(\"langs.db\")            # the whole database is one file\ndb.execute(\"CREATE TABLE IF NOT EXISTS lang (name TEXT PRIMARY KEY, year INTEGER)\")\nwith db:                                    # one transaction: commit, or roll back on error\n    db.execute(\"INSERT OR REPLACE INTO lang VALUES (?, ?)\", (\"C\", 1972))\nprint(db.execute(\"SELECT name, year FROM lang\").fetchall())   # [('C', 1972)]"
+      },
+      "status": "thriving",
+      "tags": [
+        "dbms",
+        "database",
+        "storage",
+        "data independence"
+      ],
+      "refs": [
+        {
+          "label": "Codd, A Relational Model of Data for Large Shared Data Banks (1970)",
+          "url": "https://www.engineering.upenn.edu/~zives/03f/cis550/codd.pdf"
+        },
+        {
+          "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+          "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.hash-table",
+      "title": "Hash Table",
+      "cat": "data",
+      "tier": 2,
+      "year": 1953,
+      "short": "A structure that turns a key into a slot number, so lookups, inserts and deletes take about the same short time however large the collection grows.",
+      "long": "A hash table stores key-value pairs by running each key through a hash function, a rule that turns the key into a number, and using that number to pick a slot. A lookup goes straight to the slot instead of searching. When two keys land in the same slot, which is called a collision, they are chained in a small list or the next free slot is used. Lookup, insert and delete take constant time on average, though the worst case is linear. Wikipedia credits Hans Peter Luhn with the idea, in an IBM memorandum of January 1953. In one test on a single PC, 100 failed lookups among 100,000 integers took 32.6 milliseconds in a Python list and 0.0069 milliseconds in a set.",
+      "sleeper": "Since Python 3.7 (2018) a dict remembers insertion order as part of the language. Hashing also gained a security side: attackers who choose colliding keys can stall a server, which led Python 3.4 to adopt SipHash for strings.",
+      "code": {
+        "lang": "python",
+        "text": "names = list(range(100_000))\nfast = set(names)              # a hash table holding only keys\nprint(99_999 in names)         # scans the list one item at a time: O(n)\nprint(99_999 in fast)          # one hash lookup: O(1) on average"
+      },
+      "status": "thriving",
+      "tags": [
+        "dictionary",
+        "map",
+        "associative array",
+        "hashing",
+        "set"
+      ],
+      "refs": [
+        {
+          "label": "PEP 456: Secure and interchangeable hash algorithm",
+          "url": "https://peps.python.org/pep-0456/"
+        },
+        {
+          "label": "Python wiki: time complexity of built-in types",
+          "url": "https://wiki.python.org/moin/TimeComplexity"
+        }
+      ]
+    },
+    {
+      "id": "data.dynamic-array",
+      "title": "Dynamic Array",
+      "cat": "data",
+      "tier": 3,
+      "year": 1994,
+      "short": "An array that moves to a bigger block when it fills up, so appending is cheap on average. Python lists, JavaScript arrays and C++ vectors work this way.",
+      "long": "A dynamic array keeps its elements in one contiguous block of memory like an ordinary array, but when the block fills up it allocates a larger one and copies everything across. Growing by a proportion each time makes appends cost constant time on average, with an occasional expensive copy; this is called amortized cost. Python's list, JavaScript's Array, Java's ArrayList and C++'s vector are all of this kind, and the C++ one became standard as part of the STL, which the standards committee accepted in 1994. CPython over-allocates by about an eighth of the current length plus a few slots. Inserting or removing at the front is slow because every element must shift. The year on the map follows the STL and is approximate.",
+      "code": {
+        "lang": "python",
+        "text": "import sys\na, sizes = [], set()\nfor i in range(100):\n    a.append(i)\n    sizes.add(sys.getsizeof(a))   # the byte size changes only when the list reallocates\nprint(len(sizes), \"reallocations for 100 appends\")   # a handful, not 100"
+      },
+      "status": "thriving",
+      "tags": [
+        "vector",
+        "arraylist",
+        "list",
+        "amortized",
+        "growable array"
+      ],
+      "refs": [
+        {
+          "label": "CPython source: Objects/listobject.c",
+          "url": "https://raw.githubusercontent.com/python/cpython/main/Objects/listobject.c"
+        },
+        {
+          "label": "Stroustrup, Are lists evil? (2014)",
+          "url": "https://isocpp.org/blog/2014/06/stroustrup-lists"
+        }
+      ]
+    },
+    {
+      "id": "data.linked-list",
+      "title": "Linked List",
+      "cat": "data",
+      "tier": 4,
+      "year": 1955,
+      "short": "Elements that each hold a value and the address of the next one. Invented for early AI programs, and now rarely the best default.",
+      "long": "A linked list stores each element in a node that holds a value and the address of the next node, so the elements can sit anywhere in memory. Allen Newell, Cliff Shaw and Herbert Simon first implemented the idea in 1955 and 1956 as the main data structure of their Information Processing Language, which they used for early artificial-intelligence programs such as the Logic Theory Machine. Lisp's cons cell, a pair of fields historically named car and cdr, is the basis of a simple singly linked list. Inserting after a node you already hold is cheap, but reaching the 1,000th element means following 1,000 links, and each node is usually a separate allocation in memory.",
+      "sleeper": "Caches changed the advice. In Stroustrup's experiment, vectors beat linked lists even for insertions into a sorted sequence, where lists should win on paper, so his 2014 recommendation is to use vector by default.",
+      "code": {
+        "lang": "python",
+        "text": "class Node:\n    def __init__(self, value, next=None): self.value, self.next = value, next\nhead = Node(1, Node(2, Node(3)))       # 1 -> 2 -> 3\nn = head\nwhile n:\n    print(n.value)                     # prints 1, 2, 3\n    n = n.next"
+      },
+      "status": "thriving",
+      "tags": [
+        "list",
+        "node",
+        "pointer",
+        "cons cell"
+      ],
+      "refs": [
+        {
+          "label": "Stroustrup, Are lists evil? (2014)",
+          "url": "https://isocpp.org/blog/2014/06/stroustrup-lists"
+        },
+        {
+          "label": "Wikipedia: Linked list",
+          "url": "https://en.wikipedia.org/wiki/Linked_list"
+        }
+      ]
+    },
+    {
+      "id": "data.stack-queue",
+      "title": "Stack and Queue",
+      "cat": "data",
+      "tier": 4,
+      "year": 1946,
+      "short": "Last-in, first-out and first-in, first-out collections. Function calls use a stack, while print spoolers and message brokers use queues.",
+      "long": "A stack hands back the most recently added item first (last in, first out), and a queue hands back the oldest first (first in, first out). Stacks entered the literature in 1946, when Alan Turing used the terms bury and unbury for calling and returning from subroutines. Konrad Zuse's Z4 already had a two-level stack in 1945, and Friedrich Bauer and Klaus Samelson filed a German patent in 1957 that named the idea Keller, meaning cellar. Every function call pushes a frame onto the machine's call stack, which is why runaway recursion ends in a stack overflow. A Python list is a poor queue, since removing the first item shifts all the rest: draining 100,000 items took 0.21 seconds that way against 0.0023 seconds with a deque.",
+      "code": {
+        "lang": "python",
+        "text": "from collections import deque\nstack = []; stack.append(\"a\"); stack.append(\"b\")\nprint(stack.pop())                  # b  (last in, first out)\nqueue = deque(); queue.append(\"a\"); queue.append(\"b\")\nprint(queue.popleft())              # a  (first in, first out; list.pop(0) would be O(n))"
+      },
+      "status": "thriving",
+      "tags": [
+        "lifo",
+        "fifo",
+        "call stack",
+        "deque",
+        "queue"
+      ],
+      "refs": [
+        {
+          "label": "Python docs: collections.deque",
+          "url": "https://docs.python.org/3/library/collections.html"
+        },
+        {
+          "label": "Wikipedia: Stack (abstract data type)",
+          "url": "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"
+        }
+      ]
+    },
+    {
+      "id": "data.bst",
+      "title": "Binary Search Tree",
+      "cat": "data",
+      "tier": 4,
+      "year": 1960,
+      "short": "A tree where smaller keys go left and larger keys go right, so each comparison discards a share of the keys if the tree stays balanced.",
+      "long": "In a binary search tree each node has a left subtree of smaller keys and a right subtree of larger keys. A search starts at the root and goes left or right at each step, so a balanced tree of n keys needs about log n comparisons, while a tree built from already sorted input degenerates into a list and needs n. An in-order walk, which visits the left subtree, then the node, then the right subtree, returns the keys in sorted order. Related trees solve neighboring problems: the trie for prefix lookups such as autocomplete, the heap for a priority queue, and the B-tree that databases use for indexes. No single inventor or date is documented for the plain search tree, so the year on the map is approximate.",
+      "code": {
+        "lang": "python",
+        "text": "class Node:\n    def __init__(self, key): self.key, self.left, self.right = key, None, None\ndef insert(node, key):\n    if node is None: return Node(key)\n    if key < node.key: node.left = insert(node.left, key)\n    elif key > node.key: node.right = insert(node.right, key)\n    return node\ndef walk(node):                      # in-order: left, self, right\n    if node: yield from walk(node.left); yield node.key; yield from walk(node.right)\nroot = None\nfor k in [50, 30, 70, 20, 40]: root = insert(root, k)\nprint(list(walk(root)))              # [20, 30, 40, 50, 70]"
+      },
+      "status": "thriving",
+      "tags": [
+        "tree",
+        "search tree",
+        "in-order",
+        "trie",
+        "heap"
+      ]
+    },
+    {
+      "id": "data.b-tree",
+      "title": "B-Tree",
+      "cat": "data",
+      "tier": 3,
+      "year": 1970,
+      "short": "A wide, shallow tree sized to disk pages, so finding one key among millions takes a handful of reads. It is the structure behind most database indexes.",
+      "long": "Rudolf Bayer and Edward McCreight invented the B-tree at Boeing Scientific Research Laboratories, and their report \"Organization and maintenance of large ordered indices\" circulated in July 1970. Each node is the size of a disk page and holds many keys, so the tree is wide and shallow and a lookup needs only a few disk reads. The report promised retrieval, insertion and deletion in time proportional to the logarithm of the index size, with storage at least half full, and described an index of 15,000 keys maintained at an average of 9 transactions per second on an IBM 360/44 with a 2311 disc. The authors never explained what the B stands for; Boeing, balanced, broad, bushy and Bayer have all been suggested.",
+      "status": "thriving",
+      "tags": [
+        "index",
+        "balanced tree",
+        "disk",
+        "bayer",
+        "mccreight"
+      ],
+      "refs": [
+        {
+          "label": "Bayer and McCreight, Organization and maintenance of large ordered indices (1970)",
+          "url": "https://infolab.usc.edu/csci585/Spring2010/den_ar/indexing.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.graph",
+      "title": "Graph (Data Structure)",
+      "cat": "data",
+      "tier": 4,
+      "year": 1959,
+      "short": "Points joined by lines: road maps, friendships, web links, dependencies. Stored as adjacency lists or matrices and explored breadth-first or depth-first.",
+      "long": "A graph is a set of points, called vertices or nodes, joined by lines called edges. Road maps, friendships, web links and the dependencies between software packages are all graphs. Two layouts are standard: an adjacency list, where each vertex stores a list of its neighbors, and an adjacency matrix, where rows are source vertices and columns are destination vertices. Breadth-first search finds the path with the fewest hops in an unweighted graph by visiting neighbors in queue order. SQL can do the same job with a recursive query over a table of edges, and graph databases such as Neo4j store the edges directly. No single date marks the start of graphs in programming, so the year on the map is approximate.",
+      "code": {
+        "lang": "python",
+        "text": "from collections import deque\ngraph = {\"A\": [\"B\", \"C\"], \"B\": [\"D\"], \"C\": [\"D\", \"E\"], \"D\": [\"F\"], \"E\": [\"F\"], \"F\": []}\nprev, queue = {\"A\": None}, deque([\"A\"])          # breadth-first search from A\nwhile queue:\n    node = queue.popleft()\n    for nxt in graph[node]:\n        if nxt not in prev: prev[nxt] = node; queue.append(nxt)\npath, node = [], \"F\"\nwhile node: path.append(node); node = prev[node]\nprint(path[::-1])                                # ['A', 'B', 'D', 'F']"
+      },
+      "status": "thriving",
+      "tags": [
+        "vertex",
+        "edge",
+        "adjacency list",
+        "breadth-first search",
+        "network"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Graph (abstract data type)",
+          "url": "https://en.wikipedia.org/wiki/Graph_(abstract_data_type)"
+        }
+      ]
+    },
+    {
+      "id": "data.csv",
+      "title": "CSV",
+      "cat": "data",
+      "tier": 4,
+      "year": 1972,
+      "short": "Comma-separated values: plain text with one record per line. It has no types and no real standard, and still carries data between almost everything.",
+      "long": "A CSV file holds one record per line, with fields separated by commas and often a header line naming the columns. Wikipedia reports that IBM's Fortran compiler under OS/360 supported comma-separated list-directed input and output in 1972, and the format was in wide use long before anyone wrote it down. RFC 4180, published in 2005, admits that the format has never been formally documented and registers the text/csv media type. Its rules: a field containing a comma, a line break or a double quote must be wrapped in double quotes, and a quote inside a quoted field is written twice. Every spreadsheet, language and database can read and write CSV, which is why it survives. The costs are that everything is text with no types, and that the character encoding is unspecified.",
+      "code": {
+        "lang": "python",
+        "text": "import csv, io\ntext = 'region,units,price\\n\"Cambridge, UK\",3,9.5\\n'   # the first field contains a comma\nfor row in csv.DictReader(io.StringIO(text)):\n    print(row[\"region\"], int(row[\"units\"]) * float(row[\"price\"]))   # Cambridge, UK 28.5"
+      },
+      "status": "thriving",
+      "tags": [
+        "comma-separated values",
+        "flat file",
+        "spreadsheet",
+        "rfc 4180",
+        "interchange"
+      ],
+      "refs": [
+        {
+          "label": "RFC 4180: Common Format and MIME Type for CSV Files",
+          "url": "https://www.rfc-editor.org/rfc/rfc4180.txt"
+        }
+      ]
+    },
+    {
+      "id": "data.xml",
+      "title": "XML",
+      "cat": "data",
+      "tier": 3,
+      "year": 1998,
+      "short": "Extensible Markup Language: nested, named tags for structured data. It ruled enterprise data exchange in the late 1990s before JSON took over the web.",
+      "long": "XML is a text format built from nested, named tags, such as a person element containing a name element. Work began in 1996, and XML 1.0 became a W3C Recommendation on 10 February 1998. The specification describes it as a subset of SGML whose goal is to let generic SGML be served, received and processed on the web the way HTML is. XML dominated enterprise data exchange and spawned XML databases, but for web APIs it was overtaken: Michael Stonebraker and Andrew Pavlo write that JSON has since overtaken XML as the standard for web data exchange. SQL absorbed the format as well, with XML support in SQL:2003 and a dedicated Part 14, SQL/XML, in 2006.",
+      "code": {
+        "lang": "python",
+        "text": "import xml.etree.ElementTree as ET\ndoc = ET.fromstring('<people><person id=\"1\"><name>Ada</name></person><person id=\"2\"><name>Alan</name></person></people>')\nprint([(p.get(\"id\"), p.findtext(\"name\")) for p in doc])   # [('1', 'Ada'), ('2', 'Alan')]"
+      },
+      "status": "legacy",
+      "tags": [
+        "markup",
+        "sgml",
+        "tags",
+        "w3c",
+        "xml schema"
+      ],
+      "refs": [
+        {
+          "label": "W3C: Extensible Markup Language (XML) 1.0, Fifth Edition",
+          "url": "https://www.w3.org/TR/xml/"
+        }
+      ]
+    },
+    {
+      "id": "data.json",
+      "title": "JSON",
+      "cat": "data",
+      "tier": 2,
+      "year": 2001,
+      "short": "JavaScript Object Notation: a small text format of objects and arrays that became the web's default way to exchange data.",
+      "long": "JSON is a lightweight, text-based format for structured data whose objects and arrays map directly onto the dictionaries and lists of JavaScript and Python. Douglas Crockford specified it in the early 2000s and sent the first JSON message in April 2001 with Chip Morningstar; other sources give 1999, so the year is disputed. It was published as RFC 4627 in 2006, as ECMA-404 in 2013 and as RFC 8259 (Internet Standard STD 90) in December 2017. It needs no schema and browsers parse it natively, which is why it displaced XML for web APIs and why document databases such as MongoDB adopted it as their data model. SQL gained operations on JSON in SQL:2016.",
+      "sleeper": "Pitfalls remain: JavaScript reads every JSON number as a double, so a large integer id can silently lose its last digits, and JSON has no comments and no date type.",
+      "code": {
+        "lang": "javascript",
+        "text": "console.log(JSON.parse('{\"id\": 9007199254740993}').id);                // 9007199254740992 (rounded to a double)\nconsole.log(JSON.stringify({ d: new Date(0), u: undefined, n: NaN })); // {\"d\":\"1970-01-01T00:00:00.000Z\",\"n\":null}"
+      },
+      "status": "thriving",
+      "tags": [
+        "javascript object notation",
+        "serialization",
+        "api",
+        "crockford",
+        "interchange"
+      ],
+      "refs": [
+        {
+          "label": "RFC 8259: The JSON Data Interchange Format",
+          "url": "https://www.rfc-editor.org/rfc/rfc8259.txt"
+        },
+        {
+          "label": "json.org",
+          "url": "https://www.json.org/json-en.html"
+        }
+      ]
+    },
+    {
+      "id": "data.yaml",
+      "title": "YAML",
+      "cat": "data",
+      "tier": 4,
+      "year": 2001,
+      "short": "An indentation-based text format popular for configuration, with type-guessing traps such as the bare word NO loading as false.",
+      "long": "YAML is a text format that uses indentation instead of brackets and allows comments, which made it popular for configuration files. Its first working draft, \"Yet Another Markup Language\", is dated 10 December 2001, and the name was later re-expanded as \"YAML Ain't Markup Language\". The authors include Oren Ben-Kiki, Clark Evans and Ingy döt Net. The specification's history notes that, by sheer coincidence, JSON was almost a complete subset of YAML, and YAML 1.2 was made a strict superset of it. The current revision is 1.2.2, from 1 October 2021. Parsers that still follow the older 1.1 rules guess types aggressively, so an unquoted NO can load as false and 1.10 as the number 1.1.",
+      "code": {
+        "lang": "python",
+        "text": "import yaml                       # PyYAML, installed with pip\nprint(yaml.safe_load(\"country: NO\\nanswer: yes\\nversion: 1.10\\nzip: 01234\\nname: 'NO'\"))\n# {'country': False, 'answer': True, 'version': 1.1, 'zip': 668, 'name': 'NO'}"
+      },
+      "status": "thriving",
+      "tags": [
+        "configuration",
+        "norway problem",
+        "markup",
+        "indentation"
+      ],
+      "refs": [
+        {
+          "label": "YAML Ain't Markup Language version 1.2.2",
+          "url": "https://yaml.org/spec/1.2.2/"
+        }
+      ]
+    },
+    {
+      "id": "data.protobuf",
+      "title": "Protocol Buffers",
+      "cat": "data",
+      "tier": 4,
+      "year": 2008,
+      "short": "Google's compact binary format: describe your data once in a schema, generate code for many languages, and exchange small messages that can evolve.",
+      "long": "Protocol Buffers, usually called protobuf, is a way to serialize structured data that Google developed for internal use and released publicly on 7 July 2008. You describe your messages once in a .proto file, and a compiler generates code in many languages that writes and reads a compact binary form. Google's overview calls it like JSON except smaller and faster, with native language bindings, and the most commonly used data format at Google. New fields can be added and old ones removed without breaking existing services. The price is readability, because the field names are not in the bytes and both sides need the schema. A message with name John and id 1234 takes 9 bytes in protobuf against 25 bytes as compact JSON.",
+      "code": {
+        "lang": "protobuf",
+        "text": "edition = \"2023\";\nmessage Person {\n  string name = 1;      // field numbers, not names, identify fields in the bytes\n  int32 id = 2;\n  string email = 3;\n}"
+      },
+      "status": "thriving",
+      "tags": [
+        "protobuf",
+        "serialization",
+        "binary",
+        "schema",
+        "varint"
+      ],
+      "refs": [
+        {
+          "label": "Protocol Buffers overview",
+          "url": "https://protobuf.dev/overview/"
+        },
+        {
+          "label": "Protocol Buffers encoding guide",
+          "url": "https://protobuf.dev/programming-guides/encoding/"
+        }
+      ]
+    },
+    {
+      "id": "data.parquet",
+      "title": "Apache Parquet",
+      "cat": "data",
+      "tier": 4,
+      "year": 2013,
+      "short": "A column-oriented file format for analytics: the values of each column are stored together, so queries read less and the files compress well.",
+      "long": "Apache Parquet is an open source, column-oriented data file format designed for efficient storage and retrieval. A CSV file, a JSON file or a classic database table keeps each record together, whereas a Parquet file keeps all the values of one column together, so an analytic query reads only the columns it needs and similar values compress well. The project began as a joint effort of Twitter and Cloudera, was inspired by Google's Dremel paper, released version 1.0 in July 2013 and became a top-level Apache project in April 2015. In one DuckDB test on a million rows of artificial, repetitive data, the Parquet file took about 5.1 MB against 24.2 MB for the CSV, and an average-by-region query ran about twelve times faster.",
+      "sleeper": "Parquet plays the part the data warehouse extract file once did. Instead of loading it into a warehouse first, tools such as DuckDB can query the file where it sits.",
+      "code": {
+        "lang": "sql",
+        "text": "-- DuckDB: write a Parquet file, then query it in place\nCOPY (SELECT i AS id, 'region_' || (i % 20) AS region, (i % 1000) / 10.0 AS price\n      FROM range(1000000) t(i)) TO 'big.parquet' (FORMAT parquet);\nSELECT region, count(*) AS n, round(avg(price), 2) AS avg_price\nFROM 'big.parquet' GROUP BY region ORDER BY region LIMIT 3;"
+      },
+      "status": "thriving",
+      "tags": [
+        "columnar",
+        "column-oriented",
+        "file format",
+        "analytics",
+        "dremel",
+        "orc"
+      ],
+      "refs": [
+        {
+          "label": "Apache Parquet documentation",
+          "url": "https://parquet.apache.org/docs/overview/"
+        }
+      ]
+    },
+    {
+      "id": "data.arrow",
+      "title": "Apache Arrow",
+      "cat": "data",
+      "tier": 4,
+      "year": 2016,
+      "short": "A shared in-memory column format, so pandas, Polars, DuckDB and Spark can hand tables to one another without copying them.",
+      "long": "Apache Arrow defines a column-oriented layout for tables held in memory, described by its project as a high-performance cross-system data layer for columnar in-memory analytics. Parquet is the format for files on disk and Arrow the format for data already loaded, so tools that agree on Arrow can exchange columns without converting or copying them; Polars, for example, says it can consume and produce Arrow data, often with zero-copy operations. The Apache Software Foundation announced Arrow as a top-level project on 17 February 2016. Michael Stonebraker and Andrew Pavlo name Arrow as the in-memory exchange format of the open data-lake stack, alongside Parquet and ORC for files. Its core is written in C++, with Python bindings called PyArrow.",
+      "code": {
+        "lang": "python",
+        "text": "import pyarrow as pa                                          # pip install pyarrow\nt = pa.table({\"region\": [\"east\", \"west\"], \"units\": [3, 5]})    # columns stored in Arrow's layout\nprint(t.column(\"units\").to_pylist(), t.num_rows)               # [3, 5] 2"
+      },
+      "status": "thriving",
+      "tags": [
+        "columnar",
+        "in-memory",
+        "zero-copy",
+        "pyarrow",
+        "dataframe"
+      ],
+      "refs": [
+        {
+          "label": "Apache Software Foundation announcement, 17 February 2016",
+          "url": "https://blogs.apache.org/foundation/entry/the_apache_software_foundation_announces87"
+        },
+        {
+          "label": "PyArrow on PyPI",
+          "url": "https://pypi.org/project/pyarrow/"
+        }
+      ]
+    },
+    {
+      "id": "data.sql-queries",
+      "title": "SQL Queries and Joins",
+      "cat": "data",
+      "tier": 3,
+      "year": 1974,
+      "short": "SELECT, WHERE, JOIN and GROUP BY: how you ask a relational database for rows, and how a join combines two tables on matching keys.",
+      "long": "A SQL query describes the rows you want rather than how to fetch them. SELECT chooses columns, WHERE filters rows, GROUP BY collapses rows into groups for counts and totals, and ORDER BY sorts. A JOIN combines rows from two tables whose keys match, which is how normalized data is put back together, and a LEFT JOIN also keeps rows that have no match. The database then picks a plan, using nested loops, a hash join or a merge join. The language dates from IBM's 1974 SEQUEL work and has grown since: recursive queries arrived in SQL:1999, window functions in SQL:2003 and JSON operations in SQL:2016. Donald Chamberlin recalled that features such as GROUP BY were added along the way and did not come from SQUARE, the earlier language SQL grew out of.",
+      "sleeper": "A reader from 1990 knew SELECT and joins. Recursive queries (1999), window functions (2003) and JSON operations (2016) came later, so a modern query can walk a graph, rank rows or reach into JSON without leaving SQL.",
+      "code": {
+        "lang": "sql",
+        "text": "CREATE TABLE creators (id INTEGER PRIMARY KEY, name TEXT);\nCREATE TABLE languages (name TEXT, year INTEGER, creator_id INTEGER REFERENCES creators(id));\nINSERT INTO creators VALUES (1, 'Niklaus Wirth'), (2, 'Dennis Ritchie');\nINSERT INTO languages VALUES ('Pascal', 1970, 1), ('Oberon', 1987, 1), ('C', 1972, 2);\n\nSELECT c.name, COUNT(*) AS n, MIN(l.year) AS first_year\nFROM languages AS l JOIN creators AS c ON c.id = l.creator_id\nGROUP BY c.id, c.name ORDER BY n DESC;\n-- Niklaus Wirth | 2 | 1970\n-- Dennis Ritchie | 1 | 1972"
+      },
+      "status": "thriving",
+      "tags": [
+        "select",
+        "join",
+        "group by",
+        "query",
+        "left join",
+        "window function"
+      ],
+      "refs": [
+        {
+          "label": "The 1995 SQL Reunion: System R",
+          "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-System.html"
+        },
+        {
+          "label": "Wikipedia: SQL",
+          "url": "https://en.wikipedia.org/wiki/SQL"
+        }
+      ]
+    },
+    {
+      "id": "data.ims",
+      "title": "IBM IMS",
+      "cat": "data",
+      "tier": 3,
+      "year": 1968,
+      "short": "IBM's hierarchical database, born in the Apollo program. Programs walk a tree of records, and it still runs core systems at banks and insurers.",
+      "long": "IMS is IBM's hierarchical database: data is stored as a tree of segments, parents with children, and programs read it through DL/I calls. It grew out of an urgent request from the Apollo space program, which in 1963 led IBM's Uri Berman and Rockwell's Peter Nordyke to build a system for tracking the program's bill of materials, its parts lists. The dates depend on what is counted: 1966 for the first formal definition, 1967 for the first shipped version, and 1968 for the first live message at the Rockwell Space Division at NASA in Downey, California, and the announcement for mainframes. IMS was the incumbent that Edgar Codd's 1970 paper criticized, since each file offered either no indexing or indexing on the primary key only. By the late 1980s the vast majority of financial institutions worldwide used it.",
+      "sleeper": "IMS is still in production at many banks because switching is expensive and risky, though, as Michael Stonebraker and Andrew Pavlo wrote in 2024, no start-up would willingly build a new application on it.",
+      "status": "legacy",
+      "tags": [
+        "hierarchical database",
+        "apollo",
+        "dl/i",
+        "mainframe",
+        "navigational"
+      ],
+      "refs": [
+        {
+          "label": "IBM: Information Management System history",
+          "url": "https://www.ibm.com/history/information-management-system"
+        }
+      ]
+    },
+    {
+      "id": "data.network-model",
+      "title": "CODASYL Network Model",
+      "cat": "data",
+      "tier": 4,
+      "year": 1969,
+      "short": "Records linked into named sets by chains of pointers, which programs navigate one record at a time. Bachman's IDS was its main technical input.",
+      "long": "The CODASYL network model, defined by the Data Base Task Group of the committee that also gave the world COBOL, links records into named sets with chains of pointers. A program navigates by commands such as find the first employee in this department's set, then get the next one. Its first report, \"COBOL extensions to handle data bases\", appeared in January 1968, with further reports through 1969, and Charles Bachman's Integrated Data Store from General Electric was the main technical input. Implementations included Cullinet's IDMS, Honeywell's IDS/2, HP's Image and Univac's DMS-1100. Navigational programming depended on maintained currency indicators and was intrinsically procedural; during the 1980s it was eclipsed by declarative query languages, which offered better programmer productivity and a higher level of data independence.",
+      "code": {
+        "lang": "text",
+        "text": "# pseudocode in the navigational style, not any product's syntax\nget department with name = 'Sales'\nget first employee in set department-employees\nuntil end-of-set do\n    process employee\n    get next employee in set department-employees"
+      },
+      "status": "legacy",
+      "tags": [
+        "dbtg",
+        "navigational database",
+        "idms",
+        "sets",
+        "pointers"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Navigational database",
+          "url": "https://en.wikipedia.org/wiki/Navigational_database"
+        },
+        {
+          "label": "Wikipedia: CODASYL",
+          "url": "https://en.wikipedia.org/wiki/CODASYL"
+        }
+      ]
+    },
+    {
+      "id": "data.system-r",
+      "title": "System R",
+      "cat": "data",
+      "tier": 3,
+      "year": 1974,
+      "short": "IBM's research prototype that proved a relational database could be fast enough, and that produced SQL and the techniques behind Db2.",
+      "long": "System R was IBM's relational database research project at its San Jose laboratory. Donald Chamberlin and Raymond Boyce, who had learned of Codd's model, moved to San Jose in 1973 and followed their hard-to-use first language, SQUARE, with an English-like one they called SEQUEL, described in 1974. The project got the name System R at the end of 1974, and a complete working prototype existed in 1976. SEQUEL had to be shortened to SQL after a trademark challenge, which Chamberlin believed came from the aircraft maker Hawker Siddeley. The project was small: about 80,000 lines of code, written in PL/1, PL/S and assembler, by a team that never reached twenty people. IBM's SQL/DS (1981) was built from its code, and Db2 followed in 1983.",
+      "sleeper": "Its authors hoped SQL would let non-programmers query databases. Chamberlin said at a 1995 reunion that it succeeded instead as the way programs embed queries and systems exchange them.",
+      "status": "dead",
+      "tags": [
+        "sequel",
+        "chamberlin",
+        "boyce",
+        "san jose",
+        "prototype"
+      ],
+      "refs": [
+        {
+          "label": "The 1995 SQL Reunion: System R",
+          "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-System.html"
+        }
+      ]
+    },
+    {
+      "id": "data.ingres",
+      "title": "Ingres and QUEL",
+      "cat": "data",
+      "tier": 4,
+      "year": 1973,
+      "short": "Berkeley's relational database project and its query language, QUEL. QUEL lost to SQL, but Ingres led to Sybase, SQL Server and PostgreSQL.",
+      "long": "Ingres was a relational database built at UC Berkeley by Michael Stonebraker, Eugene Wong and colleagues. Jim Gray recalled that around 1972 Stonebraker got a grant for a geographic query system, and that it quickly turned into a relational database; some sources date the start to 1973. The project ran from the early 1970s to 1985 and used its own language, QUEL, which was considered truer to Codd's relational algebra than SQL, though SQL was easier to parse and less intimidating. Ingres spawned Sybase, Microsoft SQL Server and NonStop SQL, and Stonebraker's later POSTGRES project became PostgreSQL. Gray noted that some Ingres people felt the project lost ground by fighting SQL instead of embracing it, and when ANSI chose SQL over QUEL in 1986, Ingres became less competitive until it also offered SQL.",
+      "code": {
+        "lang": "text",
+        "text": "QUEL:  range of s is student\n       retrieve (s.all) where s.state = \"FL\"\nSQL:   select * from student where state = 'FL';\nQUEL:  replace s (age = s.age + 1)\nSQL:   update student set age = age + 1;"
+      },
+      "status": "niche",
+      "tags": [
+        "stonebraker",
+        "berkeley",
+        "quel",
+        "relational",
+        "actian"
+      ],
+      "refs": [
+        {
+          "label": "The 1995 SQL Reunion: Teradata and the Ingres family",
+          "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-Teradata.html"
+        },
+        {
+          "label": "Wikipedia: Ingres (database)",
+          "url": "https://en.wikipedia.org/wiki/Ingres_(database)"
+        }
+      ]
+    },
+    {
+      "id": "data.oracle",
+      "title": "Oracle Database",
+      "cat": "data",
+      "tier": 2,
+      "year": 1979,
+      "short": "Larry Ellison's company, founded in 1977, shipped SQL in 1979, before IBM did by one veteran's account. Oracle still ranks first on DB-Engines (September 2026).",
+      "long": "Larry Ellison, Bob Miner and Ed Oates founded the company on 16 June 1977 in Santa Clara, California, as Software Development Laboratories; it was Relational Software, Inc. from 1979 to 1983 and then Oracle. At the 1995 SQL reunion, Roger Bamford, who joined in 1984, said Oracle had an earlier SQL product than IBM: IBM invented the language, but Oracle shipped it first. The first version was called Version 2, because they figured nobody would buy Version 1. It was written in assembly language, Version 3 was written in C, and Version 6 was a rewrite for transaction processing. System R veterans say Oracle's code has no System R origin: it was built in parallel from the published SQL specification, and its portability and early simplicity helped it sell.",
+      "sleeper": "In 1990 Oracle was the challenger to IBM. It is now branded Oracle AI Database (release 26ai, October 2025), runs inside Azure, Google Cloud and AWS data centers, and ranks first on the DB-Engines popularity score.",
+      "status": "thriving",
+      "tags": [
+        "ellison",
+        "relational software",
+        "pl/sql",
+        "rdbms",
+        "enterprise"
+      ],
+      "refs": [
+        {
+          "label": "The 1995 SQL Reunion: Oracle",
+          "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-Oracle.html"
+        },
+        {
+          "label": "Oracle AI Database",
+          "url": "https://www.oracle.com/database/"
+        }
+      ]
+    },
+    {
+      "id": "data.db2",
+      "title": "IBM Db2",
+      "cat": "data",
+      "tier": 4,
+      "year": 1983,
+      "short": "IBM's flagship relational database, announced in June 1983 and built on System R's ideas. It sat beside IMS inside IBM, and customers often had to choose.",
+      "long": "IBM's System R-derived products were System/38 (1979), SQL/DS (1981) and Db2 (1983). IBM Database 2 Release 1 was announced on 7 June 1983; Roger Miller recalled shipping it to six customers in November 1982 and to eighteen by March 1983, before the announcement widened it to dozens. IBM was slow to commit, which the reunion transcript attributes to internal politics, competing projects and the IMS franchise. One participant described a love-hate relationship with the folks in the tower next door, since a customer often came in saying they had to choose between IMS and Db2, and Bruce Lindsay remarked that IBM will not attack its own products, even when they are weak. SQL/DS had been built from System R's code at IBM's Endicott lab. Db2 remains in use across the IBM ecosystem and ranked ninth on DB-Engines in September 2026.",
+      "status": "thriving",
+      "tags": [
+        "db2",
+        "ibm",
+        "mainframe",
+        "sql/ds",
+        "rdbms"
+      ],
+      "refs": [
+        {
+          "label": "The 1995 SQL Reunion: DB2",
+          "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-DB2.html"
+        },
+        {
+          "label": "Wikipedia: IBM Db2",
+          "url": "https://en.wikipedia.org/wiki/IBM_Db2"
+        }
+      ]
+    },
+    {
+      "id": "data.sqlserver",
+      "title": "SQL Server and Sybase",
+      "cat": "data",
+      "tier": 3,
+      "year": 1989,
+      "short": "Microsoft SQL Server began in 1989 as Sybase's database ported to OS/2. Sybase itself descended from Ingres through Britton-Lee's database machine.",
+      "long": "Sybase was founded in 1984 in Berkeley by Robert Epstein, formerly of Britton-Lee and Ingres, and Mark Hoffman. Britton-Lee, a spin-off from Ingres, had built a database machine, and Jim Gray's 1995 account has Sybase running on Unix with raw disks and a multithreaded single process, about three times faster than everybody else. Microsoft, which around 1986 wanted a database to counter IBM's OS/2 Extended Edition, took Sybase's code and sold it on OS/2. SQL Server 1.0, a 16-bit server for OS/2, was released on 24 April 1989 (one source says May), SQL Server 4.2 for Windows NT arrived in 1993, and SQL Server 6.0 in 1995 ended the collaboration. SAP acquired Sybase in 2010, and the product lives on as SAP Adaptive Server.",
+      "status": "thriving",
+      "tags": [
+        "sybase",
+        "t-sql",
+        "microsoft",
+        "os/2",
+        "rdbms"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Microsoft SQL Server",
+          "url": "https://en.wikipedia.org/wiki/Microsoft_SQL_Server"
+        },
+        {
+          "label": "The 1995 SQL Reunion: Teradata and the Ingres family",
+          "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-Teradata.html"
+        }
+      ]
+    },
+    {
+      "id": "data.mysql",
+      "title": "MySQL",
+      "cat": "data",
+      "tier": 2,
+      "year": 1995,
+      "short": "The fast, simple open-source database behind the early dynamic web, the M in LAMP. Sun bought it in 2008, Oracle inherited it in 2010, and MariaDB forked from it.",
+      "long": "MySQL was created by the Swedish company MySQL AB, founded by David Axmark, Allan Larsson and Michael \"Monty\" Widenius. Development began in 1994 and the first version appeared on 23 May 1995, as a faster, simpler alternative built on the low-level ISAM storage that kept the API of mSQL; the name combines My, the name of Widenius's daughter, with SQL. It became the M in the LAMP stack (Linux, Apache, MySQL, and Perl, PHP or Python) behind much of the early dynamic web, and WordPress, Facebook, Flickr, Twitter and YouTube used it. Sun Microsystems bought MySQL AB for $1 billion in January 2008, and Oracle acquired Sun on 27 January 2010. Widenius forked MySQL as MariaDB on the day Oracle announced the Sun purchase.",
+      "sleeper": "Early MySQL had no stored procedures or triggers until version 5.0 (2005), and InnoDB, which provides transactions and foreign keys, became the default engine only in 5.5 (2010). It now ranks second on both DB-Engines and the 2025 Stack Overflow survey.",
+      "status": "thriving",
+      "tags": [
+        "lamp",
+        "mariadb",
+        "widenius",
+        "innodb",
+        "open source"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: MySQL",
+          "url": "https://en.wikipedia.org/wiki/MySQL"
+        },
+        {
+          "label": "MariaDB Foundation: about",
+          "url": "https://mariadb.org/about/"
+        }
+      ]
+    },
+    {
+      "id": "data.dbase",
+      "title": "dBase, FoxPro and Access",
+      "cat": "data",
+      "tier": 3,
+      "year": 1978,
+      "short": "The single-user desktop databases of the DOS and early Windows years. dBase ruled the 1980s PC, and Microsoft Access then took over on Windows.",
+      "long": "dBase was originally released as Vulcan for PTDOS in 1978, the work of C. Wayne Ratliff. Its CP/M version caught the attention of Ashton-Tate in 1980, which re-released it as dBASE II and later ported it to IBM PCs running DOS; by the mid-1980s Ashton-Tate was one of the big three software publishers, along with Lotus and Microsoft. Clones such as FoxBase, FoxPro and Clipper formed the xBase family, and in the early 1990s xBase was the leading platform for business applications. The poor reception of dBase IV let users switch. Borland acquired Ashton-Tate in 1991, Microsoft acquired Fox Software in 1992, and Microsoft Access 1.0, released on 16 November 1992, quickly became the dominant Windows database, partly by incorporating Fox's Rushmore query optimization.",
+      "sleeper": "These were single-user, file-based databases programmed in a dBase-like language, with no server. Visual FoxPro was discontinued in 2007; client/server databases and SQLite took over the role, though Access still ranked 17th on DB-Engines in September 2026.",
+      "status": "legacy",
+      "tags": [
+        "xbase",
+        "foxpro",
+        "access",
+        "ashton-tate",
+        "clipper",
+        "desktop database"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: dBase",
+          "url": "https://en.wikipedia.org/wiki/DBase"
+        },
+        {
+          "label": "Wikipedia: Microsoft Access",
+          "url": "https://en.wikipedia.org/wiki/Microsoft_Access"
+        }
+      ]
+    },
+    {
+      "id": "data.mongodb",
+      "title": "MongoDB",
+      "cat": "data",
+      "tier": 3,
+      "year": 2009,
+      "short": "The best-known document database, storing JSON-like documents. Early defaults could lose data; it later added multi-document transactions and SQL.",
+      "long": "MongoDB stores documents, which are hierarchies of field and value pairs kept in a JSON-like binary form called BSON, instead of rows in tables. The company 10gen began developing it in 2007 as part of a planned platform-as-a-service product, released it on 11 February 2009 and was renamed MongoDB Inc. in 2013. Multi-document ACID transactions arrived in version 4.0, and the license changed from AGPL to the Server Side Public License in November 2018. Its early reputation suffered from lost data: in a 2013 Jepsen test of version 2.4, 2,381 of 5,700 acknowledged writes disappeared after a network partition, and a 2020 test of version 4.2.6 found it could lose data by default and failed to preserve snapshot isolation. Current documentation says the default write concern is majority.",
+      "sleeper": "Defaults decide what a database promises. MongoDB's early defaults did not check that writes succeeded, and later ones accepted a single node's acknowledgement, so the Jepsen reports became a lesson: web-scale claims need independent testing.",
+      "code": {
+        "lang": "javascript",
+        "text": "// mongosh\ndb.languages.insertOne({ name: \"Python\", year: 1991, creator: { name: \"Guido van Rossum\" }, tags: [\"scripting\"] })\ndb.languages.find({ year: { $gte: 1990 } }).sort({ year: 1 })"
+      },
+      "status": "thriving",
+      "tags": [
+        "document database",
+        "bson",
+        "nosql",
+        "10gen",
+        "atlas"
+      ],
+      "refs": [
+        {
+          "label": "Jepsen: MongoDB (2013)",
+          "url": "https://aphyr.com/posts/284-call-me-maybe-mongodb"
+        },
+        {
+          "label": "Jepsen: MongoDB 4.2.6 (2020)",
+          "url": "https://jepsen.io/analyses/mongodb-4.2.6"
+        }
+      ]
+    },
+    {
+      "id": "data.redis",
+      "title": "Redis",
+      "cat": "data",
+      "tier": 3,
+      "year": 2009,
+      "short": "An in-memory data structure store whose values can be strings, lists, sets or hashes. Its 2024 license change led to the Valkey fork.",
+      "long": "Redis was created by Salvatore Sanfilippo and first released on 26 February 2009. It keeps its data in memory and stores not just strings but lists, sets, hashes and other structures under each key, which makes it a popular cache and a source of fast counters. Memcached, first released in 2003 as a distributed memory cache for dynamic websites, was its older neighbor. On 20 March 2024 Redis moved from the BSD license to dual source-available licenses, and on 28 March the Linux Foundation announced Valkey, a BSD-licensed fork of Redis 7.2.4 backed by AWS, Google Cloud, Oracle, Ericsson and Snap. In May 2025 Redis added the OSI-approved AGPLv3 as a further option, and its chief executive wrote that the 2024 change had hurt the relationship with the community.",
+      "code": {
+        "lang": "text",
+        "text": "> SET session:42 \"ada\" EX 3600       (store a value that expires after an hour)\nOK\n> GET session:42\n\"ada\"\n> INCR page:hits                     (atomic counter)\n(integer) 1"
+      },
+      "status": "thriving",
+      "tags": [
+        "key-value",
+        "cache",
+        "in-memory",
+        "valkey",
+        "memcached"
+      ],
+      "refs": [
+        {
+          "label": "Redis: Redis 8 adds AGPLv3",
+          "url": "https://redis.io/blog/agplv3/"
+        },
+        {
+          "label": "Linux Foundation: Valkey launch",
+          "url": "https://www.linuxfoundation.org/press/linux-foundation-launches-open-source-valkey-community"
+        }
+      ]
+    },
+    {
+      "id": "data.cassandra",
+      "title": "Apache Cassandra",
+      "cat": "data",
+      "tier": 4,
+      "year": 2008,
+      "short": "A wide-column store from Facebook that combines Amazon Dynamo's replication techniques with Google Bigtable's data model, first built for inbox search.",
+      "long": "Cassandra was developed at Facebook by Avinash Lakshman, a co-author of the Dynamo paper, and Prashant Malik, for inbox search. It combines Amazon's Dynamo distributed storage and replication techniques with Google's Bigtable data storage engine model. Facebook released it as open source on Google Code in July 2008, it entered the Apache Incubator in March 2009, and it became a top-level Apache project on 17 February 2010. Michael Stonebraker and Andrew Pavlo are critical of the column-family model: they write that Cassandra and HBase copied Bigtable's limitations, including the lack of joins and secondary indexes. Like most NoSQL systems it later gained a SQL-like language, CQL. It was twelfth overall on DB-Engines in September 2026 and first among wide-column stores.",
+      "code": {
+        "lang": "sql",
+        "text": "-- Cassandra Query Language (CQL): SQL-like, but you design each table around one query\nCREATE TABLE messages_by_user (\n  user_id uuid, sent_at timestamp, body text,\n  PRIMARY KEY (user_id, sent_at)) WITH CLUSTERING ORDER BY (sent_at DESC);\nSELECT * FROM messages_by_user WHERE user_id = 123e4567-e89b-12d3-a456-426614174000 LIMIT 20;"
+      },
+      "status": "thriving",
+      "tags": [
+        "wide-column",
+        "cql",
+        "lakshman",
+        "facebook",
+        "hbase"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Apache Cassandra",
+          "url": "https://en.wikipedia.org/wiki/Apache_Cassandra"
+        },
+        {
+          "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+          "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.neo4j",
+      "title": "Neo4j",
+      "cat": "data",
+      "tier": 4,
+      "year": 2007,
+      "short": "The best-known graph database: it stores nodes and relationships directly and queries them in Cypher. Its edges are pointers, as in CODASYL.",
+      "long": "Neo4j is a graph database founded in 2007 in Sweden as an open-source project by Emil Eifrem, Johan Svensson and Peter Neubauer. It stores nodes and the relationships between them directly and uses the Cypher query language; the company contributed to GQL, the graph query language that became ISO/IEC 39075 in April 2024. Michael Stonebraker and Andrew Pavlo note that Neo4j supports edges using pointers, as CODASYL did, which suits long chains of relationships where a relational system has to use joins. They also point out that a graph can be simulated with node and edge tables, that SQL:2023 added property graph queries (SQL/PGQ), and that they do not expect specialized graph databases to be a large market. Neo4j was first among graph systems and twentieth overall on DB-Engines in September 2026.",
+      "code": {
+        "lang": "text",
+        "text": "// Cypher: friends of friends of Ada\nMATCH (a:Person {name: 'Ada'})-[:KNOWS]->(:Person)-[:KNOWS]->(fof:Person)\nRETURN DISTINCT fof.name"
+      },
+      "status": "thriving",
+      "tags": [
+        "graph database",
+        "cypher",
+        "gql",
+        "property graph",
+        "relationships"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Neo4j",
+          "url": "https://en.wikipedia.org/wiki/Neo4j"
+        },
+        {
+          "label": "ISO/IEC 39075:2024 GQL",
+          "url": "https://www.iso.org/standard/76120.html"
+        }
+      ]
+    },
+    {
+      "id": "data.elasticsearch",
+      "title": "Elasticsearch and Lucene",
+      "cat": "data",
+      "tier": 4,
+      "year": 2010,
+      "short": "Full-text search servers: Lucene is the Java search library, and Elasticsearch wraps it in a distributed server with an HTTP and JSON interface.",
+      "long": "Lucene is a Java search library originally written by Doug Cutting in 1999 and later an Apache project. Elasticsearch, built on Lucene by Shay Banon and first released on 8 February 2010, is a distributed full-text search engine with an HTTP and JSON interface; Solr is the other well-known engine built on Lucene. Both offer little or no transaction support, and Michael Stonebraker and Andrew Pavlo point out that all the leading relational databases now support full-text search indexes as well. In 2021 Elastic changed its license after problems with AWS, which led to Amazon's OpenSearch fork; in August 2024 Shay Banon announced that Elasticsearch and Kibana can be called open source again, with the AGPL added as a license option. Elasticsearch also tops DB-Engines' small vector-database category.",
+      "code": {
+        "lang": "text",
+        "text": "GET /articles/_search\n{ \"query\": { \"match\": { \"body\": \"binary search bug\" } } }"
+      },
+      "status": "thriving",
+      "tags": [
+        "lucene",
+        "solr",
+        "opensearch",
+        "full-text search",
+        "search engine"
+      ],
+      "refs": [
+        {
+          "label": "Elastic: Elasticsearch is Open Source, Again",
+          "url": "https://www.elastic.co/blog/elasticsearch-is-open-source-again"
+        },
+        {
+          "label": "Wikipedia: Elasticsearch",
+          "url": "https://en.wikipedia.org/wiki/Elasticsearch"
+        }
+      ]
+    },
+    {
+      "id": "data.bigtable",
+      "title": "Google Bigtable",
+      "cat": "data",
+      "tier": 4,
+      "year": 2006,
+      "short": "Google's 2006 paper on a distributed storage system: a sparse sorted map indexed by row, column and timestamp. It inspired HBase and Cassandra.",
+      "long": "Bigtable is a distributed storage system for structured data, designed to scale to petabytes across thousands of commodity servers. Its paper, by Chang and colleagues at Google (OSDI 2006), calls a Bigtable a sparse, distributed, persistent multi-dimensional sorted map, indexed by a row key, a column key and a timestamp. Bigtable clusters had been in production since April 2005, and by August 2006 more than sixty Google projects used it, including web indexing, Google Earth and Google Finance. HBase, a Bigtable-style store on Hadoop first released in March 2008, and Cassandra followed its design. Michael Stonebraker and Andrew Pavlo observe that Google itself later built relational systems on top of Bigtable, first Megastore and then Spanner, and rewrote Spanner to remove Bigtable remnants.",
+      "status": "n/a",
+      "tags": [
+        "wide-column",
+        "chang",
+        "hbase",
+        "sorted map",
+        "google"
+      ],
+      "refs": [
+        {
+          "label": "Chang et al., Bigtable: A Distributed Storage System for Structured Data (2006)",
+          "url": "https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.dynamo",
+      "title": "Amazon Dynamo",
+      "cat": "data",
+      "tier": 4,
+      "year": 2007,
+      "short": "Amazon's 2007 key-value store that gave up some consistency to stay always available. Its ideas shaped Cassandra and Amazon's DynamoDB service.",
+      "long": "Dynamo, described by DeCandia and colleagues at SOSP in 2007, is a highly available key-value storage system that some of Amazon's core services use to provide an always-on experience. To reach that availability, the paper says, Dynamo sacrifices consistency under certain failure scenarios. The motivating example was the shopping cart: customers should be able to view and add items even if disks are failing, network routes are flapping or data centers are being destroyed by tornados. The paper measures latency at the 99.9th percentile rather than the average. Cassandra borrowed its replication techniques. Amazon DynamoDB, released on 18 January 2012, is a different, managed service that Werner Vogels described as the result of 15 years of learning in large-scale non-relational databases and cloud services.",
+      "status": "n/a",
+      "tags": [
+        "key-value",
+        "eventual consistency",
+        "shopping cart",
+        "dynamodb",
+        "amazon"
+      ],
+      "refs": [
+        {
+          "label": "DeCandia et al., Dynamo: Amazon's Highly Available Key-value Store (2007)",
+          "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf"
+        },
+        {
+          "label": "Vogels, Amazon DynamoDB (2012)",
+          "url": "https://www.allthingsdistributed.com/2012/01/amazon-dynamodb.html"
+        }
+      ]
+    },
+    {
+      "id": "data.mapreduce",
+      "title": "MapReduce and Hadoop",
+      "cat": "data",
+      "tier": 3,
+      "year": 2004,
+      "short": "Google's 2004 model for processing huge data sets on clusters of cheap machines, and its open-source clone Hadoop. Oversold as a database, now mostly legacy.",
+      "long": "In 2004 Jeffrey Dean and Sanjay Ghemawat of Google described MapReduce: users write a map function that turns key-value pairs into intermediate pairs and a reduce function that merges all values sharing a key, and the system runs the work in parallel across a cluster of commodity machines. Google reported upwards of a thousand MapReduce jobs a day. Doug Cutting and Mike Cafarella built Hadoop from Google's file system and MapReduce papers, naming it after the toy elephant of Cutting's son, and Yahoo, Facebook and others adopted it. In January 2008 David DeWitt and Michael Stonebraker called MapReduce a major step backwards. The Hadoop market cratered in the 2010s: Google said in 2014 that MapReduce had no place in its stack, Cloudera and Hortonworks merged in 2019, and MapR sold its technology to HPE.",
+      "sleeper": "MapReduce programs were once the way to analyze big data. Parquet, ORC and Spark outlived them, and what Hadoop left behind is shared storage, open file formats and data lakes.",
+      "code": {
+        "lang": "python",
+        "text": "from collections import defaultdict\ndocs = [\"to be or not to be\", \"to see or not to see\"]\npairs = [(w, 1) for d in docs for w in d.split()]       # map: emit (word, 1) for every word\ngroups = defaultdict(list)\nfor w, n in pairs: groups[w].append(n)                  # shuffle: gather the values for each key\nprint({w: sum(ns) for w, ns in groups.items()})         # reduce: sum each group\n# {'to': 4, 'be': 2, 'or': 2, 'not': 2, 'see': 2}"
+      },
+      "status": "legacy",
+      "tags": [
+        "hadoop",
+        "hdfs",
+        "cluster",
+        "big data",
+        "cutting",
+        "batch"
+      ],
+      "refs": [
+        {
+          "label": "Dean and Ghemawat, MapReduce: Simplified Data Processing on Large Clusters (2004)",
+          "url": "https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf"
+        },
+        {
+          "label": "DeWitt and Stonebraker, MapReduce: A major step backwards (2008)",
+          "url": "https://homes.cs.washington.edu/~billhowe/mapreduce_a_major_step_backwards.html"
+        }
+      ]
+    },
+    {
+      "id": "data.spanner",
+      "title": "Google Spanner and NewSQL",
+      "cat": "data",
+      "tier": 4,
+      "year": 2012,
+      "short": "Google's globally distributed database with SQL and real transactions, built after Bigtable proved hard to use. NewSQL is the label for systems with similar aims.",
+      "long": "Google's Spanner (OSDI 2012) is a globally distributed, synchronously replicated database that its authors call the first system to distribute data at global scale and support externally consistent distributed transactions. It relies on the TrueTime API, which exposes clock uncertainty using GPS and atomic clocks, generally less than 10 milliseconds. Spanner evolved from a Bigtable-like key-value store because users complained that Bigtable was hard to use for complex, evolving schemas or for strong consistency across wide areas; it gained a SQL-based query language, and its first customer was F1, a rewrite of Google's advertising backend. NewSQL, a term used by Matthew Aslett in 2011, covers relational systems that promise NoSQL-like scale with ACID guarantees, such as CockroachDB, TiDB and YugabyteDB. Adoption has been modest because existing databases were good enough.",
+      "sleeper": "Eventual consistency was the fashion in 2007. By 2012 Google had chosen real transactions at global scale, and Amazon now sells Aurora DSQL, a PostgreSQL-compatible distributed SQL database.",
+      "status": "niche",
+      "tags": [
+        "newsql",
+        "truetime",
+        "cockroachdb",
+        "distributed sql",
+        "aurora dsql"
+      ],
+      "refs": [
+        {
+          "label": "Corbett et al., Spanner: Google's Globally-Distributed Database (2012)",
+          "url": "https://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf"
+        },
+        {
+          "label": "Pavlo and Aslett, What's Really New with NewSQL? (2016)",
+          "url": "https://db.cs.cmu.edu/papers/2016/pavlo-newsql-sigmodrec2016.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.duckdb",
+      "title": "DuckDB",
+      "cat": "data",
+      "tier": 3,
+      "year": 2019,
+      "short": "An embedded analytical SQL database that runs inside your program, with no server, and can query CSV and Parquet files in place.",
+      "long": "DuckDB is an in-process analytical SQL database developed by Mark Raasveldt and Hannes Mühleisen at CWI in the Netherlands. The first commit dates from July 2018 and the first release from 2019, so sources differ on the year; version 1.0.0 followed on 3 June 2024, under the MIT license. Its documentation says SQLite is the world's most widely deployed database and that DuckDB adopted the ideas of simplicity and in-process operation, with no external dependencies. DuckDB is aimed at analytical queries that scan large tables, and it can read CSV and Parquet files directly without loading them first. Michael Stonebraker and Andrew Pavlo credit its rising popularity to processing local and cloud files in place.",
+      "sleeper": "Embedded used to mean a small file-based system such as dBase. DuckDB brings the idea to analytics: install a library, point SQL at a Parquet file, and query it with no server and no loading step.",
+      "code": {
+        "lang": "python",
+        "text": "import duckdb                                      # pip install duckdb\nwith open(\"sales.csv\", \"w\") as f: f.write(\"region,total\\neast,10\\nwest,5\\neast,7\\n\")\nprint(duckdb.sql(\"SELECT region, sum(total) AS total FROM 'sales.csv' GROUP BY region ORDER BY region\"))   # east 17, west 5"
+      },
+      "status": "thriving",
+      "tags": [
+        "embedded",
+        "olap",
+        "analytics",
+        "in-process",
+        "cwi"
+      ],
+      "refs": [
+        {
+          "label": "DuckDB: Why DuckDB",
+          "url": "https://duckdb.org/why_duckdb.html"
+        },
+        {
+          "label": "Raasveldt and Mühleisen, DuckDB: an Embeddable Analytical Database (SIGMOD 2019)",
+          "url": "https://doi.org/10.1145/3299869.3320212"
+        }
+      ]
+    },
+    {
+      "id": "data.vector-db",
+      "title": "Vector Database",
+      "cat": "data",
+      "tier": 3,
+      "year": 2023,
+      "short": "A database that stores embeddings, lists of numbers from a machine-learning model, and finds the closest ones. PostgreSQL and others absorbed it within a year.",
+      "long": "A vector database stores embeddings, which are lists of hundreds or thousands of numbers produced by a machine-learning model so that similar items get nearby vectors, and finds the records closest to a query vector. Exact search over millions of vectors is too slow, so these systems use approximate nearest-neighbor indexes such as the Hierarchical Navigable Small World (HNSW) graph. After ChatGPT made large language models mainstream in late 2022, it took less than a year for several relational databases to add vector search, according to Michael Stonebraker and Andrew Pavlo; the pgvector extension adds it to PostgreSQL. Specialist products include Pinecone, Milvus and Weaviate, yet in DB-Engines' September 2026 vector ranking Elasticsearch, OpenSearch and Couchbase score above Pinecone and Milvus. Whether vector databases will last as a separate category is contested.",
+      "sleeper": "In 1990 a database matched exact values or text. Search by meaning through embeddings is new since about 2019, and Stonebraker and Pavlo predict it will end up as a feature of relational systems rather than a separate product.",
+      "code": {
+        "lang": "python",
+        "text": "import math\ndocs = {\"cat\": [0.9, 0.1, 0.0], \"kitten\": [0.85, 0.15, 0.05], \"car\": [0.1, 0.9, 0.2], \"truck\": [0.05, 0.95, 0.15]}\ndef cosine(a, b):\n    dot = sum(x * y for x, y in zip(a, b))\n    return dot / (math.sqrt(sum(x * x for x in a)) * math.sqrt(sum(y * y for y in b)))\nquery = [0.88, 0.12, 0.02]                       # the embedding of a query such as 'small pet'\nfor name in sorted(docs, key=lambda k: cosine(query, docs[k]), reverse=True):\n    print(f\"{name:7s} {cosine(query, docs[name]):.3f}\")   # cat 0.999, kitten 0.999, car 0.243, truck 0.188"
+      },
+      "status": "thriving",
+      "tags": [
+        "embeddings",
+        "similarity search",
+        "hnsw",
+        "pgvector",
+        "pinecone",
+        "nearest neighbor"
+      ],
+      "refs": [
+        {
+          "label": "pgvector README",
+          "url": "https://raw.githubusercontent.com/pgvector/pgvector/master/README.md"
+        },
+        {
+          "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+          "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.warehouse",
+      "title": "Data Warehouse",
+      "cat": "data",
+      "tier": 4,
+      "year": 1979,
+      "short": "A central database that collects data from operational systems for reporting and analysis. Teradata was the archetype; cloud column stores now dominate.",
+      "long": "A data warehouse gathers data from a company's operational systems into one central database for reporting. Teradata is the archetype: formed in 1979 by Caltech researchers and Citibank, it shipped its first parallel SQL engine around 1984 and in 1992 delivered the first system over a terabyte, for Walmart. Michael Stonebraker and Andrew Pavlo date the warehouse market from the mid-1990s, with retailers such as Walmart and Ralph Kimball's star schema, and say that all vendors active in it have converted from row stores to column stores. Cloud warehouses followed: BigQuery was announced in May 2010, Amazon Redshift reached general release on 15 February 2013, and Snowflake, founded in 2012, went public in September 2020 and raised $3.4 billion.",
+      "status": "thriving",
+      "tags": [
+        "teradata",
+        "olap",
+        "star schema",
+        "snowflake",
+        "bigquery",
+        "redshift"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Teradata",
+          "url": "https://en.wikipedia.org/wiki/Teradata"
+        },
+        {
+          "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+          "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.lakehouse",
+      "title": "Data Lakehouse",
+      "cat": "data",
+      "tier": 4,
+      "year": 2021,
+      "short": "Warehouse-style SQL and transactions on open files in cheap cloud storage. Databricks coined the term; Delta Lake and Iceberg supply the table features.",
+      "long": "A data lake is cheap storage, now usually cloud object storage such as S3, holding raw data in open file formats like Apache Parquet and ORC, with the schema applied when the data is read. That is flexible, but as the Databricks authors admit it punts data quality and governance downstream, so companies often added a separate warehouse such as Redshift or Snowflake on top, a two-tier design. In a 2021 paper at the CIDR conference, Michael Armbrust, Ali Ghodsi, Reynold Xin and Matei Zaharia argued for the lakehouse: open direct-access formats, first-class support for machine learning and warehouse-grade performance on one platform. Table formats such as Delta Lake, Iceberg and Hudi add transactional updates on top of Parquet files. The authors work for Databricks, which coined the term.",
+      "status": "thriving",
+      "tags": [
+        "data lake",
+        "delta lake",
+        "iceberg",
+        "hudi",
+        "databricks",
+        "object storage"
+      ],
+      "refs": [
+        {
+          "label": "Armbrust et al., Lakehouse: A New Generation of Open Platforms (CIDR 2021)",
+          "url": "https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.cloud-db",
+      "title": "Managed Cloud Database",
+      "cat": "data",
+      "tier": 4,
+      "year": 2009,
+      "short": "A database that a cloud provider runs for you as a service. Amazon RDS (2009) started with managed MySQL, and the cloud has reshaped how databases are built.",
+      "long": "A managed cloud database is one that a cloud provider runs for you as a service, so you rent it instead of operating your own server. Amazon RDS, released on 26 October 2009 as managed MySQL, added Oracle in June 2011, SQL Server in May 2012, PostgreSQL in November 2013 and MariaDB in October 2015. Other landmarks include BigQuery (announced May 2010), DynamoDB (January 2012), Redshift (preview November 2012), Aurora (November 2014) and Snowflake. Michael Stonebraker and Andrew Pavlo say the cloud forced databases to be completely re-architected around network-attached object storage, and they warn that except for embedded systems, any product not starting with a cloud offering will likely fail. They also describe the danger that open-source databases are monetized by the big cloud providers, the background to the Redis, Elastic and MongoDB license changes.",
+      "sleeper": "Around 1990 a database meant a server you bought, installed and tended. Today a rented one is common: Azure SQL Database, DynamoDB and BigQuery were all in DB-Engines' top 20 in September 2026.",
+      "status": "thriving",
+      "tags": [
+        "dbaas",
+        "rds",
+        "aurora",
+        "serverless",
+        "managed service"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Amazon Relational Database Service",
+          "url": "https://en.wikipedia.org/wiki/Amazon_Relational_Database_Service"
+        },
+        {
+          "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+          "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.cap",
+      "title": "CAP Theorem",
+      "cat": "data",
+      "tier": 3,
+      "year": 1998,
+      "short": "Eric Brewer's claim that a networked database cannot be fully consistent and available during a network partition. It is often misquoted as pick two of three.",
+      "long": "Eric Brewer of UC Berkeley first stated the CAP idea in autumn 1998, published it in 1999 and presented it as a conjecture at the PODC conference in 2000; Seth Gilbert and Nancy Lynch of MIT proved it in 2002. The popular version says a networked shared-data system can have at most two of consistency, availability and partition tolerance. In 2012 Brewer himself called the two-of-three formulation misleading: CAP forbids only perfect availability and consistency while a network partition is happening, and partitions are rare. The NoSQL movement used the theorem as an argument against traditional databases, and in 2015 Martin Kleppmann objected that CAP's definitions are very narrow, that its consistency has nothing to do with the C in ACID, and that databases should stop being labeled CP or AP.",
+      "sleeper": "Eventual consistency, as Werner Vogels explained it, means replicas converge if updates stop. With N replicas, W of them acknowledging each write and R of them consulted on each read, a system where W + R <= N can return stale data.",
+      "status": "n/a",
+      "tags": [
+        "brewer",
+        "consistency",
+        "availability",
+        "partition tolerance",
+        "eventual consistency",
+        "pacelc"
+      ],
+      "refs": [
+        {
+          "label": "Brewer, CAP Twelve Years Later (2012)",
+          "url": "https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/"
+        },
+        {
+          "label": "Kleppmann, Please stop calling databases CP or AP (2015)",
+          "url": "https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html"
+        }
+      ]
+    },
+    {
+      "id": "data.acid",
+      "title": "Transactions and ACID",
+      "cat": "data",
+      "tier": 2,
+      "year": 1981,
+      "short": "A transaction groups changes so they all succeed or all fail. ACID names its guarantees: atomicity, consistency, isolation and durability.",
+      "long": "A transaction is a group of changes that succeed or fail together, such as debiting one account and crediting another. ACID names four guarantees: atomicity (all or nothing), consistency (constraints hold before and after), isolation (concurrent transactions do not see each other's half-finished work) and durability (once committed, the result survives a crash). Jim Gray's 1981 paper \"The Transaction Concept: Virtues and Limitations\", a Tandem Computers report, defined a transaction by atomicity, durability and consistency; the acronym ACID appears in Theo Härder and Andreas Reuter's 1983 paper on database recovery. A transaction that breaks a rule is rolled back and leaves no trace. NoSQL systems that began with weaker guarantees, including MongoDB, Cassandra and DynamoDB, later added transactions.",
+      "sleeper": "Serializable, the strictest isolation level, is not the default in PostgreSQL, which uses Read Committed, so some anomalies are possible unless you request a stronger level or lock explicitly.",
+      "code": {
+        "lang": "python",
+        "text": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE accounts (id INTEGER PRIMARY KEY, balance_cents INTEGER CHECK (balance_cents >= 0))\")\nconn.executemany(\"INSERT INTO accounts VALUES (?, ?)\", [(1, 1000), (2, 0)])\nconn.commit()\ntry:\n    with conn:                      # one transaction: commit on success, roll back on error\n        conn.execute(\"UPDATE accounts SET balance_cents = balance_cents + 1500 WHERE id = 2\")\n        conn.execute(\"UPDATE accounts SET balance_cents = balance_cents - 1500 WHERE id = 1\")   # overdraft\nexcept sqlite3.IntegrityError as e:\n    print(\"rolled back:\", e)        # rolled back: CHECK constraint failed: balance_cents >= 0\nprint(conn.execute(\"SELECT * FROM accounts\").fetchall())   # [(1, 1000), (2, 0)]"
+      },
+      "status": "thriving",
+      "tags": [
+        "transaction",
+        "rollback",
+        "commit",
+        "atomicity",
+        "durability",
+        "jim gray"
+      ],
+      "refs": [
+        {
+          "label": "Gray, The Transaction Concept: Virtues and Limitations (1981)",
+          "url": "https://jimgray.azurewebsites.net/papers/thetransactionconcept.pdf"
+        },
+        {
+          "label": "Wikipedia: ACID",
+          "url": "https://en.wikipedia.org/wiki/ACID"
+        }
+      ]
+    },
+    {
+      "id": "data.isolation",
+      "title": "Isolation Levels",
+      "cat": "data",
+      "tier": 4,
+      "year": 1995,
+      "short": "Settings that decide how much concurrent transactions can see of each other's work. A 1995 paper showed the SQL standard's definitions were not enough.",
+      "long": "Isolation levels let an application trade throughput for correctness when many transactions run at once. The SQL-92 standard defines four levels, READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ and SERIALIZABLE, in terms of three anomalies called dirty read, non-repeatable read and phantom. The 1995 paper \"A Critique of ANSI SQL Isolation Levels\", by Berenson, Bernstein, Gray, Melton and the two O'Neils, showed that these phenomena and the ANSI definitions fail to characterize several popular isolation levels, and it defined snapshot isolation. PostgreSQL defaults to Read Committed. You can request all four levels, but internally only three are distinct, because Read Uncommitted behaves like Read Committed. Readers do not block writers, since each transaction sees a snapshot, and Serializable uses serializable snapshot isolation.",
+      "code": {
+        "lang": "python",
+        "text": "import sqlite3, os, tempfile\npath = os.path.join(tempfile.mkdtemp(), \"demo.db\")\na, b = sqlite3.connect(path), sqlite3.connect(path)    # two clients of the same database\na.execute(\"CREATE TABLE t (x)\")\na.execute(\"INSERT INTO t VALUES (1)\")                  # a's transaction is still open\nprint(b.execute(\"SELECT COUNT(*) FROM t\").fetchone())  # (0,): b cannot see uncommitted work\na.commit()\nprint(b.execute(\"SELECT COUNT(*) FROM t\").fetchone())  # (1,)"
+      },
+      "status": "thriving",
+      "tags": [
+        "snapshot isolation",
+        "dirty read",
+        "phantom read",
+        "mvcc",
+        "serializable"
+      ],
+      "refs": [
+        {
+          "label": "Berenson et al., A Critique of ANSI SQL Isolation Levels (1995)",
+          "url": "https://arxiv.org/abs/cs/0701157"
+        },
+        {
+          "label": "PostgreSQL documentation: Transaction Isolation",
+          "url": "https://www.postgresql.org/docs/current/transaction-iso.html"
+        }
+      ]
+    },
+    {
+      "id": "data.normalization",
+      "title": "Normalization",
+      "cat": "data",
+      "tier": 3,
+      "year": 1970,
+      "short": "Store each fact once. Codd's normal forms split tables so that a change in one place cannot leave the data contradicting itself.",
+      "long": "Normalization is the practice of storing each fact once. Codd's 1970 paper introduced a normal form for relations and a very simple elimination procedure that turns an employee record with nested job history and children into four flat tables linked by an employee number. William Kent's 1983 guide to five normal forms gave the memorable rule for second and third normal form: a non-key field must provide a fact about the key, the whole key and nothing but the key. The reason is practical. If a customer's city is repeated on every order row, changing it means updating many rows, and missing one leaves the data contradicting itself, which is called an update anomaly. In a SQLite test, updating only one of Ada's two orders left two cities for her; after splitting into customers and orders tables joined by a key, a single update fixed everything.",
+      "code": {
+        "lang": "sql",
+        "text": "-- Not normalized: the city is repeated on every order row\nCREATE TABLE flat (order_id INTEGER, customer_name TEXT, customer_city TEXT, item TEXT);\n-- Normalized: each fact once, linked by a key\nCREATE TABLE customers (id INTEGER PRIMARY KEY, name TEXT UNIQUE, city TEXT);\nCREATE TABLE orders (id INTEGER PRIMARY KEY, customer_id INTEGER REFERENCES customers(id), item TEXT);\nINSERT INTO customers VALUES (1, 'Ada', 'London');\nINSERT INTO orders VALUES (1, 1, 'pen'), (2, 1, 'ink');\nUPDATE customers SET city = 'Cambridge' WHERE name = 'Ada';     -- one row to change\nSELECT o.item, c.city FROM orders o JOIN customers c ON c.id = o.customer_id WHERE c.name = 'Ada';\n-- pen | Cambridge\n-- ink | Cambridge"
+      },
+      "status": "thriving",
+      "tags": [
+        "normal form",
+        "update anomaly",
+        "schema design",
+        "kent",
+        "foreign key"
+      ],
+      "refs": [
+        {
+          "label": "Kent, A Simple Guide to Five Normal Forms (1983)",
+          "url": "https://www.bkent.net/Doc/simple5.htm"
+        },
+        {
+          "label": "Codd, A Relational Model of Data for Large Shared Data Banks (1970)",
+          "url": "https://www.engineering.upenn.edu/~zives/03f/cis550/codd.pdf"
+        }
+      ]
+    },
+    {
+      "id": "data.index",
+      "title": "Database Index and EXPLAIN",
+      "cat": "data",
+      "tier": 3,
+      "year": 1970,
+      "short": "An extra sorted structure, usually a B-tree, that lets the database find rows without reading the whole table. EXPLAIN shows whether it was used.",
+      "long": "An index is an extra sorted structure that lets a database find rows without reading the whole table. Codd noted in 1970 that an index is a redundant component of the data representation: it speeds queries and slows insertions and deletions. The standard structure is the B-tree. In a test with SQLite on a table of a million rows, 50 lookups by customer id took 878 milliseconds with a full table scan and 0.5 milliseconds with an index, about 1,750 times faster; building the index took 220 milliseconds. You can ask the database to show its plan: PostgreSQL's EXPLAIN prints nodes such as Seq Scan, Bitmap Index Scan and Hash Join with estimated costs, and SQLite offers EXPLAIN QUERY PLAN. Michael Stonebraker and Andrew Pavlo call the query optimizer the hardest part of building a database.",
+      "code": {
+        "lang": "sql",
+        "text": "-- SQLite: the wording of query plans differs between databases and versions\nCREATE TABLE languages (name TEXT, year INTEGER, creator_id INTEGER);\nEXPLAIN QUERY PLAN SELECT name FROM languages WHERE creator_id = 3;\n--  SCAN languages\nCREATE INDEX idx_languages_creator ON languages(creator_id);\nEXPLAIN QUERY PLAN SELECT name FROM languages WHERE creator_id = 3;\n--  SEARCH languages USING INDEX idx_languages_creator (creator_id=?)"
+      },
+      "status": "thriving",
+      "tags": [
+        "explain",
+        "query plan",
+        "optimizer",
+        "seq scan",
+        "create index"
+      ],
+      "refs": [
+        {
+          "label": "PostgreSQL documentation: Using EXPLAIN",
+          "url": "https://www.postgresql.org/docs/current/using-explain.html"
+        },
+        {
+          "label": "SQLite: EXPLAIN QUERY PLAN",
+          "url": "https://www.sqlite.org/eqp.html"
+        }
+      ]
+    },
+    {
+      "id": "data.drivers",
+      "title": "Database Driver APIs (ODBC, JDBC, DB-API)",
+      "cat": "data",
+      "tier": 4,
+      "year": 1992,
+      "short": "Standard interfaces that let a program talk to many databases through drivers: ODBC (1992), JDBC (1997) and Python's DB-API.",
+      "long": "A driver API lets one application talk to any database that has a driver. ODBC (Open Database Connectivity), developed by Microsoft and Simba Technologies in the early 1990s, reached version 1.0 in September 1992, and its early drivers were noted for poor performance. Sun released JDBC as part of JDK 1.1 on 19 February 1997. Python's DB-API, specified in PEP 249 in 1999, defines connect, cursor, execute, fetch, commit and rollback calls, plus a paramstyle constant that names the placeholder style. The pattern is the same in every language: open a connection, send a SQL statement with placeholders, bind the values separately, fetch rows, commit or roll back, and close. Opening connections to a server database is expensive, so applications keep a small pool of them, and PgBouncer is a connection pooler for PostgreSQL.",
+      "sleeper": "Bigger pools are not faster. According to the HikariCP guide, an Oracle performance demonstration cut a pool from 2,048 to 96 connections and response times fell from about 100 ms to about 2 ms.",
+      "code": {
+        "lang": "python",
+        "text": "import sqlite3                              # any DB-API driver follows the same steps\nconn = sqlite3.connect(\":memory:\")          # 1. open a connection\nconn.execute(\"CREATE TABLE creators (id INTEGER PRIMARY KEY, name TEXT)\")\nconn.execute(\"INSERT INTO creators VALUES (3, 'Niklaus Wirth')\")\ncur = conn.cursor()\ncur.execute(\"SELECT name FROM creators WHERE id = ?\", (3,))   # 2-3. placeholder, value bound separately\nprint(cur.fetchall())                       # 4. fetch rows: [('Niklaus Wirth',)]\nconn.commit()                               # 5. commit (or conn.rollback())\nconn.close()                                # 6. close"
+      },
+      "status": "thriving",
+      "tags": [
+        "odbc",
+        "jdbc",
+        "db-api",
+        "connection pool",
+        "driver",
+        "pep 249"
+      ],
+      "refs": [
+        {
+          "label": "PEP 249: Python Database API Specification v2.0",
+          "url": "https://peps.python.org/pep-0249/"
+        },
+        {
+          "label": "Microsoft Learn: ODBC overview",
+          "url": "https://learn.microsoft.com/en-us/sql/odbc/reference/odbc-overview"
+        }
+      ]
+    },
+    {
+      "id": "data.parameterized",
+      "title": "Parameterized Queries",
+      "cat": "data",
+      "tier": 3,
+      "year": 1992,
+      "short": "Send the SQL text and the values separately, with placeholders, so user input can never be read as SQL. It is the standard defense against SQL injection.",
+      "long": "A parameterized query keeps the SQL text and the values apart: the statement contains placeholders such as ? or %s, and the driver sends the values separately, so input can never become part of the SQL. Pasting user input into the SQL string does the opposite and is called SQL injection. Jeff Forristal described it for Microsoft SQL Server in Phrack magazine in December 1998, noting that attackers could piggyback commands onto a query. OWASP says injection is best prevented through parameterized queries, and it is still in the OWASP Top 10 for 2025. Incidents include Albert Gonzalez's theft of over 170 million card numbers in 2005 to 2007 and the 2023 MOVEit Transfer breach. Placeholders protect values only, so table and column names must come from a fixed list. The first use of bound parameters is undated in the sources, so the year on the map is approximate.",
+      "sleeper": "If you stopped following software around 1990, this attack was not yet written up: it first appeared in a 1998 Phrack article, and by 2007 the xkcd strip \"Exploits of a Mom\" had made little Bobby Tables a standing joke.",
+      "code": {
+        "lang": "python",
+        "text": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE creators (name TEXT)\")\nconn.executemany(\"INSERT INTO creators VALUES (?)\", [(\"Ada\",), (\"Alan\",)])\nevil = \"x' OR '1'='1\"\nsql = f\"SELECT name FROM creators WHERE name = '{evil}'\"      # DANGEROUS: data pasted into SQL text\nprint(len(conn.execute(sql).fetchall()))                      # 2: every row leaks\nprint(len(conn.execute(\"SELECT name FROM creators WHERE name = ?\", (evil,)).fetchall()))   # 0"
+      },
+      "status": "thriving",
+      "tags": [
+        "sql injection",
+        "placeholders",
+        "prepared statements",
+        "bind variables",
+        "bobby tables"
+      ],
+      "refs": [
+        {
+          "label": "OWASP: Query Parameterization Cheat Sheet",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Query_Parameterization_Cheat_Sheet.html"
+        },
+        {
+          "label": "Phrack 54: NT Web Technology Vulnerabilities (1998)",
+          "url": "https://phrack.org/issues/54/nt-web-technology-vulnerabilities.html"
+        }
+      ]
+    },
+    {
+      "id": "data.orm",
+      "title": "Object-Relational Mapping",
+      "cat": "data",
+      "tier": 3,
+      "year": 2001,
+      "short": "Libraries that convert between database rows and the objects of your language. They save boilerplate but bring the impedance mismatch and the N+1 query trap.",
+      "long": "Object-relational mapping (ORM) converts data between a relational database and the objects of an object-oriented language. The difficulty is the object-relational impedance mismatch: objects form graphs that reference each other, while relational data are rows in tables linked by reversible joins. Martin Fowler named the Active Record pattern in 2003, the basis of Ruby on Rails' ActiveRecord. Hibernate for Java was released on 23 May 2001, SQLAlchemy for Python on 14 February 2006, and Entity Framework for .NET on 11 August 2008, to a vote of no confidence signed by at least a thousand developers. Fowler defended ORMs in 2012; Michael Stonebraker and Andrew Pavlo call them a vital tool for prototyping that often costs the ability to push logic into the database. The classic trap is N+1: one query for 7 creators plus one per creator for their languages made 8 statements instead of 1.",
+      "code": {
+        "lang": "python",
+        "text": "from sqlalchemy import create_engine, select          # pip install sqlalchemy\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session\nclass Base(DeclarativeBase): pass\nclass Language(Base):                                  # one class per table, one object per row\n    __tablename__ = \"languages\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str]\n    year: Mapped[int]\nengine = create_engine(\"sqlite://\"); Base.metadata.create_all(engine)\nwith Session(engine) as s:\n    s.add_all([Language(name=\"C\", year=1972), Language(name=\"Python\", year=1991)]); s.commit()\n    print([lang.name for lang in s.scalars(select(Language).where(Language.year > 1980))])   # ['Python']"
+      },
+      "status": "thriving",
+      "tags": [
+        "orm",
+        "hibernate",
+        "active record",
+        "impedance mismatch",
+        "entity framework",
+        "n+1"
+      ],
+      "refs": [
+        {
+          "label": "Fowler, Orm Hate (2012)",
+          "url": "https://martinfowler.com/bliki/OrmHate.html"
+        },
+        {
+          "label": "Wikipedia: Object-relational mapping",
+          "url": "https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping"
+        }
+      ]
+    },
+    {
+      "id": "data.sql-standard",
+      "title": "SQL Standard (ISO/IEC 9075)",
+      "cat": "data",
+      "tier": 4,
+      "year": 1986,
+      "short": "SQL became an ANSI standard in 1986 and an ISO standard in 1987, and has been revised through SQL:2023. No implementation follows it fully.",
+      "long": "SQL became an ANSI standard in 1986 (SQL-86, adopted as FIPS PUB 127) and an ISO standard in 1987, and is maintained as ISO/IEC 9075. NIST certified compliance until 1996, and since then vendors self-certify. Later revisions added integrity constraints (SQL-89), a major overhaul (SQL-92), recursive queries, triggers and arrays (SQL:1999), XML features and window functions (SQL:2003), SQL/XML (2006), temporal data (SQL:2011), JSON operations (SQL:2016) and property graph queries (SQL:2023). In practice virtually no implementation adheres fully, and most SQL needs some changes to move between databases; for example, the standard folds unquoted names to upper case but PostgreSQL folds them to lower case. Michael Stonebraker and Andrew Pavlo argue that the standard is how SQL absorbed the best ideas of its rivals.",
+      "code": {
+        "lang": "sql",
+        "text": "-- SQL:1999 recursive query: everything reachable from A in a graph stored as rows\nCREATE TABLE edges (src TEXT, dst TEXT);\nINSERT INTO edges VALUES ('A','B'), ('A','C'), ('B','D'), ('C','D'), ('D','F');\nWITH RECURSIVE reach(node, depth) AS (\n  SELECT 'A', 0\n  UNION\n  SELECT e.dst, r.depth + 1 FROM reach AS r JOIN edges AS e ON e.src = r.node\n)\nSELECT node, MIN(depth) FROM reach GROUP BY node ORDER BY MIN(depth), node;\n-- A 0 | B 1 | C 1 | D 2 | F 3"
+      },
+      "status": "thriving",
+      "tags": [
+        "iso 9075",
+        "ansi",
+        "sql:2023",
+        "portability",
+        "standard"
+      ],
+      "refs": [
+        {
+          "label": "modern-sql.com: SQL standard resources",
+          "url": "https://modern-sql.com/standard"
+        },
+        {
+          "label": "Wikipedia: SQL",
+          "url": "https://en.wikipedia.org/wiki/SQL"
+        }
+      ]
+    },
+    {
+      "id": "data.informix",
+      "title": "Informix",
+      "cat": "data",
+      "tier": 4,
+      "year": 1980,
+      "short": "A major commercial relational database of the late 1980s and 1990s, founded in 1980. IBM bought it in 2001, and HCLSoftware has developed it since 2017.",
+      "long": "Roger Sippl founded Relational Database Systems, Inc. in 1980, and the company was later renamed Informix Corporation. Sippl said later that he was unaware of Edgar Codd's work when he began designing the query language. In the late 1980s and early 1990s Informix was one of the commercial database servers a company could choose, alongside Oracle and Sybase. IBM acquired Informix Software in 2001, and since April 2017 HCLSoftware has developed the product. It survives as a niche system, one of the commercial vendors that lost ground to Oracle, Db2, SQL Server and later the cloud.",
+      "status": "niche",
+      "tags": [
+        "sippl",
+        "relational database systems",
+        "hcl",
+        "rdbms"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Informix",
+          "url": "https://en.wikipedia.org/wiki/Informix"
+        },
+        {
+          "label": "Wikipedia: Roger Sippl",
+          "url": "https://en.wikipedia.org/wiki/Roger_Sippl"
+        }
+      ]
+    },
+    {
+      "id": "data.database-machines",
+      "title": "Database Machines",
+      "cat": "data",
+      "tier": 4,
+      "year": 1981,
+      "short": "Special-purpose hardware built to speed up databases. Britton-Lee's IDM/500 (1981) was the first product, and the approach failed commercially in the 1980s.",
+      "long": "In the 1980s several vendors tried to speed up databases with custom hardware. Britton-Lee, a spin-off from Ingres, released the first commercial accelerator, the IDM/500, in 1981, and Jim Gray's 1995 account describes it as a database machine with an accelerator. Teradata's custom Y-net sorting network was later dropped for a software-only solution. Michael Stonebraker and Andrew Pavlo write that all other custom hardware acceleration of the 1980s failed, that FPGA and GPU databases repeated the pattern and remain mostly niche, and that custom hardware will succeed only at the large cloud vendors, with examples such as Redshift AQUA.",
+      "status": "dead",
+      "tags": [
+        "britton-lee",
+        "idm/500",
+        "accelerator",
+        "fpga",
+        "gpu database"
+      ],
+      "refs": [
+        {
+          "label": "The 1995 SQL Reunion: Teradata and the Ingres family",
+          "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-Teradata.html"
+        },
+        {
+          "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+          "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "s": "data.dbms",
+      "t": "data.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "data.dbms",
+      "t": "ppl.bachman",
+      "w": 2,
+      "k": "related",
+      "note": "Bachman's IDS (1963) was one of the first database management systems"
+    },
+    {
+      "s": "data.dbms",
+      "t": "ppl.codd",
+      "w": 2,
+      "k": "related",
+      "note": "Codd's 1970 paper defined data independence"
+    },
+    {
+      "s": "data.dbms",
+      "t": "data.sql",
+      "w": 2,
+      "k": "uses",
+      "note": "most database management systems are queried with SQL"
+    },
+    {
+      "s": "data.dbms",
+      "t": "data.relational",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "data.dbms",
+      "t": "proc.what-goes-around",
+      "w": 2,
+      "k": "related",
+      "note": "Stonebraker and Pavlo's survey of database history"
+    },
+    {
+      "s": "data.hash-table",
+      "t": "data.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.hash-table",
+      "t": "conc.array",
+      "w": 2,
+      "k": "uses",
+      "note": "the slots are held in an array"
+    },
+    {
+      "s": "data.hash-table",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related",
+      "note": "Python's dict and set are hash tables"
+    },
+    {
+      "s": "data.hash-table",
+      "t": "lang.js",
+      "w": 1,
+      "k": "related",
+      "note": "Map and Set"
+    },
+    {
+      "s": "data.hash-table",
+      "t": "conc.big-o",
+      "w": 1,
+      "k": "related",
+      "note": "constant time on average, linear in the worst case"
+    },
+    {
+      "s": "data.hash-table",
+      "t": "qual.security",
+      "w": 1,
+      "k": "related",
+      "note": "hash flooding attacks"
+    },
+    {
+      "s": "data.dynamic-array",
+      "t": "data.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.dynamic-array",
+      "t": "conc.array",
+      "w": 2,
+      "k": "uses",
+      "note": "a contiguous block that is reallocated when full"
+    },
+    {
+      "s": "data.dynamic-array",
+      "t": "lang.cpp-stl",
+      "w": 2,
+      "k": "related",
+      "note": "std::vector"
+    },
+    {
+      "s": "data.dynamic-array",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related",
+      "note": "the list type"
+    },
+    {
+      "s": "data.dynamic-array",
+      "t": "data.linked-list",
+      "w": 2,
+      "k": "competes-with",
+      "note": "contiguous versus linked storage for sequences"
+    },
+    {
+      "s": "data.dynamic-array",
+      "t": "lang.java",
+      "w": 1,
+      "k": "related",
+      "note": "ArrayList"
+    },
+    {
+      "s": "data.linked-list",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.linked-list",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related",
+      "note": "Lisp's cons cell"
+    },
+    {
+      "s": "data.linked-list",
+      "t": "conc.pointer",
+      "w": 2,
+      "k": "uses",
+      "note": "each node holds the address of the next"
+    },
+    {
+      "s": "data.linked-list",
+      "t": "conc.manual-memory",
+      "w": 1,
+      "k": "related",
+      "note": "one separate allocation per node"
+    },
+    {
+      "s": "data.stack-queue",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.stack-queue",
+      "t": "ppl.turing",
+      "w": 2,
+      "k": "related",
+      "note": "Turing's bury and unbury, 1946"
+    },
+    {
+      "s": "data.stack-queue",
+      "t": "ppl.zuse",
+      "w": 1,
+      "k": "related",
+      "note": "the Z4 had a two-level stack in 1945"
+    },
+    {
+      "s": "data.stack-queue",
+      "t": "conc.recursion",
+      "w": 2,
+      "k": "related",
+      "note": "runaway recursion ends in a stack overflow"
+    },
+    {
+      "s": "data.stack-queue",
+      "t": "conc.function",
+      "w": 2,
+      "k": "related",
+      "note": "every call pushes a frame onto the call stack"
+    },
+    {
+      "s": "data.bst",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.bst",
+      "t": "conc.binary-search",
+      "w": 2,
+      "k": "related",
+      "note": "each comparison discards part of the keys"
+    },
+    {
+      "s": "data.bst",
+      "t": "conc.big-o",
+      "w": 1,
+      "k": "related",
+      "note": "O(log n) when balanced, O(n) when degenerate"
+    },
+    {
+      "s": "data.bst",
+      "t": "conc.recursion",
+      "w": 1,
+      "k": "related",
+      "note": "recursive insert and walk"
+    },
+    {
+      "s": "data.b-tree",
+      "t": "data.index",
+      "w": 3,
+      "k": "part-of",
+      "note": "the standard structure behind database indexes"
+    },
+    {
+      "s": "data.b-tree",
+      "t": "data.bst",
+      "w": 2,
+      "k": "related",
+      "note": "a wide, page-sized relative of the search tree"
+    },
+    {
+      "s": "data.b-tree",
+      "t": "conc.big-o",
+      "w": 1,
+      "k": "related",
+      "note": "time proportional to the logarithm of the index size"
+    },
+    {
+      "s": "data.b-tree",
+      "t": "data.ingres",
+      "w": 1,
+      "k": "related",
+      "note": "B-trees are among the Ingres ideas still in use"
+    },
+    {
+      "s": "data.graph",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.graph",
+      "t": "data.stack-queue",
+      "w": 2,
+      "k": "uses",
+      "note": "breadth-first search visits neighbors in queue order"
+    },
+    {
+      "s": "data.graph",
+      "t": "data.sql-queries",
+      "w": 1,
+      "k": "related",
+      "note": "recursive queries can walk a graph stored as rows"
+    },
+    {
+      "s": "data.graph",
+      "t": "pkg.dependency-management",
+      "w": 1,
+      "k": "related",
+      "note": "package dependencies form a graph"
+    },
+    {
+      "s": "data.graph",
+      "t": "math.pagerank",
+      "w": 1,
+      "k": "related",
+      "note": "the web's links form a graph"
+    },
+    {
+      "s": "data.csv",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.csv",
+      "t": "lang.fortran",
+      "w": 2,
+      "k": "related",
+      "note": "IBM Fortran list-directed input and output, 1972"
+    },
+    {
+      "s": "data.csv",
+      "t": "org.ietf",
+      "w": 1,
+      "k": "related",
+      "note": "RFC 4180"
+    },
+    {
+      "s": "data.csv",
+      "t": "data.parquet",
+      "w": 1,
+      "k": "competes-with",
+      "note": "plain row text versus compressed columns"
+    },
+    {
+      "s": "data.xml",
+      "t": "data.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.xml",
+      "t": "data.json",
+      "w": 2,
+      "k": "replaced-by",
+      "note": "for web APIs"
+    },
+    {
+      "s": "data.xml",
+      "t": "org.w3c-whatwg",
+      "w": 2,
+      "k": "created-by",
+      "note": "a W3C Recommendation in 1998"
+    },
+    {
+      "s": "data.xml",
+      "t": "fail.xml-databases",
+      "w": 2,
+      "k": "influenced",
+      "note": "XML spawned XML databases"
+    },
+    {
+      "s": "data.xml",
+      "t": "lang.html",
+      "w": 1,
+      "k": "related",
+      "note": "meant to bring SGML to the web the way HTML did"
+    },
+    {
+      "s": "data.xml",
+      "t": "data.sql-standard",
+      "w": 1,
+      "k": "related",
+      "note": "SQL:2003 XML features and SQL/XML in 2006"
+    },
+    {
+      "s": "data.json",
+      "t": "data.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.json",
+      "t": "data.mongodb",
+      "w": 2,
+      "k": "influenced",
+      "note": "document databases adopted JSON as their data model"
+    },
+    {
+      "s": "data.json",
+      "t": "lang.js",
+      "w": 2,
+      "k": "related",
+      "note": "objects and arrays that mirror JavaScript"
+    },
+    {
+      "s": "data.json",
+      "t": "lang.ecmascript",
+      "w": 2,
+      "k": "related",
+      "note": "derived from ECMAScript; standardized as ECMA-404"
+    },
+    {
+      "s": "data.json",
+      "t": "plat.rest",
+      "w": 2,
+      "k": "related",
+      "note": "REST and JSON became the usual web API pair"
+    },
+    {
+      "s": "data.json",
+      "t": "data.sql-standard",
+      "w": 1,
+      "k": "related",
+      "note": "JSON operations arrived in SQL:2016"
+    },
+    {
+      "s": "data.yaml",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.yaml",
+      "t": "data.json",
+      "w": 2,
+      "k": "related",
+      "note": "YAML 1.2 is a superset of JSON"
+    },
+    {
+      "s": "data.yaml",
+      "t": "plat.kubernetes",
+      "w": 1,
+      "k": "related",
+      "note": "Kubernetes manifests are written in YAML"
+    },
+    {
+      "s": "data.yaml",
+      "t": "qual.github-actions",
+      "w": 1,
+      "k": "related",
+      "note": "workflow files are YAML"
+    },
+    {
+      "s": "data.protobuf",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.protobuf",
+      "t": "org.google",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.protobuf",
+      "t": "data.json",
+      "w": 2,
+      "k": "competes-with",
+      "note": "smaller and faster, but it needs a schema"
+    },
+    {
+      "s": "data.protobuf",
+      "t": "plat.graphql-grpc",
+      "w": 2,
+      "k": "related",
+      "note": "gRPC carries protobuf messages"
+    },
+    {
+      "s": "data.parquet",
+      "t": "data.lakehouse",
+      "w": 2,
+      "k": "part-of",
+      "note": "the open file format of data lakes"
+    },
+    {
+      "s": "data.parquet",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.parquet",
+      "t": "org.apache-foundation",
+      "w": 1,
+      "k": "part-of",
+      "note": "top-level Apache project since 2015"
+    },
+    {
+      "s": "data.parquet",
+      "t": "data.warehouse",
+      "w": 1,
+      "k": "related",
+      "note": "the modern descendant of the warehouse extract file"
+    },
+    {
+      "s": "data.arrow",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.arrow",
+      "t": "data.parquet",
+      "w": 2,
+      "k": "related",
+      "note": "Arrow is the memory format, Parquet the file format"
+    },
+    {
+      "s": "data.arrow",
+      "t": "math.pandas",
+      "w": 2,
+      "k": "related",
+      "note": "exchanges columns without copying"
+    },
+    {
+      "s": "data.arrow",
+      "t": "math.polars",
+      "w": 2,
+      "k": "related",
+      "note": "consumes and produces Arrow data"
+    },
+    {
+      "s": "data.arrow",
+      "t": "org.apache-foundation",
+      "w": 1,
+      "k": "part-of",
+      "note": "Apache top-level project since 2016"
+    },
+    {
+      "s": "data.sql-queries",
+      "t": "data.sql",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "data.sql-queries",
+      "t": "data.index",
+      "w": 2,
+      "k": "related",
+      "note": "indexes let the planner avoid scanning whole tables"
+    },
+    {
+      "s": "data.sql-queries",
+      "t": "data.normalization",
+      "w": 2,
+      "k": "related",
+      "note": "joins put normalized tables back together"
+    },
+    {
+      "s": "data.sql-queries",
+      "t": "conc.declarative",
+      "w": 2,
+      "k": "related",
+      "note": "you describe the result, not the steps"
+    },
+    {
+      "s": "data.sql-queries",
+      "t": "data.hash-table",
+      "w": 1,
+      "k": "uses",
+      "note": "a hash join builds a hash table of one side"
+    },
+    {
+      "s": "data.sql-queries",
+      "t": "conc.linq",
+      "w": 1,
+      "k": "related",
+      "note": "language-integrated queries borrow the style"
+    },
+    {
+      "s": "data.ims",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.ims",
+      "t": "org.ibm",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.ims",
+      "t": "data.network-model",
+      "w": 2,
+      "k": "competes-with",
+      "note": "the two navigational designs of the 1960s"
+    },
+    {
+      "s": "data.ims",
+      "t": "data.db2",
+      "w": 2,
+      "k": "competes-with",
+      "note": "customers often had to choose IMS or Db2"
+    },
+    {
+      "s": "data.ims",
+      "t": "data.relational",
+      "w": 2,
+      "k": "replaced-by",
+      "note": "navigational access gave way to declarative queries"
+    },
+    {
+      "s": "data.network-model",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.network-model",
+      "t": "org.codasyl",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.network-model",
+      "t": "ppl.bachman",
+      "w": 2,
+      "k": "related",
+      "note": "Bachman's IDS was the main technical input"
+    },
+    {
+      "s": "data.network-model",
+      "t": "lang.cobol",
+      "w": 2,
+      "k": "related",
+      "note": "the first report was COBOL extensions to handle data bases"
+    },
+    {
+      "s": "data.network-model",
+      "t": "data.relational",
+      "w": 2,
+      "k": "replaced-by",
+      "note": "eclipsed by declarative query languages in the 1980s"
+    },
+    {
+      "s": "data.system-r",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.system-r",
+      "t": "data.relational",
+      "w": 3,
+      "k": "implements",
+      "note": "the first serious implementation of Codd's model"
+    },
+    {
+      "s": "data.system-r",
+      "t": "org.ibm",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.system-r",
+      "t": "data.db2",
+      "w": 3,
+      "k": "evolved-into",
+      "note": "SQL/DS and Db2 came out of this work"
+    },
+    {
+      "s": "data.system-r",
+      "t": "data.sql",
+      "w": 3,
+      "k": "influenced",
+      "note": "SEQUEL became SQL here"
+    },
+    {
+      "s": "data.system-r",
+      "t": "data.ingres",
+      "w": 2,
+      "k": "competes-with",
+      "note": "rival groups at San Jose and Berkeley"
+    },
+    {
+      "s": "data.system-r",
+      "t": "lang.pl1",
+      "w": 2,
+      "k": "uses",
+      "note": "the relational data system was written mostly in PL/1"
+    },
+    {
+      "s": "data.ingres",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.ingres",
+      "t": "ppl.stonebraker",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.ingres",
+      "t": "org.berkeley",
+      "w": 2,
+      "k": "created-by"
+    },
+    {
+      "s": "data.ingres",
+      "t": "data.postgres",
+      "w": 3,
+      "k": "evolved-into",
+      "note": "Stonebraker's POSTGRES project followed Ingres"
+    },
+    {
+      "s": "data.ingres",
+      "t": "data.sqlserver",
+      "w": 2,
+      "k": "influenced",
+      "note": "Sybase and SQL Server descend from Ingres"
+    },
+    {
+      "s": "data.ingres",
+      "t": "data.oracle",
+      "w": 2,
+      "k": "competes-with",
+      "note": "Oracle gained as Ingres resisted SQL"
+    },
+    {
+      "s": "data.ingres",
+      "t": "data.relational",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "data.oracle",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.oracle",
+      "t": "ppl.ellison",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.oracle",
+      "t": "org.oracle",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.oracle",
+      "t": "data.sql",
+      "w": 3,
+      "k": "implements",
+      "note": "shipped SQL in 1979"
+    },
+    {
+      "s": "data.oracle",
+      "t": "data.db2",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "data.oracle",
+      "t": "data.sqlserver",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "data.oracle",
+      "t": "data.postgres",
+      "w": 2,
+      "k": "competes-with",
+      "note": "PostgreSQL gains points as Oracle loses them on DB-Engines"
+    },
+    {
+      "s": "data.oracle",
+      "t": "lang.c",
+      "w": 2,
+      "k": "uses",
+      "note": "Version 3 was rewritten in C"
+    },
+    {
+      "s": "data.db2",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.db2",
+      "t": "org.ibm",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.db2",
+      "t": "data.sql",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "data.db2",
+      "t": "data.relational",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "data.sqlserver",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.sqlserver",
+      "t": "org.microsoft",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.sqlserver",
+      "t": "data.sql",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "data.sqlserver",
+      "t": "plat.windows-nt",
+      "w": 2,
+      "k": "uses",
+      "note": "SQL Server 4.2 for Windows NT, 1993"
+    },
+    {
+      "s": "data.sqlserver",
+      "t": "fail.os2",
+      "w": 2,
+      "k": "uses",
+      "note": "SQL Server 1.0 ran on OS/2"
+    },
+    {
+      "s": "data.mysql",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.mysql",
+      "t": "data.sql",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "data.mysql",
+      "t": "org.sun",
+      "w": 2,
+      "k": "related",
+      "note": "Sun bought MySQL AB in 2008"
+    },
+    {
+      "s": "data.mysql",
+      "t": "org.oracle",
+      "w": 2,
+      "k": "related",
+      "note": "Oracle acquired Sun in 2010"
+    },
+    {
+      "s": "data.mysql",
+      "t": "data.postgres",
+      "w": 2,
+      "k": "competes-with"
+    },
+    {
+      "s": "data.mysql",
+      "t": "lang.php",
+      "w": 2,
+      "k": "related",
+      "note": "the P in LAMP"
+    },
+    {
+      "s": "data.mysql",
+      "t": "plat.wordpress",
+      "w": 2,
+      "k": "related",
+      "note": "WordPress runs on MySQL"
+    },
+    {
+      "s": "data.mysql",
+      "t": "plat.linux",
+      "w": 1,
+      "k": "related",
+      "note": "the L in LAMP"
+    },
+    {
+      "s": "data.dbase",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.dbase",
+      "t": "lang.fourth-gen",
+      "w": 2,
+      "k": "related",
+      "note": "programmed in a dBase-like language"
+    },
+    {
+      "s": "data.dbase",
+      "t": "data.sqlite",
+      "w": 2,
+      "k": "replaced-by",
+      "note": "single-file local databases moved to SQLite"
+    },
+    {
+      "s": "data.dbase",
+      "t": "org.borland",
+      "w": 2,
+      "k": "related",
+      "note": "Borland bought Ashton-Tate in 1991"
+    },
+    {
+      "s": "data.dbase",
+      "t": "org.microsoft",
+      "w": 2,
+      "k": "related",
+      "note": "Fox Software in 1992, then Access"
+    },
+    {
+      "s": "data.dbase",
+      "t": "plat.cpm",
+      "w": 1,
+      "k": "uses",
+      "note": "the CP/M port caught Ashton-Tate"
+    },
+    {
+      "s": "data.dbase",
+      "t": "plat.msdos",
+      "w": 1,
+      "k": "uses",
+      "note": "the DOS port"
+    },
+    {
+      "s": "data.dbase",
+      "t": "fail.dos-giants",
+      "w": 2,
+      "k": "related",
+      "note": "Ashton-Tate was one of the big three software publishers"
+    },
+    {
+      "s": "data.mongodb",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.mongodb",
+      "t": "data.postgres",
+      "w": 2,
+      "k": "competes-with",
+      "note": "PostgreSQL stores JSON as well"
+    },
+    {
+      "s": "data.mongodb",
+      "t": "qual.jepsen",
+      "w": 2,
+      "k": "related",
+      "note": "the 2013 and 2020 Jepsen reports"
+    },
+    {
+      "s": "data.mongodb",
+      "t": "fail.schemaless-myth",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "data.mongodb",
+      "t": "fail.object-databases",
+      "w": 2,
+      "k": "related",
+      "note": "document databases resemble the object databases of the 1980s"
+    },
+    {
+      "s": "data.mongodb",
+      "t": "fail.xml-databases",
+      "w": 1,
+      "k": "related",
+      "note": "and the XML databases of the late 1990s"
+    },
+    {
+      "s": "data.mongodb",
+      "t": "data.acid",
+      "w": 2,
+      "k": "related",
+      "note": "multi-document transactions arrived in 4.0"
+    },
+    {
+      "s": "data.redis",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.redis",
+      "t": "data.hash-table",
+      "w": 1,
+      "k": "uses",
+      "note": "hash values, and SipHash hashing"
+    },
+    {
+      "s": "data.redis",
+      "t": "org.linux-foundation",
+      "w": 2,
+      "k": "related",
+      "note": "the Linux Foundation announced the Valkey fork"
+    },
+    {
+      "s": "data.redis",
+      "t": "proc.licensing",
+      "w": 2,
+      "k": "related",
+      "note": "the 2024 license change"
+    },
+    {
+      "s": "data.cassandra",
+      "t": "data.nosql",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "data.cassandra",
+      "t": "org.meta",
+      "w": 3,
+      "k": "created-by",
+      "note": "built at Facebook"
+    },
+    {
+      "s": "data.cassandra",
+      "t": "org.apache-foundation",
+      "w": 2,
+      "k": "part-of",
+      "note": "top-level Apache project in 2010"
+    },
+    {
+      "s": "data.cassandra",
+      "t": "data.sql",
+      "w": 1,
+      "k": "related",
+      "note": "CQL is SQL-like"
+    },
+    {
+      "s": "data.neo4j",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.neo4j",
+      "t": "data.graph",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "data.neo4j",
+      "t": "data.network-model",
+      "w": 2,
+      "k": "related",
+      "note": "edges are pointers, as in CODASYL"
+    },
+    {
+      "s": "data.neo4j",
+      "t": "data.sql-standard",
+      "w": 1,
+      "k": "related",
+      "note": "GQL and SQL/PGQ"
+    },
+    {
+      "s": "data.elasticsearch",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.elasticsearch",
+      "t": "data.vector-db",
+      "w": 2,
+      "k": "related",
+      "note": "tops the vector category on DB-Engines"
+    },
+    {
+      "s": "data.elasticsearch",
+      "t": "org.apache-foundation",
+      "w": 1,
+      "k": "related",
+      "note": "Lucene and Solr are Apache projects"
+    },
+    {
+      "s": "data.elasticsearch",
+      "t": "proc.licensing",
+      "w": 2,
+      "k": "related",
+      "note": "Elastic's license changes"
+    },
+    {
+      "s": "data.elasticsearch",
+      "t": "org.aws",
+      "w": 1,
+      "k": "related",
+      "note": "Amazon's OpenSearch fork"
+    },
+    {
+      "s": "data.elasticsearch",
+      "t": "lang.java",
+      "w": 2,
+      "k": "uses",
+      "note": "Lucene is a Java library"
+    },
+    {
+      "s": "data.elasticsearch",
+      "t": "data.mapreduce",
+      "w": 1,
+      "k": "related",
+      "note": "Doug Cutting wrote Lucene and started Hadoop"
+    },
+    {
+      "s": "data.bigtable",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "influenced"
+    },
+    {
+      "s": "data.bigtable",
+      "t": "org.google",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.bigtable",
+      "t": "ppl.dean-ghemawat",
+      "w": 2,
+      "k": "created-by"
+    },
+    {
+      "s": "data.bigtable",
+      "t": "data.cassandra",
+      "w": 3,
+      "k": "influenced",
+      "note": "Cassandra took Bigtable's data model"
+    },
+    {
+      "s": "data.bigtable",
+      "t": "data.spanner",
+      "w": 2,
+      "k": "evolved-into",
+      "note": "Spanner grew out of a Bigtable-like store"
+    },
+    {
+      "s": "data.dynamo",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "influenced"
+    },
+    {
+      "s": "data.dynamo",
+      "t": "org.aws",
+      "w": 2,
+      "k": "related",
+      "note": "DynamoDB is an AWS service"
+    },
+    {
+      "s": "data.dynamo",
+      "t": "data.cassandra",
+      "w": 3,
+      "k": "influenced",
+      "note": "Cassandra took Dynamo's replication techniques"
+    },
+    {
+      "s": "data.dynamo",
+      "t": "data.cap",
+      "w": 2,
+      "k": "related",
+      "note": "availability chosen over consistency"
+    },
+    {
+      "s": "data.dynamo",
+      "t": "data.cloud-db",
+      "w": 2,
+      "k": "related",
+      "note": "DynamoDB, 2012"
+    },
+    {
+      "s": "data.mapreduce",
+      "t": "org.google",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.mapreduce",
+      "t": "ppl.dean-ghemawat",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.mapreduce",
+      "t": "org.apache-foundation",
+      "w": 2,
+      "k": "related",
+      "note": "Hadoop is an Apache project"
+    },
+    {
+      "s": "data.mapreduce",
+      "t": "conc.fp",
+      "w": 2,
+      "k": "related",
+      "note": "map and reduce in a functional style"
+    },
+    {
+      "s": "data.mapreduce",
+      "t": "data.lakehouse",
+      "w": 2,
+      "k": "influenced",
+      "note": "left behind shared storage, open formats and data lakes"
+    },
+    {
+      "s": "data.mapreduce",
+      "t": "data.warehouse",
+      "w": 2,
+      "k": "competes-with",
+      "note": "a 2009 study found warehouse systems faster than Hadoop"
+    },
+    {
+      "s": "data.mapreduce",
+      "t": "ppl.stonebraker",
+      "w": 2,
+      "k": "related",
+      "note": "co-wrote 'A major step backwards'"
+    },
+    {
+      "s": "data.spanner",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.spanner",
+      "t": "org.google",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "data.spanner",
+      "t": "ppl.dean-ghemawat",
+      "w": 2,
+      "k": "created-by"
+    },
+    {
+      "s": "data.spanner",
+      "t": "data.cap",
+      "w": 2,
+      "k": "related",
+      "note": "real transactions instead of eventual consistency"
+    },
+    {
+      "s": "data.spanner",
+      "t": "data.acid",
+      "w": 2,
+      "k": "implements",
+      "note": "externally consistent distributed transactions"
+    },
+    {
+      "s": "data.spanner",
+      "t": "data.postgres",
+      "w": 1,
+      "k": "related",
+      "note": "PostgreSQL-compatible distributed SQL such as Aurora DSQL"
+    },
+    {
+      "s": "data.spanner",
+      "t": "data.cloud-db",
+      "w": 2,
+      "k": "related",
+      "note": "Spanner and Aurora are cloud services"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "data.sqlite",
+      "w": 3,
+      "k": "related",
+      "note": "adopted SQLite's simplicity and in-process operation"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "data.parquet",
+      "w": 2,
+      "k": "uses",
+      "note": "queries Parquet files in place"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "data.csv",
+      "w": 1,
+      "k": "uses",
+      "note": "queries CSV files in place"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "data.arrow",
+      "w": 2,
+      "k": "uses",
+      "note": "exchanges columns with pandas and Polars"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "math.pandas",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related",
+      "note": "ships as a Python package"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "data.lakehouse",
+      "w": 2,
+      "k": "related",
+      "note": "queries lake files directly"
+    },
+    {
+      "s": "data.duckdb",
+      "t": "data.sql",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "data.vector-db",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.vector-db",
+      "t": "math.llm",
+      "w": 2,
+      "k": "related",
+      "note": "embeddings come from machine-learning models"
+    },
+    {
+      "s": "data.vector-db",
+      "t": "mod.chatgpt",
+      "w": 2,
+      "k": "related",
+      "note": "vector search spread after ChatGPT in late 2022"
+    },
+    {
+      "s": "data.vector-db",
+      "t": "data.postgres",
+      "w": 2,
+      "k": "related",
+      "note": "the pgvector extension"
+    },
+    {
+      "s": "data.vector-db",
+      "t": "data.nosql",
+      "w": 1,
+      "k": "related",
+      "note": "document-style systems with specialized indexes"
+    },
+    {
+      "s": "data.vector-db",
+      "t": "proc.what-goes-around",
+      "w": 2,
+      "k": "related",
+      "note": "Stonebraker and Pavlo predicted its absorption into SQL systems"
+    },
+    {
+      "s": "data.warehouse",
+      "t": "data.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.warehouse",
+      "t": "data.lakehouse",
+      "w": 2,
+      "k": "evolved-into"
+    },
+    {
+      "s": "data.warehouse",
+      "t": "org.databricks-snowflake",
+      "w": 2,
+      "k": "related",
+      "note": "Snowflake is a cloud warehouse"
+    },
+    {
+      "s": "data.warehouse",
+      "t": "org.aws",
+      "w": 1,
+      "k": "related",
+      "note": "Amazon Redshift"
+    },
+    {
+      "s": "data.warehouse",
+      "t": "org.google",
+      "w": 1,
+      "k": "related",
+      "note": "BigQuery"
+    },
+    {
+      "s": "data.warehouse",
+      "t": "data.sql",
+      "w": 2,
+      "k": "uses"
+    },
+    {
+      "s": "data.lakehouse",
+      "t": "data.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.lakehouse",
+      "t": "org.databricks-snowflake",
+      "w": 2,
+      "k": "created-by",
+      "note": "Databricks coined the term"
+    },
+    {
+      "s": "data.lakehouse",
+      "t": "plat.cloud",
+      "w": 2,
+      "k": "uses",
+      "note": "cloud object storage"
+    },
+    {
+      "s": "data.lakehouse",
+      "t": "fail.schemaless-myth",
+      "w": 2,
+      "k": "related",
+      "note": "schema-on-read punts governance downstream"
+    },
+    {
+      "s": "data.cloud-db",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.cloud-db",
+      "t": "plat.cloud",
+      "w": 2,
+      "k": "uses"
+    },
+    {
+      "s": "data.cloud-db",
+      "t": "org.aws",
+      "w": 2,
+      "k": "created-by",
+      "note": "Amazon RDS, 2009"
+    },
+    {
+      "s": "data.cloud-db",
+      "t": "plat.azure-gcp",
+      "w": 1,
+      "k": "related",
+      "note": "Azure SQL Database and BigQuery"
+    },
+    {
+      "s": "data.cloud-db",
+      "t": "data.postgres",
+      "w": 2,
+      "k": "related",
+      "note": "cloud vendors converge on PostgreSQL-compatible services"
+    },
+    {
+      "s": "data.cloud-db",
+      "t": "data.mysql",
+      "w": 1,
+      "k": "related",
+      "note": "RDS began with MySQL"
+    },
+    {
+      "s": "data.cloud-db",
+      "t": "proc.licensing",
+      "w": 2,
+      "k": "related",
+      "note": "cloud providers monetizing open-source databases"
+    },
+    {
+      "s": "data.cap",
+      "t": "data.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.cap",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "related",
+      "note": "used as an argument for NoSQL"
+    },
+    {
+      "s": "data.cap",
+      "t": "data.acid",
+      "w": 2,
+      "k": "related",
+      "note": "the C in CAP is not the C in ACID"
+    },
+    {
+      "s": "data.cap",
+      "t": "org.berkeley",
+      "w": 2,
+      "k": "related",
+      "note": "Eric Brewer, UC Berkeley"
+    },
+    {
+      "s": "data.cap",
+      "t": "org.mit",
+      "w": 1,
+      "k": "related",
+      "note": "Gilbert and Lynch proved it"
+    },
+    {
+      "s": "data.acid",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.acid",
+      "t": "conc.stm",
+      "w": 1,
+      "k": "related",
+      "note": "database-style transactions applied to memory"
+    },
+    {
+      "s": "data.acid",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "related",
+      "note": "ACID versus BASE"
+    },
+    {
+      "s": "data.acid",
+      "t": "conc.error-handling",
+      "w": 1,
+      "k": "related",
+      "note": "a failed transaction is rolled back"
+    },
+    {
+      "s": "data.isolation",
+      "t": "data.acid",
+      "w": 3,
+      "k": "part-of",
+      "note": "the I in ACID"
+    },
+    {
+      "s": "data.isolation",
+      "t": "data.postgres",
+      "w": 2,
+      "k": "related",
+      "note": "defaults to Read Committed and uses snapshots"
+    },
+    {
+      "s": "data.isolation",
+      "t": "qual.jepsen",
+      "w": 2,
+      "k": "related",
+      "note": "Jepsen checks isolation claims"
+    },
+    {
+      "s": "data.normalization",
+      "t": "data.relational",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "data.normalization",
+      "t": "ppl.codd",
+      "w": 3,
+      "k": "created-by",
+      "note": "introduced in the 1970 paper"
+    },
+    {
+      "s": "data.normalization",
+      "t": "fail.schemaless-myth",
+      "w": 1,
+      "k": "related",
+      "note": "a schema always exists, even when it is implicit"
+    },
+    {
+      "s": "data.index",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.index",
+      "t": "data.postgres",
+      "w": 2,
+      "k": "related",
+      "note": "EXPLAIN"
+    },
+    {
+      "s": "data.index",
+      "t": "data.sqlite",
+      "w": 2,
+      "k": "related",
+      "note": "EXPLAIN QUERY PLAN"
+    },
+    {
+      "s": "data.index",
+      "t": "data.oracle",
+      "w": 1,
+      "k": "related",
+      "note": "a rule-based optimizer first, a cost-based one later"
+    },
+    {
+      "s": "data.index",
+      "t": "conc.big-o",
+      "w": 1,
+      "k": "related",
+      "note": "logarithmic lookups instead of scans"
+    },
+    {
+      "s": "data.index",
+      "t": "ppl.codd",
+      "w": 1,
+      "k": "related",
+      "note": "Codd called an index a redundant component"
+    },
+    {
+      "s": "data.drivers",
+      "t": "data.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "data.drivers",
+      "t": "org.microsoft",
+      "w": 2,
+      "k": "created-by",
+      "note": "ODBC, with Simba Technologies"
+    },
+    {
+      "s": "data.drivers",
+      "t": "org.sun",
+      "w": 2,
+      "k": "related",
+      "note": "JDBC shipped with JDK 1.1"
+    },
+    {
+      "s": "data.drivers",
+      "t": "lang.java",
+      "w": 2,
+      "k": "related",
+      "note": "JDBC"
+    },
+    {
+      "s": "data.drivers",
+      "t": "lang.python",
+      "w": 2,
+      "k": "related",
+      "note": "the DB-API of PEP 249"
+    },
+    {
+      "s": "data.drivers",
+      "t": "pkg.python-stdlib",
+      "w": 1,
+      "k": "related",
+      "note": "sqlite3 ships in the standard library"
+    },
+    {
+      "s": "data.drivers",
+      "t": "data.sqlite",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "data.drivers",
+      "t": "data.postgres",
+      "w": 1,
+      "k": "related",
+      "note": "psycopg, pg and PgBouncer"
+    },
+    {
+      "s": "data.parameterized",
+      "t": "data.sql",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.parameterized",
+      "t": "qual.sql-injection",
+      "w": 3,
+      "k": "related",
+      "note": "the standard defense"
+    },
+    {
+      "s": "data.parameterized",
+      "t": "qual.owasp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "data.parameterized",
+      "t": "data.drivers",
+      "w": 2,
+      "k": "related",
+      "note": "the driver sends the values separately"
+    },
+    {
+      "s": "data.orm",
+      "t": "data.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.orm",
+      "t": "pkg.sqlalchemy",
+      "w": 2,
+      "k": "related",
+      "note": "Python's best-known ORM"
+    },
+    {
+      "s": "data.orm",
+      "t": "pkg.rails",
+      "w": 2,
+      "k": "related",
+      "note": "ActiveRecord"
+    },
+    {
+      "s": "data.orm",
+      "t": "pkg.django",
+      "w": 1,
+      "k": "related",
+      "note": "Django's ORM and migrations"
+    },
+    {
+      "s": "data.orm",
+      "t": "plat.dotnet",
+      "w": 1,
+      "k": "related",
+      "note": "Entity Framework"
+    },
+    {
+      "s": "data.orm",
+      "t": "ppl.fowler",
+      "w": 2,
+      "k": "related",
+      "note": "Active Record pattern and Orm Hate"
+    },
+    {
+      "s": "data.orm",
+      "t": "conc.oop",
+      "w": 2,
+      "k": "related",
+      "note": "bridges objects and rows"
+    },
+    {
+      "s": "data.orm",
+      "t": "fail.object-databases",
+      "w": 2,
+      "k": "related",
+      "note": "the cheaper alternative to storing objects directly"
+    },
+    {
+      "s": "data.orm",
+      "t": "data.relational",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "data.sql-standard",
+      "t": "data.sql",
+      "w": 2,
+      "k": "influenced",
+      "note": "SQL absorbed new ideas through the standard"
+    },
+    {
+      "s": "data.sql-standard",
+      "t": "data.postgres",
+      "w": 2,
+      "k": "related",
+      "note": "name case folding differs from the standard"
+    },
+    {
+      "s": "data.sql-standard",
+      "t": "data.sql-queries",
+      "w": 2,
+      "k": "related",
+      "note": "recursive queries, window functions and JSON came through the standard"
+    },
+    {
+      "s": "data.sql-standard",
+      "t": "data.ingres",
+      "w": 2,
+      "k": "influenced",
+      "note": "ANSI chose SQL over QUEL in 1986"
+    },
+    {
+      "s": "data.sql-standard",
+      "t": "proc.what-goes-around",
+      "w": 1,
+      "k": "related",
+      "note": "SQL absorbed the ideas of its rivals"
+    },
+    {
+      "s": "data.informix",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.informix",
+      "t": "data.sql",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "data.informix",
+      "t": "data.oracle",
+      "w": 2,
+      "k": "competes-with",
+      "note": "rival commercial servers of the 1980s and 1990s"
+    },
+    {
+      "s": "data.informix",
+      "t": "org.ibm",
+      "w": 2,
+      "k": "related",
+      "note": "IBM acquired Informix Software in 2001"
+    },
+    {
+      "s": "data.database-machines",
+      "t": "data.dbms",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "data.database-machines",
+      "t": "data.warehouse",
+      "w": 2,
+      "k": "related",
+      "note": "Teradata, the warehouse archetype, started as a parallel database machine"
+    },
+    {
+      "s": "data.database-machines",
+      "t": "data.ingres",
+      "w": 1,
+      "k": "related",
+      "note": "Britton-Lee was a spin-off from Ingres"
+    },
+    {
+      "s": "data.database-machines",
+      "t": "data.sqlserver",
+      "w": 1,
+      "k": "related",
+      "note": "Sybase was founded by Britton-Lee and Ingres alumni"
+    },
+    {
+      "s": "data.database-machines",
+      "t": "fail.hub",
+      "w": 2,
+      "k": "part-of",
+      "note": "a documented dead end"
+    },
+    {
+      "s": "data.database-machines",
+      "t": "plat.cloud",
+      "w": 1,
+      "k": "related",
+      "note": "custom accelerators now survive at the large cloud vendors"
+    }
+  ]
+}

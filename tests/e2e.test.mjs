@@ -136,6 +136,17 @@ test('search finds a node, Enter selects it', withPage({}, async ({ page }) => {
   await page.fill('#q', 'zzzzqqq'); assert.match(await page.locator('#results li').first().textContent(), /Nothing matches/);
 }));
 
+test('an empty search box offers starter questions, and each opens the node that answers it', withPage({}, async ({ page }) => {
+  const qs = data.questions; assert.ok(qs.length >= 10, 'the data should carry starter questions');
+  await page.click('#q'); await page.waitForSelector('#results li[role="option"]');
+  assert.equal(await page.locator('#results li[role="option"]').count(), qs.length);
+  const texts = await page.locator('#results li[role="option"] .rt').allTextContents();
+  assert.deepEqual(texts, qs.map((x) => x.q));
+  await page.locator('#results li[role="option"]').nth(3).click();
+  await page.waitForFunction((id) => window.__mapTest.state().selected === id, qs[3].node);
+  assert.equal(await page.locator('#panel h2').textContent(), byId.get(qs[3].node).title);
+}));
+
 test('category legend hides and restores nodes', withPage({}, async ({ page }) => {
   const total = data.nodes.length, fail = data.nodes.filter((n) => n.cat === 'failures').length;
   await page.click('#legend-list button[data-cat="failures"]'); await page.waitForTimeout(1200);
@@ -227,15 +238,17 @@ test('reduced motion turns off pulses and skips the intro', withPage({ reducedMo
   const f = await page.evaluate(() => window.__mapTest.flags()); assert.equal(f.pulse, 0); assert.equal(f.reduced, true);
 }));
 
-test('without WebGL the full list is still readable', async () => {
-  const b = await launch({ args: ['--disable-webgl', '--disable-webgl2', '--disable-3d-apis', '--disable-gpu'] });
-  try {
-    const { page, ctx } = await openMap(b); const hidden = await page.locator('#nogl').isHidden();
-    if (hidden) { console.log('# note: this browser still offered WebGL, fallback path not exercised'); await ctx.close(); return; }
-    assert.ok((await page.locator('#listview button').count()) >= data.nodes.length);
-    await page.fill('#q', 'python'); await page.waitForSelector('#results li'); await ctx.close();
-  } finally { await b.close(); }
-});
+test('without WebGL the full list is still readable', withPage({
+  // make every WebGL request fail, as it does on a machine with graphics disabled
+  initScript: () => { const real = HTMLCanvasElement.prototype.getContext; HTMLCanvasElement.prototype.getContext = function (type, ...a) { return /webgl/i.test(type) ? null : real.call(this, type, ...a); }; },
+}, async ({ page, errors }) => {
+  assert.equal(await page.locator('#nogl').isVisible(), true, 'the no-WebGL notice should be showing');
+  assert.ok((await page.locator('#listview button').count()) >= data.nodes.length, 'the list should contain every idea');
+  await page.keyboard.press('Escape'); await page.fill('#q', 'python'); await page.waitForSelector('#results li');
+  await page.keyboard.press('Enter'); await page.waitForSelector('#panel:not([hidden])');
+  assert.equal(await page.locator('#panel h2').textContent(), 'Python');
+  assert.ok(errors.every((e) => /WebGL|webgl/i.test(e)), `unexpected errors: ${errors.join('; ')}`);
+}));
 
 test('frame rate is reported and above a floor', withPage({}, async ({ page }) => {
   const fps = await page.evaluate(() => window.__mapTest.measureFps(2500));

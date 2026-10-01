@@ -1,0 +1,3389 @@
+{
+ "slice": "s07b-packages",
+ "nodes": [
+  {
+   "id": "pkg.software-components",
+   "title": "Software Components (McIlroy)",
+   "cat": "packages",
+   "tier": 4,
+   "year": 1968,
+   "short": "Doug McIlroy's 1968 call for an industry of catalogued, interchangeable software parts, an early statement of the idea behind libraries and packages.",
+   "long": "At the 1968 NATO software engineering conference, Doug McIlroy gave an invited address titled \"Mass Produced Software Components\". He argued that the software industry was weakly founded because it had no components subindustry, and he said programmers were the crofters to the hardware makers' industrialists. His proposal was catalogues of routines offered in varying degrees of precision, robustness, speed and generality, so that builders could choose parts instead of writing everything again. He tied the idea to interchangeable parts in manufacturing, which he said corresponded roughly to modularity. The talk is an early seed of the library, package and reuse culture that came later.",
+   "sleeper": "McIlroy asked for catalogues of parts in 1968. Registries such as npm, PyPI and Maven Central are close to what he described, with the catch that every part brings dependencies of its own.",
+   "status": "n/a",
+   "tags": [
+    "mass produced software components",
+    "reuse",
+    "modularity",
+    "catalogue",
+    "nato 1968"
+   ]
+  },
+  {
+   "id": "pkg.dependency-management",
+   "title": "Dependency Management",
+   "cat": "packages",
+   "tier": 2,
+   "year": 1993,
+   "short": "Declaring which libraries a program needs and letting tools fetch, version and update them, including the libraries those libraries need.",
+   "long": "A package is a bundle of code with a manifest that gives its name, its version and what it needs. A dependency is a package your code needs, and a transitive dependency is one that a dependency needs in turn. Dependency management is the practice and tooling for declaring them, fetching them from a registry, choosing versions and updating them. Without it, shared libraries caused trouble. On early Windows, programs shared one folder of DLLs, and installing a newer copy for one program could silently break another, which a 2006 thesis called DLL hell. Linux had a counterpart before apt and yum: chasing down RPM files by hand. Remedies are to isolate each application's libraries, to make versions a machine-readable promise, or to make installs immutable. Google calls two libraries needing different versions of a third \"the central problem in dependency management\".",
+   "sleeper": "A library in 1990 was a file you copied next to your source. A manifest now names your direct dependencies, a tool finds the hundreds of indirect ones, and a lockfile records exactly which versions were chosen.",
+   "status": "n/a",
+   "tags": [
+    "transitive dependencies",
+    "manifest",
+    "diamond problem",
+    "dll hell",
+    "vendoring",
+    "registry"
+   ],
+   "refs": [
+    {
+     "label": "Dolstra: The Purely Functional Software Deployment Model (2006)",
+     "url": "https://edolstra.github.io/pubs/phd-thesis.pdf"
+    },
+    {
+     "label": "Software Engineering at Google, ch. 21: Dependency Management",
+     "url": "https://abseil.io/resources/swe-book/html/ch21.html"
+    }
+   ]
+  },
+  {
+   "id": "pkg.lockfile",
+   "title": "Lockfile",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2009,
+   "short": "A file recording the exact version of every dependency a build used, so that every machine installs the same code.",
+   "long": "A manifest such as a Gemfile or Cargo.toml states what a project will accept, for example any 1.x release of a library. A lockfile records what was actually chosen after resolution, including every indirect dependency, so collaborators and servers install identical code. Ruby's Bundler popularised the Gemfile plus Gemfile.lock pattern; its first release on RubyGems was on 4 August 2009 and 1.0.0 followed on 29 August 2010. Cargo's lockfile came with its 2014 design, Yarn's followed in October 2016, and Python agreed a standard format only in 2025, as pylock.toml in PEP 751. A lockfile has a cost: a patched dependency is not installed until the lockfile is regenerated, a delay researchers call technical lag.",
+   "sleeper": "A lockfile is the modern form of keeping the exact library copies you tested next to your source, but as a small text file that tools can check, compare and update.",
+   "status": "n/a",
+   "tags": [
+    "gemfile.lock",
+    "cargo.lock",
+    "package-lock",
+    "uv.lock",
+    "pylock.toml",
+    "reproducible builds",
+    "pinning"
+   ],
+   "refs": [
+    {
+     "label": "Rust Blog: Cargo, Rust's Community Crate Host (2014)",
+     "url": "https://blog.rust-lang.org/2014/11/20/Cargo/"
+    },
+    {
+     "label": "PEP 751: a file format to record Python dependencies",
+     "url": "https://peps.python.org/pep-0751/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.version-resolution",
+   "title": "Version Resolution",
+   "cat": "packages",
+   "tier": 3,
+   "year": 1998,
+   "short": "Choosing one version of every package so that all stated requirements hold at once, which turns out to be a hard computing problem.",
+   "long": "Each package states which versions of its dependencies it accepts, and a resolver must find one set of versions that satisfies everybody. APT added dependency resolution on top of Debian's dpkg in 1998. In December 2016 Russ Cox showed that the general problem is NP-complete, by reduction from 3-SAT, so tools either call SAT solvers (DNF uses libsolv, Composer a solver derived from openSUSE's) or restrict the problem. Dart's pub uses PubGrub, which can explain a conflict in readable terms, and Astral's uv uses a fork of it. Go avoids the hard case with minimal version selection. pip's resolver learned to backtrack, to abandon a bad choice and try another, only in version 20.3.",
+   "sleeper": "Conflicts were once settled by a person choosing which library file to keep. Resolvers now search for a consistent set of versions automatically, and a good one such as PubGrub can say why no such set exists.",
+   "code": {
+    "lang": "text",
+    "text": "your app  needs  liba and libb\nliba 1.0  needs  libbase 1.x\nlibb 1.0  needs  libbase 2.x\nresult    no version of libbase satisfies both"
+   },
+   "status": "n/a",
+   "tags": [
+    "sat solver",
+    "np-complete",
+    "backtracking",
+    "libsolv",
+    "diamond dependency",
+    "conflicts"
+   ],
+   "refs": [
+    {
+     "label": "Russ Cox: Version SAT",
+     "url": "https://research.swtch.com/version-sat"
+    },
+    {
+     "label": "Dart pub: PubGrub version solver",
+     "url": "https://github.com/dart-lang/pub/blob/master/doc/solver.md"
+    }
+   ]
+  },
+  {
+   "id": "pkg.semver",
+   "title": "Semantic Versioning",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2010,
+   "short": "A version-numbering convention, MAJOR.MINOR.PATCH, in which the numbers tell users whether an upgrade can break their code.",
+   "long": "Semantic Versioning was written by Tom Preston-Werner, a co-founder of GitHub. A version reads MAJOR.MINOR.PATCH: raise MAJOR for incompatible API changes, MINOR for backward compatible new features and PATCH for backward compatible fixes, and treat 0.y.z as initial development where anything may change. The semver.org repository was created in December 2009, version 1.0.0 was tagged in September 2011 and 2.0.0 in June 2013. Cargo assumes packages follow it, and Go builds the major version into import paths from v2 onward. It is a promise made by humans: Google calls it a lossy estimate of how risky a change is, yet a study of 119,879 Maven Central upgrades found that 83.4 percent complied.",
+   "sleeper": "Version numbers used to mean whatever a vendor chose. With this convention a tool can accept \"any compatible 1.x release\" without asking, which large dependency trees rely on.",
+   "code": {
+    "lang": "text",
+    "text": "1.4.2 -> 1.4.3   patch: bug fix, nothing breaks\n1.4.2 -> 1.5.0   minor: new feature, nothing breaks\n1.4.2 -> 2.0.0   major: something may break"
+   },
+   "status": "thriving",
+   "tags": [
+    "semver",
+    "major minor patch",
+    "version numbers",
+    "breaking changes",
+    "compatibility",
+    "tom preston-werner"
+   ],
+   "refs": [
+    {
+     "label": "Semantic Versioning 2.0.0",
+     "url": "https://semver.org/"
+    },
+    {
+     "label": "Software Engineering at Google, ch. 21: Dependency Management",
+     "url": "https://abseil.io/resources/swe-book/html/ch21.html"
+    }
+   ]
+  },
+  {
+   "id": "pkg.pubgrub",
+   "title": "PubGrub",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2018,
+   "short": "A version-resolution algorithm from Dart's pub that learns from conflicts and can explain in plain terms why no set of versions works.",
+   "long": "PubGrub is the version-solving algorithm behind pub, the package manager of the Dart language. It is based on conflict-driven clause learning, an algorithm for solving the NP-hard Boolean satisfiability problem. Its distinctive feature is error reporting: because of the clause learning, it can explain the root causes of a conflict in readable terms, built from a derivation graph, instead of only reporting that no solution exists. Astral's uv, a Python tool written in Rust, depends on a fork of PubGrub, so an algorithm designed for Dart's packages now resolves Python's as well.",
+   "status": "thriving",
+   "tags": [
+    "pub",
+    "dart",
+    "conflict-driven clause learning",
+    "solver",
+    "error messages"
+   ],
+   "refs": [
+    {
+     "label": "Dart pub: PubGrub version solver",
+     "url": "https://github.com/dart-lang/pub/blob/master/doc/solver.md"
+    }
+   ]
+  },
+  {
+   "id": "pkg.mvs",
+   "title": "Minimal Version Selection",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2019,
+   "short": "Go's resolution rule: use the highest of the minimum versions that any module asks for, which needs no lockfile and no general solver.",
+   "long": "Minimal Version Selection was described by Russ Cox in 2018 as part of the Go modules design. Each module declares the minimum version of each dependency it needs, and a build uses the maximum of all those minimums, so it never selects a release that nobody in the graph asked for. Cox calls such builds high-fidelity, because they differ from the author's own build only when another requirement forces it, and the approach removes the need for a separate lock file. It stays computationally tractable, unlike general constraint solving. The price is that upgrades do not happen until a developer asks for them. Google's engineering book endorses it for builds that stay as close as possible to what the author tested.",
+   "sleeper": "Most tools take the newest compatible release by default. MVS never picks a version nobody asked for, which also keeps a freshly published malicious release out. That is a side effect rather than a stated goal.",
+   "status": "thriving",
+   "tags": [
+    "go",
+    "russ cox",
+    "high-fidelity builds",
+    "go.mod",
+    "minimum versions"
+   ],
+   "refs": [
+    {
+     "label": "Russ Cox: Minimal Version Selection",
+     "url": "https://research.swtch.com/vgo-mvs"
+    }
+   ]
+  },
+  {
+   "id": "pkg.apt",
+   "title": "APT",
+   "cat": "packages",
+   "tier": 3,
+   "year": 1998,
+   "short": "Debian's package installer, which resolves and downloads dependencies from online repositories.",
+   "long": "APT, the Advanced Package Tool, was introduced in 1998 as part of the Deity project commissioned by Debian release manager Brian White, and at first it was called dpkg-get. It adds dependency resolution and downloading on top of dpkg, Debian's low-level installer for .deb files, working out an order of installs and removals and then calling dpkg in that sequence. It reads the repositories listed in /etc/apt/sources.list. The first Debian release to include it was Debian 2.1, on 9 March 1999, and by 2021 Debian's repository held over 50,000 packages. dpkg's own date is uncertain: Wikipedia says 1994, while Debian itself began in 1993. In the Stack Overflow 2025 survey 18.4 percent of respondents used APT.",
+   "sleeper": "Before tools like this, installing Linux software meant chasing down package files and their prerequisites by hand. One command now fetches a program and everything it needs from the distribution's repositories.",
+   "code": {
+    "lang": "bash",
+    "text": "sudo apt update\nsudo apt install git\napt show git"
+   },
+   "status": "thriving",
+   "tags": [
+    "debian",
+    "dpkg",
+    "deb",
+    "repository",
+    "linux",
+    "sources.list"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: APT (software)",
+     "url": "https://en.wikipedia.org/wiki/APT_(software)"
+    },
+    {
+     "label": "Wikipedia: dpkg",
+     "url": "https://en.wikipedia.org/wiki/Dpkg"
+    }
+   ]
+  },
+  {
+   "id": "pkg.rpm-dnf",
+   "title": "RPM, yum and DNF",
+   "cat": "packages",
+   "tier": 3,
+   "year": 1995,
+   "short": "The package format and tools of Red Hat, Fedora and SUSE Linux; DNF resolves dependencies with a SAT-based solver.",
+   "long": "RPM is the package format and command-line tool used by Red Hat Enterprise Linux, Fedora, SUSE Linux Enterprise, openSUSE and others. Its first version control commit dates to 1995, and the format was standardised in the Linux Standard Base. A 2006 thesis noted that RPM installs and verifies packages but has no way to resolve problems by itself, which left users chasing down files, the original Linux dependency hell. Higher-level tools filled the gap: yum, then DNF, which replaced yum as the Fedora default in Fedora 22 (2015) and became the default in RHEL 8 (2019). DNF uses libsolv, a SAT-based resolver from openSUSE. DNF5, rewritten in C++, became the Fedora default in Fedora 41 (2024).",
+   "status": "thriving",
+   "tags": [
+    "rpm",
+    "yum",
+    "dnf",
+    "fedora",
+    "rhel",
+    "libsolv",
+    "red hat"
+   ],
+   "refs": [
+    {
+     "label": "RPM Package Manager: About",
+     "url": "https://rpm.org/about.html"
+    },
+    {
+     "label": "Wikipedia: DNF (software)",
+     "url": "https://en.wikipedia.org/wiki/DNF_(software)"
+    }
+   ]
+  },
+  {
+   "id": "pkg.homebrew",
+   "title": "Homebrew",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2009,
+   "short": "A package manager for macOS and Linux, started by Max Howell in 2009, that installs command-line tools and apps from community recipes.",
+   "long": "Max Howell created Homebrew in 2009 as a package manager for macOS. Its recipes are called formulae and are Ruby scripts, its \"bottles\" are pre-built binaries, and \"taps\" are third-party repositories. It installs into its own directory, /opt/homebrew on Apple silicon and /usr/local on Intel Macs. Linux and Windows Subsystem for Linux have been officially supported since 2019, after a merger with Linuxbrew. The project is run by volunteers with no paid staff. Version 7.0.7 appeared on 28 September 2026, and in the Stack Overflow 2025 survey 25.7 percent of respondents used Homebrew, ahead of APT at 18.4 percent, Chocolatey at 11 percent and Pacman at 8.7 percent.",
+   "sleeper": "Homebrew's own installation instruction is one line of shell that downloads and runs a script from the web. Homebrew, uv, rustup and Bun all give such a line, a habit that draws debate about trust.",
+   "code": {
+    "lang": "bash",
+    "text": "brew install wget\nbrew upgrade wget\nbrew list"
+   },
+   "status": "thriving",
+   "tags": [
+    "macos",
+    "formulae",
+    "bottles",
+    "taps",
+    "max howell",
+    "linuxbrew",
+    "volunteer"
+   ],
+   "refs": [
+    {
+     "label": "Homebrew",
+     "url": "https://brew.sh/"
+    },
+    {
+     "label": "Wikipedia: Homebrew (package manager)",
+     "url": "https://en.wikipedia.org/wiki/Homebrew_(package_manager)"
+    }
+   ]
+  },
+  {
+   "id": "pkg.nix",
+   "title": "Nix",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2003,
+   "short": "A package manager that stores each build under a path named by a hash of its inputs, allowing side-by-side versions and safe rollbacks.",
+   "long": "Eelco Dolstra created Nix in 2003 and described it in his 2006 doctoral thesis, The Purely Functional Software Deployment Model. The central idea is to store every software component in isolation in one store, under a path name that contains a cryptographic hash of all the inputs used to build it, for example /nix/store/rwmfbhb2znwp...-firefox-1.0.4. That prevents undeclared dependencies and lets several versions or variants of a component sit side by side. Nix offers atomic upgrades and rollbacks, and NixOS applies the same approach to a whole operating system configured declaratively. Its package collection, nixpkgs, held more than 122,000 packages in January 2025. It is niche but influential.",
+   "sleeper": "The old DLL-hell problem came from many programs sharing one folder of libraries. Nix answers it by making installs immutable and addressed by content, so upgrading one program cannot change another's libraries.",
+   "code": {
+    "lang": "bash",
+    "text": "# fetch the \"hello\" package and run it without installing it system-wide\nnix-shell -p hello --run hello"
+   },
+   "status": "niche",
+   "tags": [
+    "nixos",
+    "nixpkgs",
+    "eelco dolstra",
+    "reproducible",
+    "functional",
+    "hash",
+    "store"
+   ],
+   "refs": [
+    {
+     "label": "Dolstra: The Purely Functional Software Deployment Model (2006)",
+     "url": "https://edolstra.github.io/pubs/phd-thesis.pdf"
+    },
+    {
+     "label": "Wikipedia: Nix (package manager)",
+     "url": "https://en.wikipedia.org/wiki/Nix_(package_manager)"
+    }
+   ]
+  },
+  {
+   "id": "pkg.cpan",
+   "title": "CPAN",
+   "cat": "packages",
+   "tier": 4,
+   "year": 1995,
+   "short": "Perl's central archive of modules and its install client, online since 1995, a model that later language registries copied.",
+   "long": "The Comprehensive Perl Archive Network was conceived in 1993 and has been online since October 1995. It is based on CTAN, the archive for the TeX typesetting system, and consists of a central repository, mirrors around the world and a client that fetches and installs modules. Its maintainers have included Jarkko Hietaniemi as master librarian. Wikipedia cites, without dating the figures, more than 220,000 modules in 45,500 distributions from 14,500 contributors, on 250 or more mirrors in over 60 countries. The creator of npm has said that npm was inspired by PEAR and CPAN, and the pattern of a central archive, an automatic client and a culture of testing can be seen as the template that RubyGems, PyPI, npm and Cargo later copied.",
+   "sleeper": "Languages used to ship with whatever libraries their vendor chose. CPAN showed that a language's library could grow through a shared archive that anyone could contribute to, an idea that is now standard.",
+   "status": "legacy",
+   "tags": [
+    "perl",
+    "ctan",
+    "modules",
+    "archive",
+    "mirrors",
+    "test culture"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: CPAN",
+     "url": "https://en.wikipedia.org/wiki/CPAN"
+    }
+   ]
+  },
+  {
+   "id": "pkg.rubygems",
+   "title": "RubyGems",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2003,
+   "short": "Ruby's package system and the rubygems.org registry, begun in 2003, public in March 2004 and part of the standard Ruby distribution since Ruby 1.9.",
+   "long": "RubyGems was created by Chad Fowler, Jim Weirich, David Alan Black, Paul Brannan and Richard Kilmer. Development began in November 2003 and it was released to the public on 14 March 2004, Pi Day, and it joined the standard Ruby distribution with Ruby 1.9. Libraries are packaged as gems and served from rubygems.org, which had served about 269 billion downloads by 30 September 2026. RubyGems and Bundler were released together as version 4.0.0 on 3 December 2025, and Trusted Publishing was announced on 14 December 2023. In 2025 former maintainers, in a dispute with Ruby Central, started gem.coop as a separate gem server.",
+   "status": "thriving",
+   "tags": [
+    "gems",
+    "ruby",
+    "gem install",
+    "rubygems.org",
+    "chad fowler",
+    "gem.coop"
+   ],
+   "refs": [
+    {
+     "label": "RubyGems blog",
+     "url": "https://blog.rubygems.org/"
+    },
+    {
+     "label": "Wikipedia: RubyGems",
+     "url": "https://en.wikipedia.org/wiki/RubyGems"
+    }
+   ]
+  },
+  {
+   "id": "pkg.bundler",
+   "title": "Bundler",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2009,
+   "short": "Ruby's dependency tool, which popularised the Gemfile plus Gemfile.lock pattern that Composer and Cargo later followed.",
+   "long": "Bundler reads a Gemfile that lists a project's gems and writes a Gemfile.lock recording the exact versions chosen, so every developer and server installs the same set. The Bundler gem metadata lists Carl Lerche and Yehuda Katz among its authors; its first release on RubyGems was 0.3.0 on 4 August 2009 and 1.0.0 followed on 29 August 2010. Lerche and Katz later designed Cargo for Rust. Composer's documentation says Composer is strongly inspired by npm and Bundler, and the Rust team said Cargo follows the tradition of successes like Bundler and npm. Since version 4.0 in December 2025, Bundler is released together with RubyGems.",
+   "code": {
+    "lang": "ruby",
+    "text": "source \"https://rubygems.org\"\ngem \"rails\", \"~> 7.1\"\ngem \"puma\"\n# bundle install  resolves these and writes Gemfile.lock"
+   },
+   "status": "thriving",
+   "tags": [
+    "gemfile",
+    "gemfile.lock",
+    "ruby",
+    "carl lerche",
+    "yehuda katz",
+    "pinning"
+   ],
+   "refs": [
+    {
+     "label": "Rust Blog: Cargo, Rust's Community Crate Host (2014)",
+     "url": "https://blog.rust-lang.org/2014/11/20/Cargo/"
+    },
+    {
+     "label": "Composer documentation: Introduction",
+     "url": "https://getcomposer.org/doc/00-intro.md"
+    }
+   ]
+  },
+  {
+   "id": "pkg.composer",
+   "title": "Composer",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2012,
+   "short": "PHP's per-project dependency manager and its Packagist registry, launched in 2012 and modelled on npm and Bundler.",
+   "long": "Nils Adermann and Jordi Boggiano launched Composer in 2012. Its documentation describes it as a tool for dependency management in PHP: you declare the libraries a project depends on and Composer installs and updates them, per project, into a vendor directory, and by default it installs nothing globally, unlike Yum or Apt. It is strongly inspired by npm and Bundler and uses a solver based on openSUSE's libzypp SAT solver. Libraries come from Packagist, which listed 469,642 packages and had served about 202 billion downloads when queried on 30 September 2026. Composer 2.10.3 appeared on 27 August 2026, and 11 percent of Stack Overflow 2025 respondents used it.",
+   "code": {
+    "lang": "bash",
+    "text": "composer require monolog/monolog\n# writes composer.json and composer.lock, installs into vendor/"
+   },
+   "status": "thriving",
+   "tags": [
+    "php",
+    "packagist",
+    "vendor",
+    "composer.json",
+    "composer.lock",
+    "adermann",
+    "boggiano"
+   ],
+   "refs": [
+    {
+     "label": "Composer documentation: Introduction",
+     "url": "https://getcomposer.org/doc/00-intro.md"
+    },
+    {
+     "label": "Packagist statistics",
+     "url": "https://packagist.org/statistics.json"
+    }
+   ]
+  },
+  {
+   "id": "pkg.nuget",
+   "title": "NuGet",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2010,
+   "short": "The package manager for .NET: ZIP files with a .nupkg extension holding compiled code and a manifest, hosted at nuget.org.",
+   "long": "NuGet is the Microsoft-supported mechanism for sharing code on .NET. A package is a single ZIP file with the .nupkg extension that holds compiled code (DLLs), related files and a manifest describing it, including its version number. When a package depends on others, NuGet fetches those down-level dependencies too, and when three packages need different versions of one library it works out which version satisfies all of them. Projects list their top-level dependencies with PackageReference; the older packages.config is no longer under active development. The nuget.org search API reported 492,566 total hits on 30 September 2026, although Microsoft's documentation still says over 100,000. In the Stack Overflow 2025 survey 18.9 percent of respondents used NuGet.",
+   "code": {
+    "lang": "bash",
+    "text": "dotnet add package Serilog\n# adds a PackageReference to the project file and restores the package"
+   },
+   "status": "thriving",
+   "tags": [
+    ".net",
+    "nupkg",
+    "nuget.org",
+    "packagereference",
+    "microsoft",
+    "dll"
+   ],
+   "refs": [
+    {
+     "label": "Microsoft Learn: What is NuGet",
+     "url": "https://learn.microsoft.com/en-us/nuget/what-is-nuget"
+    }
+   ]
+  },
+  {
+   "id": "pkg.cargo",
+   "title": "Cargo and crates.io",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2014,
+   "short": "Rust's build tool and package manager, with crates.io as its registry: one tool for building, testing and fetching dependencies.",
+   "long": "Cargo was designed by Carl Lerche and Yehuda Katz and announced by Alex Crichton on the Rust blog on 20 November 2014, then came with Rust 1.0 on 15 May 2015. It follows \"the tradition of successes like Bundler and NPM\": releases follow semantic versioning, Cargo.lock records exact versions for reproducible builds, and the crates.io registry keeps releases permanently so projects can build with the same versions years later. A year after 1.0, crates.io held at least 5,000 third-party libraries; on 1 October 2026 it listed 343,176 crates and about 466 billion downloads. In the Stack Overflow 2025 survey 14.4 percent of respondents used Cargo, and it scored 70.8 percent in the \"most admired\" ranking, close behind uv's 74.2 percent.",
+   "code": {
+    "lang": "bash",
+    "text": "cargo new hello\ncd hello\ncargo add rand\ncargo run"
+   },
+   "status": "thriving",
+   "tags": [
+    "crates",
+    "rust",
+    "cargo.toml",
+    "cargo.lock",
+    "crates.io",
+    "yehuda katz",
+    "carl lerche"
+   ],
+   "refs": [
+    {
+     "label": "Rust Blog: Cargo, Rust's Community Crate Host (2014)",
+     "url": "https://blog.rust-lang.org/2014/11/20/Cargo/"
+    },
+    {
+     "label": "The Cargo Book: Dependency Resolution",
+     "url": "https://doc.rust-lang.org/cargo/reference/resolver.html"
+    }
+   ]
+  },
+  {
+   "id": "pkg.yarn",
+   "title": "Yarn",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2016,
+   "short": "A JavaScript package manager announced by Facebook with Exponent, Google and Tilde in October 2016, built around a lockfile and checksums.",
+   "long": "Facebook announced Yarn on 11 October 2016, together with Exponent, Google and Tilde. It named three problems with the npm client of the time: consistency when installing dependencies across different machines and users, install time, and security, in particular the way the client automatically ran code from some dependencies. Yarn's features were a lockfile that locks installed dependencies to specific versions so every install produces the same file structure in node_modules, an offline cache, and package checksums stored in the lockfile. Yarn Classic's last release was 1.22.22 on 9 March 2024, while the newer Berry line was at 4.18.1 on 24 September 2026. In the Stack Overflow 2025 survey 21.1 percent of respondents used Yarn, behind npm at 56.8 percent.",
+   "status": "thriving",
+   "tags": [
+    "facebook",
+    "lockfile",
+    "yarn.lock",
+    "workspaces",
+    "berry",
+    "javascript"
+   ],
+   "refs": [
+    {
+     "label": "Facebook Engineering: Yarn, a new package manager for JavaScript (2016)",
+     "url": "https://engineering.fb.com/2016/10/11/web/yarn-a-new-package-manager-for-javascript/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.pnpm",
+   "title": "pnpm",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2016,
+   "short": "A JavaScript package manager that saves disk space with a shared content-addressable store and stops code from using undeclared dependencies.",
+   "long": "pnpm gives its motivation as disk space, speed and strictness. Files are kept once in a content-addressable store and linked into projects with hard links, so if you depend on different versions of a dependency only the files that differ are added to the store. It uses symlinks to place only a project's direct dependencies at the root of node_modules, so code cannot quietly use \"phantom\" dependencies that it never declared. State of JavaScript 2025 found pnpm the clear leader for monorepo tooling, with 3,940 respondents ahead of npm workspaces (2,129), Yarn workspaces (1,341) and bun install (1,123), and 13.4 percent of Stack Overflow 2025 respondents used it. pnpm 12, released on 26 August 2026, made unrecognised settings an error after a misspelt minimumReleaseAge had silently dropped a delay policy.",
+   "status": "thriving",
+   "tags": [
+    "monorepo",
+    "hard links",
+    "phantom dependencies",
+    "content-addressable store",
+    "minimumreleaseage",
+    "workspaces"
+   ],
+   "refs": [
+    {
+     "label": "pnpm: Motivation",
+     "url": "https://pnpm.io/motivation"
+    },
+    {
+     "label": "pnpm v12.0.0 release notes",
+     "url": "https://github.com/pnpm/pnpm/releases/tag/v12.0.0"
+    }
+   ]
+  },
+  {
+   "id": "pkg.go-modules",
+   "title": "Go Modules",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2018,
+   "short": "Go's built-in versioning: go.mod lists requirements, go.sum holds checksums, and a public proxy and checksum database serve and verify the code.",
+   "long": "Before modules, go get fetched code with no concept of versioning, and community tools such as godep, gb and glide only vendored copies of dependencies. Russ Cox's post of 20 February 2018, \"Go & Versioning\", proposed go.mod files, minimal version selection and the end of GOPATH (\"Now you just git clone, cd, and start writing. Anywhere.\"), and modules arrived in Go 1.11 in 2018. From v2 a module's major version is part of its import path, so v1 and v2 can coexist. On 29 August 2019 the Go team launched a module mirror and a checksum database, a Merkle-tree transparency log, so that a proxy or origin server cannot start serving different code without getting caught.",
+   "sleeper": "In Go a new major version gets a new import path, so v1 and v2 of a library can be used together as if they were different libraries. Cargo, in Cox's phrase, allows partial upgrades by giving up import uniqueness.",
+   "code": {
+    "lang": "bash",
+    "text": "go mod init example.com/hello\ngo get github.com/google/uuid\ngo list -m all"
+   },
+   "status": "thriving",
+   "tags": [
+    "go.mod",
+    "go.sum",
+    "goproxy",
+    "checksum database",
+    "gopath",
+    "russ cox",
+    "vendoring"
+   ],
+   "refs": [
+    {
+     "label": "Russ Cox: Go & Versioning",
+     "url": "https://research.swtch.com/vgo-intro"
+    },
+    {
+     "label": "Go Blog: Module Mirror and Checksum Database Launched",
+     "url": "https://go.dev/blog/module-mirror-launch"
+    }
+   ]
+  },
+  {
+   "id": "pkg.uv",
+   "title": "uv",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2024,
+   "short": "Astral's very fast Python package and project manager, written in Rust and announced in February 2024 as a drop-in replacement for pip.",
+   "long": "Charlie Marsh's company Astral announced uv on 15 February 2024 as an extremely fast Python package resolver and installer written in Rust, a drop-in replacement for pip and pip-tools. Astral reported it as 8 to 10 times faster than pip without caching and 80 to 115 times faster with a warm cache; those are the vendor's own figures. Its documentation now describes one tool that replaces pip, pip-tools, pipx, poetry, pyenv, twine, virtualenv and more, with a universal lockfile, Python version management and a tool runner, uvx. In September 2026 PyPI counted about 129 million uv downloads against pip's 414 million, a count that understates uv because it is mostly installed by other routes. On 19 March 2026 Astral announced an agreement to join OpenAI as part of the Codex team and promised to keep building in the open.",
+   "sleeper": "Python packaging was a set of overlapping tools that each did part of the job. uv shows the 2020s habit of rewriting developer tools in Rust behind a familiar interface, and it topped the Stack Overflow 2025 \"most admired\" list at 74.2 percent.",
+   "code": {
+    "lang": "bash",
+    "text": "uv init demo\ncd demo\nuv add requests\nuv run python -c \"import requests; print(requests.__version__)\""
+   },
+   "status": "thriving",
+   "tags": [
+    "astral",
+    "charlie marsh",
+    "rust",
+    "pip replacement",
+    "uvx",
+    "uv.lock",
+    "pubgrub"
+   ],
+   "refs": [
+    {
+     "label": "Astral: uv, Python packaging in Rust",
+     "url": "https://astral.sh/blog/uv"
+    },
+    {
+     "label": "uv documentation",
+     "url": "https://docs.astral.sh/uv/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.poetry",
+   "title": "Poetry",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2018,
+   "short": "A Python tool by Sébastien Eustace that manages dependencies, a lock file and publishing from pyproject.toml.",
+   "long": "Poetry began in February 2018 under Sébastien Eustace and put dependency declaration, a lock file and publishing in one Python tool: poetry add requests adds a dependency to pyproject.toml and locks the result. It was one of several tools, with PDM, Hatch and later uv, built on the pyproject.toml standards. PEP 751, accepted on 31 March 2025, notes that Python had no standard lock file format, with proprietary solutions in PDM, pip-tools, Poetry and uv, and standardises pylock.toml. Poetry 2.5.1 appeared on 20 September 2026. Its September 2026 PyPI downloads were about 41.6 million, down from 69.3 million a year earlier while uv's rose, and 9 percent of Stack Overflow 2025 respondents used it.",
+   "code": {
+    "lang": "bash",
+    "text": "poetry new demo\ncd demo\npoetry add requests"
+   },
+   "status": "thriving",
+   "tags": [
+    "pyproject.toml",
+    "lock file",
+    "sebastien eustace",
+    "python packaging",
+    "poetry-core",
+    "publishing"
+   ],
+   "refs": [
+    {
+     "label": "Poetry on GitHub",
+     "url": "https://github.com/python-poetry/poetry"
+    },
+    {
+     "label": "PEP 751: a file format to record Python dependencies",
+     "url": "https://peps.python.org/pep-0751/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.conda",
+   "title": "conda and Anaconda",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2012,
+   "short": "A language-agnostic package and environment manager from Anaconda that installs Python together with non-Python software such as compilers and CUDA.",
+   "long": "conda began in 2012 (its first commit is dated 15 October 2012, by Ilan Schnell) and is developed by Anaconda, Inc. It is a cross-platform, language-agnostic package and environment manager, so it can install Python together with compiled non-Python software such as C libraries, compilers and CUDA. Its default channel lists over 7,500 packages, and since conda 23.10.0 in November 2023 the faster libmamba solver has been the default. Anaconda changed its licensing in 2024, and its Terms of Service, effective 15 July 2025, require a paid Business Plan for for-profit organisations with more than 200 employees or contractors. Miniforge, mamba, pixi and uv are alternatives that sidestep that question.",
+   "code": {
+    "lang": "bash",
+    "text": "conda create -n sci python=3.12 numpy\nconda activate sci"
+   },
+   "status": "thriving",
+   "tags": [
+    "anaconda",
+    "miniforge",
+    "mamba",
+    "conda-forge",
+    "environments",
+    "libmamba",
+    "cuda"
+   ],
+   "refs": [
+    {
+     "label": "conda 23.10.0 release",
+     "url": "https://conda.org/blog/2023-11-06-conda-23-10-0-release/"
+    },
+    {
+     "label": "Anaconda Terms of Service",
+     "url": "https://www.anaconda.com/legal/terms/terms-of-service"
+    }
+   ]
+  },
+  {
+   "id": "pkg.venv",
+   "title": "Virtual Environments (venv, virtualenv)",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2007,
+   "short": "A private folder of Python packages for one project, so that projects with conflicting needs do not interfere with each other.",
+   "long": "A virtual environment is a folder that holds the installed packages for a single project, together with a Python interpreter set up to use them, so two projects can use different versions of the same library without colliding. Ian Bicking's virtualenv popularised the idea, and PEP 405 added the standard-library venv module in Python 3.3, noting that virtualenv had to duplicate much of Python's site module and manually link an ever-changing set of standard-library modules. PEP 668, first written in 2021, lets operating systems mark their own Python as externally managed, because pip can unintentionally delete packages installed by the OS package manager and corrupt the system. A 2018 xkcd strip about Python environments became the popular shorthand for the mess.",
+   "sleeper": "Per-project environments are Python's answer to the shared-folder problem of early Windows: instead of one global place for libraries, every project gets a private one.",
+   "code": {
+    "lang": "bash",
+    "text": "python -m venv .venv\nsource .venv/bin/activate    # on Windows: .venv\\Scripts\\activate\npip install requests"
+   },
+   "status": "thriving",
+   "tags": [
+    "virtualenv",
+    "environment",
+    "isolation",
+    "pep 405",
+    "pep 668",
+    "externally managed",
+    "ian bicking"
+   ],
+   "refs": [
+    {
+     "label": "PEP 405: Python Virtual Environments",
+     "url": "https://peps.python.org/pep-0405/"
+    },
+    {
+     "label": "PEP 668: Marking Python base environments as externally managed",
+     "url": "https://peps.python.org/pep-0668/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.pyproject",
+   "title": "pyproject.toml and Packaging PEPs",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2016,
+   "short": "The standard file where a Python project declares build requirements, metadata and dependencies, defined by a series of PEPs from 2016 on.",
+   "long": "The older route, a setup.py script run with python setup.py install, is deprecated according to the Python Packaging User Guide. The declarative alternative is pyproject.toml. PEP 518, created on 10 May 2016, introduced it for build requirements, PEP 621 (22 June 2020) moved project metadata such as name, version and dependencies into it, and PEP 723 (4 August 2023) added inline metadata for single-file scripts. PEP 751, accepted on 31 March 2025, adds a standard lock file, pylock.toml, with mandatory hash verification. These standards are why Poetry, PDM, Hatch and uv can all read the same project file. PEP 772, accepted on 16 April 2026, creates an elected five-member Packaging Council.",
+   "code": {
+    "lang": "toml",
+    "text": "[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"demo\"\nversion = \"0.1.0\"\ndependencies = [\"requests>=2.31\"]"
+   },
+   "status": "thriving",
+   "tags": [
+    "pep 518",
+    "pep 621",
+    "pep 723",
+    "pep 751",
+    "pylock.toml",
+    "build backend",
+    "packaging council"
+   ],
+   "refs": [
+    {
+     "label": "PEP 518: build system requirements",
+     "url": "https://peps.python.org/pep-0518/"
+    },
+    {
+     "label": "PEP 621: project metadata in pyproject.toml",
+     "url": "https://peps.python.org/pep-0621/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.python-stdlib",
+   "title": "Python Standard Library",
+   "cat": "packages",
+   "tier": 3,
+   "year": 1991,
+   "short": "Python's \"batteries included\" standard library: JSON, CSV, SQLite, asyncio, venv and much more ship with the language itself.",
+   "long": "Python's documentation says the language has a \"batteries included\" philosophy and that its standard library is extensive. PEP 206, by A. M. Kuchling in July 2000 and now withdrawn, states that the source distribution has long maintained that philosophy, offering a rich library without making users download separate packages. Modules include json, csv, unittest, sqlite3 (added in Python 2.5), multiprocessing (2.6), venv (3.3) and asyncio (3.4). Alongside it, PyPI served about 127.6 billion downloads across roughly 932,000 projects in September 2026, and the most downloaded packages are mostly plumbing such as boto3, packaging, typing-extensions, urllib3 and certifi.",
+   "sleeper": "Programs now routinely pull in hundreds of third-party packages, so the standard library is the starting kit rather than the whole toolkit.",
+   "code": {
+    "lang": "python",
+    "text": "import json, sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"select 1\")\nprint(json.dumps({\"ok\": True}))"
+   },
+   "status": "thriving",
+   "tags": [
+    "batteries included",
+    "pep 206",
+    "json",
+    "sqlite3",
+    "asyncio",
+    "unittest",
+    "standard library"
+   ],
+   "refs": [
+    {
+     "label": "Python tutorial: Batteries Included",
+     "url": "https://docs.python.org/3/tutorial/stdlib.html"
+    },
+    {
+     "label": "PEP 206: Python Advanced Library",
+     "url": "https://peps.python.org/pep-0206/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.requests",
+   "title": "requests",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2011,
+   "short": "Kenneth Reitz's simple HTTP client library for Python, the seventh most downloaded package on PyPI in September 2026.",
+   "long": "requests was released in February 2011 by Kenneth Reitz as a simple way to make HTTP calls from Python: requests.get(url) returns a response with a status code and body. It sits on urllib3, the connection-pooling layer, which is itself the fifth most downloaded PyPI package. In September 2026 requests had about 1.2 billion downloads and ranked seventh on PyPI, with version 2.34.2 dated 14 May 2026 and 54.4 thousand GitHub stars. Much of that traffic comes not from people choosing it but from tools and other packages that depend on it. Newer clients include aiohttp (first commit 2013) and httpx (2019), which offer asynchronous calls.",
+   "code": {
+    "lang": "python",
+    "text": "import requests\n\nprint(requests.get(\"https://example.com\").status_code)   # 200"
+   },
+   "status": "thriving",
+   "tags": [
+    "http",
+    "client",
+    "kenneth reitz",
+    "urllib3",
+    "httpx",
+    "apis"
+   ],
+   "refs": [
+    {
+     "label": "requests on GitHub",
+     "url": "https://github.com/psf/requests"
+    }
+   ]
+  },
+  {
+   "id": "pkg.pydantic",
+   "title": "Pydantic",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2017,
+   "short": "A Python library that validates data against type hints; its Rust core and its use inside FastAPI put it among PyPI's most downloaded packages.",
+   "long": "Samuel Colvin made the first commit to Pydantic on 3 May 2017. You declare a class whose fields carry type hints, such as id: int, and Pydantic checks and converts incoming data to match: User(id=\"3\") gives id=3. FastAPI is built on it, and its author wrote that after testing several alternatives he decided to use Pydantic. The validation core, pydantic-core, is written in Rust. In September 2026 pydantic had 843 million downloads, 18th on PyPI, up from 10.7 million in September 2021, and pydantic-core had 809 million.",
+   "code": {
+    "lang": "python",
+    "text": "from pydantic import BaseModel\n\nclass User(BaseModel):\n    id: int\n\nprint(User(id=\"3\"))   # id=3"
+   },
+   "status": "thriving",
+   "tags": [
+    "validation",
+    "type hints",
+    "schema",
+    "samuel colvin",
+    "pydantic-core",
+    "data models"
+   ],
+   "refs": [
+    {
+     "label": "Pydantic on GitHub",
+     "url": "https://github.com/pydantic/pydantic"
+    },
+    {
+     "label": "FastAPI: History, Design and Future",
+     "url": "https://fastapi.tiangolo.com/history-design-future/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.sqlalchemy",
+   "title": "SQLAlchemy",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2006,
+   "short": "Michael Bayer's SQL toolkit and object-relational mapper for Python, released in February 2006.",
+   "long": "SQLAlchemy was released on 14 February 2006 by Michael Bayer. It is a SQL toolkit and an object-relational mapper, a layer that lets a program treat database rows as Python objects instead of writing every SQL string by hand. In September 2026 it had 332 million downloads, ranking 87th on PyPI, and version 2.1.1 appeared on 25 September 2026. It connects to databases through drivers, such as psycopg for PostgreSQL, whose version 3 had 131 million downloads that month, and it can use the sqlite3 module from the standard library, as in create_engine(\"sqlite:///x.db\").",
+   "code": {
+    "lang": "python",
+    "text": "from sqlalchemy import create_engine, text\n\nengine = create_engine(\"sqlite:///x.db\")\nwith engine.connect() as conn:\n    print(conn.execute(text(\"select 1\")).scalar())"
+   },
+   "status": "thriving",
+   "tags": [
+    "orm",
+    "sql toolkit",
+    "michael bayer",
+    "database",
+    "psycopg"
+   ],
+   "refs": [
+    {
+     "label": "SQLAlchemy on PyPI",
+     "url": "https://pypi.org/project/sqlalchemy/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.pillow",
+   "title": "Pillow",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2010,
+   "short": "The maintained fork of the Python Imaging Library, used to open, resize and save images; the original PIL dates to 1995.",
+   "long": "The Python Imaging Library, by Fredrik Lundh and contributors, was first released in 1995 according to Wikipedia. Pillow is a fork of it, first uploaded to PyPI on 31 July 2010. It opens, resizes and saves images in many formats, as in Image.open(\"a.png\").resize((64, 64)). Pillow is licensed under the MIT-CMU (HPND) licence. Version 12.3.0 appeared on 1 July 2026, and the package had 426 million downloads in September 2026, ranking 59th on PyPI.",
+   "code": {
+    "lang": "python",
+    "text": "from PIL import Image\n\nImage.open(\"a.png\").resize((64, 64)).save(\"small.png\")"
+   },
+   "status": "thriving",
+   "tags": [
+    "pil",
+    "imaging",
+    "images",
+    "fork",
+    "fredrik lundh"
+   ],
+   "refs": [
+    {
+     "label": "Pillow documentation",
+     "url": "https://pillow.readthedocs.io/en/stable/"
+    },
+    {
+     "label": "Wikipedia: Python Imaging Library",
+     "url": "https://en.wikipedia.org/wiki/Python_Imaging_Library"
+    }
+   ]
+  },
+  {
+   "id": "pkg.beautifulsoup",
+   "title": "Beautiful Soup",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2004,
+   "short": "Leonard Richardson's Python library for pulling data out of messy HTML, first released in 2004.",
+   "long": "Beautiful Soup was created in 2004 by Leonard Richardson. It parses messy HTML and lets a program search the result: BeautifulSoup(html, \"html.parser\").find_all(\"a\") returns every link. Version 4 is MIT licensed, and version 3 used the PSF licence. Version 4.15.0 appeared on 7 June 2026, and the package had 297 million downloads in September 2026, ranking 99th on PyPI. For crawling many pages there is a separate framework, Scrapy, and for pages that need JavaScript to run there are browser drivers such as Selenium and Playwright.",
+   "code": {
+    "lang": "python",
+    "text": "from bs4 import BeautifulSoup\n\nhtml = \"<p>See <a href='/a'>one</a> and <a href='/b'>two</a></p>\"\nsoup = BeautifulSoup(html, \"html.parser\")\nprint([a[\"href\"] for a in soup.find_all(\"a\")])   # ['/a', '/b']"
+   },
+   "status": "thriving",
+   "tags": [
+    "scraping",
+    "html parser",
+    "bs4",
+    "leonard richardson",
+    "web scraping"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Beautiful Soup (HTML parser)",
+     "url": "https://en.wikipedia.org/wiki/Beautiful_Soup_(HTML_parser)"
+    }
+   ]
+  },
+  {
+   "id": "pkg.flask",
+   "title": "Flask",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2010,
+   "short": "Armin Ronacher's \"micro\" Python web framework from 2010: a small core that you extend yourself, in contrast to Django.",
+   "long": "Flask is a \"micro\" web framework for Python, created by Armin Ronacher of the Pallets project; its first GitHub commit is dated 6 April 2010. Micro here means a small core that leaves other choices, such as database access, to add-on libraries. A minimal application is a function attached to a URL route. Flask was used by 14.4 percent of Stack Overflow 2025 respondents. Its PyPI downloads of 137 million in September 2026 were roughly flat against 149 million a year earlier, while FastAPI's grew from 145 million to 377 million. Version 3.1.3 dates from 19 February 2026.",
+   "code": {
+    "lang": "python",
+    "text": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.get(\"/\")\ndef hi():\n    return \"hi\""
+   },
+   "status": "thriving",
+   "tags": [
+    "micro framework",
+    "pallets",
+    "armin ronacher",
+    "wsgi",
+    "web"
+   ],
+   "refs": [
+    {
+     "label": "Flask on GitHub",
+     "url": "https://github.com/pallets/flask"
+    }
+   ]
+  },
+  {
+   "id": "pkg.fastapi",
+   "title": "FastAPI",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2018,
+   "short": "Sebastián Ramírez's Python framework that builds web APIs from type hints, on Starlette and Pydantic; it passed Flask in downloads in 2025 to 2026.",
+   "long": "FastAPI's first commit is dated 5 December 2018 and its author is Sebastián Ramírez. You write ordinary functions with type hints, and the framework builds the web API from them. It sits on Starlette, an ASGI toolkit (ASGI is the asynchronous successor to the older WSGI interface), and on Pydantic; Ramírez wrote that after testing several alternatives he decided to use Pydantic. In September 2026 FastAPI had 377 million PyPI downloads, up 2.6 times in a year and well past Flask's 137 million. In the Stack Overflow 2025 survey 14.8 percent of respondents used it, up about 5 points, and the PSF and JetBrains Python survey put it at 38 percent, up from 29.",
+   "code": {
+    "lang": "python",
+    "text": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/items/{id}\")\ndef read(id: int):\n    return {\"id\": id}"
+   },
+   "status": "thriving",
+   "tags": [
+    "asgi",
+    "starlette",
+    "api",
+    "type hints",
+    "async",
+    "sebastian ramirez"
+   ],
+   "refs": [
+    {
+     "label": "FastAPI: History, Design and Future",
+     "url": "https://fastapi.tiangolo.com/history-design-future/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.django",
+   "title": "Django",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2005,
+   "short": "A batteries-included Python web framework from a newspaper's web team, open-sourced in 2005, with an ORM, admin site and templates.",
+   "long": "Django was written at World Online, the web department of the Lawrence Journal-World newspaper, by Adrian Holovaty and Simon Willison, and was open-sourced in July 2005; version 1.0 followed in 2008. It is called batteries included because it ships an object-relational mapper for database access, an automatic admin site and a template language. Like Rails a year earlier, it belongs to the generation of model-view-controller frameworks that followed CGI scripts and PHP, ASP and JSP pages. In the Stack Overflow 2025 survey 12.6 percent of respondents used Django. Its PyPI downloads were 42.3 million in September 2026, up from 7.4 million in September 2021, and version 6.1.1 requires Python 3.12 or newer.",
+   "code": {
+    "lang": "bash",
+    "text": "django-admin startproject mysite\ncd mysite\npython manage.py runserver"
+   },
+   "status": "thriving",
+   "tags": [
+    "web framework",
+    "orm",
+    "admin",
+    "adrian holovaty",
+    "simon willison",
+    "world online"
+   ],
+   "refs": [
+    {
+     "label": "Django FAQ: General",
+     "url": "https://docs.djangoproject.com/en/stable/faq/general/"
+    },
+    {
+     "label": "Wikipedia: Django (web framework)",
+     "url": "https://en.wikipedia.org/wiki/Django_(web_framework)"
+    }
+   ]
+  },
+  {
+   "id": "pkg.supply-chain",
+   "title": "Software Supply-Chain Security",
+   "cat": "packages",
+   "tier": 2,
+   "year": 2015,
+   "short": "The risk that the code, build tools and accounts behind the software you use can be compromised, or simply fail, without your noticing.",
+   "long": "Every dependency is code written by strangers that runs with your privileges. Ken Thompson's 1984 Turing Award lecture made the point about compilers: you cannot trust code you did not totally create yourself. A 2019 study of npm found that installing an average package placed implicit trust in 79 third-party packages and 39 maintainers. The first systematic dataset, Backstabber's Knife Collection, counted 174 malicious packages used in real attacks between November 2015 and November 2019. Incidents since include left-pad (2016), event-stream (2018), SolarWinds (2020), Log4Shell (2021), xz (2024) and, in 2025, the phishing of the chalk and debug maintainer and the Shai-Hulud worm. Responses include SBOMs, SLSA, Sigstore, trusted publishing, pinning and update delays, and none is a complete answer.",
+   "sleeper": "A 1990 program was mostly code you or your vendor wrote. A modern one is mostly other people's code, so attackers aim at maintainers' accounts, build systems and release pipelines rather than at your own code.",
+   "status": "n/a",
+   "tags": [
+    "software supply chain",
+    "trust",
+    "malicious packages",
+    "build integrity",
+    "typosquatting",
+    "dependency confusion"
+   ],
+   "refs": [
+    {
+     "label": "Russ Cox: Our Software Dependency Problem",
+     "url": "https://research.swtch.com/deps"
+    },
+    {
+     "label": "Zimmermann et al.: Small World with High Risks (USENIX Security 2019)",
+     "url": "https://arxiv.org/abs/1902.09217"
+    }
+   ]
+  },
+  {
+   "id": "pkg.sbom",
+   "title": "SBOMs and Executive Order 14028",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2021,
+   "short": "A software bill of materials: a machine-readable list of the components in a program, promoted by US Executive Order 14028 in 2021.",
+   "long": "An SBOM lists the ingredients of a piece of software so that buyers and defenders can check them against vulnerability reports. The two main formats are SPDX, which began in 2010 inside a Linux Foundation work group and is now the international standard ISO/IEC 5962:2021, and CycloneDX, OWASP's format, standardised as ECMA-424. US Executive Order 14028, signed on 12 May 2021, charged agencies including NIST with software supply chain security, and the NTIA defined minimum SBOM elements. The limits showed quickly: the Cyber Safety Review Board found that none of the organisations that reported to it had used SBOMs to identify vulnerable Log4j deployments, and described SBOMs as limited by inconsistent field descriptions and missing version information.",
+   "sleeper": "Software was once judged by what it did. Regulators and buyers now ask what it contains, much as a food label lists ingredients.",
+   "code": {
+    "lang": "json",
+    "text": "{\n  \"bomFormat\": \"CycloneDX\",\n  \"specVersion\": \"1.5\",\n  \"components\": [\n    { \"type\": \"library\", \"name\": \"log4j-core\", \"version\": \"2.14.1\" }\n  ]\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "spdx",
+    "cyclonedx",
+    "ntia",
+    "bill of materials",
+    "executive order 14028",
+    "vex"
+   ],
+   "refs": [
+    {
+     "label": "SPDX: About",
+     "url": "https://spdx.dev/about/"
+    },
+    {
+     "label": "CSRB: Review of the December 2021 Log4j Event",
+     "url": "https://www.cisa.gov/sites/default/files/publications/CSRB-Report-on-Log4-July-11-2022_508.pdf"
+    }
+   ]
+  },
+  {
+   "id": "pkg.slsa",
+   "title": "SLSA",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2021,
+   "short": "Supply-chain Levels for Software Artifacts, an OpenSSF framework of controls and levels for preventing tampering with how software is built.",
+   "long": "SLSA, pronounced \"salsa\", is a security framework: a checklist of standards and controls meant to prevent tampering, improve integrity and secure packages and infrastructure. It is part of the Open Source Security Foundation (OpenSSF), with Google, the Linux Foundation and CNCF among its founders. Its specification defines Build and Source tracks, and its site lists versions v1.2 and v1.1. A central idea is provenance, a signed record of where and how an artifact was built. Provenance has limits: it shows where and how something was built, not that the pipeline was uncompromised. In May 2026 malicious TanStack packages published through a legitimate CI pipeline reportedly carried valid SLSA provenance attestations issued by npm's signing infrastructure.",
+   "status": "thriving",
+   "tags": [
+    "provenance",
+    "attestation",
+    "build integrity",
+    "openssf",
+    "tamper resistance"
+   ],
+   "refs": [
+    {
+     "label": "SLSA: Supply-chain Levels for Software Artifacts",
+     "url": "https://slsa.dev/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.sigstore",
+   "title": "Sigstore",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2021,
+   "short": "An open-source project for signing and verifying software artifacts without long-lived keys, using short-lived certificates and a public log.",
+   "long": "Sigstore lets developers sign software and users verify it. It has three parts: Cosign, the client that signs and verifies; Fulcio, a code-signing certificate authority that issues short-lived credentials; and Rekor, a transparency log, an immutable append-only ledger of signing events. In keyless signing the signer creates an ephemeral key pair, proves identity with an OpenID Connect token, receives a short-lived certificate and then discards the private key, so no long-lived secret remains to be stolen. Sigstore is maintained under the OpenSSF with support from Google, Red Hat, Chainguard, GitHub and Purdue. Cosign v3.1.3 was released on 6 August 2026.",
+   "status": "thriving",
+   "tags": [
+    "cosign",
+    "fulcio",
+    "rekor",
+    "keyless signing",
+    "transparency log",
+    "openssf",
+    "code signing"
+   ],
+   "refs": [
+    {
+     "label": "Sigstore documentation: Overview",
+     "url": "https://docs.sigstore.dev/about/overview/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.trusted-publishing",
+   "title": "Trusted Publishing",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2023,
+   "short": "Publishing packages with short-lived credentials issued to a CI workflow, instead of long-lived tokens that can be stolen.",
+   "long": "A long-lived publishing token is a secret that lets whoever steals it release new versions of a package. Trusted publishing replaces it with short-lived credentials issued through OpenID Connect: the registry is told to trust one specific CI workflow, and that workflow receives a credential that, at PyPI, is valid for only 15 minutes. RubyGems announced it on 14 December 2023, and crates.io on 11 July 2025, inspired by PyPI. npm supports it for GitHub Actions, GitLab CI/CD and CircleCI, and generates provenance attestations from GitHub Actions or GitLab. The Python Packaging User Guide now recommends it. After the 2025 attacks npm also revoked all classic tokens on 9 December 2025, and npm login now issues a two-hour session token.",
+   "sleeper": "Maintainers once published from a laptop with a saved token. Registries now prefer releases from a named CI workflow, which removes a stealable token but not the risk of a compromised workflow.",
+   "status": "thriving",
+   "tags": [
+    "oidc",
+    "tokens",
+    "pypi",
+    "provenance",
+    "ci",
+    "classic tokens",
+    "short-lived credentials"
+   ],
+   "refs": [
+    {
+     "label": "PyPI documentation: Trusted Publishers",
+     "url": "https://docs.pypi.org/trusted-publishers/"
+    },
+    {
+     "label": "npm documentation: Trusted publishing",
+     "url": "https://docs.npmjs.com/trusted-publishers"
+    }
+   ]
+  },
+  {
+   "id": "pkg.dependabot",
+   "title": "Dependabot",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2017,
+   "short": "GitHub's automation that alerts you to vulnerable dependencies and opens pull requests to update them.",
+   "long": "Dependabot has three features: alerts that tell you about vulnerabilities in the dependencies a repository uses, security updates that raise pull requests for dependencies with known vulnerabilities, and version updates that raise pull requests to keep dependencies current. Its core repository, written in Ruby, was created on 2 June 2017, and it is a GitHub feature. Renovate, from Mend and licensed under AGPL-3.0, is an alternative. Bots that update lockfiles risk pulling in a freshly published malicious release, so as of 2026 Dependabot offers a cooldown option and applies a default 3-day cooldown to version updates, though not to security updates, to give the community time to vet new versions.",
+   "sleeper": "Updating a library used to be a manual chore that was easy to postpone. Bots now propose each update as a ready-made change, and the new debate is how long to wait before accepting one.",
+   "code": {
+    "lang": "yaml",
+    "text": "version: 2\nupdates:\n  - package-ecosystem: \"npm\"\n    directory: \"/\"\n    schedule:\n      interval: \"weekly\"\n    cooldown:\n      default-days: 3"
+   },
+   "status": "thriving",
+   "tags": [
+    "renovate",
+    "security updates",
+    "pull requests",
+    "cooldown",
+    "version updates",
+    "bots"
+   ],
+   "refs": [
+    {
+     "label": "GitHub Docs: Dependabot quickstart guide",
+     "url": "https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide"
+    },
+    {
+     "label": "GitHub Docs: Dependabot options reference",
+     "url": "https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference"
+    }
+   ]
+  },
+  {
+   "id": "pkg.react",
+   "title": "React",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2013,
+   "short": "Facebook's JavaScript library for building interfaces from components, open-sourced in 2013 and used by 44.7 percent of Stack Overflow 2025 respondents.",
+   "long": "Facebook open-sourced React in May 2013. It introduced component-based user interfaces with a virtual DOM, and Pete Hunt's June 2013 post described it as a library for building composable user interfaces. React 16 appeared on 26 September 2017, 18 on 29 March 2022 and 19.0 on 5 December 2024, which made React Server Components stable. On 7 October 2025 the React team announced plans to move React and React Native from Meta to a new React Foundation with independent technical governance. In the Stack Overflow 2025 survey 44.7 percent of respondents used React, and npm counted about 721 million React downloads a month, yet the top pain points in State of JavaScript 2025 were React itself and excessive complexity.",
+   "sleeper": "A web page used to be a document that a server assembled for each request. With React, the browser downloads an application once and redraws parts of the page itself, calling servers only for data.",
+   "code": {
+    "lang": "jsx",
+    "text": "function Hello({ name }) {\n  return <h1>Hello, {name}</h1>;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "components",
+    "virtual dom",
+    "jsx",
+    "facebook",
+    "meta",
+    "user interface",
+    "front-end"
+   ],
+   "refs": [
+    {
+     "label": "React blog: Why did we build React? (2013)",
+     "url": "https://legacy.reactjs.org/blog/2013/06/05/why-react.html"
+    },
+    {
+     "label": "React blog: Introducing the React Foundation",
+     "url": "https://react.dev/blog/2025/10/07/introducing-the-react-foundation"
+    }
+   ]
+  },
+  {
+   "id": "pkg.nextjs",
+   "title": "Next.js",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2016,
+   "short": "Vercel's React framework that renders pages on the server; 20.8 percent of Stack Overflow 2025 respondents used it.",
+   "long": "Next.js is a framework from Vercel, dating to 2016, that builds on React. It renders pages on the server so that the browser receives finished HTML, adding JavaScript only where it is needed. Nuxt, SvelteKit, Remix and Astro are similar server-rendering frameworks, and together they brought rendering back to the server after the single-page-app years. React Server Components, stable in React 19 in December 2024, put a related idea inside React itself, although their complexity is contested. Next.js 16, released on 21 October 2025, made Turbopack the default bundler. About 240 million npm downloads a month were counted in September 2026, and 20.8 percent of Stack Overflow 2025 respondents used Next.js.",
+   "status": "thriving",
+   "tags": [
+    "vercel",
+    "server-side rendering",
+    "meta-framework",
+    "turbopack",
+    "react server components",
+    "ssr"
+   ],
+   "refs": [
+    {
+     "label": "Next.js 16",
+     "url": "https://nextjs.org/blog/next-16"
+    }
+   ]
+  },
+  {
+   "id": "pkg.htmx",
+   "title": "htmx",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2020,
+   "short": "A small JavaScript library by Carson Gross that lets HTML attributes fetch server-rendered fragments, as an alternative to single-page apps.",
+   "long": "htmx, by Carson Gross, extends plain HTML with attributes so that a server can return fragments of HTML for partial page updates, without a single-page app. It argues that most applications do not need a SPA. State of JavaScript 2025 ranks it last on its front-end framework usage list: real, but niche. It is the best-known example of a hypermedia counter-movement to the single-page app, and Rails' Hotwire and Phoenix LiveView follow a similar server-driven idea.",
+   "code": {
+    "lang": "html",
+    "text": "<script src=\"https://unpkg.com/htmx.org\"></script>\n<button hx-get=\"/clock\" hx-target=\"#time\">Refresh</button>\n<span id=\"time\"></span>"
+   },
+   "status": "niche",
+   "tags": [
+    "hypermedia",
+    "hotwire",
+    "liveview",
+    "html",
+    "carson gross",
+    "server-rendered"
+   ],
+   "refs": [
+    {
+     "label": "htmx",
+     "url": "https://htmx.org/"
+    },
+    {
+     "label": "State of JavaScript 2025: Front-end frameworks",
+     "url": "https://2025.stateofjs.com/en-US/libraries/front-end-frameworks/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.rails",
+   "title": "Ruby on Rails",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2004,
+   "short": "David Heinemeier Hansson's Ruby web framework, extracted from Basecamp in 2004, which popularised convention over configuration.",
+   "long": "Ruby on Rails was extracted by David Heinemeier Hansson from 37signals's Basecamp application and first released publicly in July 2004, with version 1.0 following in December 2005. It popularised convention over configuration, in which sensible defaults replace pages of settings; database migrations, which version a database's structure alongside the code; and generated scaffolding. It follows the model-view-controller pattern, which separates data, pages and request handling. Django in Python did similar things from 2005, and Rails inspired Laravel, Spring Boot and Phoenix. Hotwire, from the Rails world, follows the same server-rendered idea as htmx.",
+   "code": {
+    "lang": "bash",
+    "text": "rails new blog\ncd blog\nbin/rails generate scaffold Post title:string body:text\nbin/rails db:migrate"
+   },
+   "status": "thriving",
+   "tags": [
+    "ruby on rails",
+    "dhh",
+    "basecamp",
+    "convention over configuration",
+    "mvc",
+    "migrations",
+    "scaffolding",
+    "hotwire"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Ruby on Rails",
+     "url": "https://en.wikipedia.org/wiki/Ruby_on_Rails"
+    }
+   ]
+  },
+  {
+   "id": "pkg.spring",
+   "title": "Spring Framework",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2003,
+   "short": "A Java application framework that appeared in 2003 as a response to J2EE's complexity; 14.7 percent of Stack Overflow 2025 respondents used Spring Boot.",
+   "long": "Spring came into being in 2003, in the words of its reference documentation, as a response to the complexity of the early J2EE specifications. The complaint, later made of EJB 2 and SOAP as well, was that the standard approach was complex, XML-heavy and full of ceremony, and each was displaced by something simpler. In September 2000 Martin Fowler, Rebecca Parsons and Josh MacKenzie had coined \"POJO\", plain old Java object, because simple objects lacked a fancy name, and Spring built its approach on such objects. Spring Boot 4.1.1 was released on 20 August 2026, on Spring Framework 7.0.x. Its API still contains a class named AbstractSingletonProxyFactoryBean, a standing joke about enterprise Java naming.",
+   "sleeper": "Enterprise Java around 2000 meant heavyweight server components. Spring's answer was ordinary Java objects with the framework supplying their dependencies, an approach called dependency injection.",
+   "status": "thriving",
+   "tags": [
+    "java",
+    "jvm",
+    "spring boot",
+    "pojo",
+    "dependency injection",
+    "enterprise java",
+    "ejb"
+   ],
+   "refs": [
+    {
+     "label": "Spring Framework reference: Overview",
+     "url": "https://docs.spring.io/spring-framework/reference/overview.html"
+    },
+    {
+     "label": "Martin Fowler: POJO",
+     "url": "https://martinfowler.com/bliki/POJO.html"
+    }
+   ]
+  },
+  {
+   "id": "pkg.jakarta-ee",
+   "title": "Jakarta EE",
+   "cat": "packages",
+   "tier": 4,
+   "year": 2018,
+   "short": "The Eclipse Foundation's continuation of Java EE, renamed Jakarta EE in 2018; its 2020 release moved package names from javax to jakarta.",
+   "long": "J2EE, the Java 2 Platform, Enterprise Edition, dates from 1999 (version 1.2) and was renamed Java EE in 2005 or 2006. On 12 September 2017 Oracle announced that it would move Java EE to the Eclipse Foundation, which could not use the Java or javax names, so the platform was renamed Jakarta EE in 2018. Jakarta EE 8 followed in September 2019 and Jakarta EE 9 in December 2020, which changed the package namespace from javax to jakarta. Versions 10 and 11 arrived in September 2022 and June 2025. EJB 3.0, in 2006, had already replaced much of the XML of EJB 2 with annotations.",
+   "status": "thriving",
+   "tags": [
+    "java ee",
+    "j2ee",
+    "eclipse foundation",
+    "javax",
+    "enterprise java",
+    "oracle"
+   ],
+   "refs": [
+    {
+     "label": "Jakarta EE 11",
+     "url": "https://jakarta.ee/release/11/"
+    },
+    {
+     "label": "Wikipedia: Jakarta EE",
+     "url": "https://en.wikipedia.org/wiki/Jakarta_EE"
+    }
+   ]
+  },
+  {
+   "id": "pkg.cran",
+   "title": "CRAN",
+   "cat": "packages",
+   "tier": 4,
+   "year": 1997,
+   "short": "R's package archive, home to 25,284 packages of statistics and data analysis when checked on 1 October 2026.",
+   "long": "The Comprehensive R Archive Network is the main package repository for R, the statistics language that Ross Ihaka and Robert Gentleman announced in 1993. R can be considered a different implementation of S, the language of John Chambers and colleagues at Bell Laboratories, and Ihaka has described it as starting as an experiment in using the methods of Lisp implementors to build a small testbed for a statistical environment, with an S-like syntax. R's source was released under the GNU GPL in June 1995. CRAN's own page listed 25,284 available packages when checked on 1 October 2026.",
+   "status": "thriving",
+   "tags": [
+    "r",
+    "statistics",
+    "archive",
+    "ross ihaka",
+    "robert gentleman",
+    "packages"
+   ],
+   "refs": [
+    {
+     "label": "CRAN: available packages",
+     "url": "https://cran.r-project.org/web/packages/"
+    },
+    {
+     "label": "The R Project: About R",
+     "url": "https://www.r-project.org/about.html"
+    }
+   ]
+  },
+  {
+   "id": "pkg.popularity",
+   "title": "Package Manager Popularity, 2025 to 2026",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2026,
+   "short": "In the 2025 Stack Overflow survey npm leads package managers at 56.8 percent, followed by pip, Homebrew, Yarn, NuGet, APT, Maven, Gradle and Cargo.",
+   "long": "In the Stack Overflow 2025 survey the share of all respondents using each tool was: npm 56.8 percent, pip 40.9, Homebrew 25.7, Yarn 21.1, NuGet 18.9, APT 18.4, Maven 16.4, Gradle 14.4, Cargo 14.4, pnpm 13.4, Composer 11, Poetry 9 and Bun 5.5. State of JavaScript 2025 found pnpm the clear leader among monorepo users. In September 2026 pip had about 414 million PyPI downloads and uv 129 million, though uv is mostly installed by other routes.\n\nRegistries differ in size: about 4.4 million package records on npm, over 900,000 projects on PyPI, 492,566 hits on NuGet, 469,642 packages on Packagist, 343,176 crates and 25,284 packages on CRAN. Go has built-in modules, Swift has Swift Package Manager, Elixir has Hex, and C and C++ have no single winner. Counts measure installs and uploads, not users.",
+   "status": "n/a",
+   "tags": [
+    "stack overflow survey",
+    "downloads",
+    "registry size",
+    "maven",
+    "gradle",
+    "vcpkg",
+    "conan",
+    "hex",
+    "cabal"
+   ],
+   "refs": [
+    {
+     "label": "Stack Overflow Developer Survey 2025: Technology",
+     "url": "https://survey.stackoverflow.co/2025/technology"
+    },
+    {
+     "label": "State of JavaScript 2025: Other tools",
+     "url": "https://2025.stateofjs.com/en-US/other-tools/"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "pkg.software-components",
+   "t": "ppl.mcilroy",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "pkg.software-components",
+   "t": "proc.nato-1968",
+   "w": 2,
+   "k": "part-of",
+   "note": "invited address at the 1968 NATO conference"
+  },
+  {
+   "s": "pkg.software-components",
+   "t": "pkg.manager",
+   "w": 2,
+   "k": "influenced",
+   "note": "the idea of catalogued, reusable parts"
+  },
+  {
+   "s": "pkg.software-components",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.software-components",
+   "t": "proc.software-crisis",
+   "w": 1,
+   "k": "related",
+   "note": "offered as a remedy for the industry's weakness"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "pkg.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "pkg.manager",
+   "w": 2,
+   "k": "related",
+   "note": "package managers are the tools that carry it out"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "fail.dependency-hell",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "tool.maven",
+   "w": 1,
+   "k": "related",
+   "note": "Maven mediates version conflicts by nearest definition"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "tool.bazel",
+   "w": 2,
+   "k": "related",
+   "note": "Google keeps one version of each third-party dependency"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "tool.hermetic-builds",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "plat.docker",
+   "w": 2,
+   "k": "related",
+   "note": "an image bundles an application with its libraries"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "plat.windows",
+   "w": 1,
+   "k": "related",
+   "note": "DLL hell"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "plat.linux-distros",
+   "w": 2,
+   "k": "related",
+   "note": "distribution package managers answered dependency hell"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "qual.dependency-scanners",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.dependency-management",
+   "t": "comp.linker",
+   "w": 1,
+   "k": "related",
+   "note": "linking is the oldest way to combine libraries"
+  },
+  {
+   "s": "pkg.lockfile",
+   "t": "pkg.dependency-management",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.lockfile",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "related",
+   "note": "package-lock.json"
+  },
+  {
+   "s": "pkg.lockfile",
+   "t": "proc.technical-debt",
+   "w": 1,
+   "k": "related",
+   "note": "a pinned version can fall behind patches: technical lag"
+  },
+  {
+   "s": "pkg.lockfile",
+   "t": "tool.hermetic-builds",
+   "w": 1,
+   "k": "related",
+   "note": "pinned inputs make builds repeatable"
+  },
+  {
+   "s": "pkg.version-resolution",
+   "t": "pkg.dependency-management",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.version-resolution",
+   "t": "pkg.semver",
+   "w": 2,
+   "k": "related",
+   "note": "version ranges rely on trustworthy version numbers"
+  },
+  {
+   "s": "pkg.version-resolution",
+   "t": "pkg.apt",
+   "w": 2,
+   "k": "related",
+   "note": "APT added dependency resolution on top of dpkg in 1998"
+  },
+  {
+   "s": "pkg.version-resolution",
+   "t": "pkg.rpm-dnf",
+   "w": 2,
+   "k": "related",
+   "note": "DNF resolves with the libsolv SAT solver"
+  },
+  {
+   "s": "pkg.version-resolution",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "related",
+   "note": "pip gained backtracking in version 20.3"
+  },
+  {
+   "s": "pkg.version-resolution",
+   "t": "pkg.cargo",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.version-resolution",
+   "t": "tool.maven",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.version-resolution",
+   "t": "pkg.composer",
+   "w": 1,
+   "k": "related",
+   "note": "uses a SAT solver derived from openSUSE's"
+  },
+  {
+   "s": "pkg.semver",
+   "t": "pkg.dependency-management",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.semver",
+   "t": "proc.hyrums-law",
+   "w": 2,
+   "k": "related",
+   "note": "with enough users, every observable behaviour is depended on"
+  },
+  {
+   "s": "pkg.semver",
+   "t": "pkg.cargo",
+   "w": 2,
+   "k": "related",
+   "note": "Cargo assumes packages follow SemVer"
+  },
+  {
+   "s": "pkg.semver",
+   "t": "pkg.go-modules",
+   "w": 2,
+   "k": "related",
+   "note": "the major version goes into the import path"
+  },
+  {
+   "s": "pkg.semver",
+   "t": "plat.github",
+   "w": 1,
+   "k": "related",
+   "note": "written by GitHub co-founder Tom Preston-Werner"
+  },
+  {
+   "s": "pkg.pubgrub",
+   "t": "pkg.version-resolution",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.pubgrub",
+   "t": "lang.dart",
+   "w": 2,
+   "k": "related",
+   "note": "built for Dart's pub"
+  },
+  {
+   "s": "pkg.mvs",
+   "t": "pkg.version-resolution",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.mvs",
+   "t": "pkg.go-modules",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.mvs",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "related",
+   "note": "removes the need for a separate lock file"
+  },
+  {
+   "s": "pkg.mvs",
+   "t": "pkg.pubgrub",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.mvs",
+   "t": "pkg.supply-chain",
+   "w": 1,
+   "k": "related",
+   "note": "never selects a version that nobody asked for"
+  },
+  {
+   "s": "pkg.apt",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.apt",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.apt",
+   "t": "plat.linux-distros",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.apt",
+   "t": "pkg.rpm-dnf",
+   "w": 2,
+   "k": "competes-with",
+   "note": "the Red Hat family counterpart"
+  },
+  {
+   "s": "pkg.apt",
+   "t": "fail.xz",
+   "w": 1,
+   "k": "related",
+   "note": "the xz backdoor surfaced in Debian unstable builds"
+  },
+  {
+   "s": "pkg.rpm-dnf",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.rpm-dnf",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.rpm-dnf",
+   "t": "org.red-hat",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "pkg.rpm-dnf",
+   "t": "plat.linux-distros",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.homebrew",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.homebrew",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.homebrew",
+   "t": "lang.ruby",
+   "w": 2,
+   "k": "uses",
+   "note": "formulae are Ruby scripts"
+  },
+  {
+   "s": "pkg.homebrew",
+   "t": "pkg.apt",
+   "w": 1,
+   "k": "related",
+   "note": "the macOS counterpart to apt"
+  },
+  {
+   "s": "pkg.homebrew",
+   "t": "plat.nextstep-macos",
+   "w": 2,
+   "k": "related",
+   "note": "installs onto macOS"
+  },
+  {
+   "s": "pkg.homebrew",
+   "t": "plat.wsl",
+   "w": 1,
+   "k": "related",
+   "note": "officially supported since 2019"
+  },
+  {
+   "s": "pkg.homebrew",
+   "t": "plat.apple-silicon",
+   "w": 1,
+   "k": "related",
+   "note": "the /opt/homebrew prefix"
+  },
+  {
+   "s": "pkg.nix",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.nix",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.nix",
+   "t": "pkg.dependency-management",
+   "w": 2,
+   "k": "related",
+   "note": "answers DLL hell with immutable, hash-addressed installs"
+  },
+  {
+   "s": "pkg.nix",
+   "t": "tool.hermetic-builds",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.nix",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related",
+   "note": "another way to ship a whole environment"
+  },
+  {
+   "s": "pkg.nix",
+   "t": "tool.iac",
+   "w": 1,
+   "k": "related",
+   "note": "declarative whole-system configuration"
+  },
+  {
+   "s": "pkg.nix",
+   "t": "plat.linux-distros",
+   "w": 1,
+   "k": "related",
+   "note": "NixOS"
+  },
+  {
+   "s": "pkg.cpan",
+   "t": "pkg.manager",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.cpan",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.cpan",
+   "t": "lang.perl",
+   "w": 2,
+   "k": "related",
+   "note": "Perl's module archive"
+  },
+  {
+   "s": "pkg.cpan",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "influenced",
+   "note": "npm's creator cites PEAR and CPAN"
+  },
+  {
+   "s": "pkg.cpan",
+   "t": "pkg.rubygems",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "pkg.cpan",
+   "t": "pkg.pip",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "pkg.rubygems",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.rubygems",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.rubygems",
+   "t": "lang.ruby",
+   "w": 2,
+   "k": "part-of",
+   "note": "in the standard Ruby distribution since Ruby 1.9"
+  },
+  {
+   "s": "pkg.bundler",
+   "t": "pkg.rubygems",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.bundler",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "influenced",
+   "note": "popularised the Gemfile.lock pattern"
+  },
+  {
+   "s": "pkg.bundler",
+   "t": "pkg.cargo",
+   "w": 2,
+   "k": "influenced",
+   "note": "Cargo follows the tradition of Bundler and npm"
+  },
+  {
+   "s": "pkg.bundler",
+   "t": "pkg.composer",
+   "w": 2,
+   "k": "influenced",
+   "note": "Composer is strongly inspired by npm and Bundler"
+  },
+  {
+   "s": "pkg.bundler",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.bundler",
+   "t": "lang.ruby",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.composer",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.composer",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.composer",
+   "t": "lang.php",
+   "w": 2,
+   "k": "related",
+   "note": "PHP's dependency manager"
+  },
+  {
+   "s": "pkg.composer",
+   "t": "pkg.npm",
+   "w": 1,
+   "k": "related",
+   "note": "strongly inspired by npm"
+  },
+  {
+   "s": "pkg.nuget",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.nuget",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.nuget",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "pkg.nuget",
+   "t": "plat.dotnet",
+   "w": 2,
+   "k": "related",
+   "note": "the package manager of .NET"
+  },
+  {
+   "s": "pkg.nuget",
+   "t": "lang.csharp",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.cargo",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.cargo",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.cargo",
+   "t": "lang.rust",
+   "w": 3,
+   "k": "part-of",
+   "note": "arrived with Rust 1.0"
+  },
+  {
+   "s": "pkg.cargo",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "uses",
+   "note": "Cargo.lock"
+  },
+  {
+   "s": "pkg.cargo",
+   "t": "tool.build-system",
+   "w": 2,
+   "k": "related",
+   "note": "builds as well as fetches"
+  },
+  {
+   "s": "pkg.cargo",
+   "t": "mod.stackoverflow-survey",
+   "w": 1,
+   "k": "related",
+   "note": "second in the 2025 \"most admired\" ranking"
+  },
+  {
+   "s": "pkg.yarn",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.yarn",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.yarn",
+   "t": "pkg.npm",
+   "w": 3,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.yarn",
+   "t": "pkg.pnpm",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.yarn",
+   "t": "org.meta",
+   "w": 2,
+   "k": "created-by",
+   "note": "announced by Facebook"
+  },
+  {
+   "s": "pkg.yarn",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.pnpm",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.pnpm",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.pnpm",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.pnpm",
+   "t": "pkg.supply-chain",
+   "w": 1,
+   "k": "related",
+   "note": "minimumReleaseAge delays new releases"
+  },
+  {
+   "s": "pkg.pnpm",
+   "t": "lang.js",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.go-modules",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.go-modules",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.go-modules",
+   "t": "lang.go",
+   "w": 3,
+   "k": "part-of",
+   "note": "built into the go command"
+  },
+  {
+   "s": "pkg.go-modules",
+   "t": "pkg.supply-chain",
+   "w": 2,
+   "k": "related",
+   "note": "the checksum database is a transparency log"
+  },
+  {
+   "s": "pkg.go-modules",
+   "t": "pkg.sigstore",
+   "w": 1,
+   "k": "related",
+   "note": "both rely on transparency logs"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "pkg.pip",
+   "w": 3,
+   "k": "competes-with",
+   "note": "a drop-in replacement for pip"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "pkg.poetry",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "org.astral",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses",
+   "note": "written in Rust"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "pkg.pubgrub",
+   "w": 2,
+   "k": "uses",
+   "note": "resolves with a fork of PubGrub"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "uses",
+   "note": "the universal uv.lock"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "pkg.venv",
+   "w": 2,
+   "k": "related",
+   "note": "creates and manages virtual environments"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "pkg.pyproject",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related",
+   "note": "also manages Python versions"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "org.openai",
+   "w": 2,
+   "k": "related",
+   "note": "Astral agreed to join OpenAI in March 2026"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "qual.ruff",
+   "w": 2,
+   "k": "related",
+   "note": "also from Astral"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "fail.dependency-hell",
+   "w": 2,
+   "k": "related",
+   "note": "answers Python environment trouble"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "mod.rust-rewrite-wave",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.uv",
+   "t": "mod.pypi-rankings",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.poetry",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.poetry",
+   "t": "pkg.manager",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.poetry",
+   "t": "pkg.pyproject",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.poetry",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.poetry",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "related",
+   "note": "installs from PyPI like pip"
+  },
+  {
+   "s": "pkg.poetry",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.conda",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.conda",
+   "t": "pkg.manager",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.conda",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.conda",
+   "t": "fail.anaconda-licensing",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.conda",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related",
+   "note": "the scientific Python stack"
+  },
+  {
+   "s": "pkg.conda",
+   "t": "fail.dependency-hell",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.conda",
+   "t": "pkg.venv",
+   "w": 1,
+   "k": "related",
+   "note": "another way to isolate environments"
+  },
+  {
+   "s": "pkg.conda",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.venv",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.venv",
+   "t": "pkg.python-stdlib",
+   "w": 2,
+   "k": "part-of",
+   "note": "venv ships in the standard library since Python 3.3"
+  },
+  {
+   "s": "pkg.venv",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "related",
+   "note": "pip installs into the active environment"
+  },
+  {
+   "s": "pkg.venv",
+   "t": "fail.dependency-hell",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.venv",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.pyproject",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.pyproject",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.pyproject",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "related",
+   "note": "PEP 751 standardised pylock.toml"
+  },
+  {
+   "s": "pkg.pyproject",
+   "t": "pkg.pip",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.python-stdlib",
+   "t": "lang.python",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.python-stdlib",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.python-stdlib",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "related",
+   "note": "third-party packages complement the standard library"
+  },
+  {
+   "s": "pkg.python-stdlib",
+   "t": "data.sqlite",
+   "w": 2,
+   "k": "related",
+   "note": "the sqlite3 module"
+  },
+  {
+   "s": "pkg.python-stdlib",
+   "t": "data.json",
+   "w": 2,
+   "k": "related",
+   "note": "the json module"
+  },
+  {
+   "s": "pkg.python-stdlib",
+   "t": "conc.async-await",
+   "w": 1,
+   "k": "related",
+   "note": "asyncio"
+  },
+  {
+   "s": "pkg.requests",
+   "t": "plat.http",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.requests",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.requests",
+   "t": "plat.rest",
+   "w": 1,
+   "k": "related",
+   "note": "typically used to call web APIs"
+  },
+  {
+   "s": "pkg.requests",
+   "t": "mod.pypi-rankings",
+   "w": 1,
+   "k": "related",
+   "note": "seventh most downloaded in September 2026"
+  },
+  {
+   "s": "pkg.requests",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.pydantic",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.pydantic",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses",
+   "note": "pydantic-core is written in Rust"
+  },
+  {
+   "s": "pkg.pydantic",
+   "t": "conc.gradual-typing",
+   "w": 1,
+   "k": "related",
+   "note": "validates data against type hints"
+  },
+  {
+   "s": "pkg.pydantic",
+   "t": "mod.rust-rewrite-wave",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.pydantic",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.sqlalchemy",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.sqlalchemy",
+   "t": "data.sql",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sqlalchemy",
+   "t": "data.postgres",
+   "w": 1,
+   "k": "related",
+   "note": "through the psycopg driver"
+  },
+  {
+   "s": "pkg.sqlalchemy",
+   "t": "data.sqlite",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sqlalchemy",
+   "t": "data.drivers",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sqlalchemy",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.pillow",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.pillow",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.pillow",
+   "t": "mod.pypi-rankings",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.beautifulsoup",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.beautifulsoup",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.beautifulsoup",
+   "t": "lang.html",
+   "w": 2,
+   "k": "related",
+   "note": "parses HTML"
+  },
+  {
+   "s": "pkg.beautifulsoup",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.flask",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.flask",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.flask",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.flask",
+   "t": "mod.stackoverflow-survey",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.fastapi",
+   "t": "pkg.pydantic",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.fastapi",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.fastapi",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.fastapi",
+   "t": "pkg.flask",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.fastapi",
+   "t": "conc.async-await",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.fastapi",
+   "t": "plat.rest",
+   "w": 2,
+   "k": "related",
+   "note": "builds web APIs"
+  },
+  {
+   "s": "pkg.fastapi",
+   "t": "mod.stackoverflow-survey",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.django",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.django",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.django",
+   "t": "pkg.flask",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.django",
+   "t": "pkg.fastapi",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.django",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.rails",
+   "t": "lang.ruby",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.rails",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.rails",
+   "t": "conc.mvc",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.rails",
+   "t": "pkg.django",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.rails",
+   "t": "pkg.spring",
+   "w": 1,
+   "k": "influenced",
+   "note": "inspired Spring Boot"
+  },
+  {
+   "s": "pkg.rails",
+   "t": "lang.elixir",
+   "w": 1,
+   "k": "influenced",
+   "note": "inspired Phoenix"
+  },
+  {
+   "s": "pkg.rails",
+   "t": "lang.php",
+   "w": 1,
+   "k": "influenced",
+   "note": "inspired Laravel"
+  },
+  {
+   "s": "pkg.rails",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.spring",
+   "t": "lang.java",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.spring",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.spring",
+   "t": "pkg.jakarta-ee",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.spring",
+   "t": "fail.ejb",
+   "w": 2,
+   "k": "related",
+   "note": "a response to EJB 2 and early J2EE"
+  },
+  {
+   "s": "pkg.spring",
+   "t": "ppl.fowler",
+   "w": 1,
+   "k": "related",
+   "note": "POJO was coined by Fowler, Parsons and MacKenzie"
+  },
+  {
+   "s": "pkg.spring",
+   "t": "comp.jvm",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.jakarta-ee",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.jakarta-ee",
+   "t": "org.oracle",
+   "w": 2,
+   "k": "related",
+   "note": "Oracle moved Java EE to the Eclipse Foundation"
+  },
+  {
+   "s": "pkg.jakarta-ee",
+   "t": "fail.ejb",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.jakarta-ee",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.react",
+   "t": "lang.js",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.react",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.react",
+   "t": "org.meta",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "pkg.react",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "related",
+   "note": "about 721 million npm downloads a month"
+  },
+  {
+   "s": "pkg.react",
+   "t": "plat.spa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.react",
+   "t": "plat.cross-platform-mobile",
+   "w": 1,
+   "k": "related",
+   "note": "React Native"
+  },
+  {
+   "s": "pkg.react",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.nextjs",
+   "t": "pkg.react",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.nextjs",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.nextjs",
+   "t": "plat.spa",
+   "w": 2,
+   "k": "related",
+   "note": "server rendering returns after the single-page-app years"
+  },
+  {
+   "s": "pkg.nextjs",
+   "t": "lang.js",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.nextjs",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.htmx",
+   "t": "pkg.react",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "pkg.htmx",
+   "t": "plat.spa",
+   "w": 2,
+   "k": "related",
+   "note": "a counter-movement to single-page apps"
+  },
+  {
+   "s": "pkg.htmx",
+   "t": "lang.html",
+   "w": 2,
+   "k": "related",
+   "note": "extends HTML with attributes"
+  },
+  {
+   "s": "pkg.htmx",
+   "t": "pkg.rails",
+   "w": 2,
+   "k": "related",
+   "note": "Hotwire follows a similar idea"
+  },
+  {
+   "s": "pkg.htmx",
+   "t": "pkg.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.cran",
+   "t": "lang.r",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.cran",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.cran",
+   "t": "math.numpy",
+   "w": 1,
+   "k": "related",
+   "note": "the Python counterpart for numerical work"
+  },
+  {
+   "s": "pkg.cran",
+   "t": "conc.array-programming",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "pkg.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "pkg.dependency-management",
+   "w": 2,
+   "k": "related",
+   "note": "every dependency widens the trust surface"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.trusting-trust",
+   "w": 2,
+   "k": "related",
+   "note": "Thompson's 1984 lecture: trust is transitive"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.leftpad",
+   "w": 2,
+   "k": "related",
+   "note": "an availability failure rather than malware"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.event-stream",
+   "w": 2,
+   "k": "related",
+   "note": "social-engineered maintainer handover"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.solarwinds",
+   "w": 2,
+   "k": "related",
+   "note": "tampering at build time"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.log4shell",
+   "w": 2,
+   "k": "related",
+   "note": "one library embedded everywhere"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.xz",
+   "w": 2,
+   "k": "related",
+   "note": "a patient takeover of a one-person project"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.shai-hulud",
+   "w": 2,
+   "k": "related",
+   "note": "a self-replicating worm in npm"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.npm-takeovers",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.maintainer-sabotage",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.slopsquatting",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "fail.crowdstrike",
+   "w": 1,
+   "k": "related",
+   "note": "not an attack, but the same trusted update path"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "qual.security",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "qual.dependency-scanners",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "mod.cisa",
+   "w": 2,
+   "k": "related",
+   "note": "CISA alerts and secure-by-design guidance"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "mod.eu-cra",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "qual.github-actions",
+   "w": 2,
+   "k": "related",
+   "note": "CI plugins and workflows as attack paths"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related",
+   "note": "base images shift dependency risk"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "tool.hermetic-builds",
+   "w": 2,
+   "k": "related",
+   "note": "attested builds expose SolarWinds-style tampering"
+  },
+  {
+   "s": "pkg.supply-chain",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sbom",
+   "t": "pkg.supply-chain",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.sbom",
+   "t": "fail.log4shell",
+   "w": 2,
+   "k": "related",
+   "note": "the review found SBOMs were not used to find Log4j"
+  },
+  {
+   "s": "pkg.sbom",
+   "t": "fail.solarwinds",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sbom",
+   "t": "mod.cisa",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sbom",
+   "t": "mod.eu-cra",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sbom",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "SPDX began in a Linux Foundation work group"
+  },
+  {
+   "s": "pkg.sbom",
+   "t": "qual.dependency-scanners",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.slsa",
+   "t": "pkg.supply-chain",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.slsa",
+   "t": "org.google",
+   "w": 2,
+   "k": "created-by",
+   "note": "among its founders"
+  },
+  {
+   "s": "pkg.slsa",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "created-by",
+   "note": "among its founders"
+  },
+  {
+   "s": "pkg.slsa",
+   "t": "pkg.sigstore",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.slsa",
+   "t": "pkg.trusted-publishing",
+   "w": 2,
+   "k": "related",
+   "note": "provenance attestations"
+  },
+  {
+   "s": "pkg.slsa",
+   "t": "tool.hermetic-builds",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.slsa",
+   "t": "fail.solarwinds",
+   "w": 2,
+   "k": "related",
+   "note": "build-time tampering"
+  },
+  {
+   "s": "pkg.slsa",
+   "t": "qual.github-actions",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sigstore",
+   "t": "pkg.supply-chain",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.sigstore",
+   "t": "pkg.trusted-publishing",
+   "w": 2,
+   "k": "related",
+   "note": "short-lived credentials from an OIDC identity"
+  },
+  {
+   "s": "pkg.sigstore",
+   "t": "org.google",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sigstore",
+   "t": "org.red-hat",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.sigstore",
+   "t": "plat.github",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.trusted-publishing",
+   "t": "pkg.supply-chain",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.trusted-publishing",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "related",
+   "note": "PyPI tokens last 15 minutes"
+  },
+  {
+   "s": "pkg.trusted-publishing",
+   "t": "pkg.rubygems",
+   "w": 2,
+   "k": "related",
+   "note": "announced 14 December 2023"
+  },
+  {
+   "s": "pkg.trusted-publishing",
+   "t": "pkg.cargo",
+   "w": 2,
+   "k": "related",
+   "note": "crates.io announced it in July 2025"
+  },
+  {
+   "s": "pkg.trusted-publishing",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "related",
+   "note": "classic tokens revoked in December 2025"
+  },
+  {
+   "s": "pkg.trusted-publishing",
+   "t": "qual.github-actions",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.trusted-publishing",
+   "t": "fail.shai-hulud",
+   "w": 2,
+   "k": "related",
+   "note": "stolen tokens let the worm republish packages"
+  },
+  {
+   "s": "pkg.trusted-publishing",
+   "t": "qual.zero-trust",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.dependabot",
+   "t": "pkg.supply-chain",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.dependabot",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "related",
+   "note": "bots update the lockfile; technical lag"
+  },
+  {
+   "s": "pkg.dependabot",
+   "t": "plat.github",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.dependabot",
+   "t": "qual.dependency-scanners",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.dependabot",
+   "t": "tool.pull-request",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.uv",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.cargo",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.nuget",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.homebrew",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.apt",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.pnpm",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.yarn",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.composer",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.go-modules",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.rubygems",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.poetry",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "pkg.cran",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "tool.maven",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "tool.gradle",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "mod.stackoverflow-survey",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "mod.pypi-rankings",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "pkg.popularity",
+   "t": "mod.popular-2026",
+   "w": 1,
+   "k": "related"
+  }
+ ]
+}

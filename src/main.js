@@ -23,7 +23,9 @@ const app = {
 const canvas = $('#gl');
 try {
   const quality = params.get('q') || 'auto';
-  app.scene = createScene({ canvas, graph, layouts: graph.layouts, reduced, quality, still: params.has('still') });
+  const legendEl = $('#legend');
+  const insets = () => ({ left: innerWidth >= 860 && !legendEl.classList.contains('collapsed') ? Math.round(legendEl.getBoundingClientRect().right) : 0 });
+  app.scene = createScene({ canvas, graph, layouts: graph.layouts, reduced, quality, still: params.has('still'), insets });
 } catch (err) {
   console.warn('WebGL scene unavailable:', err);
   $('#nogl').hidden = false; canvas.hidden = true;

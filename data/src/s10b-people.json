@@ -1,0 +1,1980 @@
+{
+ "slice": "s10b-people",
+ "nodes": [
+  {
+   "id": "ppl.lovelace",
+   "title": "Ada Lovelace",
+   "cat": "people",
+   "tier": 3,
+   "year": 1843,
+   "short": "Translated and annotated Babbage's Analytical Engine paper in 1842 and 1843; her Note G is often called the first published computer program.",
+   "long": "In 1842 and 1843 Ada Lovelace translated Luigi Menabrea's article on Charles Babbage's proposed Analytical Engine and added Notes A to G, longer than the article itself. Note G gives a step-by-step method for computing Bernoulli numbers, often called the first published computer program, and she speculated that such a machine might one day compose music. Whether she was the first programmer is disputed, because Babbage wrote earlier programs for the engine and historians debate how the work was divided. The Ada language, standardized in 1983, is named for her.",
+   "status": "n/a",
+   "tags": [
+    "analytical engine",
+    "babbage",
+    "first programmer"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Ada Lovelace",
+     "url": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+    }
+   ]
+  },
+  {
+   "id": "ppl.turing",
+   "title": "Alan Turing",
+   "cat": "people",
+   "tier": 2,
+   "year": 1936,
+   "short": "Defined the Turing machine in 1936 and showed that some problems no program can solve; also a wartime codebreaker and early computer designer.",
+   "long": "Alan Turing's 1936 paper On Computable Numbers defined the Turing machine and proved that some problems cannot be computed. He worked as a codebreaker at Bletchley Park, designed the ACE computer in 1945 and 1946, programmed early machines at Manchester, and in 1950 proposed the imitation game now called the Turing test. He was convicted in 1952 for homosexual acts, died in 1954, and received a royal pardon in 2013. The ACM's Turing Award is named for him. Saying he invented the computer oversimplifies, since several groups developed the stored-program idea.",
+   "status": "n/a",
+   "tags": [
+    "computability",
+    "bletchley park",
+    "turing test"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Alan Turing",
+     "url": "https://en.wikipedia.org/wiki/Alan_Turing"
+    }
+   ]
+  },
+  {
+   "id": "ppl.von-neumann",
+   "title": "John von Neumann",
+   "cat": "people",
+   "tier": 3,
+   "year": 1945,
+   "short": "His 1945 First Draft report set out the stored-program design now called the von Neumann architecture.",
+   "long": "John von Neumann, a Hungarian-American mathematician at the Institute for Advanced Study, wrote the First Draft of a Report on the EDVAC, dated 30 June 1945. It described a computer that keeps its instructions and data in the same memory, the design now named after him. The IAS machine, running around 1951, was copied widely, and descendants included the ILLIAC, MANIAC and the IBM 701. The Draft carried his name alone although Eckert, Mauchly and others contributed, so credit for the architecture is contested.",
+   "status": "n/a",
+   "tags": [
+    "edvac",
+    "architecture",
+    "stored program"
+   ]
+  },
+  {
+   "id": "ppl.zuse",
+   "title": "Konrad Zuse",
+   "cat": "people",
+   "tier": 4,
+   "year": 1941,
+   "short": "Built the Z3, the first working programmable digital computer, in 1941, and designed the high-level language PlankalkÃ¼l.",
+   "long": "Konrad Zuse, working in Germany, built the Z3 in 1941, a relay-based machine usually described as the first working programmable automatic digital computer. It was destroyed in 1943. Between 1942 and 1945 he designed PlankalkÃ¼l, a high-level programming language decades ahead of its time that was not implemented until later. His Z4 was installed at ETH Zurich in 1950, and his company Zuse KG was absorbed by Siemens in 1967.",
+   "status": "n/a",
+   "tags": [
+    "z3",
+    "plankalkul",
+    "germany"
+   ]
+  },
+  {
+   "id": "ppl.booth",
+   "title": "Kathleen Booth",
+   "cat": "people",
+   "tier": 4,
+   "year": 1947,
+   "short": "Co-wrote the ARC assembly language in 1947 at Birkbeck College, one of the earliest assembly languages.",
+   "long": "Kathleen Booth, at Birkbeck College in London, worked with Andrew Booth on the ARC, SEC and APE(X)C computers and co-wrote the assembly language for the ARC in 1947. It is often called the first assembly language, though the claim is a priority claim and EDSAC's initial orders of 1949 are another candidate. She also wrote Programming for an Automatic Digital Calculator in 1958 and later worked on neural-network pattern recognition.",
+   "status": "n/a",
+   "tags": [
+    "arc",
+    "assembly",
+    "birkbeck"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Kathleen Booth",
+     "url": "https://en.wikipedia.org/wiki/Kathleen_Booth"
+    }
+   ]
+  },
+  {
+   "id": "ppl.wheeler",
+   "title": "David Wheeler",
+   "cat": "people",
+   "tier": 3,
+   "year": 1949,
+   "short": "Wrote EDSAC's initial orders and subroutine library at Cambridge in 1949, the forerunners of the assembler, loader and software library.",
+   "long": "David Wheeler, with Maurice Wilkes at Cambridge, built the software side of EDSAC, which ran its first program on 6 May 1949. His initial orders worked as a loader and assembler, and his subroutine library showed that code could be packaged and reused. The 1951 book The Preparation of Programs for an Electronic Digital Computer, by Wilkes, Wheeler and Gill, was the first book on programming. The line that all problems in computer science can be solved by another level of indirection is credited to him.",
+   "status": "n/a",
+   "tags": [
+    "edsac",
+    "initial orders",
+    "subroutines"
+   ]
+  },
+  {
+   "id": "ppl.eniac-programmers",
+   "title": "The ENIAC Programmers",
+   "cat": "people",
+   "tier": 4,
+   "year": 1946,
+   "short": "Six women programmed ENIAC by rewiring cables and switches for its public unveiling in 1946, and went uncredited for decades.",
+   "long": "Kay McNulty, Betty Jean Jennings, Betty Snyder, Marlyn Wescoff, Ruth Lichterman and Frances Bilas programmed ENIAC by rewiring its cables and switches for its public unveiling on 15 February 1946. There was no stored program, so each new problem meant physical rewiring. They were not credited for decades. Betty Snyder, later Holberton, went on to write UNIVAC's sort-merge generator around 1951.",
+   "status": "n/a",
+   "tags": [
+    "eniac",
+    "women in computing",
+    "rewiring"
+   ]
+  },
+  {
+   "id": "ppl.backus",
+   "title": "John Backus",
+   "cat": "people",
+   "tier": 2,
+   "year": 1957,
+   "short": "Led the team that built FORTRAN and its optimizing compiler at IBM, and co-created the BNF notation used to specify languages.",
+   "long": "John Backus led IBM's FORTRAN team, which began in 1954 and delivered the compiler in April 1957 for the IBM 704. It was the first widely used optimizing compiler and proved that high-level code could rival hand-written assembly. He also helped create the Backus-Naur Form notation for describing languages, used for the ALGOL 60 report. His 1977 Turing Award lecture, which asked whether programming could be liberated from the von Neumann style, launched much of the advocacy for functional programming.",
+   "status": "n/a",
+   "tags": [
+    "fortran",
+    "bnf",
+    "ibm"
+   ]
+  },
+  {
+   "id": "ppl.mccarthy",
+   "title": "John McCarthy",
+   "cat": "people",
+   "tier": 2,
+   "year": 1958,
+   "short": "Invented Lisp and garbage collection, coined artificial intelligence, and pushed time-sharing and the idea of a computer utility.",
+   "long": "John McCarthy, at MIT and later Stanford, coined the term artificial intelligence in the 1955 proposal for the Dartmouth workshop. He invented Lisp in 1958, with the paper following in April 1960, along with garbage collection and the conditional expression. He promoted time-sharing and the idea of a computer utility in 1961, an ancestor of cloud computing, and founded the Stanford AI Laboratory in 1963.",
+   "status": "n/a",
+   "tags": [
+    "lisp",
+    "ai",
+    "time-sharing"
+   ]
+  },
+  {
+   "id": "ppl.hamilton",
+   "title": "Margaret Hamilton",
+   "cat": "people",
+   "tier": 3,
+   "year": 1969,
+   "short": "Led the Apollo guidance software at MIT; its priority-based design kept the Apollo 11 landing going through overload alarms.",
+   "long": "Margaret Hamilton led software engineering for the Apollo guidance computer at the MIT Instrumentation Laboratory. Its priority-scheduled executive dropped low-priority tasks during the 1201 and 1202 overload alarms of the Apollo 11 landing on 20 July 1969. She later founded Higher Order Software and Hamilton Technologies. The well-known photograph beside a stack of printouts shows listings written by a large team, not by her alone, and her claim to have used the term software engineering in the early 1960s is plausible but unverified.",
+   "status": "n/a",
+   "tags": [
+    "apollo",
+    "mit",
+    "flight software"
+   ]
+  },
+  {
+   "id": "ppl.dijkstra",
+   "title": "Edsger Dijkstra",
+   "cat": "people",
+   "tier": 2,
+   "year": 1968,
+   "short": "Wrote the 1968 letter against goto that launched structured programming; also shortest paths, semaphores and the THE operating system.",
+   "long": "Edsger Dijkstra devised the shortest-path algorithm in 1956 and wrote the first ALGOL 60 compiler with Jaap Zonneveld in 1960. His THE multiprogramming system of 1965 to 1968 used layering and semaphores. Go To Statement Considered Harmful, published in March 1968 under a title supplied by the editor, Niklaus Wirth, started the structured-programming movement. He wrote thousands of handwritten EWD notes. A real quote is that testing can show the presence of bugs but never their absence.",
+   "status": "n/a",
+   "tags": [
+    "goto",
+    "structured programming",
+    "algol"
+   ],
+   "refs": [
+    {
+     "label": "The EWD archive, UT Austin",
+     "url": "https://www.cs.utexas.edu/~EWD/"
+    }
+   ]
+  },
+  {
+   "id": "ppl.knuth",
+   "title": "Donald Knuth",
+   "cat": "people",
+   "tier": 2,
+   "year": 1968,
+   "short": "Author of The Art of Computer Programming and creator of TeX; shaped how algorithms are analyzed and taught.",
+   "long": "Donald Knuth at Stanford began writing The Art of Computer Programming in 1962 and published its first volume in 1968, a multivolume work on the analysis of algorithms, and wrote TeX and METAFONT between 1978 and 1982. He introduced literate programming and famously paid rewards for errors found in his books. His 1974 paper contains the line that premature optimization is the root of all evil, which he attributes to Tony Hoare, who did not remember saying it.",
+   "status": "n/a",
+   "tags": [
+    "taocp",
+    "tex",
+    "algorithms"
+   ]
+  },
+  {
+   "id": "ppl.hoare",
+   "title": "Tony Hoare",
+   "cat": "people",
+   "tier": 2,
+   "year": 1960,
+   "short": "Invented quicksort, Hoare logic and CSP, and introduced the null reference he later called his billion-dollar mistake.",
+   "long": "Tony Hoare invented quicksort in 1959 and 1960 and worked on an ALGOL 60 compiler at Elliott Brothers. His 1969 paper gave Hoare logic, a way of reasoning formally about programs, and his 1978 CSP model of communicating processes influenced occam and Go. He added the null reference to ALGOL W in 1965 and called it his billion-dollar mistake in 2009. He died on 5 March 2026, aged 92.",
+   "status": "n/a",
+   "tags": [
+    "quicksort",
+    "csp",
+    "null"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Tony Hoare",
+     "url": "https://en.wikipedia.org/wiki/Tony_Hoare"
+    }
+   ]
+  },
+  {
+   "id": "ppl.wirth",
+   "title": "Niklaus Wirth",
+   "cat": "people",
+   "tier": 2,
+   "year": 1970,
+   "short": "Designed Pascal, Modula-2 and Oberon, and argued for lean software; Pascal taught a generation to program.",
+   "long": "Niklaus Wirth at ETH Zurich designed Euler, Algol W in 1966, Pascal in 1970, Modula-2 around 1978 to 1980 and Oberon in 1987, along with the Lilith workstation. His 1976 book Algorithms + Data Structures = Programs and his 1995 essay A Plea for Lean Software became touchstones. Pascal's role in teaching made it the language many readers of this map remember, through Turbo Pascal and Apple Pascal. He died on 1 January 2024.",
+   "status": "n/a",
+   "tags": [
+    "pascal",
+    "oberon",
+    "eth zurich"
+   ]
+  },
+  {
+   "id": "ppl.liskov",
+   "title": "Barbara Liskov",
+   "cat": "people",
+   "tier": 3,
+   "year": 1974,
+   "short": "Created CLU with abstract data types, iterators and exceptions, and the Liskov substitution principle for object-oriented design.",
+   "long": "Barbara Liskov at MIT designed CLU in 1974 and 1975, a language that introduced abstract data types, iterators and exception handling in forms later copied widely. The Liskov substitution principle, from 1987 and formalized with Jeannette Wing in 1994, says that code written for a type should keep working when handed a subtype. She also worked on the Argus language and on Practical Byzantine Fault Tolerance, and was among the first women in the United States to earn a computer-science PhD, at Stanford in 1968.",
+   "status": "n/a",
+   "tags": [
+    "clu",
+    "abstract data types",
+    "substitution"
+   ]
+  },
+  {
+   "id": "ppl.thompson",
+   "title": "Ken Thompson",
+   "cat": "people",
+   "tier": 2,
+   "year": 1969,
+   "short": "Wrote the first Unix on a PDP-7 in 1969, then B, grep, UTF-8 and Go, and showed in 1984 that a compiler can hide a backdoor in itself.",
+   "long": "Ken Thompson wrote Unix in 1969 on a PDP-7 at Bell Labs, and created the language B, the regular-expression search method of 1968 and the grep tool. With Rob Pike he designed UTF-8 in September 1992, and with Pike and Robert Griesemer he began Go in 2007 at Google. His 1984 Turing Award lecture, Reflections on Trusting Trust, showed that a compiler can insert a backdoor into itself, the root of modern worries about supply-chain security.",
+   "status": "n/a",
+   "tags": [
+    "unix",
+    "b",
+    "grep",
+    "utf-8"
+   ],
+   "refs": [
+    {
+     "label": "Pike on the origin of UTF-8",
+     "url": "https://www.cl.cam.ac.uk/~mgk25/ucs/utf-8-history.txt"
+    }
+   ]
+  },
+  {
+   "id": "ppl.kernighan",
+   "title": "Brian Kernighan",
+   "cat": "people",
+   "tier": 3,
+   "year": 1978,
+   "short": "Co-wrote The C Programming Language (K&R) and awk; hello, world comes from his early tutorials at Bell Labs.",
+   "long": "Brian Kernighan co-wrote The C Programming Language in 1978, universally called K&R, with Dennis Ritchie, wrote most of its expository material, and co-created the awk language in 1977 and the book The Unix Programming Environment in 1984. The hello, world program comes from his early-1970s Bell Labs tutorials. Credit for the name Unix, a pun on Multics, is shared or contested between him and Peter Neumann.",
+   "status": "n/a",
+   "tags": [
+    "k&r",
+    "awk",
+    "hello world"
+   ]
+  },
+  {
+   "id": "ppl.pike",
+   "title": "Rob Pike",
+   "cat": "people",
+   "tier": 3,
+   "year": 1992,
+   "short": "Bell Labs and Google engineer behind UTF-8, Plan 9 and Go, and author of influential rules about data-first programming.",
+   "long": "Rob Pike worked at Bell Labs on the Blit terminal, Plan 9 and Inferno, designed UTF-8 with Ken Thompson in September 1992, and helped create Go at Google. His own account says the UTF-8 design was sketched over a dinner at a New Jersey diner and sent to X/Open on 8 September 1992, and he rejects the story that IBM designed it and Plan 9 merely implemented it. He also wrote a well-known set of rules arguing that data structures matter more than algorithms.",
+   "status": "n/a",
+   "tags": [
+    "utf-8",
+    "plan 9",
+    "go"
+   ],
+   "refs": [
+    {
+     "label": "Pike on the origin of UTF-8",
+     "url": "https://www.cl.cam.ac.uk/~mgk25/ucs/utf-8-history.txt"
+    }
+   ]
+  },
+  {
+   "id": "ppl.mcilroy",
+   "title": "Doug McIlroy",
+   "cat": "people",
+   "tier": 4,
+   "year": 1972,
+   "short": "Proposed Unix pipes, argued for software components in 1968, and helped write down the Unix philosophy.",
+   "long": "Doug McIlroy at Bell Labs pushed for pipes in Unix, which arrived in 1972 and 1973 at his suggestion, or perhaps his insistence. At the 1968 NATO conference he called for mass-produced software components, an idea that package managers eventually delivered. He is also credited as the author of the compact summary of the Unix philosophy: write programs that do one thing well, work together, and handle text streams. He also urged the formation of the ANSI C committee.",
+   "status": "n/a",
+   "tags": [
+    "pipes",
+    "components",
+    "unix philosophy"
+   ]
+  },
+  {
+   "id": "ppl.stroustrup",
+   "title": "Bjarne Stroustrup",
+   "cat": "people",
+   "tier": 2,
+   "year": 1979,
+   "short": "Created C++ at Bell Labs, beginning as C with Classes in 1979, and has guided its growth through ISO standardization.",
+   "long": "Bjarne Stroustrup, a Dane working at Bell Labs and later at Texas A&M, Morgan Stanley and Columbia, started C with Classes in 1979. The language was named C++ in 1983, and its first commercial release came in 1985. He championed the zero-overhead principle, helped bring the standard template library into the language, and saw C++ standardized by ISO in 1998.",
+   "status": "n/a",
+   "tags": [
+    "c++",
+    "bell labs",
+    "zero overhead"
+   ]
+  },
+  {
+   "id": "ppl.stallman",
+   "title": "Richard Stallman",
+   "cat": "people",
+   "tier": 2,
+   "year": 1983,
+   "short": "Started the GNU project in 1983, founded the Free Software Foundation and wrote the GPL, Emacs and GCC.",
+   "long": "Richard Stallman wrote Emacs in 1976, announced the GNU project on 27 September 1983 with the goal of a complete free Unix-compatible system, and founded the Free Software Foundation in 1985. He wrote the GNU General Public License and championed copyleft, a licensing approach that keeps derivative works free. His GNU C Compiler, first released in 1987, became the standard free compiler. He resigned from the foundation in 2019 and returned in 2021.",
+   "status": "n/a",
+   "tags": [
+    "gnu",
+    "free software",
+    "gpl"
+   ]
+  },
+  {
+   "id": "ppl.kay",
+   "title": "Alan Kay",
+   "cat": "people",
+   "tier": 2,
+   "year": 1972,
+   "short": "Led the Smalltalk effort at Xerox PARC, imagined the Dynabook and coined the term object-oriented.",
+   "long": "Alan Kay worked at Utah and then Xerox PARC, where he led the Smalltalk effort with Dan Ingalls and Adele Goldberg and conceived the Dynabook, a portable personal computer, between 1968 and 1972. He coined object-oriented programming but says messaging, not classes, is its core idea. Smalltalk also popularized overlapping windows and the graphical interface style that later reached the Macintosh. He received the Turing Award in 2003.",
+   "status": "n/a",
+   "tags": [
+    "smalltalk",
+    "dynabook",
+    "parc"
+   ]
+  },
+  {
+   "id": "ppl.brooks",
+   "title": "Fred Brooks",
+   "cat": "people",
+   "tier": 2,
+   "year": 1975,
+   "short": "Managed IBM's System/360 and OS/360, then wrote The Mythical Man-Month, still the best-known book on why software projects run late.",
+   "long": "Fred Brooks managed the development of the IBM System/360 and its operating system, OS/360, and drew on that experience in The Mythical Man-Month in 1975. The book gave the field Brooks's law, that adding people to a late project makes it later, and the ideas of conceptual integrity and the second-system effect. His plan-to-throw-one-away advice was one he later disowned. His 1986 essay No Silver Bullet argued that no single technique would deliver a tenfold gain. He won the Turing Award in 1999 and died in 2022.",
+   "status": "n/a",
+   "tags": [
+    "mythical man-month",
+    "ibm",
+    "os/360"
+   ]
+  },
+  {
+   "id": "ppl.parnas",
+   "title": "David Parnas",
+   "cat": "people",
+   "tier": 4,
+   "year": 1972,
+   "short": "Introduced information hiding in 1972, the idea behind encapsulation and modular design.",
+   "long": "David Parnas published On the Criteria To Be Used in Decomposing Systems into Modules in 1972, arguing that modules should be divided by the design decisions they hide, not by the steps of a flowchart. That idea of information hiding is the root of encapsulation in object-oriented languages. He resigned from the United States Strategic Defense Initiative panel in 1985, arguing that its software could not be made trustworthy. He worked at Carnegie Mellon, Darmstadt and McMaster.",
+   "status": "n/a",
+   "tags": [
+    "information hiding",
+    "modules",
+    "1972 paper"
+   ]
+  },
+  {
+   "id": "ppl.codd",
+   "title": "Edgar Codd",
+   "cat": "people",
+   "tier": 2,
+   "year": 1970,
+   "short": "Proposed the relational model of data in 1970 at IBM, the foundation of SQL and every mainstream database.",
+   "long": "Edgar F. Codd, an IBM researcher, published A Relational Model of Data for Large Shared Data Banks in the Communications of the ACM in June 1970. It proposed storing data in tables and querying it with a declarative algebra instead of navigating pointers. IBM's System R project produced SQL in the 1970s, but Oracle reached the market first, in 1979. Codd received the Turing Award in 1981.",
+   "status": "n/a",
+   "tags": [
+    "relational model",
+    "ibm",
+    "database theory"
+   ],
+   "refs": [
+    {
+     "label": "Codd, A Relational Model of Data (1970)",
+     "url": "https://dl.acm.org/doi/10.1145/362384.362685"
+    }
+   ]
+  },
+  {
+   "id": "ppl.ellison",
+   "title": "Larry Ellison",
+   "cat": "people",
+   "tier": 4,
+   "year": 1977,
+   "short": "Co-founded Oracle in 1977 on Codd's relational model and led it for decades, including its purchase of Sun and the Google v. Oracle suit.",
+   "long": "Larry Ellison co-founded Oracle in 1977 to sell a database built on Codd's relational model, and ran the company as chief executive until 2014. Oracle shipped what is generally described as the first commercial SQL database in 1979. Under his leadership it bought Sun Microsystems in 2010, which gave it Java and MySQL, and it litigated against Google over the use of Java APIs in Android, a case the United States Supreme Court decided in 2021.",
+   "status": "n/a",
+   "tags": [
+    "oracle",
+    "database business"
+   ]
+  },
+  {
+   "id": "ppl.stonebraker",
+   "title": "Michael Stonebraker",
+   "cat": "people",
+   "tier": 3,
+   "year": 1973,
+   "short": "Built Ingres and Postgres at Berkeley, the ancestors of PostgreSQL, and has spent decades arguing against one-size-fits-all databases.",
+   "long": "Michael Stonebraker started Ingres at Berkeley in 1973, then Postgres in 1986, which became the ancestor of PostgreSQL. He went on to found Illustra, Vertica, VoltDB and other companies, and received the Turing Award in 2014. He is a persistent critic of the idea that one database design suits every workload, and of fashionable data-model claims, including the 2008 critique of MapReduce he co-wrote with David DeWitt.",
+   "status": "n/a",
+   "tags": [
+    "ingres",
+    "postgres",
+    "database critic"
+   ]
+  },
+  {
+   "id": "ppl.bachman",
+   "title": "Charles Bachman",
+   "cat": "people",
+   "tier": 4,
+   "year": 1963,
+   "short": "Designed the Integrated Data Store at General Electric in 1963, the first navigational database, which led to the CODASYL network model.",
+   "long": "Charles Bachman developed the Integrated Data Store at General Electric in 1963, an early database system in which programs navigate from record to record by following links. It shaped the CODASYL network model of the late 1960s, the main rival to IBM's hierarchical IMS before Codd's relational model took over. He received the Turing Award in 1973. Chasing pointers through such a database is the style the relational model was designed to replace.",
+   "status": "n/a",
+   "tags": [
+    "ids",
+    "codasyl",
+    "network model"
+   ]
+  },
+  {
+   "id": "ppl.gates-allen",
+   "title": "Bill Gates and Paul Allen",
+   "cat": "people",
+   "tier": 3,
+   "year": 1975,
+   "short": "Wrote Altair BASIC in 1975 and founded Microsoft; Allen also arranged the purchase of the operating system that became MS-DOS.",
+   "long": "Bill Gates and Paul Allen wrote a BASIC interpreter for the Altair 8800 in 1975 and founded Microsoft. Allen arranged the 1980 and 1981 purchase of 86-DOS for the IBM PC, left the company in 1983 after an illness, and died on 15 October 2018. Gates's Open Letter to Hobbyists of February 1976 argued that software should be paid for. His Internet Tidal Wave memo of 1995 turned Microsoft toward the web, and his Trustworthy Computing memo of 2002 made security a priority. The quote that 640K ought to be enough for anybody has no record and Gates denies it.",
+   "status": "n/a",
+   "tags": [
+    "microsoft",
+    "altair basic",
+    "ms-dos"
+   ]
+  },
+  {
+   "id": "ppl.jobs",
+   "title": "Steve Jobs",
+   "cat": "people",
+   "tier": 3,
+   "year": 1976,
+   "short": "Drove the Macintosh, NeXT and the iPhone; the App Store opened in 2008, though he first wanted web apps.",
+   "long": "Steve Jobs co-founded Apple in 1976 and drove the Macintosh in 1984, founded NeXT in 1985, returned to Apple in 1997 and led the iPhone in 2007. NeXT's operating system became the base of macOS and iOS, and its Objective-C tools stayed in use for decades. Apple opened the App Store on 10 July 2008. He first pushed web apps for the iPhone and announced a native software kit only later, so the story that he always planned the App Store is a simplification. He died in 2011.",
+   "status": "n/a",
+   "tags": [
+    "apple",
+    "iphone",
+    "nextstep"
+   ]
+  },
+  {
+   "id": "ppl.berners-lee",
+   "title": "Tim Berners-Lee",
+   "cat": "people",
+   "tier": 2,
+   "year": 1989,
+   "short": "Proposed the World Wide Web at CERN in 1989, built the first server and browser, and founded the W3C.",
+   "long": "Tim Berners-Lee proposed an information system for CERN in March 1989; his supervisor, Mike Sendall, wrote that it was vague but exciting. In 1990 he built the first web server and browser on a NeXT computer, defining URLs, HTTP and HTML. He founded the World Wide Web Consortium in 1994, received the Turing Award in 2016, and was knighted in 2004. CERN released the web's technology royalty-free on 30 April 1993.",
+   "status": "n/a",
+   "tags": [
+    "web",
+    "cern",
+    "w3c"
+   ]
+  },
+  {
+   "id": "ppl.van-rossum",
+   "title": "Guido van Rossum",
+   "cat": "people",
+   "tier": 2,
+   "year": 1991,
+   "short": "Created Python in 1989 at CWI in the Netherlands and led it as benevolent dictator for life until 2018.",
+   "long": "Guido van Rossum started Python in December 1989 at CWI, released it on 20 February 1991, and named it after Monty Python. He drew on the ABC language. He served as benevolent dictator for life until 12 July 2018 and later worked at Google, Dropbox and Microsoft. Python 3.0 arrived on 3 December 2008, and Python 2 reached end of life on 1 January 2020.",
+   "status": "n/a",
+   "tags": [
+    "python",
+    "cwi",
+    "bdfl"
+   ]
+  },
+  {
+   "id": "ppl.gosling",
+   "title": "James Gosling",
+   "cat": "people",
+   "tier": 3,
+   "year": 1995,
+   "short": "Led Java's design at Sun, begun in 1991 and released publicly in 1995.",
+   "long": "James Gosling led the design of Java at Sun Microsystems, starting around 1991 under the name Oak. Java was announced publicly in 1995, and version 1.0 followed in 1996. Earlier he wrote the NeWS window system and Gosling Emacs. He left Oracle in 2010 after the purchase of Sun.",
+   "status": "n/a",
+   "tags": [
+    "java",
+    "sun",
+    "jvm"
+   ]
+  },
+  {
+   "id": "ppl.hejlsberg",
+   "title": "Anders Hejlsberg",
+   "cat": "people",
+   "tier": 3,
+   "year": 1983,
+   "short": "Wrote Turbo Pascal, led Delphi, then designed C# and TypeScript at Microsoft.",
+   "long": "Anders Hejlsberg, a Dane, wrote Turbo Pascal in 1983, was chief architect of Delphi in 1995, and moved to Microsoft in 1996. There he designed C# between 2000 and 2002, led the design of LINQ and async/await, and created TypeScript in 2012. Reports say he is leading the port of the TypeScript compiler to Go, announced in 2025 and released as TypeScript 7 in 2026.",
+   "status": "n/a",
+   "tags": [
+    "turbo pascal",
+    "c#",
+    "typescript"
+   ]
+  },
+  {
+   "id": "ppl.eich",
+   "title": "Brendan Eich",
+   "cat": "people",
+   "tier": 3,
+   "year": 1995,
+   "short": "Wrote JavaScript at Netscape in May 1995; the first prototype took about ten days.",
+   "long": "Brendan Eich wrote JavaScript in May 1995 at Netscape, building a first prototype in about ten days. That figure is true of the prototype, not of the language as it later evolved under standardization. He co-founded Mozilla in 1998, served as its chief executive for under two weeks in April 2014, and founded the Brave browser in 2015.",
+   "status": "n/a",
+   "tags": [
+    "javascript",
+    "netscape",
+    "mozilla"
+   ]
+  },
+  {
+   "id": "ppl.wall",
+   "title": "Larry Wall",
+   "cat": "people",
+   "tier": 4,
+   "year": 1987,
+   "short": "Created Perl in 1987 and the patch tool; preached laziness, impatience and hubris as the three virtues of a programmer.",
+   "long": "Larry Wall created the patch tool in 1985 and the Perl language in 1987. Perl's motto, there is more than one way to do it, and Wall's three virtues of a programmer, laziness, impatience and hubris, became part of programming folklore. The long redesign called Perl 6 was renamed Raku in 2019 and runs as a separate language.",
+   "status": "n/a",
+   "tags": [
+    "perl",
+    "patch",
+    "raku"
+   ]
+  },
+  {
+   "id": "ppl.matsumoto",
+   "title": "Yukihiro Matsumoto",
+   "cat": "people",
+   "tier": 4,
+   "year": 1995,
+   "short": "Created Ruby, conceived in 1993 and released publicly in December 1995, optimized for developer happiness.",
+   "long": "Yukihiro Matsumoto, known as Matz, a Japanese programmer, conceived Ruby in 1993 and released it publicly in December 1995, designing it to be pleasant for programmers to use. David Heinemeier Hansson's Rails framework of 2004 made Ruby famous worldwide.",
+   "status": "n/a",
+   "tags": [
+    "ruby",
+    "matz",
+    "rails"
+   ]
+  },
+  {
+   "id": "ppl.lerdorf",
+   "title": "Rasmus Lerdorf",
+   "cat": "people",
+   "tier": 4,
+   "year": 1995,
+   "short": "Created PHP in 1994 and 1995 as personal home page tools; others turned it into a full language.",
+   "long": "Rasmus Lerdorf wrote the first PHP tools in 1994 and 1995 as a set of utilities for his personal home page, which is what the letters originally stood for. Andi Gutmans and Zeev Suraski rebuilt it as a full language with PHP 3 in 1997 and 1998. PHP went on to power a large share of the web, including WordPress.",
+   "status": "n/a",
+   "tags": [
+    "php",
+    "web",
+    "personal home page"
+   ]
+  },
+  {
+   "id": "ppl.beck",
+   "title": "Kent Beck",
+   "cat": "people",
+   "tier": 3,
+   "year": 1999,
+   "short": "Created Extreme Programming and test-driven development, and co-wrote JUnit; a signatory of the 2001 Agile Manifesto.",
+   "long": "Kent Beck developed Extreme Programming on the Chrysler C3 project between 1996 and 1999 and published the book in 1999. He popularized test-driven development, wrote the SUnit test framework, and with Erich Gamma wrote JUnit in 1997, the model for the xUnit family of testing tools. With Ward Cunningham he introduced CRC cards in 1989. He was one of the signatories of the Agile Manifesto in 2001.",
+   "status": "n/a",
+   "tags": [
+    "xp",
+    "tdd",
+    "junit"
+   ]
+  },
+  {
+   "id": "ppl.fowler",
+   "title": "Martin Fowler",
+   "cat": "people",
+   "tier": 3,
+   "year": 1999,
+   "short": "Thoughtworks chief scientist whose books and essays popularized refactoring, continuous integration and microservices.",
+   "long": "Martin Fowler has been chief scientist at Thoughtworks since 2000. His book Refactoring appeared in 1999 and Patterns of Enterprise Application Architecture in 2002. His essays and websites helped popularize continuous integration in 2000, dependency injection in 2004 and microservices in 2014, the last with James Lewis.",
+   "status": "n/a",
+   "tags": [
+    "refactoring",
+    "thoughtworks",
+    "microservices"
+   ]
+  },
+  {
+   "id": "ppl.dean-ghemawat",
+   "title": "Jeff Dean and Sanjay Ghemawat",
+   "cat": "people",
+   "tier": 3,
+   "year": 2004,
+   "short": "Google engineers behind MapReduce, Bigtable, Spanner and TensorFlow; Dean now leads science at Google DeepMind.",
+   "long": "Jeff Dean and Sanjay Ghemawat built much of Google's early infrastructure. They wrote the MapReduce paper in 2004 and worked on Bigtable, Spanner, LevelDB and TensorFlow. Dean is chief scientist at Google DeepMind and Google Research. The Jeff Dean facts that circulate online are jokes, not history.",
+   "status": "n/a",
+   "tags": [
+    "mapreduce",
+    "bigtable",
+    "google"
+   ],
+   "refs": [
+    {
+     "label": "MapReduce paper",
+     "url": "https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/"
+    }
+   ]
+  },
+  {
+   "id": "ppl.graydon-hoare",
+   "title": "Graydon Hoare",
+   "cat": "people",
+   "tier": 4,
+   "year": 2006,
+   "short": "Started Rust in 2006 as a personal project; Mozilla sponsored it from 2009 and version 1.0 shipped in 2015.",
+   "long": "Graydon Hoare, a Canadian programmer, began Rust in 2006 as a personal project, aiming for a language with the speed of C and C++ but without their memory-safety hazards. Mozilla sponsored it from 2009, and Rust 1.0 shipped on 15 May 2015. Hoare handed the project to its core team in 2013 and moved on to other work. The ownership and borrow-checking ideas that now define Rust were refined by that team in the years that followed.",
+   "status": "n/a",
+   "tags": [
+    "rust",
+    "mozilla"
+   ]
+  },
+  {
+   "id": "ppl.lamport",
+   "title": "Leslie Lamport",
+   "cat": "people",
+   "tier": 4,
+   "year": 1978,
+   "short": "Introduced logical clocks and the Paxos consensus protocol, and made the TLA+ specification language that AWS uses to find design bugs.",
+   "long": "Leslie Lamport wrote Time, Clocks, and the Ordering of Events in a Distributed System in 1978, introducing logical clocks, and the Byzantine Generals Problem in 1982. He wrote the Paxos consensus protocol in 1989 and published it in 1998, created the TLA+ specification language, which Amazon Web Services uses to find bugs in system designs, and wrote LaTeX in 1984. A line from a 1987 email of his says a distributed system is one where the failure of a computer you did not know existed can render your own unusable. He received the Turing Award in 2013.",
+   "status": "n/a",
+   "tags": [
+    "distributed systems",
+    "paxos",
+    "tla+"
+   ],
+   "refs": [
+    {
+     "label": "Lamport, Time, Clocks (1978)",
+     "url": "https://dl.acm.org/doi/10.1145/359545.359563"
+    }
+   ]
+  },
+  {
+   "id": "ppl.lattner",
+   "title": "Chris Lattner",
+   "cat": "people",
+   "tier": 3,
+   "year": 2000,
+   "short": "Created LLVM and Clang, led Swift at Apple, and later started the Mojo language.",
+   "long": "Chris Lattner started LLVM at the University of Illinois in 2000 and began Clang at Apple in 2006. He led the creation of Swift at Apple from 2010, built MLIR, and later co-founded Modular, which makes the Mojo language. LLVM won the ACM Software System Award in 2012 and is the shared back end behind many modern compilers.",
+   "status": "n/a",
+   "tags": [
+    "llvm",
+    "clang",
+    "swift"
+   ]
+  },
+  {
+   "id": "ppl.sutter",
+   "title": "Herb Sutter",
+   "cat": "people",
+   "tier": 4,
+   "year": 2002,
+   "short": "Chair of the ISO C++ committee and author of The Free Lunch Is Over; experiments with C++ syntax through cppfront.",
+   "long": "Herb Sutter has chaired the ISO C++ committee since 2002. His 2005 essay The Free Lunch Is Over warned that processors would stop getting faster and programs would have to use parallelism, which marked the multicore turn. Since 2022 he has developed cppfront, a personal experiment that compiles a cleaner syntax called Cpp2 to C++. He is an advocate for C++, and his claims are best read that way.",
+   "status": "n/a",
+   "tags": [
+    "c++",
+    "free lunch",
+    "cppfront"
+   ]
+  },
+  {
+   "id": "ppl.karpathy",
+   "title": "Andrej Karpathy",
+   "cat": "people",
+   "tier": 4,
+   "year": 2025,
+   "short": "Researcher who coined the term vibe coding in a post on 2 February 2025.",
+   "long": "Andrej Karpathy, a computer scientist known for his work at Tesla and OpenAI and for teaching deep learning, coined the term vibe coding in a post on 2 February 2025. He described giving in to the flow of an AI assistant, accepting its code and fixing problems by asking it again, and the phrase became shorthand for AI-driven programming with little reading of the code.",
+   "status": "n/a",
+   "tags": [
+    "vibe coding",
+    "ai",
+    "2025"
+   ]
+  },
+  {
+   "id": "ppl.armstrong",
+   "title": "Joe Armstrong",
+   "cat": "people",
+   "tier": 4,
+   "year": 1986,
+   "short": "Co-created Erlang at Ericsson in 1986 for telephone switches, with lightweight processes and message passing.",
+   "long": "Joe Armstrong led the creation of Erlang at Ericsson, starting in 1986, to program telephone switches that had to run without stopping. Erlang uses lightweight processes that share nothing and communicate by messages, an approach that influenced the actor model in other systems and powered messaging services such as WhatsApp.",
+   "status": "n/a",
+   "tags": [
+    "erlang",
+    "actors",
+    "ericsson"
+   ]
+  },
+  {
+   "id": "ppl.milner",
+   "title": "Robin Milner",
+   "cat": "people",
+   "tier": 4,
+   "year": 1973,
+   "short": "Created ML and the type inference algorithm now called Hindley-Milner, which made static typing feel lightweight.",
+   "long": "Robin Milner at Edinburgh designed ML around 1973 as the language of a theorem prover, and developed the Hindley-Milner type inference algorithm, which lets a compiler work out types without annotations. That approach shaped Haskell, OCaml, F# and the type inference now found in many mainstream languages. He received the Turing Award in 1991.",
+   "status": "n/a",
+   "tags": [
+    "ml",
+    "type inference",
+    "edinburgh"
+   ]
+  },
+  {
+   "id": "ppl.oliphant",
+   "title": "Travis Oliphant",
+   "cat": "people",
+   "tier": 4,
+   "year": 2001,
+   "short": "Unified the Numeric and Numarray projects into NumPy in 2006 and started SciPy, the base of Python's scientific stack.",
+   "long": "Travis Oliphant merged the earlier Numeric and Numarray array libraries into NumPy in 2006 and co-created SciPy around 2001. Together they gave Python a fast array type and a library of numerical routines, which is why Python became the main language of data science and machine learning.",
+   "status": "n/a",
+   "tags": [
+    "numpy",
+    "scipy",
+    "python"
+   ]
+  },
+  {
+   "id": "ppl.hinton",
+   "title": "Geoffrey Hinton",
+   "cat": "people",
+   "tier": 3,
+   "year": 1986,
+   "short": "Popularized backpropagation in 1986 and trained the deep networks, including AlexNet, that started the modern wave of AI.",
+   "long": "Geoffrey Hinton co-authored the 1986 paper on backpropagation with David Rumelhart and Ronald Williams, and spent decades developing neural networks. His students built AlexNet, which won the ImageNet contest in 2012 and started the deep-learning boom. He shared the 2018 Turing Award with Yoshua Bengio and Yann LeCun, and the 2024 Nobel Prize in Physics with John Hopfield.",
+   "status": "n/a",
+   "tags": [
+    "backpropagation",
+    "deep learning",
+    "alexnet"
+   ]
+  },
+  {
+   "id": "ppl.dongarra",
+   "title": "Jack Dongarra",
+   "cat": "people",
+   "tier": 4,
+   "year": 1979,
+   "short": "Co-created LINPACK, BLAS and LAPACK, the numerical libraries beneath scientific computing and NumPy.",
+   "long": "Jack Dongarra helped create LINPACK, the BLAS interface and LAPACK, the numerical linear-algebra libraries that scientific software has relied on since the late 1970s and early 1990s. Their routines still sit beneath NumPy, MATLAB and many machine-learning frameworks, and the LINPACK benchmark became the way supercomputers are ranked. He received the Turing Award for 2021.",
+   "status": "n/a",
+   "tags": [
+    "blas",
+    "lapack",
+    "linpack"
+   ]
+  },
+  {
+   "id": "ppl.moler",
+   "title": "Cleve Moler",
+   "cat": "people",
+   "tier": 4,
+   "year": 1979,
+   "short": "Wrote MATLAB in the late 1970s and co-founded MathWorks in 1984; contributed to EISPACK and LINPACK.",
+   "long": "Cleve Moler contributed to the EISPACK and LINPACK numerical libraries and wrote the first MATLAB as an easy interface to them in the late 1970s. He co-founded MathWorks in 1984 to commercialize it. MATLAB became the standard environment for engineers and a model for NumPy and Julia.",
+   "status": "n/a",
+   "tags": [
+    "matlab",
+    "mathworks",
+    "eispack"
+   ]
+  },
+  {
+   "id": "ppl.fielding",
+   "title": "Roy Fielding",
+   "cat": "people",
+   "tier": 4,
+   "year": 2000,
+   "short": "Described REST in his 2000 dissertation and co-founded the Apache HTTP Server project.",
+   "long": "Roy Fielding wrote the dissertation that defined REST in 2000, describing the architectural style behind the web and then reused for web APIs. He was one of the eight core members of the Apache Group, which built the Apache HTTP Server in 1995, and took part in writing the HTTP specifications.",
+   "status": "n/a",
+   "tags": [
+    "rest",
+    "apache",
+    "http"
+   ]
+  },
+  {
+   "id": "ppl.cerf-kahn",
+   "title": "Vint Cerf and Bob Kahn",
+   "cat": "people",
+   "tier": 3,
+   "year": 1974,
+   "short": "Designed TCP/IP in 1974, the protocols that connect the Internet.",
+   "long": "Vint Cerf and Bob Kahn designed the TCP/IP protocols in 1974, with DARPA funding. ARPANET switched to them in a flag-day cutover on 1 January 1983, and they have connected the Internet ever since. Both received the Turing Award in 2004.",
+   "status": "n/a",
+   "tags": [
+    "tcp/ip",
+    "internet",
+    "arpanet"
+   ]
+  },
+  {
+   "id": "ppl.kildall",
+   "title": "Gary Kildall",
+   "cat": "people",
+   "tier": 4,
+   "year": 1974,
+   "short": "Wrote CP/M in 1974, the first widely used microcomputer operating system, and founded Digital Research.",
+   "long": "Gary Kildall wrote CP/M in 1974 and founded Digital Research to sell it. It became the standard operating system for early microcomputers, and MS-DOS borrowed its structure and its programming interface. The story of why IBM chose Microsoft over Digital Research for the original PC is told in conflicting ways.",
+   "status": "n/a",
+   "tags": [
+    "cp/m",
+    "digital research",
+    "microcomputers"
+   ]
+  },
+  {
+   "id": "ppl.kahan",
+   "title": "William Kahan",
+   "cat": "people",
+   "tier": 4,
+   "year": 1985,
+   "short": "Principal architect of the IEEE 754 floating-point standard, adopted in 1985.",
+   "long": "William Kahan, a numerical analyst at Berkeley, was the chief architect of the IEEE 754 floating-point standard, adopted in 1985. It fixed the representation and rounding of decimal-like numbers on nearly every computer, and is the reason that 0.1 plus 0.2 does not quite equal 0.3 in most languages. He is often called the father of floating point.",
+   "status": "n/a",
+   "tags": [
+    "ieee 754",
+    "floating point",
+    "numerics"
+   ]
+  },
+  {
+   "id": "ppl.sc-johnson",
+   "title": "Stephen C. Johnson",
+   "cat": "people",
+   "tier": 4,
+   "year": 1978,
+   "short": "Wrote lint in 1978 and the yacc parser generator at Bell Labs.",
+   "long": "Stephen C. Johnson at Bell Labs wrote yacc, a parser generator, in the mid-1970s, helped write the portable C compiler, and wrote lint in 1978, the first widely used static checker for C. Lint's name, like the fuzz it picks off cloth, stayed on every later class of code checker.",
+   "status": "n/a",
+   "tags": [
+    "lint",
+    "yacc",
+    "bell labs"
+   ]
+  },
+  {
+   "id": "ppl.mckinney",
+   "title": "Wes McKinney",
+   "cat": "people",
+   "tier": 4,
+   "year": 2008,
+   "short": "Created pandas in 2008, the library that made tabular data analysis practical in Python, and co-created Apache Arrow.",
+   "long": "Wes McKinney began pandas in 2008 while working in finance, giving Python data frames and fast tabular operations. He later co-created Apache Arrow, a shared in-memory format for columnar data. pandas became the default data-analysis library in Python.",
+   "status": "n/a",
+   "tags": [
+    "pandas",
+    "arrow",
+    "data frames"
+   ]
+  },
+  {
+   "id": "ppl.iverson",
+   "title": "Kenneth Iverson",
+   "cat": "people",
+   "tier": 4,
+   "year": 1960,
+   "short": "Created APL and its array notation at IBM, and later J; Turing Award winner for notation as a tool of thought.",
+   "long": "Kenneth Iverson invented the notation that became APL, described in his 1962 book, and worked on it at IBM. It treats whole arrays as single values and uses symbols for operations, a style that influenced MATLAB, NumPy and array programming generally. With Roger Hui he later designed J. He received the Turing Award in 1979.",
+   "status": "n/a",
+   "tags": [
+    "apl",
+    "array programming",
+    "notation"
+   ]
+  },
+  {
+   "id": "ppl.wozniak",
+   "title": "Steve Wozniak",
+   "cat": "people",
+   "tier": 4,
+   "year": 1976,
+   "short": "Designed the Apple I and Apple II, including its disk controller and Integer BASIC.",
+   "long": "Steve Wozniak designed the Apple I in 1976 and the Apple II in 1977, along with its disk controller and Integer BASIC. The Apple II, with its open slots and a spreadsheet program called VisiCalc, helped make personal computers a business tool.",
+   "status": "n/a",
+   "tags": [
+    "apple ii",
+    "personal computer",
+    "basic"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "ppl.lovelace",
+   "t": "lang.ada",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.turing",
+   "t": "ppl.von-neumann",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.turing",
+   "t": "found.stored-program",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.turing",
+   "t": "org.acm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.von-neumann",
+   "t": "found.edsac",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.von-neumann",
+   "t": "found.stored-program",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.zuse",
+   "t": "found.stored-program",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.booth",
+   "t": "comp.assembler",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.wheeler",
+   "t": "found.edsac",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.wheeler",
+   "t": "comp.assembler",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.eniac-programmers",
+   "t": "found.eniac",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.backus",
+   "t": "lang.algol60",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.backus",
+   "t": "conc.fp",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.backus",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.mccarthy",
+   "t": "plat.timesharing",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.mccarthy",
+   "t": "org.mit",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.hamilton",
+   "t": "org.mit",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.hamilton",
+   "t": "proc.software-crisis",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.dijkstra",
+   "t": "lang.algol60",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.dijkstra",
+   "t": "qual.formal-verification",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.dijkstra",
+   "t": "conc.threads-locks",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.dijkstra",
+   "t": "ppl.hoare",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.knuth",
+   "t": "conc.big-o",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.hoare",
+   "t": "lang.go",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.hoare",
+   "t": "ppl.wirth",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.liskov",
+   "t": "conc.error-handling",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.liskov",
+   "t": "org.mit",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.liskov",
+   "t": "conc.generics",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.thompson",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.thompson",
+   "t": "ppl.ritchie",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.thompson",
+   "t": "lang.regex",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.thompson",
+   "t": "plat.plan9",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.kernighan",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.kernighan",
+   "t": "ppl.ritchie",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.kernighan",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.pike",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.pike",
+   "t": "org.google",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.pike",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.mcilroy",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.mcilroy",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.mcilroy",
+   "t": "ppl.thompson",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.stroustrup",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.stroustrup",
+   "t": "org.wg21",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.stroustrup",
+   "t": "lang.c-vs-cpp",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.stroustrup",
+   "t": "ppl.ritchie",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.stallman",
+   "t": "proc.open-source",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.stallman",
+   "t": "ppl.torvalds",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.kay",
+   "t": "conc.oop",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.kay",
+   "t": "org.xerox-parc",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.kay",
+   "t": "plat.gui",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.brooks",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.brooks",
+   "t": "found.system360",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.brooks",
+   "t": "plat.os360",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.codd",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.codd",
+   "t": "data.sql",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.codd",
+   "t": "data.system-r",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.codd",
+   "t": "ppl.stonebraker",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.ellison",
+   "t": "org.sun",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.stonebraker",
+   "t": "org.berkeley",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.bachman",
+   "t": "org.codasyl",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.gates-allen",
+   "t": "lang.basic",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.gates-allen",
+   "t": "plat.msdos",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.gates-allen",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.jobs",
+   "t": "plat.nextstep-macos",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.jobs",
+   "t": "plat.app-store",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.jobs",
+   "t": "plat.gui",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.jobs",
+   "t": "ppl.wozniak",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.berners-lee",
+   "t": "org.cern",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.van-rossum",
+   "t": "fail.python2",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.van-rossum",
+   "t": "org.psf",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.gosling",
+   "t": "org.sun",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.hejlsberg",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.hejlsberg",
+   "t": "org.borland",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.hejlsberg",
+   "t": "mod.ts7-native",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.eich",
+   "t": "org.netscape",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.eich",
+   "t": "org.mozilla",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.eich",
+   "t": "lang.ecmascript",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.wall",
+   "t": "pkg.cpan",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.wall",
+   "t": "fail.perl6",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.beck",
+   "t": "proc.agile",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.beck",
+   "t": "ppl.fowler",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.fowler",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.fowler",
+   "t": "plat.microservices",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.fowler",
+   "t": "org.thoughtworks",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.fowler",
+   "t": "proc.agile",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.dean-ghemawat",
+   "t": "org.google",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.graydon-hoare",
+   "t": "org.mozilla",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.lamport",
+   "t": "qual.formal-verification",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.lamport",
+   "t": "conc.concurrency",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.lamport",
+   "t": "ppl.dijkstra",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.lattner",
+   "t": "org.apple",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.sutter",
+   "t": "org.wg21",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.sutter",
+   "t": "ppl.stroustrup",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.armstrong",
+   "t": "conc.actor-model",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.milner",
+   "t": "lang.haskell",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.milner",
+   "t": "lang.ocaml",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.oliphant",
+   "t": "fail.numeric-numarray",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.hinton",
+   "t": "math.deep-learning",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.hinton",
+   "t": "math.alexnet",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.hinton",
+   "t": "math.imagenet",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.dongarra",
+   "t": "math.eispack",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.moler",
+   "t": "math.linpack",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.fielding",
+   "t": "plat.http",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.cerf-kahn",
+   "t": "plat.arpanet",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.cerf-kahn",
+   "t": "org.darpa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.kildall",
+   "t": "plat.msdos",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "ppl.sc-johnson",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "ppl.iverson",
+   "t": "org.ibm",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "ppl.wozniak",
+   "t": "org.apple",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "ppl.lovelace",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.turing",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.von-neumann",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.zuse",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.booth",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.wheeler",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.eniac-programmers",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.backus",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.mccarthy",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.hamilton",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.dijkstra",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.knuth",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.hoare",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.wirth",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.liskov",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.thompson",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.kernighan",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.pike",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.mcilroy",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.stroustrup",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.stallman",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.kay",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.brooks",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.parnas",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.codd",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.ellison",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.stonebraker",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.bachman",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.gates-allen",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.jobs",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.berners-lee",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.van-rossum",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.gosling",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.hejlsberg",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.eich",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.wall",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.matsumoto",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.lerdorf",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.beck",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.fowler",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.dean-ghemawat",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.graydon-hoare",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.lamport",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.lattner",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.sutter",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.karpathy",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.armstrong",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.milner",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.oliphant",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.hinton",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.dongarra",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.moler",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.fielding",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.cerf-kahn",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.kildall",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.kahan",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.sc-johnson",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.mckinney",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.iverson",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.wozniak",
+   "t": "ppl.hub",
+   "w": 2,
+   "k": "part-of"
+  }
+ ]
+}

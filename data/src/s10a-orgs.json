@@ -1,0 +1,3438 @@
+{
+ "slice": "s10a-orgs",
+ "nodes": [
+  {
+   "id": "org.xerox-parc",
+   "title": "Xerox PARC",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1970,
+   "short": "Xerox's Palo Alto lab produced the Alto, Smalltalk, Ethernet and the laser printer in the 1970s; it is now part of SRI International.",
+   "long": "Xerox founded the Palo Alto Research Center on 1 July 1970, and Bob Taylor, hired from ARPA, built its Computer Science Laboratory. The lab produced the Alto (1973), a workstation with a bitmapped screen, a mouse and a network connection; Smalltalk (first version 1972, public Smalltalk-80 in 1981); Ethernet (Bob Metcalfe's May 1973 memo); the laser printer (1971); and Bravo (1974), the first WYSIWYG editor, meaning that what you see on screen is what prints.\n\nXerox sold its expensive Star (1981) poorly, and ideas and people moved elsewhere. Metcalfe founded 3Com (1979), Warnock and Geschke founded Adobe (1982, PostScript), and Steve Jobs's December 1979 visit shaped the Apple Lisa and Macintosh. PARC became a Xerox subsidiary in 2002 and, on 18 January 2024, SRI International's Future Concepts division.",
+   "sleeper": "The lab's ideas reached ordinary desks through other companies. The claim that Apple and Microsoft stole the graphical interface is oversimplified: Xerox had invested in Apple, and PARC engineers such as Larry Tesler moved there.",
+   "status": "legacy",
+   "tags": [
+    "research lab",
+    "alto",
+    "smalltalk",
+    "ethernet",
+    "gui"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: PARC",
+     "url": "https://en.wikipedia.org/wiki/PARC_(company)"
+    },
+    {
+     "label": "Alan Kay, The Early History of Smalltalk",
+     "url": "https://worrydream.com/EarlyHistoryOfSmalltalk/"
+    }
+   ]
+  },
+  {
+   "id": "org.dec",
+   "title": "DEC",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1957,
+   "yearEnd": 1998,
+   "short": "Maker of the PDP-11 and VAX minicomputers; its machines and its VMS system shaped Unix, C and Windows NT before Compaq bought it in 1998.",
+   "long": "Ken Olsen and Harlan Anderson founded Digital Equipment Corporation in 1957 in Maynard, Massachusetts. Its minicomputers, the PDP-1 (1959), PDP-8 (1965) and PDP-11 (1970), brought computing to laboratories and departments, and Unix and C matured on the PDP-11. The VAX (1977) ran the VMS operating system, whose lead architect, Dave Cutler, left in 1988 to lead Windows NT at Microsoft. DEC also built the Alpha 64-bit RISC chip (1992) and the AltaVista web search engine (1995).\n\nThe company was slow to move from minicomputers to PCs and Unix workstations. Olsen was forced out in 1992, Compaq bought DEC in 1998 for about $9.6 billion, and Hewlett-Packard bought Compaq in 2002. The brand is gone; OpenVMS survives as a niche product from VMS Software Inc, though its 2026 status could not be verified.",
+   "sleeper": "A line often attributed to Ken Olsen, that nobody would want a computer at home, is routinely taken out of context. In 1977 he was talking about a single computer that controlled an entire home.",
+   "status": "dead",
+   "tags": [
+    "minicomputer",
+    "pdp-11",
+    "vax",
+    "vms"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Digital Equipment Corporation",
+     "url": "https://en.wikipedia.org/wiki/Digital_Equipment_Corporation"
+    }
+   ]
+  },
+  {
+   "id": "org.apple",
+   "title": "Apple",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1976,
+   "short": "Brought the graphical interface to a mass market with the Macintosh, then added NeXTSTEP-based macOS and iOS, Swift, the App Store and its own chips.",
+   "long": "Steve Jobs, Steve Wozniak and Ronald Wayne founded Apple on 1 April 1976. The Macintosh (24 January 1984) brought a Xerox-style graphical interface to a mass market, and HyperCard (1987) anticipated the web. Apple bought NeXT (announced 20 December 1996); NeXTSTEP, built on the Mach kernel, BSD Unix and Objective-C, became Mac OS X (2001) and later macOS and iOS. It hired Chris Lattner in 2005, adopted LLVM and Clang, and announced Swift on 2 June 2014. The iPhone (2007) and the App Store (10 July 2008) created the modern app economy, with a 30 percent commission, and Apple silicon (M1, November 2020) moved the Mac to ARM-based chips.\n\nApple remains a platform owner in 2026. Reported but not yet reconfirmed: Tim Cook stepped down as CEO on 1 September 2026, and John Ternus succeeded him.",
+   "sleeper": "The Mac's operating system is Unix underneath, through NeXT, and Apple now designs its own processors. Programs reach iPhone users through the App Store, which has charged a 30 percent commission since 2008.",
+   "status": "thriving",
+   "tags": [
+    "macintosh",
+    "macos",
+    "ios",
+    "app store",
+    "apple silicon"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Apple Inc.",
+     "url": "https://en.wikipedia.org/wiki/Apple_Inc."
+    }
+   ]
+  },
+  {
+   "id": "org.sun",
+   "title": "Sun Microsystems",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1982,
+   "yearEnd": 2010,
+   "short": "Created Java, NFS, SPARC and Solaris; the dot-com bust and cheap Linux servers led to its sale to Oracle in 2010.",
+   "long": "Andy Bechtolsheim, Vinod Khosla, Scott McNealy and Bill Joy founded Sun in February 1982. It shipped SunOS, a BSD derivative, NFS (the Network File System, 1984), the SPARC processor (1987), Solaris (1992), DTrace (2004) and ZFS (2005). Its largest legacy is Java: James Gosling's team began the project in 1991, Java was announced on 23 May 1995, and Java 1.0 arrived in January 1996. Sun bought StarOffice (1999) and MySQL AB (January 2008, about $1 billion), and open-sourced Solaris (2005) and Java (GPL, 2006 to 2007, as OpenJDK).\n\nCheap x86 servers running Linux undercut Sun's proprietary Unix and SPARC stack after the dot-com bust. Oracle announced its purchase in April 2009 and completed it in January 2010 for about $7 billion. LibreOffice, MariaDB and illumos were forked afterward, and Gosling left Oracle in 2010.",
+   "status": "dead",
+   "tags": [
+    "java",
+    "solaris",
+    "sparc",
+    "nfs",
+    "workstations"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Sun Microsystems",
+     "url": "https://en.wikipedia.org/wiki/Sun_Microsystems"
+    }
+   ]
+  },
+  {
+   "id": "org.oracle",
+   "title": "Oracle Corporation",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1977,
+   "short": "Shipped the first commercial SQL database in 1979, bought Sun in 2010 to become Java's steward, and in 2026 sells databases, cloud and AI infrastructure.",
+   "long": "Larry Ellison, Bob Miner and Ed Oates founded Software Development Laboratories on 16 June 1977; it became Relational Software in 1979 and Oracle Systems in 1983, and went public on 12 March 1986. Working from Codd's paper and IBM's published System R papers, it shipped the first commercial SQL database, Oracle V2, in 1979. Later purchases included PeopleSoft (a hostile bid, 2005), Siebel, BEA, Sun (completed January 2010) and Cerner (closed 8 June 2022). As Java's steward, Oracle gave Java EE to the Eclipse Foundation (2017, renamed Jakarta EE) and moved Java to a six-month release cadence in 2018.\n\nIt sued Google in 2010 over Android's use of Java APIs; on 5 April 2021 the US Supreme Court ruled 6 to 2 that Google's copying was fair use. In 2026 Oracle is a partner in OpenAI's Stargate data-center venture, and Magouyrk and Sicilia have been co-CEOs since September 2025.",
+   "sleeper": "The 2021 Supreme Court ruling in Google v. Oracle found Google's copying fair use but assumed, without deciding, that APIs can be copyrighted, so that question was left unsettled.",
+   "status": "thriving",
+   "tags": [
+    "database",
+    "sql",
+    "java",
+    "acquisitions"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Oracle Corporation",
+     "url": "https://en.wikipedia.org/wiki/Oracle_Corporation"
+    },
+    {
+     "label": "SQL Reunion 1995: Oracle",
+     "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-Oracle.html"
+    }
+   ]
+  },
+  {
+   "id": "org.borland",
+   "title": "Borland",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1983,
+   "yearEnd": 2009,
+   "short": "Philippe Kahn's company sold Turbo Pascal for $49.95 in 1983, then Delphi; Microsoft's bundling and a 1998 rename to Inprise wore it down.",
+   "long": "Niels Jensen, Ole Henriksen, Mogens Glad and Philippe Kahn founded Borland in 1983. Turbo Pascal (November 1983, $49.95) put an editor and compiler in one fast program, using a compiler core by Anders Hejlsberg, and was sold by mail order at about a tenth of competitors' prices. Borland followed with Turbo C, Paradox, Quattro Pro, dBASE (through Ashton-Tate, 1991), Delphi (14 February 1995) and InterBase (open-sourced in 2000, now Firebird). In Lotus v. Borland the Supreme Court split 4 to 4 in 1996, leaving in place a ruling that a menu command hierarchy cannot be copyrighted.\n\nHejlsberg left for Microsoft in 1996. Debt from the Ashton-Tate deal, Microsoft's bundled tools and a 1998 rename to Inprise hurt the company. Embarcadero bought the developer tools in 2008 and Micro Focus the rest in 2009, later folded into OpenText (2023). Delphi survives as a niche commercial product.",
+   "status": "dead",
+   "tags": [
+    "turbo pascal",
+    "delphi",
+    "ide",
+    "dos"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Borland",
+     "url": "https://en.wikipedia.org/wiki/Borland"
+    }
+   ]
+  },
+  {
+   "id": "org.netscape",
+   "title": "Netscape",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1994,
+   "short": "Founded as Mosaic Communications in 1994; its Navigator started the dot-com boom, and it gave the web JavaScript, SSL and, in 1998, Mozilla.",
+   "long": "Jim Clark and Marc Andreessen, who had built NCSA Mosaic, founded Netscape on 4 April 1994 as Mosaic Communications. Navigator 1.0 shipped in December 1994 and the 9 August 1995 IPO started the dot-com boom. Brendan Eich wrote JavaScript in May 1995; Netscape and Sun announced it on 4 December 1995, and Ecma standardized it as ECMAScript in June 1997. Netscape's SSL, versions 2.0 (1995) and 3.0 (1996), became the IETF's TLS (RFC 2246, 1999). On 23 January 1998 it announced that its browser would be free with source code, which led to Mozilla.\n\nMicrosoft gave Internet Explorer away with Windows, and Netscape's decision to rewrite the browser from scratch (Netscape 6, 2000) cost years. AOL announced its purchase in November 1998 for about $4.2 billion in stock, a price that could not be verified.",
+   "sleeper": "JavaScript began as a scripting language that management insisted must 'look like Java'. Eich's own account places the first prototype, called Mocha, in early to mid May 1995; the popular 'ten days' figure is unverified.",
+   "status": "dead",
+   "tags": [
+    "browser",
+    "javascript",
+    "ssl",
+    "dot-com",
+    "navigator"
+   ],
+   "refs": [
+    {
+     "label": "Brendan Eich, Popularity (2008)",
+     "url": "https://brendaneich.com/2008/04/popularity/"
+    },
+    {
+     "label": "Joel Spolsky, Things You Should Never Do, Part I",
+     "url": "https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/"
+    }
+   ]
+  },
+  {
+   "id": "org.mozilla",
+   "title": "Mozilla",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1998,
+   "short": "Born from Netscape's 1998 source release; it made Firefox and sponsored Rust from 2009, and held about 3.3 percent of browser usage in July 2026.",
+   "long": "Netscape announced on 23 January 1998 that its browser would be free with source code, and the Mozilla project was founded on 31 March 1998. After AOL withdrew, the Mozilla Foundation became the legal steward in 2003, with Mozilla Corporation as its taxable subsidiary, and Firefox 1.0 shipped in November 2004. Mozilla sponsored Graydon Hoare's Rust from 2009 (Rust 1.0, 15 May 2015) and handed Rust to the Rust Foundation in February 2021. It cut about a quarter of its staff in August 2020.\n\nIn July 2026 Firefox had about 3.3 percent of worldwide browser usage, and Anthony Enzor-DeMeo became CEO in December 2025. A 2011 report put roughly 85 percent of Mozilla's revenue in Google's search deal; the current share could not be verified.",
+   "status": "niche",
+   "tags": [
+    "firefox",
+    "rust",
+    "browser",
+    "open source",
+    "gecko"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Mozilla",
+     "url": "https://en.wikipedia.org/wiki/Mozilla"
+    },
+    {
+     "label": "Rust 1.0 announcement",
+     "url": "https://blog.rust-lang.org/2015/05/15/Rust-1.0.html"
+    }
+   ]
+  },
+  {
+   "id": "org.aws",
+   "title": "Amazon Web Services",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 2006,
+   "short": "Turned servers and storage into metered web services with S3 and EC2 in 2006, then Dynamo, Lambda and Graviton, creating the cloud.",
+   "long": "Amazon's infrastructure arm began selling services as APIs: SQS (beta November 2004), the S3 storage service (14 March 2006) and EC2 virtual servers (August 2006). Renting a server by the hour created what is now called the cloud and drove DevOps, containers and serverless computing. Later pieces include the Dynamo paper (2007) and the DynamoDB service (2012), Aurora (October 2014), Lambda functions that run on demand with no servers to manage (November 2014) and the Arm-based Graviton chips (announced November 2018). Werner Vogels's 'you build it, you run it' (2006) shaped team ownership.\n\nA story of a 2002 Bezos 'API mandate' comes from a 2011 Steve Yegge post, not an Amazon document, so treat it as lore. AWS earned US$128.7 billion in 2025, Matt Garman became its CEO in 2024, and a large us-east-1 outage in October 2025 disrupted Snapchat, Reddit and Roblox, among others.",
+   "sleeper": "A server used to be something a company bought and housed. Since 2006 the default is renting capacity by the hour through an API: in the 2025 Stack Overflow survey, 43.3 percent of respondents used AWS, ahead of Azure (26.3 percent) and Google Cloud (24.6 percent).",
+   "status": "thriving",
+   "tags": [
+    "cloud",
+    "s3",
+    "ec2",
+    "lambda",
+    "amazon"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Amazon Web Services",
+     "url": "https://en.wikipedia.org/wiki/Amazon_Web_Services"
+    },
+    {
+     "label": "Werner Vogels on Dynamo",
+     "url": "https://www.allthingsdistributed.com/2007/10/amazons_dynamo.html"
+    }
+   ]
+  },
+  {
+   "id": "org.meta",
+   "title": "Meta",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 2004,
+   "short": "Facebook's open-source output includes Cassandra, React, GraphQL, PyTorch and Llama; React and PyTorch now sit under neutral foundations.",
+   "long": "Founded on 4 February 2004 as Facebook and renamed Meta in October 2021, the company released a large body of infrastructure software: Cassandra (2008), React (Jordan Walke; internal 2011, open-sourced May 2013) and React Native (2015), GraphQL (internal 2012, open-sourced 2015), Hack (typed PHP, 2014), the Infer static analyzer (2015), RocksDB, Presto, Zstandard and PyTorch (2016 to 2017). Governance has since moved to neutral bodies: PyTorch to the Linux Foundation's PyTorch Foundation (2022), and React and React Native to an independent React Foundation (7 October 2025).\n\nThe Llama language models ran from Llama 1 (24 February 2023) to Llama 4 (5 April 2025). Their license is source-available, with use restrictions, and the Open Source Initiative disputes calling it open source. In April 2026 Meta Superintelligence Labs released Muse Spark as a replacement for Llama in Meta's chatbots.",
+   "status": "thriving",
+   "tags": [
+    "facebook",
+    "react",
+    "pytorch",
+    "llama",
+    "graphql"
+   ],
+   "refs": [
+    {
+     "label": "Introducing the React Foundation",
+     "url": "https://react.dev/blog/2025/10/07/introducing-the-react-foundation"
+    }
+   ]
+  },
+  {
+   "id": "org.jetbrains",
+   "title": "JetBrains",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 2000,
+   "short": "Prague company behind IntelliJ IDEA (2001), PyCharm and Kotlin; it is privately owned and has offered an AI agent, Junie, since 2025.",
+   "long": "Sergey Dmitriev, Valentin Kipyatkov and Eugene Belyaev founded JetBrains in February 2000 in Prague as IntelliJ Software. IntelliJ IDEA (2001) set the standard for refactoring-aware code editors, ones that understand a program's structure, and the company followed with ReSharper (2004), PyCharm and Rider. It created Kotlin in 2011 and open-sourced it in February 2012; Google named it a first-class Android language in May 2017 and its preferred one at Google I/O 2019. JetBrains has never raised outside capital and suspended its Russian operations in March 2022. Its Junie agent reached general availability in April 2025, Fleet was discontinued in 2025, and the Community and Ultimate editions of IntelliJ IDEA were merged in December 2025.",
+   "status": "thriving",
+   "tags": [
+    "ide",
+    "intellij",
+    "kotlin",
+    "pycharm",
+    "prague"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: JetBrains",
+     "url": "https://en.wikipedia.org/wiki/JetBrains"
+    }
+   ]
+  },
+  {
+   "id": "org.red-hat",
+   "title": "Red Hat",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1993,
+   "short": "Showed that support subscriptions could fund free software with Red Hat Enterprise Linux; IBM bought it for $34 billion in 2019.",
+   "long": "Bob Young's ACC Corp (1993) merged with Marc Ewing's Red Hat Linux (1995), and the company went public in August 1999. Its business model sold support subscriptions for free software, starting with Red Hat Enterprise Linux (2002). Later products and purchases include JBoss (2006), Ansible (2015), CoreOS (2018) and OpenShift, a Kubernetes platform. Red Hat moved CentOS to a rolling 'Stream' (announced December 2020) and restricted public access to RHEL source in June 2023, which prompted AlmaLinux, Rocky Linux and OpenELA. IBM announced its purchase in October 2018 for $34 billion and completed it in July 2019. Red Hat is usually described as the first open-source company to pass $1 billion in revenue; in 2026 it operates as part of IBM.",
+   "sleeper": "A 1990 reader paid for software licenses. Red Hat showed a company could give software away and sell support subscriptions instead; its 2023 limit on public RHEL source prompted clone distributions such as AlmaLinux and Rocky Linux.",
+   "status": "thriving",
+   "tags": [
+    "linux",
+    "rhel",
+    "subscriptions",
+    "open source",
+    "centos"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Red Hat",
+     "url": "https://en.wikipedia.org/wiki/Red_Hat"
+    }
+   ]
+  },
+  {
+   "id": "org.intel",
+   "title": "Intel",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1968,
+   "short": "Made the 4004 (1971) and the 8086 (1978); the 8088 in the IBM PC locked in x86, while AMD's 64-bit design beat Intel's Itanium.",
+   "long": "Gordon Moore, Robert Noyce and Arthur Rock founded Intel on 18 July 1968. Its 4004 (1971) put a processor on one chip, and the 8086 (1978) began the x86 instruction set. The 8088 variant chosen for the IBM PC (1981) tied the PC industry to that architecture. Intel's own 64-bit plan, Itanium (2001), failed, while AMD's 64-bit extension of x86 won.\n\nPat Gelsinger was ousted as CEO in December 2024, and Lip-Bu Tan took over on 18 March 2025. The US government bought a 9.9 percent stake in August 2025, and Nvidia invested $5 billion in September 2025. Nothing later was verified, and Intel's 2026 market share was not checked.",
+   "sleeper": "The 8086 was made assembly-language compatible with the 8080 so that old software could be reassembled, and that habit of compatibility has kept x86 in use for decades. The 64-bit extension that won came from AMD, not Intel.",
+   "status": "thriving",
+   "tags": [
+    "x86",
+    "8086",
+    "itanium",
+    "microprocessor",
+    "chips"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Intel",
+     "url": "https://en.wikipedia.org/wiki/Intel"
+    },
+    {
+     "label": "Stephen Morse, history of the 8086 (IEEE Computer, 1980)",
+     "url": "https://stevemorse.org/8086history/8086history.doc"
+    }
+   ]
+  },
+  {
+   "id": "org.amd",
+   "title": "AMD",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 1969,
+   "short": "Began as an x86 second source, then beat Intel to 64-bit x86 (AMD64, 2003) and returned with the Zen design in 2017 under CEO Lisa Su.",
+   "long": "Advanced Micro Devices was founded in 1969 as a second source for Intel's x86 chips and later became Intel's rival. Its 64-bit extension of the x86 instruction set, AMD64 (2003), won out over Intel's own plan, Itanium. The Zen processor design followed in 2017, and Lisa Su has been CEO since 2014. These AMD facts are background knowledge that was not re-verified, and the company's position in 2026 was not checked.",
+   "status": "thriving",
+   "tags": [
+    "x86",
+    "amd64",
+    "zen",
+    "cpu"
+   ]
+  },
+  {
+   "id": "org.arm",
+   "title": "Arm Ltd",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1990,
+   "short": "Licenses processor designs instead of selling chips; founded in 1990 by Acorn, Apple and VLSI, and the basis of phone chips and Apple's M-series.",
+   "long": "Arm was founded on 12 November 1990 as a joint venture of Acorn, Apple and VLSI, with Apple putting in $3 million. Its business is licensing processor designs rather than selling chips. The first ARM silicon is commonly dated to 1985 and credited to Sophie Wilson and Steve Furber at Acorn, but that could not be verified from a primary source. ARM designs dominate low-power devices such as phones; Apple announced in June 2020 that Macs would move from Intel to its own ARM-based chips (M1, November 2020), and AWS Graviton (2018) brought ARM to the cloud.\n\nSoftBank bought Arm in 2016 (announced 18 July, for £23.4 billion). Nvidia's $40 billion offer of September 2020 was cancelled in February 2022, and the IPO on 14 September 2023 raised $4.87 billion.",
+   "status": "thriving",
+   "tags": [
+    "arm",
+    "risc",
+    "licensing",
+    "acorn",
+    "cpu"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Arm Holdings",
+     "url": "https://en.wikipedia.org/wiki/Arm_Holdings"
+    }
+   ]
+  },
+  {
+   "id": "org.nvidia",
+   "title": "NVIDIA",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1993,
+   "short": "Made the GPU a general computing engine with CUDA (2007); deep learning turned it into the AI industry's hardware supplier, valued at $5 trillion in 2025.",
+   "long": "Jensen Huang, Chris Malachowsky and Curtis Priem founded NVIDIA on 5 April 1993. It launched the GeForce 256, its first 'GPU' (graphics processing unit), in late 1999, then invested more than a billion dollars in CUDA, a platform that lets programmers use graphics chips for general computation. CUDA arrived in 2007 (sources differ between February and June), led by Ian Buck and John Nickolls, and was followed by cuDNN (2014) and Tensor Cores (Volta V100, 2017). Deep learning made NVIDIA the supplier of AI hardware, with market values of $1 trillion (May 2023), $4 trillion (10 July 2025) and $5 trillion (29 October 2025).\n\nIts $40 billion bid for Arm was cancelled in February 2022. On 2 September 2026 NVIDIA signed a definitive agreement to acquire Hugging Face for about $11.9 billion plus up to $1.0 billion in retention, according to its SEC filing; whether the deal has closed is not confirmed.",
+   "status": "thriving",
+   "tags": [
+    "gpu",
+    "cuda",
+    "deep learning",
+    "tensor cores",
+    "ai chips"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Nvidia",
+     "url": "https://en.wikipedia.org/wiki/Nvidia"
+    },
+    {
+     "label": "NVIDIA Form 8-K, 2 September 2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm"
+    }
+   ]
+  },
+  {
+   "id": "org.hashicorp",
+   "title": "HashiCorp",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 2012,
+   "short": "Terraform's maker; its 2023 license change led to the OpenTofu fork, and IBM completed its purchase in February 2025.",
+   "long": "Mitchell Hashimoto and Armon Dadgar founded HashiCorp in 2012. Its tools include Vagrant (2010), Packer, Terraform (2014; 'infrastructure as code', in which a declarative file describes cloud resources), Consul, Vault and Nomad. It went public on 9 December 2021 at about a $13 billion valuation. On 10 August 2023 it moved Terraform from the Mozilla Public License to the Business Source License, which bars competing commercial use. A community fork, first called OpenTF and renamed OpenTofu in September 2023, went to the Linux Foundation, shipped a first stable release in January 2024 and drew a cease-and-desist letter from HashiCorp in April 2024.\n\nIBM announced the purchase on 24 April 2024 for about $6.4 billion and completed it on 27 February 2025 after a UK competition review. OpenTofu 1.13.0 shipped on 30 September 2026 under the MPL 2.0.",
+   "sleeper": "Provisioning servers by typing commands by hand gave way to files that describe a whole environment. HashiCorp's 2023 license change was enough to split that ecosystem into Terraform and OpenTofu within weeks.",
+   "status": "thriving",
+   "tags": [
+    "terraform",
+    "infrastructure as code",
+    "license",
+    "opentofu",
+    "vault"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: HashiCorp",
+     "url": "https://en.wikipedia.org/wiki/HashiCorp"
+    },
+    {
+     "label": "Wikipedia: OpenTofu",
+     "url": "https://en.wikipedia.org/wiki/OpenTofu"
+    }
+   ]
+  },
+  {
+   "id": "org.astral",
+   "title": "Astral",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 2022,
+   "short": "Charlie Marsh's company makes Ruff and uv, Python tools written in Rust; in March 2026 it agreed to join OpenAI's Codex team.",
+   "long": "Astral builds Python tooling in Rust under Charlie Marsh. Its Ruff linter and formatter had its first commit on 9 August 2022; uv, a package and project manager meant as a drop-in replacement for pip and pip-tools, was announced on 15 February 2024. Astral added pyx, a hosted package registry (13 August 2025), and ty, a type checker (16 December 2025). On 19 March 2026 it announced that it 'has entered into an agreement to join OpenAI as part of the Codex team', and promised that OpenAI would keep supporting its open-source tools. No completion date, price or governance terms were found, and the future licensing of Ruff, uv and ty is unstated.",
+   "sleeper": "uv was the most admired tool in the 2025 Stack Overflow survey (74.2 percent). Key open-source Python tooling now belongs to an AI lab, and nothing yet states its future licensing or governance.",
+   "code": {
+    "lang": "bash",
+    "text": "ruff check .\nuv run script.py"
+   },
+   "status": "thriving",
+   "tags": [
+    "ruff",
+    "uv",
+    "python tooling",
+    "rust",
+    "linter"
+   ],
+   "refs": [
+    {
+     "label": "Astral blog",
+     "url": "https://astral.sh/blog"
+    },
+    {
+     "label": "Astral to join OpenAI",
+     "url": "https://astral.sh/blog/openai"
+    }
+   ]
+  },
+  {
+   "id": "org.anthropic",
+   "title": "Anthropic",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 2021,
+   "short": "AI lab behind Claude, the Model Context Protocol (2024) and Claude Code; it bought Bun in December 2025 and Stainless in May 2026.",
+   "long": "Dario Amodei, Daniela Amodei, Jared Kaplan, Jack Clark, Chris Olah, Ben Mann, Sam McCandlish and Tom Brown founded Anthropic on 26 January 2021 as a public benefit corporation. Its Claude models run from Claude 1 (March 2023) to Claude Opus 5.5 (22 September 2026). It introduced the Model Context Protocol, an open standard for connecting AI tools to data and software, on 25 November 2024, and donated it to the Linux Foundation's Agentic AI Foundation in December 2025. Claude Code, a command-line coding agent, began as a research preview on 24 February 2025 and reached general availability in May 2025. Anthropic bought Bun (December 2025) and Stainless (18 May 2026).\n\nReported, but not confirmed from Anthropic's own pages: a $380 billion valuation (February 2026), a $965 billion valuation (May 2026) and a confidential IPO filing (1 June 2026).",
+   "sleeper": "Since 2023 AI labs and cloud vendors have been buying developer tools, including Astral (OpenAI) and Bun (Anthropic). One reading is that the coding agent is becoming the new front door to software development.",
+   "status": "thriving",
+   "tags": [
+    "claude",
+    "claude code",
+    "mcp",
+    "ai lab",
+    "bun"
+   ],
+   "refs": [
+    {
+     "label": "Anthropic: Introducing the Model Context Protocol",
+     "url": "https://www.anthropic.com/news/model-context-protocol"
+    },
+    {
+     "label": "Wikipedia: Anthropic",
+     "url": "https://en.wikipedia.org/wiki/Anthropic"
+    }
+   ]
+  },
+  {
+   "id": "org.openai",
+   "title": "OpenAI",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 2015,
+   "short": "AI lab behind GPT-3, Codex (the model under early GitHub Copilot), ChatGPT and a Codex coding agent; Microsoft holds about 27 percent of its 2025 company.",
+   "long": "Sam Altman, Elon Musk, Greg Brockman, Ilya Sutskever and others incorporated OpenAI on 8 December 2015 as a nonprofit, adding a capped-profit arm in 2019. It released GPT-3 (2020), Codex (2021, the model behind GitHub Copilot's preview), ChatGPT (30 November 2022), GPT-4 (14 March 2023) and GPT-5.2 (11 December 2025). Microsoft invested $1 billion in 2019 and announced a further $10 billion on 23 January 2023. On 28 October 2025 OpenAI became OpenAI Group PBC, owned about 26 percent by the OpenAI Foundation and 27 percent by Microsoft.\n\nAcquisitions include io ($6.5 billion, May 2025), Statsig ($1.1 billion, September 2025) and, by an agreement announced on 19 March 2026, Astral. Reported valuations, such as $852 billion in April 2026, come from Wikipedia summaries and are not confirmed from primary sources.",
+   "sleeper": "Codex names two things: the 2021 model behind early GitHub Copilot, whose API model was retired in March 2023, and the coding agent and command-line tool that OpenAI launched in 2025.",
+   "status": "thriving",
+   "tags": [
+    "gpt",
+    "chatgpt",
+    "codex",
+    "ai lab",
+    "microsoft"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: OpenAI",
+     "url": "https://en.wikipedia.org/wiki/OpenAI"
+    }
+   ]
+  },
+  {
+   "id": "org.hugging-face",
+   "title": "Hugging Face",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 2016,
+   "short": "Founded in 2016; its Transformers library and model hub made pretrained models a pip install. NVIDIA agreed to buy it in September 2026.",
+   "long": "Clément Delangue, Julien Chaumond and Thomas Wolf founded Hugging Face in 2016. Its Transformers library, first committed on 29 October 2018 by Thomas Wolf, began as pytorch-pretrained-bert (PyPI, 17 November 2018), became pytorch-transformers (2019) and then transformers. It is licensed under Apache 2.0 and lets a programmer download and run a pretrained model in a few lines; version 5.18.0 appeared on 30 September 2026. The Hugging Face Hub hosts many open-weight models, which now run on a shared Python stack with PyTorch and vLLM.\n\nOn 2 September 2026 NVIDIA signed a definitive agreement to acquire Hugging Face for about $11.9 billion plus up to $1.0 billion in retention, according to NVIDIA's SEC filing. Whether the deal has closed is not confirmed.",
+   "sleeper": "A program's dependencies used to be code. With Hugging Face a dependency can also be a trained model fetched by name, and a few lines of code then run it.",
+   "code": {
+    "lang": "python",
+    "text": "from transformers import pipeline\nprint(pipeline('sentiment-analysis')('I love this'))"
+   },
+   "status": "thriving",
+   "tags": [
+    "transformers",
+    "open-weight models",
+    "model hub",
+    "pytorch"
+   ],
+   "refs": [
+    {
+     "label": "Wolf et al., Transformers (arXiv 1910.03771)",
+     "url": "https://arxiv.org/abs/1910.03771"
+    },
+    {
+     "label": "NVIDIA Form 8-K, 2 September 2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm"
+    }
+   ]
+  },
+  {
+   "id": "org.stack-overflow",
+   "title": "Stack Overflow",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 2008,
+   "short": "The programming question-and-answer site and annual developer survey; Prosus bought it in 2021, and its question volume was reported to fall sharply after 2024.",
+   "long": "Stack Overflow is a question-and-answer site for programmers. It runs the annual Developer Survey, a common source for figures on languages, tools and AI use; the 2025 survey's language question drew 31,771 respondents. The survey is an opt-in sample recruited largely through Stack Overflow's own channels, so it over-represents web and cloud developers. Prosus acquired the company on 2 June 2021 for $1.8 billion.\n\nWikipedia reports that the number of questions submitted fell 78 percent between December 2024 and December 2025, which it attributes to a perceived hostile moderation culture and to generative AI. That is a secondary report. RedMonk likewise says Stack Overflow's relevance to a generation of developers has been in decline.",
+   "sleeper": "Looking things up once meant manuals and colleagues. In Stack Overflow's own 2025 survey, 66 percent of developers said AI answers are 'almost right, but not quite', and 46 percent distrusted AI accuracy.",
+   "status": "legacy",
+   "tags": [
+    "q&a",
+    "developer survey",
+    "prosus",
+    "community"
+   ],
+   "refs": [
+    {
+     "label": "Stack Overflow Developer Survey 2025",
+     "url": "https://survey.stackoverflow.co/2025/"
+    },
+    {
+     "label": "Wikipedia: Stack Overflow",
+     "url": "https://en.wikipedia.org/wiki/Stack_Overflow"
+    }
+   ]
+  },
+  {
+   "id": "org.mit",
+   "title": "MIT",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1963,
+   "short": "Home of CTSS, Project MAC and Multics, Lisp, Scheme, Emacs and the X Window System; its time-sharing work taught the Unix designers what to simplify.",
+   "long": "MIT's Compatible Time-Sharing System (CTSS), first shown by Fernando Corbato in 1961, made interactive computing possible, and Project MAC (1963, funded by ARPA) grew from it. Multics (1964 to 1969, with GE and Bell Labs) followed; Bell Labs withdrew in 1969, and Thompson and Ritchie used what they had learned to simplify in Unix. John McCarthy's Lisp (1958) came from MIT, as did the AI Lab (1959; merged into CSAIL in 2003), Richard Stallman's hacker culture and Emacs (1976), Scheme (1975), Structure and Interpretation of Computer Programs (1985), the RSA cipher (1977) and the X Window System (Project Athena, 1984; X11 in 1987). The W3C was founded at MIT in 1994, and the last Multics site shut in 2000.",
+   "status": "thriving",
+   "tags": [
+    "university",
+    "time-sharing",
+    "ctss",
+    "multics",
+    "lisp"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Project MAC",
+     "url": "https://en.wikipedia.org/wiki/Project_MAC"
+    },
+    {
+     "label": "Wikipedia: Multics",
+     "url": "https://en.wikipedia.org/wiki/Multics"
+    }
+   ]
+  },
+  {
+   "id": "org.berkeley",
+   "title": "UC Berkeley",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1978,
+   "short": "Source of BSD Unix, with TCP/IP sockets in 4.2BSD (1983), Ingres and Postgres, RISC, RISC-V and the AMPLab that produced Spark.",
+   "long": "Bill Joy's first Berkeley Software Distribution (1BSD) appeared in March 1978. 4.2BSD (1983), funded by DARPA, added TCP/IP and the sockets programming interface and turned Unix into the internet's operating system. FreeBSD, NetBSD, OpenBSD and Apple's Darwin descend from it. Berkeley also produced Ingres (Michael Stonebraker, 1973) and Postgres (1986), RISC I (1982), RAID (1987), RISC-V (2010) and the AMPLab, where Apache Spark began in 2009 and from which Databricks was founded in 2013. The 1992 to 1994 lawsuit by Unix System Laboratories against BSDi forced a legally cleaned 4.4BSD-Lite and is one reason Linux took off.",
+   "sleeper": "A 1990 reader knew BSD as the academic rival to AT&T's Unix. Its code now lives on in FreeBSD, NetBSD and OpenBSD and, through Apple's Darwin, in macOS and iOS; the lawsuit against BSDi is one reason Linux got its opening.",
+   "status": "thriving",
+   "tags": [
+    "university",
+    "bsd",
+    "unix",
+    "ingres",
+    "risc"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Berkeley Software Distribution",
+     "url": "https://en.wikipedia.org/wiki/Berkeley_Software_Distribution"
+    }
+   ]
+  },
+  {
+   "id": "org.cambridge-manchester",
+   "title": "Cambridge and Manchester",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1948,
+   "short": "Manchester's Baby ran the first stored program in 1948 and Cambridge's EDSAC the first regular computing service in 1949; Cambridge also produced BCPL.",
+   "long": "Manchester's 'Baby' (the Small-Scale Experimental Machine) ran its first program, written by Tom Kilburn, on 21 June 1948, the first on an electronic stored-program computer. The Ferranti Mark 1 (delivered 1951) probably holds the title of first commercially available general-purpose computer, and Manchester's Atlas (1962) introduced virtual memory. Alick Glennie's Autocode (1952) was written for the Manchester Mark 1.\n\nAt Cambridge, Maurice Wilkes's EDSAC performed its first fully automatic calculation on 6 May 1949 and was the first stored-program computer to run a regular computing service. David Wheeler's subroutine library came from it, and so did the first book on programming (1951). Martin Richards later wrote BCPL there (1967), an ancestor of B and C, and Acorn of Cambridge produced the BBC Micro (1981).",
+   "status": "n/a",
+   "tags": [
+    "edsac",
+    "manchester baby",
+    "stored program",
+    "autocode",
+    "university"
+   ],
+   "refs": [
+    {
+     "label": "Computer History Museum: Timeline of Computers",
+     "url": "https://www.computerhistory.org/timeline/computers/"
+    },
+    {
+     "label": "Wikipedia: EDSAC",
+     "url": "https://en.wikipedia.org/wiki/EDSAC"
+    }
+   ]
+  },
+  {
+   "id": "org.cern",
+   "title": "CERN",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1989,
+   "short": "Tim Berners-Lee proposed the World Wide Web at CERN in March 1989, and on 30 April 1993 CERN declared it free for anyone to use.",
+   "long": "At CERN, the European particle-physics laboratory founded in 1954, Tim Berners-Lee proposed in March 1989 that a web of linked notes would serve better than a fixed hierarchy for keeping track of information. A NeXT computer was approved for web development in September 1990, and the first web server and page ran in November 1990. The software was released on CERN machines on 17 May 1991, and on 30 April 1993 CERN declared the technology free for anyone to use, with no fees. NCSA released the first alpha of its Mosaic browser in February 1993, and the W3C, founded in October 1994 at MIT, took over standards work. These dates follow the W3C's timeline, because CERN's own history pages could not be retrieved.",
+   "sleeper": "The Web was not the first hypertext system. One account credits its spread to simple, open protocols with free implementations and to CERN's no-fee decision of 1993. The common claim that Gopher's licensing fees hurt it is lore that was not verified.",
+   "status": "thriving",
+   "tags": [
+    "web",
+    "berners-lee",
+    "hypertext",
+    "physics lab",
+    "1993"
+   ],
+   "refs": [
+    {
+     "label": "W3C: A Little History of the World Wide Web",
+     "url": "https://www.w3.org/History.html"
+    },
+    {
+     "label": "Berners-Lee, Information Management: A Proposal (1989)",
+     "url": "https://www.w3.org/History/1989/proposal.html"
+    }
+   ]
+  },
+  {
+   "id": "org.darpa",
+   "title": "DARPA",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1969,
+   "short": "The Pentagon research agency funded time-sharing, ARPANET (first message 29 October 1969), the 1983 TCP/IP switchover, Berkeley's BSD and RISC.",
+   "long": "The US Defense Department's research agency, founded in 1958 as ARPA, paid for much of early interactive and networked computing. Its Information Processing Techniques Office, led by J. C. R. Licklider from 1962 and then by Bob Taylor and Larry Roberts, funded time-sharing, including Project MAC at MIT, and ARPANET, whose first message went from UCLA to SRI on 29 October 1969. It also funded the switch of ARPANET to TCP/IP on 1 January 1983, Berkeley's BSD, the RISC and VLSI projects, and the self-driving Grand Challenges of 2004 to 2007. Bob Taylor later left ARPA to build the Computer Science Laboratory at Xerox PARC.",
+   "status": "thriving",
+   "tags": [
+    "arpanet",
+    "time-sharing",
+    "tcp/ip",
+    "government",
+    "funding"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: ARPANET",
+     "url": "https://en.wikipedia.org/wiki/ARPANET"
+    }
+   ]
+  },
+  {
+   "id": "org.acm",
+   "title": "ACM and the Turing Award",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1947,
+   "short": "Founded in 1947, the Association for Computing Machinery publishes Communications of the ACM (since 1958) and gives the Turing Award (since 1966).",
+   "long": "The Association for Computing Machinery was founded in 1947 and has published Communications of the ACM since 1958. Since 1966 it has given the A. M. Turing Award, named for Alan Turing; the first winner was Alan Perlis. Later winners include John McCarthy (1971), Edsger Dijkstra (1972), Donald Knuth (1974), John Backus (1977), Tony Hoare (1980), Edgar Codd (1981), Dennis Ritchie and Ken Thompson (1983), Niklaus Wirth (1984), Fred Brooks (1999), Alan Kay (2003), Tim Berners-Lee (2016) and Geoffrey Hinton with Yoshua Bengio and Yann LeCun (2018). The 2024 award went to Barto and Sutton for reinforcement learning. Award details here follow Wikipedia, because the ACM's own site could not be retrieved.",
+   "status": "thriving",
+   "tags": [
+    "turing award",
+    "communications of the acm",
+    "professional society",
+    "prizes"
+   ]
+  },
+  {
+   "id": "org.wg14",
+   "title": "ISO C Committee (WG14)",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1983,
+   "short": "ISO/IEC WG14 maintains the C standard: ANSI's X3J11 formed in 1983, then came C90, C99, C11, C23 and the C2y draft.",
+   "long": "ANSI formed the X3J11 committee in the summer of 1983, at the urging of Doug McIlroy, to codify the existing definition of C. It reported at the end of 1989, and ISO accepted the result as ISO/IEC 9899:1990. In Dennis Ritchie's words, the committee introduced only one genuinely important change: function prototypes, with syntax borrowed from C++. WG14, the ISO working group that now maintains the language, went on to C99, C11 and C23 (ISO/IEC 9899:2024, published October 2024, adding constexpr, nullptr and #embed). The C2y draft, N3886 dated 24 May 2026, is in progress; the defer mechanism is being developed as a separate technical specification, not as part of that draft. WG14 also maintains Embedded C (TR 18037).",
+   "sleeper": "Annex K, optional bounds-checking functions added in C11, shows that a standard can add a safety feature almost nobody implements. A 2015 WG14 paper found no viable conforming implementation, yet the annex is still in the C23 and C2y drafts.",
+   "status": "thriving",
+   "tags": [
+    "c standard",
+    "iso",
+    "ansi",
+    "committee",
+    "c23"
+   ],
+   "refs": [
+    {
+     "label": "WG14 home page",
+     "url": "https://www.open-std.org/jtc1/sc22/wg14/"
+    },
+    {
+     "label": "WG14 project status",
+     "url": "https://www.open-std.org/jtc1/sc22/wg14/www/projects"
+    }
+   ]
+  },
+  {
+   "id": "org.wg21",
+   "title": "ISO C++ Committee (WG21)",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1991,
+   "short": "ISO/IEC WG21 standardizes C++: the first ISO meeting was in Lund in 1991, C++98 followed, then a release every three years up to C++26.",
+   "long": "The ANSI C++ committee began in 1989, and the first ISO WG21 meeting was held in Lund in 1991. The first standard, C++98, was ratified in 1998 after a final committee vote in 1997. Since C++11 the committee has kept a three-year release train: C++14, C++17, C++20, C++23 (ISO/IEC 14882:2024) and C++26. C++26 was declared technically complete on 28 March 2026 in London Croydon, by a plenary vote of 114 to 12 with 3 abstentions, and adds static reflection, contracts, a hardened standard library and std::execution. ISO publication of C++26 is not confirmed, and isocpp.org still named C++23 as current. Herb Sutter leads the committee; Bjarne Stroustrup has warned of 'design by committee, bureaucratic paralysis, and excessive enthusiasm for a variety of language fashions'.",
+   "status": "thriving",
+   "tags": [
+    "c++ standard",
+    "iso",
+    "committee",
+    "c++26",
+    "reflection"
+   ],
+   "refs": [
+    {
+     "label": "WG21 home page",
+     "url": "https://www.open-std.org/jtc1/sc22/wg21/"
+    },
+    {
+     "label": "Herb Sutter: C++26 is done (March 2026 trip report)",
+     "url": "https://herbsutter.com/2026/03/29/c26-is-done-trip-report-march-2026-iso-c-standards-meeting-london-croydon-uk/"
+    }
+   ]
+  },
+  {
+   "id": "org.tc39",
+   "title": "Ecma TC39",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1997,
+   "short": "Ecma's committee that standardizes JavaScript as ECMAScript: first edition June 1997, a failed ES4, then ES2015 and an edition every June since.",
+   "long": "Ecma International's TC39 standardizes JavaScript as ECMAScript (ECMA-262). The first edition appeared in June 1997, the second in August 1998 and the third in December 1999; a fourth edition was never published. In 2008 the committee, in Brendan Eich's words, had been split for over a year between a major ES4 and a smaller ES3.1. The Oslo meeting at the end of July 2008 produced 'Harmony', which set aside ES4's larger ideas such as packages and namespaces. ES5 followed in December 2009, and ES2015 (the sixth edition, finalized June 2015) added classes, modules, arrow functions, let and const. Since then there has been an edition every June, up to ES2026 (the seventeenth, June 2026). Proposals pass through numbered stages, and Stage 4 proposals enter that year's edition.",
+   "sleeper": "A language standard once appeared every few years, as with C (1989) and C++ (1998). ECMAScript has instead released an edition every June since 2015, with proposals moving through numbered stages.",
+   "status": "thriving",
+   "tags": [
+    "ecmascript",
+    "standard",
+    "javascript",
+    "ecma",
+    "es2015"
+   ],
+   "refs": [
+    {
+     "label": "Ecma International: ECMA-262",
+     "url": "https://ecma-international.org/publications-and-standards/standards/ecma-262/"
+    },
+    {
+     "label": "TC39 process document",
+     "url": "https://tc39.es/process-document/"
+    }
+   ]
+  },
+  {
+   "id": "org.w3c-whatwg",
+   "title": "W3C and WHATWG",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 1994,
+   "short": "The W3C (1994) and WHATWG (2004) write the standards behind HTML, CSS and the browser; since 2019 the WHATWG HTML Living Standard is the HTML spec.",
+   "long": "Tim Berners-Lee founded the World Wide Web Consortium in October 1994 at MIT. It pursued a strict, XML-based XHTML 2 until it let the working group's charter lapse at the end of 2009. The WHATWG, formed in 2004 by engineers from Apple, Mozilla and Opera over disputes about XHTML, pushed a backward-compatible 'HTML5' instead, which became a W3C Recommendation in October 2014. Since 2019 the WHATWG's continuously updated HTML Living Standard has been treated as the single HTML specification. The W3C also standardizes WebAssembly (first Recommendation, December 2019) and WebAuthn (2019), the basis of passkeys. The current status of the 2019 W3C and WHATWG agreement is unverified.",
+   "status": "thriving",
+   "tags": [
+    "html",
+    "css",
+    "web standards",
+    "living standard",
+    "xhtml"
+   ],
+   "refs": [
+    {
+     "label": "W3C: A Little History of the World Wide Web",
+     "url": "https://www.w3.org/History.html"
+    },
+    {
+     "label": "WHATWG FAQ",
+     "url": "https://whatwg.org/faq"
+    }
+   ]
+  },
+  {
+   "id": "org.ietf",
+   "title": "IETF",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 1986,
+   "short": "The Internet Engineering Task Force runs on 'rough consensus and running code' and standardized TCP/IP, TLS, HTTP/2 and QUIC.",
+   "long": "The IETF held its first meeting in January 1986, though the RFC series it publishes began in April 1969. Its working method is summed up as 'rough consensus and running code': a proposal needs broad agreement and a working implementation. TCP/IP won out over the ISO seven-layer OSI stack, IBM's SNA, DEC's DECnet and others because it was free, simple and already working. The IETF has standardized TLS (TLS 1.3 is RFC 8446, 2018), HTTP/2 and QUIC (RFC 9000, 2021). Jon Postel's robustness principle, to be conservative in what you send and liberal in what you accept, comes from an RFC of 1980 and explains why sloppy but interoperable implementations spread. Netscape's SSL became the IETF's TLS (RFC 2246, 1999). The RFC numbers and dates here are background knowledge and were not rechecked.",
+   "status": "thriving",
+   "tags": [
+    "rfc",
+    "internet",
+    "standards",
+    "protocols",
+    "consensus"
+   ]
+  },
+  {
+   "id": "org.gnu-fsf",
+   "title": "GNU Project and the FSF",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1983,
+   "short": "Richard Stallman announced GNU on 27 September 1983 to build a free Unix-compatible system; it produced GCC, Emacs, GDB, Bash and the GPL.",
+   "long": "Richard Stallman announced the GNU project on 27 September 1983, promising to write 'a complete Unix-compatible software system' and give it away free; work began in January 1984 after he left MIT. He founded the Free Software Foundation in October 1985 and wrote the GNU Manifesto that year. GNU produced Emacs, GCC (first released 22 March 1987), GDB (from 1986), Bash and glibc. The GNU General Public License (version 1 in 1989, 2 in 1991, 3 in 2007) introduced 'copyleft', which requires derivative works to stay free. Linux, which Torvalds relicensed under GPL version 2 in 1992, supplied the kernel GNU lacked.\n\nStallman resigned from the FSF and MIT in September 2019 and rejoined the FSF board in March 2021, which was controversial. His story that a Xerox printer whose source he could not modify angered him is widely repeated, but its details are unverified.",
+   "sleeper": "'Free software' predates 'open source', a term proposed only in 1998. Copyleft means a modified program must be shared on the same terms, unlike permissive licenses such as MIT and BSD, which allow closed derivatives.",
+   "status": "thriving",
+   "tags": [
+    "free software",
+    "gpl",
+    "copyleft",
+    "gcc",
+    "stallman"
+   ],
+   "refs": [
+    {
+     "label": "GNU Project history",
+     "url": "https://www.gnu.org/gnu/thegnuproject.html"
+    }
+   ]
+  },
+  {
+   "id": "org.linux-foundation",
+   "title": "Linux Foundation",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 2000,
+   "short": "Formed in 2007 from the Open Source Development Labs; hosts Linux kernel infrastructure, the CNCF, PyTorch, OpenTofu, Valkey and the Agentic AI Foundation.",
+   "long": "The Linux Foundation was formed in 2007 by merging the Open Source Development Labs (founded 2000) with the Free Standards Group. It hosts the Linux kernel's infrastructure, and Linus Torvalds is a fellow. It also hosts the Cloud Native Computing Foundation (2015, home of Kubernetes), the PyTorch Foundation, OpenSSF for supply-chain security, OpenJS, LF AI and Data, the Continuous Delivery Foundation, and the forks OpenTofu, Valkey and the OpenSearch Software Foundation. Since December 2025 it has also hosted the Agentic AI Foundation, which lists the Model Context Protocol. Microsoft became a platinum member in November 2016.\n\nThe usual pattern is that a neutral body holds the trademark and code while companies compete on services, and forks of relicensed products now appear within weeks.",
+   "status": "thriving",
+   "tags": [
+    "foundation",
+    "linux",
+    "governance",
+    "cncf",
+    "open source"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Linux Foundation",
+     "url": "https://en.wikipedia.org/wiki/Linux_Foundation"
+    }
+   ]
+  },
+  {
+   "id": "org.apache-foundation",
+   "title": "Apache Software Foundation",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 1999,
+   "short": "Grew from the Apache Group (1995), which coordinated patches to NCSA httpd; hosts Tomcat, Hadoop, Kafka, Spark, Cassandra and many more.",
+   "long": "The Apache Group formed in early 1995 to coordinate patches to Rob McCool's NCSA httpd web server. Its eight core members were Brian Behlendorf, Roy Fielding, Rob Hartill, David Robinson, Cliff Skolnick, Randy Terbush, Robert Thau and Andrew Wilson. Apache 0.6.2 appeared in April 1995 and 1.0 on 1 December 1995, and by 1996 Netcraft reported it as the most-used web server. The Apache Software Foundation was incorporated in 1999 and later hosted Tomcat, Hadoop, Kafka, Spark, Cassandra and many other projects under a way of working known as the Apache Way. Its Apache License 2.0 is one of the permissive licenses that allow closed derivatives.",
+   "status": "thriving",
+   "tags": [
+    "web server",
+    "foundation",
+    "httpd",
+    "hadoop",
+    "kafka"
+   ],
+   "refs": [
+    {
+     "label": "About the Apache HTTP Server Project",
+     "url": "https://httpd.apache.org/ABOUT_APACHE.html"
+    }
+   ]
+  },
+  {
+   "id": "org.codasyl",
+   "title": "CODASYL",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 1959,
+   "short": "The committee that defined COBOL in 1959 to 1960; its database group later published the network database model.",
+   "long": "The Conference on Data Systems Languages grew out of a meeting at the Pentagon on 28 May 1959 that considered a common business programming language independent of any manufacturer. Grace Hopper proposed Charles Phillips of the Defense Department to lead the effort; Phillips chaired the executive committee, with Joe Cunningham of the Air Force as vice chairman and three committees beneath them. Hopper and Bob Bemer were technical advisers, and Bemer coined the name CODASYL. The result was COBOL, which every manufacturer then had to support. CODASYL's database group, renamed the Data Base Task Group in 1967, issued its first report, 'COBOL extensions to handle data bases', in January 1968; it defined the network model based on Charles Bachman's IDS. Implementations included Honeywell's IDS/2, Cullinet's IDMS, HP's Image and Univac's DMS-1100.",
+   "status": "dead",
+   "tags": [
+    "cobol",
+    "committee",
+    "network model",
+    "pentagon",
+    "standards"
+   ],
+   "refs": [
+    {
+     "label": "CODASYL COBOL Journal of Development (1968)",
+     "url": "https://archive.org/details/codasylcoboljour00conf"
+    }
+   ]
+  },
+  {
+   "id": "org.mathworks",
+   "title": "MathWorks",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 1984,
+   "short": "Founded in California in 1984 by Cleve Moler, Jack Little and Steve Bangert to sell MATLAB, which they rewrote in C for the IBM PC.",
+   "long": "Cleve Moler wrote the first MATLAB in the late 1970s at the University of New Mexico so that his students could use the LINPACK and EISPACK packages without writing Fortran programs. Its only data type was the matrix, it had 80 functions, and adding a function meant changing the Fortran source. After IBM announced its PC in August 1981, Jack Little and Steve Bangert reprogrammed MATLAB in C and added M-files, toolboxes and stronger graphics. In Moler's words, 'The three of us founded The MathWorks in California in 1984.' MATLAB is commercial software and ships twice a year; Wikipedia lists R2026b as dated 24 September 2026, a date not confirmed on MathWorks' own site.",
+   "status": "thriving",
+   "tags": [
+    "matlab",
+    "numerical computing",
+    "toolboxes",
+    "moler"
+   ],
+   "refs": [
+    {
+     "label": "Cleve Moler, The Origins of MATLAB",
+     "url": "https://www.mathworks.com/company/technical-articles/the-origins-of-matlab.html"
+    }
+   ]
+  },
+  {
+   "id": "org.deepmind",
+   "title": "Google DeepMind",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 2010,
+   "short": "Founded in 2010 and bought by Google in 2014; AlphaGo (2016), AlphaFold 2 (2020), the 2023 merger with Google Brain and the Gemini models.",
+   "long": "Demis Hassabis, Shane Legg and Mustafa Suleyman founded DeepMind in November 2010, and Google bought it on 26 January 2014 for a reported $400 million to $650 million. AlphaGo beat Lee Sedol 4 to 1 in March 2016, and AlphaFold 2 (2020) won Hassabis and John Jumper a share of the 2024 Nobel Prize in Chemistry. DeepMind merged with Google Brain in April 2023 to form Google DeepMind, which released Gemini 1.0 (6 December 2023), Gemini 2.5 (25 March 2025), Gemini 3 Pro (18 November 2025) and AlphaEvolve (May 2025). Google researchers had published the Transformer architecture in June 2017.",
+   "status": "thriving",
+   "tags": [
+    "alphago",
+    "alphafold",
+    "gemini",
+    "ai lab",
+    "google brain"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Google DeepMind",
+     "url": "https://en.wikipedia.org/wiki/Google_DeepMind"
+    }
+   ]
+  },
+  {
+   "id": "org.cncf",
+   "title": "CNCF",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 2015,
+   "short": "Founded in July 2015 under the Linux Foundation; Kubernetes was its first project, joined by Prometheus, Envoy and OpenTelemetry.",
+   "long": "The Cloud Native Computing Foundation was founded in July 2015, under the Linux Foundation, as a vendor-neutral home for cloud infrastructure projects. Google donated Kubernetes to it when version 1.0 was released on 21 July 2015. Kubernetes grew out of Google's internal cluster manager Borg and was announced in June 2014; by about 2017 and 2018 it had beaten Docker's Swarm and Apache Mesos as the container orchestrator, once AWS, Microsoft, Docker and Red Hat all offered it. The CNCF also hosts Prometheus, Envoy and OpenTelemetry, and containerd, which came out of Docker's container formats after the Open Container Initiative (2015).",
+   "status": "thriving",
+   "tags": [
+    "kubernetes",
+    "foundation",
+    "cloud native",
+    "prometheus",
+    "containerd"
+   ],
+   "refs": [
+    {
+     "label": "Kubernetes blog: Borg, predecessor to Kubernetes",
+     "url": "https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/"
+    }
+   ]
+  },
+  {
+   "id": "org.psf",
+   "title": "Python Software Foundation",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 2001,
+   "short": "Holds Python's trademark and funds its community; van Rossum stepped down as 'benevolent dictator' in 2018 and an elected Packaging Council was approved in 2026.",
+   "long": "The Python Software Foundation was formed in 2001. Guido van Rossum resigned as Python's 'benevolent dictator for life' on 12 July 2018, and a five-person Steering Council took over in 2019. PEP 772, written by Barry Warsaw, Deb Nicholson and Pradyun Gedam (created 21 January 2025), was accepted on 16 April 2026. It creates a five-member elected Python Packaging Council, with authority delegated from the Steering Council and PSF voting members as electors, because the Python Packaging Authority lacked community election mechanisms and the Steering Council was not well placed for specialized packaging decisions. Astral published its endorsements for the council's first candidates on 4 September 2026. The PSF's founding date is unverified.",
+   "status": "thriving",
+   "tags": [
+    "python",
+    "steering council",
+    "packaging council",
+    "governance",
+    "pep"
+   ],
+   "refs": [
+    {
+     "label": "PEP 772: Python Packaging Council",
+     "url": "https://peps.python.org/pep-0772/"
+    }
+   ]
+  },
+  {
+   "id": "org.databricks-snowflake",
+   "title": "Databricks and Snowflake",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 2012,
+   "short": "Databricks (2013, from Berkeley's Spark) and Snowflake (2012) built cloud data platforms; both are reported at very high valuations.",
+   "long": "Seven researchers from Berkeley's AMPLab (Ali Ghodsi, Andy Konwinski, Ion Stoica, Patrick Wendell, Reynold Xin, Matei Zaharia and Arsalan Tavakoli) founded Databricks in 2013 to commercialize Apache Spark. It develops Delta Lake, coined the term lakehouse (CIDR 2021), and bought MosaicML (2023, about $1.4 billion), Tabular (2024) and Neon, a serverless Postgres company (announced 14 May 2025). Snowflake was founded on 23 July 2012 by the former Oracle architects Benoit Dageville and Thierry Cruanes with Marcin Zukowski; it separates cloud storage from compute, and its September 2020 IPO raised $3.4 billion.\n\nReported, not confirmed from primary sources: a Databricks valuation of $190 billion (August 2026) and Snowflake's purchases of Crunchy Data (2025) and Observe (January 2026). No Snowflake press release for Crunchy Data was found.",
+   "status": "thriving",
+   "tags": [
+    "spark",
+    "lakehouse",
+    "data warehouse",
+    "snowflake",
+    "databricks"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Databricks",
+     "url": "https://en.wikipedia.org/wiki/Databricks"
+    },
+    {
+     "label": "Lakehouse paper, CIDR 2021",
+     "url": "https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf"
+    }
+   ]
+  },
+  {
+   "id": "org.thoughtworks",
+   "title": "Thoughtworks",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 1993,
+   "short": "Consultancy where Martin Fowler worked from 1999; its staff took part in the Agile Manifesto and made CruiseControl, Selenium and the Technology Radar.",
+   "long": "Roy Singham's consultancy Thoughtworks dates to 1993 by most accounts, though Wikipedia says a predecessor existed from the late 1980s. Martin Fowler joined in 1999 and became chief scientist in 2000. Its staff took part in the Agile Manifesto (2001) and created CruiseControl, an early continuous-integration server (2001), and Selenium, browser test automation (2004). The company also publishes the Technology Radar (from 2010) and the Go CD pipeline tool. Singham sold it to Apax in 2017 for $785 million; it listed on Nasdaq on 15 September 2021, and Apax took it private again in November 2024 at $4.40 per share, about $1.75 billion.",
+   "status": "niche",
+   "tags": [
+    "consultancy",
+    "agile",
+    "cruisecontrol",
+    "selenium",
+    "technology radar"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Thoughtworks",
+     "url": "https://en.wikipedia.org/wiki/Thoughtworks"
+    }
+   ]
+  },
+  {
+   "id": "org.vmware-pivotal",
+   "title": "VMware and Pivotal",
+   "cat": "orgs",
+   "tier": 4,
+   "year": 1998,
+   "short": "VMware virtualized x86 servers; Pivotal carried Spring and Cloud Foundry. Broadcom bought VMware in 2023 and ended perpetual licenses.",
+   "long": "Mendel Rosenblum, Diane Greene, Scott Devine, Edouard Bugnion and Edward Wang founded VMware on 10 February 1998; it made virtual machines practical on ordinary x86 servers. EMC bought it on 9 January 2004 for $625 million, and Dell spun it off on 1 November 2021. VMware bought SpringSource in August 2009, the home of the Spring Java framework that Rod Johnson built (release 1.0 in 2004) as a lighter alternative to Enterprise JavaBeans, and released the open-source Cloud Foundry platform on 12 April 2011. Pivotal was spun off in March 2013 and re-acquired by VMware on 30 December 2019. Broadcom announced the VMware purchase on 26 May 2022 ($61 billion plus $8 billion of debt) and closed it on 22 November 2023; on 13 December 2023 VMware ended perpetual licenses for products such as vSphere.",
+   "status": "legacy",
+   "tags": [
+    "virtualization",
+    "spring",
+    "cloud foundry",
+    "broadcom",
+    "pivotal"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: VMware",
+     "url": "https://en.wikipedia.org/wiki/VMware"
+    }
+   ]
+  },
+  {
+   "id": "org.docker",
+   "title": "Docker, Inc.",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 2008,
+   "short": "dotCloud (2008) became Docker in 2013 and made Linux containers easy; the Open Container Initiative (2015) standardized them and Kubernetes won orchestration.",
+   "long": "Kamel Founadi, Solomon Hykes and Sebastien Pahl founded dotCloud in Paris in 2008; it was renamed Docker on 29 October 2013. Docker was unveiled in March 2013 and made Linux containers easy: it packages an application with its dependencies into an image that runs as a lightweight, isolated process sharing the host's kernel. That image became the unit of deployment in the cloud era. The Open Container Initiative (2015) standardized the formats, and Kubernetes beat Docker's own Swarm orchestrator. Docker sold its enterprise business to Mirantis in November 2019, changed Docker Desktop licensing for large firms on 31 August 2021, and has had Don Johnson as CEO since 2025.",
+   "status": "thriving",
+   "tags": [
+    "containers",
+    "docker",
+    "dotcloud",
+    "images",
+    "swarm"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Docker, Inc.",
+     "url": "https://en.wikipedia.org/wiki/Docker,_Inc."
+    }
+   ]
+  },
+  {
+   "id": "org.mongodb-redis-elastic",
+   "title": "MongoDB, Redis and Elastic",
+   "cat": "orgs",
+   "tier": 3,
+   "year": 2007,
+   "short": "Three data-software firms whose licensing changes after 2018 set off fights with cloud resellers and the OpenSearch and Valkey forks.",
+   "long": "MongoDB (founded 2007 as 10gen; MongoDB released February 2009) changed its license from AGPL to the Server Side Public License in October 2018, which the Open Source Initiative does not consider open source. Its Atlas cloud service was 73 percent of fiscal 2026 revenue of $2.46 billion. Redis (created in 2009) moved core Redis to RSALv2 or SSPLv1 in March 2024; the Linux Foundation backed the fork Valkey, and Redis 8 added the AGPLv3 on 1 May 2025. Elastic changed Elasticsearch and Kibana from Apache 2.0 to SSPL plus the Elastic License from version 7.11 (January 2021), citing AWS; AWS forked OpenSearch in April 2021, and Elastic added the AGPL in August 2024 (version 8.16.0). Reported: in September 2026 MongoDB's CEO left for Meta and Dev Ittycheria returned as interim CEO.",
+   "sleeper": "The pattern since 2018: a vendor relicenses to stop cloud providers reselling its work, the cloud vendors fork it under a foundation, and the vendor later retreats part of the way to the AGPL.",
+   "status": "thriving",
+   "tags": [
+    "relicensing",
+    "sspl",
+    "agpl",
+    "nosql",
+    "opensearch",
+    "valkey"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: MongoDB Inc.",
+     "url": "https://en.wikipedia.org/wiki/MongoDB_Inc."
+    },
+    {
+     "label": "Wikipedia: Redis",
+     "url": "https://en.wikipedia.org/wiki/Redis"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "org.xerox-parc",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.xerox-parc",
+   "t": "org.apple",
+   "w": 2,
+   "k": "influenced",
+   "note": "The Lisa and Macintosh followed Steve Jobs's December 1979 visit"
+  },
+  {
+   "s": "org.xerox-parc",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "influenced",
+   "note": "Bravo's author Charles Simonyi later led Word and Excel there"
+  },
+  {
+   "s": "org.xerox-parc",
+   "t": "ppl.kay",
+   "w": 2,
+   "k": "related",
+   "note": "Kay's Learning Research Group built Smalltalk"
+  },
+  {
+   "s": "org.xerox-parc",
+   "t": "plat.gui",
+   "w": 3,
+   "k": "influenced",
+   "note": "The Alto combined a bitmapped screen, a mouse and a network"
+  },
+  {
+   "s": "org.xerox-parc",
+   "t": "plat.ethernet",
+   "w": 2,
+   "k": "influenced",
+   "note": "Metcalfe's May 1973 memo; IEEE 802.3 followed in 1983"
+  },
+  {
+   "s": "org.xerox-parc",
+   "t": "conc.oop",
+   "w": 2,
+   "k": "influenced",
+   "note": "Smalltalk gave object-oriented programming its dynamic form"
+  },
+  {
+   "s": "org.xerox-parc",
+   "t": "ppl.jobs",
+   "w": 1,
+   "k": "related",
+   "note": "His December 1979 visit"
+  },
+  {
+   "s": "org.xerox-parc",
+   "t": "org.darpa",
+   "w": 1,
+   "k": "related",
+   "note": "Bob Taylor came to PARC from ARPA"
+  },
+  {
+   "s": "org.dec",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.dec",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "influenced",
+   "note": "Unix ran first on a PDP-7 (1969), then matured on the PDP-11"
+  },
+  {
+   "s": "org.dec",
+   "t": "lang.c",
+   "w": 2,
+   "k": "influenced",
+   "note": "The byte-addressed PDP-11 pushed B to become C"
+  },
+  {
+   "s": "org.dec",
+   "t": "plat.windows-nt",
+   "w": 2,
+   "k": "influenced",
+   "note": "Dave Cutler carried VMS ideas into NT"
+  },
+  {
+   "s": "org.dec",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "influenced",
+   "note": "Cutler left DEC for Microsoft in 1988"
+  },
+  {
+   "s": "org.dec",
+   "t": "found.risc",
+   "w": 1,
+   "k": "related",
+   "note": "Built the Alpha RISC chip (1992)"
+  },
+  {
+   "s": "org.apple",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.apple",
+   "t": "ppl.jobs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.apple",
+   "t": "ppl.wozniak",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "org.apple",
+   "t": "plat.nextstep-macos",
+   "w": 2,
+   "k": "influenced",
+   "note": "Bought NeXT in 1996; NeXTSTEP became Mac OS X"
+  },
+  {
+   "s": "org.apple",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "influenced",
+   "note": "Hired Chris Lattner in 2005 and adopted LLVM and Clang"
+  },
+  {
+   "s": "org.apple",
+   "t": "ppl.lattner",
+   "w": 1,
+   "k": "related",
+   "note": "Hired in 2005"
+  },
+  {
+   "s": "org.apple",
+   "t": "plat.mac-classic",
+   "w": 1,
+   "k": "influenced",
+   "note": "The Macintosh, 24 January 1984"
+  },
+  {
+   "s": "org.apple",
+   "t": "plat.iphone",
+   "w": 1,
+   "k": "influenced",
+   "note": "The iPhone, 2007"
+  },
+  {
+   "s": "org.apple",
+   "t": "plat.app-store",
+   "w": 1,
+   "k": "influenced",
+   "note": "Opened 10 July 2008 with a 30 percent commission"
+  },
+  {
+   "s": "org.apple",
+   "t": "plat.apple-silicon",
+   "w": 1,
+   "k": "influenced",
+   "note": "M1, November 2020"
+  },
+  {
+   "s": "org.apple",
+   "t": "plat.epic-apple",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.apple",
+   "t": "fail.copland",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.apple",
+   "t": "org.w3c-whatwg",
+   "w": 1,
+   "k": "related",
+   "note": "Apple, Mozilla and Opera engineers formed the WHATWG in 2004"
+  },
+  {
+   "s": "org.sun",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.sun",
+   "t": "org.oracle",
+   "w": 2,
+   "k": "part-of",
+   "note": "Oracle announced the purchase in April 2009 and completed it in January 2010"
+  },
+  {
+   "s": "org.sun",
+   "t": "lang.java",
+   "w": 3,
+   "k": "influenced",
+   "note": "Gosling's team created Java at Sun"
+  },
+  {
+   "s": "org.sun",
+   "t": "ppl.gosling",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "org.sun",
+   "t": "plat.bsd",
+   "w": 1,
+   "k": "uses",
+   "note": "SunOS was a BSD derivative"
+  },
+  {
+   "s": "org.sun",
+   "t": "org.berkeley",
+   "w": 1,
+   "k": "related",
+   "note": "Co-founder Bill Joy wrote 1BSD at Berkeley in 1978"
+  },
+  {
+   "s": "org.sun",
+   "t": "fail.java-applets",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.sun",
+   "t": "org.netscape",
+   "w": 2,
+   "k": "related",
+   "note": "The two announced JavaScript together on 4 December 1995"
+  },
+  {
+   "s": "org.sun",
+   "t": "fail.unix-wars",
+   "w": 1,
+   "k": "related",
+   "note": "AT&T and Sun faced the Open Software Foundation"
+  },
+  {
+   "s": "org.sun",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Cheap x86 Linux servers undercut Solaris and SPARC"
+  },
+  {
+   "s": "org.oracle",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.oracle",
+   "t": "ppl.ellison",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.oracle",
+   "t": "data.sql",
+   "w": 2,
+   "k": "influenced",
+   "note": "Shipped the first commercial SQL database, V2, in 1979"
+  },
+  {
+   "s": "org.oracle",
+   "t": "data.system-r",
+   "w": 2,
+   "k": "related",
+   "note": "Shipped SQL before IBM did, working from published System R papers"
+  },
+  {
+   "s": "org.oracle",
+   "t": "data.relational",
+   "w": 1,
+   "k": "related",
+   "note": "Built on Codd's relational model"
+  },
+  {
+   "s": "org.oracle",
+   "t": "lang.java",
+   "w": 2,
+   "k": "influenced",
+   "note": "Java's steward since 2010; six-month releases since 2018"
+  },
+  {
+   "s": "org.oracle",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "Google v. Oracle, 2010 to 2021"
+  },
+  {
+   "s": "org.oracle",
+   "t": "org.openai",
+   "w": 2,
+   "k": "related",
+   "note": "Partner in the Stargate data-center venture, January 2025"
+  },
+  {
+   "s": "org.borland",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.borland",
+   "t": "ppl.hejlsberg",
+   "w": 2,
+   "k": "related",
+   "note": "Wrote the Turbo Pascal compiler core; left for Microsoft in 1996"
+  },
+  {
+   "s": "org.borland",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Lost the move to Windows against Microsoft's bundled tools"
+  },
+  {
+   "s": "org.borland",
+   "t": "lang.pascal",
+   "w": 2,
+   "k": "influenced",
+   "note": "Turbo Pascal and Delphi carried Pascal into the PC era"
+  },
+  {
+   "s": "org.borland",
+   "t": "tool.ide",
+   "w": 2,
+   "k": "influenced",
+   "note": "Turbo Pascal fused editor, compiler and linker in memory"
+  },
+  {
+   "s": "org.borland",
+   "t": "fail.dos-giants",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "org.borland",
+   "t": "fail.big-bang-rewrite",
+   "w": 1,
+   "k": "related",
+   "note": "The dBase for Windows and Quattro Pro rewrites are cited as examples"
+  },
+  {
+   "s": "org.netscape",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.netscape",
+   "t": "org.mozilla",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "The 1998 open-source release became Mozilla"
+  },
+  {
+   "s": "org.netscape",
+   "t": "lang.js",
+   "w": 3,
+   "k": "influenced",
+   "note": "Eich wrote JavaScript at Netscape in May 1995"
+  },
+  {
+   "s": "org.netscape",
+   "t": "ppl.eich",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "org.netscape",
+   "t": "lang.ecmascript",
+   "w": 2,
+   "k": "influenced",
+   "note": "The language went to Ecma and became ECMAScript in 1997"
+  },
+  {
+   "s": "org.netscape",
+   "t": "plat.tls",
+   "w": 2,
+   "k": "influenced",
+   "note": "SSL 2.0 (1995) and 3.0 (1996) became the IETF's TLS"
+  },
+  {
+   "s": "org.netscape",
+   "t": "plat.mosaic",
+   "w": 2,
+   "k": "related",
+   "note": "Andreessen built NCSA Mosaic before founding Netscape"
+  },
+  {
+   "s": "org.netscape",
+   "t": "fail.browser-wars",
+   "w": 2,
+   "k": "related",
+   "note": "Microsoft bundled Internet Explorer free with Windows"
+  },
+  {
+   "s": "org.netscape",
+   "t": "fail.netscape-rewrite",
+   "w": 2,
+   "k": "related",
+   "note": "The from-scratch rewrite (Netscape 6, 2000) cost years"
+  },
+  {
+   "s": "org.netscape",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Internet Explorer shipped free with Windows"
+  },
+  {
+   "s": "org.netscape",
+   "t": "proc.open-source",
+   "w": 2,
+   "k": "influenced",
+   "note": "Its January 1998 release led to the term open source"
+  },
+  {
+   "s": "org.netscape",
+   "t": "proc.cathedral-bazaar",
+   "w": 1,
+   "k": "related",
+   "note": "Raymond's essay influenced the 1998 decision to open the source"
+  },
+  {
+   "s": "org.mozilla",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.mozilla",
+   "t": "lang.rust",
+   "w": 3,
+   "k": "influenced",
+   "note": "Sponsored Rust from 2009; the Rust Foundation took over in 2021"
+  },
+  {
+   "s": "org.mozilla",
+   "t": "ppl.graydon-hoare",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "org.mozilla",
+   "t": "plat.browser-engines",
+   "w": 2,
+   "k": "related",
+   "note": "Gecko is Mozilla's engine"
+  },
+  {
+   "s": "org.mozilla",
+   "t": "fail.netscape-rewrite",
+   "w": 1,
+   "k": "related",
+   "note": "Mozilla engineers chose the from-scratch rewrite"
+  },
+  {
+   "s": "org.mozilla",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "Google's search deal funded most of its revenue in a 2011 report"
+  },
+  {
+   "s": "org.mozilla",
+   "t": "org.w3c-whatwg",
+   "w": 2,
+   "k": "related",
+   "note": "Mozilla engineers helped form the WHATWG in 2004"
+  },
+  {
+   "s": "org.mozilla",
+   "t": "ppl.eich",
+   "w": 1,
+   "k": "related",
+   "note": "Co-founded Mozilla in 1998"
+  },
+  {
+   "s": "org.aws",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.aws",
+   "t": "plat.cloud",
+   "w": 3,
+   "k": "influenced",
+   "note": "S3 and EC2 in 2006 turned infrastructure into a metered API"
+  },
+  {
+   "s": "org.aws",
+   "t": "plat.serverless",
+   "w": 1,
+   "k": "influenced",
+   "note": "Lambda, November 2014"
+  },
+  {
+   "s": "org.aws",
+   "t": "proc.devops",
+   "w": 2,
+   "k": "influenced",
+   "note": "Vogels's 'you build it, you run it' (2006)"
+  },
+  {
+   "s": "org.aws",
+   "t": "plat.microservices",
+   "w": 2,
+   "k": "related",
+   "note": "Amazon's service-oriented turn made the style famous"
+  },
+  {
+   "s": "org.aws",
+   "t": "plat.azure-gcp",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Azure and Google Cloud followed AWS"
+  },
+  {
+   "s": "org.aws",
+   "t": "plat.virtualization",
+   "w": 1,
+   "k": "uses",
+   "note": "Early AWS ran on the Xen hypervisor"
+  },
+  {
+   "s": "org.aws",
+   "t": "org.mongodb-redis-elastic",
+   "w": 2,
+   "k": "related",
+   "note": "Forked Elasticsearch as OpenSearch in April 2021"
+  },
+  {
+   "s": "org.aws",
+   "t": "plat.cloud-repatriation",
+   "w": 1,
+   "k": "related",
+   "note": "Dropbox moved storage off AWS in 2015 to 2016"
+  },
+  {
+   "s": "org.aws",
+   "t": "plat.api-products",
+   "w": 2,
+   "k": "related",
+   "note": "Infrastructure sold as a metered API"
+  },
+  {
+   "s": "org.meta",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.meta",
+   "t": "math.pytorch",
+   "w": 3,
+   "k": "influenced",
+   "note": "Created at Meta in 2016 to 2017; PyTorch Foundation since 2022"
+  },
+  {
+   "s": "org.meta",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "PyTorch moved to the Linux Foundation in 2022"
+  },
+  {
+   "s": "org.meta",
+   "t": "plat.graphql-grpc",
+   "w": 1,
+   "k": "influenced",
+   "note": "GraphQL, internal 2012, open-sourced 2015"
+  },
+  {
+   "s": "org.meta",
+   "t": "lang.php",
+   "w": 1,
+   "k": "related",
+   "note": "Built Hack, a typed PHP dialect, in 2014"
+  },
+  {
+   "s": "org.meta",
+   "t": "math.llm",
+   "w": 1,
+   "k": "influenced",
+   "note": "Llama 1 to Llama 4, 2023 to 2025"
+  },
+  {
+   "s": "org.jetbrains",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.jetbrains",
+   "t": "tool.ide",
+   "w": 2,
+   "k": "influenced",
+   "note": "IntelliJ IDEA set the standard for refactoring-aware editors"
+  },
+  {
+   "s": "org.jetbrains",
+   "t": "proc.refactoring",
+   "w": 2,
+   "k": "related",
+   "note": "Put refactoring inside the editor"
+  },
+  {
+   "s": "org.jetbrains",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "Google made Kotlin a first-class Android language in 2017"
+  },
+  {
+   "s": "org.jetbrains",
+   "t": "plat.android",
+   "w": 1,
+   "k": "related",
+   "note": "Kotlin became a first-class Android language in May 2017"
+  },
+  {
+   "s": "org.jetbrains",
+   "t": "mod.jetbrains-survey",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.jetbrains",
+   "t": "mod.coding-agents",
+   "w": 1,
+   "k": "related",
+   "note": "Junie agent, general availability April 2025"
+  },
+  {
+   "s": "org.red-hat",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.red-hat",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "part-of",
+   "note": "IBM announced the purchase in October 2018 and completed it in July 2019"
+  },
+  {
+   "s": "org.red-hat",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "influenced",
+   "note": "RHEL (2002) turned support subscriptions into a business"
+  },
+  {
+   "s": "org.red-hat",
+   "t": "plat.linux-distros",
+   "w": 2,
+   "k": "related",
+   "note": "RHEL, CentOS Stream and the clones AlmaLinux and Rocky Linux"
+  },
+  {
+   "s": "org.red-hat",
+   "t": "plat.kubernetes",
+   "w": 2,
+   "k": "related",
+   "note": "OpenShift is a Kubernetes platform"
+  },
+  {
+   "s": "org.red-hat",
+   "t": "proc.open-source",
+   "w": 2,
+   "k": "influenced",
+   "note": "Showed support subscriptions could fund free software"
+  },
+  {
+   "s": "org.red-hat",
+   "t": "proc.licensing",
+   "w": 2,
+   "k": "related",
+   "note": "Restricted public RHEL source in June 2023"
+  },
+  {
+   "s": "org.red-hat",
+   "t": "tool.iac",
+   "w": 1,
+   "k": "related",
+   "note": "Ansible, 2015"
+  },
+  {
+   "s": "org.intel",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.intel",
+   "t": "found.ibm-pc",
+   "w": 2,
+   "k": "related",
+   "note": "The 8088 powered the IBM PC (1981)"
+  },
+  {
+   "s": "org.intel",
+   "t": "fail.itanium",
+   "w": 2,
+   "k": "related",
+   "note": "Itanium (2001) failed; AMD's x86-64 won"
+  },
+  {
+   "s": "org.intel",
+   "t": "plat.apple-silicon",
+   "w": 1,
+   "k": "competes-with",
+   "note": "Macs moved from Intel to Apple's ARM-based chips in 2020"
+  },
+  {
+   "s": "org.intel",
+   "t": "org.nvidia",
+   "w": 1,
+   "k": "related",
+   "note": "Nvidia invested $5 billion in Intel in September 2025"
+  },
+  {
+   "s": "org.amd",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.amd",
+   "t": "org.intel",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Began as an x86 second source, then became its rival"
+  },
+  {
+   "s": "org.amd",
+   "t": "fail.itanium",
+   "w": 1,
+   "k": "related",
+   "note": "Its 64-bit x86-64 beat Intel's Itanium plan"
+  },
+  {
+   "s": "org.arm",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.arm",
+   "t": "org.apple",
+   "w": 2,
+   "k": "created-by",
+   "note": "Apple was a founding partner of the 1990 joint venture"
+  },
+  {
+   "s": "org.arm",
+   "t": "org.nvidia",
+   "w": 2,
+   "k": "related",
+   "note": "Nvidia's $40 billion offer (September 2020) was cancelled in February 2022"
+  },
+  {
+   "s": "org.arm",
+   "t": "plat.apple-silicon",
+   "w": 2,
+   "k": "related",
+   "note": "Apple's M1 (November 2020) uses ARM-based designs"
+  },
+  {
+   "s": "org.arm",
+   "t": "found.risc",
+   "w": 1,
+   "k": "related",
+   "note": "The name began as Acorn RISC Machine"
+  },
+  {
+   "s": "org.arm",
+   "t": "org.aws",
+   "w": 1,
+   "k": "related",
+   "note": "Graviton (2018) brought ARM to the cloud"
+  },
+  {
+   "s": "org.nvidia",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.nvidia",
+   "t": "math.deep-learning",
+   "w": 2,
+   "k": "influenced",
+   "note": "Deep learning made NVIDIA the AI hardware supplier"
+  },
+  {
+   "s": "org.nvidia",
+   "t": "org.hugging-face",
+   "w": 2,
+   "k": "related",
+   "note": "Agreed on 2 September 2026 to acquire it; completion not confirmed"
+  },
+  {
+   "s": "org.nvidia",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "influenced",
+   "note": "PyTorch's GPU stack runs on CUDA, cuDNN and cuBLAS"
+  },
+  {
+   "s": "org.nvidia",
+   "t": "math.tpu",
+   "w": 1,
+   "k": "related",
+   "note": "Tensor Cores and TPUs both hard-wire matrix multiplication"
+  },
+  {
+   "s": "org.nvidia",
+   "t": "math.llm",
+   "w": 1,
+   "k": "influenced",
+   "note": "Large models are trained and served on GPUs"
+  },
+  {
+   "s": "org.hashicorp",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.hashicorp",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "part-of",
+   "note": "IBM announced the purchase on 24 April 2024 and completed it on 27 February 2025"
+  },
+  {
+   "s": "org.hashicorp",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "Hosts the OpenTofu fork"
+  },
+  {
+   "s": "org.hashicorp",
+   "t": "tool.iac",
+   "w": 2,
+   "k": "influenced",
+   "note": "Terraform (2014) popularized infrastructure as code"
+  },
+  {
+   "s": "org.hashicorp",
+   "t": "proc.licensing",
+   "w": 2,
+   "k": "related",
+   "note": "Moved Terraform to the Business Source License on 10 August 2023"
+  },
+  {
+   "s": "org.hashicorp",
+   "t": "org.mongodb-redis-elastic",
+   "w": 1,
+   "k": "related",
+   "note": "The same relicense-then-fork pattern"
+  },
+  {
+   "s": "org.astral",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.astral",
+   "t": "org.openai",
+   "w": 2,
+   "k": "related",
+   "note": "Agreed on 19 March 2026 to join the Codex team; completion not reported"
+  },
+  {
+   "s": "org.astral",
+   "t": "mod.rust-rewrite-wave",
+   "w": 2,
+   "k": "related",
+   "note": "Ruff and uv exemplify the Rust rewrite of developer tools"
+  },
+  {
+   "s": "org.astral",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses",
+   "note": "Ruff and uv are written in Rust"
+  },
+  {
+   "s": "org.astral",
+   "t": "pkg.pip",
+   "w": 1,
+   "k": "competes-with",
+   "note": "uv is a drop-in replacement for pip"
+  },
+  {
+   "s": "org.astral",
+   "t": "qual.mypy",
+   "w": 1,
+   "k": "competes-with",
+   "note": "ty is a Rust type checker (16 December 2025)"
+  },
+  {
+   "s": "org.astral",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.astral",
+   "t": "org.psf",
+   "w": 1,
+   "k": "related",
+   "note": "Endorsed candidates for Python's first Packaging Council (4 September 2026)"
+  },
+  {
+   "s": "org.astral",
+   "t": "mod.codex-agent",
+   "w": 2,
+   "k": "related",
+   "note": "Joining the Codex team"
+  },
+  {
+   "s": "org.anthropic",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.anthropic",
+   "t": "org.openai",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Claude Code and Codex compete as coding agents; several Anthropic founders reportedly came from OpenAI (unconfirmed)"
+  },
+  {
+   "s": "org.anthropic",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "MCP moved to its Agentic AI Foundation in December 2025"
+  },
+  {
+   "s": "org.anthropic",
+   "t": "mod.claude-code",
+   "w": 1,
+   "k": "influenced",
+   "note": "Research preview 24 February 2025; general availability May 2025"
+  },
+  {
+   "s": "org.anthropic",
+   "t": "mod.mcp",
+   "w": 1,
+   "k": "influenced",
+   "note": "Introduced 25 November 2024"
+  },
+  {
+   "s": "org.anthropic",
+   "t": "plat.bun",
+   "w": 2,
+   "k": "related",
+   "note": "Bought Bun in December 2025"
+  },
+  {
+   "s": "org.anthropic",
+   "t": "math.llm",
+   "w": 2,
+   "k": "influenced",
+   "note": "Claude 1 (March 2023) to the 2026 models"
+  },
+  {
+   "s": "org.anthropic",
+   "t": "mod.coding-agents",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "org.openai",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.openai",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "related",
+   "note": "Microsoft invested $1 billion in 2019 and $10 billion in 2023 and holds about 27 percent"
+  },
+  {
+   "s": "org.openai",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "influenced",
+   "note": "The Codex model powered Copilot's 2021 preview"
+  },
+  {
+   "s": "org.openai",
+   "t": "mod.codex-2021",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "org.openai",
+   "t": "mod.chatgpt",
+   "w": 1,
+   "k": "influenced",
+   "note": "Launched 30 November 2022"
+  },
+  {
+   "s": "org.openai",
+   "t": "mod.codex-agent",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "org.openai",
+   "t": "math.transformer",
+   "w": 2,
+   "k": "uses",
+   "note": "GPT models build on Google's Transformer (2017)"
+  },
+  {
+   "s": "org.openai",
+   "t": "math.llm",
+   "w": 2,
+   "k": "influenced",
+   "note": "GPT-3 (2020) to GPT-5.2 (2025)"
+  },
+  {
+   "s": "org.openai",
+   "t": "mod.humaneval",
+   "w": 2,
+   "k": "influenced",
+   "note": "Introduced with the Codex paper in July 2021"
+  },
+  {
+   "s": "org.hugging-face",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.hugging-face",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "uses",
+   "note": "Transformers began as pytorch-pretrained-bert"
+  },
+  {
+   "s": "org.hugging-face",
+   "t": "math.bert",
+   "w": 2,
+   "k": "related",
+   "note": "pytorch-pretrained-bert was the library's first form"
+  },
+  {
+   "s": "org.hugging-face",
+   "t": "math.transformer",
+   "w": 1,
+   "k": "related",
+   "note": "Made the architecture a pip install"
+  },
+  {
+   "s": "org.hugging-face",
+   "t": "math.vllm",
+   "w": 1,
+   "k": "related",
+   "note": "Part of the shared open-weight serving stack"
+  },
+  {
+   "s": "org.hugging-face",
+   "t": "math.llm",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.stack-overflow",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.stack-overflow",
+   "t": "mod.stackoverflow-survey",
+   "w": 2,
+   "k": "influenced",
+   "note": "Publishes the annual Developer Survey"
+  },
+  {
+   "s": "org.stack-overflow",
+   "t": "mod.redmonk",
+   "w": 1,
+   "k": "related",
+   "note": "RedMonk's ranking uses Stack Overflow tag volume"
+  },
+  {
+   "s": "org.stack-overflow",
+   "t": "mod.chatgpt",
+   "w": 1,
+   "k": "related",
+   "note": "Question volume was reported to fall as AI assistants arrived"
+  },
+  {
+   "s": "org.stack-overflow",
+   "t": "mod.jetbrains-survey",
+   "w": 1,
+   "k": "related",
+   "note": "Another large annual developer survey"
+  },
+  {
+   "s": "org.mit",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.mit",
+   "t": "plat.ctss",
+   "w": 1,
+   "k": "influenced",
+   "note": "First shown by Fernando Corbato in 1961"
+  },
+  {
+   "s": "org.mit",
+   "t": "plat.timesharing",
+   "w": 2,
+   "k": "influenced",
+   "note": "CTSS (1961) and Project MAC (1963) made interactive computing possible"
+  },
+  {
+   "s": "org.mit",
+   "t": "plat.multics",
+   "w": 1,
+   "k": "influenced",
+   "note": "Built with GE and Bell Labs, 1964 to 1969"
+  },
+  {
+   "s": "org.mit",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "related",
+   "note": "Bell Labs withdrew from Multics in 1969, then built Unix"
+  },
+  {
+   "s": "org.mit",
+   "t": "org.darpa",
+   "w": 2,
+   "k": "related",
+   "note": "Project MAC was funded by ARPA"
+  },
+  {
+   "s": "org.mit",
+   "t": "org.w3c-whatwg",
+   "w": 2,
+   "k": "related",
+   "note": "The W3C was founded at MIT in 1994"
+  },
+  {
+   "s": "org.mit",
+   "t": "ppl.mccarthy",
+   "w": 2,
+   "k": "related",
+   "note": "Lisp (1958) and the AI Lab (1959)"
+  },
+  {
+   "s": "org.mit",
+   "t": "ppl.stallman",
+   "w": 2,
+   "k": "related",
+   "note": "His hacker culture and Emacs (1976) came from MIT"
+  },
+  {
+   "s": "org.mit",
+   "t": "ppl.liskov",
+   "w": 1,
+   "k": "related",
+   "note": "CLU and the Liskov substitution principle"
+  },
+  {
+   "s": "org.mit",
+   "t": "ppl.hamilton",
+   "w": 1,
+   "k": "related",
+   "note": "Led Apollo flight software at MIT's Instrumentation Laboratory"
+  },
+  {
+   "s": "org.mit",
+   "t": "plat.unix",
+   "w": 1,
+   "k": "influenced",
+   "note": "Multics taught Thompson and Ritchie what to simplify"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "plat.bsd",
+   "w": 2,
+   "k": "influenced",
+   "note": "Bill Joy's 1BSD, March 1978"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "influenced",
+   "note": "BSD turned Unix into the internet's operating system"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "plat.tcpip",
+   "w": 2,
+   "k": "influenced",
+   "note": "4.2BSD (1983) shipped TCP/IP and the sockets interface"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "ppl.stonebraker",
+   "w": 2,
+   "k": "related",
+   "note": "Ingres (1973) and Postgres (1986)"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "data.postgres",
+   "w": 2,
+   "k": "influenced",
+   "note": "Postgres began at Berkeley in 1986"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "org.databricks-snowflake",
+   "w": 2,
+   "k": "influenced",
+   "note": "The AMPLab produced Spark (2009), then Databricks (2013)"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "org.darpa",
+   "w": 2,
+   "k": "related",
+   "note": "DARPA funded 4.2BSD"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "plat.nextstep-macos",
+   "w": 2,
+   "k": "influenced",
+   "note": "BSD Unix plus the Mach kernel became NeXTSTEP"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "fail.unix-wars",
+   "w": 1,
+   "k": "related",
+   "note": "The 1992 to 1994 USL lawsuit against BSDi"
+  },
+  {
+   "s": "org.berkeley",
+   "t": "found.risc",
+   "w": 1,
+   "k": "related",
+   "note": "David Patterson's RISC I (1982)"
+  },
+  {
+   "s": "org.cambridge-manchester",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.cambridge-manchester",
+   "t": "found.stored-program",
+   "w": 3,
+   "k": "influenced",
+   "note": "The Baby ran the first stored program on 21 June 1948"
+  },
+  {
+   "s": "org.cambridge-manchester",
+   "t": "found.subroutine-library",
+   "w": 2,
+   "k": "influenced",
+   "note": "David Wheeler's EDSAC subroutine library"
+  },
+  {
+   "s": "org.cambridge-manchester",
+   "t": "comp.initial-orders",
+   "w": 2,
+   "k": "influenced",
+   "note": "EDSAC's initial orders, 1949"
+  },
+  {
+   "s": "org.cambridge-manchester",
+   "t": "ppl.wheeler",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "org.cambridge-manchester",
+   "t": "conc.memory",
+   "w": 2,
+   "k": "influenced",
+   "note": "Manchester's Atlas (1962) introduced virtual memory"
+  },
+  {
+   "s": "org.cambridge-manchester",
+   "t": "org.arm",
+   "w": 1,
+   "k": "related",
+   "note": "Acorn, a Cambridge company, was a co-founder of Arm"
+  },
+  {
+   "s": "org.cern",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.cern",
+   "t": "plat.web",
+   "w": 3,
+   "k": "influenced",
+   "note": "Berners-Lee's March 1989 proposal became the World Wide Web"
+  },
+  {
+   "s": "org.cern",
+   "t": "ppl.berners-lee",
+   "w": 2,
+   "k": "related",
+   "note": "Proposed the Web while working at CERN"
+  },
+  {
+   "s": "org.cern",
+   "t": "plat.http",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "org.cern",
+   "t": "org.w3c-whatwg",
+   "w": 2,
+   "k": "influenced",
+   "note": "The W3C followed in 1994, at MIT"
+  },
+  {
+   "s": "org.cern",
+   "t": "plat.mosaic",
+   "w": 2,
+   "k": "influenced",
+   "note": "NCSA's Mosaic (February 1993) built on the Web"
+  },
+  {
+   "s": "org.cern",
+   "t": "plat.nextstep-macos",
+   "w": 1,
+   "k": "related",
+   "note": "The first server and browser ran on a NeXT computer in 1990"
+  },
+  {
+   "s": "org.darpa",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.darpa",
+   "t": "plat.arpanet",
+   "w": 3,
+   "k": "influenced",
+   "note": "First message 29 October 1969, UCLA to SRI"
+  },
+  {
+   "s": "org.darpa",
+   "t": "plat.tcpip",
+   "w": 2,
+   "k": "influenced",
+   "note": "Funded the switch to TCP/IP on 1 January 1983"
+  },
+  {
+   "s": "org.darpa",
+   "t": "plat.timesharing",
+   "w": 2,
+   "k": "influenced",
+   "note": "Funded time-sharing, including Project MAC"
+  },
+  {
+   "s": "org.darpa",
+   "t": "found.risc",
+   "w": 1,
+   "k": "influenced",
+   "note": "Funded RISC and VLSI projects"
+  },
+  {
+   "s": "org.darpa",
+   "t": "plat.bsd",
+   "w": 1,
+   "k": "influenced",
+   "note": "Funded Berkeley's BSD"
+  },
+  {
+   "s": "org.acm",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.turing",
+   "w": 2,
+   "k": "related",
+   "note": "The Turing Award, given since 1966, is named for him"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.mccarthy",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1971"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.dijkstra",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1972"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.knuth",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1974"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.backus",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1977"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.hoare",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1980"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.codd",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1981"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.ritchie",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1983, for Unix"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.thompson",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1983, for Unix"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.wirth",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1984"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.kahan",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1989"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.brooks",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 1999"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.kay",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 2003"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.liskov",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 2008"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.lamport",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 2013"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.stonebraker",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 2014"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.berners-lee",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 2016"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.hinton",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 2018, with Bengio and LeCun"
+  },
+  {
+   "s": "org.acm",
+   "t": "ppl.dongarra",
+   "w": 1,
+   "k": "related",
+   "note": "Turing Award 2021"
+  },
+  {
+   "s": "org.wg14",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.wg14",
+   "t": "lang.c",
+   "w": 3,
+   "k": "influenced",
+   "note": "Standardizes C: C90, C99, C11, C23"
+  },
+  {
+   "s": "org.wg14",
+   "t": "org.wg21",
+   "w": 2,
+   "k": "related",
+   "note": "The SG22 liaison group keeps C and C++ in loose coordination"
+  },
+  {
+   "s": "org.wg14",
+   "t": "fail.gets-annex-k",
+   "w": 2,
+   "k": "related",
+   "note": "Annex K stayed in the standard despite a 2015 recommendation to drop it"
+  },
+  {
+   "s": "org.wg14",
+   "t": "conc.undefined-behavior",
+   "w": 2,
+   "k": "related",
+   "note": "C2y papers remove or tighten undefined behavior"
+  },
+  {
+   "s": "org.wg14",
+   "t": "ppl.mcilroy",
+   "w": 1,
+   "k": "related",
+   "note": "Urged ANSI to form the committee in 1983"
+  },
+  {
+   "s": "org.wg14",
+   "t": "plat.posix",
+   "w": 1,
+   "k": "related",
+   "note": "POSIX 1003.1-1988 incorporates standard ANSI C"
+  },
+  {
+   "s": "org.wg21",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.wg21",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "influenced",
+   "note": "Standardizes C++: C++98 and the three-year releases since C++11"
+  },
+  {
+   "s": "org.wg21",
+   "t": "ppl.stroustrup",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "org.wg21",
+   "t": "ppl.sutter",
+   "w": 2,
+   "k": "related",
+   "note": "Leads the committee"
+  },
+  {
+   "s": "org.wg21",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related",
+   "note": "C++26 adds a hardened standard library; profiles are planned for C++29"
+  },
+  {
+   "s": "org.wg21",
+   "t": "conc.undefined-behavior",
+   "w": 1,
+   "k": "related",
+   "note": "C++26 makes reading an uninitialized local erroneous behavior, not undefined behavior"
+  },
+  {
+   "s": "org.tc39",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.tc39",
+   "t": "lang.js",
+   "w": 3,
+   "k": "influenced",
+   "note": "Standardizes JavaScript as ECMAScript"
+  },
+  {
+   "s": "org.tc39",
+   "t": "ppl.eich",
+   "w": 2,
+   "k": "related",
+   "note": "His August 2008 message announced Harmony"
+  },
+  {
+   "s": "org.tc39",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related",
+   "note": "TypeScript adds static types to the ECMAScript language"
+  },
+  {
+   "s": "org.tc39",
+   "t": "org.netscape",
+   "w": 1,
+   "k": "related",
+   "note": "Standardized Netscape's JavaScript as ECMAScript"
+  },
+  {
+   "s": "org.w3c-whatwg",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.w3c-whatwg",
+   "t": "ppl.berners-lee",
+   "w": 3,
+   "k": "created-by",
+   "note": "Founded the W3C in October 1994"
+  },
+  {
+   "s": "org.w3c-whatwg",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related",
+   "note": "Writes the standards the Web is built on"
+  },
+  {
+   "s": "org.w3c-whatwg",
+   "t": "plat.wasm",
+   "w": 1,
+   "k": "influenced",
+   "note": "First WebAssembly Recommendation, December 2019"
+  },
+  {
+   "s": "org.w3c-whatwg",
+   "t": "mod.passkeys",
+   "w": 2,
+   "k": "influenced",
+   "note": "Passkeys build on W3C WebAuthn (2019)"
+  },
+  {
+   "s": "org.ietf",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.ietf",
+   "t": "plat.tcpip",
+   "w": 3,
+   "k": "influenced",
+   "note": "TCP/IP won on being free, simple and already working"
+  },
+  {
+   "s": "org.ietf",
+   "t": "plat.tls",
+   "w": 2,
+   "k": "influenced",
+   "note": "Netscape's SSL became the IETF's TLS"
+  },
+  {
+   "s": "org.ietf",
+   "t": "plat.http3",
+   "w": 3,
+   "k": "influenced",
+   "note": "HTTP/2 and QUIC (RFC 9000, 2021)"
+  },
+  {
+   "s": "org.ietf",
+   "t": "plat.http",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "org.ietf",
+   "t": "plat.dns",
+   "w": 1,
+   "k": "related",
+   "note": "DNS is specified in RFC 1035"
+  },
+  {
+   "s": "org.ietf",
+   "t": "proc.postels-law",
+   "w": 2,
+   "k": "related",
+   "note": "The robustness principle comes from an RFC of 1980"
+  },
+  {
+   "s": "org.ietf",
+   "t": "org.w3c-whatwg",
+   "w": 1,
+   "k": "related",
+   "note": "The IETF standardizes protocols; the W3C and WHATWG the page formats"
+  },
+  {
+   "s": "org.ietf",
+   "t": "data.json",
+   "w": 1,
+   "k": "related",
+   "note": "JSON is specified in RFC 8259"
+  },
+  {
+   "s": "org.ietf",
+   "t": "found.utf8",
+   "w": 1,
+   "k": "related",
+   "note": "UTF-8 is specified in RFC 3629"
+  },
+  {
+   "s": "org.ietf",
+   "t": "plat.oauth",
+   "w": 1,
+   "k": "related",
+   "note": "OAuth 2.0 is RFC 6749 (2012)"
+  },
+  {
+   "s": "org.gnu-fsf",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.gnu-fsf",
+   "t": "ppl.stallman",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.gnu-fsf",
+   "t": "proc.gpl",
+   "w": 2,
+   "k": "influenced",
+   "note": "Introduced copyleft with the GPL (1989)"
+  },
+  {
+   "s": "org.gnu-fsf",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "influenced",
+   "note": "GNU tools plus Torvalds's kernel make GNU/Linux"
+  },
+  {
+   "s": "org.gnu-fsf",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related",
+   "note": "GNU means Gnu's Not Unix: a free Unix-compatible system"
+  },
+  {
+   "s": "org.gnu-fsf",
+   "t": "proc.open-source",
+   "w": 2,
+   "k": "influenced",
+   "note": "Free software came first; the term open source followed in 1998"
+  },
+  {
+   "s": "org.gnu-fsf",
+   "t": "plat.posix",
+   "w": 1,
+   "k": "related",
+   "note": "Stallman suggested the name POSIX"
+  },
+  {
+   "s": "org.linux-foundation",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.linux-foundation",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "influenced",
+   "note": "Hosts the kernel's infrastructure"
+  },
+  {
+   "s": "org.linux-foundation",
+   "t": "ppl.torvalds",
+   "w": 2,
+   "k": "related",
+   "note": "Torvalds is a Linux Foundation fellow"
+  },
+  {
+   "s": "org.linux-foundation",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "related",
+   "note": "The PyTorch Foundation, 2022"
+  },
+  {
+   "s": "org.linux-foundation",
+   "t": "mod.mcp",
+   "w": 1,
+   "k": "related",
+   "note": "Listed under the Agentic AI Foundation since December 2025"
+  },
+  {
+   "s": "org.linux-foundation",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "Microsoft became a platinum member in November 2016"
+  },
+  {
+   "s": "org.linux-foundation",
+   "t": "plat.kubernetes",
+   "w": 2,
+   "k": "related",
+   "note": "Through the Cloud Native Computing Foundation"
+  },
+  {
+   "s": "org.linux-foundation",
+   "t": "data.elasticsearch",
+   "w": 1,
+   "k": "related",
+   "note": "Hosts the OpenSearch Software Foundation"
+  },
+  {
+   "s": "org.apache-foundation",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.apache-foundation",
+   "t": "ppl.fielding",
+   "w": 2,
+   "k": "related",
+   "note": "One of the eight core Apache Group members"
+  },
+  {
+   "s": "org.apache-foundation",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related",
+   "note": "Apache was the most-used web server by 1996"
+  },
+  {
+   "s": "org.apache-foundation",
+   "t": "proc.open-source",
+   "w": 1,
+   "k": "related",
+   "note": "Founded the foundation model known as the Apache Way"
+  },
+  {
+   "s": "org.apache-foundation",
+   "t": "org.databricks-snowflake",
+   "w": 1,
+   "k": "related",
+   "note": "Spark is an Apache project that Databricks commercializes"
+  },
+  {
+   "s": "org.codasyl",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.codasyl",
+   "t": "lang.cobol",
+   "w": 3,
+   "k": "influenced",
+   "note": "Defined COBOL in 1959 to 1960"
+  },
+  {
+   "s": "org.codasyl",
+   "t": "ppl.hopper",
+   "w": 2,
+   "k": "related",
+   "note": "Technical adviser to the 1959 effort"
+  },
+  {
+   "s": "org.codasyl",
+   "t": "ppl.bachman",
+   "w": 2,
+   "k": "related",
+   "note": "His IDS was the basis of the network model"
+  },
+  {
+   "s": "org.codasyl",
+   "t": "data.ims",
+   "w": 1,
+   "k": "competes-with",
+   "note": "IMS (hierarchical) and the CODASYL network model were rival navigational designs"
+  },
+  {
+   "s": "org.mathworks",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.mathworks",
+   "t": "ppl.moler",
+   "w": 3,
+   "k": "created-by",
+   "note": "Co-founded with Jack Little and Steve Bangert"
+  },
+  {
+   "s": "org.mathworks",
+   "t": "math.linpack",
+   "w": 1,
+   "k": "related",
+   "note": "MATLAB began as a friendly front end to LINPACK and EISPACK"
+  },
+  {
+   "s": "org.mathworks",
+   "t": "math.eispack",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.mathworks",
+   "t": "found.ibm-pc",
+   "w": 1,
+   "k": "related",
+   "note": "The August 1981 IBM PC announcement prompted the C rewrite"
+  },
+  {
+   "s": "org.deepmind",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.deepmind",
+   "t": "org.google",
+   "w": 3,
+   "k": "part-of",
+   "note": "Google bought DeepMind on 26 January 2014; merged with Google Brain in April 2023"
+  },
+  {
+   "s": "org.deepmind",
+   "t": "math.transformer",
+   "w": 1,
+   "k": "related",
+   "note": "Google researchers published the Transformer in June 2017"
+  },
+  {
+   "s": "org.deepmind",
+   "t": "math.deep-learning",
+   "w": 1,
+   "k": "related",
+   "note": "AlphaGo (2016) and AlphaFold 2 (2020)"
+  },
+  {
+   "s": "org.deepmind",
+   "t": "mod.mcp",
+   "w": 1,
+   "k": "related",
+   "note": "Embraced MCP on 9 April 2025"
+  },
+  {
+   "s": "org.deepmind",
+   "t": "math.llm",
+   "w": 1,
+   "k": "influenced",
+   "note": "Gemini 1.0 (December 2023) to Gemini 3 Pro (November 2025)"
+  },
+  {
+   "s": "org.cncf",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.cncf",
+   "t": "org.linux-foundation",
+   "w": 3,
+   "k": "part-of",
+   "note": "Founded in July 2015 as a Linux Foundation project"
+  },
+  {
+   "s": "org.cncf",
+   "t": "plat.kubernetes",
+   "w": 2,
+   "k": "influenced",
+   "note": "Kubernetes 1.0 (21 July 2015) was donated at launch"
+  },
+  {
+   "s": "org.cncf",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "Google donated Kubernetes"
+  },
+  {
+   "s": "org.cncf",
+   "t": "org.docker",
+   "w": 1,
+   "k": "related",
+   "note": "containerd came out of Docker's container formats"
+  },
+  {
+   "s": "org.psf",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.psf",
+   "t": "lang.python",
+   "w": 2,
+   "k": "influenced",
+   "note": "Steering Council since 2019; Packaging Council approved April 2026"
+  },
+  {
+   "s": "org.psf",
+   "t": "ppl.van-rossum",
+   "w": 2,
+   "k": "related",
+   "note": "Resigned as benevolent dictator on 12 July 2018"
+  },
+  {
+   "s": "org.psf",
+   "t": "pkg.pyproject",
+   "w": 1,
+   "k": "related",
+   "note": "Packaging governance (PEP 772)"
+  },
+  {
+   "s": "org.databricks-snowflake",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.databricks-snowflake",
+   "t": "org.oracle",
+   "w": 1,
+   "k": "related",
+   "note": "Snowflake's founding architects came from Oracle"
+  },
+  {
+   "s": "org.databricks-snowflake",
+   "t": "data.parquet",
+   "w": 1,
+   "k": "related",
+   "note": "Lakehouses rest on open file formats such as Parquet"
+  },
+  {
+   "s": "org.databricks-snowflake",
+   "t": "data.postgres",
+   "w": 2,
+   "k": "related",
+   "note": "Databricks bought Neon; Snowflake sells Snowflake Postgres"
+  },
+  {
+   "s": "org.databricks-snowflake",
+   "t": "plat.cloud",
+   "w": 1,
+   "k": "related",
+   "note": "Cloud-native analytics platforms"
+  },
+  {
+   "s": "org.thoughtworks",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.thoughtworks",
+   "t": "ppl.fowler",
+   "w": 2,
+   "k": "related",
+   "note": "Joined in 1999; chief scientist from 2000"
+  },
+  {
+   "s": "org.thoughtworks",
+   "t": "proc.agile",
+   "w": 2,
+   "k": "influenced",
+   "note": "Staff took part in the Agile Manifesto (2001)"
+  },
+  {
+   "s": "org.thoughtworks",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "influenced",
+   "note": "CruiseControl, an early CI server (2001)"
+  },
+  {
+   "s": "org.thoughtworks",
+   "t": "qual.cd",
+   "w": 1,
+   "k": "related",
+   "note": "The Go CD pipeline tool"
+  },
+  {
+   "s": "org.vmware-pivotal",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.vmware-pivotal",
+   "t": "plat.virtualization",
+   "w": 3,
+   "k": "influenced",
+   "note": "Made virtual machines practical on x86 servers"
+  },
+  {
+   "s": "org.vmware-pivotal",
+   "t": "pkg.spring",
+   "w": 2,
+   "k": "influenced",
+   "note": "Bought SpringSource in 2009; Pivotal carried Spring"
+  },
+  {
+   "s": "org.vmware-pivotal",
+   "t": "plat.heroku",
+   "w": 1,
+   "k": "related",
+   "note": "Cloud Foundry (2011) was an open-source platform-as-a-service"
+  },
+  {
+   "s": "org.vmware-pivotal",
+   "t": "fail.ejb",
+   "w": 1,
+   "k": "related",
+   "note": "Spring began as a lighter alternative to Enterprise JavaBeans"
+  },
+  {
+   "s": "org.docker",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.docker",
+   "t": "plat.docker",
+   "w": 3,
+   "k": "influenced",
+   "note": "Unveiled in March 2013"
+  },
+  {
+   "s": "org.docker",
+   "t": "plat.kubernetes",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Docker's Swarm lost to Kubernetes by about 2017 to 2018"
+  },
+  {
+   "s": "org.docker",
+   "t": "proc.licensing",
+   "w": 1,
+   "k": "related",
+   "note": "Docker Desktop paid tier for large firms, 31 August 2021"
+  },
+  {
+   "s": "org.docker",
+   "t": "plat.cloud",
+   "w": 1,
+   "k": "related",
+   "note": "The image became the cloud era's unit of deployment"
+  },
+  {
+   "s": "org.mongodb-redis-elastic",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.mongodb-redis-elastic",
+   "t": "data.mongodb",
+   "w": 2,
+   "k": "influenced",
+   "note": "MongoDB released February 2009"
+  },
+  {
+   "s": "org.mongodb-redis-elastic",
+   "t": "data.redis",
+   "w": 2,
+   "k": "influenced",
+   "note": "Created in 2009 by Salvatore Sanfilippo"
+  },
+  {
+   "s": "org.mongodb-redis-elastic",
+   "t": "data.elasticsearch",
+   "w": 2,
+   "k": "influenced",
+   "note": "First released 8 February 2010 by Shay Banon"
+  },
+  {
+   "s": "org.mongodb-redis-elastic",
+   "t": "data.nosql",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "org.mongodb-redis-elastic",
+   "t": "proc.licensing",
+   "w": 2,
+   "k": "related",
+   "note": "SSPL (2018), RSAL and SSPL (2024), the Elastic License (2021)"
+  },
+  {
+   "s": "org.mongodb-redis-elastic",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "Backs the Valkey and OpenSearch forks"
+  }
+ ]
+}

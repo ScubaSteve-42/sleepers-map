@@ -1,0 +1,2995 @@
+{
+ "slice": "s01-foundations-compilers",
+ "nodes": [
+  {
+   "id": "found.turing-machine",
+   "title": "Turing Machine",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1936,
+   "short": "Alan Turing's 1936 model of a machine that reads and writes symbols on a tape, used to show that some problems can never be solved by any program.",
+   "long": "In 1936 Alan Turing's paper On Computable Numbers defined an imaginary machine that reads and writes symbols on a tape by following a small table of rules, and used it to show that some problems cannot be computed at all. The best known is the halting problem: no program can decide, for every program and input, whether that program will ever finish. The machine is a thought experiment, not hardware, but it gave later writers a precise meaning for what a computer can do. John McCarthy's 1960 Lisp paper, for example, says its apply function plays the theoretical role of a universal Turing machine as well as the practical role of an interpreter. Accounts that say Turing invented the computer oversimplify, since several groups developed the stored-program idea.",
+   "status": "n/a",
+   "tags": [
+    "computability",
+    "halting problem",
+    "theory",
+    "tape"
+   ]
+  },
+  {
+   "id": "found.lambda-calculus",
+   "title": "Lambda Calculus",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1936,
+   "short": "Alonzo Church's tiny formal system in which everything is a function; its notation gave Lisp, and later most languages, their anonymous functions.",
+   "long": "The lambda calculus is a minimal mathematical language with three ingredients: names, functions written with the Greek letter lambda, and the application of a function to an argument. The logician Alonzo Church devised it as a formal model of computation, and it describes the same computable functions as Turing's machines. John McCarthy wrote in his history of Lisp that it seemed natural to use the lambda notation of Church (he cites 1941), which is how anonymous functions entered programming in 1958. Lambdas and closures have since reached every major language: Python added lambda in January 1994, and Java 8, C++11 and C# 3.0 followed.",
+   "sleeper": "A small anonymous function, such as lambda x: x + 1 in Python or x => x + 1 in JavaScript, is this idea in working clothes. What was once a Lisp feature is now ordinary syntax almost everywhere.",
+   "code": {
+    "lang": "python",
+    "text": "square = lambda x: x * x             # lambda notation, in Python\nprint(square(7))                     # 49\nprint((lambda x, y: x + y)(2, 3))    # 5"
+   },
+   "status": "n/a",
+   "tags": [
+    "church",
+    "functions",
+    "anonymous functions",
+    "theory"
+   ],
+   "refs": [
+    {
+     "label": "McCarthy, History of Lisp",
+     "url": "https://www-formal.stanford.edu/jmc/history/lisp/lisp.html"
+    }
+   ]
+  },
+  {
+   "id": "found.rice-theorem",
+   "title": "Rice's Theorem",
+   "cat": "foundations",
+   "tier": 4,
+   "year": 1953,
+   "short": "No program can decide, in general, what another program will do, which is why every code checker must miss bugs, raise false alarms or restrict what it accepts.",
+   "long": "Henry Gordon Rice proved in his 1951 Syracuse PhD thesis, published in 1953 in the Transactions of the American Mathematical Society, that every non-trivial property of what a program does is undecidable. A question about behavior, such as whether the program ever crashes or ever stops, is semantic; a question about the text, such as whether it contains an if statement, is syntactic and can be answered. The consequence is that no tool can check, for every program, whether it is correct or even runs without error. A real checker has to give up one thing: it may miss some real problems, raise alarms about code that is fine, or refuse some programs, for example by requiring annotations or restricting the language.",
+   "sleeper": "Static analyzers have lived with this limit since lint in 1978. Stephen C. Johnson's lint paper already noted that deciding whether exit is ever called is the halting problem, so lint assumes any function that is mentioned can be called.",
+   "status": "n/a",
+   "tags": [
+    "undecidability",
+    "static analysis",
+    "halting problem",
+    "limits"
+   ],
+   "refs": [
+    {
+     "label": "Johnson, lint paper (1978)",
+     "url": "https://wolfram.schneider.org/bsd/7thEdManVol2/lint/lint.pdf"
+    }
+   ]
+  },
+  {
+   "id": "found.eniac",
+   "title": "ENIAC",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1946,
+   "short": "The first general-purpose electronic computer, announced in 1946; it was programmed by rewiring panels and setting switches.",
+   "long": "ENIAC was announced at the University of Pennsylvania on 14 February 1946. John Mauchly and J. Presper Eckert built it at the Moore School, and Penn describes it as the first general-purpose electronic computer. It was programmed with panel-to-panel wiring and switches, occupied more than 1,000 square feet, used about 18,000 vacuum tubes and weighed 30 tons. A team of six women operated it: Kathleen McNulty Mauchly Antonelli, Jean Jennings Bartik, Frances Betty Snyder Holberton, Marlyn Wescoff Meltzer, Frances Bilas Spence and Ruth Lichterman Teitelbaum. Changing the program meant changing the wiring, the clumsy method that the stored-program design described in 1945 was meant to eliminate.",
+   "status": "dead",
+   "tags": [
+    "vacuum tubes",
+    "university of pennsylvania",
+    "mauchly",
+    "eckert"
+   ],
+   "refs": [
+    {
+     "label": "Penn Engineering, ENIAC",
+     "url": "https://www.seas.upenn.edu/about/history-heritage/eniac/"
+    }
+   ]
+  },
+  {
+   "id": "found.edsac",
+   "title": "EDSAC",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1949,
+   "short": "Cambridge's stored-program computer of 1949, the first to give a regular computing service; its software introduced the assembler and the subroutine library.",
+   "long": "EDSAC was built by Maurice Wilkes's group at the University of Cambridge and performed its first fully automatic calculation on 6 May 1949. The Computer History Museum calls it the first practical stored-program computer to provide a regular computing service. It held 1,024 17-bit words in mercury delay lines, ran about 650 instructions per second, read paper tape and printed on a teleprinter. Its programmers produced lasting ideas: the Initial Orders, a loader that accepted programs in symbolic form; relocation, which let subroutines sit anywhere in memory; and the first programming textbook, published in 1951. The LEO computer of the J. Lyons company was modelled on EDSAC.",
+   "sleeper": "You can still run EDSAC programs: the University of Warwick's EdsacPC simulator lets modern readers run the original programs on a current computer.",
+   "status": "dead",
+   "tags": [
+    "cambridge",
+    "wilkes",
+    "delay line",
+    "paper tape"
+   ],
+   "refs": [
+    {
+     "label": "Cambridge Computer Laboratory, EDSAC 99",
+     "url": "https://www.cl.cam.ac.uk/events/EDSAC99/statistics.html"
+    }
+   ]
+  },
+  {
+   "id": "found.univac",
+   "title": "UNIVAC I",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1951,
+   "short": "The first commercial computer to attract widespread public attention, delivered in 1951; Grace Hopper's group wrote its programming tools.",
+   "long": "UNIVAC I came from J. Presper Eckert and John Mauchly at Remington Rand and was delivered to the US Census Bureau in 1951. The Computer History Museum calls it the first commercial computer to attract widespread public attention. It used 5,200 vacuum tubes, weighed 29,000 pounds, and 46 were sold at more than $1 million each. It matters to software history because Grace Hopper's group wrote its programming tools: the A-series compilers beginning with A-0 in 1952, and FLOW-MATIC, which had a significant effect on the design of COBOL. John Mauchly's Short Code, the first high-level notation actually implemented, was recoded for it in late 1950.",
+   "status": "dead",
+   "tags": [
+    "remington rand",
+    "census",
+    "mainframe",
+    "eckert",
+    "mauchly"
+   ],
+   "refs": [
+    {
+     "label": "Computer History Museum, Timeline of Computer History: Computers",
+     "url": "https://www.computerhistory.org/timeline/computers/"
+    }
+   ]
+  },
+  {
+   "id": "found.ibm-704",
+   "title": "IBM 704",
+   "cat": "foundations",
+   "tier": 4,
+   "year": 1954,
+   "short": "IBM's mid-1950s scientific computer with core memory, floating point and index registers; FORTRAN and Lisp were both first built for it.",
+   "long": "The IBM 704 replaced the 701's Williams-tube memory with magnetic-core memory and added floating-point arithmetic; Gene Amdahl designed it. It was the machine John Backus's team targeted with FORTRAN, whose compiler was delivered in April 1957, and McCarthy's Lisp was first built for it too. The hardware left marks on both languages. The 704 had only three index registers, which the FORTRAN compiler had to assign carefully, and Lisp's car and cdr operations are named for the address and decrement parts of a 704 word. Backus said the 704 already had the built-in floating point and index registers that Speedcoding had been written to supply.",
+   "status": "dead",
+   "tags": [
+    "mainframe",
+    "core memory",
+    "index registers",
+    "amdahl"
+   ],
+   "refs": [
+    {
+     "label": "IBM, The 700 series",
+     "url": "https://www.ibm.com/history/700"
+    }
+   ]
+  },
+  {
+   "id": "found.system360",
+   "title": "IBM System/360",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1964,
+   "short": "IBM's 1964 family of compatible computers: one instruction set from small to large machines, so software could outlive the hardware.",
+   "long": "Announced on 7 April 1964, System/360 replaced all five of IBM's existing computer product lines with one strictly compatible family. IBM announced six processor models spanning a fiftyfold range of performance (the Computer History Museum counts five) and 54 peripheral devices, and the system pioneered the 8-bit byte. Gene Amdahl was chief architect and Fred Brooks led the project. Before it, anyone buying a new computer had to scrap their programs and start again; afterward, software written for one machine could run on any other in the line, and more than 1,000 were purchased in the first month. Its operating system, OS/360, shipped late and became the subject of Brooks's The Mythical Man-Month.",
+   "sleeper": "The compatibility promise lasted. IBM says that by 1989 products based on System/360's architecture and its extensions brought in more than half of its revenue, and IBM's z/OS mainframes carry the lineage forward.",
+   "status": "legacy",
+   "tags": [
+    "mainframe",
+    "compatibility",
+    "byte",
+    "amdahl",
+    "brooks"
+   ],
+   "refs": [
+    {
+     "label": "IBM, The IBM System/360",
+     "url": "https://www.ibm.com/history/system-360"
+    }
+   ]
+  },
+  {
+   "id": "found.ibm-pc",
+   "title": "IBM PC",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1981,
+   "short": "IBM's 1981 personal computer, built on Intel's 8088 chip and shipped with Microsoft's PC-DOS, which fixed x86 as the PC architecture.",
+   "long": "IBM's Personal Computer appeared in 1981 with an Intel 8088 processor and PC-DOS, an operating system supplied by Microsoft. Microsoft held an IBM contract for an operating system by November 1980, after IBM failed to reach terms with Digital Research. It licensed 86-DOS from Seattle Computer Products for $25,000 and bought all rights in summer 1981 for $50,000, and PC-DOS 1.0 shipped in August 1981 on floppy disks only. Because the machine used the 8088 and ran DOS, the PC locked the x86 architecture into the PC industry. Lotus 1-2-3, released in January 1983, became the killer application that made the PC a business machine.",
+   "sleeper": "PC-compatible machines kept the x86 line alive for decades. Since 2020 that is changing: Apple's Macs now use its own ARM-based chips, and ARM dominates phones.",
+   "status": "legacy",
+   "tags": [
+    "pc-dos",
+    "8088",
+    "personal computer",
+    "floppy disk"
+   ],
+   "refs": [
+    {
+     "label": "Computer History Museum, Timeline: Software and Languages",
+     "url": "https://www.computerhistory.org/timeline/software-languages/"
+    }
+   ]
+  },
+  {
+   "id": "found.microprocessor",
+   "title": "Microprocessor",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1971,
+   "short": "A complete processor on one chip, first sold as Intel's 4004 in 1971; cheaper successors made the personal computer possible.",
+   "long": "A microprocessor is a computer's processor built on a single chip. The Computer History Museum credits Ted Hoff and Stanley Mazor with conceiving Intel's first, the 4-bit 4004, and Federico Faggin, assisted by Masatoshi Shima, with squeezing its roughly 2,300 transistors into a 16-pin package in 1971. It was built for Busicom, a Japanese calculator maker, and performed up to 90,000 operations per second. Faggin also supervised the 8-bit 8008, announced in 1972. In 1974 Intel's 8080 and Motorola's 6800 established the idea, and the MOS Technology 6502 of 1975, priced at $25, brought personal computers from Apple, Atari, Commodore and others within reach. Zilog's Z80 proved the most enduring.",
+   "sleeper": "Since about 2005 vendors have added cores to each chip instead of raising clock speed, so a single program no longer gets faster by itself on new hardware.",
+   "status": "thriving",
+   "tags": [
+    "cpu",
+    "intel 4004",
+    "6502",
+    "z80",
+    "chip"
+   ],
+   "refs": [
+    {
+     "label": "Computer History Museum, 1971: Microprocessor Integrates CPU Function onto a Single Chip",
+     "url": "https://www.computerhistory.org/siliconengine/microprocessor-integrates-cpu-function-onto-a-single-chip/"
+    }
+   ]
+  },
+  {
+   "id": "found.x86",
+   "title": "x86",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1978,
+   "short": "Intel's 16-bit 8086 instruction set of 1978, chosen for the IBM PC in 1981 and later extended to 64 bits by AMD.",
+   "long": "Intel introduced the 8086 in 1978 as a 16-bit processor meant to give an order of magnitude more throughput than the 8080. Stephen Morse, who defined its architecture, wrote that it was assembly-language-level compatible with the 8080, so existing 8080 software could be reassembled and run, though strict binary compatibility was not attempted. The 1981 IBM PC used the 8088 variant, which locked the architecture into the PC industry. The instruction set has grown by extension ever since. AMD's 64-bit x86-64 beat Intel's own plan for a new architecture, Itanium, and by 2009 most servers shipped with x86-64 processors. x86 instructions vary in length, unlike the fixed four bytes of ARM64.",
+   "sleeper": "The 16-bit chip you remember is now a 64-bit family, and AMD, not Intel, designed that 64-bit extension. Meanwhile ARM has taken over Apple's Macs, which began moving off x86 in 2020.",
+   "status": "thriving",
+   "tags": [
+    "intel",
+    "8086",
+    "cisc",
+    "x86-64",
+    "amd64"
+   ],
+   "refs": [
+    {
+     "label": "Morse, The history of the 8086 (IEEE Computer, 1980)",
+     "url": "https://stevemorse.org/8086history/8086history.doc"
+    }
+   ]
+  },
+  {
+   "id": "found.arm",
+   "title": "ARM Architecture",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1985,
+   "short": "A low-power RISC instruction set from Acorn in Cambridge, first built in 1985; it dominates phones and now powers Apple's Macs.",
+   "long": "ARM began as the Acorn RISC Machine. Its first chip, the ARM1 of 1985, was designed at Acorn by Sophie Wilson and Steve Furber, and the company Arm was founded on 12 November 1990 as an Acorn, Apple and VLSI joint venture. Arm licenses its designs rather than selling chips, which suits low-power devices such as phones. Arm says more than 350 billion Arm-based chips have shipped, a vendor claim. Apple announced on 22 June 2020 that Macs would move from Intel to its own ARM-based chips, with the M1 shipping that November, and Amazon's Graviton brought ARM to its cloud in 2018. Every ARM64 instruction is exactly four bytes long, a RISC trait.",
+   "sleeper": "ARM, not x86, now powers most phones and Apple's Macs, and cloud providers rent ARM servers. For programmers that means building software for both arm64 and amd64, including container images.",
+   "status": "thriving",
+   "tags": [
+    "acorn",
+    "risc",
+    "phones",
+    "arm64",
+    "low power"
+   ],
+   "refs": [
+    {
+     "label": "Arm, About Arm: milestones",
+     "url": "https://www.arm.com/about/company-profile/milestones.php"
+    }
+   ]
+  },
+  {
+   "id": "found.risc",
+   "title": "RISC",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1974,
+   "short": "Reduced instruction set computing: a small set of simple, uniform instructions that compilers can use well, first worked out at IBM from 1974.",
+   "long": "RISC, for reduced instruction set computer, began at IBM in 1974 in a project to design a large telephone-switching network. When that project ended in 1975, its design looked like an excellent basis for a general-purpose, high-performance miniprocessor. Cocke and Markstein's history lists its key features: separate instruction and data caches, no arithmetic operations directly on storage, and uniform instruction length with a simple design. They stress that the point was not simply fewer instructions but primitives chosen to exploit the fastest part of the storage hierarchy and be easy for compilers to generate. The opposing style, CISC for complex instruction set computer, offers many complex, variable-length instructions, as DEC's VAX did in 1978.",
+   "sleeper": "RISC started as a research idea at IBM and now underlies most phones through ARM. RISC-V, begun in 2010, is an open RISC design.",
+   "status": "thriving",
+   "tags": [
+    "cisc",
+    "instruction set",
+    "ibm 801",
+    "pipeline"
+   ],
+   "refs": [
+    {
+     "label": "Cocke and Markstein, The evolution of RISC technology at IBM (1990)",
+     "url": "https://acg.cis.upenn.edu/milom/cis501-Fall11/papers/cocke-RISC.pdf"
+    }
+   ]
+  },
+  {
+   "id": "found.risc-v",
+   "title": "RISC-V",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 2010,
+   "short": "An open, royalty-free instruction set begun at UC Berkeley in 2010 and now governed by RISC-V International.",
+   "long": "RISC-V is an open instruction set that anyone can implement without paying royalties. Krste Asanovic and graduate students Yunsup Lee and Andrew Waterman started it in May 2010 as part of the Parallel Computing Laboratory at UC Berkeley, whose director was David Patterson. Its first publication, The RISC-V Instruction Set Manual, Volume I, appeared on 13 May 2011. The RISC-V Foundation was founded in 2015 and is incorporated today as RISC-V International, an association based in Switzerland. It is strong in microcontrollers and accelerators, while use in phones and servers is still emerging.",
+   "sleeper": "Instruction sets used to belong to companies: Intel's x86, Arm's designs. RISC-V is open, so anyone can build a chip that runs it without paying a license fee.",
+   "status": "thriving",
+   "tags": [
+    "open instruction set",
+    "berkeley",
+    "royalty-free",
+    "microcontrollers"
+   ],
+   "refs": [
+    {
+     "label": "RISC-V International, About RISC-V: history",
+     "url": "https://riscv.org/about/history/"
+    }
+   ]
+  },
+  {
+   "id": "found.moores-law",
+   "title": "Moore's Law",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1965,
+   "short": "Gordon Moore's 1965 observation that transistor counts on a chip keep doubling at a steady pace, which set the rhythm of hardware progress.",
+   "long": "In 1965 Gordon Moore, who co-founded Intel in 1968 with Robert Noyce and Arthur Rock, observed that the number of transistors on a chip was growing at a steady rate, usually quoted as doubling about every two years. For decades this meant software ran faster on each new machine without any change. Two things have changed. Around 2004 heat and power ended the rise in clock speeds, so chips added cores instead. And the doubling itself has slowed: cost per transistor no longer falls reliably, and gains now come from new transistor shapes, 3D packaging, chiplets and specialized accelerators. TSMC states that its N2 process, built on first-generation nanosheet transistors, entered volume production in the fourth quarter of 2025.",
+   "sleeper": "If you remember buying a faster PC every couple of years, note that clock speeds have sat near 3 to 4 GHz since about 2004. Later gains came from more cores and specialized chips.",
+   "status": "n/a",
+   "tags": [
+    "transistors",
+    "scaling",
+    "chips",
+    "tsmc",
+    "nanosheet"
+   ],
+   "refs": [
+    {
+     "label": "TSMC, N2 technology",
+     "url": "https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_2nm"
+    }
+   ]
+  },
+  {
+   "id": "found.multicore",
+   "title": "The Multicore Turn",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 2005,
+   "short": "Around 2004 to 2005 chips stopped getting faster by raising clock speed and added cores instead, so programs had to become concurrent to speed up.",
+   "long": "Robert Dennard's 1974 observation was that shrinking transistors keeps power density constant, so chips could run faster for free. Around 2004 leakage and heat broke that: clock speeds plateaued near 3 to 4 GHz, Intel cancelled its planned faster Pentium 4 successors, and vendors added cores instead, as in the dual-core Pentium D of 2005. Herb Sutter's essay The Free Lunch Is Over, first posted in December 2004 and printed in Dr. Dobb's Journal in March 2005, told programmers that automatic speedups were over and software must become concurrent. Sources date the turn to 2004 or 2005. The consequences include threads and locks with their bugs, async/await, message passing in Go and Erlang, and Rust's compile-time data-race checks.",
+   "sleeper": "Programs no longer get faster by themselves on new hardware. Even Python, whose global lock kept threads from running in parallel, gained an officially supported free-threaded build in version 3.14.",
+   "status": "n/a",
+   "tags": [
+    "dennard scaling",
+    "clock speed",
+    "cores",
+    "parallelism",
+    "free lunch"
+   ]
+  },
+  {
+   "id": "found.simd",
+   "title": "SIMD and Cache-Aware Code",
+   "cat": "foundations",
+   "tier": 4,
+   "year": 1997,
+   "short": "SIMD instructions work on several values at once, and cache-friendly data layout matters because processors outran main memory.",
+   "long": "SIMD, for single instruction, multiple data, lets one instruction process several values at once. On x86 it arrived as MMX in 1997, SSE in 1999 and AVX in 2011; ARM has NEON, WebAssembly has its own SIMD instructions, and C++26 adds a simd header to the standard library. It matters because processors grew far faster than main memory, the so-called memory wall, so performance depends on keeping data in the small, fast caches. Ulrich Drepper's 2007 paper What Every Programmer Should Know About Memory explains why data layout and access order can matter more than the instructions themselves.",
+   "status": "thriving",
+   "tags": [
+    "vector instructions",
+    "cache",
+    "memory wall",
+    "avx",
+    "sse",
+    "neon"
+   ],
+   "refs": [
+    {
+     "label": "Drepper, What Every Programmer Should Know About Memory (2007)",
+     "url": "https://akkadia.org/drepper/cpumemory.pdf"
+    }
+   ]
+  },
+  {
+   "id": "found.ascii",
+   "title": "ASCII",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1963,
+   "short": "The 7-bit character code first standardized in 1963, which numbers 128 characters; it still forms the first 128 code points of Unicode.",
+   "long": "ASCII is a 7-bit code for 128 characters. Its first standard was ASA X3.4-1963, revised in 1967 and 1968. In October 1969 Vint Cerf's RFC 20 proposed standard 7-bit ASCII embedded in an 8-bit byte whose high-order bit is always 0 for the early ARPANET. The spare eighth bit led to a mess: many vendors used the values 128 to 255 for their own extra characters, so the same byte meant different letters on different machines, a situation known as code pages. Unicode and UTF-8 later replaced those code pages, and plain ASCII text is already valid UTF-8.",
+   "status": "legacy",
+   "tags": [
+    "character encoding",
+    "code pages",
+    "7-bit",
+    "text"
+   ],
+   "refs": [
+    {
+     "label": "RFC 20 (Vint Cerf, 1969)",
+     "url": "https://www.rfc-editor.org/rfc/rfc20.txt"
+    }
+   ]
+  },
+  {
+   "id": "found.unicode",
+   "title": "Unicode",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1991,
+   "short": "One numbering for every written character, so a single text can mix any scripts; stored as UTF-8 it now covers nearly all of the web.",
+   "long": "Unicode gives every character a number called a code point, written like U+0639, so that text in any script can sit in one document. Joel Spolsky's well-known 2003 essay stresses that Unicode is not simply a 16-bit code, as many people believed. Before it, the values 128 to 255 were assigned differently on different machines, which is why text from another system often arrived garbled. Unicode 18.0, released on 16 September 2026, adds 13,007 characters for a total of 172,808, including three new scripts: Proto-Cuneiform numerals, Jurchen and Seal. Unicode defines the characters; encodings such as UTF-8 decide how those numbers are stored as bytes.",
+   "status": "thriving",
+   "tags": [
+    "code point",
+    "text",
+    "scripts",
+    "emoji",
+    "character set"
+   ],
+   "refs": [
+    {
+     "label": "Spolsky, The Absolute Minimum Every Software Developer Must Know About Unicode",
+     "url": "https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/"
+    }
+   ]
+  },
+  {
+   "id": "found.utf8",
+   "title": "UTF-8",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1992,
+   "short": "A way to write any Unicode character as one to four bytes, designed by Ken Thompson and Rob Pike in 1992 and now used by nearly every website.",
+   "long": "UTF-8 writes every Unicode code point as one to four bytes. Plain ASCII text is already valid UTF-8, because code points U+0000 to U+007F map to the same single byte, and ASCII byte values never appear inside multi-byte sequences. Ken Thompson and Rob Pike designed it for Plan 9 in September 1992, in Pike's words on a placemat in a New Jersey diner. A key requirement was that a program picking up a byte stream partway through could find the start of the next character. In November 2003 RFC 3629 limited it to code points up to U+10FFFF, which fit in four bytes, to match UTF-16. W3Techs reports that 99.1 percent of websites with a known encoding use it.",
+   "sleeper": "Even a string's length now has several answers. The text héllo 😀 is 11 bytes in UTF-8, 8 UTF-16 code units (what JavaScript reports) and 7 Unicode code points.",
+   "status": "thriving",
+   "tags": [
+    "encoding",
+    "variable length",
+    "plan 9",
+    "web",
+    "text"
+   ],
+   "refs": [
+    {
+     "label": "Pike, UTF-8 history",
+     "url": "https://www.cl.cam.ac.uk/~mgk25/ucs/utf-8-history.txt"
+    },
+    {
+     "label": "RFC 3629: UTF-8",
+     "url": "https://www.rfc-editor.org/rfc/rfc3629.txt"
+    }
+   ]
+  },
+  {
+   "id": "found.ieee754",
+   "title": "Floating Point (IEEE 754)",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1985,
+   "short": "The 1985 standard that gave computers one binary floating-point format, ending the vendor-by-vendor chaos that came before.",
+   "long": "Before 1985 each manufacturer used its own floating-point format, range and rounding, and programmers resorted to tricks such as X = (X + X) - X to get reliable results. In 1976 Intel recruited William Kahan to help design the arithmetic of its 8087 coprocessor. With Jerome Coonen and Harold Stone he wrote the draft that became IEEE 754, after years of argument over gradual underflow with supporters of DEC's VAX approach. By 1984 Intel, AMD, Apple, IBM, Motorola, Zilog, AT&T and others had implemented it, making it, in Kahan's words, a de facto standard, the best kind. A double has 64 bits with 53 bits of precision; a single has 32 bits with 24. The standard was revised in 2008 and 2019.",
+   "sleeper": "Before 1985 the same program could give different answers on different machines. Now almost all platforms use IEEE 754 doubles, so 0.1 + 0.2 gives 0.30000000000000004 in Python, JavaScript and most other languages.",
+   "code": {
+    "lang": "python",
+    "text": "import math\nprint(0.1 + 0.2)                       # 0.30000000000000004\nprint(0.1 + 0.2 == 0.3)                # False\nprint(math.isclose(0.1 + 0.2, 0.3))    # True"
+   },
+   "status": "thriving",
+   "tags": [
+    "kahan",
+    "double precision",
+    "rounding",
+    "numbers",
+    "binary"
+   ],
+   "refs": [
+    {
+     "label": "Kahan, IEEE Standard 754 for Binary Floating-Point Arithmetic",
+     "url": "https://people.eecs.berkeley.edu/~wkahan/ieee754status/754story.html"
+    },
+    {
+     "label": "IEEE 754-2019",
+     "url": "https://standards.ieee.org/ieee/754/6210/"
+    }
+   ]
+  },
+  {
+   "id": "found.subroutine-library",
+   "title": "Subroutine Library",
+   "cat": "foundations",
+   "tier": 4,
+   "year": 1951,
+   "short": "Wilkes, Wheeler and Gill's 1951 idea and book: keep tested, reusable routines on tape and call them from your own programs.",
+   "long": "A subroutine library is a collection of short, tested programs for common calculations that any program can call instead of rewriting. Maurice Wilkes gathered one on punched paper tape for EDSAC, and Wilkes, Wheeler and Gill described it in The Preparation of Programs for an Electronic Digital Computer (Addison-Wesley, 1951), which Cambridge calls the first book on programming. Calls used the Wheeler jump: the call instruction captured its own address, and the subroutine planted a return link as its own last instruction, so the return address was written into the program's code at run time. Subroutines could sit anywhere in memory thanks to relocation, an invention credited to David Wheeler.",
+   "sleeper": "The shelf of paper tapes has become package managers such as pip and npm, which fetch ready-made libraries by name instead of copying them by hand.",
+   "status": "thriving",
+   "tags": [
+    "libraries",
+    "reuse",
+    "wheeler jump",
+    "textbook"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo, The Early Development of Programming Languages (1976)",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    }
+   ]
+  },
+  {
+   "id": "found.first-bug",
+   "title": "The First Computer Bug",
+   "cat": "foundations",
+   "tier": 4,
+   "year": 1947,
+   "short": "A moth taped into the Harvard Mark II logbook in September 1947; it popularized the word bug in computing but did not coin it.",
+   "long": "On 9 September 1947 operators of the Harvard Mark II found a moth trapped between the points of Relay 70, Panel F, and taped it into the logbook with the note \"first actual case of bug being found.\" The logbook is held by the Smithsonian. Parts of the story are overstated. Engineers had called small flaws in machines bugs since at least the 1870s, when Thomas Edison used the word, so this was not the origin of the term. The Smithsonian says the log book was probably not Hopper's, though she and the Mark II team helped popularize the usage. The word debugged also appears as ordinary vocabulary in the 1954 FORTRAN report and in Hopper's 1955 talk.",
+   "status": "n/a",
+   "tags": [
+    "moth",
+    "debugging",
+    "mark ii",
+    "harvard",
+    "folklore"
+   ],
+   "refs": [
+    {
+     "label": "Smithsonian NMAH, Log Book With Computer Bug",
+     "url": "https://web.archive.org/web/2022/https://americanhistory.si.edu/collections/search/object/nmah_334663"
+    },
+    {
+     "label": "US Navy NHHC, The First Computer Bug",
+     "url": "https://www.history.navy.mil/our-collections/photography/numerical-list-of-images/nhhc-series/nh-series/NH-96000/NH-96566-KN.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.assembler",
+   "title": "Assembler",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1949,
+   "short": "A program that turns assembly text into machine code, working out the numeric address behind every label.",
+   "long": "An assembler reads assembly language, in which each machine instruction has a short name and locations carry labels, and writes out machine code, working out the numeric address for each label. The earliest documented assembler is the EDSAC Initial Orders of 1949, which David Wheeler extended in August 1949 with relocation. Kathleen Booth developed a very early assembly notation at Birkbeck College from 1947, although it is unclear whether a program or a person translated it. By 1957 assemblers were so ordinary that the FORTRAN team called the last stage of their compiler a fairly conventional assembly program. A macro assembler adds named templates that expand into many instructions. In the classic toolchain the compiler emits assembly, the assembler produces an object file, and the linker joins the pieces.",
+   "sleeper": "Few people write assembly now, though it survives in boot code, kernels, firmware and tight inner loops. The September 2026 TIOBE index still ranks it 16th, at 0.89 percent.",
+   "code": {
+    "lang": "asm",
+    "text": "; x86-64, Intel syntax: sum 1 to 10 into eax, with the bytes an assembler emits\n        xor  eax, eax      ; 31 C0\n        mov  ecx, 1        ; B9 01 00 00 00\nagain:  add  eax, ecx      ; 01 C8\n        inc  ecx           ; FF C1\n        cmp  ecx, 10       ; 83 F9 0A\n        jle  again         ; 7E F7  (jump back 9 bytes)\n        ret                ; C3"
+   },
+   "status": "niche",
+   "tags": [
+    "mnemonics",
+    "labels",
+    "object file",
+    "macro assembler"
+   ],
+   "refs": [
+    {
+     "label": "Cambridge Computer Laboratory, EDSAC 99",
+     "url": "https://www.cl.cam.ac.uk/events/EDSAC99/statistics.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.initial-orders",
+   "title": "EDSAC Initial Orders",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1949,
+   "short": "David Wheeler's 1949 loader for EDSAC, wired into the machine; it read symbolic programs from paper tape and is the earliest documented assembler.",
+   "long": "The Initial Orders were a short program permanently wired into EDSAC that read a program from paper tape into memory. The first version, in spring 1949, took 31 instructions on uniselectors, a mechanical read-only memory, and assembled programs written in symbolic form. Its worst feature was that addresses had to be written in absolute form, so inserting one instruction meant altering many branch addresses, and the lack of relocation made a subroutine library hard to organize. Maurice Wilkes gave the replacement job to research student David Wheeler, who produced what Cambridge calls the forerunner of the modern assembler. Initial Orders 2, installed in August 1949 in 41 words, added relocation. In one device it was assembler, loader and relocating linker.",
+   "status": "dead",
+   "tags": [
+    "edsac",
+    "loader",
+    "paper tape",
+    "wheeler"
+   ],
+   "refs": [
+    {
+     "label": "Cambridge Computer Laboratory, EDSAC 99",
+     "url": "https://www.cl.cam.ac.uk/events/EDSAC99/statistics.html"
+    },
+    {
+     "label": "Campbell-Kelly, EdsacPC tutorial guide (Warwick, 2001)",
+     "url": "https://web.archive.org/web/20151222132057/http://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf"
+    }
+   ]
+  },
+  {
+   "id": "comp.linker",
+   "title": "Linker and Loader",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1949,
+   "short": "The tools that join separately translated pieces of a program, assign final addresses and load the result into memory to run.",
+   "long": "A linker takes the separately translated pieces of a program, the object files and library archives, decides where each will sit in memory and fills in every reference from one piece to another. The GNU linker manual says ld combines object and archive files, relocates their data and ties up symbol references. A loader then copies the finished program into memory and starts it; on Linux that is the execve call, with the dynamic linker ld.so loading any shared libraries. The idea began with the relocating Initial Orders of EDSAC in 1949, which made subroutines reusable. IBM's OS/360 later called its linker the linkage editor. In one worked example the link step gave a function that began at offset 0 the final address 0x401106.",
+   "sleeper": "The error you remember as unresolved external now reads undefined symbol or undefined reference, and the LLVM linker lld also names the source line that made the call.",
+   "status": "thriving",
+   "tags": [
+    "loader",
+    "object files",
+    "shared libraries",
+    "symbols",
+    "linkage editor"
+   ],
+   "refs": [
+    {
+     "label": "GNU ld manual: overview",
+     "url": "https://sourceware.org/binutils/docs/ld/Overview.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.relocation",
+   "title": "Relocation",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1949,
+   "short": "Adjusting a program's addresses to match where it is loaded in memory, first done on EDSAC in 1949 so subroutines could sit anywhere.",
+   "long": "Relocation means adjusting the addresses inside a piece of code to match where it is actually placed in memory. EDSAC's first Initial Orders required absolute addresses, which made it hard to organize a subroutine library. Initial Orders 2, installed in August 1949, added what Cambridge calls relocation or coordination, an important invention by David Wheeler. A programmer set a relocation parameter, called theta, to the current load point, and any instruction carrying the letter theta had the theta value added to its address. Today the job is split between tools: the assembler records the places that need patching, called relocations, and the linker fills them in once final addresses are known.",
+   "status": "thriving",
+   "tags": [
+    "addresses",
+    "theta",
+    "position independent",
+    "wheeler"
+   ],
+   "refs": [
+    {
+     "label": "Campbell-Kelly, EdsacPC tutorial guide (Warwick, 2001)",
+     "url": "https://web.archive.org/web/20151222132057/http://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf"
+    }
+   ]
+  },
+  {
+   "id": "comp.a0",
+   "title": "A-0 System",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1952,
+   "short": "Grace Hopper's A-0, running on the UNIVAC I by May 1952, pulled subroutines from a library and linked them into a complete program.",
+   "long": "A-0 was the first of Grace Hopper's A-series of compilers for the UNIVAC I at the Eckert-Mauchly Division of Remington Rand. Hopper wrote that A-0 first ran in May 1952; it became A-1 in January 1953 and A-2 in August 1953, and the original implementors were Richard Ridgway and Margaret Harper. A programmer wrote a pseudo-code, and the system withdrew the matching subroutines from a library, operated on them and linked the pieces into a complete program. In today's terms that is closer to a macro expander plus a linker than to FORTRAN, which is why Knuth and Trabb Pardo credit Alick Glennie's Autocode with the first compiler even though A-0 was completed first. Hopper said A-2 sometimes produced finished, checked programs in three minutes.",
+   "sleeper": "In 1952 the word compiler meant something narrower than it does now: assembling a program from stored routines. The modern meaning, translating a high-level language into another form, settled between 1952 and 1957.",
+   "status": "dead",
+   "tags": [
+    "hopper",
+    "univac",
+    "first compiler",
+    "a-2",
+    "remington rand"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo, The Early Development of Programming Languages (1976)",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    }
+   ]
+  },
+  {
+   "id": "comp.bnf",
+   "title": "BNF (Backus-Naur Form)",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1959,
+   "short": "A precise notation for writing a programming language's grammar, introduced for ALGOL 60 and still the standard way to specify syntax.",
+   "long": "BNF, for Backus normal form or Backus-Naur form, writes a grammar as rules in which angle brackets mark names, ::= means is defined as, and a vertical bar means or. John Backus described the notation in a June 1959 paper, and Peter Naur used and improved it in the ALGOL 60 report of January 1960. Backus later said his paper was little noticed except by Naur, and that before BNF language definers were just writing English. Its importance is that a grammar became precise enough for a machine to use, which is what parser generators such as Yacc later did. BNF and its extended form EBNF remain the standard way to specify language grammars.",
+   "code": {
+    "lang": "text",
+    "text": "<expression> ::= <term> | <expression> + <term>\n<term>       ::= <factor> | <term> * <factor>\n<factor>     ::= <number> | <name> | ( <expression> )"
+   },
+   "status": "thriving",
+   "tags": [
+    "grammar",
+    "syntax",
+    "ebnf",
+    "metalanguage",
+    "naur"
+   ],
+   "refs": [
+    {
+     "label": "Revised Report on the Algorithmic Language ALGOL 60",
+     "url": "https://www.masswerk.at/algol60/report.htm"
+    }
+   ]
+  },
+  {
+   "id": "comp.lexing",
+   "title": "Lexical Analysis",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1975,
+   "short": "The first compiler stage: it groups characters into tokens such as names, numbers and operators and throws away spaces and comments.",
+   "long": "A lexer, also called a scanner, reads the linear stream of characters in a program and groups them into tokens, the words of the language. Some tokens are single characters such as a bracket or comma; others are longer, such as numbers, string literals and names. The lexer discards spaces and comments, so the line sum += i; becomes four tokens: the name sum, the operator +=, the name i and a semicolon. In October 1975 Mike Lesk and Eric Schmidt of Bell Laboratories described Lex, which turns a table of regular expressions and program fragments into a lexer; the recognition is done by a deterministic finite automaton that Lex generates. Lex ran on PDP-11 Unix, Honeywell GCOS and IBM OS systems.",
+   "code": {
+    "lang": "text",
+    "text": "source:  sum += i;\ntokens:  NAME(sum)  PLUS_EQUALS  NAME(i)  SEMICOLON"
+   },
+   "status": "thriving",
+   "tags": [
+    "scanner",
+    "tokens",
+    "regular expressions",
+    "lex"
+   ],
+   "refs": [
+    {
+     "label": "Lesk and Schmidt, Lex (web-archive copy)",
+     "url": "https://web.archive.org/web/20201218031717/http://dinosaur.compilertools.net/lex/index.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.parsing",
+   "title": "Parsing",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1959,
+   "short": "Checking that tokens fit a language's grammar and building a tree that shows how statements and expressions nest.",
+   "long": "A parser takes the flat sequence of tokens from the lexer and builds a tree that mirrors the nested structure of the grammar, reporting syntax errors along the way. Many parsing techniques were first conceived to parse human languages. Once BNF made grammars precise in 1959 and 1960, parsers could be generated from them: Stephen C. Johnson's Yacc of 1975 turns a grammar plus snippets of code into a parser for a class of grammars called LALR(1). Memory limits also shaped languages. Single-pass compilers generate code while parsing, with no tree at all, which is why Pascal requires declarations first in a block and why C needs forward declarations.",
+   "status": "thriving",
+   "tags": [
+    "grammar",
+    "syntax tree",
+    "yacc",
+    "single pass",
+    "syntax errors"
+   ],
+   "refs": [
+    {
+     "label": "Nystrom, Crafting Interpreters: A Map of the Territory",
+     "url": "https://craftinginterpreters.com/a-map-of-the-territory.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.ast",
+   "title": "Abstract Syntax Tree",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1960,
+   "short": "A tree that records a program's structure after parsing, with operators as parents and their operands as children.",
+   "long": "An abstract syntax tree, or AST, is what a parser builds: a tree that mirrors the nesting of the program's grammar. Crafting Interpreters says these trees go by two names, parse tree or abstract syntax tree, depending on how close they stay to the bare syntax of the source language. In a grammar where a term sits inside an expression, the tokens sum + 3 * i parse to a tree whose plus node has the name sum as its left child and a multiply node, with children 3 and i, as its right child, so multiplication binds tighter than addition without any extra rule. Later stages walk the tree to resolve names and check types, then rewrite it into an intermediate form.",
+   "code": {
+    "lang": "text",
+    "text": "sum + 3 * i\n\n      +\n     / \\\n  sum   *\n       / \\\n      3   i"
+   },
+   "status": "thriving",
+   "tags": [
+    "syntax tree",
+    "parse tree",
+    "tree",
+    "expression"
+   ],
+   "refs": [
+    {
+     "label": "Nystrom, Crafting Interpreters: A Map of the Territory",
+     "url": "https://craftinginterpreters.com/a-map-of-the-territory.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.ir",
+   "title": "Intermediate Representation",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1957,
+   "short": "A form of the program between source and machine code, independent of any one processor, so many languages and chips can share a compiler's middle.",
+   "long": "An intermediate representation, or IR, sits between source code and machine code. Without one, supporting N source languages on M processors needs N times M compilers; with one, each language needs a front end that produces the IR and each processor a back end, N plus M pieces in all. The 1957 FORTRAN translator worked this way in miniature: it first wrote an object program for an idealized 704 with many index registers, then converted it to fit the real machine's three. The 1958 UNCOL proposal wanted a single universal IR for all languages and machines and was never completed. Chris Lattner describes LLVM IR as a low-level RISC-like virtual instruction set with an infinite set of temporaries.",
+   "sleeper": "IRs are now shared infrastructure. GCC's front ends target internal forms called GIMPLE and RTL, while LLVM IR serves Clang and the compilers of many other languages.",
+   "status": "thriving",
+   "tags": [
+    "llvm ir",
+    "gimple",
+    "front end",
+    "back end",
+    "uncol"
+   ],
+   "refs": [
+    {
+     "label": "Lattner, LLVM, in The Architecture of Open Source Applications",
+     "url": "https://aosabook.org/en/v1/llvm.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.optimization",
+   "title": "Compiler Optimization",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1957,
+   "short": "Rewriting a program into a faster form with the same behavior; the first FORTRAN compiler did it in 1957 to show that compiled code could rival hand coding.",
+   "long": "An optimizing compiler replaces the programmer's code with different code that has the same observable result but runs faster. The first FORTRAN compiler of 1957 did this on purpose: the 1954 plan promised programs that would execute in about the same time as hand-coded ones, and the 1957 paper describes common-subexpression elimination, compile-time reduction of constants, hoisting work out of loops and strength reduction of array subscripts. Modern compilers use the names constant folding, inlining and loop optimization. In a verified example, GCC at -O0 compiled a loop summing 1 to 10 into 41 bytes that keep every variable in memory, while at -O2 the whole loop became mov eax, 55 and ret, six bytes, because the compiler computed the answer itself.",
+   "code": {
+    "lang": "c",
+    "text": "int sum_to_10(void) {\n    int sum = 0;\n    for (int i = 1; i <= 10; i++)\n        sum += i;\n    return sum;\n}\n/* gcc -O0 keeps sum and i in memory (41 bytes).\n   gcc -O2 computes the answer at compile time:\n       mov eax, 55\n       ret                                       */"
+   },
+   "status": "thriving",
+   "tags": [
+    "constant folding",
+    "inlining",
+    "loop optimization",
+    "performance",
+    "-O2"
+   ],
+   "refs": [
+    {
+     "label": "Backus et al., The FORTRAN Automatic Coding System (1957)",
+     "url": "https://softwarepreservation.computerhistory.org/FORTRAN/paper/BackusEtAl-FortranAutomaticCodingSystem-1957.pdf"
+    }
+   ]
+  },
+  {
+   "id": "comp.regalloc",
+   "title": "Register Allocation",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1957,
+   "short": "Deciding which values live in a processor's few fast registers and which stay in memory, a problem already present in the first FORTRAN compiler.",
+   "long": "Processors have only a handful of registers, the fast storage built into the chip, so a compiler must decide which values live in them and which stay in slower memory. The problem is older than C. The 1957 FORTRAN compiler for the IBM 704 had three real index registers and, as each new tagged instruction was encountered, searched ahead to find which of the three was the least undesirable to replace; it also used frequency information from a simulated run of the program. At -O0 a modern compiler keeps variables in memory, while its optimized loops keep everything in registers. The textbook answer today is graph colouring, from Gregory Chaitin and colleagues in 1981.",
+   "status": "thriving",
+   "tags": [
+    "registers",
+    "graph colouring",
+    "code generation",
+    "index registers",
+    "spilling"
+   ],
+   "refs": [
+    {
+     "label": "Backus et al., The FORTRAN Automatic Coding System (1957)",
+     "url": "https://softwarepreservation.computerhistory.org/FORTRAN/paper/BackusEtAl-FortranAutomaticCodingSystem-1957.pdf"
+    }
+   ]
+  },
+  {
+   "id": "comp.lex-yacc",
+   "title": "Lex and Yacc",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1975,
+   "short": "Bell Labs tools of 1975 that generate a compiler's lexer from regular expressions and its parser from a grammar.",
+   "long": "Lex, by Mike Lesk and Eric Schmidt, and Yacc, by Stephen C. Johnson, were written at Bell Laboratories and described in technical reports in 1975 (Lex as report 39 in October, Yacc as report 32). Lex turns a table of regular expressions into a program that splits input into tokens. Yacc, short for Yet Another Compiler-Compiler, turns a grammar plus code to run on each rule into a parser for LALR(1) grammars. Yacc was used for lint, the Portable C Compiler, a system for typesetting mathematics, and compilers for C, APL, Pascal and RATFOR. Pairing Lex's words with Yacc's sentences became the standard recipe for a compiler front end on Unix.",
+   "sleeper": "The pair is dated but not gone: Yacc's descendants such as Bison are still used, though many production compilers now hand-write their parsers.",
+   "status": "legacy",
+   "tags": [
+    "parser generator",
+    "compiler-compiler",
+    "bison",
+    "flex",
+    "unix"
+   ],
+   "refs": [
+    {
+     "label": "Johnson, Yacc: Yet Another Compiler-Compiler (web-archive copy)",
+     "url": "https://web.archive.org/web/20201201001559/http://dinosaur.compilertools.net/yacc/index.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.bytecode",
+   "title": "Bytecode",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1966,
+   "short": "Compact instructions for an imaginary computer, made to be easy for a compiler to produce and for a virtual machine to run rather than for real silicon.",
+   "long": "Bytecode is a compact list of instructions for an imaginary computer, designed to be easy for a compiler to generate and for a program to execute. Robert Nystrom's Crafting Interpreters credits the idea to Martin Richards's BCPL compiler and Niklaus Wirth's Pascal compiler, and says Wirth called his version p-code, for portable, though today it is called bytecode because each instruction is often a single byte long. UCSD Pascal, distributed for $50, spread P-code, and Java made bytecode mass-market in the mid-1990s. The Python glossary warns that CPython bytecode is not expected to work between different Python virtual machines, nor to be stable between Python releases. The same sum-of-1-to-10 loop is 22 bytes of Java bytecode.",
+   "code": {
+    "lang": "python",
+    "text": "import dis\n\ndef sum_to_10():\n    total = 0\n    for i in range(1, 11):\n        total += i\n    return total\n\ndis.dis(sum_to_10)   # prints the bytecode; instruction names vary by Python version"
+   },
+   "status": "thriving",
+   "tags": [
+    "p-code",
+    "stack machine",
+    "portable",
+    "java class files",
+    "dis"
+   ],
+   "refs": [
+    {
+     "label": "Python glossary: bytecode",
+     "url": "https://docs.python.org/3/glossary.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.vm",
+   "title": "Virtual Machine",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1966,
+   "short": "A program that behaves like a computer whose machine code is bytecode, so the same program runs on any real machine that has the VM.",
+   "long": "A language virtual machine is a program that plays the role of a computer whose machine code is bytecode, so the same bytecode can run on any real computer that has the VM. The Java specification calls the JVM an abstract computing machine with an instruction set and memory areas, says the best-known virtual machine may be the P-Code machine of UCSD Pascal, and stresses that a VM need not interpret: it can compile its instructions to those of a real CPU. Crafting Interpreters states the trade-off: running bytecode in a VM is slower than native code because every instruction must be simulated, but it gives simplicity and portability.",
+   "sleeper": "The same words now also name a system virtual machine, a whole emulated computer of the kind cloud providers use. That is a different technology from a language VM such as the JVM or CPython.",
+   "code": {
+    "lang": "javascript",
+    "text": "// A tiny stack VM: bytecode is a list of [operation, argument] pairs.\nconst code = [[\"push\", 2], [\"push\", 3], [\"add\"], [\"push\", 4], [\"mul\"], [\"print\"]];\nconst stack = [];\nfor (const [op, arg] of code) {\n  if (op === \"push\") stack.push(arg);\n  else if (op === \"add\") stack.push(stack.pop() + stack.pop());\n  else if (op === \"mul\") stack.push(stack.pop() * stack.pop());\n  else if (op === \"print\") console.log(stack.pop());\n}\n// prints 20, which is (2 + 3) * 4"
+   },
+   "status": "thriving",
+   "tags": [
+    "abstract machine",
+    "portability",
+    "runtime",
+    "p-code machine"
+   ],
+   "refs": [
+    {
+     "label": "Java Virtual Machine Specification (Java SE 25), chapter 1",
+     "url": "https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-1.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.self-hosting",
+   "title": "Self-Hosting Compiler",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1969,
+   "short": "A compiler written in the language it compiles, so that it can compile itself; described on paper in 1952 and working in Multics PL/I by 1969.",
+   "long": "A self-hosting compiler is written in the language it compiles. The earliest known description is Corrado Bohm's 1952 doctoral dissertation, which described a complete compiler and defined it in its own language, though without claiming it ran on a machine. McCarthy's history says the first successful Lisp compiler, by Timothy Hart and Michael Levin, was written in Lisp and claimed to be the first compiler written in the language it compiled; the year often quoted, 1962, is not confirmed. Another early example is the Multics PL/1 compiler of 1969, which its author called the only PL/1 compiler written in PL/1. Self-hosting is a rite of passage, since a compiler that compiles its own source has handled a large, real program. Ken Thompson's 1984 Turing lecture showed the danger: a compiler can re-insert a backdoor when it compiles itself.",
+   "status": "thriving",
+   "tags": [
+    "bootstrapping",
+    "compiler",
+    "bohm",
+    "trusting trust"
+   ],
+   "refs": [
+    {
+     "label": "Freiburghouse, The Multics PL/1 Compiler (1969)",
+     "url": "https://www.multicians.org/pl1-raf.html"
+    },
+    {
+     "label": "McCarthy, History of Lisp: From LISP 1 to LISP 1.5",
+     "url": "https://www-formal.stanford.edu/jmc/history/lisp/node4.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.gcc",
+   "title": "GCC",
+   "cat": "compilers",
+   "tier": 2,
+   "year": 1987,
+   "short": "The GNU Compiler Collection, first released by Richard Stallman in 1987 as a free C compiler; it now handles C, C++, Fortran, Ada, Go and more.",
+   "long": "GCC, first the GNU C Compiler and later the GNU Compiler Collection, was released on 22 March 1987 by Richard Stallman and extended to C++ in December 1987. It grew out of the plan Stallman announced on 27 September 1983 for a free Unix-compatible system, whose first scope included a C compiler, linker and assembler. When Linus Torvalds announced Linux in August 1991 he said he had ported bash 1.08 and gcc 1.40. The EGCS fork of 1997 was accepted as the official GCC in April 1999. As of GCC 16.1, released on 30 April 2026, it has front ends for C, C++, Objective-C, Fortran, Ada, Go, D, Modula-2, Rust, COBOL and Algol 68. The Linux kernel is built with gcc -std=gnu11 and can also be built with Clang.",
+   "sleeper": "GCC is now one of two main open-source compiler families, alongside LLVM and Clang. It is no longer only a C compiler: Rust and COBOL front ends arrived with GCC 15, and an Algol 68 front end with GCC 16.",
+   "status": "thriving",
+   "tags": [
+    "gnu",
+    "stallman",
+    "free software",
+    "c compiler",
+    "egcs"
+   ],
+   "refs": [
+    {
+     "label": "GNU Project, Initial Announcement",
+     "url": "https://www.gnu.org/gnu/initial-announcement.html"
+    },
+    {
+     "label": "GCC manual: overall options",
+     "url": "https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.clang",
+   "title": "Clang",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 2007,
+   "short": "The C, C++ and Objective-C front end of the LLVM project, begun at Apple in 2006 as a modular, drop-in alternative to GCC.",
+   "long": "Apple hired Chris Lattner in 2005, and in 2006 he began Clang, a front end for C, C++ and Objective-C that uses LLVM for optimization and code generation. Apple's reasons included GCC's large codebase, which was hard to integrate with, and the low priority GCC gave Objective-C. The project was approved as open source in July 2007, and Clang's first release is dated 26 September 2007. Clang is a drop-in replacement for GCC that supports most of its flags and extensions, and its contributors include Apple, IBM, Microsoft, Google, ARM, Sony, Intel and AMD. In GCC's world every host and target pair has its own set of binaries; Clang is natively a cross-compiler, so one set of programs can compile to all targets with the -target option.",
+   "status": "thriving",
+   "tags": [
+    "llvm",
+    "apple",
+    "lattner",
+    "cross-compiler",
+    "front end"
+   ],
+   "refs": [
+    {
+     "label": "Clang documentation: cross-compilation using Clang",
+     "url": "https://clang.llvm.org/docs/CrossCompilation.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.msvc",
+   "title": "MSVC",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1993,
+   "short": "Microsoft's C and C++ compiler, shipped as Visual C++ from 1993; until 2020 it supported only the C that C++ required.",
+   "long": "MSVC is Microsoft's own C and C++ compiler for Windows, part of Visual Studio. Microsoft's first C product, Microsoft C 1.0 of 1983, was based on Lattice C and was not K&R compliant. Visual C++ 1.0 shipped in February 1993 and was compliant with Cfront 2.1. For many years Visual Studio supported C only to the extent that C++ required it. On 14 September 2020 Microsoft announced official support for C11 and C17, starting with Visual Studio 2019 version 16.8 Preview 3 and enabled by a new conformant, token-based preprocessor. Visual C++ 2026, with toolset 14.50, was released on 11 November 2025.",
+   "status": "thriving",
+   "tags": [
+    "visual c++",
+    "microsoft c",
+    "windows",
+    "lattice c"
+   ],
+   "refs": [
+    {
+     "label": "Microsoft C++ Team Blog: C11 and C17 standard support arriving in MSVC",
+     "url": "https://devblogs.microsoft.com/cppblog/c11-and-c17-standard-support-arriving-in-msvc/"
+    }
+   ]
+  },
+  {
+   "id": "comp.cfront",
+   "title": "Cfront",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1983,
+   "yearEnd": 1993,
+   "short": "Bjarne Stroustrup's original C++ compiler, which translated C++ into C; release 1.0 shipped in 1985 and version 4.0 was abandoned in 1993.",
+   "long": "Cfront was Stroustrup's original C++ compiler. By Stroustrup's own chronology, a first C++ implementation was in use in 1983 and Cfront Release 1.0, the first commercial release, came in 1985. Release 2.0 in 1989 added type-safe linkage, abstract classes and multiple inheritance, and release 3.0 of October 1991 was the first compiler with templates. Cfront is described as converting C++ to C, which a native C compiler then compiled, and as the origin of name mangling, because the linkers of the time could not carry type information in symbols. Cfront 4.0 was abandoned in 1993 after a failed attempt to add exception support.",
+   "status": "dead",
+   "tags": [
+    "c with classes",
+    "translator",
+    "name mangling",
+    "stroustrup"
+   ],
+   "refs": [
+    {
+     "label": "Stroustrup, C++ history paper (HOPL-III)",
+     "url": "https://www.stroustrup.com/hopl-almost-final.pdf"
+    }
+   ]
+  },
+  {
+   "id": "comp.jvm",
+   "title": "Java Virtual Machine",
+   "cat": "compilers",
+   "tier": 2,
+   "year": 1995,
+   "short": "The virtual machine that runs Java bytecode on any computer; Kotlin, Scala, Clojure and Groovy compile to it as well.",
+   "long": "The Java Virtual Machine runs the compiled bytecode that the Java compiler produces, so the same program can run on any computer that has a JVM. Sun announced Java on 23 May 1995, pairing a deliberately simple C++-like language with a virtual machine and automatic memory management. The specification calls the JVM an abstract computing machine that, like a real one, has an instruction set and manipulates memory areas at run time, and says it is not inherently interpreted: it can be implemented by compiling bytecode to the instructions of a real CPU. The main implementation, HotSpot in OpenJDK, has two or three JIT compilers. Kotlin, Scala, Groovy and Clojure compile to the same bytecode.",
+   "status": "thriving",
+   "tags": [
+    "write once run anywhere",
+    "bytecode",
+    "openjdk",
+    "jvm languages"
+   ],
+   "refs": [
+    {
+     "label": "Java Virtual Machine Specification (Java SE 25), chapter 1",
+     "url": "https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-1.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.hotspot",
+   "title": "HotSpot",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1997,
+   "short": "The main JVM in OpenJDK, named for finding the hot spots of a running program and recompiling them with its JIT compilers.",
+   "long": "HotSpot is the main implementation of the Java Virtual Machine in the OpenJDK project, and it contains two or three JIT compilers that turn bytecode into native instructions. Its name comes from a technique Crafting Interpreters describes: the most sophisticated JITs insert profiling hooks to see which regions are most performance critical, then recompile those hot spots with more advanced optimizations over time. Its ancestry runs through Smalltalk. Strongtalk, a fast Smalltalk with an optional type system developed in secret in the mid-1990s, was acquired by Sun to work on the Java virtual machine, and that team is widely said to have built HotSpot. Lars Bak lists HotSpot among his earlier projects, alongside Strongtalk and V8.",
+   "status": "thriving",
+   "tags": [
+    "jit",
+    "adaptive optimization",
+    "strongtalk",
+    "openjdk",
+    "profiling"
+   ],
+   "refs": [
+    {
+     "label": "OpenJDK, HotSpot Group",
+     "url": "https://openjdk.org/groups/hotspot/"
+    },
+    {
+     "label": "Strongtalk",
+     "url": "https://strongtalk.org/"
+    }
+   ]
+  },
+  {
+   "id": "comp.v8",
+   "title": "V8 JavaScript Engine",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 2008,
+   "short": "Google's open-source JavaScript engine, released with Chrome on 2 September 2008; Node.js embeds it to run JavaScript on servers.",
+   "long": "V8 is the JavaScript engine in Google Chrome. It went open source on 2 September 2008, the day Chrome launched, and it compiles JavaScript to machine code as the program runs. Its optimizing compilers have changed over time: Crankshaft in 2010, then TurboFan in 2014, with the Ignition interpreter the default by 2017. In 2009 the first release of Node.js embedded V8, which let JavaScript run on servers; Node describes itself as an asynchronous event-driven JavaScript runtime. Lars Bak, whose earlier projects included Strongtalk and HotSpot, lists V8 among his work in Google's 2011 announcement of Dart.",
+   "sleeper": "JavaScript is no longer interpreted line by line. Engines like V8 compile it to native code on the fly, and Node.js uses V8 to run it on servers.",
+   "status": "thriving",
+   "tags": [
+    "chrome",
+    "turbofan",
+    "ignition",
+    "node.js",
+    "javascript engine"
+   ],
+   "refs": [
+    {
+     "label": "V8 blog: 10 years of V8",
+     "url": "https://v8.dev/blog/10-years"
+    }
+   ]
+  },
+  {
+   "id": "comp.toolchain",
+   "title": "The C Compile-and-Link Toolchain",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1973,
+   "short": "The chain of preprocess, compile, assemble and link steps that turns C source files into a runnable program.",
+   "long": "GCC's manual says compilation can involve up to four stages: preprocessing, compilation proper, assembly and linking, always in that order. The preprocessor pastes in headers and expands macros, the compiler translates each source file into assembly, the assembler turns that into an object file, and the linker joins the object files and libraries into one executable that the operating system's loader then runs. Each C file is compiled alone as a translation unit, so the compiler needs declarations from header files to check calls into other files, and the linker later matches the names. Forgetting an object file produces the classic linker error, now worded undefined symbol. Make, written by Stuart Feldman at Bell Labs in April 1976, rebuilds only what has changed.",
+   "code": {
+    "lang": "bash",
+    "text": "cc -E main.c -o main.i        # 1. preprocess: paste in headers, expand macros\ncc -S mathutil.c               # 2. compile to assembly (mathutil.s)\ncc -c mathutil.c               # 3. assemble to an object file (mathutil.o)\ncc -c main.c                   #    ...and main.o likewise\ncc main.o mathutil.o -o app    # 4. link into an executable\n./app                          # the operating system's loader runs it"
+   },
+   "status": "thriving",
+   "tags": [
+    "build",
+    "object files",
+    "headers",
+    "translation unit",
+    "make"
+   ],
+   "refs": [
+    {
+     "label": "GCC manual: overall options",
+     "url": "https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.preprocessor",
+   "title": "C Preprocessor",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 1973,
+   "short": "The text-substitution step that runs before C compilation, pasting in headers with #include and expanding #define macros.",
+   "long": "The C preprocessor performs textual substitution before the compiler proper sees the code. A line such as #include <stdio.h> is replaced by the full text of the header file, and #define LIMIT 4 makes every LIMIT become 4. Dennis Ritchie's history says it arrived around 1972 to 1973, partly at Alan Snyder's urging and in recognition of file-inclusion mechanisms in BCPL and PL/I, and that Mike Lesk and John Reiser extended it to macros with arguments and conditional compilation. It was originally considered an optional adjunct to the language, which is why C code is organized as header files plus source files. The preprocessor does not understand C; it only substitutes text. On one toolchain, a 10-line file that included stdio.h grew to 1,542 lines after preprocessing.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>        /* replaced by the full text of stdio.h */\n#define LIMIT 4           /* every LIMIT below becomes 4 */\n\nint main(void) {\n    for (int i = 1; i <= LIMIT; i++)\n        printf(\"%d\\n\", i);\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "macros",
+    "include",
+    "define",
+    "headers",
+    "text substitution"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.bell-labs.com/usr/dmr/www/chist.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.py-free-threading",
+   "title": "Free-Threaded Python and JIT",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 2025,
+   "short": "Python 3.14 officially supports a build with no global interpreter lock, so threads can run in parallel; it is optional, not the default.",
+   "long": "For decades CPython's global interpreter lock, or GIL, let only one thread run Python code at a time, which PEP 703 called an obstacle to using multi-core CPUs efficiently. PEP 703, by Sam Gross and created on 9 January 2023, added an optional free-threaded build in Python 3.13. PEP 779, created on 13 March 2025, set the criteria for support, and the Python 3.14 release notes list free-threaded Python as officially supported, though still optional. Python 3.14 was released on 7 October 2025. Some third-party packages with extension modules may not be ready and will re-enable the GIL. Sources date the change to 2023, when the build first appeared, or 2025, when it became supported. An experimental JIT compiler also arrived in Python 3.13.",
+   "sleeper": "Python threads gave no speedup on multi-core machines because of the GIL. The free-threaded build removes that limit, but each C-extension package must opt in, so numerical code should not expect free speedups yet.",
+   "status": "niche",
+   "tags": [
+    "gil",
+    "no-gil",
+    "pep 703",
+    "pep 779",
+    "threads",
+    "cpython"
+   ],
+   "refs": [
+    {
+     "label": "PEP 703 (Sam Gross, 2023)",
+     "url": "https://peps.python.org/pep-0703/"
+    },
+    {
+     "label": "PEP 779 (2025)",
+     "url": "https://peps.python.org/pep-0779/"
+    }
+   ]
+  },
+  {
+   "id": "comp.torch-compile",
+   "title": "torch.compile (TorchDynamo)",
+   "cat": "compilers",
+   "tier": 4,
+   "year": 2023,
+   "short": "PyTorch 2's compiler, released in March 2023, which captures a model's operations as a graph and compiles them without giving up Python.",
+   "long": "torch.compile arrived with PyTorch 2 in March 2023. Its front end, TorchDynamo, is described in the PyTorch 2 paper as a Python-level just-in-time compiler that enables graph compilation in PyTorch programs without sacrificing the flexibility of Python. It narrowed a gap between two designs: TensorFlow 2.0 made eager, line-by-line execution the default in September 2019, while PyTorch, which began eager, gained a compiler. A typical machine-learning stack runs from Python code through PyTorch, JAX or Keras, a graph compiler such as TorchDynamo and TorchInductor, vendor kernel libraries such as cuDNN and cuBLAS, then CUDA and the GPU or TPU.",
+   "code": {
+    "lang": "python",
+    "text": "import torch\n\nmodel = torch.nn.Linear(4, 2)\nfast = torch.compile(model)            # TorchDynamo captures the model's operations\nprint(fast(torch.randn(3, 4)).shape)   # torch.Size([3, 2])"
+   },
+   "status": "thriving",
+   "tags": [
+    "pytorch 2",
+    "torchdynamo",
+    "torchinductor",
+    "graph compiler",
+    "machine learning"
+   ],
+   "refs": [
+    {
+     "label": "PyTorch 2 paper (ASPLOS 2024)",
+     "url": "https://doi.org/10.1145/3620665.3640366"
+    }
+   ]
+  },
+  {
+   "id": "found.manchester-baby",
+   "title": "Manchester Baby",
+   "cat": "foundations",
+   "tier": 3,
+   "year": 1948,
+   "short": "The Manchester Small-Scale Experimental Machine, which on 21 June 1948 ran the first program on an electronic stored-program computer.",
+   "long": "The Manchester Small-Scale Experimental Machine, nicknamed the Baby, was built at the University of Manchester by Freddie Williams, Tom Kilburn and Geoff Tootill. On 21 June 1948 it ran a program of seventeen instructions written by Kilburn, which the Computer History Museum calls the first program in history to run on a digital, electronic, stored-program computer. It was a small proof of concept rather than a working service. Cambridge's EDSAC ran its first fully automatic calculation on 6 May 1949, and the Ferranti Mark 1, delivered in 1951, probably holds the title of first commercially available general-purpose computer. Alick Glennie's Autocode of 1952, which Knuth and Trabb Pardo credit as the first real compiler, ran on the Manchester Mark 1.",
+   "status": "dead",
+   "tags": [
+    "manchester",
+    "kilburn",
+    "williams",
+    "first program",
+    "ssem"
+   ],
+   "refs": [
+    {
+     "label": "Computer History Museum, Timeline of Computer History: Computers",
+     "url": "https://www.computerhistory.org/timeline/computers/"
+    }
+   ]
+  },
+  {
+   "id": "found.ibm-701",
+   "title": "IBM 701",
+   "cat": "foundations",
+   "tier": 4,
+   "year": 1952,
+   "short": "IBM's first electronic computer, announced in April 1952; it had no floating point or index registers, so Speedcoding was written to supply them.",
+   "long": "The IBM 701, called the Defense Calculator, was IBM's first electronic computer. IBM announced it in April 1952 after a design effort by more than 150 engineers that began in early 1951. Nineteen were sold, rented for $15,000 a month, and each could perform more than 16,000 additions and 2,000 multiplications per second, using Williams-tube memory of about 20,000 digits. It had no index registers and no floating-point arithmetic, which is why John Backus's group wrote Speedcoding in 1953: a software layer that made the 701 behave as if it had both. The 704 that followed built those features into the hardware, and FORTRAN was written for it.",
+   "status": "dead",
+   "tags": [
+    "defense calculator",
+    "williams tube",
+    "speedcoding",
+    "mainframe"
+   ],
+   "refs": [
+    {
+     "label": "IBM, The 700 series",
+     "url": "https://www.ibm.com/history/700"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "found.turing-machine",
+   "t": "ppl.turing",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.turing-machine",
+   "t": "found.lambda-calculus",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.turing-machine",
+   "t": "found.rice-theorem",
+   "w": 2,
+   "k": "influenced",
+   "note": "Rice's theorem extends the halting problem's undecidability to every non-trivial question about behavior"
+  },
+  {
+   "s": "found.turing-machine",
+   "t": "comp.interpreter",
+   "w": 1,
+   "k": "related",
+   "note": "McCarthy compared Lisp's apply to both a universal Turing machine and an interpreter"
+  },
+  {
+   "s": "found.turing-machine",
+   "t": "found.stored-program",
+   "w": 1,
+   "k": "related",
+   "note": "Often confused with the stored-program computer; the two ideas are separate"
+  },
+  {
+   "s": "found.lambda-calculus",
+   "t": "lang.lisp",
+   "w": 3,
+   "k": "influenced",
+   "note": "McCarthy used Church's lambda notation for Lisp functions"
+  },
+  {
+   "s": "found.lambda-calculus",
+   "t": "conc.fp",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "found.lambda-calculus",
+   "t": "conc.closures",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.rice-theorem",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "influenced",
+   "note": "Explains why every static analyzer must approximate"
+  },
+  {
+   "s": "found.rice-theorem",
+   "t": "qual.lint-c",
+   "w": 2,
+   "k": "influenced",
+   "note": "Johnson's 1978 lint paper cites the halting problem"
+  },
+  {
+   "s": "found.rice-theorem",
+   "t": "qual.false-positives",
+   "w": 2,
+   "k": "influenced",
+   "note": "False alarms are the price of the imprecise compromise"
+  },
+  {
+   "s": "found.rice-theorem",
+   "t": "qual.formal-verification",
+   "w": 2,
+   "k": "influenced",
+   "note": "Annotations, restricted languages and finite models are the escape routes"
+  },
+  {
+   "s": "found.rice-theorem",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "Restricting the language is one way to make checking feasible"
+  },
+  {
+   "s": "found.eniac",
+   "t": "found.stored-program",
+   "w": 2,
+   "k": "influenced",
+   "note": "Programming by rewiring is what the stored-program design replaced"
+  },
+  {
+   "s": "found.eniac",
+   "t": "found.univac",
+   "w": 2,
+   "k": "influenced",
+   "note": "Eckert and Mauchly went on to build UNIVAC I"
+  },
+  {
+   "s": "found.eniac",
+   "t": "ppl.eniac-programmers",
+   "w": 2,
+   "k": "related",
+   "note": "Six women operated and programmed it"
+  },
+  {
+   "s": "found.eniac",
+   "t": "ppl.von-neumann",
+   "w": 1,
+   "k": "related",
+   "note": "His 1945 EDVAC report came out of the Moore School"
+  },
+  {
+   "s": "found.edsac",
+   "t": "found.stored-program",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "found.edsac",
+   "t": "org.cambridge-manchester",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.edsac",
+   "t": "found.subroutine-library",
+   "w": 2,
+   "k": "influenced",
+   "note": "The tape library of subroutines was written for EDSAC"
+  },
+  {
+   "s": "found.edsac",
+   "t": "ppl.wheeler",
+   "w": 2,
+   "k": "related",
+   "note": "Wheeler wrote its Initial Orders and invented relocation"
+  },
+  {
+   "s": "found.univac",
+   "t": "ppl.hopper",
+   "w": 2,
+   "k": "related",
+   "note": "Her group's A-0 and FLOW-MATIC ran on it"
+  },
+  {
+   "s": "found.univac",
+   "t": "found.stored-program",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "found.univac",
+   "t": "lang.short-code",
+   "w": 1,
+   "k": "related",
+   "note": "Short Code was recoded for UNIVAC in late 1950"
+  },
+  {
+   "s": "found.univac",
+   "t": "found.ibm-701",
+   "w": 1,
+   "k": "competes-with",
+   "note": "Knuth and Trabb Pardo judged UNIVAC no match for an IBM"
+  },
+  {
+   "s": "found.ibm-704",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.ibm-704",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "influenced",
+   "note": "FORTRAN was designed around its index registers and floating point"
+  },
+  {
+   "s": "found.ibm-704",
+   "t": "lang.lisp",
+   "w": 2,
+   "k": "influenced",
+   "note": "car and cdr are named for parts of a 704 word"
+  },
+  {
+   "s": "found.ibm-704",
+   "t": "comp.regalloc",
+   "w": 2,
+   "k": "influenced",
+   "note": "Three index registers forced the first register-assignment scheme"
+  },
+  {
+   "s": "found.system360",
+   "t": "found.isa",
+   "w": 3,
+   "k": "influenced",
+   "note": "The first family of machines sharing one instruction set"
+  },
+  {
+   "s": "found.system360",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.system360",
+   "t": "ppl.brooks",
+   "w": 2,
+   "k": "created-by",
+   "note": "Project leader"
+  },
+  {
+   "s": "found.system360",
+   "t": "proc.mmm",
+   "w": 2,
+   "k": "influenced",
+   "note": "OS/360's troubles are the subject of the book"
+  },
+  {
+   "s": "found.system360",
+   "t": "lang.pl1",
+   "w": 2,
+   "k": "influenced",
+   "note": "PL/I was designed for it"
+  },
+  {
+   "s": "found.system360",
+   "t": "plat.os360",
+   "w": 2,
+   "k": "related",
+   "note": "Its operating system"
+  },
+  {
+   "s": "found.system360",
+   "t": "proc.software-crisis",
+   "w": 2,
+   "k": "related",
+   "note": "OS/360 was among the troubled projects the 1968 NATO conference discussed"
+  },
+  {
+   "s": "found.ibm-pc",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.ibm-pc",
+   "t": "plat.msdos",
+   "w": 3,
+   "k": "uses",
+   "note": "Shipped with PC-DOS"
+  },
+  {
+   "s": "found.ibm-pc",
+   "t": "found.x86",
+   "w": 2,
+   "k": "influenced",
+   "note": "Locked x86 into the PC industry"
+  },
+  {
+   "s": "found.ibm-pc",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related",
+   "note": "Supplied the operating system"
+  },
+  {
+   "s": "found.ibm-pc",
+   "t": "ppl.gates-allen",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.microprocessor",
+   "t": "org.intel",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.microprocessor",
+   "t": "found.x86",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.microprocessor",
+   "t": "found.ibm-pc",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.microprocessor",
+   "t": "found.isa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.microprocessor",
+   "t": "found.multicore",
+   "w": 2,
+   "k": "evolved-into",
+   "note": "Chips later gained several processor cores"
+  },
+  {
+   "s": "found.microprocessor",
+   "t": "lang.basic",
+   "w": 1,
+   "k": "influenced",
+   "note": "Early microcomputers such as the Altair and TRS-80 ran BASIC"
+  },
+  {
+   "s": "found.x86",
+   "t": "found.isa",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "found.x86",
+   "t": "org.intel",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.x86",
+   "t": "found.arm",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "found.x86",
+   "t": "found.risc-v",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "found.x86",
+   "t": "org.amd",
+   "w": 2,
+   "k": "related",
+   "note": "AMD's 64-bit extension, x86-64"
+  },
+  {
+   "s": "found.arm",
+   "t": "found.isa",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "found.arm",
+   "t": "org.arm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.arm",
+   "t": "found.risc",
+   "w": 3,
+   "k": "implements",
+   "note": "ARM is a RISC design"
+  },
+  {
+   "s": "found.arm",
+   "t": "plat.apple-silicon",
+   "w": 2,
+   "k": "influenced",
+   "note": "Apple's own ARM-based chips replaced Intel in Macs from 2020"
+  },
+  {
+   "s": "found.arm",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related",
+   "note": "Multi-architecture container images"
+  },
+  {
+   "s": "found.arm",
+   "t": "org.aws",
+   "w": 1,
+   "k": "related",
+   "note": "Graviton brought ARM to the cloud in 2018"
+  },
+  {
+   "s": "found.risc",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.risc",
+   "t": "found.isa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.risc",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "related",
+   "note": "Designed around instructions that compilers can generate easily"
+  },
+  {
+   "s": "found.risc",
+   "t": "comp.optimization",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.risc-v",
+   "t": "found.isa",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "found.risc-v",
+   "t": "found.risc",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "found.risc-v",
+   "t": "org.berkeley",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.risc-v",
+   "t": "found.arm",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "found.moores-law",
+   "t": "org.intel",
+   "w": 2,
+   "k": "related",
+   "note": "Moore co-founded Intel in 1968"
+  },
+  {
+   "s": "found.moores-law",
+   "t": "found.multicore",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.moores-law",
+   "t": "found.microprocessor",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.moores-law",
+   "t": "math.gpu",
+   "w": 1,
+   "k": "influenced",
+   "note": "Gains now come partly from specialized accelerators"
+  },
+  {
+   "s": "found.multicore",
+   "t": "proc.free-lunch",
+   "w": 2,
+   "k": "related",
+   "note": "Sutter's essay named the turn"
+  },
+  {
+   "s": "found.multicore",
+   "t": "conc.concurrency",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "found.multicore",
+   "t": "conc.threads-locks",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.multicore",
+   "t": "conc.async-await",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.multicore",
+   "t": "conc.amdahl",
+   "w": 2,
+   "k": "related",
+   "note": "Amdahl's law bounds the gain from extra cores"
+  },
+  {
+   "s": "found.multicore",
+   "t": "ppl.sutter",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.multicore",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "influenced",
+   "note": "Compile-time data-race checks"
+  },
+  {
+   "s": "found.multicore",
+   "t": "lang.go",
+   "w": 1,
+   "k": "influenced",
+   "note": "Message passing between goroutines"
+  },
+  {
+   "s": "found.simd",
+   "t": "found.x86",
+   "w": 2,
+   "k": "related",
+   "note": "MMX, SSE and AVX are x86 extensions"
+  },
+  {
+   "s": "found.simd",
+   "t": "found.arm",
+   "w": 1,
+   "k": "related",
+   "note": "NEON is ARM's SIMD"
+  },
+  {
+   "s": "found.simd",
+   "t": "math.vectorization",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.simd",
+   "t": "plat.wasm",
+   "w": 1,
+   "k": "related",
+   "note": "WebAssembly has SIMD instructions"
+  },
+  {
+   "s": "found.simd",
+   "t": "conc.array",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.simd",
+   "t": "math.matrix-storage",
+   "w": 1,
+   "k": "related",
+   "note": "Storage order decides how well array access uses the cache"
+  },
+  {
+   "s": "found.ascii",
+   "t": "found.unicode",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "found.ascii",
+   "t": "found.utf8",
+   "w": 2,
+   "k": "influenced",
+   "note": "ASCII text is already valid UTF-8"
+  },
+  {
+   "s": "found.ascii",
+   "t": "plat.arpanet",
+   "w": 2,
+   "k": "related",
+   "note": "RFC 20 adopted it for the early ARPANET"
+  },
+  {
+   "s": "found.ascii",
+   "t": "ppl.cerf-kahn",
+   "w": 1,
+   "k": "related",
+   "note": "Vint Cerf wrote RFC 20"
+  },
+  {
+   "s": "found.ascii",
+   "t": "data.csv",
+   "w": 1,
+   "k": "related",
+   "note": "CSV files are commonly US-ASCII"
+  },
+  {
+   "s": "found.unicode",
+   "t": "lang.python",
+   "w": 1,
+   "k": "influenced",
+   "note": "Python 3 strings are sequences of Unicode code points"
+  },
+  {
+   "s": "found.unicode",
+   "t": "lang.js",
+   "w": 1,
+   "k": "influenced",
+   "note": "JavaScript strings are indexed by UTF-16 code unit"
+  },
+  {
+   "s": "found.unicode",
+   "t": "conc.data-types",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.unicode",
+   "t": "conc.cstring",
+   "w": 1,
+   "k": "related",
+   "note": "strlen counts bytes, not letters"
+  },
+  {
+   "s": "found.utf8",
+   "t": "found.unicode",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "found.utf8",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.utf8",
+   "t": "ppl.pike",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.utf8",
+   "t": "plat.plan9",
+   "w": 2,
+   "k": "related",
+   "note": "Plan 9's native encoding"
+  },
+  {
+   "s": "found.utf8",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "ppl.kahan",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "conc.float-rounding",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "org.intel",
+   "w": 2,
+   "k": "related",
+   "note": "Its 8087 coprocessor started the work"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "lang.js",
+   "w": 1,
+   "k": "influenced",
+   "note": "JavaScript's Number is an IEEE 754 double"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "lang.python",
+   "w": 1,
+   "k": "influenced",
+   "note": "Python floats are IEEE 754 doubles"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "data.sql",
+   "w": 1,
+   "k": "related",
+   "note": "Exact decimal types exist because binary floats cannot hold 0.1"
+  },
+  {
+   "s": "found.subroutine-library",
+   "t": "ppl.wheeler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.subroutine-library",
+   "t": "comp.linker",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.subroutine-library",
+   "t": "pkg.software-components",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.subroutine-library",
+   "t": "conc.function",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.subroutine-library",
+   "t": "pkg.manager",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "found.first-bug",
+   "t": "ppl.hopper",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.first-bug",
+   "t": "tool.gdb-lldb",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.first-bug",
+   "t": "qual.testing",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.first-bug",
+   "t": "lang.fortran",
+   "w": 1,
+   "k": "related",
+   "note": "The word debugged appears in the 1954 FORTRAN report"
+  },
+  {
+   "s": "found.manchester-baby",
+   "t": "found.stored-program",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "found.manchester-baby",
+   "t": "org.cambridge-manchester",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.manchester-baby",
+   "t": "found.edsac",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.manchester-baby",
+   "t": "lang.autocode",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "found.ibm-701",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.ibm-701",
+   "t": "found.ibm-704",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "found.ibm-701",
+   "t": "lang.speedcoding",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "found.ibm-701",
+   "t": "ppl.backus",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.assembler",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "comp.assembler",
+   "t": "comp.toolchain",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.assembler",
+   "t": "ppl.wheeler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.assembler",
+   "t": "ppl.booth",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.assembler",
+   "t": "found.machine-code",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.assembler",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "related",
+   "note": "A classic compiler emits assembly for the assembler"
+  },
+  {
+   "s": "comp.initial-orders",
+   "t": "found.edsac",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.initial-orders",
+   "t": "comp.assembler",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "comp.initial-orders",
+   "t": "comp.relocation",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "comp.initial-orders",
+   "t": "comp.linker",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "comp.initial-orders",
+   "t": "ppl.wheeler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.linker",
+   "t": "comp.toolchain",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.linker",
+   "t": "ppl.wheeler",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.linker",
+   "t": "plat.os",
+   "w": 1,
+   "k": "related",
+   "note": "The loader is part of the operating system"
+  },
+  {
+   "s": "comp.linker",
+   "t": "plat.multics",
+   "w": 1,
+   "k": "related",
+   "note": "Multics linked programs dynamically at run time"
+  },
+  {
+   "s": "comp.linker",
+   "t": "plat.os360",
+   "w": 1,
+   "k": "related",
+   "note": "IBM called its linker the linkage editor"
+  },
+  {
+   "s": "comp.relocation",
+   "t": "comp.linker",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.relocation",
+   "t": "ppl.wheeler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.relocation",
+   "t": "found.subroutine-library",
+   "w": 2,
+   "k": "related",
+   "note": "Relocation made a shared subroutine library practical"
+  },
+  {
+   "s": "comp.relocation",
+   "t": "comp.assembler",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "comp.a0",
+   "t": "ppl.hopper",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.a0",
+   "t": "found.univac",
+   "w": 2,
+   "k": "uses",
+   "note": "It ran on the UNIVAC I"
+  },
+  {
+   "s": "comp.a0",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "comp.a0",
+   "t": "lang.autocode",
+   "w": 1,
+   "k": "related",
+   "note": "Knuth and Trabb Pardo credit Autocode with the first true compiler"
+  },
+  {
+   "s": "comp.a0",
+   "t": "found.subroutine-library",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.a0",
+   "t": "comp.linker",
+   "w": 1,
+   "k": "related",
+   "note": "Closer to a macro expander plus a linker"
+  },
+  {
+   "s": "comp.bnf",
+   "t": "ppl.backus",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.bnf",
+   "t": "lang.algol60",
+   "w": 2,
+   "k": "related",
+   "note": "Used to define ALGOL 60 in the 1960 report"
+  },
+  {
+   "s": "comp.bnf",
+   "t": "comp.parsing",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "comp.lexing",
+   "t": "comp.pipeline",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.lexing",
+   "t": "comp.parsing",
+   "w": 2,
+   "k": "related",
+   "note": "Tokens are the parser's input"
+  },
+  {
+   "s": "comp.lexing",
+   "t": "lang.regex",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.lexing",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by",
+   "note": "Lex was written at Bell Laboratories"
+  },
+  {
+   "s": "comp.parsing",
+   "t": "comp.pipeline",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.parsing",
+   "t": "comp.ast",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "comp.parsing",
+   "t": "lang.pascal",
+   "w": 1,
+   "k": "related",
+   "note": "Declarations first, for one-pass compilation"
+  },
+  {
+   "s": "comp.parsing",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related",
+   "note": "Forward declarations, for one-pass compilation"
+  },
+  {
+   "s": "comp.ast",
+   "t": "comp.pipeline",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.ast",
+   "t": "comp.ir",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "comp.ast",
+   "t": "conc.types",
+   "w": 1,
+   "k": "related",
+   "note": "Type checking annotates the tree"
+  },
+  {
+   "s": "comp.ir",
+   "t": "comp.pipeline",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.ir",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "comp.ir",
+   "t": "comp.bytecode",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.ir",
+   "t": "comp.optimization",
+   "w": 2,
+   "k": "influenced",
+   "note": "Optimization happens on the intermediate form"
+  },
+  {
+   "s": "comp.ir",
+   "t": "comp.gcc",
+   "w": 1,
+   "k": "related",
+   "note": "GCC's front ends target GIMPLE and RTL"
+  },
+  {
+   "s": "comp.optimization",
+   "t": "comp.pipeline",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.optimization",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "related",
+   "note": "The 1957 compiler was built to prove compiled code could compete with hand coding"
+  },
+  {
+   "s": "comp.optimization",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.optimization",
+   "t": "found.isa",
+   "w": 1,
+   "k": "related",
+   "note": "Instruction selection targets a specific instruction set"
+  },
+  {
+   "s": "comp.regalloc",
+   "t": "comp.optimization",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.regalloc",
+   "t": "found.isa",
+   "w": 2,
+   "k": "related",
+   "note": "The instruction set decides how many registers exist"
+  },
+  {
+   "s": "comp.regalloc",
+   "t": "lang.fortran",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "ppl.sc-johnson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "comp.lexing",
+   "w": 3,
+   "k": "implements",
+   "note": "Lex"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "comp.parsing",
+   "w": 3,
+   "k": "implements",
+   "note": "Yacc"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "comp.bnf",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "lang.c",
+   "w": 2,
+   "k": "uses",
+   "note": "Yacc is written in portable C"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "qual.lint-c",
+   "w": 1,
+   "k": "related",
+   "note": "Yacc was used to build lint"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related",
+   "note": "The standard compiler front-end recipe on Unix"
+  },
+  {
+   "s": "comp.bytecode",
+   "t": "ppl.wirth",
+   "w": 2,
+   "k": "created-by",
+   "note": "Wirth's p-code"
+  },
+  {
+   "s": "comp.bytecode",
+   "t": "lang.pascal",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.bytecode",
+   "t": "lang.bcpl",
+   "w": 2,
+   "k": "related",
+   "note": "Martin Richards's BCPL used the idea too"
+  },
+  {
+   "s": "comp.bytecode",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related",
+   "note": "Java made bytecode mass-market"
+  },
+  {
+   "s": "comp.bytecode",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related",
+   "note": "CPython compiles source to bytecode"
+  },
+  {
+   "s": "comp.bytecode",
+   "t": "plat.wasm",
+   "w": 1,
+   "k": "related",
+   "note": "A binary format for a stack-based virtual machine"
+  },
+  {
+   "s": "comp.vm",
+   "t": "comp.bytecode",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "comp.vm",
+   "t": "comp.interpreter",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.vm",
+   "t": "comp.jit",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.vm",
+   "t": "lang.pascal",
+   "w": 1,
+   "k": "related",
+   "note": "The UCSD Pascal P-Code machine"
+  },
+  {
+   "s": "comp.vm",
+   "t": "plat.virtualization",
+   "w": 1,
+   "k": "related",
+   "note": "The second meaning of the term: a whole emulated computer"
+  },
+  {
+   "s": "comp.self-hosting",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.self-hosting",
+   "t": "lang.lisp",
+   "w": 2,
+   "k": "related",
+   "note": "The Hart and Levin Lisp compiler was written in Lisp"
+  },
+  {
+   "s": "comp.self-hosting",
+   "t": "lang.pl1",
+   "w": 2,
+   "k": "related",
+   "note": "The Multics PL/1 compiler compiled itself"
+  },
+  {
+   "s": "comp.self-hosting",
+   "t": "plat.multics",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.self-hosting",
+   "t": "fail.trusting-trust",
+   "w": 2,
+   "k": "related",
+   "note": "A compiler that compiles itself can carry a backdoor forward"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "ppl.stallman",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "org.gnu-fsf",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "lang.c",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "related",
+   "note": "The kernel is built with gcc, and Torvalds ported gcc 1.40 early on"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "comp.clang",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Clang is a drop-in replacement for GCC"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "comp.toolchain",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "lang.fortran",
+   "w": 1,
+   "k": "implements"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "implements",
+   "note": "The gccrs front end"
+  },
+  {
+   "s": "comp.clang",
+   "t": "comp.llvm",
+   "w": 3,
+   "k": "part-of",
+   "note": "The C and C++ front end of LLVM"
+  },
+  {
+   "s": "comp.clang",
+   "t": "ppl.lattner",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.clang",
+   "t": "org.apple",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.clang",
+   "t": "lang.c",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "comp.clang",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "comp.clang",
+   "t": "lang.objc",
+   "w": 1,
+   "k": "implements"
+  },
+  {
+   "s": "comp.msvc",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.msvc",
+   "t": "tool.visual-studio",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.msvc",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "comp.msvc",
+   "t": "lang.c",
+   "w": 1,
+   "k": "implements"
+  },
+  {
+   "s": "comp.msvc",
+   "t": "plat.win32",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "comp.msvc",
+   "t": "comp.gcc",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "comp.msvc",
+   "t": "comp.cfront",
+   "w": 1,
+   "k": "related",
+   "note": "Visual C++ 1.0 was Cfront 2.1 compliant"
+  },
+  {
+   "s": "comp.cfront",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "comp.cfront",
+   "t": "ppl.stroustrup",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.cfront",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.cfront",
+   "t": "lang.c",
+   "w": 2,
+   "k": "uses",
+   "note": "It translated C++ into C"
+  },
+  {
+   "s": "comp.cfront",
+   "t": "conc.abi-ffi",
+   "w": 1,
+   "k": "related",
+   "note": "Name mangling began here"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "lang.java",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "comp.vm",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "comp.bytecode",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "org.sun",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "ppl.gosling",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "lang.kotlin",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "lang.scala",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "lang.clojure",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "comp.gc",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.hotspot",
+   "t": "comp.jvm",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "comp.hotspot",
+   "t": "comp.jit",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "comp.hotspot",
+   "t": "org.sun",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.hotspot",
+   "t": "comp.v8",
+   "w": 2,
+   "k": "related",
+   "note": "Lars Bak worked on both"
+  },
+  {
+   "s": "comp.hotspot",
+   "t": "lang.smalltalk",
+   "w": 2,
+   "k": "influenced",
+   "note": "Its dynamic-compilation ancestry runs through Smalltalk"
+  },
+  {
+   "s": "comp.v8",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.v8",
+   "t": "lang.js",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "comp.v8",
+   "t": "comp.jit",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.v8",
+   "t": "plat.nodejs",
+   "w": 2,
+   "k": "influenced",
+   "note": "Node.js embeds V8"
+  },
+  {
+   "s": "comp.v8",
+   "t": "plat.browser-engines",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "comp.v8",
+   "t": "lang.ecmascript",
+   "w": 1,
+   "k": "implements"
+  },
+  {
+   "s": "comp.toolchain",
+   "t": "tool.make",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.toolchain",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.toolchain",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.toolchain",
+   "t": "tool.build-system",
+   "w": 2,
+   "k": "related",
+   "note": "Build systems exist because hand-run steps stop scaling"
+  },
+  {
+   "s": "comp.toolchain",
+   "t": "tool.cmake",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "comp.toolchain",
+   "t": "tool.ninja",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "comp.preprocessor",
+   "t": "comp.toolchain",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.preprocessor",
+   "t": "lang.c",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.preprocessor",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.preprocessor",
+   "t": "lang.bcpl",
+   "w": 1,
+   "k": "related",
+   "note": "File inclusion exists in BCPL"
+  },
+  {
+   "s": "comp.preprocessor",
+   "t": "lang.pl1",
+   "w": 1,
+   "k": "related",
+   "note": "File inclusion exists in PL/I"
+  },
+  {
+   "s": "comp.py-free-threading",
+   "t": "lang.python",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.py-free-threading",
+   "t": "conc.gil",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "comp.py-free-threading",
+   "t": "found.multicore",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.py-free-threading",
+   "t": "conc.threads-locks",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "comp.py-free-threading",
+   "t": "comp.jit",
+   "w": 1,
+   "k": "related",
+   "note": "Python 3.13 also added an experimental JIT"
+  },
+  {
+   "s": "comp.py-free-threading",
+   "t": "math.numpy",
+   "w": 1,
+   "k": "related",
+   "note": "Extension modules must opt in"
+  },
+  {
+   "s": "comp.torch-compile",
+   "t": "math.pytorch",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.torch-compile",
+   "t": "comp.jit",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "comp.torch-compile",
+   "t": "math.jax",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "comp.torch-compile",
+   "t": "math.tensorflow",
+   "w": 1,
+   "k": "related",
+   "note": "Eager execution became the default there too"
+  },
+  {
+   "s": "comp.torch-compile",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.torch-compile",
+   "t": "math.cublas-cudnn",
+   "w": 1,
+   "k": "uses"
+  }
+ ]
+}

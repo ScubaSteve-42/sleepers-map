@@ -5,7 +5,8 @@ import { mergeData } from '../scripts/merge-data.mjs';
 import { computeLayouts, minClearance } from '../scripts/layouts.mjs';
 
 const { graph } = mergeData({ write: false });
-const layouts = computeLayouts(graph);
+const all = computeLayouts(graph);
+const { axis, ...layouts } = all;   // `axis` holds the timeline and galaxy guides; the rest are node positions
 const n = graph.nodes.length;
 const at = (flat, id) => { const i = graph.nodes.findIndex((x) => x.id === id); return [flat[i * 3], flat[i * 3 + 1], flat[i * 3 + 2]]; };
 
@@ -19,6 +20,17 @@ test('every layout has finite coordinates for every node', () => {
 test('layouts are deterministic', () => {
   const again = computeLayouts(graph);
   for (const name of Object.keys(layouts)) assert.deepEqual(again[name], layouts[name], `${name} differs between runs`);
+  assert.deepEqual(again.axis, axis);
+});
+
+test('axis guides line up with the nodes they describe', () => {
+  const xs = axis.timeline.decades.map((d) => d.x);
+  assert.ok(xs.length >= 5 && xs.every((x, i) => i === 0 || x > xs[i - 1]), 'decade lines must be ordered left to right');
+  // a node dated within a decade sits near that decade's line, not on the far side of the chart
+  const dec = axis.timeline.decades.find((d) => d.year === 1990), nxt = axis.timeline.decades.find((d) => d.year === 2000);
+  if (dec && nxt) for (const [i, nd] of graph.nodes.entries()) if (nd.year >= 1991 && nd.year <= 1999) assert.ok(layouts.timeline[i * 3] > dec.x - 40 && layouts.timeline[i * 3] < nxt.x + 40, `${nd.id} (${nd.year}) is outside the 1990s band`);
+  assert.equal(axis.timeline.lanes.length, graph.categories.filter((c) => c.key !== 'root').length);
+  assert.ok(axis.galaxy.rings.every((r, i) => i === 0 || r.r > axis.galaxy.rings[i - 1].r), 'era rings must grow outward');
 });
 
 test('node surfaces never overlap by more than a hair', () => {

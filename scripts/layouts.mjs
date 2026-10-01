@@ -16,13 +16,14 @@ function rng(seed) {
   };
 }
 
+// recentre on the centroid; returns the coordinates and the offset so guides can be shifted the same way
 function finish(nodes) {
   let cx = 0, cy = 0, cz = 0;
   nodes.forEach((o) => { cx += o.x; cy += o.y; cz += o.z; });
   cx /= nodes.length; cy /= nodes.length; cz /= nodes.length;
-  const out = [];
-  nodes.forEach((o) => out.push(+(o.x - cx).toFixed(1), +(o.y - cy).toFixed(1), +(o.z - cz).toFixed(1)));
-  return out;
+  const flat = [];
+  nodes.forEach((o) => flat.push(+(o.x - cx).toFixed(1), +(o.y - cy).toFixed(1), +(o.z - cz).toFixed(1)));
+  return { flat, c: [cx, cy, cz] };
 }
 
 function runSim(sim, ticks) {
@@ -63,7 +64,7 @@ export function computeLayouts(graph, { seed = 7 } = {}) {
     .force('y', forceY((o) => pull(o, 1)).strength((o) => (o.tier <= 1 ? 0.1 : 0.045)))
     .force('z', forceZ((o) => pull(o, 2)).strength((o) => (o.tier <= 1 ? 0.1 : 0.045)));
   runSim(sim, 320 + Math.min(300, Math.round(n / 3)));
-  const constellation = finish(c);
+  const constellation = finish(c).flat;
 
   // ---- helpers for target layouts ----
   const years = graph.nodes.map((nd) => nd.year ?? 1990);
@@ -84,17 +85,20 @@ export function computeLayouts(graph, { seed = 7 } = {}) {
 
   // ---- timeline ----
   const t = mk();
-  const SPAN = 1100 + n * 0.8, LANE = 46;
+  const SPAN = 1100 + n * 0.8, LANE = 78;   // tall lanes keep the chart close to screen proportions and leave room for labels
+  const mapX = (y) => ((0.5 * tNorm(y) + 0.5 * rank(y)) - 0.5) * SPAN;
   const tx = [], ty = [], tz = [];
   graph.nodes.forEach((nd, i) => {
     const y = nd.year ?? 1990;
-    tx.push(((0.5 * tNorm(y) + 0.5 * rank(y)) - 0.5) * SPAN);
+    tx.push(mapX(y));
     const lane = nd.cat === 'root' ? (K - 1) / 2 : catIndex.get(nd.cat);
     ty.push((lane - (K - 1) / 2) * LANE);
     tz.push((rand() - 0.5) * 70);
   });
   relax(t, tx, ty, tz, { strength: 0.85, yStrength: 0.22, ticks: 280, pad: 5, charge: -6 });
-  const timeline = finish(t);
+  const tl = finish(t), timeline = tl.flat;
+  const decades = []; for (let y = Math.max(1940, Math.ceil(minY / 10) * 10); y <= maxY; y += 10) decades.push(y);   // earlier outliers (Lovelace, Boole) have no guide line
+  const laneYs = cats.map((_, k) => (k - (K - 1) / 2) * LANE - tl.c[1]);
 
   // ---- galaxy ----
   const g = mk();
@@ -109,9 +113,19 @@ export function computeLayouts(graph, { seed = 7 } = {}) {
     gy.push((rand() - 0.5) * (14 + 40 * tt));
   });
   relax(g, gx, gy, gz, { strength: 0.3, ticks: 280, pad: 5, charge: -8 });
-  const galaxy = finish(g);
+  const gl = finish(g), galaxy = gl.flat;
+  const ringR = (y) => RG * (0.1 + 0.9 * Math.pow(tNorm(y), 0.85));
 
-  return { constellation, timeline, galaxy };
+  // guides drawn behind the nodes: decade lines and category lanes for the timeline, era rings for the galaxy
+  const axis = {
+    timeline: {
+      decades: decades.map((y) => ({ year: y, x: +(mapX(y) - tl.c[0]).toFixed(1) })),
+      lanes: cats.map((c, k) => ({ cat: c.key, label: c.label, y: +laneYs[k].toFixed(1) })),
+      z: +(-tl.c[2]).toFixed(1), top: +(laneYs[K - 1] + LANE).toFixed(1), bottom: +(laneYs[0] - LANE).toFixed(1),
+    },
+    galaxy: { rings: decades.map((y) => ({ year: y, r: +ringR(y).toFixed(1) })), center: [+(-gl.c[0]).toFixed(1), +(-gl.c[1]).toFixed(1), +(-gl.c[2]).toFixed(1)] },
+  };
+  return { constellation, timeline, galaxy, axis };
 }
 
 // Minimum clearance between any two node surfaces in a layout (negative means overlap). Used by the layout test.

@@ -1,0 +1,3660 @@
+{
+ "slice": "s11-platforms",
+ "nodes": [
+  {
+   "id": "plat.os",
+   "title": "Operating System",
+   "cat": "platforms",
+   "tier": 1,
+   "year": 1964,
+   "status": "thriving",
+   "short": "The program that owns the hardware and lends it safely to other programs. Unix-family systems now run most websites and nearly all phones.",
+   "long": "An operating system (OS) is the program that owns the hardware and lends it safely to other programs. Its kernel is the privileged core. A process is a running program with its own protected memory, virtual memory gives each process a private view of memory, a file system organizes storage into named files, a driver is kernel code for one kind of hardware, and a system call is the controlled doorway through which a program asks the kernel to open a file or start a process. The line runs from 1950s batch monitors through 1960s time-sharing to Unix in 1969, whose ideas underlie Linux, macOS, iOS and Android. Dated shares: Windows had 76.36 percent of desktop use in September 2026 (StatCounter), and Unix-family systems ran 92.1 percent of websites with a known OS (W3Techs, 1 October 2026).",
+   "sleeper": "Under DOS one program ran at a time and could write anywhere in memory or straight to hardware. Modern systems run many processes with hardware-enforced isolation and user permissions, and programs reach hardware only through system calls and drivers.",
+   "tags": [
+    "kernel",
+    "process",
+    "virtual memory",
+    "system call",
+    "driver"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie: The Evolution of the Unix Time-sharing System",
+     "url": "https://www.read.seas.harvard.edu/~kohler/class/aosref/ritchie84evolution.pdf"
+    },
+    {
+     "label": "W3Techs: operating system usage",
+     "url": "https://w3techs.com/technologies/overview/operating_system"
+    }
+   ]
+  },
+  {
+   "id": "plat.os360",
+   "title": "OS/360",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1964,
+   "status": "legacy",
+   "short": "IBM's operating system for the System/360 mainframes, announced in 1964. It shipped late and troubled, and Fred Brooks wrote The Mythical Man-Month about it.",
+   "long": "IBM announced the System/360 in 1964 as one compatible family of machines with one family of operating systems, so that customers' software would survive hardware upgrades. OS/360 was the main system for the family, and it shipped late and troubled. Fred Brooks, who managed its development, drew on that experience for The Mythical Man-Month (1975), and chronically late systems like it fed the 1960s talk of a software crisis. Work ran as batches of jobs steered by job-control language (JCL). IBM's mainframe line is generally described as continuing today as z/OS on IBM Z machines.",
+   "tags": [
+    "ibm",
+    "mainframe",
+    "jcl",
+    "z/os",
+    "system/360"
+   ],
+   "refs": [
+    {
+     "label": "IBM: System/360 history",
+     "url": "https://www.ibm.com/history/system-360"
+    }
+   ]
+  },
+  {
+   "id": "plat.batch",
+   "title": "Batch Processing",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1956,
+   "status": "legacy",
+   "short": "Running programs one job at a time from decks of punched cards, with results hours or days later. It was the normal way to use a computer in the 1950s.",
+   "long": "In batch processing, operators fed decks of punched cards to the machine and a resident monitor program ran one job after another, steered by job-control language (JCL). A programmer handed in a deck and collected the printout hours or days later, with no interaction in between. At MIT in the early 1960s, the FORTRAN Monitor System read one job at a time from tape, ran it, and wrote the output to another tape for printing, and each job had complete control of the whole machine, all 32K of its memory included. Because every submission cost hours, early languages stressed readable syntax and compile-time error checking. Time-sharing was the answer to the wait.",
+   "tags": [
+    "punched cards",
+    "jcl",
+    "monitor",
+    "job queue"
+   ],
+   "refs": [
+    {
+     "label": "Walden and Van Vleck: The Compatible Time Sharing System (1961-1973)",
+     "url": "https://multicians.org/thvv/compatible-time-sharing-system.pdf"
+    }
+   ]
+  },
+  {
+   "id": "plat.timesharing",
+   "title": "Time-Sharing",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1961,
+   "status": "n/a",
+   "short": "Letting many people use one computer at once from separate terminals by switching quickly among them. MIT's CTSS demonstrated it in November 1961.",
+   "long": "Time-sharing lets several people use one computer at the same time, each at a terminal, by switching quickly among them. John McCarthy had been thinking about it since 1955 and in 1959 wrote a memo proposing a time-sharing system for the IBM 709 at MIT. CTSS was first demonstrated in November 1961 and was a stable, operational system by 1963. Dartmouth's system (1964) gave the world BASIC, and Multics (1965) pushed the idea further. The move from batch to time-sharing proved much harder than expected: Niklaus Wirth recalls systems that were announced and could not be delivered on time, bringing big companies to the brink of collapse. Cloud computing is generally traced back partly to this model of many users sharing one machine.",
+   "tags": [
+    "multi-user",
+    "terminals",
+    "interactive",
+    "dartmouth"
+   ],
+   "refs": [
+    {
+     "label": "Walden and Van Vleck: The Compatible Time Sharing System (1961-1973)",
+     "url": "https://multicians.org/thvv/compatible-time-sharing-system.pdf"
+    }
+   ]
+  },
+  {
+   "id": "plat.ctss",
+   "title": "CTSS",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1961,
+   "yearEnd": 1973,
+   "status": "dead",
+   "short": "MIT's Compatible Time-Sharing System, first demonstrated in November 1961. It ran until 1973 and was used to develop Multics.",
+   "long": "CTSS was built at the MIT Computation Center by Fernando Corbato with Marjorie Merwin Daggett and Robert Daley. It was first demonstrated in November 1961 on an IBM 709 and then ran on the 7090 and 7094. It began as a crude demonstration on three or four terminals that swapped users in and out using tape drives, and it kept the old batch system running alongside, which is the compatible part of its name. By 1963 it was a stable, large-scale operational system. Its programs included RUNOFF, an early text-formatting utility, and an early messaging system between users that anticipated email. Ritchie noted that the Unix founders had worked on CTSS, the system used to develop Multics.",
+   "tags": [
+    "mit",
+    "corbato",
+    "runoff",
+    "ibm 7094"
+   ],
+   "refs": [
+    {
+     "label": "Walden and Van Vleck: The Compatible Time Sharing System (1961-1973)",
+     "url": "https://multicians.org/thvv/compatible-time-sharing-system.pdf"
+    },
+    {
+     "label": "Computer History Museum: Software and Languages timeline",
+     "url": "https://www.computerhistory.org/timeline/software-languages/"
+    }
+   ]
+  },
+  {
+   "id": "plat.multics",
+   "title": "Multics",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1965,
+   "yearEnd": 2000,
+   "status": "dead",
+   "short": "A time-sharing system from MIT, Bell Labs and General Electric whose ideas outlived it. Bell Labs left in 1969 and went on to build Unix.",
+   "long": "Multics design started in 1965 as a joint project of MIT's Project MAC, Bell Telephone Laboratories and General Electric, led by Fernando Corbato. It was written in PL/I and introduced ideas that outlived it: a segmented, paged virtual memory, a tree-structured file system, security as a design requirement, and linking programs together dynamically while they run. Bell Labs withdrew in 1969 because Multics was slow to deliver a usable system. GE sold its computer business to Honeywell in 1970, and Honeywell sold dozens of Multics systems before cancelling the product in 1985. The last site shut down in 2000. Thompson and Ritchie began Unix in 1969, and Unix took its name from Multics.",
+   "tags": [
+    "pl/i",
+    "protection rings",
+    "dynamic linking",
+    "project mac",
+    "honeywell"
+   ],
+   "refs": [
+    {
+     "label": "Multicians: Multics history",
+     "url": "https://multicians.org/history.html"
+    },
+    {
+     "label": "Ritchie: The Evolution of the Unix Time-sharing System",
+     "url": "https://www.read.seas.harvard.edu/~kohler/class/aosref/ritchie84evolution.pdf"
+    }
+   ]
+  },
+  {
+   "id": "plat.bsd",
+   "title": "BSD",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1978,
+   "status": "niche",
+   "short": "The Berkeley Software Distribution, a Unix variant from UC Berkeley. It added virtual memory and, in 4.2BSD (1983), the sockets API and TCP/IP.",
+   "long": "BSD began as tapes of additions to Unix released by the Computer Systems Research Group at the University of California, Berkeley. Sources date the first tapes anywhere from 1976 to 1978, so the map uses 1978. AT&T licensed Unix source cheaply to universities, and Berkeley, with Bill Joy leading early work, added virtual memory. With DARPA funding, 4.2BSD (1983) shipped a TCP/IP stack and the sockets API, which treats a network connection like a file. SunOS was based on it. A 1992 lawsuit between AT&T's Unix System Laboratories and BSDi slowed the free BSDs. FreeBSD and NetBSD followed in 1993 and OpenBSD in 1995, all descending from 4.4BSD-Lite.",
+   "sleeper": "BSD code is more widespread than its name suggests. FreeBSD code is reported to live on in macOS, iOS and the PlayStation operating system, and Apple's Darwin descends from 4.4BSD-Lite2.",
+   "tags": [
+    "berkeley",
+    "bill joy",
+    "sockets",
+    "freebsd",
+    "openbsd",
+    "netbsd"
+   ],
+   "refs": [
+    {
+     "label": "FreeBSD: Explaining BSD",
+     "url": "https://docs.freebsd.org/en/articles/explaining-bsd/"
+    }
+   ]
+  },
+  {
+   "id": "plat.posix",
+   "title": "POSIX",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1988,
+   "status": "thriving",
+   "short": "The IEEE 1003 family of standards that defines a common programming interface for Unix-like systems. Its first version dates from 1988.",
+   "long": "POSIX, short for Portable Operating System Interface, is the IEEE 1003 and ISO/IEC 9945 family of Unix-compatibility standards. The effort began in 1984, and Richard Stallman suggested the name after the committee found IEEE-IX awkward. POSIX originally meant IEEE Std 1003.1-1988, which incorporates standard ANSI C. It standardized the programming interface just as the Unix vendors were splintering. Linus Torvalds asked for the POSIX definition in July 1991 while starting Linux. The standard is now maintained by the Austin Group, and the latest version listed in the research notes, from a secondary source, is IEEE Std 1003.1-2024, which still defines tools such as make.",
+   "tags": [
+    "ieee 1003",
+    "standard",
+    "portability",
+    "austin group"
+   ],
+   "refs": [
+    {
+     "label": "The Open Group: UNIX",
+     "url": "https://www.opengroup.org/unix"
+    }
+   ]
+  },
+  {
+   "id": "plat.plan9",
+   "title": "Plan 9",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1992,
+   "status": "niche",
+   "short": "Bell Labs' research successor to Unix, in which every resource appears as a file. It never displaced Unix, but UTF-8 and the Go language came from the same team.",
+   "long": "Plan 9 from Bell Labs was a research system begun in the late 1980s by Ken Thompson, Rob Pike, Dave Presotto and Phil Winterbottom. Its central ideas are that each process has its own mutable name space and that resources such as windows, the network stack and history snapshots appear as files, reached through the 9P protocol. Bell Labs shipped it to universities in 1992, AT&T sold it commercially from 1995, and by early 1996 had put it on the back burner. Eric Raymond's verdict, as quoted on Wikipedia, was that it fell short of being a compelling enough improvement on Unix to displace its ancestor. Thompson's UTF-8 became its native encoding. Copyright moved to the Plan 9 Foundation in March 2021.",
+   "tags": [
+    "bell labs",
+    "9p",
+    "namespaces",
+    "utf-8"
+   ],
+   "refs": [
+    {
+     "label": "Plan 9 from Bell Labs: overview",
+     "url": "https://9p.io/plan9/about.html"
+    }
+   ]
+  },
+  {
+   "id": "plat.cpm",
+   "title": "CP/M",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1974,
+   "status": "dead",
+   "short": "Gary Kildall's operating system, the first widely used one for 8-bit microcomputers. IBM looked to its maker, Digital Research, before it turned to MS-DOS.",
+   "long": "CP/M was written in 1974 by Gary Kildall of Digital Research for microcomputers built on Intel's 8080 and the Z80. It offered a command line, a simple file system, and a split between the portable system and a machine-specific disk BIOS, so one program could run on many makers' machines. The Computer History Museum confirms that CP/M was IBM's first choice for the IBM PC, but IBM failed to reach terms with Digital Research. Seattle Computer Products' Tim Paterson had written QDOS because a 16-bit CP/M was late, and Microsoft bought it, creating MS-DOS. Kildall alleged infringement, but a forensic analysis by Bob Zeidman found QDOS 'absolutely not copied from CP/M'.",
+   "tags": [
+    "kildall",
+    "digital research",
+    "8-bit",
+    "bios",
+    "8080"
+   ],
+   "refs": [
+    {
+     "label": "Computer History Museum: MS-DOS early source code",
+     "url": "https://computerhistory.org/blog/microsoft-ms-dos-early-source-code/"
+    }
+   ]
+  },
+  {
+   "id": "plat.msdos",
+   "title": "MS-DOS",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1981,
+   "status": "legacy",
+   "short": "The operating system Microsoft supplied for the IBM PC in 1981, bought from Seattle Computer Products. A one-program-at-a-time command line that ruled the 1980s desktop.",
+   "long": "Tim Paterson of Seattle Computer Products wrote QDOS, the 'Quick and Dirty Operating System', because the 16-bit CP/M was delayed. Microsoft licensed 86-DOS in December 1980 for $25,000 and bought all rights in the summer of 1981 for $50,000, after IBM failed to reach terms with Digital Research. PC-DOS 1.0 shipped with the IBM PC in August 1981 and handled floppy disks only. Version 1.1 followed in May 1982, and 2.0 in March 1983 added hierarchical subdirectories and hard disks. DOS was later overtaken by Windows, and OS/2, the planned DOS successor, failed.",
+   "sleeper": "A DOS program owned the whole machine and could write anywhere in memory. The early source code is now public: the Computer History Museum released versions 1.1 and 2.0 in 2014, and Microsoft put it on GitHub in September 2018.",
+   "tags": [
+    "qdos",
+    "86-dos",
+    "pc-dos",
+    "tim paterson",
+    "command line"
+   ],
+   "refs": [
+    {
+     "label": "Computer History Museum: Microsoft MS-DOS early source code",
+     "url": "https://computerhistory.org/blog/microsoft-ms-dos-early-source-code/"
+    }
+   ]
+  },
+  {
+   "id": "plat.gui",
+   "title": "Graphical User Interface",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1973,
+   "status": "thriving",
+   "short": "Windows, icons and a mouse on a bitmapped screen. Xerox PARC's Alto (1973) pioneered it, and the Macintosh and Windows brought it to the mass market.",
+   "long": "A graphical user interface (GUI) shows programs in overlapping windows on a bitmapped screen, controlled with a mouse. At Xerox PARC, Alan Kay recalled conceiving overlapping windows, and Chuck Thacker began building the Alto, with a bitmap display of about 500,000 pixels, on 22 November 1972. The Alto of 1973 was the first personal workstation with a bitmapped screen, mouse and network, and the Xerox Star followed in 1981. Apple's Macintosh (1984) and Microsoft's Windows (1985) brought the idea to buyers. The claim that Apple and Microsoft simply stole the GUI from Xerox is oversimplified: Apple paid for the PARC demonstration, and PARC engineers such as Larry Tesler moved to Apple.",
+   "tags": [
+    "windows icons mouse",
+    "alto",
+    "wimp",
+    "xerox star",
+    "bitmap display"
+   ],
+   "refs": [
+    {
+     "label": "Alan Kay: The Early History of Smalltalk",
+     "url": "https://worrydream.com/EarlyHistoryOfSmalltalk/"
+    }
+   ]
+  },
+  {
+   "id": "plat.mac-classic",
+   "title": "Classic Mac OS",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1984,
+   "status": "dead",
+   "short": "The Macintosh's original system software, launched on 24 January 1984 with windows, icons and a mouse. Its last version was Mac OS 9 in 1999.",
+   "long": "The Macintosh went on sale on 24 January 1984 and brought a mass-market graphical interface with windows, icons and a mouse, descended from Xerox PARC's work. Classic Mac OS had no memory protection and used cooperative multitasking, in which each program had to hand control back voluntarily, so one misbehaving program could freeze the whole machine. Its last version was Mac OS 9, in 1999. Apple is reported to have paid about $400 million for NeXT in December 1996, choosing it over BeOS, and NeXTSTEP became Mac OS X in March 2001.",
+   "sleeper": "Classic Mac OS had no protected memory, so one crashing program could take down the machine. The Mac sold today runs a Unix-based descendant of NeXTSTEP.",
+   "tags": [
+    "macintosh",
+    "apple",
+    "mac os 9",
+    "cooperative multitasking"
+   ]
+  },
+  {
+   "id": "plat.windows",
+   "title": "Microsoft Windows",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1985,
+   "status": "thriving",
+   "short": "Microsoft's operating system line, from a 1985 shell over DOS to today's NT-based systems. Windows had 76.36 percent of desktop use in September 2026 (StatCounter).",
+   "long": "By the usual dating, Windows 1.0 (20 November 1985) was a shell over DOS. Windows 3.0 (1990) and 3.1 (April 1992) made it mainstream, and Windows 95 (24 August 1995) added a consumer system with the Start menu. A separate server-grade line began with Windows NT 3.1 in July 1993, and Windows XP (October 2001) merged the two lines on NT. Vista (January 2007) was poorly received for its hardware demands, driver breakage and constant permission prompts, and XP persisted until support ended on 8 April 2014. Windows 7 (2009), 8 (2012), 10 (29 July 2015) and 11 (5 October 2021) followed, and Windows 10 support ended on 14 October 2025.",
+   "sleeper": "Since Windows XP in 2001 every Windows has been built on the NT kernel, with protected memory, rather than on DOS. Windows can also run a real Linux kernel in a lightweight virtual machine through WSL 2.",
+   "tags": [
+    "microsoft",
+    "windows 95",
+    "windows xp",
+    "windows 11",
+    "start menu",
+    "vista"
+   ],
+   "refs": [
+    {
+     "label": "StatCounter: desktop operating system share",
+     "url": "https://gs.statcounter.com/os-market-share/desktop/worldwide"
+    }
+   ]
+  },
+  {
+   "id": "plat.windows-nt",
+   "title": "Windows NT",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1993,
+   "status": "thriving",
+   "short": "Microsoft's protected-kernel Windows, designed by Dave Cutler's team and first shipped as NT 3.1 in July 1993. Windows from XP onward is built on it.",
+   "long": "A server-grade Windows line began with Windows NT 3.1 in July 1993. It was designed by Dave Cutler's team, which came from DEC and the VMS operating system, and it had a protected kernel and the NTFS file system, in contrast to the DOS-based consumer Windows. A secondary source in the research notes says NT 3.1's TCP/IP code was derived from BSD. Windows XP (October 2001) merged the consumer and NT lines on NT, and later versions through Windows 11 are built on that base. NT arrived just as the Unix wars and a 1992 to 1994 lawsuit were weakening the commercial Unix field.",
+   "sleeper": "DOS-era Windows could crash when one program corrupted memory. NT's protected kernel, the base of every Windows since XP, isolates programs from each other and from the system.",
+   "tags": [
+    "dave cutler",
+    "ntfs",
+    "vms",
+    "hybrid kernel",
+    "windows xp"
+   ]
+  },
+  {
+   "id": "plat.nextstep-macos",
+   "title": "NeXTSTEP and macOS",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1989,
+   "status": "thriving",
+   "short": "Steve Jobs's NeXT built an object-oriented system on the Mach kernel and BSD Unix. Apple bought NeXT in 1996, and it became Mac OS X, macOS and iOS.",
+   "long": "NeXTSTEP, from Steve Jobs's company NeXT, was an object-oriented operating system built on the Mach kernel with BSD Unix underneath. Tim Berners-Lee wrote the first web browser and server on a NeXT computer at CERN in 1990. Apple is reported to have bought NeXT in December 1996 for about $400 million, choosing it over BeOS, and NeXTSTEP became Mac OS X (10.0, March 2001), later macOS. Through iPhone OS in 2007 it also became iOS. The Open Group is reported to have certified macOS as UNIX since Leopard in 2007. StatCounter showed Apple desktops at about 16.8 percent of desktop use in September 2026, split between two labels, OS X and macOS.",
+   "sleeper": "The Mac of 1990 ran Classic Mac OS. The macOS sold today is a Unix descended from NeXTSTEP, and iOS on iPhones shares that ancestry.",
+   "tags": [
+    "next",
+    "mach",
+    "darwin",
+    "steve jobs",
+    "cocoa",
+    "mac os x"
+   ],
+   "refs": [
+    {
+     "label": "W3C: A Little History of the World Wide Web",
+     "url": "https://www.w3.org/History.html"
+    }
+   ]
+  },
+  {
+   "id": "plat.linux-distros",
+   "title": "Linux Distributions",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1993,
+   "status": "thriving",
+   "short": "Bundles of the Linux kernel with GNU tools, an installer and a package manager. Slackware and Debian date from 1993, Red Hat from 1994 to 1995, Ubuntu from 2004.",
+   "long": "Linux is only a kernel, so distributions, usually called distros, bundle it with tools, an installer and a package manager. The GNU tools from Richard Stallman's project, announced in 1983, supplied much of the rest, which is why the combination is also called GNU/Linux. Slackware and Debian date from 1993, Red Hat from 1994 to 1995 (with Red Hat Enterprise Linux in 2002), and Ubuntu from 2004. CentOS Linux ended on 30 June 2024 and was replaced by CentOS Stream, and Rocky Linux and AlmaLinux fill the gap. On desktops Linux held 4.54 percent in StatCounter's September 2026 figures.",
+   "sleeper": "In 1990 an operating system came in a box or with the machine. A distro is free to download, and its package manager installs and updates software from online repositories.",
+   "tags": [
+    "debian",
+    "red hat",
+    "ubuntu",
+    "slackware",
+    "rhel",
+    "centos"
+   ],
+   "refs": [
+    {
+     "label": "The Linux Kernel Archives",
+     "url": "https://www.kernel.org/"
+    }
+   ]
+  },
+  {
+   "id": "plat.microkernels",
+   "title": "Microkernels and the Tanenbaum Debate",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1992,
+   "status": "n/a",
+   "short": "The January 1992 argument between Andrew Tanenbaum and Linus Torvalds over whether kernels should be small and modular or one big program.",
+   "long": "On 29 January 1992 Andrew Tanenbaum, author of MINIX, posted 'LINUX is obsolete', arguing that microkernels had won and that writing a monolithic system in 1991 was a truly poor idea. Torvalds replied that Linux lost from a theoretical standpoint but won heavily on being available now. A monolithic kernel runs file systems, drivers and networking inside one privileged program, which is fast and simpler to build but lets one bug crash everything. A microkernel keeps only a minimum privileged and runs the rest as separate services, which is safer and more modular but slower. Linux later ran on nearly every processor, which undercut the portability objection. Windows NT and macOS's XNU are hybrids, and true microkernels survive where reliability matters most, as with QNX in cars.",
+   "sleeper": "Torvalds later apologized for his tone, but the market settled the argument: the monolithic kernel won, and microkernel ideas live on in hybrid designs and reliability-critical systems.",
+   "tags": [
+    "tanenbaum",
+    "minix",
+    "monolithic kernel",
+    "gnu hurd",
+    "qnx",
+    "sel4"
+   ],
+   "refs": [
+    {
+     "label": "Open Sources, appendix A: the Tanenbaum-Torvalds debate",
+     "url": "https://www.oreilly.com/openbook/opensources/book/appa.html"
+    }
+   ]
+  },
+  {
+   "id": "plat.rtos",
+   "title": "Real-Time and Embedded OSes",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2002,
+   "status": "thriving",
+   "short": "Operating systems that guarantee work finishes by a deadline, as in car brakes, pacemakers and routers. FreeRTOS and Zephyr are the open-source leaders.",
+   "long": "A real-time operating system (RTOS) guarantees that work finishes within a deadline, which matters in car brakes, pacemakers and routers. FreeRTOS, written by Richard Barry from about 2002 and under Amazon's stewardship since November 2017, uses the MIT licence. Zephyr, a Linux Foundation project from 2016, is strong on small connected devices. VxWorks from Wind River and QNX from BlackBerry are the commercial incumbents, and QNX is also a true microkernel system. All of these run on small chips with limited memory, far from the desktop and the server room.",
+   "sleeper": "Open-source embedded systems now have corporate stewards: Amazon took over FreeRTOS in 2017, and the Linux Foundation hosts Zephyr.",
+   "tags": [
+    "freertos",
+    "zephyr",
+    "vxworks",
+    "qnx",
+    "embedded",
+    "iot"
+   ],
+   "refs": [
+    {
+     "label": "FreeRTOS",
+     "url": "https://www.freertos.org/"
+    },
+    {
+     "label": "Zephyr Project",
+     "url": "https://www.zephyrproject.org/"
+    }
+   ]
+  },
+  {
+   "id": "plat.wsl",
+   "title": "Windows Subsystem for Linux",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2016,
+   "status": "thriving",
+   "short": "WSL lets a Windows machine run Linux programs. WSL 2 runs a real Linux kernel in a lightweight virtual machine, and Microsoft open-sourced WSL in May 2025.",
+   "long": "Microsoft announced the Windows Subsystem for Linux (WSL) at Build 2016 and shipped it with the Windows 10 Anniversary Update. WSL 2, announced in 2019, swapped the original translation layer for a real Linux kernel running in a lightweight virtual machine. On 19 May 2025 Microsoft open-sourced WSL, including its core code, the WSL 2 kernel and graphical support, though some Windows-side drivers were left out. It lets a Windows machine serve as a full Linux development box, so Windows now competes as a developer-friendly host for Linux workloads.",
+   "sleeper": "A 1990s Windows user would not have expected this: Microsoft now ships a real Linux kernel inside Windows and published the WSL code as open source in May 2025.",
+   "tags": [
+    "wsl2",
+    "linux on windows",
+    "microsoft",
+    "developer tools"
+   ],
+   "refs": [
+    {
+     "label": "Microsoft: The Windows Subsystem for Linux is now open source",
+     "url": "https://blogs.windows.com/windowsdeveloper/2025/05/19/the-windows-subsystem-for-linux-is-now-open-source/"
+    }
+   ]
+  },
+  {
+   "id": "plat.apple-silicon",
+   "title": "Apple Silicon",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2020,
+   "status": "thriving",
+   "short": "Apple's own ARM-based processors for Macs, announced on 22 June 2020 and first shipped as the M1 in November 2020. Rosetta 2 translates older x86 apps.",
+   "long": "On 22 June 2020 Apple announced that Macs would move from Intel processors to its own ARM-based chips, and the first of them, the M1, shipped in November 2020. A translation layer called Rosetta 2 lets older x86 applications run on the new machines. ARM (Acorn, 1985; ARM Ltd, 1990) licenses low-power designs that dominate phones, and AWS Graviton (2018) brought ARM chips to the cloud. For programmers the effect is multi-architecture builds, such as container images for both arm64 and amd64, and fewer assumptions that software only runs on x86.",
+   "sleeper": "x86 no longer sets the pace on every desktop: Macs run ARM chips, and AWS has sold ARM-based servers since 2018 with its Graviton processors.",
+   "tags": [
+    "m1",
+    "arm64",
+    "rosetta 2",
+    "graviton",
+    "apple"
+   ],
+   "refs": [
+    {
+     "label": "Apple Newsroom: Apple unleashes M1",
+     "url": "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/"
+    }
+   ]
+  },
+  {
+   "id": "plat.arpanet",
+   "title": "ARPANET and Packet Switching",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1969,
+   "yearEnd": 1990,
+   "status": "dead",
+   "short": "The US research network whose first four hosts connected in 1969. It proved packet switching and was decommissioned in 1990 once TCP/IP had spread.",
+   "long": "Packet switching breaks messages into small, independently routed packets instead of holding a dedicated circuit, as a phone call does. Leonard Kleinrock published the theory in 1961. The first ARPANET nodes came online in September 1969, UCLA first and then Stanford Research Institute, and by the end of that year four host computers were connected. Steve Crocker started the Request for Comments (RFC) series in 1969, and RFCs are still how Internet standards are written. On 1 January 1983 every ARPANET host switched from the older NCP protocol to TCP/IP. The network was decommissioned in 1990, by which time TCP/IP had supplanted or marginalized most other wide-area network protocols worldwide.",
+   "tags": [
+    "packet switching",
+    "rfc",
+    "nsfnet",
+    "kleinrock",
+    "internet history"
+   ],
+   "refs": [
+    {
+     "label": "Internet Society: A Brief History of the Internet",
+     "url": "https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+    }
+   ]
+  },
+  {
+   "id": "plat.tcpip",
+   "title": "TCP/IP",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1983,
+   "status": "thriving",
+   "short": "The protocols that link separate networks into the Internet. IP routes packets and TCP makes a reliable stream. ARPANET switched to them on 1 January 1983.",
+   "long": "IP delivers individual packets on a best-effort basis, and TCP builds a reliable, ordered stream on top by numbering, acknowledging and resending them. Vint Cerf and Bob Kahn distributed their first formal specification in September 1973, guided by open-architecture networking, in which separately run networks interwork through common protocols. On 1 January 1983, known as flag day, all ARPANET hosts switched from the older NCP to TCP/IP at once, and the change went smoothly. The formal specifications are RFC 791 (IP) and RFC 793 (TCP), from September 1981. TCP/IP beat the more official OSI stack, IBM's SNA and DEC's DECnet because it was free, simple and already working, in line with the IETF's saying 'rough consensus and running code'.",
+   "sleeper": "A 1980s programmer might dial a modem or write to a vendor's network interface. Now any machine on Earth can be reached by name over HTTPS with a few lines of code, because libraries hide the protocols.",
+   "code": {
+    "lang": "python",
+    "text": "import socket\n\nwith socket.create_connection((\"example.com\", 80)) as s:\n    s.sendall(b\"GET / HTTP/1.0\\r\\nHost: example.com\\r\\n\\r\\n\")\n    print(s.recv(200).decode())"
+   },
+   "tags": [
+    "ip",
+    "tcp",
+    "flag day",
+    "rfc 791",
+    "rfc 793",
+    "sockets",
+    "internet protocol"
+   ],
+   "refs": [
+    {
+     "label": "Internet Society: A Brief History of the Internet",
+     "url": "https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+    },
+    {
+     "label": "RFC 793: Transmission Control Protocol",
+     "url": "https://www.rfc-editor.org/rfc/rfc793"
+    }
+   ]
+  },
+  {
+   "id": "plat.dns",
+   "title": "DNS",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1983,
+   "status": "thriving",
+   "short": "A worldwide hierarchical phone book that turns names such as example.com into IP addresses. Paul Mockapetris invented it in 1983 and 1984.",
+   "long": "Paul Mockapetris invented the Domain Name System (DNS) in 1983 and 1984. It replaced a single hand-maintained HOSTS.TXT file that no longer scaled with a worldwide hierarchy of names. The core specifications are RFC 1034 and RFC 1035, from November 1987. Most web addresses begin with a name that DNS must turn into an IP address before a browser can connect, so DNS sits underneath nearly every web request. The Internet Society's history credits Mockapetris with the invention.",
+   "tags": [
+    "mockapetris",
+    "hosts.txt",
+    "rfc 1034",
+    "rfc 1035",
+    "domain names"
+   ],
+   "refs": [
+    {
+     "label": "RFC 1035: Domain names, implementation and specification",
+     "url": "https://www.rfc-editor.org/rfc/rfc1035"
+    }
+   ]
+  },
+  {
+   "id": "plat.email",
+   "title": "Email, Usenet and BBSs",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1972,
+   "status": "legacy",
+   "short": "Early online communities: email from 1972, bulletin board systems from 1978 and Usenet from 1979 to 1980. The open Web later absorbed most of their functions.",
+   "long": "Ray Tomlinson wrote basic email software in March 1972, and at the October 1972 International Computer Communication Conference Robert Kahn organized the first public demonstration of the network. Email became the first killer application, and SMTP (RFC 821, 1982) became the standard mail transfer protocol. Usenet (1979 to 1980, Duke and UNC) was a distributed discussion system over dial-up Unix links. Bulletin board systems, the first being CBBS in Chicago in 1978, were single PCs answering modems, loosely networked by FidoNet from 1984. CompuServe, Prodigy and AOL were walled gardens, and 'Eternal September' (1993) is usually dated to the arrival of AOL's new users on Usenet. Most of these faded as the open Web absorbed their functions, though the newsgroup idea lives on in forums and Reddit.",
+   "tags": [
+    "smtp",
+    "tomlinson",
+    "usenet",
+    "bbs",
+    "fidonet",
+    "aol",
+    "eternal september"
+   ],
+   "refs": [
+    {
+     "label": "Internet Society: A Brief History of the Internet",
+     "url": "https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+    },
+    {
+     "label": "RFC 821: Simple Mail Transfer Protocol",
+     "url": "https://www.rfc-editor.org/rfc/rfc821"
+    }
+   ]
+  },
+  {
+   "id": "plat.ethernet",
+   "title": "Ethernet",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1973,
+   "status": "thriving",
+   "short": "Robert Metcalfe's local-network technology from Xerox PARC, 1973. It became IEEE 802.3 in 1983 and beat Token Ring.",
+   "long": "Ethernet is the local-network technology of Robert Metcalfe, developed at Xerox PARC, where his May 1973 memo describes it. The DIX standard followed in 1980, and in 1983 Ethernet became IEEE 802.3 and won the local-network war against Token Ring. Metcalfe's company 3Com, a PARC spin-out of 1979, was built on it. Wi-Fi, standardized as IEEE 802.11 in 1997 and 1999, extended local networking to wireless links. PARC produced Ethernet together with the Alto workstation, the laser printer and Smalltalk, and Apple, Adobe and 3Com later commercialized these inventions.",
+   "tags": [
+    "metcalfe",
+    "ieee 802.3",
+    "token ring",
+    "wi-fi",
+    "lan",
+    "3com"
+   ]
+  },
+  {
+   "id": "plat.http",
+   "title": "HTTP",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1991,
+   "status": "thriving",
+   "short": "The request-and-response protocol browsers use to talk to web servers. Berners-Lee's CERN team released it in 1991, and it has grown from HTTP/0.9 to HTTP/3.",
+   "long": "HTTP, the HyperText Transfer Protocol, is the request-and-response conversation a browser has with a server. It was one of three small inventions by Tim Berners-Lee at CERN, with the URL, a text address for a document, and HTML, the tagged text format for pages with links. The Web was released generally on CERN machines on 17 May 1991. HTTP went from 0.9 to 1.0 (RFC 1945, 1996) and 1.1 (RFC 2068, 1997; RFC 2616, 1999), and the 1.1 specification was rewritten as RFC 9110 to 9112 in 2022. Its text-based, inspectable format and open specification meant anyone could implement it for free.",
+   "sleeper": "In 1990 a network program meant a vendor's own interface. HTTP is plain text that a person can read, and the same simple protocol now carries web pages and the interfaces of many web services.",
+   "code": {
+    "lang": "http",
+    "text": "GET /index.html HTTP/1.1\nHost: example.com\n\nHTTP/1.1 200 OK\nContent-Type: text/html\n\n<html>...</html>"
+   },
+   "tags": [
+    "web",
+    "request",
+    "response",
+    "url",
+    "http/1.1",
+    "rfc 9110"
+   ],
+   "refs": [
+    {
+     "label": "W3C: A Little History of the World Wide Web",
+     "url": "https://www.w3.org/History.html"
+    },
+    {
+     "label": "RFC 9110: HTTP Semantics",
+     "url": "https://www.rfc-editor.org/rfc/rfc9110"
+    }
+   ]
+  },
+  {
+   "id": "plat.mosaic",
+   "title": "Mosaic and Netscape Navigator",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1993,
+   "status": "dead",
+   "short": "Mosaic, from NCSA in 1993, put images inline with text and made the Web visual. Its authors founded Netscape, whose Navigator shipped in December 1994.",
+   "long": "Mosaic, from the National Center for Supercomputing Applications (NCSA), put images inline with text and made the Web visual. Its first alpha came out in February 1993, and CERN declared the Web technology free for anyone to use on 30 April 1993. Marc Andreessen, one of Mosaic's authors with Eric Bina, and Jim Clark founded Netscape, whose Navigator shipped in December 1994. Netscape's IPO on 9 August 1995 started the dot-com boom. Microsoft shipped Internet Explorer in 1995, bundled it with Windows and won the browser war by about 1998 to 2000. AOL bought Netscape in 1998 to 1999, but Netscape had open-sourced its code in 1998, which became Mozilla and Firefox (1.0 in 2004).",
+   "sleeper": "In 1993 a browser displayed linked documents. It has since become a runtime for full applications, written in JavaScript and increasingly WebAssembly.",
+   "tags": [
+    "ncsa",
+    "andreessen",
+    "netscape",
+    "internet explorer",
+    "firefox",
+    "browser war"
+   ],
+   "refs": [
+    {
+     "label": "W3C: A Little History of the World Wide Web",
+     "url": "https://www.w3.org/History.html"
+    }
+   ]
+  },
+  {
+   "id": "plat.tls",
+   "title": "SSL/TLS and HTTPS",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1995,
+   "status": "thriving",
+   "short": "The encryption layer behind the browser padlock. Netscape's SSL (1995) became TLS in 1999, and TLS 1.3 (2018) cut the handshake to one round trip.",
+   "long": "Netscape's Secure Sockets Layer (SSL 2.0 in 1995, SSL 3.0 in 1996) was standardized as TLS 1.0 (RFC 2246, 1999), then TLS 1.2 (RFC 5246, 2008) and TLS 1.3 (RFC 8446, August 2018), which removed legacy options and cut the handshake to one round trip. TLS encrypts traffic and, with certificates issued by trusted certificate authorities, proves which site you reached, which the browser shows as a padlock. HTTPS is HTTP carried over TLS. Let's Encrypt, in public beta from December 2015, issues free certificates through the automated ACME protocol and removed the cost barrier. Heartbleed (April 2014) came from a missing length check in OpenSSL's TLS heartbeat feature.",
+   "sleeper": "Certificates used to be a purchase. Let's Encrypt, in public beta since December 2015, issues them free and automatically through the ACME protocol.",
+   "tags": [
+    "ssl",
+    "https",
+    "certificates",
+    "let's encrypt",
+    "padlock",
+    "tls 1.3"
+   ],
+   "refs": [
+    {
+     "label": "RFC 8446: TLS 1.3",
+     "url": "https://www.rfc-editor.org/rfc/rfc8446"
+    }
+   ]
+  },
+  {
+   "id": "plat.http3",
+   "title": "HTTP/2, HTTP/3 and QUIC",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2015,
+   "status": "thriving",
+   "short": "HTTP/2 (2015) sends many requests over one connection. HTTP/3 runs HTTP over QUIC and UDP, and W3Techs showed it on 40.8 percent of websites in October 2026.",
+   "long": "HTTP/2 (RFC 7540, May 2015), derived from Google's SPDY, multiplexes many requests over one TCP connection. QUIC (RFC 9000, May 2021) is a newer transport built on UDP, with encryption included and without TCP's head-of-line blocking, in which one lost packet holds up everything behind it. HTTP/3 (RFC 9114, June 2022) runs HTTP over QUIC. W3Techs reported in October 2026 that HTTP/3 is used by 40.8 percent of all websites. TLS 1.3 (2018) is the encryption standard that QUIC's design builds on.",
+   "tags": [
+    "http/2",
+    "quic",
+    "udp",
+    "spdy",
+    "rfc 9114",
+    "multiplexing"
+   ],
+   "refs": [
+    {
+     "label": "W3Techs: HTTP/3 usage",
+     "url": "https://w3techs.com/technologies/details/ce-http3"
+    },
+    {
+     "label": "RFC 9114: HTTP/3",
+     "url": "https://www.rfc-editor.org/rfc/rfc9114"
+    }
+   ]
+  },
+  {
+   "id": "plat.rest",
+   "title": "REST",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 2000,
+   "status": "thriving",
+   "short": "Roy Fielding's 2000 description of the Web's architecture as six constraints. In practice 'REST' now means JSON over HTTP with GET, POST, PUT and DELETE.",
+   "long": "Representational State Transfer (REST) comes from Roy Fielding's 2000 doctoral dissertation, which describes the Web's own architecture as six constraints: client-server, stateless requests that each carry all the information needed, cacheable responses, a uniform interface, a layered system, and optional code-on-demand. The uniform interface means identifying resources, manipulating them through representations, self-descriptive messages, and hypermedia as the engine of application state. Fielding derived it from the design of HTTP and URLs. Industry usage has narrowed 'REST' to JSON over HTTP with verbs such as GET, POST, PUT and DELETE, and it rarely includes the hypermedia part. REST plus JSON won out over SOAP, XML-RPC and CORBA.",
+   "sleeper": "SOAP and CORBA, the enterprise styles of the late 1990s and 2000s, lost out to a simpler idea: a URL that returns JSON. SOAP is reportedly still found in banking, healthcare and government systems.",
+   "tags": [
+    "fielding",
+    "hypermedia",
+    "json",
+    "web api",
+    "stateless"
+   ],
+   "refs": [
+    {
+     "label": "Fielding: dissertation, chapter 5 (REST)",
+     "url": "https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"
+    }
+   ]
+  },
+  {
+   "id": "plat.graphql-grpc",
+   "title": "GraphQL and gRPC",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2015,
+   "status": "thriving",
+   "short": "Two API styles open-sourced in 2015: Facebook's GraphQL, where the client asks for exactly the fields it needs, and Google's gRPC, for compact typed calls between services.",
+   "long": "GraphQL was created at Facebook, used internally from 2012 and open-sourced in 2015. It lets a client ask for exactly the fields it needs in one request, which suits mobile apps. gRPC, open-sourced by Google in 2015, uses HTTP/2 and Protocol Buffers for compact, typed calls between services inside data centers. Where REST usually returns readable JSON, gRPC sends compact messages with declared types. Both coexist with REST, and neither has replaced it.",
+   "code": {
+    "lang": "graphql",
+    "text": "{\n  user(id: \"42\") {\n    name\n    posts {\n      title\n    }\n  }\n}"
+   },
+   "tags": [
+    "graphql",
+    "grpc",
+    "protocol buffers",
+    "api",
+    "http/2"
+   ],
+   "refs": [
+    {
+     "label": "GraphQL",
+     "url": "https://graphql.org/"
+    },
+    {
+     "label": "gRPC",
+     "url": "https://grpc.io/"
+    }
+   ]
+  },
+  {
+   "id": "plat.cdn",
+   "title": "Content Delivery Networks",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1998,
+   "status": "thriving",
+   "short": "Networks that cache a site's files in many cities close to users. Akamai (1998), Cloudflare (2010) and Fastly (2011) now also handle encryption and run code.",
+   "long": "Content delivery networks (CDNs) cache a site's files on servers in many cities, so that pages and media load from a machine near the visitor. Akamai (1998), Cloudflare (launched 2010) and Fastly (2011) are the best-known providers. CDNs have since taken on more of the web's work: they terminate TLS encryption, absorb attacks and run customers' code. That last step is edge computing, as in Cloudflare Workers, announced in 2017.",
+   "sleeper": "In the 1990s every visitor reached the site's own server. A site can now put a CDN in front of its server, which serves cached copies from nearby and handles encryption and attack traffic.",
+   "tags": [
+    "akamai",
+    "cloudflare",
+    "fastly",
+    "caching",
+    "edge"
+   ]
+  },
+  {
+   "id": "plat.api-products",
+   "title": "APIs as Products",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2000,
+   "status": "thriving",
+   "short": "Companies selling their business as web APIs: Salesforce and eBay in 2000, Amazon from 2002, then Twilio (2008) and Stripe (2011), where the API is the product.",
+   "long": "A web API is a set of requests that one program can send to another company's server. Salesforce and eBay (2000) and Amazon (2002 onward) began exposing their business through web APIs. Later Twilio (2008) and Stripe (2011) made the API itself the product, so that taking a payment or sending a text message takes a few lines of code. Amazon's own effort to expose internal infrastructure as services is also the origin of AWS, although the widely repeated story of a 2002 Bezos mandate comes from a 2011 blog post by Steve Yegge, not from an Amazon document, and is best treated as lore.",
+   "sleeper": "In 1990 you bought software on disks and linked in a library. Now a payment, a text message or a map lookup can be a web request to another company's server.",
+   "tags": [
+    "web api",
+    "stripe",
+    "twilio",
+    "salesforce",
+    "saas"
+   ]
+  },
+  {
+   "id": "plat.dotcom",
+   "title": "The Dot-Com Bubble",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2000,
+   "yearEnd": 2002,
+   "status": "n/a",
+   "short": "The Internet stock boom that began with Netscape's 1995 IPO. The Nasdaq peaked on 10 March 2000 and lost roughly three-quarters of its value by October 2002.",
+   "long": "The dot-com boom ran from about 1995 to 2002. Netscape's IPO on 9 August 1995 started it, and the Nasdaq Composite peaked on 10 March 2000 at about 5,049. By October 2002 it had lost roughly three-quarters of its value. Pets.com went public in February 2000 and was liquidated nine months later. Amazon, eBay and Google survived, and the glut of cheap fiber and servers left by the bust helped feed the next era of the web.",
+   "tags": [
+    "nasdaq",
+    "pets.com",
+    "bubble",
+    "web 1.0",
+    "ipo"
+   ]
+  },
+  {
+   "id": "plat.cgi",
+   "title": "CGI",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1993,
+   "status": "legacy",
+   "short": "The Common Gateway Interface, from 1993, started a fresh program for each web request and sent back its output as the page. Simple, and slow.",
+   "long": "The Common Gateway Interface (CGI) of 1993 let a web server run a separate program for every request, often written in Perl, and send the program's output back to the browser as the page. It was simple and slow, because a new process started each time. In-process alternatives followed: PHP (Rasmus Lerdorf, 1994 to 1995), Microsoft's ASP (1996), Java Servlets and JSP (1997 to 1999) and ColdFusion. The server side then moved on to model-view-controller frameworks such as Ruby on Rails (2004) and Django (2005).",
+   "code": {
+    "lang": "perl",
+    "text": "#!/usr/bin/perl\nprint \"Content-Type: text/plain\\n\\n\";\nprint \"Hello from a CGI script\\n\";"
+   },
+   "tags": [
+    "perl",
+    "dynamic pages",
+    "web server",
+    "scripts"
+   ]
+  },
+  {
+   "id": "plat.wordpress",
+   "title": "WordPress",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2003,
+   "status": "thriving",
+   "short": "The most widely used content management system. W3Techs found WordPress on 40.2 percent of all websites on 1 October 2026.",
+   "long": "WordPress is a content management system (CMS), software for publishing and editing a website's pages without writing code for each one. W3Techs reported on 1 October 2026 that it runs on 40.2 percent of all websites, which is 58.7 percent of the sites that use any known CMS. A further 31.5 percent use no CMS, and Shopify, Wix and Squarespace follow with 5.4, 4.2 and 2.4 percent. PHP won the web hosting layer between 1995 and 2005, and WordPress in effect froze that win in place: PHP ran 69.8 percent of sites with a known server-side language on the same date. Developers rank it lower, since 13.6 percent of 2025 Stack Overflow respondents used it.",
+   "sleeper": "What developers like and what runs the web differ. PHP and WordPress are far more common on the real web than developer surveys suggest.",
+   "tags": [
+    "cms",
+    "php",
+    "blogging",
+    "shopify",
+    "w3techs"
+   ],
+   "refs": [
+    {
+     "label": "W3Techs: content management systems",
+     "url": "https://w3techs.com/technologies/overview/content_management"
+    }
+   ]
+  },
+  {
+   "id": "plat.ajax",
+   "title": "AJAX and Web 2.0",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2005,
+   "status": "thriving",
+   "short": "Fetching data in the background so a page updates without reloading. Gmail and Google Maps showed it, and Jesse James Garrett named it Ajax in February 2005.",
+   "long": "Gmail (2004) and Google Maps (2005) used JavaScript's XMLHttpRequest to fetch data without reloading the page. Jesse James Garrett named the pattern Ajax in an essay of 18 February 2005, writing that it is not a technology but several technologies coming together in powerful new ways. The label Web 2.0, used by O'Reilly in 2004 to 2005, covered the wider wave of sites built on user-generated content. jQuery (2006) papered over browser differences, and 23.4 percent of 2025 Stack Overflow respondents still use it. Ajax led to single-page applications, where the browser downloads a JavaScript program once and keeps redrawing the page itself.",
+   "sleeper": "A web page in 1995 was fetched whole, and clicking a link meant waiting for a new page. After Ajax a page could behave like a program, which led to today's web applications.",
+   "code": {
+    "lang": "javascript",
+    "text": "const xhr = new XMLHttpRequest();\nxhr.open(\"GET\", \"/api/items\");\nxhr.onload = () => console.log(JSON.parse(xhr.responseText));\nxhr.send();"
+   },
+   "tags": [
+    "xmlhttprequest",
+    "gmail",
+    "google maps",
+    "web 2.0",
+    "jquery"
+   ],
+   "refs": [
+    {
+     "label": "Garrett: Ajax, A New Approach to Web Applications (archived)",
+     "url": "https://web.archive.org/web/20050228223355/http://www.adaptivepath.com/publications/essays/archives/000385.php"
+    }
+   ]
+  },
+  {
+   "id": "plat.nodejs",
+   "title": "Node.js",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 2009,
+   "status": "thriving",
+   "short": "Ryan Dahl's 2009 runtime that put Chrome's V8 JavaScript engine on the server. It was the most-used web technology in Stack Overflow's 2025 survey, at 48.7 percent.",
+   "long": "Ryan Dahl first released Node.js in May 2009 and demonstrated it at JSConf EU in November 2009. It combines Google's V8 engine, taken from Chrome, with an event loop and low-level input and output, so JavaScript can run on a server and one language can serve both ends of a web application. The npm package manager appeared in January 2010, and Dahl handed the project to Isaac Schlueter in January 2012. On 30 September 2026 Node 26 was the current release, with Node 24 and Node 22 in long-term support. Node.js was the most-used web technology in Stack Overflow's 2025 survey, at 48.7 percent, and Express was used by 19.9 percent. Dahl later built Deno, which reached 1.0 in May 2020.",
+   "sleeper": "JavaScript began as a browser scripting language. Node moved it onto servers, and full-stack developers now write both ends of an application in one language.",
+   "code": {
+    "lang": "javascript",
+    "text": "const http = require(\"node:http\");\n\nhttp.createServer((req, res) => {\n  res.end(\"Hello from \" + req.url + \"\\n\");\n}).listen(3000);"
+   },
+   "tags": [
+    "v8",
+    "javascript runtime",
+    "express",
+    "deno",
+    "event loop",
+    "npm"
+   ],
+   "refs": [
+    {
+     "label": "Node.js: about",
+     "url": "https://nodejs.org/en/about"
+    },
+    {
+     "label": "V8 blog: ten years of V8",
+     "url": "https://v8.dev/blog/10-years"
+    }
+   ]
+  },
+  {
+   "id": "plat.spa",
+   "title": "Single-Page Applications",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2010,
+   "status": "thriving",
+   "short": "Web applications that load once and then redraw themselves, calling server APIs for data. AngularJS (2010), React (2013) and Vue (2014) made them standard.",
+   "long": "In a single-page application (SPA) the browser downloads a JavaScript program once and then redraws parts of the page itself, calling server APIs for data instead of loading new pages. AngularJS (2010), React (Facebook, open-sourced May 2013) and Vue (Evan You, 2014) made the style standard. React introduced component-based user interfaces with a virtual DOM, and Google rewrote Angular in 2016. In Stack Overflow's 2025 survey React was used by 44.7 percent of respondents, Angular by 18.2 percent and Vue by 17.6 percent. Server rendering has since returned in part: Next.js (2016), Astro (2021) and React Server Components (stable in React 19, December 2024) send finished HTML, and htmx argues that most apps do not need a SPA.",
+   "sleeper": "The web began as thin pages built on servers. SPAs moved the work into the browser, and the 2020s are moving some of it back, which looks more like a pendulum than a settled answer.",
+   "tags": [
+    "react",
+    "angular",
+    "vue",
+    "spa",
+    "virtual dom",
+    "server rendering"
+   ],
+   "refs": [
+    {
+     "label": "Stack Overflow Developer Survey 2025: Technology",
+     "url": "https://survey.stackoverflow.co/2025/technology"
+    }
+   ]
+  },
+  {
+   "id": "plat.pwa",
+   "title": "Progressive Web Apps",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2015,
+   "status": "niche",
+   "short": "Web apps that can be installed, work offline through a service worker and send notifications. Apple's weaker support has kept their reach limited.",
+   "long": "A Progressive Web App (PWA), a term from 2015, is a web app that can be installed on a device, work offline through a service worker (a background script that caches files) and send notifications. It was meant to compete with native apps from the app stores. Its reach has been limited by Apple's historically weaker support, so PWAs remain a niche next to the stores. Cloudflare later reused the Service Worker API, designed for browsers, for its edge platform, Workers, announced in 2017.",
+   "code": {
+    "lang": "javascript",
+    "text": "if (\"serviceWorker\" in navigator) {\n  navigator.serviceWorker.register(\"/sw.js\");\n}"
+   },
+   "tags": [
+    "service worker",
+    "offline",
+    "installable",
+    "web app manifest"
+   ],
+   "refs": [
+    {
+     "label": "web.dev: Progressive Web Apps",
+     "url": "https://web.dev/progressive-web-apps/"
+    }
+   ]
+  },
+  {
+   "id": "plat.wasm",
+   "title": "WebAssembly",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2017,
+   "status": "thriving",
+   "short": "A portable binary format for code in browsers and beyond. C, C++, Rust and Go run in it at near-native speed. Wasm 3.0 was declared complete on 17 September 2025.",
+   "long": "WebAssembly (Wasm) is, in its own description, a binary instruction format for a stack-based virtual machine, designed as a portable compilation target for programming languages. Browsers have shipped it since 2017, and its first W3C Recommendation came in December 2019. It lets C, C++, Rust or Go code run at near-native speed in browsers, in applications such as Figma, games and video tools, and increasingly as a sandboxed plugin or edge-runtime format. Wasm 3.0 was announced complete on 17 September 2025, adding 64-bit memory, garbage collection, tail calls, exception handling and relaxed SIMD, and it is already shipping in most major browsers. It revives the write-once-run-anywhere goal of the Java virtual machine.",
+   "sleeper": "Browser plugins such as Java applets, Flash and Silverlight lost to features built into every browser. WebAssembly is the successor for fast, portable code, and its standards come from W3C groups that include all the major browser makers.",
+   "code": {
+    "lang": "wat",
+    "text": "(module\n  (func $add (param i32 i32) (result i32)\n    local.get 0\n    local.get 1\n    i32.add)\n  (export \"add\" (func $add)))"
+   },
+   "tags": [
+    "wasm",
+    "bytecode",
+    "browser",
+    "wasi",
+    "sandbox"
+   ],
+   "refs": [
+    {
+     "label": "WebAssembly.org",
+     "url": "https://webassembly.org/"
+    },
+    {
+     "label": "WebAssembly 3.0 announcement",
+     "url": "https://webassembly.org/news/2025-09-17-wasm-3.0/"
+    }
+   ]
+  },
+  {
+   "id": "plat.browser-engines",
+   "title": "Browser Engines (Blink, WebKit, Gecko)",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2003,
+   "status": "thriving",
+   "short": "The software that turns HTML, CSS and JavaScript into pixels. Blink (Chrome, Edge), WebKit (Safari) and Gecko (Firefox) are the three that remain.",
+   "long": "A browser engine turns HTML, CSS and JavaScript into what appears on screen. Gecko, from Netscape's code via Mozilla, powers Firefox. WebKit, which Apple started from KHTML in 2003, powers Safari and every iOS browser unless regulation intervenes; the EU's rules allowed alternatives from 2024. Blink, Google's April 2013 fork of WebKit, powers Chrome, Edge (since January 2020), Opera and Samsung Internet. StatCounter's September 2026 figures for all platforms were Chrome 66.36, Safari 18.27, Edge 6.04, Firefox 2.80, Samsung Internet 2.31 and Opera 1.77 percent. The Chromium-based browsers in that list add up to about 76.5 percent, so Blink is the de facto standard, and the browser monoculture worry of the Internet Explorer era has returned in a new form.",
+   "tags": [
+    "blink",
+    "webkit",
+    "gecko",
+    "chromium",
+    "khtml",
+    "rendering"
+   ],
+   "refs": [
+    {
+     "label": "StatCounter: browser market share",
+     "url": "https://gs.statcounter.com/browser-market-share"
+    }
+   ]
+  },
+  {
+   "id": "plat.bun",
+   "title": "Bun",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2022,
+   "status": "thriving",
+   "short": "A JavaScript runtime, package manager, bundler and test runner in one program, by Jarred Sumner. Bun 1.0 shipped in September 2023, and Anthropic acquired it in December 2025.",
+   "long": "Bun is a JavaScript runtime that bundles a package manager, a bundler and a test runner, billed in its 1.0 announcement of 8 September 2023 as a drop-in replacement for Node.js. Jarred Sumner founded it in 2021. Anthropic announced on 3 December 2025 that it was acquiring Bun, citing its role in scaling Claude Code; the source is Anthropic's own announcement, an interested party. Bun was written in Zig. In a post dated 8 July 2026 Sumner wrote that its 535,496 lines of Zig produced recurring memory bugs, and that it was rewritten in Rust over 11 days, much of it with Claude Code, shipping in Bun 1.4. That account also comes from an interested party. Bun v1.4.2 was released on 5 September 2026.",
+   "tags": [
+    "javascript runtime",
+    "zig",
+    "rust",
+    "jarred sumner",
+    "node alternative"
+   ],
+   "refs": [
+    {
+     "label": "Bun 1.0 announcement",
+     "url": "https://bun.sh/blog/bun-v1.0"
+    },
+    {
+     "label": "Anthropic: Anthropic acquires Bun",
+     "url": "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone"
+    }
+   ]
+  },
+  {
+   "id": "plat.dotnet",
+   "title": ".NET",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2002,
+   "status": "thriving",
+   "short": "Microsoft's software platform for C# and other languages, released as the .NET Framework in 2002. Since .NET Core (2016) it is open source and cross-platform.",
+   "long": "Microsoft released the .NET Framework in 2002, with C# 1.0 and Visual Studio .NET 2002, as its answer to Java. Programs compile to an intermediate language that runs on the Common Language Runtime with a tracing garbage collector. The Framework ran only on Windows and is now a legacy component. On 12 November 2014 Microsoft announced it was open-sourcing the server-side stack and expanding .NET to Linux and Mac, and .NET Core 1.0 shipped on 27 June 2016. In 2019 Microsoft announced that there would be just one .NET going forward, starting with .NET 5 in November 2020. .NET 10, a long-term support release, shipped on 11 November 2025. Xamarin support ended on 1 May 2024, replaced by .NET MAUI for apps on Android, iOS, macOS and Windows.",
+   "sleeper": "In 1990 Microsoft's tools were closed and Windows-only. Modern .NET is open source and runs on Linux and macOS, and ASP.NET Core was used by 19.7 percent of 2025 Stack Overflow respondents.",
+   "tags": [
+    "c#",
+    "clr",
+    "asp.net",
+    "xamarin",
+    "maui",
+    "visual studio"
+   ],
+   "refs": [
+    {
+     "label": ".NET Blog: Announcing .NET Core 1.0",
+     "url": "https://devblogs.microsoft.com/dotnet/announcing-net-core-1-0/"
+    },
+    {
+     "label": ".NET Blog: Introducing .NET 5",
+     "url": "https://devblogs.microsoft.com/dotnet/introducing-net-5/"
+    }
+   ]
+  },
+  {
+   "id": "plat.virtualization",
+   "title": "Virtualization",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 1999,
+   "status": "thriving",
+   "short": "Running several virtual computers on one physical machine. VMware made it practical on ordinary PCs from 1999, and it underpins the public cloud.",
+   "long": "A virtual machine emulates a whole computer and runs its own operating system on top of a hypervisor, the program that divides up the real hardware. IBM built virtual machines on mainframes earlier (CP-40 and CP/CMS in 1967, VM/370 in 1972). VMware, founded in 1998, made them practical on commodity PCs with Workstation in 1999 and server products in 2001. The Xen hypervisor (Cambridge, 2003) powered early AWS, and KVM, merged into Linux in 2007, is generally described as the basis of most public-cloud virtualization. A container, by contrast, is an ordinary process that the Linux kernel isolates, sharing the host's kernel, so it starts in under a second. Broadcom completed its purchase of VMware in November 2023 and changed its licensing, pushing many customers to alternatives.",
+   "sleeper": "In 1990 a server was a physical box. Virtual machines turned servers into software that can be copied, moved and rented by the hour, which is what the public cloud sells.",
+   "tags": [
+    "hypervisor",
+    "vmware",
+    "xen",
+    "kvm",
+    "virtual machine",
+    "vm/370"
+   ]
+  },
+  {
+   "id": "plat.heroku",
+   "title": "Heroku and the Twelve-Factor App",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2007,
+   "status": "n/a",
+   "short": "A 2007 platform-as-a-service where a developer deploys with git push. The Twelve-Factor App rules of 2011 became the unwritten rulebook for cloud-native apps.",
+   "long": "Heroku, launched in 2007 and bought by Salesforce in 2010, made platform as a service (PaaS) the model for startups: the developer uploaded code with git push and Heroku ran it, without the developer managing servers. The Twelve-Factor App methodology, published in 2011, distilled the practice into rules such as keeping configuration in environment variables, running stateless processes, treating logs as streams and keeping development and production alike. It became the unwritten rulebook for cloud-native apps. Docker came from dotCloud, another PaaS company, and was unveiled by Solomon Hykes at PyCon in March 2013.",
+   "sleeper": "In 1990 you installed software on a machine you owned. A PaaS lets a developer deploy by pushing code and never touch a server, and the Twelve-Factor rules grew out of that practice.",
+   "code": {
+    "lang": "python",
+    "text": "import os\n\n# Twelve-Factor: configuration comes from the environment\nDATABASE_URL = os.environ[\"DATABASE_URL\"]"
+   },
+   "tags": [
+    "paas",
+    "git push",
+    "twelve-factor",
+    "salesforce",
+    "dotcloud"
+   ],
+   "refs": [
+    {
+     "label": "The Twelve-Factor App",
+     "url": "https://12factor.net/"
+    }
+   ]
+  },
+  {
+   "id": "plat.serverless",
+   "title": "Serverless and AWS Lambda",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2014,
+   "status": "thriving",
+   "short": "Upload a function, let events trigger it and pay per run, with no server to manage. AWS Lambda launched in November 2014.",
+   "long": "In serverless computing, also called function as a service (FaaS), a developer uploads a single function and an event, such as a web request, triggers it. The provider runs it and bills per execution, so there is no server to manage. AWS Lambda, launched in November 2014, is the best-known example, and Cloudflare Workers is another. The trade-offs are cold-start delays, execution limits, per-call costs that add up at scale, and lock-in to one provider. In 2023 an Amazon Prime Video team described moving one monitoring service from Step Functions and Lambda back into a single process, which it reported cut that service's infrastructure cost by about 90 percent. The original post now redirects, and the claim covers one internal tool.",
+   "sleeper": "In 1990 you owned the machine your program ran on. With serverless the program is a function that exists only while it runs, and the bill is counted per call.",
+   "code": {
+    "lang": "python",
+    "text": "def handler(event, context):\n    name = event.get(\"name\", \"world\")\n    return {\"statusCode\": 200, \"body\": \"Hello, \" + name}"
+   },
+   "tags": [
+    "faas",
+    "lambda",
+    "event-driven",
+    "cold start",
+    "cloudflare workers"
+   ]
+  },
+  {
+   "id": "plat.kubernetes",
+   "title": "Kubernetes",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 2014,
+   "status": "thriving",
+   "short": "Google's open-source container orchestrator, first committed in June 2014. A January 2026 CNCF survey says 82 percent of container users run it in production.",
+   "long": "Kubernetes runs containers across many machines. Its first commit was on 6 June 2014 (250 files, 47,501 lines), it descends from Google's internal Borg system, and version 1.0 launched at OSCON in July 2015, after which it went to the Cloud Native Computing Foundation (CNCF). Users declare the desired state in YAML, for example run three copies of this image behind one address, and controllers continually reconcile reality with it, handling scheduling, restarts, rolling updates and scaling. Docker Swarm and Apache Mesos lost to it by about 2017 to 2018, once AWS, Microsoft, Docker and Red Hat all offered it. The CNCF's survey published on 20 January 2026 says 82 percent of container users run Kubernetes in production; the page gave no sample size.",
+   "sleeper": "In 1990 a server was a named machine that an administrator tended by hand. Kubernetes treats servers as disposable: you declare what should be running, and the system restarts or moves things to match.",
+   "code": {
+    "lang": "yaml",
+    "text": "apiVersion: apps/v1\nkind: Deployment\nmetadata: {name: web}\nspec:\n  replicas: 3\n  selector: {matchLabels: {app: web}}\n  template:\n    metadata: {labels: {app: web}}\n    spec:\n      containers:\n      - {name: web, image: \"nginx:1.27\"}"
+   },
+   "tags": [
+    "orchestration",
+    "borg",
+    "yaml",
+    "cncf",
+    "containers",
+    "cluster"
+   ],
+   "refs": [
+    {
+     "label": "Kubernetes: 10 Years of Kubernetes",
+     "url": "https://kubernetes.io/blog/2024/06/06/10-years-of-kubernetes/"
+    },
+    {
+     "label": "CNCF Annual Cloud Native Survey",
+     "url": "https://www.cncf.io/reports/the-cncf-annual-cloud-native-survey/"
+    }
+   ]
+  },
+  {
+   "id": "plat.microservices",
+   "title": "Microservices",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2014,
+   "status": "thriving",
+   "short": "Splitting an application into many small services, each deployed on its own. Amazon and Netflix made it famous, but the overhead suits large organizations best.",
+   "long": "Microservices split an application into many small, independently deployed services, each with its own team and database, communicating over HTTP or messages. Amazon's service-oriented transformation in the early 2000s and Netflix's move to AWS after a 2008 database corruption, completed in 2016, made the style famous. It lets hundreds of teams ship independently, but it adds network failures, tracing, versioning and cost. Accounts date the term's rise to either 2011 or 2014, so the year shown is approximate. Conway's Law, the observation that a system's design mirrors the communication structure of the organization that builds it, is often used to reason about service and team boundaries.",
+   "sleeper": "In 1990 an application was usually one program on one machine. A microservice system is a fleet of programs calling each other over a network, so a feature can fail because of the network rather than a bug in the code.",
+   "tags": [
+    "service-oriented",
+    "netflix",
+    "amazon",
+    "distributed",
+    "conway"
+   ]
+  },
+  {
+   "id": "plat.monolith-revival",
+   "title": "Monolith Revival",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2023,
+   "status": "n/a",
+   "short": "The 2023 to 2025 reassessment of microservices by default. An Amazon Prime Video team reported saving about 90 percent by moving one service into a single process.",
+   "long": "After a decade of microservices by default, engineers argued for fewer, larger deployable units. David Heinemeier Hansson wrote of a majestic monolith in 2016, Segment made a similar case in 2018, and Martin Fowler's Monolith First (3 June 2015) observed that almost all successful microservice stories began with a monolith that grew too big and was split up. In March 2023 an Amazon Prime Video post reported that moving one audio and video quality-monitoring service from distributed Step Functions and Lambda into a single process cut its infrastructure cost by about 90 percent. The original page now redirects, and the claim is Amazon's own and covers one internal tool. Advice has since shifted to starting with a modular monolith, though a monolith is not automatically right for a large organization.",
+   "tags": [
+    "modular monolith",
+    "prime video",
+    "dhh",
+    "segment",
+    "monolith first"
+   ],
+   "refs": [
+    {
+     "label": "Martin Fowler: Monolith First",
+     "url": "https://martinfowler.com/bliki/MonolithFirst.html"
+    },
+    {
+     "label": "DHH: Even Amazon can't make sense of serverless or microservices",
+     "url": "https://world.hey.com/dhh/even-amazon-can-t-make-sense-of-serverless-or-microservices-59625580"
+    }
+   ]
+  },
+  {
+   "id": "plat.cloud-repatriation",
+   "title": "Cloud Repatriation",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2022,
+   "status": "n/a",
+   "short": "Moving workloads back from the public cloud to owned servers. 37signals, maker of Basecamp and HEY, announced it in October 2022 and had finished by June 2023.",
+   "long": "In October 2022 David Heinemeier Hansson announced that 37signals would leave the cloud. In his post of 23 June 2023, We have left the cloud, he reported a cloud budget of $3.2 million the previous year, expected savings of at least $1.5 million a year, and about half a million dollars spent on two pallets of Dell servers with 4,000 vCPUs, 7,680 GB of RAM and 384 TB of NVMe storage. The six-month migration used open-source tools, including KVM virtualization, Docker and the company's own Kamal deployment tool, in two data centers. Hansson concedes that the cloud still suits early-stage companies and highly variable workloads, and warns against lock-in to proprietary services. The figures come from a summary of the post, so check exact numbers against the original. Dropbox is reported to have moved storage off AWS in 2015 to 2016.",
+   "tags": [
+    "37signals",
+    "basecamp",
+    "kamal",
+    "dhh",
+    "cost",
+    "dropbox"
+   ],
+   "refs": [
+    {
+     "label": "DHH: We have left the cloud",
+     "url": "https://world.hey.com/dhh/we-have-left-the-cloud-251760fb"
+    }
+   ]
+  },
+  {
+   "id": "plat.edge",
+   "title": "Edge Computing",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2017,
+   "status": "thriving",
+   "short": "Running code on servers in many cities near users. Cloudflare Workers, announced on 29 September 2017, runs JavaScript at the edge in lightweight V8 isolates.",
+   "long": "Edge computing runs code on servers in many cities close to users rather than in a few big data centers. Cloudflare announced Workers on 29 September 2017: JavaScript written against the Service Worker API and run on the V8 engine, which the company said can securely run scripts from multiple customers on its servers much as Chrome runs scripts from multiple web sites. It ran in 117 or more locations at launch. Light isolates instead of containers give millisecond start times. Rivals include AWS Lambda@Edge, Fastly Compute and Deno Deploy. Content delivery networks, which began by caching files, are the ancestors of the idea.",
+   "tags": [
+    "cloudflare workers",
+    "v8 isolates",
+    "lambda@edge",
+    "fastly",
+    "deno deploy"
+   ],
+   "refs": [
+    {
+     "label": "Cloudflare: Introducing Cloudflare Workers",
+     "url": "https://blog.cloudflare.com/introducing-cloudflare-workers/"
+    }
+   ]
+  },
+  {
+   "id": "plat.azure-gcp",
+   "title": "Microsoft Azure and Google Cloud",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2008,
+   "status": "thriving",
+   "short": "Microsoft's and Google's cloud platforms. Both started in 2008 with higher-level platform offerings and later added AWS-style virtual machines.",
+   "long": "Google and Microsoft entered cloud computing with higher-level platform-as-a-service offerings before adding AWS-style virtual machines. Google App Engine appeared in 2008, Azure was announced in 2008 and became generally available in February 2010, and Google Compute Engine reached general availability in December 2013. Microsoft's advantage was selling Azure to its existing enterprise customers. Synergy Research's figures for the third quarter of 2025, published on 19 November 2025, put Amazon at 29 percent of a $106.9 billion quarter of cloud infrastructure spending, Microsoft at 20 percent and Google at 13 percent, together 63 percent. In Stack Overflow's 2025 survey 43.3 percent of respondents used AWS, 26.3 percent Azure and 24.6 percent Google Cloud.",
+   "tags": [
+    "azure",
+    "google cloud",
+    "app engine",
+    "compute engine",
+    "synergy research"
+   ],
+   "refs": [
+    {
+     "label": "Synergy Research: cloud market share, Q3 2025",
+     "url": "https://www.srgresearch.com/articles/cloud-market-share-trends-big-three-together-hold-63-while-oracle-and-the-neoclouds-inch-higher"
+    }
+   ]
+  },
+  {
+   "id": "plat.github",
+   "title": "GitHub",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 2008,
+   "status": "thriving",
+   "short": "The website that put Git behind a social network, launched on 10 April 2008. Microsoft bought it in 2018, and its 2025 Octoverse counts over 180 million developers.",
+   "long": "GitHub was developed from 19 October 2007 and launched on 10 April 2008 by Tom Preston-Werner, Chris Wanstrath, P. J. Hyett and Scott Chacon. It put Git, the distributed version-control system Linus Torvalds wrote in April 2005, behind a social website, and the pull request became the unit of collaboration. GitHub Actions (announced October 2018) and npm (acquisition completed 15 April 2020) were added, and Copilot began as a preview in 2021. Microsoft announced the purchase on 4 June 2018 for $7.5 billion and completed it on 26 October 2018. GitHub's Octoverse 2025 report, published on 28 October 2025, counted more than 180 million developers, 630 million repositories and 986 million commits in 2025.",
+   "sleeper": "Before GitHub, joining someone else's project meant mailing patches or asking for commit access. A fork lets anyone propose a change without the upstream project's permission, and the pull request carries the discussion and review.",
+   "tags": [
+    "git hosting",
+    "pull request",
+    "octoverse",
+    "microsoft",
+    "copilot",
+    "actions"
+   ],
+   "refs": [
+    {
+     "label": "Microsoft: Microsoft to acquire GitHub for $7.5 billion",
+     "url": "https://news.microsoft.com/2018/06/04/microsoft-to-acquire-github-for-7-5-billion/"
+    },
+    {
+     "label": "GitHub Octoverse 2025",
+     "url": "https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/"
+    }
+   ]
+  },
+  {
+   "id": "plat.iphone",
+   "title": "iPhone and iOS",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 2007,
+   "status": "thriving",
+   "short": "Apple's touchscreen phone, announced on 9 January 2007, with an OS derived from Mac OS X. iOS had 30.81 percent of mobile OS use in September 2026 (StatCounter).",
+   "long": "Apple announced the iPhone on 9 January 2007 and put it on sale on 29 June 2007. It was a touchscreen phone with a desktop-class browser and an operating system derived from Mac OS X, called iPhone OS and later iOS. At first Apple offered only web apps; a native SDK was announced in October 2007 and released in March 2008. Before 2007 smartphones ran Symbian, Palm OS, Windows Mobile or BlackBerry OS, with keyboards or styluses and a thin mobile-web layer of WAP and J2ME. The iPhone's refusal to run Flash, with Steve Jobs's April 2010 open letter Thoughts on Flash, helped end that plugin. Apps are written in Objective-C or, since June 2014, Swift. StatCounter's September 2026 figures put iOS at 30.81 percent of mobile OS use worldwide and Android at 69.17 percent.",
+   "sleeper": "The phone in your pocket may run a descendant of NeXTSTEP, the Unix-based system that Steve Jobs's NeXT built in 1989. iOS and macOS share that ancestry.",
+   "tags": [
+    "ios",
+    "iphone os",
+    "apple",
+    "swift",
+    "objective-c",
+    "smartphone"
+   ],
+   "refs": [
+    {
+     "label": "Apple Newsroom: Apple reinvents the phone with iPhone (2007)",
+     "url": "https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/"
+    },
+    {
+     "label": "StatCounter: mobile operating system share",
+     "url": "https://gs.statcounter.com/os-market-share/mobile/worldwide"
+    }
+   ]
+  },
+  {
+   "id": "plat.app-store",
+   "title": "App Store Economics",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2008,
+   "status": "thriving",
+   "short": "Apple's 10 July 2008 store for iPhone apps. Apple and Google take a 30 percent commission on most digital sales, and 15 percent for small developers.",
+   "long": "Apple opened the App Store on 10 July 2008. In its press release of 14 July 2008 Apple reported more than 10 million downloads in the first weekend and over 800 native apps at launch, and Steve Jobs called the store a grand slam. Apple and Google take a 30 percent commission on most digital sales. Apple cut it to 15 percent for developers earning under $1 million a year in January 2021, and Google took 15 percent on the first $1 million from July 2021. Developers must also use the store's in-app purchase system for digital goods, and the platforms control review and distribution. For a mobile developer the store, more than the technology, is the business constraint.",
+   "sleeper": "In 1990 you sold software through shops or by mail and kept the proceeds. On phones the platform's store takes a commission and controls review and distribution.",
+   "tags": [
+    "app store",
+    "google play",
+    "commission",
+    "in-app purchase",
+    "30 percent"
+   ],
+   "refs": [
+    {
+     "label": "Apple Newsroom: App Store downloads top 10 million in first weekend",
+     "url": "https://www.apple.com/newsroom/2008/07/14iPhone-App-Store-Downloads-Top-10-Million-in-First-Weekend/"
+    },
+    {
+     "label": "Apple: App Store Small Business Program",
+     "url": "https://developer.apple.com/app-store/small-business-program/"
+    }
+   ]
+  },
+  {
+   "id": "plat.android",
+   "title": "Android",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 2008,
+   "status": "thriving",
+   "short": "Google's Linux-kernel phone OS, first sold on the HTC Dream in October 2008. It had 69.17 percent of mobile OS use in September 2026 (StatCounter).",
+   "long": "Android Inc., founded in 2003, was bought by Google in 2005. The Open Handset Alliance announced Android on 5 November 2007, and the first phone, the HTC Dream (T-Mobile G1), came out in October 2008. The Android Open Source Project provides a Linux-kernel operating system under a liberal licence, which makers such as Samsung and later Xiaomi customize, producing a huge but fragmented ecosystem. Apps were written in Java and then Kotlin, which became official in 2017 and Kotlin-first in 2019. The Play Store opened in 2008 as Android Market. Google says it is verifying developer identities even for apps installed from outside Google Play, with enforcement scheduled to begin on 30 September 2026 in Brazil, Indonesia, Singapore and Thailand; the sources checked do not confirm that it started.",
+   "sleeper": "The free Linux kernel you may have heard about now runs most of the world's phones, since Android is built on it. Google has also said it is moving new Android code to memory-safe languages such as Rust.",
+   "tags": [
+    "android",
+    "aosp",
+    "google play",
+    "kotlin",
+    "open handset alliance",
+    "htc dream"
+   ],
+   "refs": [
+    {
+     "label": "Android Developers: developer verification",
+     "url": "https://developer.android.com/developer-verification"
+    },
+    {
+     "label": "StatCounter: mobile operating system share",
+     "url": "https://gs.statcounter.com/os-market-share/mobile/worldwide"
+    }
+   ]
+  },
+  {
+   "id": "plat.epic-apple",
+   "title": "Epic v. Apple and App-Store Rules",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2020,
+   "status": "n/a",
+   "short": "Epic's lawsuits against Apple (2020) and Google over app-store rules. US courts have opened payment links on iOS, while Google adds identity checks to Android sideloading.",
+   "long": "Epic Games sued Apple in August 2020. On 10 September 2021 Judge Yvonne Gonzalez Rogers ruled for Apple on nine of ten counts, but found its anti-steering rules violated California law and barred Apple from stopping developers from linking users to other ways to pay. Apple then tried a 27 percent fee on linked purchases, and in April 2025 the judge found that Apple had willfully violated the injunction and barred commissions on external payment links. Fortnite returned to the US App Store in May 2025. In Epic v. Google a jury ruled in December 2023 that Google unlawfully maintained its monopoly. These details come from a Wikipedia summary, and the outcome of Apple's appeal of the 2025 order was not found. Since March 2024 the EU's Digital Markets Act has forced Apple to allow alternative app marketplaces in the EU.",
+   "tags": [
+    "anti-steering",
+    "fortnite",
+    "digital markets act",
+    "epic games",
+    "sideloading"
+   ]
+  },
+  {
+   "id": "plat.cross-platform-mobile",
+   "title": "Cross-Platform Mobile Frameworks",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2015,
+   "status": "thriving",
+   "short": "Frameworks that share code between iPhone and Android apps: PhoneGap, Xamarin, React Native, Flutter and Kotlin Multiplatform.",
+   "long": "Native apps use Objective-C or Swift in Xcode on Apple devices and Java or Kotlin in Android Studio on Android, which gives the best performance and the newest features but means two codebases. Cross-platform frameworks try to share code. PhoneGap and Cordova (2009) wrapped a web page in a native shell, and Xamarin (2011, bought by Microsoft in 2016) used C# until its support ended on 1 May 2024 in favor of .NET MAUI. React Native (Facebook, open-sourced March 2015) drives real native widgets from JavaScript. Flutter (Google, using the Dart language and its own rendering engine) reached 1.0 in December 2018. Kotlin Multiplatform (JetBrains) was endorsed by Google in May 2024 for sharing business logic. No current usage survey was available to compare them.",
+   "tags": [
+    "react native",
+    "flutter",
+    "xamarin",
+    "kotlin multiplatform",
+    "phonegap",
+    "native apps"
+   ],
+   "refs": [
+    {
+     "label": "React Native",
+     "url": "https://reactnative.dev/"
+    },
+    {
+     "label": "Flutter",
+     "url": "https://flutter.dev/"
+    }
+   ]
+  },
+  {
+   "id": "plat.oauth",
+   "title": "OAuth 2.0 and Authentication",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 2012,
+   "status": "thriving",
+   "short": "OAuth 2.0 (RFC 6749, 2012) lets you give an app limited access to your data at another service without handing over your password. OpenID Connect adds login.",
+   "long": "OAuth 2.0 (RFC 6749, 2012) lets you give an app limited access to your data at another service without handing over your password, using time-limited tokens. OpenID Connect (2014) adds identity on top, which is how the Log in with Google button works. Passkeys, built on the W3C WebAuthn standard of 2019, replace passwords with public-key cryptography. Authentication proves who someone is, through passwords, one-time codes or passkeys. Authorization decides what that identity may do, and its failure, broken access control, is first on the OWASP Top 10:2025.",
+   "sleeper": "In 1990 an application checked a password against its own file. A service can now hand the login to a provider such as Google and receive a time-limited token instead.",
+   "tags": [
+    "openid connect",
+    "passkeys",
+    "webauthn",
+    "jwt",
+    "authorization",
+    "login"
+   ],
+   "refs": [
+    {
+     "label": "RFC 6749: The OAuth 2.0 Authorization Framework",
+     "url": "https://www.rfc-editor.org/rfc/rfc6749"
+    },
+    {
+     "label": "OWASP Top 10:2025",
+     "url": "https://top10.owasp.org/2025/"
+    }
+   ]
+  },
+  {
+   "id": "plat.win32",
+   "title": "Win32 API",
+   "cat": "platforms",
+   "tier": 4,
+   "year": 1993,
+   "status": "thriving",
+   "short": "The C programming interface of 32-bit Windows, introduced with Windows NT 3.1 and widely adopted from Windows 95. It lives in system DLLs such as kernel32.dll.",
+   "long": "The Windows API is, in Wikipedia's words, the foundational application programming interface that lets a program use the features of Microsoft Windows. Win32, its 32-bit form, was originally introduced with Windows NT 3.1, with widespread porting beginning with Windows 95, and it lives in system DLLs such as kernel32.dll, user32.dll and gdi32.dll. The Windows 1.0 API of 1985 supported fewer than 450 function calls, while modern Windows supports thousands. Charles Petzold, who wrote the standard books, said that the original hello world program in the Windows 1.0 SDK was a bit of a scandal at about 150 lines. Hungarian-prefixed names are a familiar sight in Win32 code, and Windows copied the BSD sockets API as Winsock.",
+   "tags": [
+    "windows api",
+    "kernel32",
+    "dll",
+    "hello world",
+    "petzold",
+    "winsock"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "plat.os",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.os",
+   "t": "plat.unix",
+   "w": 3,
+   "k": "related",
+   "note": "Unix set the template that almost every later system copies, Windows aside"
+  },
+  {
+   "s": "plat.os",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.os",
+   "t": "conc.memory",
+   "w": 2,
+   "k": "related",
+   "note": "virtual memory gives each process a private view of memory"
+  },
+  {
+   "s": "plat.os",
+   "t": "conc.concurrency",
+   "w": 1,
+   "k": "related",
+   "note": "the kernel schedules many processes at once"
+  },
+  {
+   "s": "plat.os",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related",
+   "note": "the Unix kernel was rewritten in C in 1973"
+  },
+  {
+   "s": "plat.os",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related",
+   "note": "a container is an ordinary process that the Linux kernel isolates"
+  },
+  {
+   "s": "plat.os360",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.os360",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.os360",
+   "t": "proc.mmm",
+   "w": 3,
+   "k": "influenced",
+   "note": "Brooks's book draws on managing OS/360"
+  },
+  {
+   "s": "plat.os360",
+   "t": "ppl.brooks",
+   "w": 2,
+   "k": "related",
+   "note": "Brooks managed its development"
+  },
+  {
+   "s": "plat.os360",
+   "t": "proc.software-crisis",
+   "w": 2,
+   "k": "related",
+   "note": "late, over-budget systems like OS/360 fed the software-crisis talk"
+  },
+  {
+   "s": "plat.os360",
+   "t": "plat.batch",
+   "w": 2,
+   "k": "related",
+   "note": "work ran as batches of jobs under JCL"
+  },
+  {
+   "s": "plat.batch",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.batch",
+   "t": "plat.timesharing",
+   "w": 2,
+   "k": "replaced-by",
+   "note": "interactive terminals ended the wait for card-deck results"
+  },
+  {
+   "s": "plat.batch",
+   "t": "lang.fortran",
+   "w": 1,
+   "k": "related",
+   "note": "MIT's FORTRAN Monitor System ran batches of FORTRAN jobs"
+  },
+  {
+   "s": "plat.batch",
+   "t": "comp.linker",
+   "w": 1,
+   "k": "related",
+   "note": "each batch job was loaded and linked with library routines"
+  },
+  {
+   "s": "plat.timesharing",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.timesharing",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "influenced",
+   "note": "Unix was built as a time-sharing system by veterans of CTSS and Multics"
+  },
+  {
+   "s": "plat.timesharing",
+   "t": "ppl.mccarthy",
+   "w": 2,
+   "k": "related",
+   "note": "proposed a time-sharing system in a 1959 memo"
+  },
+  {
+   "s": "plat.timesharing",
+   "t": "org.mit",
+   "w": 2,
+   "k": "related",
+   "note": "CTSS and Multics were built at MIT"
+  },
+  {
+   "s": "plat.timesharing",
+   "t": "plat.cloud",
+   "w": 1,
+   "k": "influenced",
+   "note": "cloud computing is traced back partly to time-sharing"
+  },
+  {
+   "s": "plat.ctss",
+   "t": "plat.timesharing",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "plat.ctss",
+   "t": "plat.multics",
+   "w": 3,
+   "k": "influenced",
+   "note": "used to develop Multics"
+  },
+  {
+   "s": "plat.ctss",
+   "t": "org.mit",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.ctss",
+   "t": "plat.email",
+   "w": 1,
+   "k": "related",
+   "note": "its messaging system anticipated email"
+  },
+  {
+   "s": "plat.multics",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.multics",
+   "t": "plat.timesharing",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "plat.multics",
+   "t": "org.mit",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.multics",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by",
+   "note": "Bell Labs withdrew in 1969"
+  },
+  {
+   "s": "plat.multics",
+   "t": "plat.unix",
+   "w": 3,
+   "k": "influenced",
+   "note": "Unix took its name and several time-sharing and file ideas from Multics"
+  },
+  {
+   "s": "plat.bsd",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.bsd",
+   "t": "plat.unix",
+   "w": 3,
+   "k": "related",
+   "note": "Berkeley's additions to AT&T's Unix"
+  },
+  {
+   "s": "plat.bsd",
+   "t": "plat.nextstep-macos",
+   "w": 3,
+   "k": "influenced",
+   "note": "NeXTSTEP paired the Mach kernel with BSD Unix"
+  },
+  {
+   "s": "plat.bsd",
+   "t": "plat.tcpip",
+   "w": 3,
+   "k": "influenced",
+   "note": "4.2BSD shipped a TCP/IP stack and the sockets API in 1983"
+  },
+  {
+   "s": "plat.bsd",
+   "t": "org.berkeley",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.bsd",
+   "t": "fail.unix-wars",
+   "w": 2,
+   "k": "related",
+   "note": "the 1992 AT&T-versus-BSDi lawsuit slowed the free BSDs"
+  },
+  {
+   "s": "plat.bsd",
+   "t": "org.darpa",
+   "w": 2,
+   "k": "related",
+   "note": "a DARPA contract funded the TCP/IP work"
+  },
+  {
+   "s": "plat.bsd",
+   "t": "org.sun",
+   "w": 2,
+   "k": "related",
+   "note": "SunOS was based on 4.2BSD"
+  },
+  {
+   "s": "plat.posix",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.posix",
+   "t": "plat.unix",
+   "w": 3,
+   "k": "related",
+   "note": "standardizes the Unix programming interface"
+  },
+  {
+   "s": "plat.posix",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "influenced",
+   "note": "Torvalds asked for the POSIX definition in July 1991"
+  },
+  {
+   "s": "plat.posix",
+   "t": "ppl.stallman",
+   "w": 1,
+   "k": "related",
+   "note": "suggested the name"
+  },
+  {
+   "s": "plat.posix",
+   "t": "tool.make",
+   "w": 1,
+   "k": "related",
+   "note": "POSIX defines make"
+  },
+  {
+   "s": "plat.plan9",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.plan9",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.plan9",
+   "t": "ppl.pike",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.plan9",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related",
+   "note": "built by Unix's creators, but never displaced it"
+  },
+  {
+   "s": "plat.plan9",
+   "t": "plat.os",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.cpm",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.cpm",
+   "t": "ppl.kildall",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.cpm",
+   "t": "plat.msdos",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "plat.cpm",
+   "t": "found.microprocessor",
+   "w": 2,
+   "k": "related",
+   "note": "ran on 8-bit chips such as the Intel 8080 and Z80"
+  },
+  {
+   "s": "plat.cpm",
+   "t": "found.ibm-pc",
+   "w": 2,
+   "k": "related",
+   "note": "IBM first looked to Digital Research for the PC's operating system"
+  },
+  {
+   "s": "plat.msdos",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.msdos",
+   "t": "plat.windows",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "Windows 1.0 began as a shell over DOS, and XP moved everyone onto NT"
+  },
+  {
+   "s": "plat.msdos",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.msdos",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "related",
+   "note": "PC-DOS 1.0 shipped with the IBM PC in August 1981"
+  },
+  {
+   "s": "plat.msdos",
+   "t": "fail.os2",
+   "w": 2,
+   "k": "related",
+   "note": "OS/2 was the planned DOS successor"
+  },
+  {
+   "s": "plat.msdos",
+   "t": "fail.dos-giants",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.gui",
+   "t": "org.xerox-parc",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.gui",
+   "t": "plat.mac-classic",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "plat.gui",
+   "t": "plat.windows",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "plat.gui",
+   "t": "ppl.kay",
+   "w": 2,
+   "k": "related",
+   "note": "conceived overlapping windows at PARC"
+  },
+  {
+   "s": "plat.gui",
+   "t": "plat.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.gui",
+   "t": "conc.oop",
+   "w": 2,
+   "k": "related",
+   "note": "GUIs and object-oriented programming grew up together at PARC"
+  },
+  {
+   "s": "plat.mac-classic",
+   "t": "org.apple",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.mac-classic",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.mac-classic",
+   "t": "plat.nextstep-macos",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "NeXTSTEP became Mac OS X in 2001"
+  },
+  {
+   "s": "plat.mac-classic",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "plat.mac-classic",
+   "t": "ppl.jobs",
+   "w": 2,
+   "k": "related",
+   "note": "Jobs's 1979 visit to PARC influenced the Macintosh"
+  },
+  {
+   "s": "plat.mac-classic",
+   "t": "fail.copland",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.windows",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.windows",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.windows",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "competes-with",
+   "note": "StatCounter, September 2026: Windows 76.36 percent of desktop use, Linux 4.54 percent"
+  },
+  {
+   "s": "plat.windows",
+   "t": "fail.longhorn",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.windows",
+   "t": "fail.os2",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Microsoft's pivot to Windows ended the OS/2 partnership"
+  },
+  {
+   "s": "plat.windows",
+   "t": "ppl.gates-allen",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.windows-nt",
+   "t": "plat.windows",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.windows-nt",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.windows-nt",
+   "t": "org.dec",
+   "w": 2,
+   "k": "related",
+   "note": "Dave Cutler's team came from DEC, with a VMS lineage"
+  },
+  {
+   "s": "plat.windows-nt",
+   "t": "plat.bsd",
+   "w": 1,
+   "k": "uses",
+   "note": "a secondary source says NT 3.1's TCP/IP code was BSD-derived"
+  },
+  {
+   "s": "plat.windows-nt",
+   "t": "fail.unix-wars",
+   "w": 1,
+   "k": "related",
+   "note": "arrived as the Unix wars weakened commercial Unix"
+  },
+  {
+   "s": "plat.nextstep-macos",
+   "t": "ppl.jobs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.nextstep-macos",
+   "t": "org.apple",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.nextstep-macos",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.nextstep-macos",
+   "t": "plat.iphone",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "iPhone OS, later iOS, derived from Mac OS X"
+  },
+  {
+   "s": "plat.nextstep-macos",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related",
+   "note": "Berners-Lee built the first browser and server on a NeXT computer"
+  },
+  {
+   "s": "plat.nextstep-macos",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "competes-with",
+   "note": "StatCounter, September 2026: Apple desktops about 16.8 percent combined"
+  },
+  {
+   "s": "plat.linux-distros",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.linux-distros",
+   "t": "org.red-hat",
+   "w": 2,
+   "k": "related",
+   "note": "Red Hat dates from 1994 to 1995, RHEL from 2002"
+  },
+  {
+   "s": "plat.linux-distros",
+   "t": "pkg.manager",
+   "w": 2,
+   "k": "uses",
+   "note": "each distro ships a package manager"
+  },
+  {
+   "s": "plat.linux-distros",
+   "t": "org.gnu-fsf",
+   "w": 2,
+   "k": "uses",
+   "note": "bundles the kernel with GNU tools"
+  },
+  {
+   "s": "plat.linux-distros",
+   "t": "proc.gpl",
+   "w": 1,
+   "k": "related",
+   "note": "the kernel is released under the GPL"
+  },
+  {
+   "s": "plat.microkernels",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.microkernels",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "related",
+   "note": "the debate was about Linux's design"
+  },
+  {
+   "s": "plat.microkernels",
+   "t": "ppl.torvalds",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.microkernels",
+   "t": "plat.windows-nt",
+   "w": 1,
+   "k": "related",
+   "note": "NT is a hybrid design"
+  },
+  {
+   "s": "plat.microkernels",
+   "t": "plat.nextstep-macos",
+   "w": 1,
+   "k": "related",
+   "note": "macOS's XNU is a hybrid design"
+  },
+  {
+   "s": "plat.microkernels",
+   "t": "plat.rtos",
+   "w": 2,
+   "k": "related",
+   "note": "QNX, a true microkernel, runs in cars"
+  },
+  {
+   "s": "plat.microkernels",
+   "t": "qual.proof-tools",
+   "w": 1,
+   "k": "related",
+   "note": "seL4 is a microkernel used in verification research"
+  },
+  {
+   "s": "plat.microkernels",
+   "t": "org.gnu-fsf",
+   "w": 1,
+   "k": "related",
+   "note": "GNU's microkernel-based Hurd never reached production quality"
+  },
+  {
+   "s": "plat.rtos",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.rtos",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "hosts the Zephyr project"
+  },
+  {
+   "s": "plat.rtos",
+   "t": "org.aws",
+   "w": 2,
+   "k": "related",
+   "note": "Amazon took over FreeRTOS in November 2017"
+  },
+  {
+   "s": "plat.rtos",
+   "t": "fail.mobile-platforms",
+   "w": 1,
+   "k": "related",
+   "note": "BlackBerry turned to software and QNX"
+  },
+  {
+   "s": "plat.wsl",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.wsl",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "uses",
+   "note": "WSL 2 runs a real Linux kernel"
+  },
+  {
+   "s": "plat.wsl",
+   "t": "plat.virtualization",
+   "w": 2,
+   "k": "uses",
+   "note": "the kernel runs in a lightweight virtual machine"
+  },
+  {
+   "s": "plat.wsl",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.wsl",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.wsl",
+   "t": "proc.open-source",
+   "w": 1,
+   "k": "related",
+   "note": "open-sourced on 19 May 2025"
+  },
+  {
+   "s": "plat.apple-silicon",
+   "t": "org.apple",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.apple-silicon",
+   "t": "org.arm",
+   "w": 2,
+   "k": "related",
+   "note": "ARM Ltd licenses the low-power designs"
+  },
+  {
+   "s": "plat.apple-silicon",
+   "t": "org.intel",
+   "w": 2,
+   "k": "related",
+   "note": "Macs moved from Intel chips to Apple's own"
+  },
+  {
+   "s": "plat.apple-silicon",
+   "t": "plat.nextstep-macos",
+   "w": 2,
+   "k": "related",
+   "note": "macOS runs on it, with Rosetta 2 translating x86 apps"
+  },
+  {
+   "s": "plat.apple-silicon",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related",
+   "note": "arm64 and amd64 container images"
+  },
+  {
+   "s": "plat.apple-silicon",
+   "t": "found.x86",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.arpanet",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.arpanet",
+   "t": "org.darpa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.arpanet",
+   "t": "plat.tcpip",
+   "w": 3,
+   "k": "influenced",
+   "note": "all hosts switched to TCP/IP on 1 January 1983"
+  },
+  {
+   "s": "plat.arpanet",
+   "t": "ppl.cerf-kahn",
+   "w": 2,
+   "k": "related",
+   "note": "Kahn organized the 1972 public demonstration"
+  },
+  {
+   "s": "plat.arpanet",
+   "t": "org.ietf",
+   "w": 1,
+   "k": "related",
+   "note": "the RFC series began in 1969"
+  },
+  {
+   "s": "plat.tcpip",
+   "t": "ppl.cerf-kahn",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.tcpip",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.tcpip",
+   "t": "org.ietf",
+   "w": 2,
+   "k": "related",
+   "note": "specified in RFCs; rough consensus and running code"
+  },
+  {
+   "s": "plat.tcpip",
+   "t": "org.darpa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.tcpip",
+   "t": "proc.postels-law",
+   "w": 2,
+   "k": "related",
+   "note": "Postel's robustness principle comes from RFC 761 (1980)"
+  },
+  {
+   "s": "plat.tcpip",
+   "t": "proc.worse-is-better",
+   "w": 1,
+   "k": "related",
+   "note": "simple, free, good-enough designs beat OSI"
+  },
+  {
+   "s": "plat.dns",
+   "t": "plat.tcpip",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.dns",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related",
+   "note": "most web addresses start with a name that DNS resolves"
+  },
+  {
+   "s": "plat.dns",
+   "t": "org.ietf",
+   "w": 1,
+   "k": "related",
+   "note": "specified in RFCs 1034 and 1035"
+  },
+  {
+   "s": "plat.dns",
+   "t": "plat.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.email",
+   "t": "plat.arpanet",
+   "w": 2,
+   "k": "related",
+   "note": "email was the first killer application"
+  },
+  {
+   "s": "plat.email",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related",
+   "note": "Usenet and BBSs faded as the Web absorbed their functions"
+  },
+  {
+   "s": "plat.email",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related",
+   "note": "Usenet ran over dial-up Unix links"
+  },
+  {
+   "s": "plat.email",
+   "t": "plat.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.ethernet",
+   "t": "org.xerox-parc",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.ethernet",
+   "t": "plat.tcpip",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.ethernet",
+   "t": "plat.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.http",
+   "t": "plat.web",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.http",
+   "t": "plat.tcpip",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "plat.http",
+   "t": "ppl.berners-lee",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.http",
+   "t": "org.cern",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.http",
+   "t": "plat.http3",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "plat.http",
+   "t": "plat.rest",
+   "w": 3,
+   "k": "influenced",
+   "note": "Fielding derived REST from the design of HTTP and URLs"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "org.netscape",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "plat.web",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "plat.http",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "fail.browser-wars",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "fail.netscape-rewrite",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "plat.browser-engines",
+   "w": 2,
+   "k": "influenced",
+   "note": "Netscape's open-sourced code became Mozilla's Gecko engine"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "lang.js",
+   "w": 2,
+   "k": "related",
+   "note": "JavaScript was written at Netscape in 1995"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "plat.dotcom",
+   "w": 2,
+   "k": "influenced",
+   "note": "Netscape's IPO on 9 August 1995 started the boom"
+  },
+  {
+   "s": "plat.mosaic",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "Microsoft bundled Internet Explorer with Windows"
+  },
+  {
+   "s": "plat.tls",
+   "t": "org.netscape",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.tls",
+   "t": "plat.http",
+   "w": 3,
+   "k": "related",
+   "note": "HTTPS is HTTP carried over TLS"
+  },
+  {
+   "s": "plat.tls",
+   "t": "fail.heartbleed",
+   "w": 2,
+   "k": "related",
+   "note": "a flaw in OpenSSL's TLS heartbeat feature"
+  },
+  {
+   "s": "plat.tls",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related",
+   "note": "the browser padlock"
+  },
+  {
+   "s": "plat.http3",
+   "t": "plat.tls",
+   "w": 2,
+   "k": "uses",
+   "note": "QUIC includes encryption"
+  },
+  {
+   "s": "plat.http3",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "HTTP/2 derives from Google's SPDY"
+  },
+  {
+   "s": "plat.http3",
+   "t": "plat.cdn",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.http3",
+   "t": "plat.tcpip",
+   "w": 2,
+   "k": "related",
+   "note": "QUIC runs over UDP instead of TCP"
+  },
+  {
+   "s": "plat.http3",
+   "t": "org.ietf",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.rest",
+   "t": "ppl.fielding",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.rest",
+   "t": "plat.web",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.rest",
+   "t": "pkg.htmx",
+   "w": 1,
+   "k": "related",
+   "note": "htmx revives the hypermedia idea that most REST APIs skip"
+  },
+  {
+   "s": "plat.graphql-grpc",
+   "t": "plat.rest",
+   "w": 2,
+   "k": "competes-with",
+   "note": "both coexist with REST, and neither replaced it"
+  },
+  {
+   "s": "plat.graphql-grpc",
+   "t": "org.meta",
+   "w": 2,
+   "k": "created-by",
+   "note": "GraphQL came from Facebook"
+  },
+  {
+   "s": "plat.graphql-grpc",
+   "t": "org.google",
+   "w": 2,
+   "k": "created-by",
+   "note": "gRPC came from Google"
+  },
+  {
+   "s": "plat.graphql-grpc",
+   "t": "plat.http3",
+   "w": 2,
+   "k": "uses",
+   "note": "gRPC runs on HTTP/2"
+  },
+  {
+   "s": "plat.graphql-grpc",
+   "t": "plat.microservices",
+   "w": 1,
+   "k": "related",
+   "note": "compact typed calls between services"
+  },
+  {
+   "s": "plat.cdn",
+   "t": "plat.edge",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "CDNs began running customers' code at the edge"
+  },
+  {
+   "s": "plat.cdn",
+   "t": "plat.tls",
+   "w": 1,
+   "k": "uses",
+   "note": "CDNs now terminate TLS"
+  },
+  {
+   "s": "plat.cdn",
+   "t": "plat.http",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "plat.cdn",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.api-products",
+   "t": "plat.rest",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "plat.api-products",
+   "t": "org.aws",
+   "w": 2,
+   "k": "related",
+   "note": "Amazon exposed its business through web APIs from 2002"
+  },
+  {
+   "s": "plat.api-products",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.api-products",
+   "t": "data.json",
+   "w": 1,
+   "k": "related",
+   "note": "JSON displaced XML for APIs"
+  },
+  {
+   "s": "plat.dotcom",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.dotcom",
+   "t": "org.netscape",
+   "w": 2,
+   "k": "related",
+   "note": "Netscape's IPO started the boom"
+  },
+  {
+   "s": "plat.dotcom",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "a survivor of the bust"
+  },
+  {
+   "s": "plat.dotcom",
+   "t": "org.aws",
+   "w": 1,
+   "k": "related",
+   "note": "Amazon survived the bust"
+  },
+  {
+   "s": "plat.dotcom",
+   "t": "plat.cloud",
+   "w": 1,
+   "k": "influenced",
+   "note": "cheap fiber and servers fed the next era"
+  },
+  {
+   "s": "plat.cgi",
+   "t": "plat.web",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.cgi",
+   "t": "plat.http",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "plat.cgi",
+   "t": "pkg.rails",
+   "w": 1,
+   "k": "related",
+   "note": "server-side work moved on to MVC frameworks"
+  },
+  {
+   "s": "plat.cgi",
+   "t": "pkg.django",
+   "w": 1,
+   "k": "related",
+   "note": "server-side work moved on to MVC frameworks"
+  },
+  {
+   "s": "plat.wordpress",
+   "t": "plat.web",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.wordpress",
+   "t": "mod.stackoverflow-survey",
+   "w": 1,
+   "k": "related",
+   "note": "13.6 percent of 2025 respondents"
+  },
+  {
+   "s": "plat.ajax",
+   "t": "plat.web",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.ajax",
+   "t": "lang.js",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "plat.ajax",
+   "t": "plat.http",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "plat.ajax",
+   "t": "plat.spa",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "plat.ajax",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "Gmail and Google Maps showed the technique"
+  },
+  {
+   "s": "plat.ajax",
+   "t": "data.json",
+   "w": 1,
+   "k": "related",
+   "note": "JSON displaced XML for the data exchanged"
+  },
+  {
+   "s": "plat.nodejs",
+   "t": "lang.js",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "plat.nodejs",
+   "t": "pkg.npm",
+   "w": 3,
+   "k": "uses",
+   "note": "npm appeared in January 2010"
+  },
+  {
+   "s": "plat.nodejs",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.nodejs",
+   "t": "mod.stackoverflow-survey",
+   "w": 1,
+   "k": "related",
+   "note": "48.7 percent of 2025 respondents"
+  },
+  {
+   "s": "plat.spa",
+   "t": "lang.js",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "plat.spa",
+   "t": "plat.web",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.spa",
+   "t": "plat.nodejs",
+   "w": 1,
+   "k": "related",
+   "note": "JavaScript on both ends of an application"
+  },
+  {
+   "s": "plat.pwa",
+   "t": "plat.web",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.pwa",
+   "t": "lang.js",
+   "w": 2,
+   "k": "uses",
+   "note": "a service worker is a JavaScript file"
+  },
+  {
+   "s": "plat.pwa",
+   "t": "plat.app-store",
+   "w": 2,
+   "k": "competes-with",
+   "note": "installable web apps that skip the store"
+  },
+  {
+   "s": "plat.pwa",
+   "t": "org.apple",
+   "w": 1,
+   "k": "related",
+   "note": "Apple's weaker support limits reach"
+  },
+  {
+   "s": "plat.wasm",
+   "t": "plat.web",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.wasm",
+   "t": "lang.js",
+   "w": 2,
+   "k": "related",
+   "note": "runs alongside JavaScript in the browser"
+  },
+  {
+   "s": "plat.wasm",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "related",
+   "note": "Rust, C, C++ and Go compile to it"
+  },
+  {
+   "s": "plat.wasm",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.wasm",
+   "t": "comp.jvm",
+   "w": 2,
+   "k": "related",
+   "note": "revives the Java virtual machine's write-once, run-anywhere goal"
+  },
+  {
+   "s": "plat.wasm",
+   "t": "plat.edge",
+   "w": 2,
+   "k": "related",
+   "note": "used as an edge-runtime format"
+  },
+  {
+   "s": "plat.wasm",
+   "t": "org.w3c-whatwg",
+   "w": 2,
+   "k": "related",
+   "note": "standardized by W3C groups with all major browser makers"
+  },
+  {
+   "s": "plat.browser-engines",
+   "t": "plat.web",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.browser-engines",
+   "t": "org.apple",
+   "w": 2,
+   "k": "created-by",
+   "note": "WebKit, started from KHTML in 2003"
+  },
+  {
+   "s": "plat.browser-engines",
+   "t": "org.mozilla",
+   "w": 2,
+   "k": "created-by",
+   "note": "Gecko, from Netscape's code"
+  },
+  {
+   "s": "plat.browser-engines",
+   "t": "org.google",
+   "w": 2,
+   "k": "created-by",
+   "note": "Blink, forked from WebKit in 2013"
+  },
+  {
+   "s": "plat.browser-engines",
+   "t": "fail.browser-wars",
+   "w": 2,
+   "k": "related",
+   "note": "Blink-based browsers add up to about 76.5 percent of use, so the monoculture worry has returned"
+  },
+  {
+   "s": "plat.browser-engines",
+   "t": "plat.iphone",
+   "w": 2,
+   "k": "related",
+   "note": "WebKit powers every iOS browser unless regulation intervenes"
+  },
+  {
+   "s": "plat.bun",
+   "t": "plat.nodejs",
+   "w": 3,
+   "k": "competes-with"
+  },
+  {
+   "s": "plat.bun",
+   "t": "org.anthropic",
+   "w": 2,
+   "k": "related",
+   "note": "Anthropic announced it was acquiring Bun on 3 December 2025"
+  },
+  {
+   "s": "plat.bun",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses",
+   "note": "rewritten from Zig to Rust in 2026, according to its creator"
+  },
+  {
+   "s": "plat.bun",
+   "t": "pkg.npm",
+   "w": 1,
+   "k": "related",
+   "note": "bundles its own package manager"
+  },
+  {
+   "s": "plat.bun",
+   "t": "mod.rust-rewrite-wave",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.bun",
+   "t": "mod.claude-code",
+   "w": 1,
+   "k": "related",
+   "note": "Anthropic cited Bun's role in scaling Claude Code"
+  },
+  {
+   "s": "plat.dotnet",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.dotnet",
+   "t": "comp.gc",
+   "w": 2,
+   "k": "uses",
+   "note": "a tracing garbage collector manages memory"
+  },
+  {
+   "s": "plat.dotnet",
+   "t": "lang.java",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Microsoft's answer to Java"
+  },
+  {
+   "s": "plat.dotnet",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "related",
+   "note": "the Framework was Windows-only; .NET Core went cross-platform in 2016"
+  },
+  {
+   "s": "plat.dotnet",
+   "t": "plat.cross-platform-mobile",
+   "w": 2,
+   "k": "related",
+   "note": "Xamarin became .NET MAUI"
+  },
+  {
+   "s": "plat.dotnet",
+   "t": "plat.linux",
+   "w": 1,
+   "k": "related",
+   "note": ".NET Core runs on Linux"
+  },
+  {
+   "s": "plat.dotnet",
+   "t": "ppl.hejlsberg",
+   "w": 2,
+   "k": "related",
+   "note": "lead architect of C#"
+  },
+  {
+   "s": "plat.virtualization",
+   "t": "plat.cloud",
+   "w": 3,
+   "k": "influenced",
+   "note": "VMware, Xen and KVM made renting machines by the hour practical"
+  },
+  {
+   "s": "plat.virtualization",
+   "t": "org.vmware-pivotal",
+   "w": 2,
+   "k": "created-by",
+   "note": "VMware, founded in 1998, made virtual machines practical on PCs"
+  },
+  {
+   "s": "plat.virtualization",
+   "t": "plat.docker",
+   "w": 2,
+   "k": "related",
+   "note": "a container shares the host kernel, a virtual machine runs its own OS"
+  },
+  {
+   "s": "plat.virtualization",
+   "t": "plat.timesharing",
+   "w": 1,
+   "k": "related",
+   "note": "IBM's mainframe virtual machines of the 1960s and 1970s came first"
+  },
+  {
+   "s": "plat.virtualization",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "related",
+   "note": "KVM was merged into Linux in 2007"
+  },
+  {
+   "s": "plat.virtualization",
+   "t": "org.aws",
+   "w": 1,
+   "k": "related",
+   "note": "the Xen hypervisor powered early AWS"
+  },
+  {
+   "s": "plat.heroku",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.heroku",
+   "t": "tool.git",
+   "w": 2,
+   "k": "uses",
+   "note": "deploy by git push"
+  },
+  {
+   "s": "plat.heroku",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related",
+   "note": "Docker came out of another PaaS company, dotCloud"
+  },
+  {
+   "s": "plat.heroku",
+   "t": "proc.devops",
+   "w": 2,
+   "k": "related",
+   "note": "the twelve-factor rules blurred development and operations"
+  },
+  {
+   "s": "plat.serverless",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.serverless",
+   "t": "org.aws",
+   "w": 3,
+   "k": "created-by",
+   "note": "AWS Lambda, November 2014"
+  },
+  {
+   "s": "plat.serverless",
+   "t": "plat.edge",
+   "w": 2,
+   "k": "related",
+   "note": "Cloudflare Workers and Lambda@Edge run functions at the edge"
+  },
+  {
+   "s": "plat.serverless",
+   "t": "plat.microservices",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.kubernetes",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.kubernetes",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.kubernetes",
+   "t": "plat.docker",
+   "w": 3,
+   "k": "uses",
+   "note": "orchestrates containers"
+  },
+  {
+   "s": "plat.kubernetes",
+   "t": "org.cncf",
+   "w": 3,
+   "k": "related",
+   "note": "went to the CNCF after version 1.0"
+  },
+  {
+   "s": "plat.kubernetes",
+   "t": "plat.microservices",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.kubernetes",
+   "t": "tool.iac",
+   "w": 2,
+   "k": "related",
+   "note": "desired state is declared in YAML"
+  },
+  {
+   "s": "plat.kubernetes",
+   "t": "org.red-hat",
+   "w": 1,
+   "k": "related",
+   "note": "OpenShift is Red Hat's Kubernetes offering"
+  },
+  {
+   "s": "plat.kubernetes",
+   "t": "lang.go",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "plat.microservices",
+   "t": "plat.cloud",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.microservices",
+   "t": "proc.conways-law",
+   "w": 3,
+   "k": "related",
+   "note": "used to reason about service and team boundaries"
+  },
+  {
+   "s": "plat.microservices",
+   "t": "org.aws",
+   "w": 2,
+   "k": "related",
+   "note": "Amazon's service-oriented transformation of the early 2000s"
+  },
+  {
+   "s": "plat.microservices",
+   "t": "plat.rest",
+   "w": 1,
+   "k": "uses",
+   "note": "services call each other over HTTP"
+  },
+  {
+   "s": "plat.microservices",
+   "t": "proc.team-topologies",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.monolith-revival",
+   "t": "plat.microservices",
+   "w": 3,
+   "k": "competes-with"
+  },
+  {
+   "s": "plat.monolith-revival",
+   "t": "ppl.fowler",
+   "w": 2,
+   "k": "related",
+   "note": "Monolith First, 3 June 2015"
+  },
+  {
+   "s": "plat.monolith-revival",
+   "t": "plat.serverless",
+   "w": 2,
+   "k": "related",
+   "note": "Prime Video moved a service off Step Functions and Lambda"
+  },
+  {
+   "s": "plat.monolith-revival",
+   "t": "org.aws",
+   "w": 1,
+   "k": "related",
+   "note": "the Prime Video team is part of Amazon"
+  },
+  {
+   "s": "plat.monolith-revival",
+   "t": "plat.cloud-repatriation",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.monolith-revival",
+   "t": "proc.conways-law",
+   "w": 1,
+   "k": "related",
+   "note": "a monolith is not automatically right at larger organizational scale"
+  },
+  {
+   "s": "plat.cloud-repatriation",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.cloud-repatriation",
+   "t": "org.aws",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.cloud-repatriation",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "uses"
+  },
+  {
+   "s": "plat.cloud-repatriation",
+   "t": "plat.virtualization",
+   "w": 1,
+   "k": "uses",
+   "note": "KVM virtualization on owned servers"
+  },
+  {
+   "s": "plat.edge",
+   "t": "comp.v8",
+   "w": 3,
+   "k": "uses",
+   "note": "Workers run scripts in V8 isolates"
+  },
+  {
+   "s": "plat.edge",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.edge",
+   "t": "lang.js",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "plat.edge",
+   "t": "plat.pwa",
+   "w": 1,
+   "k": "related",
+   "note": "Workers reuse the Service Worker API designed for browsers"
+  },
+  {
+   "s": "plat.azure-gcp",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.azure-gcp",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.azure-gcp",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.azure-gcp",
+   "t": "org.aws",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "plat.github",
+   "t": "tool.git",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "plat.github",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "related",
+   "note": "Microsoft bought GitHub in 2018 for $7.5 billion"
+  },
+  {
+   "s": "plat.github",
+   "t": "plat.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.github",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "related",
+   "note": "GitHub completed its acquisition of npm on 15 April 2020"
+  },
+  {
+   "s": "plat.github",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "related",
+   "note": "Copilot began as a GitHub preview in 2021"
+  },
+  {
+   "s": "plat.github",
+   "t": "mod.octoverse",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.github",
+   "t": "proc.open-source",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.iphone",
+   "t": "org.apple",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.iphone",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.iphone",
+   "t": "plat.android",
+   "w": 3,
+   "k": "competes-with"
+  },
+  {
+   "s": "plat.iphone",
+   "t": "fail.flash",
+   "w": 2,
+   "k": "influenced",
+   "note": "refused to run Flash; Jobs wrote Thoughts on Flash in April 2010"
+  },
+  {
+   "s": "plat.iphone",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related",
+   "note": "iOS descends from NeXTSTEP and Darwin, Unix lineages"
+  },
+  {
+   "s": "plat.app-store",
+   "t": "plat.iphone",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.app-store",
+   "t": "ppl.jobs",
+   "w": 1,
+   "k": "related",
+   "note": "called the store a grand slam"
+  },
+  {
+   "s": "plat.app-store",
+   "t": "plat.android",
+   "w": 2,
+   "k": "related",
+   "note": "Google Play takes a similar commission"
+  },
+  {
+   "s": "plat.app-store",
+   "t": "org.apple",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.app-store",
+   "t": "org.google",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.android",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.android",
+   "t": "plat.os",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.android",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "uses",
+   "note": "built on the Linux kernel"
+  },
+  {
+   "s": "plat.android",
+   "t": "lang.java",
+   "w": 2,
+   "k": "uses",
+   "note": "apps were first written in Java, then Kotlin"
+  },
+  {
+   "s": "plat.android",
+   "t": "mod.android-verification",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.android",
+   "t": "mod.android-memory-safety",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.android",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "Google describes moving new Android code to memory-safe languages such as Rust"
+  },
+  {
+   "s": "plat.epic-apple",
+   "t": "plat.app-store",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "plat.epic-apple",
+   "t": "org.apple",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.epic-apple",
+   "t": "plat.android",
+   "w": 1,
+   "k": "related",
+   "note": "Epic v. Google, and Google's developer verification"
+  },
+  {
+   "s": "plat.epic-apple",
+   "t": "org.google",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.cross-platform-mobile",
+   "t": "plat.iphone",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.cross-platform-mobile",
+   "t": "plat.android",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.cross-platform-mobile",
+   "t": "org.meta",
+   "w": 2,
+   "k": "related",
+   "note": "React Native came from Facebook"
+  },
+  {
+   "s": "plat.cross-platform-mobile",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Flutter is Google's"
+  },
+  {
+   "s": "plat.cross-platform-mobile",
+   "t": "org.jetbrains",
+   "w": 1,
+   "k": "related",
+   "note": "Kotlin Multiplatform is JetBrains's"
+  },
+  {
+   "s": "plat.cross-platform-mobile",
+   "t": "lang.swift",
+   "w": 1,
+   "k": "related",
+   "note": "the native alternative for Apple apps"
+  },
+  {
+   "s": "plat.oauth",
+   "t": "plat.api-products",
+   "w": 2,
+   "k": "related",
+   "note": "lets apps use another service's API on a user's behalf"
+  },
+  {
+   "s": "plat.oauth",
+   "t": "mod.passkeys",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "plat.oauth",
+   "t": "org.ietf",
+   "w": 1,
+   "k": "related",
+   "note": "specified in RFC 6749"
+  },
+  {
+   "s": "plat.oauth",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "log in with Google uses OpenID Connect"
+  },
+  {
+   "s": "plat.win32",
+   "t": "plat.windows",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.win32",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related",
+   "note": "Windows' C interface"
+  },
+  {
+   "s": "plat.win32",
+   "t": "plat.windows-nt",
+   "w": 2,
+   "k": "related",
+   "note": "first introduced with Windows NT 3.1"
+  },
+  {
+   "s": "plat.win32",
+   "t": "fail.hungarian",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.win32",
+   "t": "plat.bsd",
+   "w": 1,
+   "k": "related",
+   "note": "Windows copied the sockets API as Winsock"
+  }
+ ]
+}

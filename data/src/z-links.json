@@ -1,0 +1,202 @@
+{
+ "slice": "z-links",
+ "nodes": [],
+ "edges": [
+  {
+   "s": "found.x86",
+   "t": "found.machine-code",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "found.machine-code",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.microprocessor",
+   "t": "found.machine-code",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.arm",
+   "t": "found.machine-code",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.system360",
+   "t": "found.machine-code",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.unicode",
+   "t": "found.machine-code",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.multicore",
+   "t": "found.machine-code",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.risc",
+   "t": "found.machine-code",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.edsac",
+   "t": "found.machine-code",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.x86",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.stored-program",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.isa",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.microprocessor",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.arm",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.system360",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.unicode",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.multicore",
+   "t": "found.assembly",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "found.risc",
+   "t": "found.assembly",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "tool.git",
+   "t": "tool.hub",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "qual.hub",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "qual.hub",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "qual.sast",
+   "t": "qual.hub",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "qual.hub",
+   "w": 2,
+   "k": "part-of",
+   "note": "structural"
+  },
+  {
+   "s": "plat.windows",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of",
+   "note": "structural"
+  }
+ ]
+}

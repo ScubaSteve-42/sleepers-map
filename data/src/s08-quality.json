@@ -1,0 +1,3924 @@
+{
+ "slice": "s08-quality",
+ "nodes": [
+  {
+   "id": "qual.lint-c",
+   "title": "lint (the C Program Checker)",
+   "cat": "quality",
+   "tier": 3,
+   "year": 1978,
+   "short": "Stephen Johnson's 1978 Bell Labs program that checked C code more strictly than the compiler would. Every later linter descends from it.",
+   "long": "Stephen C. Johnson wrote lint at Bell Labs because the C compilers were fast partly by skipping deep type checks, especially between separately compiled files. Lint took what its manual called a more global, leisurely view. It flagged unused variables, values used before being set, unreachable statements, functions that return a value on only some paths, mismatched argument types and constructs that break when moved to another machine. The manual already warned that a message of the form \"might be a bug\" loses credibility if too few turn out to be real bugs, tied dead-code detection to the halting problem, and offered comments such as NOTREACHED to silence a message. Lint reached the wider world with Unix Version 7 (1979). The name is commonly explained by analogy to a clothes-dryer lint trap, an account that rests on a secondary source.",
+   "sleeper": "Lint was a separate command you ran by hand, and many programmers skipped it. The same checks now run in the editor on every keystroke, in the compiler, in pre-commit hooks, in CI and as bot comments on code review.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\nint main(void) {\n    unsigned x = 64;\n    if (x & 077 == 0)      /* lint: == binds tighter than &, so this tests x & 0 */\n        printf(\"never printed\\n\");\n    if ((x & 077) == 0)    /* what was meant: low six bits clear */\n        printf(\"low bits clear\\n\");\n    return 0;\n}"
+   },
+   "status": "legacy",
+   "tags": [
+    "bell labs",
+    "unix",
+    "c",
+    "static analysis",
+    "johnson",
+    "unix v7"
+   ],
+   "refs": [
+    {
+     "label": "Johnson, Lint, a C Program Checker (Unix V7 manual copy)",
+     "url": "https://wolfram.schneider.org/bsd/7thEdManVol2/lint/lint.pdf"
+    },
+    {
+     "label": "Wikipedia: Lint (software)",
+     "url": "https://en.wikipedia.org/wiki/Lint_(software)"
+    }
+   ]
+  },
+  {
+   "id": "qual.ruff",
+   "title": "Ruff",
+   "cat": "quality",
+   "tier": 2,
+   "year": 2022,
+   "short": "A very fast Python linter and formatter written in Rust. It has replaced Flake8, Black and isort in many projects since 2022.",
+   "long": "Ruff, written in Rust by Charlie Marsh and Astral, started in August 2022 as a Python linter and grew a formatter that claims drop-in parity with Black. It ships more than 900 built-in rules and also replaces isort, pydocstyle, pyupgrade and autoflake. Its makers claim it is 10 to 100 times faster than the tools it replaces, a speed that makes running it on every save practical. Projects that use it include Apache Airflow, FastAPI, Hugging Face, pandas and SciPy. By default it applies only fixes that cannot change behavior; riskier ones need an explicit flag. In March 2026 Astral announced it was joining OpenAI's Codex team, and OpenAI said it would keep supporting Ruff, uv and ty as open source.",
+   "sleeper": "A 1990s lint was a slow, occasional chore. Ruff's makers claim 10 to 100 times the speed of older Python linters, fast enough to check a whole repository on every save and every commit.",
+   "code": {
+    "lang": "python",
+    "text": "# before: Ruff reports F401 (unused import) and E722 (bare except)\nimport os\ntry:\n    int(\"x\")\nexcept:\n    pass\n# after: the import is deleted and the handler is narrowed\ntry:\n    int(\"x\")\nexcept ValueError as exc:\n    print(\"not a number:\", exc)"
+   },
+   "status": "thriving",
+   "tags": [
+    "python",
+    "rust",
+    "astral",
+    "flake8",
+    "formatter",
+    "charlie marsh"
+   ],
+   "refs": [
+    {
+     "label": "Ruff documentation",
+     "url": "https://docs.astral.sh/ruff/"
+    },
+    {
+     "label": "Astral to join OpenAI",
+     "url": "https://astral.sh/blog/openai"
+    }
+   ]
+  },
+  {
+   "id": "qual.biome",
+   "title": "Biome",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2023,
+   "short": "A Rust formatter and linter for JavaScript and TypeScript, forked from Rome Tools. It aims to replace Prettier and much of ESLint with one fast tool.",
+   "long": "Biome is a code formatter and linter for JavaScript and TypeScript written in Rust, forked in 2023 from the Rome Tools project. Its maintainers claim about 35 times Prettier's speed on one benchmark machine and 97 percent compatibility with Prettier's output, and it ships several hundred lint rules. Version 2, released in June 2025, added type-aware lint rules that do not depend on the TypeScript compiler; an early benchmark found its floating-promise rule catching about 75 percent of the cases that typescript-eslint caught, at much lower cost. Biome and Oxlint are the two main Rust challengers to ESLint. The speed figures come from the projects themselves, not from independent benchmarks.",
+   "status": "thriving",
+   "tags": [
+    "javascript",
+    "typescript",
+    "rust",
+    "formatter",
+    "rome"
+   ],
+   "refs": [
+    {
+     "label": "Biome",
+     "url": "https://biomejs.dev/"
+    },
+    {
+     "label": "Biome v2 announcement",
+     "url": "https://biomejs.dev/blog/biome-v2/"
+    }
+   ]
+  },
+  {
+   "id": "qual.oxlint",
+   "title": "Oxc and Oxlint",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2023,
+   "short": "A Rust toolkit for JavaScript and its linter, Oxlint, which claims 50 to 100 times ESLint's speed. Oxlint reached version 1.0 in June 2025.",
+   "long": "Oxc is a collection of JavaScript and TypeScript tools written in Rust by VoidZero, and Oxlint is its linter. Oxlint 1.0 appeared in June 2025 with a claim of 50 to 100 times ESLint's speed: 615 milliseconds against 33.5 seconds on the makers' own benchmark. Airbnb reported linting more than 126,000 files in about 7 seconds on CI, Mercedes-Benz reported a 71 percent drop in lint time, and Shopify, Bun and Preact also use it. By 2026 it had more than 865 rules, and its type-aware mode calls tsgo, the native TypeScript 7 compiler, instead of reimplementing type checking. VoidZero has announced it is joining Cloudflare. As with Biome, the speed figures are the vendor's.",
+   "status": "thriving",
+   "tags": [
+    "javascript",
+    "rust",
+    "voidzero",
+    "eslint",
+    "linter"
+   ],
+   "refs": [
+    {
+     "label": "VoidZero: Announcing Oxlint 1.0",
+     "url": "https://voidzero.dev/posts/announcing-oxlint-1-stable"
+    },
+    {
+     "label": "Oxc linter documentation",
+     "url": "https://oxc.rs/docs/guide/usage/linter.html"
+    }
+   ]
+  },
+  {
+   "id": "qual.gofmt",
+   "title": "gofmt",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2009,
+   "short": "Go's standard formatter. One layout for every Go program, so style arguments never start; about 70 percent of public Go packages followed it by 2013.",
+   "long": "gofmt rewrites Go source into a single canonical layout and offers almost no style options. A January 2013 post on the Go blog by Andrew Gerrand promised that you would \"never have a debate about spacing or brace position ever again\", and claimed that formatted code is easier to write, read and maintain and that the result is uncontroversial. A survey cited there found about 70 percent of Go packages in the wild already followed gofmt. Rob Pike summed up the trade in 2015 with the Go Proverb \"Gofmt's style is no one's favorite, yet gofmt is everyone's favorite.\" Google uses gofmt for Go, alongside clang-format for C++ and other formatters elsewhere. Prettier and Black later offered the same bargain to other languages.",
+   "status": "thriving",
+   "tags": [
+    "go",
+    "formatter",
+    "pike",
+    "gerrand"
+   ],
+   "refs": [
+    {
+     "label": "Go blog: go fmt your code",
+     "url": "https://go.dev/blog/gofmt"
+    },
+    {
+     "label": "Go Proverbs",
+     "url": "https://go-proverbs.github.io/"
+    }
+   ]
+  },
+  {
+   "id": "qual.prettier",
+   "title": "Prettier",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2016,
+   "short": "An opinionated code formatter popular in the JavaScript world. Its stated goal is to stop style debates, and it only reprints code without changing behavior.",
+   "long": "Prettier reprints source code in its own consistent style, and its documentation names the main reason to adopt it: to stop all the ongoing debates over style. It calls itself the only \"style guide\" that is fully automatic. Its first requirement is to output valid code with exactly the same behavior as before formatting, because it only prints code and does not transform it. The GitHub repository dates from November 2016 and has more than 52,000 stars. Because it covers layout only, it is a formatter and not a linter; Biome's makers claim their Rust formatter is about 35 times faster with 97 percent compatibility with Prettier's output.",
+   "status": "thriving",
+   "tags": [
+    "javascript",
+    "typescript",
+    "formatter",
+    "opinionated"
+   ],
+   "refs": [
+    {
+     "label": "Why Prettier",
+     "url": "https://prettier.io/docs/why-prettier"
+    },
+    {
+     "label": "Prettier rationale",
+     "url": "https://prettier.io/docs/rationale"
+    }
+   ]
+  },
+  {
+   "id": "qual.black",
+   "title": "Black",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2018,
+   "short": "Python's \"uncompromising\" code formatter. You give up control of layout and get deterministic output and smaller diffs in code review.",
+   "long": "Black formats Python code one way and allows almost no configuration. Its documentation says that by using it you agree to cede control over the minutiae of hand-formatting, and in return get speed, determinism and freedom from style nagging. Because the output is predictable, it also produces the smallest possible diffs, which makes code review faster, and Black-formatted code looks the same in every project. The repository was created in March 2018 and has more than 40,000 stars. Ruff now ships a formatter that claims drop-in parity with Black.",
+   "code": {
+    "lang": "python",
+    "text": "# before\nd = {'a':1,\n       'b':2}\ndef f(x,y):return x+y\n\n# after (Black's output)\nd = {\"a\": 1, \"b\": 2}\n\n\ndef f(x, y):\n    return x + y"
+   },
+   "status": "thriving",
+   "tags": [
+    "python",
+    "formatter",
+    "uncompromising"
+   ],
+   "refs": [
+    {
+     "label": "Black documentation",
+     "url": "https://black.readthedocs.io/en/stable/"
+    }
+   ]
+  },
+  {
+   "id": "qual.style-wars",
+   "title": "Style Wars and Auto-Formatting",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2013,
+   "short": "Arguments over braces, tabs and line width ended not with a winner but with tools that rewrite code into one layout, so reviewers stopped debating it.",
+   "long": "Programmers have always argued about layout: where the brace goes, tabs or spaces, how long a line may be. Written style guides settled these questions only as long as someone enforced them by hand. Formatters changed that by removing the choice. A 2013 Go blog post promised an end to debates about spacing, and Prettier and Black later made the same offer. Google says too much review time had been spent arguing over formatting, and that its automated formatters beat humans by a significant margin. Formatters make no claim about whether code is correct, so they cannot raise false alarms, which is why teams can enforce them fully automatically. The evidence is practitioner testimony from tool documentation and Google's experience, not a controlled study.",
+   "sleeper": "Where teams once enforced a written style guide by hand in review, a formatter now rewrites the file, and Google says formatting \"becomes a non-issue during code review.\"",
+   "status": "n/a",
+   "tags": [
+    "formatting",
+    "bikeshedding",
+    "tabs vs spaces",
+    "code style"
+   ],
+   "refs": [
+    {
+     "label": "Go blog: go fmt your code",
+     "url": "https://go.dev/blog/gofmt"
+    },
+    {
+     "label": "Software Engineering at Google, ch. 8: Style Guides and Rules",
+     "url": "https://abseil.io/resources/swe-book/html/ch08.html"
+    }
+   ]
+  },
+  {
+   "id": "qual.mypy",
+   "title": "mypy",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2012,
+   "short": "Python's best-known static type checker. It reads optional type hints and reports mismatches before the program runs, without making Python statically typed.",
+   "long": "Jukka Lehtosalo started mypy in 2012 as optional static typing for Python. Its approach became the model for PEP 484, which Guido van Rossum, Lehtosalo and Łukasz Langa wrote in 2014 and which arrived in Python 3.5 as standard type hints. The PEP says it was strongly inspired by mypy, that Python will remain dynamically typed, and that the authors never want type hints to be mandatory. A study that added types by hand to real, already-fixed JavaScript bugs found that Flow and TypeScript each caught 15 percent of them, bugs that had survived testing and review. Microsoft's Pyright and Astral's ty, a Rust checker still in beta whose makers claim it is 10 to 100 times faster, compete with mypy.",
+   "sleeper": "A language you may remember as purely dynamic now has an optional type layer: PEP 484 added type hints in Python 3.5, and checkers such as mypy read them without making them mandatory.",
+   "code": {
+    "lang": "python",
+    "text": "def total(prices: list[float]) -> float:\n    return sum(prices)\n\ntotal(\"12.50\")    # before: mypy flags a str where list[float] is expected (it would fail at run time)\ntotal([12.50])    # after: passes the check"
+   },
+   "status": "thriving",
+   "tags": [
+    "python",
+    "type hints",
+    "pep 484",
+    "gradual typing",
+    "lehtosalo"
+   ],
+   "refs": [
+    {
+     "label": "PEP 484: Type Hints",
+     "url": "https://peps.python.org/pep-0484/"
+    },
+    {
+     "label": "To Type or Not to Type (Gao, Bird and Barr)",
+     "url": "https://earlbarr.com/publications/typestudy.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.flow-sorbet-hack",
+   "title": "Flow, Sorbet and Hack",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2014,
+   "short": "Type checkers that big companies built for dynamic languages: Facebook's Flow for JavaScript, Facebook's Hack for PHP and Stripe's Sorbet for Ruby.",
+   "long": "Companies with huge codebases in dynamic languages built type checkers for them rather than rewrite. Facebook's Flow, whose repository dates from October 2014, checks JavaScript. Hack, which Facebook opened in March 2014 for its HHVM runtime, is typed PHP; it checks files incrementally as you edit and typically finishes in under 200 milliseconds. Stripe's Sorbet does the same job for Ruby, and its repository dates from 2018. Flow was one of the two checkers in the study that found each of Flow and TypeScript catching 15 percent of real JavaScript bugs. Microsoft's TypeScript took a different route, a new language that compiles to JavaScript, while Flow remains active with a smaller footprint.",
+   "status": "niche",
+   "tags": [
+    "flow",
+    "sorbet",
+    "hack",
+    "stripe",
+    "meta",
+    "gradual typing"
+   ],
+   "refs": [
+    {
+     "label": "Hack",
+     "url": "https://hacklang.org/"
+    },
+    {
+     "label": "To Type or Not to Type (Gao, Bird and Barr)",
+     "url": "https://earlbarr.com/publications/typestudy.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.tricorder",
+   "title": "Tricorder (Google)",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2015,
+   "short": "Google's code-review analysis platform. It posts static-analysis findings on changed lines, and kept false alarms low enough that engineers acted on them.",
+   "long": "Tricorder, described in a 2015 paper by Sadowski and colleagues, is Google's platform for running program analyzers on every code review. Results appear as robot comments on the lines the author changed, with one-click fixes where possible. Analyzers that more than 10 percent of readers mark not useful are put on probation or switched off, and per-user settings and severity ratings were removed. By January 2018 it handled about 50,000 reviews a day with 146 analyzers; reviewers clicked \"Please fix\" more than 5,000 times a day and authors applied automated fixes about 3,000 times a day. Google's later account recounts three failed FindBugs efforts: a 2006 dashboard few opened, a 2009 \"Fixit\" week that fixed 640 of 1,746 filed bugs, and a code-review integration dropped in 2011.",
+   "tags": [
+    "google",
+    "static analysis",
+    "code review",
+    "error prone",
+    "robocomments"
+   ],
+   "refs": [
+    {
+     "label": "Sadowski et al., Tricorder (ICSE 2015)",
+     "url": "https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43322.pdf"
+    },
+    {
+     "label": "Sadowski et al., Lessons from Building Static Analysis Tools at Google (CACM 2018)",
+     "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4365.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.infer",
+   "title": "Facebook Infer",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2015,
+   "short": "Facebook's open-source bug finder. Switching it from a batch report to comments during code review lifted its fix rate from near zero to over 70 percent.",
+   "long": "Infer is a static analyzer written in OCaml whose public repository dates from 2015. It checks Java, C, C++, Objective-C and Erlang code for null dereferences, data races and many other problems, and it runs in continuous integration on every change across Facebook, Messenger, Instagram and WhatsApp. Its most-quoted lesson is about timing, not technique. Run as a nightly batch job, it produced lists of issues that engineers almost never fixed. Run at \"diff time\", as a bot commenting during code review, the same analysis with the same false-positive rate had a fix rate of over 70 percent. By 2019 developers had fixed over 100,000 reported issues before the code reached production. A sibling tool, Zoncolan, looks for security bugs in Facebook's Hack code.",
+   "status": "niche",
+   "tags": [
+    "facebook",
+    "meta",
+    "ocaml",
+    "separation logic",
+    "diff time",
+    "zoncolan"
+   ],
+   "refs": [
+    {
+     "label": "Infer documentation",
+     "url": "https://fbinfer.com/docs/about-Infer/"
+    },
+    {
+     "label": "Distefano et al., Scaling Static Analyses at Facebook (CACM 2019)",
+     "url": "https://doi.org/10.1145/3338112"
+    }
+   ]
+  },
+  {
+   "id": "qual.coverity",
+   "title": "Coverity",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2002,
+   "short": "A commercial bug finder built in 2002 from a Stanford research checker. Its engineers' 2010 account of false positives shaped the whole field.",
+   "long": "Coverity began in November 2002 as a company built around a Stanford research bug finder, with Dawson Engler as technical adviser. It found bugs by following data and control flow through whole programs, ran overnight, and was unsound by design: its authors tried to find as many bugs as possible rather than prove none remained. By December 2009 about 700 customers had licensed it, covering somewhat more than a billion lines of code. A free Coverity Scan service, run under a 2006 US Department of Homeland Security contract, examined more than 150 open-source applications, and about 6,000 of the bugs it found were fixed across 53 projects. Synopsys bought the company in 2014 for $375 million in cash. The 2010 paper by its engineers is the standard source on why false positives sink static analysis.",
+   "sleeper": "A Coverity co-founder recalled in 2010 that pitching a static bug finder had drawn \"Huh?\" or \"Lint? Yuck.\" Companies now run such analyzers on every code change.",
+   "status": "niche",
+   "tags": [
+    "static analysis",
+    "stanford",
+    "bessey",
+    "unsound",
+    "synopsys"
+   ],
+   "refs": [
+    {
+     "label": "Bessey et al., Coverity (CACM 2010)",
+     "url": "https://web.stanford.edu/~engler/BLOC-coverity.pdf"
+    },
+    {
+     "label": "Wikipedia: Coverity",
+     "url": "https://en.wikipedia.org/wiki/Coverity"
+    }
+   ]
+  },
+  {
+   "id": "qual.false-positives",
+   "title": "Warning Fatigue and False Positives",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2015,
+   "short": "A static-analysis warning is worth reading only if it is usually right. Johnson saw this in 1978, and Coverity, Google and Facebook later measured it.",
+   "long": "Johnson's 1978 lint manual said that \"might be a bug\" messages are acceptable only in proportion to the share of real bugs they find. Coverity's engineers put the line at about 30 percent false positives: past that, people ignore the tool, real bugs get lost, and low trust becomes a vicious cycle. Google defines an \"effective false positive\" as any report a developer chooses not to act on, and holds compiler-time checks to none and code-review checks to under 10 percent. Where the warning appears matters too. Google found 74 percent of problems flagged at compile time were judged real, against 21 percent of those found in checked-in code, and Facebook's fix rate rose from near zero to over 70 percent when the same analysis moved into code review. Rice's theorem explains why no analyzer can avoid both false alarms and missed bugs.",
+   "status": "n/a",
+   "tags": [
+    "warning fatigue",
+    "effective false positive",
+    "trust",
+    "noise"
+   ],
+   "refs": [
+    {
+     "label": "Bessey et al., Coverity (CACM 2010)",
+     "url": "https://web.stanford.edu/~engler/BLOC-coverity.pdf"
+    },
+    {
+     "label": "Sadowski et al., Lessons from Building Static Analysis Tools at Google (CACM 2018)",
+     "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4365.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.baselining",
+   "title": "Baselining Legacy Code",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2010,
+   "short": "Adopting a strict rule on old code by recording today's violations and failing only on new ones, instead of demanding they all be fixed first.",
+   "long": "Turning on a new check in a large old codebase can produce thousands of warnings, and old code that has not changed in years is risky to touch. Coverity's authors reported in 2010 that many customers independently invented the answer: record the current bugs, leave them alone, and fix only new ones. ESLint now supports this with bulk suppressions that can only shrink, since it warns when a suppression no longer occurs. Ruff can add a marker comment to each existing violation so a rule can be enforced from today. Google took a different route: it fixed every existing instance with automated large-scale changes, then turned the check into a compiler error, and shows findings in review only on changed lines. SonarQube's \"Clean as You Code\" applies the same idea by judging only new code.",
+   "code": {
+    "lang": "python",
+    "text": "def legacy(): raise RuntimeError\n# before: ruff check reports E722 here\ntry:\n    legacy()\nexcept:\n    pass\n# after: ruff check --add-noqa records the old violation, and only new ones fail\ntry:\n    legacy()\nexcept:  # noqa: E722\n    pass"
+   },
+   "status": "n/a",
+   "tags": [
+    "legacy code",
+    "suppressions",
+    "noqa",
+    "adoption"
+   ],
+   "refs": [
+    {
+     "label": "Bessey et al., Coverity (CACM 2010)",
+     "url": "https://web.stanford.edu/~engler/BLOC-coverity.pdf"
+    },
+    {
+     "label": "ESLint: bulk suppressions",
+     "url": "https://eslint.org/docs/latest/use/suppressions"
+    }
+   ]
+  },
+  {
+   "id": "qual.sast",
+   "title": "SAST",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2002,
+   "short": "Static application security testing: tools that read source code for exploitable patterns such as SQL injection. Their best-known weakness is noise.",
+   "long": "SAST tools analyze source or compiled code for security flaws. OWASP says they scale to large codebases, repeat scans cheaply, find well-known problems such as buffer overflows and SQL injection, and point to the file and line. Its list of weaknesses is just as clear: high numbers of false positives, no view of configuration problems, little ability to find broken authentication or access control, and trouble with code that cannot be built. The first commercial products appeared in the early 2000s, including Coverity in 2002 and Checkmarx in 2006. Open-source examples are Bandit for Python, Brakeman for Rails, Semgrep and SpotBugs; commercial ones include Fortify, Veracode and Snyk Code. Semgrep matches patterns that look like source code, while CodeQL lets analysts write queries.",
+   "code": {
+    "lang": "python",
+    "text": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE users (name TEXT)\")\nname = \"x' OR '1'='1\"\n# before: Bandit B608 flags SQL built by string formatting\nrows = db.execute(\"SELECT * FROM users WHERE name = '%s'\" % name).fetchall()\n# after: the driver passes the value separately\nrows = db.execute(\"SELECT * FROM users WHERE name = ?\", (name,)).fetchall()"
+   },
+   "status": "thriving",
+   "tags": [
+    "security",
+    "bandit",
+    "semgrep",
+    "owasp",
+    "taint analysis",
+    "static analysis"
+   ],
+   "refs": [
+    {
+     "label": "OWASP: Source Code Analysis Tools",
+     "url": "https://community.owasp.org/Source_Code_Analysis_Tools"
+    }
+   ]
+  },
+  {
+   "id": "qual.codeql",
+   "title": "CodeQL",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2006,
+   "short": "GitHub's code-query engine. Analysts describe a bug pattern as a query in QL, a Datalog-style language. It began as the Oxford spin-out Semmle.",
+   "long": "CodeQL grew out of Semmle, founded in December 2006 in Oxford by Oege de Moor of the University of Oxford. Its query language, QL, is described as an object-oriented version of Datalog: instead of coding a checker, an analyst writes a query that describes a pattern, such as untrusted input reaching a database call, and the engine reports the code that matches. GitHub, owned by Microsoft, acquired Semmle on 18 September 2019, and in November 2019 made CodeQL free for research and open-source projects. It is one of the best-known tools in the SAST class.",
+   "status": "thriving",
+   "tags": [
+    "semmle",
+    "github",
+    "queries",
+    "datalog",
+    "security"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: CodeQL and Semmle",
+     "url": "https://en.wikipedia.org/wiki/CodeQL"
+    }
+   ]
+  },
+  {
+   "id": "qual.sonarqube",
+   "title": "SonarQube",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2007,
+   "short": "A commercial code-quality platform from Sonar of Geneva. Independent research found that most of its Java rules are weak predictors of real faults.",
+   "long": "SonarQube applies large rule sets to source code, with 202 rules for Java alone, and reports findings with ratings and a quality gate that new code must pass. The product was first released around 2007. Sonar, the company behind it, was founded in 2008 in Geneva by Olivier Gaudin, Freddy Mallet and Simon Brandhof, raised $412 million in 2022 at a $4.7 billion valuation, and reports more than 28,000 enterprise customers, including 75 percent of the Fortune 100. A study of 21 open-source projects by Lenarduzzi and colleagues found that only 25 of those 202 Java rules had relatively low fault-proneness and that violations SonarQube labels bugs were generally not fault-prone, which suggests a gate built on those rules measures something other than defects.",
+   "status": "thriving",
+   "tags": [
+    "sonar",
+    "quality gate",
+    "code smells",
+    "clean as you code",
+    "geneva"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: SonarQube",
+     "url": "https://en.wikipedia.org/wiki/SonarQube"
+    },
+    {
+     "label": "Lenarduzzi et al., Are SonarQube Rules Inducing Bugs?",
+     "url": "https://arxiv.org/abs/1907.00376"
+    }
+   ]
+  },
+  {
+   "id": "qual.dependency-scanners",
+   "title": "Dependency and Secrets Scanners",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2017,
+   "short": "Tools that compare your libraries against lists of known vulnerabilities and licenses, and search code and git history for leaked passwords and keys.",
+   "long": "Modern programs are mostly other people's code, so a class of checker reads each project's manifest and lockfile and compares every library version with databases of known vulnerabilities and licenses. Dependabot, from GitHub, raises alerts and opens pull requests that update vulnerable or outdated dependencies; Renovate, from Mend, does similar work across platforms; npm audit and pip-audit check one ecosystem each. Trivy, from Aqua Security, scans containers and repositories, and Gitleaks searches code and git history for secrets. These tools only know about published problems, and they can flag a vulnerable function your code never calls. In 2026 Dependabot began applying a three-day delay to non-security updates by default, a defense against freshly poisoned releases.",
+   "sleeper": "You used to pick libraries yourself and rarely heard about their flaws. Now a bot compares every dependency with databases of known vulnerabilities and opens a pull request to update it.",
+   "code": {
+    "lang": "yaml",
+    "text": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: \"npm\"\n    directory: \"/\"\n    schedule: { interval: \"weekly\" }"
+   },
+   "status": "thriving",
+   "tags": [
+    "sca",
+    "dependabot",
+    "renovate",
+    "trivy",
+    "gitleaks",
+    "secrets",
+    "vulnerabilities"
+   ],
+   "refs": [
+    {
+     "label": "GitHub Docs: Dependabot quickstart",
+     "url": "https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide"
+    },
+    {
+     "label": "npm audit",
+     "url": "https://docs.npmjs.com/cli/v10/commands/npm-audit"
+    }
+   ]
+  },
+  {
+   "id": "qual.domain-linters",
+   "title": "Domain Linters (IaC, Docker, CI)",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2012,
+   "short": "Linters for one file format each: shell scripts, Dockerfiles, CSS, YAML, Terraform, SQL and CI workflow files, where a small mistake can cause an outage.",
+   "long": "Generic linters read programming languages. A growing family reads the configuration and glue around them. ShellCheck, written in Haskell with a repository dating from 2012, catches shell mistakes such as unquoted variables; hadolint checks Dockerfiles, stylelint checks CSS, yamllint and markdownlint check their formats, tflint checks Terraform, SQLFluff checks and formats SQL, and actionlint checks GitHub Actions workflow files. Checkov, from Bridgecrew, scans infrastructure-as-code for cloud misconfigurations during the build. These tools are mostly rule-based and precise, and they matter because configuration errors cause outages. CI configuration became code in its own right: CircleCI's config file was reported as the fastest-growing YAML file on GitHub in 2018.",
+   "code": {
+    "lang": "bash",
+    "text": "# before: ShellCheck SC2086 (unquoted variable); with BUILD_DIR empty this becomes rm -rf /*\necho rm -rf $BUILD_DIR/*\n# after: quoted, and it aborts if BUILD_DIR is unset or empty\necho rm -rf \"${BUILD_DIR:?}\"/*"
+   },
+   "status": "thriving",
+   "tags": [
+    "shellcheck",
+    "hadolint",
+    "yamllint",
+    "terraform",
+    "dockerfile",
+    "infrastructure as code"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: CircleCI",
+     "url": "https://en.wikipedia.org/wiki/CircleCI"
+    },
+    {
+     "label": "Sadowski et al., Lessons from Building Static Analysis Tools at Google (CACM 2018)",
+     "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4365.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.cyclomatic",
+   "title": "Cyclomatic Complexity",
+   "cat": "quality",
+   "tier": 4,
+   "year": 1976,
+   "short": "Thomas McCabe's 1976 count of the independent paths through a function. A simple gauge of how tangled code is, with no proof that lowering it removes bugs.",
+   "long": "In 1976 Thomas J. McCabe proposed counting the linearly independent paths through a program's control flow; for a simple function that is one plus its number of decisions such as if, while and logical and/or. He recommended splitting modules that scored above 10. Tools such as radon for Python now report it. Critics note that the score tracks program size and that reducing it has not been shown to reduce the number of errors. The same family of checkers measures duplication (jscpd), dead code (Vulture) and module dependencies (madge), and ArchUnit turns an architecture rule, such as \"UI code may not call the database\", into an ordinary unit test.",
+   "code": {
+    "lang": "python",
+    "text": "def grade(score):          # complexity 4: one base path, plus one per decision\n    if score >= 90:        # decision 1\n        return \"A\"\n    elif score >= 80:      # decision 2\n        return \"B\"\n    elif score >= 70:      # decision 3\n        return \"C\"\n    return \"F\""
+   },
+   "status": "n/a",
+   "tags": [
+    "mccabe",
+    "metrics",
+    "complexity",
+    "radon",
+    "archunit",
+    "duplication"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Cyclomatic complexity",
+     "url": "https://en.wikipedia.org/wiki/Cyclomatic_complexity"
+    }
+   ]
+  },
+  {
+   "id": "qual.asan-valgrind",
+   "title": "AddressSanitizer and Valgrind",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2002,
+   "short": "Tools that watch a running program for memory errors. Valgrind (2002) is thorough but over 20 times slower; AddressSanitizer (2012) costs roughly 2 times.",
+   "long": "Valgrind, whose Memcheck tool tracks memory accesses and uninitialized values, was first released in 2002 and is used by thousands of C and C++ programmers, at the cost of a mean 22 times slowdown in a 2007 benchmark. Serebryany, Bruening, Potapenko and Vyukov, all at Google, published AddressSanitizer in 2012. It poisons \"redzones\" around objects and keeps a shadow map of memory, finding out-of-bounds accesses and use-after-free bugs with an average slowdown of 73 percent, and it found over 300 previously unknown bugs in Chromium. Sibling sanitizers cover data races (ThreadSanitizer) and undefined behavior (UBSan). Because the bug really happened, these tools almost never give false alarms, but they only see code that the tests actually run.",
+   "sleeper": "Heavyweight memory checkers of the early 2000s slowed programs 20 times or more. AddressSanitizer finds the same class of bugs at roughly 2 times, cheap enough to run in routine tests.",
+   "code": {
+    "lang": "c",
+    "text": "/* clang -fsanitize=address -g -O0 overflow.c && ./a.out */\nint main(int argc, char **argv) {\n    int a[4];\n    a[argc + 3] = 1;   /* argc is 1, so this writes a[4]: ASan reports stack-buffer-overflow */\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "memory errors",
+    "sanitizers",
+    "valgrind",
+    "memcheck",
+    "dynamic analysis",
+    "chromium"
+   ],
+   "refs": [
+    {
+     "label": "Serebryany et al., AddressSanitizer (USENIX ATC 2012)",
+     "url": "https://www.usenix.org/system/files/conference/atc12/atc12-final39.pdf"
+    },
+    {
+     "label": "Nethercote and Seward, Valgrind (PLDI 2007)",
+     "url": "https://valgrind.org/docs/valgrind2007.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.fuzzing",
+   "title": "Fuzzing",
+   "cat": "quality",
+   "tier": 3,
+   "year": 1988,
+   "short": "Throwing random or mutated input at a program until it crashes. It began as a 1988 class project; Google's OSS-Fuzz now runs it on about 1,000 projects.",
+   "long": "The word comes from a 1988 graduate class project of Barton Miller at the University of Wisconsin, and his 1990 study found that fuzzing could crash 25 to 33 percent of the utilities tested. Modern fuzzers are guided by coverage: libFuzzer, part of LLVM, runs your function on mutated inputs inside the process, and you compile it with sanitizers so memory errors are caught the moment they occur. Google's OSS-Fuzz, started in 2016 in response to the Heartbleed flaw in OpenSSL, had helped identify and fix over 10,000 vulnerabilities and 36,000 bugs across about 1,000 projects by August 2023. Fuzzing finds only what the generated inputs reach.",
+   "sleeper": "Random input once looked like a crude trick. By August 2023 Google's OSS-Fuzz had helped identify and fix over 10,000 vulnerabilities and 36,000 other bugs in open-source software.",
+   "code": {
+    "lang": "cpp",
+    "text": "// clang++ -g -fsanitize=fuzzer,address fuzz.cpp && ./a.out\n#include <cstddef>\n#include <cstdint>\nextern \"C\" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {\n  if (size >= 3 && data[0] == 'F' && data[1] == 'U' && data[2] == 'Z')\n    __builtin_trap();                  // a crash only the right input reaches\n  return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "fuzz testing",
+    "libfuzzer",
+    "oss-fuzz",
+    "afl",
+    "miller",
+    "security"
+   ],
+   "refs": [
+    {
+     "label": "Barton Miller: fuzz testing",
+     "url": "https://pages.cs.wisc.edu/~bart/fuzz/"
+    },
+    {
+     "label": "OSS-Fuzz documentation",
+     "url": "https://google.github.io/oss-fuzz/"
+    }
+   ]
+  },
+  {
+   "id": "qual.formal-verification",
+   "title": "Formal Verification",
+   "cat": "quality",
+   "tier": 3,
+   "year": 1972,
+   "short": "Proving a property of a program or design with mathematics instead of testing examples. Dijkstra, 1972: tests show that bugs are present, never that they are absent.",
+   "long": "In his 1972 Turing lecture Edsger Dijkstra said that program testing can be very effective for showing the presence of bugs but is hopelessly inadequate for showing their absence. Formal verification aims at absence. Model checking explores every state of a finite model of a design. Proof assistants such as Rocq and Lean check mathematical proofs, and tools such as SPARK and Frama-C prove properties of programs written in restricted or annotated languages. Rust's borrow checker is a lightweight form that every Rust programmer meets. Rice's theorem is why these methods restrict the language, require annotations or specifications, or look only at a finite abstraction. Memory safety is the usual target: roughly 70 percent of the security issues Microsoft assigns a CVE to are memory-safety bugs.",
+   "sleeper": "You may remember formal methods as a niche for avionics. Since 2011 Amazon engineers have model-checked cloud designs, and the Rust compiler's ownership rules act as a built-in proof of memory safety for everyday programmers.",
+   "code": {
+    "lang": "rust",
+    "text": "fn main() {\n    let a = String::from(\"hi\");\n    let b = a;               // ownership moves from a to b\n    println!(\"{b}\");\n    // println!(\"{a}\");      // rejected at compile time: borrow of moved value\n}"
+   },
+   "status": "niche",
+   "tags": [
+    "proof",
+    "model checking",
+    "specification",
+    "verification",
+    "dijkstra"
+   ],
+   "refs": [
+    {
+     "label": "Dijkstra, The Humble Programmer (EWD340)",
+     "url": "https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html"
+    },
+    {
+     "label": "Wikipedia: Model checking",
+     "url": "https://en.wikipedia.org/wiki/Model_checking"
+    }
+   ]
+  },
+  {
+   "id": "qual.hoare-logic",
+   "title": "Hoare Logic",
+   "cat": "quality",
+   "tier": 4,
+   "year": 1969,
+   "short": "Tony Hoare's 1969 notation for proving a program correct: if a precondition holds before the code runs, a stated postcondition holds after.",
+   "long": "In \"An Axiomatic Basis for Computer Programming\", published in the Communications of the ACM in October 1969, C. A. R. Hoare of Queen's University Belfast wrote that programming is an exact science in that all the properties of a program can in principle be found out from its text by deductive reasoning. His notation, now called a Hoare triple, says that if assertion P holds before program Q starts, then assertion R holds when it finishes. The paper gives rules for assignment and loops and works through a division program. Hoare credited Robert Floyd, whose treatment applied to flowcharts rather than program text, and admitted that proofs would be hard even for skilled programmers and suited only to simple designs. Wirth later observed that the idea passed virtually unnoticed in industry, because the examples were small and industry's systems were huge.",
+   "sleeper": "Hoare's proofs were done by hand on small programs. Tools now generate and check such conditions: Frama-C's site claims it proves up to 98 percent of them automatically, and SPARK proves the absence of runtime errors.",
+   "code": {
+    "lang": "python",
+    "text": "def divide(x, y):\n    assert x >= 0 and y > 0                 # precondition P\n    r, q = x, 0\n    while y <= r:\n        r, q = r - y, q + 1                 # keeps x == r + y*q true\n    assert x == r + y * q and r < y         # postcondition R\n    return q, r\nprint(divide(17, 5))                        # (3, 2)"
+   },
+   "status": "n/a",
+   "tags": [
+    "axiomatic semantics",
+    "precondition",
+    "postcondition",
+    "hoare triple",
+    "floyd",
+    "program proof"
+   ],
+   "refs": [
+    {
+     "label": "Hoare, An Axiomatic Basis for Computer Programming (1969)",
+     "url": "https://www.cs.cmu.edu/~crary/819-f09/Hoare69.pdf"
+    },
+    {
+     "label": "Wirth, 2008 essay on the history of programming",
+     "url": "https://people.inf.ethz.ch/wirth/Miscellaneous/IEEE-Annals.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.tla-aws",
+   "title": "TLA+ at AWS",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2011,
+   "short": "Since 2011 Amazon engineers have used the TLA+ specification language and its model checker to find subtle design bugs in S3, DynamoDB and other systems.",
+   "long": "In a 2014 paper, Newcombe and colleagues at Amazon Web Services described using formal specification and model checking since 2011 to find design bugs in critical systems. They had applied TLA+, the specification language created by Leslie Lamport, to 10 large systems, including S3, DynamoDB and an internal lock manager. In every case it either found subtle bugs they were sure testing would have missed or gave them enough confidence to make aggressive performance optimizations. One DynamoDB replication bug that could lose data needed a 35-step sequence of failures and recoveries to appear. Engineers from entry level to principal learned TLA+ in two to three weeks. The authors state the limit themselves: nothing proves that the executable code matches the verified design.",
+   "status": "niche",
+   "tags": [
+    "tla+",
+    "model checking",
+    "aws",
+    "lamport",
+    "design verification",
+    "dynamodb",
+    "s3"
+   ],
+   "refs": [
+    {
+     "label": "Newcombe et al., Use of Formal Methods at Amazon Web Services (2014)",
+     "url": "https://lamport.azurewebsites.net/tla/formal-methods-amazon.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.proof-tools",
+   "title": "seL4, SPARK, Rocq and Lean",
+   "cat": "quality",
+   "tier": 4,
+   "year": 1987,
+   "short": "Tools for proving software correct: SPARK for Ada (1987), the seL4 kernel, and the Rocq and Lean proof assistants, which check proofs by machine.",
+   "long": "SPARK began at the University of Southampton in 1987 as a provable subset of Ada, sponsored by the UK Ministry of Defence. Its prover can show that a program has no runtime errors, and it has been used in Rolls-Royce Trent engines, the Eurofighter Typhoon, UK air traffic management and rail signaling. Rocq, formerly Coq, is a proof assistant that has hosted CompCert, a verified C compiler, and a proof of the Four-Color theorem. Lean, begun by Leonardo de Moura at Microsoft Research in 2013, has a library, Mathlib, with over 210,000 theorems. The seL4 kernel has machine-checked proofs of functional correctness and integrity, and confidentiality proofs were completed on AArch64 in August 2026. RustBelt, a 2018 project, used Coq to prove that a core of Rust's ownership rules is sound.",
+   "code": {
+    "lang": "lean",
+    "text": "theorem add_zero' (n : Nat) : n + 0 = n := rfl         -- true by the definition of +\ntheorem zero_add' (n : Nat) : 0 + n = n := by omega    -- needs a little arithmetic\n#check @zero_add'"
+   },
+   "status": "niche",
+   "tags": [
+    "spark",
+    "sel4",
+    "coq",
+    "lean",
+    "rocq",
+    "proof assistant",
+    "compcert"
+   ],
+   "refs": [
+    {
+     "label": "seL4",
+     "url": "https://sel4.systems/"
+    },
+    {
+     "label": "Rocq Prover",
+     "url": "https://rocq-prover.org/"
+    }
+   ]
+  },
+  {
+   "id": "qual.xunit",
+   "title": "xUnit and JUnit",
+   "cat": "quality",
+   "tier": 3,
+   "year": 1997,
+   "short": "The family of test frameworks that began with Kent Beck's SUnit and the 1997 JUnit: write a test as code, run it by machine, see a green or red bar.",
+   "long": "Kent Beck wrote the first xUnit framework, SUnit, for Smalltalk. JUnit, for Java, was born on a flight from Zurich to the 1997 OOPSLA conference in Atlanta, where Beck and Erich Gamma wrote it pair-programming, test first. It introduced the red and green bar, took off quickly, and nearly every language now has a JUnit port: CppUnit, NUnit for .NET and many others. They share one shape: test cases made of assertions, grouped into suites, set up with fixtures and run by a runner that can report in XML for CI servers. A 2013 study of 10,000 GitHub Java projects found JUnit, tied with slf4j-api, the most commonly included external library. JUnit 5 appeared in 2017.",
+   "code": {
+    "lang": "java",
+    "text": "import org.junit.jupiter.api.Test;\nimport static org.junit.jupiter.api.Assertions.assertEquals;\n\nclass ArithmeticTest {\n    @Test\n    void additionWorks() {\n        assertEquals(4, 2 + 2);\n    }\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "junit",
+    "sunit",
+    "beck",
+    "gamma",
+    "unit testing",
+    "red green"
+   ],
+   "refs": [
+    {
+     "label": "Fowler: Xunit",
+     "url": "https://martinfowler.com/bliki/Xunit.html"
+    },
+    {
+     "label": "Wikipedia: JUnit",
+     "url": "https://en.wikipedia.org/wiki/JUnit"
+    }
+   ]
+  },
+  {
+   "id": "qual.tdd",
+   "title": "Test-Driven Development",
+   "cat": "quality",
+   "tier": 2,
+   "year": 2002,
+   "short": "Write a failing test, make it pass, then clean up, in short cycles. Kent Beck's practice has mixed evidence: the small steps seem to matter more than test-first.",
+   "long": "Test-driven development means writing an automated unit test that fails, writing just enough code to make it pass, then refactoring both, and repeating. Kent Beck is credited with developing or rediscovering it, and says he remembered an old book describing the idea after writing the first xUnit framework in Smalltalk. Extreme Programming Explained appeared in 1999 and Test-Driven Development: By Example in 2002. Early industrial case studies at Microsoft and IBM found 40 to 90 percent lower pre-release defect density and 15 to 35 percent more initial development time, though against similar projects, not in a randomized trial. A 2017 study of 39 professionals found that the order of writing tests and code had no important influence; short, steady cycles mattered. In 2014 David Heinemeier Hansson wrote \"TDD is dead\", and he, Beck and Martin Fowler held recorded debates about it.",
+   "sleeper": "If you remember writing tests after the code, or leaving them to a separate QA group, TDD flipped the order. Later research suggests the small, steady steps matter more than which comes first.",
+   "code": {
+    "lang": "python",
+    "text": "# 1. red: write the test first; it fails because price() does not exist yet\ndef test_ten_percent_coupon():\n    assert price(100, coupon=\"TEN\") == 90\n\n# 2. green: write just enough code to make it pass\ndef price(amount, coupon=None):\n    return amount * 0.9 if coupon == \"TEN\" else amount\n# 3. refactor, run the tests again, repeat"
+   },
+   "status": "n/a",
+   "tags": [
+    "red green refactor",
+    "unit tests",
+    "beck",
+    "extreme programming",
+    "dhh"
+   ],
+   "refs": [
+    {
+     "label": "Fucci et al., Does It Really Matter to Test-First or to Test-Last?",
+     "url": "https://arxiv.org/abs/1611.05994"
+    },
+    {
+     "label": "Fowler, Beck and Hansson: Is TDD Dead?",
+     "url": "https://martinfowler.com/articles/is-tdd-dead/"
+    }
+   ]
+  },
+  {
+   "id": "qual.bdd",
+   "title": "Behavior-Driven Development",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2006,
+   "short": "Dan North's 2006 refinement of TDD: name tests as sentences about behavior, in language the customer understands. RSpec and Cucumber grew from it.",
+   "long": "Dan North introduced behaviour-driven development in a September 2006 article. Programmers kept asking where to start, what to test, how much to test at once, what to call tests and why a test failed. His answer grew out of two ideas: agiledox, a utility by his colleague Chris Stevenson that turned JUnit test method names into plain sentences, and a naming habit of writing \"the class should do something\". BDD then widened into agile analysis and automated acceptance tests written in the customer's language. RSpec, a Ruby tool begun in 2005, reads like a specification with describe, it and expect, and Cucumber for Ruby carries the idea into acceptance tests. RSpec's latest release in the sources is 3.13.0, from February 2024.",
+   "code": {
+    "lang": "ruby",
+    "text": "def price(amount, coupon: nil) = coupon == \"TEN\" ? amount * 0.9 : amount\n\nRSpec.describe \"price\" do\n  it \"takes ten percent off with the TEN coupon\" do\n    expect(price(100, coupon: \"TEN\")).to eq(90)\n  end\nend"
+   },
+   "status": "n/a",
+   "tags": [
+    "rspec",
+    "cucumber",
+    "acceptance tests",
+    "north",
+    "agile"
+   ],
+   "refs": [
+    {
+     "label": "Dan North: Introducing BDD",
+     "url": "https://dannorth.net/blog/introducing-bdd/"
+    },
+    {
+     "label": "Wikipedia: RSpec",
+     "url": "https://en.wikipedia.org/wiki/RSpec"
+    }
+   ]
+  },
+  {
+   "id": "qual.test-pyramid",
+   "title": "The Test Pyramid",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2009,
+   "short": "Many fast unit tests, fewer integration tests and very few slow end-to-end tests. Mike Cohn's picture, and Google's 70/20/10 rule of thumb.",
+   "long": "Mike Cohn described the test pyramid in his 2009 book Succeeding with Agile; he and Lisa Crispin had drawn it around 2003 to 2004. Martin Fowler's 2012 account puts unit tests at the base, a service layer in the middle and UI tests at the top, and says you should do much more testing through unit tests than through the GUI. Google's testing blog suggested in 2015 a first guess of 70 percent unit tests, 20 percent integration tests and 10 percent end-to-end tests, and its 2020 book says about 80, 15 and 5. The usual anti-pattern is the \"ice cream cone\", with most testing at the slow, flaky top. Google's Mike Wacker called a tenth of a second slow for a unit test.",
+   "status": "n/a",
+   "tags": [
+    "unit tests",
+    "integration tests",
+    "end-to-end",
+    "cohn",
+    "ice cream cone",
+    "70/20/10"
+   ],
+   "refs": [
+    {
+     "label": "Fowler: Test Pyramid",
+     "url": "https://martinfowler.com/bliki/TestPyramid.html"
+    },
+    {
+     "label": "Wacker: Just Say No to More End-to-End Tests",
+     "url": "https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html"
+    }
+   ]
+  },
+  {
+   "id": "qual.testing-trophy",
+   "title": "The Testing Trophy",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2016,
+   "short": "Kent C. Dodds's alternative to the pyramid: a base of static analysis, a few unit tests, mostly integration tests and a few end-to-end tests.",
+   "long": "The testing trophy descends from a December 2016 tweet by Guillermo Rauch: \"Write tests. Not too many. Mostly integration.\" Kent C. Dodds turned it into a picture with static analysis at the base, then unit tests, a wide band of integration tests, and a few end-to-end tests at the top. His central principle is that the more your tests resemble the way your software is used, the more confidence they can give you. He counts linters and type checkers as the static layer of testing. The idea also echoes David Heinemeier Hansson's 2014 call to shift emphasis from isolated unit tests toward tests that exercise more of the system.",
+   "status": "n/a",
+   "tags": [
+    "dodds",
+    "rauch",
+    "integration tests",
+    "static analysis",
+    "javascript"
+   ],
+   "refs": [
+    {
+     "label": "Dodds: The Testing Trophy and Testing Classifications",
+     "url": "https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications"
+    }
+   ]
+  },
+  {
+   "id": "qual.mocking",
+   "title": "Test Doubles and Mocking",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2000,
+   "short": "Stand-in objects that replace a real database, network or service in a test. Fowler's vocabulary: dummy, fake, stub, spy and mock.",
+   "long": "A test double replaces a real collaborator so that a test can run quickly and predictably. Martin Fowler's \"Mocks Aren't Stubs\", using Gerard Meszaros's terms, separates five kinds: a dummy is passed around but never used; a fake is a working shortcut implementation, unsuitable for production; a stub returns canned answers; a spy is a stub that records how it was called; and a mock is pre-programmed with expectations about the calls it should receive. Mock objects came out of the Extreme Programming community, with the original paper presented at XP2000. Two styles result: classical tests check the final state, while mockist tests check the interactions. Over-mocking has a cost, and critics such as David Heinemeier Hansson say it produces an overly complex web of indirection.",
+   "code": {
+    "lang": "python",
+    "text": "from unittest.mock import Mock\n\ngateway = Mock()                       # a mock: records calls and returns canned answers\ngateway.charge.return_value = \"ok\"\n\ndef checkout(total, gateway):\n    return gateway.charge(total)\n\nassert checkout(90, gateway) == \"ok\"\ngateway.charge.assert_called_once_with(90)   # mockist style: verify the behavior"
+   },
+   "status": "n/a",
+   "tags": [
+    "test doubles",
+    "stub",
+    "fake",
+    "spy",
+    "fowler",
+    "meszaros"
+   ],
+   "refs": [
+    {
+     "label": "Fowler: Mocks Aren't Stubs",
+     "url": "https://martinfowler.com/articles/mocksArentStubs.html"
+    }
+   ]
+  },
+  {
+   "id": "qual.code-coverage",
+   "title": "Code Coverage",
+   "cat": "quality",
+   "tier": 3,
+   "year": 1997,
+   "short": "A measure of which lines or branches tests executed. Useful for spotting untested code, poor as a target because a coverage number is easy to inflate.",
+   "long": "Coverage tools report which lines or branches ran during the tests. In the late 1990s Brian Marick wrote \"How to Misuse Code Coverage\", warning that managers who set a coverage number as a shipping gate distort behavior, like hiring on grade-point average alone. A 2014 study by Inozemtseva and Holmes built 31,000 test suites for five Java systems and found only a low to moderate link between coverage and a suite's ability to catch artificial faults, concluding that coverage should not be a quality target. Google offers 60, 75 and 90 percent as acceptable, commendable and exemplary but rejects company-wide mandates, and prefers to measure coverage on each change. A test that calls code and checks nothing still raises the number, which is where mutation testing helps.",
+   "sleeper": "A 1990s manager might set an 85 percent coverage gate for shipping. The research since says a coverage percentage is a good pointer to untested code and a poor target; Google rejects a company-wide threshold.",
+   "code": {
+    "lang": "python",
+    "text": "def apply_coupon(price):\n    return price * 0.9\n\ndef test_coupon():\n    apply_coupon(100)   # every line runs, so coverage says 100%, yet nothing is checked\n    # change 0.9 to 0.5 and this test still passes"
+   },
+   "status": "n/a",
+   "tags": [
+    "coverage",
+    "goodhart",
+    "marick",
+    "metrics",
+    "testing"
+   ],
+   "refs": [
+    {
+     "label": "Inozemtseva and Holmes, Coverage Is Not Strongly Correlated with Test Suite Effectiveness",
+     "url": "https://www.cs.ubc.ca/~rtholmes/papers/icse_2014_inozemtseva.pdf"
+    },
+    {
+     "label": "Google Testing Blog: Code Coverage Best Practices",
+     "url": "https://testing.googleblog.com/2020/08/code-coverage-best-practices.html"
+    }
+   ]
+  },
+  {
+   "id": "qual.mutation-testing",
+   "title": "Mutation Testing",
+   "cat": "quality",
+   "tier": 4,
+   "year": 1978,
+   "short": "A test of your tests: a tool plants small deliberate bugs and checks whether any test fails. A mutant that survives points to a weak test.",
+   "long": "Mutation testing makes tiny changes to code, such as flipping a less-than to less-or-equal or deleting a line, and reruns the tests. A failing run kills the mutant; a passing run means the tests did not notice. The mutation score is the share of mutants killed. Richard Lipton proposed the idea as a student in 1971, DeMillo, Lipton and Sayward described it in \"Hints on test data selection\" in April 1978, the same year as lint, and Timothy Budd built the first tool in 1980. PIT for the JVM and Stryker for JavaScript are current tools. Running every mutant proved too costly at scale, so Google generates at most one mutant per line, skips \"arid\" lines such as logging, and shows results in code review; about 6,000 engineers used it by 2018.",
+   "code": {
+    "lang": "python",
+    "text": "def is_adult(age):\n    return age >= 18          # a tool mutates this to: age > 18\n\ndef test_adult():\n    assert is_adult(30)       # still passes after the mutation, so the mutant survives\n    assert not is_adult(5)    # so does this one\n# add: assert is_adult(18) and the mutant is killed"
+   },
+   "status": "n/a",
+   "tags": [
+    "mutants",
+    "test quality",
+    "pit",
+    "stryker",
+    "lipton",
+    "demillo"
+   ],
+   "refs": [
+    {
+     "label": "Petrovic and Ivankovic, State of Mutation Testing at Google (2018)",
+     "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4203.pdf"
+    },
+    {
+     "label": "Wikipedia: Mutation testing",
+     "url": "https://en.wikipedia.org/wiki/Mutation_testing"
+    }
+   ]
+  },
+  {
+   "id": "qual.property-testing",
+   "title": "Property-Based Testing",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2000,
+   "short": "Instead of hand-picked examples, state a rule that should always hold and let the tool try hundreds of random inputs, shrinking any failure to a small one.",
+   "long": "A property-based test states a general rule, for example that reversing a list twice gives back the original list, and a library generates many random inputs to look for a counterexample. When one fails, the tool shrinks it to a minimal case that is easier to debug. QuickCheck, by Koen Claessen and John Hughes at Chalmers University, introduced the approach for Haskell at ICFP in 2000: properties are written as Haskell functions and tested on random input, with custom generators when needed. Hypothesis brings the idea to Python. It resembles fuzzing in using random inputs, but the checks are explicit statements about behavior.",
+   "code": {
+    "lang": "haskell",
+    "text": "import Test.QuickCheck\n\nprop_reverseTwice :: [Int] -> Bool\nprop_reverseTwice xs = reverse (reverse xs) == xs\n\nmain :: IO ()\nmain = quickCheck prop_reverseTwice   -- +++ OK, passed 100 tests."
+   },
+   "status": "n/a",
+   "tags": [
+    "quickcheck",
+    "random testing",
+    "shrinking",
+    "haskell",
+    "hypothesis"
+   ],
+   "refs": [
+    {
+     "label": "Claessen and Hughes, QuickCheck (ICFP 2000)",
+     "url": "https://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/quick.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.flaky-tests",
+   "title": "Flaky Tests",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2014,
+   "short": "Tests that sometimes pass and sometimes fail on the same code. Google measured about 1.5 percent of test runs flaky in 2016, and large browser tests the worst.",
+   "long": "Google defines a flaky test as one that shows both a passing and a failing result with the same code. In 2016 it reported about 1.5 percent of all test runs flaky, almost 16 percent of tests with some flakiness, and about 84 percent of pass-to-fail transitions involving a flaky test. A 2017 analysis found 0.5 percent of small tests flaky, 1.6 percent of medium tests and 14 percent of large ones, so size predicted flakiness better than the tool did; Java and Python WebDriver tests were 10 to 19 percent flaky. A 2014 study of 201 fixes in 51 open-source projects found the top causes were not waiting properly for asynchronous work (45 percent), concurrency (20 percent) and tests that depend on running order (12 percent). Flaky tests teach people to ignore failures, which is how real bugs slip through.",
+   "sleeper": "With thousands of automated tests running on every change, tests that fail at random became a daily cost. Google reported in 2016 that about 84 percent of its pass-to-fail transitions involved a flaky test.",
+   "code": {
+    "lang": "python",
+    "text": "import threading, time\n\ndef run_job(out):\n    time.sleep(0.05)\n    out.append(\"done\")\n\nout = []; t = threading.Thread(target=run_job, args=(out,)); t.start()\ntime.sleep(0.05)               # flaky: guesses how long the job takes\nprint(out)                     # usually ['done'], sometimes []\nt.join()                       # fix: wait for the job itself, then check\nprint(out)                     # always ['done']"
+   },
+   "status": "n/a",
+   "tags": [
+    "flaky",
+    "nondeterministic",
+    "async wait",
+    "google",
+    "test reliability"
+   ],
+   "refs": [
+    {
+     "label": "Micco: Flaky Tests at Google and How We Mitigate Them",
+     "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html"
+    },
+    {
+     "label": "Luo et al., An Empirical Analysis of Flaky Tests (FSE 2014)",
+     "url": "https://mir.cs.illinois.edu/lamyaa/publications/fse14.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.selenium",
+   "title": "Selenium",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2004,
+   "short": "The tool that let programs drive a web browser for testing. Begun at ThoughtWorks in 2004, it merged with WebDriver in 2007.",
+   "long": "Selenium began in 2004 at ThoughtWorks in Chicago, when Jason Huggins built a JavaScript test runner for an internal time and expenses application. Selenium Remote Control came from Bea engineers Dan Fabulich and Nelson Sproul, and Shinya Kasatani wrote Selenium IDE in 2006. In 2007 Simon Stewart created WebDriver, which uses browser-specific drivers instead of injected JavaScript; Huggins joined Google and the two projects merged. IMVU's 2009 pipeline, which deployed fifty times a day, ran over an hour of Internet Explorer tests through Selenium. Google measured Java WebDriver tests as 10.45 percent flaky and Python ones as 18.72 percent, against 1.65 percent for all tests. Selenium remains active, while Playwright and Cypress became the defaults for many new web projects.",
+   "code": {
+    "lang": "python",
+    "text": "from selenium import webdriver\n\ndriver = webdriver.Chrome()\ndriver.get(\"https://example.com\")\nprint(driver.title)          # Example Domain\ndriver.quit()"
+   },
+   "status": "thriving",
+   "tags": [
+    "browser automation",
+    "webdriver",
+    "thoughtworks",
+    "huggins",
+    "web testing"
+   ],
+   "refs": [
+    {
+     "label": "Selenium history",
+     "url": "https://www.selenium.dev/history/"
+    }
+   ]
+  },
+  {
+   "id": "qual.playwright",
+   "title": "Playwright",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2020,
+   "short": "Microsoft's browser-testing library, released in 2020. One API drives Chromium, Firefox and WebKit, and it waits automatically for pages to be ready.",
+   "long": "Playwright, from Microsoft, was first released on 31 January 2020. One programming interface drives three browser engines: Chromium, Firefox and WebKit. It was built by engineers who had previously worked on Puppeteer at Google. Its automatic waiting for elements to become ready targets the biggest single cause of flaky browser tests, which a 2014 study found was not waiting properly for asynchronous work. The GitHub repository has about 97,000 stars, ahead of Cypress (about 51,000) and Selenium (about 34,500), and Playwright and Cypress have become the defaults for many new web projects.",
+   "code": {
+    "lang": "python",
+    "text": "from playwright.sync_api import sync_playwright\n\nwith sync_playwright() as p:\n    browser = p.chromium.launch()\n    page = browser.new_page()\n    page.goto(\"https://example.com\")\n    print(page.title())          # Example Domain\n    browser.close()"
+   },
+   "status": "thriving",
+   "tags": [
+    "browser automation",
+    "end-to-end",
+    "chromium",
+    "webkit",
+    "microsoft"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Playwright",
+     "url": "https://en.wikipedia.org/wiki/Playwright_(software)"
+    }
+   ]
+  },
+  {
+   "id": "qual.pytest",
+   "title": "pytest",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2004,
+   "short": "Python's dominant test framework. Tests are plain functions with ordinary assert statements, and fixtures supply what each test needs.",
+   "long": "pytest grew out of test tools that Holger Krekel and others wrote from about 2003, as part of the PyPy project, and was released as a separate package with pytest 2.0 in November 2010. Its defining features are plain assert statements, which it rewrites to show both sides of a failed comparison, and fixtures, functions that set up what a test needs. A plugin layer lets other tools hook in, and the coverage tool is commonly run as \"coverage run -m pytest\". In the September 2026 PyPI download ranking pytest was 24th with about 780 million downloads, three times a year earlier, probably because of continuous-integration traffic rather than new users, which is an inference and not a measurement. Version 9.1.1 was released in June 2026.",
+   "code": {
+    "lang": "python",
+    "text": "import pytest\n\n@pytest.fixture\ndef cart():\n    return [10, 20, 60]\n\ndef test_total(cart):\n    assert sum(cart) == 90      # on failure pytest shows both sides of the comparison"
+   },
+   "status": "thriving",
+   "tags": [
+    "python",
+    "testing",
+    "fixtures",
+    "krekel",
+    "pypy"
+   ],
+   "refs": [
+    {
+     "label": "pytest history",
+     "url": "https://docs.pytest.org/en/stable/history.html"
+    }
+   ]
+  },
+  {
+   "id": "qual.hypothesis",
+   "title": "Hypothesis",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2013,
+   "short": "Python's property-based testing library, by David MacIver. It generates inputs, finds a failing case and shrinks it.",
+   "long": "Hypothesis is a Python library for property-based testing. A test states a property and a strategy for generating inputs, such as lists of integers; Hypothesis tries many of them and shrinks any failing input to a smaller one. The first commit is dated March 2013 and the author is David R. MacIver. It is released under the Mozilla Public License 2.0, has about 9,000 GitHub stars, and ranked 407th in PyPI downloads in September 2026 with about 52 million. It follows the idea that QuickCheck introduced for Haskell in 2000.",
+   "code": {
+    "lang": "python",
+    "text": "from hypothesis import given, strategies as st\n\n@given(st.lists(st.integers()))\ndef test_sort_is_idempotent(xs):\n    assert sorted(sorted(xs)) == sorted(xs)"
+   },
+   "status": "thriving",
+   "tags": [
+    "python",
+    "property-based testing",
+    "shrinking",
+    "maciver"
+   ],
+   "refs": [
+    {
+     "label": "Hypothesis on GitHub",
+     "url": "https://github.com/HypothesisWorks/hypothesis"
+    }
+   ]
+  },
+  {
+   "id": "qual.jepsen",
+   "title": "Jepsen",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2013,
+   "short": "Kyle Kingsbury's tests of distributed databases under network failures. His 2013 test showed MongoDB losing 42 percent of acknowledged writes in a partition.",
+   "long": "Jepsen is the project of Kyle Kingsbury, who goes by aphyr, for testing whether distributed databases keep their promises when machines and networks fail. In May 2013 his test of MongoDB 2.4 with a five-node replica set during a network partition sent 6,000 writes; 5,700 were acknowledged to the client but only 3,319 survived, because the old primary's writes were rolled back after a new primary was elected. MongoDB's own documentation admitted a primary may revert operations. A 2020 Jepsen report on MongoDB 4.2.6 found that even at the strongest read and write concern levels it failed to preserve snapshot isolation. The lesson the reports support is that defaults decide durability for most users, and claims of strong guarantees need independent testing.",
+   "status": "n/a",
+   "tags": [
+    "distributed systems",
+    "mongodb",
+    "kingsbury",
+    "network partition",
+    "consistency"
+   ],
+   "refs": [
+    {
+     "label": "Jepsen: MongoDB (2013)",
+     "url": "https://aphyr.com/posts/284-call-me-maybe-mongodb"
+    },
+    {
+     "label": "Jepsen: MongoDB 4.2.6",
+     "url": "https://jepsen.io/analyses/mongodb-4.2.6"
+    }
+   ]
+  },
+  {
+   "id": "qual.code-review",
+   "title": "Code Review",
+   "cat": "quality",
+   "tier": 3,
+   "year": 1976,
+   "short": "Another person reads a change before it merges. Studies at Microsoft and Google find its main payoff is shared knowledge and readable code, not bug-finding.",
+   "long": "Fagan formalized structured, line-by-line inspections at IBM in 1976. Modern code review is informal, regular and tool-based, usually a comment thread on a proposed change. Bacchelli and Bird's 2013 study at Microsoft classified 570 review comments: code improvements were the most common at 29 percent, while comments about defects came fourth at 14 percent; the real benefits were knowledge transfer, team awareness and better solutions. Google's 2018 study of 9 million reviewed changes found a median change of 24 lines, a median of one reviewer and a median review time under four hours, and named code understandability and maintainability as the foremost reason for review. Tools now post analyzer findings, formatting fixes and dependency updates straight into the review.",
+   "sleeper": "Fagan's 1976 inspections were structured, line-by-line sessions. Modern review is informal and tool-based: at Google the median change is 24 lines, has one reviewer and clears review in under four hours.",
+   "status": "thriving",
+   "tags": [
+    "peer review",
+    "inspection",
+    "fagan",
+    "bacchelli",
+    "pull request",
+    "knowledge sharing"
+   ],
+   "refs": [
+    {
+     "label": "Bacchelli and Bird, Expectations, Outcomes, and Challenges of Modern Code Review",
+     "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/ICSE202013-codereview.pdf"
+    },
+    {
+     "label": "Sadowski et al., Modern Code Review: A Case Study at Google",
+     "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4476.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.cd",
+   "title": "Continuous Delivery",
+   "cat": "quality",
+   "tier": 2,
+   "year": 2010,
+   "short": "Keep every change in a state that could ship, and release it in small, automated steps. Humble and Farley's 2010 book turned the idea into a method.",
+   "long": "Humble and Farley's 2010 book Continuous Delivery defines the practice as the ability to get all kinds of changes into production, or into users' hands, safely, quickly and sustainably. The mechanism is a deployment pipeline that every change passes through, with automated checks at each stage. Their slogan is that if it hurts, you should do it more often and bring the pain forward. Continuous delivery means every passing change is ready to release at the push of a button; continuous deployment releases it automatically with no human step. IMVU reported in 2009 that it deployed about fifty times a day, and Google Search ships a new binary every other day, guarding changes with flags and rolling them out in stages.",
+   "sleeper": "If you remember a nightly build and a release every year or two, the pace has inverted: IMVU deployed about fifty times a day in 2009, and Google Search ships a new binary every other day.",
+   "status": "thriving",
+   "tags": [
+    "deployment pipeline",
+    "humble",
+    "farley",
+    "release",
+    "automation"
+   ],
+   "refs": [
+    {
+     "label": "Continuous Delivery (Humble and Farley)",
+     "url": "https://continuousdelivery.com/"
+    },
+    {
+     "label": "Fitz: Continuous Deployment at IMVU",
+     "url": "https://timothyfitz.com/2009/02/10/continuous-deployment-at-imvu-doing-the-impossible-fifty-times-a-day/"
+    }
+   ]
+  },
+  {
+   "id": "qual.jenkins",
+   "title": "Jenkins",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2011,
+   "short": "The long-running open-source automation server for building and testing code. It began as Hudson and was renamed in 2011 after a dispute with Oracle.",
+   "long": "Jenkins began as Hudson, a Java continuous integration server that around 2007 became known as a better alternative to CruiseControl, the first open-source CI tool (2001). Hudson won a Duke's Choice Award at JavaOne in May 2008. After Oracle acquired Sun it claimed trademark rights to the Hudson name in December 2010; the community voted to rename the project Jenkins in January 2011, and Oracle said it would continue Hudson and treat Jenkins as a fork. Jenkins won the community: by June 2019 it had 667 GitHub members to Hudson's 28. Its Pipeline plugin 2.0, released in April 2016, let a build be defined in a file in the repository called a Jenkinsfile. Hosted services such as Travis CI, CircleCI and finally GitHub Actions later became the default for many projects.",
+   "code": {
+    "lang": "groovy",
+    "text": "pipeline {\n  agent any\n  stages {\n    stage('Test') {\n      steps { sh 'pytest' }\n    }\n  }\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "hudson",
+    "ci server",
+    "pipeline",
+    "jenkinsfile",
+    "oracle",
+    "cruisecontrol"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Jenkins",
+     "url": "https://en.wikipedia.org/wiki/Jenkins_(software)"
+    }
+   ]
+  },
+  {
+   "id": "qual.github-actions",
+   "title": "GitHub Actions",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2019,
+   "short": "GitHub's built-in automation, generally available in November 2019. Workflows stored in the repository run tests and deployments on hosted machines.",
+   "long": "GitHub announced Actions in October 2018 and made it generally available on 13 November 2019. A workflow is a YAML file in the repository that says what to run on which events, on hosted Linux, Windows or macOS machines, with a marketplace of reusable actions. Because it sits beside the code and the pull request, it took over from separate CI services: Travis CI ended free builds for open-source projects in December 2020, and many of them moved to Actions. Required status checks from workflows can block a merge into a protected branch. The convenience has a cost: workflows that handle untrusted pull-request input with elevated rights were the root cause of the August 2025 Nx compromise and, together with cache poisoning, of the May 2026 TanStack one.",
+   "sleeper": "CI used to mean running a server such as CruiseControl or Jenkins yourself. Now the pipeline is a YAML file in the repository and the machines are hosted for you.",
+   "code": {
+    "lang": "yaml",
+    "text": "# .github/workflows/tests.yml\nname: tests\non: [push, pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: pip install pytest && pytest"
+   },
+   "status": "thriving",
+   "tags": [
+    "workflow",
+    "yaml",
+    "hosted runners",
+    "marketplace",
+    "ci/cd"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: GitHub Actions",
+     "url": "https://en.wikipedia.org/wiki/GitHub_Actions"
+    },
+    {
+     "label": "GitHub Docs: About protected branches",
+     "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+    }
+   ]
+  },
+  {
+   "id": "qual.feature-flags",
+   "title": "Feature Flags and Canary Releases",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2010,
+   "short": "Switches that turn code on or off without redeploying, and staged releases that show a change to a few users first. They make small, frequent releases safe.",
+   "long": "A feature flag, or toggle, lets a team change system behavior without changing code. Pete Hodgson's 2017 survey on Martin Fowler's site names four kinds: release toggles, short-lived and used to ship unfinished code switched off; experiment toggles for A/B tests; ops toggles that act as kill switches; and permission toggles that can last for years. He warns that toggles are inventory with a carrying cost. Two staged-release patterns go with them. Blue-green deployment, described on Fowler's site in March 2010, keeps two identical production environments and switches traffic to the new one. A canary release, written up there in 2014, exposes a change to a small subset of users before everyone. Google guards all changes with flags and rolls out in stages.",
+   "code": {
+    "lang": "python",
+    "text": "ROLLOUT = {\"new-checkout\": 10}          # percent of users who see the new code\n\ndef is_on(flag, user_id):\n    return user_id % 100 < ROLLOUT.get(flag, 0)\n\ndef checkout(user_id):\n    return \"new checkout\" if is_on(\"new-checkout\", user_id) else \"old checkout\"\n\nprint(checkout(7), \"|\", checkout(42))   # new checkout | old checkout"
+   },
+   "status": "n/a",
+   "tags": [
+    "feature toggles",
+    "canary",
+    "blue-green",
+    "staged rollout",
+    "kill switch"
+   ],
+   "refs": [
+    {
+     "label": "Hodgson: Feature Toggles",
+     "url": "https://martinfowler.com/articles/feature-toggles.html"
+    },
+    {
+     "label": "Sato: Canary Release",
+     "url": "https://martinfowler.com/bliki/CanaryRelease.html"
+    }
+   ]
+  },
+  {
+   "id": "qual.dora",
+   "title": "DORA and Accelerate",
+   "cat": "quality",
+   "tier": 2,
+   "year": 2014,
+   "short": "A research program that measures software delivery with a few outcome metrics, and the 2018 book Accelerate. It finds that speed and stability go together.",
+   "long": "DORA, now run by Google Cloud, publishes annual State of DevOps research; its first reports appeared around 2012 or 2013, depending on the source. The 2018 book Accelerate, by Nicole Forsgren, Jez Humble and Gene Kim, drew on 23,000 data points and named 24 capabilities and four key metrics. DORA now uses five: deployment frequency, change lead time, failed-deployment recovery time, change failure rate and deployment rework rate. Its headline finding is that speed and stability are not tradeoffs: top performers do well on all of them. The data are surveys and show correlation, and DORA itself warns against setting the metrics as goals or comparing teams, because that invites gaming. Its 2025 report found that AI amplifies what a team already does, with a negative link to delivery stability.",
+   "sleeper": "Where older management measured effort, such as lines of code, DORA measures outcomes: how often you deploy, how long a change takes to reach users, how often changes fail and how quickly you recover.",
+   "status": "thriving",
+   "tags": [
+    "devops",
+    "metrics",
+    "accelerate",
+    "forsgren",
+    "lead time",
+    "deployment frequency"
+   ],
+   "refs": [
+    {
+     "label": "DORA metrics guide",
+     "url": "https://dora.dev/guides/dora-metrics/"
+    },
+    {
+     "label": "Wikipedia: Accelerate (book)",
+     "url": "https://en.wikipedia.org/wiki/Accelerate_(book)"
+    }
+   ]
+  },
+  {
+   "id": "qual.security",
+   "title": "Software Security",
+   "cat": "quality",
+   "tier": 1,
+   "year": 1988,
+   "short": "Keeping code safe when someone hostile uses it: hostile input, memory errors, risky dependencies and leaked secrets. The 1988 Morris worm was an early lesson.",
+   "long": "Security became a software concern in November 1988, when the Morris worm spread across the early Internet partly through a buffer overflow in the finger service. The same causes keep returning: memory bugs, input treated as code, over-powerful features in widely shared components and unpatched services. Microsoft reported in 2019 that about 70 percent of the security issues it assigned a CVE to were memory-safety bugs, and Chromium found about the same share among its high-severity bugs. Android's share of memory-safety flaws fell below 20 percent in 2025, and Google credits Rust for new code. Scanners and fuzzers find flaws, dependency tools track known ones, and habits such as parameterized queries, short-lived credentials and zero trust limit the damage.",
+   "sleeper": "The new habits are that all input is hostile and all dependencies are code you answer for.",
+   "status": "thriving",
+   "tags": [
+    "security",
+    "vulnerabilities",
+    "cve",
+    "memory safety",
+    "secure coding"
+   ],
+   "refs": [
+    {
+     "label": "Microsoft MSRC: Why Rust for safe systems programming",
+     "url": "https://www.microsoft.com/en-us/msrc/blog/2019/07/why-rust-for-safe-systems-programming"
+    },
+    {
+     "label": "Wikipedia: Morris worm",
+     "url": "https://en.wikipedia.org/wiki/Morris_worm"
+    }
+   ]
+  },
+  {
+   "id": "qual.sql-injection",
+   "title": "SQL Injection",
+   "cat": "quality",
+   "tier": 3,
+   "year": 1998,
+   "short": "Attacker-supplied text becomes part of a database query. Described publicly in 1998, still fifth on OWASP's 2025 list, and prevented by parameterized queries.",
+   "long": "SQL injection happens when a program builds a query by pasting in user input, so that the input can become part of the SQL. Jeff Forristal, writing as rain.forest.puppy, described the technique for Microsoft SQL Server in Phrack issue 54 on 25 December 1998. OWASP put injection in its top ten in 2007 and 2010 and first in 2013, and in the 2025 list it is still fifth. The fix is the parameterized query, which sends the values separately so they can never be read as SQL. Placeholders protect values only; table and column names must come from a fixed list. Albert Gonzalez's ring, which used SQL injection to plant backdoors, stole more than 170 million card and ATM numbers from 2005 to 2007, and the 2023 MOVEit Transfer breach began with an SQL injection flaw.",
+   "sleeper": "Nothing about the bug is new, and every database library now has a safe placeholder API. It persists because it comes from how programs build strings, which makes it a matter of habit and legacy code, not a missing fix.",
+   "code": {
+    "lang": "python",
+    "text": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE users (name TEXT)\")\ndb.executemany(\"INSERT INTO users VALUES (?)\", [(\"ann\",), (\"bob\",)])\nevil = \"x' OR '1'='1\"\nprint(db.execute(f\"SELECT name FROM users WHERE name = '{evil}'\").fetchall())    # both rows: injected\nprint(db.execute(\"SELECT name FROM users WHERE name = ?\", (evil,)).fetchall())   # []: plain text"
+   },
+   "status": "n/a",
+   "tags": [
+    "injection",
+    "bobby tables",
+    "phrack",
+    "owasp",
+    "parameterized queries"
+   ],
+   "refs": [
+    {
+     "label": "Phrack 54: NT Web Technology Vulnerabilities",
+     "url": "https://phrack.org/issues/54/nt-web-technology-vulnerabilities.html"
+    },
+    {
+     "label": "OWASP: SQL Injection",
+     "url": "https://owasp.org/www-community/attacks/SQL_Injection"
+    }
+   ]
+  },
+  {
+   "id": "qual.owasp",
+   "title": "OWASP Top 10",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2003,
+   "short": "A community-maintained list of the most critical web application risks. In the 2025 edition Broken Access Control is first, supply chain third and Injection fifth.",
+   "long": "OWASP, a community project on application security, publishes the OWASP Top 10, a ranked list of the most critical web application risks. The 2025 edition runs: A01 Broken Access Control, A02 Security Misconfiguration, A03 Software Supply Chain Failures, A04 Cryptographic Failures, A05 Injection (which includes cross-site scripting), A06 Insecure Design, A07 Authentication Failures, A08 Software or Data Integrity Failures, A09 Security Logging and Alerting Failures, and A10 Mishandling of Exceptional Conditions. Injection ranked first in 2013 and is now fifth. OWASP also publishes the standard definition of static application security testing, lists of scanning tools, and cheat sheets such as the one on parameterized queries.",
+   "status": "thriving",
+   "tags": [
+    "owasp",
+    "top 10",
+    "web security",
+    "injection",
+    "access control"
+   ],
+   "refs": [
+    {
+     "label": "OWASP Top 10:2025",
+     "url": "https://top10.owasp.org/2025/"
+    }
+   ]
+  },
+  {
+   "id": "qual.zero-trust",
+   "title": "Zero Trust and Secrets Management",
+   "cat": "quality",
+   "tier": 4,
+   "year": 2020,
+   "short": "Do not trust a request because it comes from inside the network, and keep passwords and keys out of source code. NIST formalized zero trust in August 2020.",
+   "long": "Zero trust drops the old \"castle and moat\" model, in which anything inside the corporate network was trusted. Every request is authenticated and authorized wherever it comes from. NIST formalized the approach in Special Publication 800-207 in August 2020, after Google's BeyondCorp. Its companion habit is secrets management: passwords, API keys and certificates must not sit in source code or container images, but in a secrets manager such as HashiCorp Vault or a cloud secret store, rotated regularly, with repositories scanned for leaks by tools such as Gitleaks. Credentials are trending shorter-lived: PyPI's trusted publishing mints a token valid for only 15 minutes, and in December 2025 GitHub permanently revoked all existing npm classic tokens.",
+   "sleeper": "The firewall used to be the wall around trusted systems. Zero trust assumes the network is already hostile and checks every request, wherever it comes from.",
+   "code": {
+    "lang": "python",
+    "text": "import os\n# before: a key typed into source stays in the git history (Gitleaks flags it)\nAPI_KEY = \"sk_live_EXAMPLE_ONLY\"\n# after: read it from the environment; a secrets manager supplies the real value\nAPI_KEY = os.environ.get(\"API_KEY\")\nif API_KEY is None:\n    raise SystemExit(\"API_KEY is not set\")"
+   },
+   "status": "thriving",
+   "tags": [
+    "zero trust",
+    "secrets",
+    "nist",
+    "beyondcorp",
+    "vault",
+    "credentials"
+   ],
+   "refs": [
+    {
+     "label": "NIST SP 800-207: Zero Trust Architecture",
+     "url": "https://csrc.nist.gov/pubs/sp/800/207/final"
+    },
+    {
+     "label": "The Twelve-Factor App: Config",
+     "url": "https://12factor.net/config"
+    }
+   ]
+  },
+  {
+   "id": "qual.checker-classes",
+   "title": "Ten Kinds of Code Checker",
+   "cat": "quality",
+   "tier": 2,
+   "year": 1978,
+   "short": "Ten kinds of tool check code, from formatters and linters to fuzzers and proof assistants. Each knows more about the program than the last, and costs more.",
+   "long": "Lint has split into about ten kinds of checker. Style linters such as ESLint and Ruff flag suspicious code, one file at a time. Formatters such as gofmt and Black rewrite layout and judge nothing. Type checkers such as mypy test how values are used. Bug finders such as Infer and Coverity follow data flow between functions. Security scanners such as CodeQL look for exploitable patterns. Dependency and secrets scanners such as Dependabot and Gitleaks match libraries against known flaws and hunt for leaked keys. Complexity and architecture checks such as radon and ArchUnit measure structure. Domain linters such as ShellCheck cover one file format each. Sanitizers and fuzzers such as AddressSanitizer and libFuzzer watch a running program, and formal verifiers such as TLA+ and seL4 prove properties. Rice's theorem says none can be perfect.",
+   "sleeper": "Checks now run at four points: in the editor, in a pre-commit hook, as a required gate in CI, and as bot comments in code review. Hooks can be skipped, so CI is the enforced one.",
+   "status": "n/a",
+   "tags": [
+    "taxonomy",
+    "static analysis",
+    "dynamic analysis",
+    "linters",
+    "analyzers"
+   ],
+   "refs": [
+    {
+     "label": "Sadowski et al., Lessons from Building Static Analysis Tools at Google (CACM 2018)",
+     "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4365.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.test-kinds",
+   "title": "Kinds of Tests",
+   "cat": "quality",
+   "tier": 3,
+   "year": 1997,
+   "short": "Unit, integration, end-to-end, acceptance, regression, smoke, snapshot, contract and load tests: what each one checks and how fast it runs.",
+   "long": "A unit test runs one small piece of code in isolation, in milliseconds, with no network or disk; Google's \"small\" tests run in a single process and may not sleep or make blocking calls. An integration test runs several real pieces together, such as code and a real database. An end-to-end test drives the whole product as a user would, often through a browser, and is slow and fragile but closest to reality. An acceptance test checks that the software does what the customer asked, ideally in the customer's words. A regression test guards old behavior against new changes, a smoke test is a quick check that the basics work, a snapshot test fails when stored output changes, a contract test checks that two services agree on their messages, and a load test simulates many users with tools such as Locust, Gatling or k6.",
+   "sleeper": "You may remember testing as a manual phase near the end of a project. Today nearly every kind listed here is code that a server runs on each commit, and the main new problem is tests that fail at random.",
+   "code": {
+    "lang": "python",
+    "text": "# unit: one function, no I/O, runs in milliseconds\ndef test_discount():\n    assert price(100, coupon=\"TEN\") == 90\n# integration: real code with a real database\ndef test_order_is_saved(db):\n    save_order(db, total=90)\n    assert db.count(\"orders\") == 1\n# end-to-end: a real browser drives the finished product\ndef test_checkout(page):\n    page.goto(\"/checkout\"); page.click(\"text=Pay\")\n    assert page.is_visible(\"text=Thank you\")"
+   },
+   "status": "n/a",
+   "tags": [
+    "unit test",
+    "integration test",
+    "end-to-end",
+    "smoke test",
+    "regression",
+    "load test"
+   ],
+   "refs": [
+    {
+     "label": "Software Engineering at Google, ch. 11: Testing Overview",
+     "url": "https://abseil.io/resources/swe-book/html/ch11.html"
+    },
+    {
+     "label": "Pact documentation",
+     "url": "https://docs.pact.io/"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "qual.lint-c",
+   "t": "qual.lint",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "ppl.sc-johnson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "lang.c",
+   "w": 3,
+   "k": "related",
+   "note": "checks C programs"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related",
+   "note": "released with Unix Version 7"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "qual.false-positives",
+   "w": 2,
+   "k": "influenced",
+   "note": "Johnson wrote down the false-positive problem in 1978"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "qual.eslint",
+   "w": 1,
+   "k": "influenced",
+   "note": "NOTREACHED-style comments are the ancestor of eslint-disable"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "found.rice-theorem",
+   "w": 1,
+   "k": "related",
+   "note": "Johnson tied dead-code detection to the halting problem"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "qual.checker-classes",
+   "w": 2,
+   "k": "evolved-into",
+   "note": "lint split into about ten kinds of checker"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "qual.lint",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "org.astral",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses",
+   "note": "written in Rust"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related",
+   "note": "lints and formats Python"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "qual.black",
+   "w": 2,
+   "k": "competes-with",
+   "note": "its formatter claims drop-in parity with Black"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "pkg.uv",
+   "w": 2,
+   "k": "related",
+   "note": "sibling Astral tool"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "mod.rust-rewrite-wave",
+   "w": 2,
+   "k": "related",
+   "note": "one of the Rust rewrites of developer tools"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "pkg.pyproject",
+   "w": 1,
+   "k": "uses",
+   "note": "configured in pyproject.toml"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "org.openai",
+   "w": 1,
+   "k": "related",
+   "note": "Astral agreed to join OpenAI in 2026"
+  },
+  {
+   "s": "qual.ruff",
+   "t": "qual.checker-classes",
+   "w": 2,
+   "k": "part-of",
+   "note": "a style linter and a formatter"
+  },
+  {
+   "s": "qual.biome",
+   "t": "qual.lint",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.biome",
+   "t": "qual.eslint",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "qual.biome",
+   "t": "qual.prettier",
+   "w": 2,
+   "k": "competes-with",
+   "note": "claims 97 percent compatibility with Prettier"
+  },
+  {
+   "s": "qual.biome",
+   "t": "mod.rust-rewrite-wave",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.biome",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses",
+   "note": "written in Rust"
+  },
+  {
+   "s": "qual.biome",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related",
+   "note": "type-aware lint rules without the TypeScript compiler"
+  },
+  {
+   "s": "qual.oxlint",
+   "t": "qual.lint",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.oxlint",
+   "t": "qual.eslint",
+   "w": 2,
+   "k": "competes-with",
+   "note": "claims 50 to 100 times ESLint speed"
+  },
+  {
+   "s": "qual.oxlint",
+   "t": "qual.biome",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "qual.oxlint",
+   "t": "mod.rust-rewrite-wave",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.oxlint",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses",
+   "note": "written in Rust"
+  },
+  {
+   "s": "qual.oxlint",
+   "t": "mod.ts7-native",
+   "w": 2,
+   "k": "uses",
+   "note": "its type-aware mode calls the native TypeScript compiler"
+  },
+  {
+   "s": "qual.gofmt",
+   "t": "qual.style-wars",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.gofmt",
+   "t": "qual.lint",
+   "w": 1,
+   "k": "part-of",
+   "note": "formatters belong to the linting family"
+  },
+  {
+   "s": "qual.gofmt",
+   "t": "lang.go",
+   "w": 2,
+   "k": "related",
+   "note": "Go's standard formatter"
+  },
+  {
+   "s": "qual.gofmt",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Google formats its Go code with gofmt"
+  },
+  {
+   "s": "qual.gofmt",
+   "t": "ppl.pike",
+   "w": 1,
+   "k": "related",
+   "note": "Rob Pike's 2015 Go Proverb about gofmt"
+  },
+  {
+   "s": "qual.prettier",
+   "t": "qual.style-wars",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.prettier",
+   "t": "qual.lint",
+   "w": 1,
+   "k": "part-of",
+   "note": "formatters belong to the linting family"
+  },
+  {
+   "s": "qual.prettier",
+   "t": "lang.js",
+   "w": 2,
+   "k": "related",
+   "note": "formats JavaScript"
+  },
+  {
+   "s": "qual.prettier",
+   "t": "qual.eslint",
+   "w": 1,
+   "k": "related",
+   "note": "Biome replaces the Prettier and ESLint pair"
+  },
+  {
+   "s": "qual.black",
+   "t": "qual.style-wars",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.black",
+   "t": "qual.lint",
+   "w": 1,
+   "k": "part-of",
+   "note": "formatters belong to the linting family"
+  },
+  {
+   "s": "qual.black",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related",
+   "note": "formats Python"
+  },
+  {
+   "s": "qual.black",
+   "t": "qual.code-review",
+   "w": 2,
+   "k": "related",
+   "note": "smallest diffs make review faster"
+  },
+  {
+   "s": "qual.black",
+   "t": "tool.pre-commit",
+   "w": 1,
+   "k": "related",
+   "note": "the pre-commit documentation example runs Black"
+  },
+  {
+   "s": "qual.style-wars",
+   "t": "qual.lint",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.style-wars",
+   "t": "qual.code-review",
+   "w": 2,
+   "k": "related",
+   "note": "review time was spent arguing over formatting"
+  },
+  {
+   "s": "qual.style-wars",
+   "t": "tool.pre-commit",
+   "w": 1,
+   "k": "related",
+   "note": "formatters run in pre-commit hooks"
+  },
+  {
+   "s": "qual.style-wars",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Google enforces a formatter for each language"
+  },
+  {
+   "s": "qual.style-wars",
+   "t": "qual.checker-classes",
+   "w": 2,
+   "k": "part-of",
+   "note": "the formatter class"
+  },
+  {
+   "s": "qual.mypy",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.mypy",
+   "t": "conc.gradual-typing",
+   "w": 3,
+   "k": "implements",
+   "note": "optional types for Python"
+  },
+  {
+   "s": "qual.mypy",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related",
+   "note": "checks Python type hints"
+  },
+  {
+   "s": "qual.mypy",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the type-checker class"
+  },
+  {
+   "s": "qual.mypy",
+   "t": "proc.static-typing-evidence",
+   "w": 2,
+   "k": "related",
+   "note": "types caught 15 percent of real JavaScript bugs"
+  },
+  {
+   "s": "qual.mypy",
+   "t": "ppl.van-rossum",
+   "w": 2,
+   "k": "related",
+   "note": "co-author of PEP 484, which mypy inspired"
+  },
+  {
+   "s": "qual.mypy",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related",
+   "note": "both bet on optional static types"
+  },
+  {
+   "s": "qual.mypy",
+   "t": "conc.static-typing",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.flow-sorbet-hack",
+   "t": "mod.typescript",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Flow versus TypeScript for JavaScript"
+  },
+  {
+   "s": "qual.flow-sorbet-hack",
+   "t": "conc.gradual-typing",
+   "w": 3,
+   "k": "implements",
+   "note": "optional types retrofitted onto dynamic languages"
+  },
+  {
+   "s": "qual.flow-sorbet-hack",
+   "t": "org.meta",
+   "w": 2,
+   "k": "created-by",
+   "note": "Flow and Hack"
+  },
+  {
+   "s": "qual.flow-sorbet-hack",
+   "t": "lang.js",
+   "w": 1,
+   "k": "related",
+   "note": "Flow checks JavaScript"
+  },
+  {
+   "s": "qual.flow-sorbet-hack",
+   "t": "lang.ruby",
+   "w": 1,
+   "k": "related",
+   "note": "Sorbet checks Ruby"
+  },
+  {
+   "s": "qual.flow-sorbet-hack",
+   "t": "lang.php",
+   "w": 1,
+   "k": "related",
+   "note": "Hack is typed PHP"
+  },
+  {
+   "s": "qual.flow-sorbet-hack",
+   "t": "qual.mypy",
+   "w": 1,
+   "k": "related",
+   "note": "the same idea for Python"
+  },
+  {
+   "s": "qual.flow-sorbet-hack",
+   "t": "qual.checker-classes",
+   "w": 2,
+   "k": "part-of",
+   "note": "the type-checker class"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "qual.code-review",
+   "w": 3,
+   "k": "uses",
+   "note": "posts findings as review comments"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "qual.false-positives",
+   "w": 3,
+   "k": "related",
+   "note": "defined the effective false positive"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "qual.infer",
+   "w": 2,
+   "k": "related",
+   "note": "Facebook's parallel finding about showing results in review"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "qual.baselining",
+   "w": 2,
+   "k": "related",
+   "note": "findings are shown only on changed lines"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "qual.coverity",
+   "w": 1,
+   "k": "related",
+   "note": "Google tried Coverity and set it aside for workflow reasons"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "comp.clang",
+   "w": 1,
+   "k": "uses",
+   "note": "C++ checks come from Clang"
+  },
+  {
+   "s": "qual.tricorder",
+   "t": "qual.checker-classes",
+   "w": 2,
+   "k": "part-of",
+   "note": "a platform for the bug-finder class"
+  },
+  {
+   "s": "qual.infer",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.infer",
+   "t": "org.meta",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.infer",
+   "t": "lang.ocaml",
+   "w": 2,
+   "k": "uses",
+   "note": "written in OCaml"
+  },
+  {
+   "s": "qual.infer",
+   "t": "qual.false-positives",
+   "w": 2,
+   "k": "related",
+   "note": "the diff-time experiment"
+  },
+  {
+   "s": "qual.infer",
+   "t": "qual.code-review",
+   "w": 2,
+   "k": "uses",
+   "note": "runs as a bot at diff time"
+  },
+  {
+   "s": "qual.infer",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "uses",
+   "note": "runs on every change in continuous integration"
+  },
+  {
+   "s": "qual.infer",
+   "t": "qual.coverity",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "qual.infer",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the bug-finder class"
+  },
+  {
+   "s": "qual.infer",
+   "t": "lang.java",
+   "w": 1,
+   "k": "related",
+   "note": "analyzes Java among other languages"
+  },
+  {
+   "s": "qual.coverity",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.coverity",
+   "t": "qual.false-positives",
+   "w": 3,
+   "k": "influenced",
+   "note": "its engineers measured the problem"
+  },
+  {
+   "s": "qual.coverity",
+   "t": "qual.baselining",
+   "w": 3,
+   "k": "influenced",
+   "note": "its customers invented the baseline"
+  },
+  {
+   "s": "qual.coverity",
+   "t": "qual.sast",
+   "w": 2,
+   "k": "related",
+   "note": "named by OWASP among commercial SAST tools"
+  },
+  {
+   "s": "qual.coverity",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the bug-finder class"
+  },
+  {
+   "s": "qual.coverity",
+   "t": "qual.lint-c",
+   "w": 1,
+   "k": "related",
+   "note": "a co-founder recalled \"Lint? Yuck.\""
+  },
+  {
+   "s": "qual.false-positives",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.false-positives",
+   "t": "found.rice-theorem",
+   "w": 2,
+   "k": "related",
+   "note": "why false alarms or misses are unavoidable"
+  },
+  {
+   "s": "qual.false-positives",
+   "t": "qual.baselining",
+   "w": 2,
+   "k": "influenced",
+   "note": "too many warnings led users to record a baseline"
+  },
+  {
+   "s": "qual.false-positives",
+   "t": "qual.flaky-tests",
+   "w": 2,
+   "k": "related",
+   "note": "both erode trust in automated checks"
+  },
+  {
+   "s": "qual.false-positives",
+   "t": "qual.code-review",
+   "w": 2,
+   "k": "related",
+   "note": "where a finding is shown changes whether it is acted on"
+  },
+  {
+   "s": "qual.baselining",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.baselining",
+   "t": "qual.eslint",
+   "w": 2,
+   "k": "related",
+   "note": "ESLint bulk suppressions"
+  },
+  {
+   "s": "qual.baselining",
+   "t": "qual.ruff",
+   "w": 2,
+   "k": "related",
+   "note": "ruff --add-noqa"
+  },
+  {
+   "s": "qual.baselining",
+   "t": "qual.sonarqube",
+   "w": 1,
+   "k": "related",
+   "note": "Clean as You Code"
+  },
+  {
+   "s": "qual.baselining",
+   "t": "proc.technical-debt",
+   "w": 2,
+   "k": "related",
+   "note": "the old violations are a form of debt"
+  },
+  {
+   "s": "qual.sast",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.sast",
+   "t": "qual.security",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.sast",
+   "t": "qual.false-positives",
+   "w": 2,
+   "k": "related",
+   "note": "OWASP lists high false positives as its main weakness"
+  },
+  {
+   "s": "qual.sast",
+   "t": "qual.sql-injection",
+   "w": 2,
+   "k": "related",
+   "note": "finds well-known flaws such as SQL injection"
+  },
+  {
+   "s": "qual.sast",
+   "t": "qual.owasp",
+   "w": 2,
+   "k": "related",
+   "note": "OWASP supplies the definition and tool list"
+  },
+  {
+   "s": "qual.sast",
+   "t": "conc.buffer-overflow",
+   "w": 2,
+   "k": "related",
+   "note": "finds well-known flaws such as buffer overflows"
+  },
+  {
+   "s": "qual.sast",
+   "t": "qual.dependency-scanners",
+   "w": 1,
+   "k": "related",
+   "note": "the neighboring class of scanner"
+  },
+  {
+   "s": "qual.sast",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the security-scanner class"
+  },
+  {
+   "s": "qual.sast",
+   "t": "mod.veracode-genai",
+   "w": 1,
+   "k": "related",
+   "note": "Veracode is a SAST vendor"
+  },
+  {
+   "s": "qual.codeql",
+   "t": "qual.sast",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "qual.codeql",
+   "t": "plat.github",
+   "w": 2,
+   "k": "related",
+   "note": "GitHub acquired Semmle in 2019"
+  },
+  {
+   "s": "qual.codeql",
+   "t": "qual.sonarqube",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "qual.codeql",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.codeql",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "GitHub is owned by Microsoft"
+  },
+  {
+   "s": "qual.sonarqube",
+   "t": "qual.sast",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "qual.sonarqube",
+   "t": "qual.cyclomatic",
+   "w": 2,
+   "k": "uses",
+   "note": "reports complexity metrics"
+  },
+  {
+   "s": "qual.sonarqube",
+   "t": "proc.goodharts-law",
+   "w": 2,
+   "k": "related",
+   "note": "gates built on weak metrics invite gaming"
+  },
+  {
+   "s": "qual.sonarqube",
+   "t": "qual.code-coverage",
+   "w": 2,
+   "k": "related",
+   "note": "quality gates are numeric targets"
+  },
+  {
+   "s": "qual.sonarqube",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "qual.security",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the dependency and secrets class"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "pkg.dependabot",
+   "w": 3,
+   "k": "related",
+   "note": "the flagship example"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "pkg.supply-chain",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "uses",
+   "note": "scans manifests and lockfiles"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "pkg.sbom",
+   "w": 2,
+   "k": "related",
+   "note": "Trivy can produce SBOMs"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "fail.log4shell",
+   "w": 2,
+   "k": "related",
+   "note": "a known-vulnerable library in thousands of products"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "fail.heartbleed",
+   "w": 2,
+   "k": "related",
+   "note": "one flaw in a widely shared library"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related",
+   "note": "Trivy scans containers"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "qual.ci",
+   "w": 1,
+   "k": "related",
+   "note": "run on every change"
+  },
+  {
+   "s": "qual.dependency-scanners",
+   "t": "qual.zero-trust",
+   "w": 2,
+   "k": "related",
+   "note": "secrets scanning"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the domain-linter class"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "tool.iac",
+   "w": 3,
+   "k": "related",
+   "note": "tflint and Checkov check infrastructure code"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "tool.terraform",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "plat.docker",
+   "w": 2,
+   "k": "related",
+   "note": "hadolint checks Dockerfiles"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "qual.github-actions",
+   "w": 2,
+   "k": "related",
+   "note": "actionlint checks workflow files"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "lang.bash",
+   "w": 2,
+   "k": "related",
+   "note": "ShellCheck checks shell scripts"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "lang.css",
+   "w": 1,
+   "k": "related",
+   "note": "stylelint"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "data.yaml",
+   "w": 1,
+   "k": "related",
+   "note": "yamllint"
+  },
+  {
+   "s": "qual.domain-linters",
+   "t": "data.sql",
+   "w": 1,
+   "k": "related",
+   "note": "SQLFluff"
+  },
+  {
+   "s": "qual.cyclomatic",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.cyclomatic",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the complexity and architecture class"
+  },
+  {
+   "s": "qual.cyclomatic",
+   "t": "fail.loc",
+   "w": 2,
+   "k": "related",
+   "note": "another structural metric with weak links to quality"
+  },
+  {
+   "s": "qual.cyclomatic",
+   "t": "proc.technical-debt",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.cyclomatic",
+   "t": "conc.control-flow",
+   "w": 2,
+   "k": "related",
+   "note": "counts the decisions in control flow"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the sanitizer class"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "conc.buffer-overflow",
+   "w": 3,
+   "k": "related",
+   "note": "finds out-of-bounds accesses"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "conc.undefined-behavior",
+   "w": 2,
+   "k": "related",
+   "note": "UBSan reports undefined behavior"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by",
+   "note": "AddressSanitizer"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "tool.gdb-lldb",
+   "w": 1,
+   "k": "related",
+   "note": "debugging companions"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "comp.clang",
+   "w": 2,
+   "k": "related",
+   "note": "enabled with the -fsanitize=address compiler flag"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related",
+   "note": "built for C and C++ memory bugs"
+  },
+  {
+   "s": "qual.asan-valgrind",
+   "t": "qual.testing",
+   "w": 1,
+   "k": "related",
+   "note": "run during routine test runs"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "qual.asan-valgrind",
+   "w": 3,
+   "k": "uses",
+   "note": "fuzzers are built with sanitizers"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the fuzzer class"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "qual.property-testing",
+   "w": 2,
+   "k": "related",
+   "note": "both test with generated inputs"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "fail.heartbleed",
+   "w": 3,
+   "k": "related",
+   "note": "OSS-Fuzz was created in response"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "conc.buffer-overflow",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "OSS-Fuzz"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "qual.security",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.fuzzing",
+   "t": "comp.llvm",
+   "w": 1,
+   "k": "related",
+   "note": "libFuzzer is part of LLVM"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "qual.checker-classes",
+   "w": 3,
+   "k": "part-of",
+   "note": "the formal-verification class"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "found.rice-theorem",
+   "w": 2,
+   "k": "related",
+   "note": "the escape routes Rice leaves open"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "ppl.dijkstra",
+   "w": 2,
+   "k": "related",
+   "note": "the 1972 Turing lecture"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "conc.ownership",
+   "w": 2,
+   "k": "related",
+   "note": "Rust's borrow checker as lightweight verification"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "conc.memory-safety",
+   "w": 3,
+   "k": "related",
+   "note": "the headline target"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "competes-with",
+   "note": "proving versus testing"
+  },
+  {
+   "s": "qual.formal-verification",
+   "t": "qual.lint",
+   "w": 1,
+   "k": "related",
+   "note": "the strongest end of static analysis"
+  },
+  {
+   "s": "qual.hoare-logic",
+   "t": "qual.formal-verification",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "qual.hoare-logic",
+   "t": "ppl.hoare",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.hoare-logic",
+   "t": "ppl.dijkstra",
+   "w": 2,
+   "k": "related",
+   "note": "Dijkstra built predicate transformers on it"
+  },
+  {
+   "s": "qual.hoare-logic",
+   "t": "conc.structured-programming",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.hoare-logic",
+   "t": "conc.design-by-contract",
+   "w": 1,
+   "k": "related",
+   "note": "preconditions and postconditions"
+  },
+  {
+   "s": "qual.tla-aws",
+   "t": "qual.formal-verification",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.tla-aws",
+   "t": "org.aws",
+   "w": 2,
+   "k": "created-by",
+   "note": "AWS engineers began using TLA+ in 2011"
+  },
+  {
+   "s": "qual.tla-aws",
+   "t": "ppl.lamport",
+   "w": 2,
+   "k": "related",
+   "note": "Lamport created TLA+"
+  },
+  {
+   "s": "qual.tla-aws",
+   "t": "data.dynamo",
+   "w": 1,
+   "k": "related",
+   "note": "a DynamoDB replication bug"
+  },
+  {
+   "s": "qual.tla-aws",
+   "t": "plat.cloud",
+   "w": 1,
+   "k": "related",
+   "note": "designs for cloud services"
+  },
+  {
+   "s": "qual.proof-tools",
+   "t": "qual.formal-verification",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.proof-tools",
+   "t": "lang.spark",
+   "w": 3,
+   "k": "related",
+   "note": "SPARK is one of the tools"
+  },
+  {
+   "s": "qual.proof-tools",
+   "t": "lang.ada",
+   "w": 2,
+   "k": "related",
+   "note": "SPARK is a provable subset of Ada"
+  },
+  {
+   "s": "qual.proof-tools",
+   "t": "conc.ownership",
+   "w": 1,
+   "k": "related",
+   "note": "RustBelt proved Rust ownership sound in Coq"
+  },
+  {
+   "s": "qual.proof-tools",
+   "t": "comp.compiler",
+   "w": 1,
+   "k": "related",
+   "note": "CompCert is a verified C compiler"
+  },
+  {
+   "s": "qual.proof-tools",
+   "t": "plat.os",
+   "w": 1,
+   "k": "related",
+   "note": "seL4 is a verified operating system kernel"
+  },
+  {
+   "s": "qual.xunit",
+   "t": "qual.testing",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.xunit",
+   "t": "ppl.beck",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.xunit",
+   "t": "lang.smalltalk",
+   "w": 2,
+   "k": "related",
+   "note": "SUnit was the first xUnit"
+  },
+  {
+   "s": "qual.xunit",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related",
+   "note": "JUnit"
+  },
+  {
+   "s": "qual.xunit",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "influenced",
+   "note": "runners report in XML for CI servers"
+  },
+  {
+   "s": "qual.xunit",
+   "t": "proc.xp",
+   "w": 2,
+   "k": "related",
+   "note": "Beck and the Extreme Programming community"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "qual.testing",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "ppl.beck",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "proc.xp",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "qual.xunit",
+   "w": 3,
+   "k": "uses",
+   "note": "frameworks make test-first practical"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "proc.refactoring",
+   "w": 2,
+   "k": "related",
+   "note": "refactoring is the third step"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "qual.bdd",
+   "w": 2,
+   "k": "evolved-into"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "qual.mocking",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "ppl.fowler",
+   "w": 1,
+   "k": "related",
+   "note": "the \"Is TDD Dead?\" debates"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "pkg.rails",
+   "w": 1,
+   "k": "related",
+   "note": "Rails's creator argued against test-first in 2014"
+  },
+  {
+   "s": "qual.bdd",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.bdd",
+   "t": "proc.agile",
+   "w": 2,
+   "k": "related",
+   "note": "evolved out of established agile practices"
+  },
+  {
+   "s": "qual.bdd",
+   "t": "lang.ruby",
+   "w": 2,
+   "k": "related",
+   "note": "RSpec and Cucumber"
+  },
+  {
+   "s": "qual.bdd",
+   "t": "qual.xunit",
+   "w": 2,
+   "k": "related",
+   "note": "agiledox turned JUnit test names into sentences"
+  },
+  {
+   "s": "qual.bdd",
+   "t": "qual.test-kinds",
+   "w": 1,
+   "k": "related",
+   "note": "acceptance tests"
+  },
+  {
+   "s": "qual.test-pyramid",
+   "t": "qual.testing",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.test-pyramid",
+   "t": "qual.flaky-tests",
+   "w": 3,
+   "k": "related",
+   "note": "slow top-layer tests are the flakiest"
+  },
+  {
+   "s": "qual.test-pyramid",
+   "t": "qual.selenium",
+   "w": 2,
+   "k": "related",
+   "note": "browser tests sit at the top"
+  },
+  {
+   "s": "qual.test-pyramid",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "Google's 70/20/10 guideline"
+  },
+  {
+   "s": "qual.test-pyramid",
+   "t": "qual.test-kinds",
+   "w": 2,
+   "k": "uses",
+   "note": "a recommended mix of the kinds of test"
+  },
+  {
+   "s": "qual.test-pyramid",
+   "t": "qual.mocking",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.test-pyramid",
+   "t": "proc.agile",
+   "w": 1,
+   "k": "related",
+   "note": "Cohn's Succeeding with Agile"
+  },
+  {
+   "s": "qual.testing-trophy",
+   "t": "qual.test-pyramid",
+   "w": 2,
+   "k": "competes-with",
+   "note": "an alternative shape"
+  },
+  {
+   "s": "qual.testing-trophy",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.testing-trophy",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "uses",
+   "note": "static analysis is its base layer"
+  },
+  {
+   "s": "qual.testing-trophy",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related",
+   "note": "type checkers count as the static layer"
+  },
+  {
+   "s": "qual.testing-trophy",
+   "t": "qual.playwright",
+   "w": 1,
+   "k": "related",
+   "note": "end-to-end tests at the top"
+  },
+  {
+   "s": "qual.mocking",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.mocking",
+   "t": "proc.xp",
+   "w": 2,
+   "k": "related",
+   "note": "mock objects came out of the XP community"
+  },
+  {
+   "s": "qual.mocking",
+   "t": "ppl.fowler",
+   "w": 2,
+   "k": "related",
+   "note": "Mocks Aren't Stubs"
+  },
+  {
+   "s": "qual.mocking",
+   "t": "qual.test-kinds",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.code-coverage",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.code-coverage",
+   "t": "proc.goodharts-law",
+   "w": 3,
+   "k": "related",
+   "note": "a measure that becomes a target"
+  },
+  {
+   "s": "qual.code-coverage",
+   "t": "qual.mutation-testing",
+   "w": 3,
+   "k": "related",
+   "note": "the yardstick that exposes weak tests"
+  },
+  {
+   "s": "qual.code-coverage",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "Google's coverage practice"
+  },
+  {
+   "s": "qual.code-coverage",
+   "t": "qual.code-review",
+   "w": 2,
+   "k": "related",
+   "note": "most actionable at the level of a change in review"
+  },
+  {
+   "s": "qual.code-coverage",
+   "t": "qual.ci",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.mutation-testing",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.mutation-testing",
+   "t": "qual.code-review",
+   "w": 2,
+   "k": "uses",
+   "note": "Google shows mutants in review"
+  },
+  {
+   "s": "qual.mutation-testing",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "about 6,000 engineers by 2018"
+  },
+  {
+   "s": "qual.mutation-testing",
+   "t": "qual.test-kinds",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.property-testing",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.property-testing",
+   "t": "lang.haskell",
+   "w": 3,
+   "k": "related",
+   "note": "QuickCheck began in Haskell"
+  },
+  {
+   "s": "qual.property-testing",
+   "t": "qual.test-kinds",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.flaky-tests",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.flaky-tests",
+   "t": "qual.ci",
+   "w": 3,
+   "k": "related",
+   "note": "flaky tests erode confidence in CI"
+  },
+  {
+   "s": "qual.flaky-tests",
+   "t": "qual.selenium",
+   "w": 2,
+   "k": "related",
+   "note": "WebDriver tests were the flakiest by tool"
+  },
+  {
+   "s": "qual.flaky-tests",
+   "t": "qual.playwright",
+   "w": 2,
+   "k": "related",
+   "note": "automatic waiting targets the top cause"
+  },
+  {
+   "s": "qual.flaky-tests",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "the best public data"
+  },
+  {
+   "s": "qual.flaky-tests",
+   "t": "conc.threads-locks",
+   "w": 2,
+   "k": "related",
+   "note": "concurrency is a top cause"
+  },
+  {
+   "s": "qual.flaky-tests",
+   "t": "conc.async-await",
+   "w": 1,
+   "k": "related",
+   "note": "waiting badly for async work is the top cause"
+  },
+  {
+   "s": "qual.selenium",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.selenium",
+   "t": "org.thoughtworks",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.selenium",
+   "t": "qual.playwright",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "qual.selenium",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related",
+   "note": "drives web browsers"
+  },
+  {
+   "s": "qual.selenium",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "WebDriver; Huggins joined Google"
+  },
+  {
+   "s": "qual.playwright",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.playwright",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.playwright",
+   "t": "plat.browser-engines",
+   "w": 2,
+   "k": "uses",
+   "note": "drives Chromium, Firefox and WebKit"
+  },
+  {
+   "s": "qual.playwright",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.pytest",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.pytest",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.pytest",
+   "t": "qual.xunit",
+   "w": 2,
+   "k": "related",
+   "note": "Python's tool in the xUnit lineage, with plain asserts"
+  },
+  {
+   "s": "qual.pytest",
+   "t": "qual.hypothesis",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.pytest",
+   "t": "qual.code-coverage",
+   "w": 1,
+   "k": "related",
+   "note": "coverage run -m pytest"
+  },
+  {
+   "s": "qual.pytest",
+   "t": "qual.ci",
+   "w": 1,
+   "k": "related",
+   "note": "much of its download volume is probably CI traffic"
+  },
+  {
+   "s": "qual.hypothesis",
+   "t": "qual.property-testing",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "qual.hypothesis",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.hypothesis",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.jepsen",
+   "t": "data.mongodb",
+   "w": 3,
+   "k": "related",
+   "note": "its 2013 and 2020 MongoDB reports"
+  },
+  {
+   "s": "qual.jepsen",
+   "t": "data.isolation",
+   "w": 2,
+   "k": "related",
+   "note": "checks isolation guarantees"
+  },
+  {
+   "s": "qual.jepsen",
+   "t": "data.cap",
+   "w": 2,
+   "k": "related",
+   "note": "tests behavior under network partitions"
+  },
+  {
+   "s": "qual.jepsen",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.jepsen",
+   "t": "data.acid",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.code-review",
+   "t": "qual.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.code-review",
+   "t": "tool.pull-request",
+   "w": 3,
+   "k": "related",
+   "note": "modern review happens in pull requests"
+  },
+  {
+   "s": "qual.code-review",
+   "t": "tool.gerrit",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.code-review",
+   "t": "plat.github",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.code-review",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "Bacchelli and Bird studied Microsoft teams"
+  },
+  {
+   "s": "qual.code-review",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "median review under four hours"
+  },
+  {
+   "s": "qual.code-review",
+   "t": "proc.pair-programming",
+   "w": 2,
+   "k": "related",
+   "note": "continuous review versus after-the-fact review"
+  },
+  {
+   "s": "qual.code-review",
+   "t": "qual.testing",
+   "w": 1,
+   "k": "related",
+   "note": "Google requires tests with every change"
+  },
+  {
+   "s": "qual.cd",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.cd",
+   "t": "qual.ci",
+   "w": 3,
+   "k": "uses",
+   "note": "builds on continuous integration"
+  },
+  {
+   "s": "qual.cd",
+   "t": "qual.dora",
+   "w": 3,
+   "k": "related",
+   "note": "DORA measures delivery performance"
+  },
+  {
+   "s": "qual.cd",
+   "t": "proc.devops",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "qual.cd",
+   "t": "qual.jenkins",
+   "w": 2,
+   "k": "related",
+   "note": "the Pipeline plugin and Jenkinsfile"
+  },
+  {
+   "s": "qual.cd",
+   "t": "qual.github-actions",
+   "w": 2,
+   "k": "related",
+   "note": "workflows as pipelines"
+  },
+  {
+   "s": "qual.cd",
+   "t": "proc.trunk-based",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.cd",
+   "t": "tool.iac",
+   "w": 2,
+   "k": "related",
+   "note": "environments defined as code"
+  },
+  {
+   "s": "qual.cd",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.cd",
+   "t": "plat.kubernetes",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.cd",
+   "t": "fail.knight-capital",
+   "w": 2,
+   "k": "related",
+   "note": "no second-person deployment review"
+  },
+  {
+   "s": "qual.cd",
+   "t": "fail.crowdstrike",
+   "w": 1,
+   "k": "related",
+   "note": "a content-validation gap passed its tests"
+  },
+  {
+   "s": "qual.cd",
+   "t": "proc.sre",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.jenkins",
+   "t": "qual.ci",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "qual.jenkins",
+   "t": "org.oracle",
+   "w": 2,
+   "k": "related",
+   "note": "Oracle claimed the Hudson trademark in 2010"
+  },
+  {
+   "s": "qual.jenkins",
+   "t": "org.sun",
+   "w": 1,
+   "k": "related",
+   "note": "Oracle acquired Sun"
+  },
+  {
+   "s": "qual.jenkins",
+   "t": "qual.github-actions",
+   "w": 2,
+   "k": "replaced-by",
+   "note": "hosted services became the default"
+  },
+  {
+   "s": "qual.github-actions",
+   "t": "qual.ci",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "qual.github-actions",
+   "t": "plat.github",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.github-actions",
+   "t": "pkg.trusted-publishing",
+   "w": 2,
+   "k": "related",
+   "note": "workflows prove their identity to PyPI and npm"
+  },
+  {
+   "s": "qual.github-actions",
+   "t": "pkg.supply-chain",
+   "w": 2,
+   "k": "related",
+   "note": "pull_request_target incidents"
+  },
+  {
+   "s": "qual.github-actions",
+   "t": "proc.devops",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.feature-flags",
+   "t": "qual.cd",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.feature-flags",
+   "t": "proc.trunk-based",
+   "w": 2,
+   "k": "related",
+   "note": "release toggles let unfinished code ship dark"
+  },
+  {
+   "s": "qual.feature-flags",
+   "t": "proc.sre",
+   "w": 2,
+   "k": "related",
+   "note": "staged rollouts limit the damage from changes"
+  },
+  {
+   "s": "qual.feature-flags",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Google guards all changes with flags"
+  },
+  {
+   "s": "qual.dora",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.dora",
+   "t": "proc.devops",
+   "w": 3,
+   "k": "related",
+   "note": "the research base of DevOps"
+  },
+  {
+   "s": "qual.dora",
+   "t": "mod.dora-ai",
+   "w": 2,
+   "k": "related",
+   "note": "the DORA reports on AI-assisted development"
+  },
+  {
+   "s": "qual.dora",
+   "t": "org.google",
+   "w": 2,
+   "k": "related",
+   "note": "now run by Google Cloud"
+  },
+  {
+   "s": "qual.dora",
+   "t": "proc.goodharts-law",
+   "w": 3,
+   "k": "related",
+   "note": "DORA warns against setting its metrics as goals"
+  },
+  {
+   "s": "qual.dora",
+   "t": "proc.trunk-based",
+   "w": 2,
+   "k": "related",
+   "note": "one of its measured capabilities"
+  },
+  {
+   "s": "qual.dora",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "related",
+   "note": "CI predicts delivery performance"
+  },
+  {
+   "s": "qual.security",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.security",
+   "t": "fail.morris-worm",
+   "w": 3,
+   "k": "related",
+   "note": "the 1988 anchor"
+  },
+  {
+   "s": "qual.security",
+   "t": "fail.heartbleed",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "fail.log4shell",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "pkg.supply-chain",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "conc.buffer-overflow",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "conc.memory-safety",
+   "w": 3,
+   "k": "related",
+   "note": "about 70 percent of serious bugs at Microsoft and in Chromium"
+  },
+  {
+   "s": "qual.security",
+   "t": "plat.tls",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "plat.oauth",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "data.parameterized",
+   "w": 2,
+   "k": "related",
+   "note": "the fix for injection"
+  },
+  {
+   "s": "qual.security",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "related",
+   "note": "memory-safe language for new code"
+  },
+  {
+   "s": "qual.security",
+   "t": "mod.cisa",
+   "w": 2,
+   "k": "related",
+   "note": "Secure by Design"
+  },
+  {
+   "s": "qual.security",
+   "t": "fail.solarwinds",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "fail.xz",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "fail.equifax",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.security",
+   "t": "mod.passkeys",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.sql-injection",
+   "t": "qual.security",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.sql-injection",
+   "t": "data.parameterized",
+   "w": 3,
+   "k": "related",
+   "note": "the fix"
+  },
+  {
+   "s": "qual.sql-injection",
+   "t": "data.sql",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.sql-injection",
+   "t": "qual.owasp",
+   "w": 3,
+   "k": "related",
+   "note": "the Injection category"
+  },
+  {
+   "s": "qual.owasp",
+   "t": "qual.security",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.owasp",
+   "t": "pkg.supply-chain",
+   "w": 3,
+   "k": "related",
+   "note": "A03 Software Supply Chain Failures"
+  },
+  {
+   "s": "qual.owasp",
+   "t": "conc.error-handling",
+   "w": 1,
+   "k": "related",
+   "note": "A10 Mishandling of Exceptional Conditions"
+  },
+  {
+   "s": "qual.owasp",
+   "t": "plat.oauth",
+   "w": 1,
+   "k": "related",
+   "note": "A07 Authentication Failures"
+  },
+  {
+   "s": "qual.owasp",
+   "t": "plat.tls",
+   "w": 1,
+   "k": "related",
+   "note": "A04 Cryptographic Failures"
+  },
+  {
+   "s": "qual.owasp",
+   "t": "qual.dependency-scanners",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.zero-trust",
+   "t": "qual.security",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.zero-trust",
+   "t": "org.hashicorp",
+   "w": 2,
+   "k": "related",
+   "note": "Vault"
+  },
+  {
+   "s": "qual.zero-trust",
+   "t": "plat.oauth",
+   "w": 2,
+   "k": "related",
+   "note": "authenticate and authorize every request"
+  },
+  {
+   "s": "qual.zero-trust",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "BeyondCorp"
+  },
+  {
+   "s": "qual.zero-trust",
+   "t": "pkg.trusted-publishing",
+   "w": 2,
+   "k": "related",
+   "note": "short-lived credentials"
+  },
+  {
+   "s": "qual.zero-trust",
+   "t": "mod.passkeys",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "qual.lint",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "found.rice-theorem",
+   "w": 2,
+   "k": "related",
+   "note": "why no checker can be perfect"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "qual.eslint",
+   "w": 2,
+   "k": "related",
+   "note": "the flagship style linter"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "related",
+   "note": "the enforced checkpoint"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "tool.pre-commit",
+   "w": 1,
+   "k": "related",
+   "note": "the pre-commit checkpoint"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "tool.lsp",
+   "w": 1,
+   "k": "related",
+   "note": "the editor checkpoint"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "qual.false-positives",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "mod.rust-rewrite-wave",
+   "w": 1,
+   "k": "related",
+   "note": "speed gains from Rust rewrites"
+  },
+  {
+   "s": "qual.checker-classes",
+   "t": "conc.static-typing",
+   "w": 1,
+   "k": "related",
+   "note": "the type-checker class"
+  },
+  {
+   "s": "qual.test-kinds",
+   "t": "qual.testing",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.test-kinds",
+   "t": "qual.xunit",
+   "w": 2,
+   "k": "related",
+   "note": "unit tests in the xUnit style"
+  },
+  {
+   "s": "qual.test-kinds",
+   "t": "qual.selenium",
+   "w": 1,
+   "k": "related",
+   "note": "end-to-end tests"
+  },
+  {
+   "s": "qual.test-kinds",
+   "t": "qual.playwright",
+   "w": 1,
+   "k": "related",
+   "note": "end-to-end tests"
+  }
+ ]
+}

@@ -1,0 +1,2421 @@
+{
+ "slice": "s07a-tooling",
+ "nodes": [
+  {
+   "id": "tool.sccs",
+   "title": "SCCS",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 1972,
+   "status": "legacy",
+   "short": "The Source Code Control System, written at Bell Labs in 1972. It kept every revision of a file inside one file and let one person edit at a time.",
+   "long": "Marc Rochkind wrote SCCS at Bell Labs. The first version, from 1972, was written in SNOBOL4 for an IBM System/370 under OS/360 MVT, and in 1973 it was rewritten in C for Unix on a PDP-11. Its storage trick, called interleaved deltas or the weave, keeps every revision of a file inside one file, with each line tagged by the change that added or removed it. A programmer checks a file out, edits it and checks it back in, and the history stays behind as stored changes called deltas. That cycle became the model that RCS, CVS and Visual SourceSafe inherited. Rochkind published the design in IEEE Transactions on Software Engineering in December 1975. SCCS is legacy today, though maintained forks exist.",
+   "sleeper": "SCCS and RCS made one person lock a file while editing it. That lock-then-edit habit gave way to everyone editing freely and merging afterwards, which Git now makes the everyday routine.",
+   "tags": [
+    "revision control",
+    "deltas",
+    "weave",
+    "locking",
+    "unix"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Source Code Control System",
+     "url": "https://en.wikipedia.org/wiki/Source_Code_Control_System"
+    },
+    {
+     "label": "Subversion book: Version Control Basics (lock-modify-unlock)",
+     "url": "https://svnbook.red-bean.com/en/1.7/svn.basic.version-control-basics.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.rcs",
+   "title": "RCS",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 1982,
+   "status": "legacy",
+   "short": "Revision Control System, by Walter Tichy at Purdue (1982). It stores the newest revision in full, keeps older ones as reverse edits, and locks files while you edit.",
+   "long": "Walter F. Tichy of Purdue University released RCS in 1982 and described it in the journal Software: Practice and Experience in July 1985. Its main change from SCCS was the reverse delta: the newest revision is stored in full and older ones are rebuilt by applying edit instructions backwards, which Tichy argued is faster because recent revisions are the ones people ask for most. RCS works on one file at a time and uses locking, so only one user can edit a file at once. The GNU project maintains it, and Pro Git notes that it is still distributed with many computers. It is regarded as an early design that distributed systems such as Git have superseded.",
+   "tags": [
+    "revision control",
+    "reverse deltas",
+    "purdue",
+    "locking",
+    "gnu"
+   ],
+   "refs": [
+    {
+     "label": "Purdue: RCS page",
+     "url": "https://www.cs.purdue.edu/homes/trinkle/RCS/"
+    },
+    {
+     "label": "Pro Git: About Version Control",
+     "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+    }
+   ]
+  },
+  {
+   "id": "tool.cvs",
+   "title": "CVS",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1986,
+   "status": "legacy",
+   "short": "Concurrent Versions System: several people edit the same files at once and merge afterwards. Open-source projects widely adopted it in the 1990s.",
+   "long": "Dick Grune created CVS so that he could cooperate with his students Erik Baalbergen and Maarten Waage on the Amsterdam Compiler Kit, since their work schedules did not match. He posted the improved scripts to the comp.sources.unix newsgroup on June 23, 1986, and about two years later Brian Berliner turned them into C code, which he described at the 1990 Winter USENIX Conference. CVS let several people edit the same files at once and combine the results later, a style called copy-modify-merge, instead of taking turns with locks. Its flaws were real: an interrupted commit, the step that saves your changes to the repository, could leave it inconsistent, directories were not versioned, renames were not tracked, and branches, parallel lines of development, were expensive. Subversion was started to fix them.",
+   "sleeper": "If you remember CVS, the central server is what Git dropped. Every Git clone now carries the full history, so most commands work offline and you can keep committing while a server is down.",
+   "tags": [
+    "concurrent versions",
+    "copy-modify-merge",
+    "centralized",
+    "grune",
+    "berliner"
+   ],
+   "refs": [
+    {
+     "label": "Dick Grune: the origin of CVS",
+     "url": "https://dickgrune.com/Programs/CVS.orig/"
+    },
+    {
+     "label": "Subversion book: Version Control Basics",
+     "url": "https://svnbook.red-bean.com/en/1.7/svn.basic.version-control-basics.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.svn",
+   "title": "Subversion",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2000,
+   "status": "niche",
+   "short": "Version control started by CollabNet in 2000 to fix CVS without changing its working model. Centralized; version 1.0 came in 2004 and releases continue in 2026.",
+   "long": "CollabNet started Subversion in early 2000, with Karl Fogel and Jim Blandy. In the project's own words, the aim was not to break new ground in version control but to match CVS's features and keep its development model without CVS's most obvious flaws. It hosted its own source from August 31, 2001 and reached 1.0 in February 2004. Merging was its sore spot: before version 1.5 in June 2008 added merge tracking, people had to record by hand which changes had already moved between branches, and the project's own book calls those manual methods painful. Subversion joined the Apache Incubator in November 2009 and became a top-level Apache project on February 17, 2010. It stays centralized, and a 1.15.0 release candidate was dated September 11, 2026.",
+   "tags": [
+    "svn",
+    "collabnet",
+    "centralized",
+    "merge tracking",
+    "apache"
+   ],
+   "refs": [
+    {
+     "label": "Subversion book: Subversion's history",
+     "url": "https://svnbook.red-bean.com/en/1.7/svn.intro.whatis.html"
+    },
+    {
+     "label": "Subversion 1.5 release notes",
+     "url": "https://subversion.apache.org/docs/release-notes/1.5.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.perforce",
+   "title": "Perforce",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 1995,
+   "status": "niche",
+   "short": "A commercial centralized version control system from 1995, strong with very large repositories and with big binary files such as game assets.",
+   "long": "Christopher Seiwald founded Perforce in 1995 in Alameda, California. It is centralized, and it submits several files together as one unit called a changelist, so a commit is atomic: it lands whole or not at all. Its strength is large binary files alongside code, and it is used in game development and other binary-heavy shops. Microsoft's internal Source Depot was a Perforce variant, and Facebook engineers wrote in 2014 that Perforce cheats on scale by forcing users to say in advance which files they will edit. Ownership has changed several times: Summit Partners bought the company in 2016, Clearlake Capital in 2018, and Francisco Partners took a 50 percent stake in 2019. Perforce acquired Puppet in 2022. The product is now also called Helix Core.",
+   "tags": [
+    "p4",
+    "helix core",
+    "changelists",
+    "binary files",
+    "games"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Perforce",
+     "url": "https://en.wikipedia.org/wiki/Perforce"
+    },
+    {
+     "label": "Facebook Engineering: Scaling Mercurial at Facebook (2014)",
+     "url": "https://engineering.fb.com/2014/01/07/core-infra/scaling-mercurial-at-facebook/"
+    }
+   ]
+  },
+  {
+   "id": "tool.bitkeeper",
+   "title": "BitKeeper",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2000,
+   "yearEnd": 2016,
+   "status": "dead",
+   "short": "A proprietary distributed version control system the Linux kernel used from 2002 to 2005. Losing its free licence led directly to Git and Mercurial.",
+   "long": "BitKeeper was a proprietary distributed version control system from Larry McVoy's company BitMover, first released publicly on May 4, 2000. The Linux kernel adopted it in 2002, a choice that Richard Stallman and other open-source purists objected to. In April 2005 BitMover withdrew free access, citing Andrew Tridgell's work on a client that would expose the repository's metadata. Pro Git describes the relationship as breaking down and the tool's free-of-charge status being revoked. Within weeks that produced Git and Mercurial. Linus Torvalds wrote at the time that it was a gray and bleak world while he worked out the alternatives. BitKeeper moved to an open-source licence on May 9, 2016, later Apache 2.0, and is no longer maintained.",
+   "sleeper": "From 1991 to 2002 the kernel's changes were passed around as patches and archived files. A commercial tool ended that in 2002, and its withdrawal in 2005 is the reason Git exists.",
+   "tags": [
+    "distributed",
+    "larry mcvoy",
+    "bitmover",
+    "linux kernel",
+    "licence"
+   ],
+   "refs": [
+    {
+     "label": "LWN: the kernel SCM saga (6 April 2005)",
+     "url": "https://lwn.net/Articles/130746/"
+    },
+    {
+     "label": "Pro Git: A Short History of Git",
+     "url": "https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git"
+    }
+   ]
+  },
+  {
+   "id": "tool.mercurial",
+   "title": "Mercurial",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2005,
+   "status": "niche",
+   "short": "A distributed version control system announced by Matt Mackall on April 19, 2005, days after BitKeeper's withdrawal. Written in Python, now a minority tool.",
+   "long": "Matt Mackall, now Olivia Mackall, announced Mercurial on April 19, 2005, days after BitKeeper's free licence ended. It is distributed, so every clone holds the full history, and it is written in Python with C for the speed-critical parts and, increasingly, Rust. Facebook adopted it in 2013 and explained in 2014 that its Python code was clean and extensible; Mozilla used it from 2007 until moving to Git in 2023, and OpenJDK used it until Java 16. Bitbucket dropped Mercurial in 2020, citing a Stack Overflow figure of almost 90 percent of developers using Git against about 3 percent for Mercurial, and saying that supporting two systems split its focus. Version 7.2 was released on January 29, 2026.",
+   "tags": [
+    "hg",
+    "distributed",
+    "python",
+    "matt mackall",
+    "bitbucket"
+   ],
+   "refs": [
+    {
+     "label": "Mercurial home page",
+     "url": "https://www.mercurial-scm.org/"
+    },
+    {
+     "label": "Atlassian: Sunsetting Mercurial support in Bitbucket",
+     "url": "https://www.atlassian.com/bitbucket/blog/sunsetting-mercurial-support-in-bitbucket"
+    }
+   ]
+  },
+  {
+   "id": "tool.jujutsu",
+   "title": "Jujutsu",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2019,
+   "status": "niche",
+   "short": "A Git-compatible version control tool begun by Martin von Zweigbergk in late 2019. The working copy is itself a commit, and there is no staging area.",
+   "long": "Martin von Zweigbergk started Jujutsu, abbreviated jj, in late 2019. He works at Google and several Googlers help, but it is not a supported Google product. It uses Git repositories as its storage layer, so its commits look like ordinary Git commits to other people and tools. Its own ideas: the working copy is itself a commit, amended automatically as you edit; when you change a commit, later commits are replayed on top of it automatically; an operation log records every action; conflicts are first-class objects; and there is no staging area, the step in Git where you mark changes for the next commit. It borrows from Git (speed), Mercurial and Sapling (the revset query language and anonymous branches) and Darcs (conflict handling). Its repository showed about 31,800 GitHub stars in September 2026.",
+   "tags": [
+    "jj",
+    "git-compatible",
+    "operation log",
+    "conflicts",
+    "von zweigbergk"
+   ],
+   "refs": [
+    {
+     "label": "Jujutsu README",
+     "url": "https://github.com/jj-vcs/jj"
+    }
+   ]
+  },
+  {
+   "id": "tool.gerrit",
+   "title": "Gerrit",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2009,
+   "status": "niche",
+   "short": "A code review platform for Git, built at Google by Shawn Pearce. Each revision of a change is reviewed as a patch set; Android, Chromium and Qt use it.",
+   "long": "Gerrit describes itself as an open source, patchset-based code review platform for Git-based development: each revised version of a proposed change is a patch set that reviewers examine before the change is merged. Shawn Pearce created it at Google as a fork of Rietveld, a review tool by Guido van Rossum that was open-sourced in 2008, and the independent Gerrit 2 was released on November 2, 2009. The project says its model more closely resembles the mailing-list workflow used by Git itself and the Linux kernel, where patches were emailed for discussion. Android, Chromium, the OpenInfra Foundation, JGit and Qt use it.",
+   "tags": [
+    "code review",
+    "patchset",
+    "shawn pearce",
+    "rietveld",
+    "android"
+   ],
+   "refs": [
+    {
+     "label": "Gerrit Code Review",
+     "url": "https://www.gerritcodereview.com/"
+    }
+   ]
+  },
+  {
+   "id": "tool.pull-request",
+   "title": "Pull Requests",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2008,
+   "status": "thriving",
+   "short": "A web page where a proposed change is discussed, reviewed and merged. GitHub, launched in 2008, made it the standard way to contribute to a project.",
+   "long": "A pull request is not a Git command. GitHub defines it as a proposal to merge code changes into a project, with a conversation tab for discussion, a view of the changed files, and a merge status that shows blockers and missing approvals. Git itself ships git request-pull, which writes an email-style request asking an upstream project to pull your changes, the form long used on the Linux kernel's mailing list. GitHub launched on April 10, 2008 and made the pull request its unit of collaboration; forks, personal copies of a repository, let anyone propose a change without the upstream project's permission. GitHub's 2025 Octoverse report counts 43.2 million pull requests merged per month. A Microsoft study of 570 review comments found only 14 percent concerned defects; the benefits were mainly knowledge transfer, team awareness and maintainability.",
+   "sleeper": "Since 2025 AI coding agents open pull requests too. GitHub's Octoverse report counted more than 1 million of them between May and September 2025.",
+   "tags": [
+    "code review",
+    "fork",
+    "merge request",
+    "collaboration",
+    "github"
+   ],
+   "refs": [
+    {
+     "label": "GitHub Docs: About pull requests",
+     "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+    },
+    {
+     "label": "Git docs: git-request-pull",
+     "url": "https://git-scm.com/docs/git-request-pull"
+    }
+   ]
+  },
+  {
+   "id": "tool.git-branches",
+   "title": "Git Branches and Merges",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2005,
+   "status": "thriving",
+   "short": "In Git a branch is a 41-byte pointer to a commit, so branching and merging cost almost nothing. A short session shows commit, branch, merge and log.",
+   "long": "In Git a branch is a lightweight movable pointer to one commit, and creating one is as quick as writing 41 bytes to a file. Each commit names its parent, or two parents after a merge, so history forms a graph that only points backwards in time. The session below commits, branches, commits on both lines, merges and prints the result, where the merge commit has two parents. Rebase, Git's other way to combine work, replays one branch's commits on top of another for a straight line at the price of new commit hashes, the fingerprints that identify commits; the rule in Pro Git is never to rebase anything you have pushed. Vincent Driessen's Git Flow (2010) used long-lived branches, and in 2020 he advised teams that deliver continuously to use a simpler workflow. Pro Git also warns that submodules, which pin another repository at an exact commit, are not without hiccups.",
+   "sleeper": "Branching used to mean copying the whole tree, and merging back, as with Subversion before 1.5 in 2008, meant tracking by hand what was already merged. Git made both routine.",
+   "code": {
+    "lang": "bash",
+    "text": "git init -b main hello && cd hello\ngit config user.name \"Ada Example\" && git config user.email ada@example.com\necho \"Hello\" > hello.txt && git add hello.txt       # stage the file\ngit commit -m \"Add hello.txt\"                        # first snapshot\ngit switch -c feature/farewell                       # new branch: a 41-byte label\necho \"Goodbye\" > bye.txt && git add bye.txt\ngit commit -m \"Add bye.txt\"                          # only on the feature branch\ngit switch main\necho \"Hello, world\" > hello.txt\ngit commit -am \"Make the greeting friendlier\"        # history has now diverged\ngit merge --no-edit feature/farewell                 # merge commit with two parents\ngit log --oneline --graph                            # the two lines joining again"
+   },
+   "tags": [
+    "branch",
+    "merge",
+    "rebase",
+    "commit",
+    "git flow",
+    "workflow"
+   ],
+   "refs": [
+    {
+     "label": "Pro Git: Branches in a Nutshell",
+     "url": "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell"
+    },
+    {
+     "label": "Pro Git: Rebasing",
+     "url": "https://git-scm.com/book/en/v2/Git-Branching-Rebasing"
+    }
+   ]
+  },
+  {
+   "id": "tool.fossil",
+   "title": "Fossil",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2007,
+   "status": "niche",
+   "short": "A distributed version control system by SQLite's author, D. Richard Hipp. One program also holds a wiki, bug tracker, forum and web interface.",
+   "long": "D. Richard Hipp, the architect of SQLite, began Fossil in 2007. The project's own history says that around 2005 Git and Mercurial were considered, but none supported sync over ordinary HTTP, none could be run from an inexpensive shell account on a leased server, and none had anything like the wiki and ticket features of CVSTrac. Fossil is a single executable that holds version control, a wiki, tickets, a forum and a web interface. The first project it hosted was Fossil itself, then the SQLite documentation, and finally SQLite's source code.",
+   "tags": [
+    "hipp",
+    "wiki",
+    "tickets",
+    "single executable",
+    "http sync"
+   ],
+   "refs": [
+    {
+     "label": "Fossil: history",
+     "url": "https://fossil-scm.org/home/doc/trunk/www/history.md"
+    }
+   ]
+  },
+  {
+   "id": "tool.sapling",
+   "title": "Sapling",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2022,
+   "status": "niche",
+   "short": "Meta's source control system, open-sourced in November 2022. It began as a Mercurial extension, scales to huge repositories and can work with Git repositories.",
+   "long": "Meta open-sourced Sapling on November 15, 2022, describing it as a source control system that emphasizes usability and scalability. It started as an extension to Mercurial, which Facebook had chosen because Git slowed as the number of files grew, and it rapidly became a system of its own. With its server and virtual file system it can serve Meta's internal repository, which has tens of millions of files, commits and branches. The client can clone and work with Git repositories. Features include smartlog, stacks of commits, and undo, redo, uncommit and unamend commands. Giant single repositories need such tooling: Google built the centralized Piper, and Microsoft built GVFS and later Scalar to make Git cope with the Windows repository.",
+   "tags": [
+    "meta",
+    "facebook",
+    "monorepo",
+    "smartlog",
+    "scalable"
+   ],
+   "refs": [
+    {
+     "label": "Meta Engineering: Sapling",
+     "url": "https://engineering.fb.com/2022/11/15/open-source/sapling-source-control-scalable/"
+    },
+    {
+     "label": "Facebook Engineering: Scaling Mercurial at Facebook (2014)",
+     "url": "https://engineering.fb.com/2014/01/07/core-infra/scaling-mercurial-at-facebook/"
+    }
+   ]
+  },
+  {
+   "id": "tool.build-system",
+   "title": "Build Systems",
+   "cat": "tooling",
+   "tier": 2,
+   "year": 1976,
+   "status": "thriving",
+   "short": "Software that turns source code into something runnable and works out which steps are out of date, so only those are redone. Make began the idea in 1976.",
+   "long": "Building means compiling each source file, linking the pieces, copying resources, running tests and packaging the result. A build system knows that recipe and works out which steps are out of date, so changing one file does not redo everything. Google's engineering book says a developer should be able to type one command and get the binary, and that the same inputs should give the same result on any machine. Hand-written scripts stop scaling, with teams spending almost as much time on build scripts as on real code. Stuart Feldman's make (1976) set the model of targets, prerequisites and timestamps; its recursive style, one Makefile per directory, builds an inaccurate dependency graph, as Peter Miller argued. Later tools each fixed one pain: portability (Autotools), Java conventions (Maven, Gradle), speed (Ninja), cached isolated builds (Bazel) and front-end bundling (webpack, Vite).",
+   "sleeper": "If you remember a Makefile or a Borland project file, the core idea is unchanged: rebuild only what is out of date. What changed is scale. Very large codebases pushed builds toward generators, sandboxed steps and caches shared across a team.",
+   "code": {
+    "lang": "makefile",
+    "text": "# Change util.h and both objects rebuild; change only main.c and util.o is reused.\napp: main.o util.o\n\tgcc -o app main.o util.o\nmain.o: main.c util.h\n\tgcc -c main.c\nutil.o: util.c util.h\n\tgcc -c util.c"
+   },
+   "tags": [
+    "build",
+    "makefile",
+    "incremental",
+    "dependencies",
+    "compile and link"
+   ],
+   "refs": [
+    {
+     "label": "Software Engineering at Google, ch. 18: Build Systems and Build Philosophy",
+     "url": "https://abseil.io/resources/swe-book/html/ch18.html"
+    },
+    {
+     "label": "Mokhov, Mitchell and Peyton Jones: Build Systems a la Carte (2018)",
+     "url": "https://doi.org/10.1145/3236774"
+    }
+   ]
+  },
+  {
+   "id": "tool.autotools",
+   "title": "Autotools",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 1991,
+   "status": "legacy",
+   "short": "GNU Autoconf, Automake and Libtool: a generated ./configure script probes the machine, then make builds. Common in older C and Unix software.",
+   "long": "David MacKenzie created Autoconf in the summer of 1991 while working for the Free Software Foundation. It generates a shell script called configure that tests what the machine and compiler actually offer, such as whether a function exists, instead of checking operating-system names, and then writes headers and a Makefile from templates. Developers write configure.ac in the m4 macro language, and users type ./configure && make && make install, needing only a Bourne-compatible shell. The suite also includes Automake and Libtool. Opinions are divided: Meson's author called the syntax of common free build systems obtuse, Poul-Henning Kamp argued that the configure approach lets code look portable without being so, and John Calcote defended Autotools' transparency.",
+   "sleeper": "If you ever built free Unix software, you probably typed ./configure && make && make install. That ritual still works for many older projects, while many newer C and C++ projects use CMake or Meson instead.",
+   "tags": [
+    "autoconf",
+    "automake",
+    "libtool",
+    "configure",
+    "m4",
+    "portability"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Autoconf",
+     "url": "https://en.wikipedia.org/wiki/Autoconf"
+    },
+    {
+     "label": "Meson: Design rationale",
+     "url": "https://mesonbuild.com/Design-rationale.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.maven",
+   "title": "Maven",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2004,
+   "status": "thriving",
+   "short": "A Java build tool built on convention over configuration: a standard project layout and a declarative list of dependencies. Started 2001, Maven 1 in 2004.",
+   "long": "Maven's own history, written in October 2005 by one of its creators, says it began in the Jakarta Alexandria project, with the first import of prototype sources in August 2001. It then grew in the Turbine project, where the author was tired of maintaining several nearly identical builds. Maven 1 followed in 2004, which is why sources give different years. Builds made with Apache Ant, the XML-based Java tool of 2000, each looked different, and the creator recalls that it was rare for an Ant build to work out of the box. Maven's answer was convention over configuration: a standard directory layout, a project model, and a declarative list of dependencies that the tool can analyze. Stack Overflow's 2025 survey found 16.4 percent of respondents using Maven, and version 3.9.16 came out on May 17, 2026.",
+   "tags": [
+    "java",
+    "pom",
+    "convention over configuration",
+    "ant",
+    "apache"
+   ],
+   "refs": [
+    {
+     "label": "Maven: History of Maven",
+     "url": "https://maven.apache.org/background/history-of-maven.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.gradle",
+   "title": "Gradle",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2008,
+   "status": "thriving",
+   "short": "A build tool for Java, Kotlin and Android by Hans Dockter, configured in Groovy or Kotlin code instead of XML. Android Studio adopted it in 2013.",
+   "long": "Hans Dockter created Gradle and released it in 2008, with version 1.0 following in June 2012. It builds on ideas from Ant and Maven but uses Groovy or Kotlin as its configuration language instead of XML, models its work as a directed graph of tasks, and supports parallel execution, incremental builds, a build cache and a wrapper that pins the tool's own version. Because every task declares its inputs and outputs, Gradle can compute a cache key for its results, and teams can share a remote cache filled by their continuous integration builds. Google's May 2013 announcement of Android Studio said it used a new build system based on Gradle. Stack Overflow's 2025 survey found 14.4 percent of respondents using it, and Gradle 9.8.0 was released on September 24, 2026.",
+   "tags": [
+    "groovy",
+    "kotlin dsl",
+    "android",
+    "build cache",
+    "wrapper",
+    "jvm"
+   ],
+   "refs": [
+    {
+     "label": "Gradle docs: Build Cache",
+     "url": "https://docs.gradle.org/current/userguide/build_cache.html"
+    },
+    {
+     "label": "Android Developers Blog: Android Studio (15 May 2013)",
+     "url": "https://android-developers.googleblog.com/2013/05/android-studio-ide-built-for-android.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.cmake",
+   "title": "CMake",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2000,
+   "status": "thriving",
+   "short": "A generator for C and C++ builds: describe the project once and CMake writes Makefiles, Ninja files or Visual Studio projects. Kitware began it in 1999.",
+   "long": "In 1999 the US National Library of Medicine engaged a small company, Kitware, to develop a better way to configure, build and deploy complex software across many platforms, starting with the Insight Segmentation and Registration Toolkit (ITK). Before CMake a project usually kept a configure script and Makefiles for Unix plus Visual Studio project files for Windows, so adding a source file was painful. CMake depends only on a C++ compiler and is a generator: it writes native build files, such as Makefiles, Visual Studio projects or Ninja files, instead of compiling anything itself. Development began in 1999 and the first release came in 2000, so sources differ on the year. Version 4.4.3 was released on August 25, 2026.",
+   "sleeper": "In the Make era you wrote a Makefile per platform, or a configure script. For C and C++ the usual approach is now two steps: a generator such as CMake describes the project, and a fast executor, Ninja, runs the build.",
+   "tags": [
+    "kitware",
+    "generator",
+    "c++",
+    "itk",
+    "cross-platform"
+   ],
+   "refs": [
+    {
+     "label": "The Architecture of Open Source Applications: CMake",
+     "url": "https://aosabook.org/en/v1/cmake.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.ninja",
+   "title": "Ninja",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2011,
+   "status": "thriving",
+   "short": "A small, very fast build executor by Evan Martin of Google's Chrome team. It is meant to be generated by tools such as CMake and Meson, not written by hand.",
+   "long": "Evan Martin, on Google's Chrome team, started Ninja as an experiment to see whether Chrome's build could be made faster; the work dates from 2011 to 2012. A build generated by GYP for the SCons build tool could take 30 seconds to start while SCons worked out which files had changed. Ninja's input is only a list of which exact paths produce which exact outputs, and its authors say that where other build systems are high-level languages, Ninja aims to be an assembler, meant to be written by another tool. Martin's yardstick was how long a build with nothing to do takes, just under a second for Chrome. CMake, Meson and other tools can generate Ninja files, and projects such as LLVM and ReactOS build that way. Stack Overflow's 2025 survey found 5.2 percent of respondents using Ninja.",
+   "tags": [
+    "chrome",
+    "generator",
+    "fast incremental",
+    "evan martin",
+    "meson"
+   ],
+   "refs": [
+    {
+     "label": "The Architecture of Open Source Applications: Ninja",
+     "url": "https://aosabook.org/en/posa/ninja.html"
+    },
+    {
+     "label": "Ninja home page",
+     "url": "https://ninja-build.org/"
+    }
+   ]
+  },
+  {
+   "id": "tool.bazel",
+   "title": "Bazel",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2006,
+   "status": "thriving",
+   "short": "Google's build system, begun in 2006 as Blaze and open-sourced in 2015. It runs each step in isolation so results can be cached and shared across a team.",
+   "long": "Google began an internal build tool called Blaze in 2006 to get both speed and correctness in a very large monorepo, a single repository holding most of a company's code. Bazel was released as open source in March 2015 and reached 1.0 in October 2019. Google's engineering book explains the design: in task-based tools such as Ant and Maven, tasks can do anything, so there is no general way to check whether one already ran. Bazel instead takes a declarative description of what to build, runs every action in a filesystem sandbox, and first asks a remote cache whether the result already exists. It also requires every dependency version to be stated by hand. Rules are written in Starlark, a Python-like language that avoids side effects. Users include SpaceX, Stripe, Spotify, Uber and BMW.",
+   "tags": [
+    "blaze",
+    "monorepo",
+    "starlark",
+    "remote cache",
+    "sandbox"
+   ],
+   "refs": [
+    {
+     "label": "Bazel: About",
+     "url": "https://bazel.build/about/intro"
+    },
+    {
+     "label": "Software Engineering at Google, ch. 18: Build Systems and Build Philosophy",
+     "url": "https://abseil.io/resources/swe-book/html/ch18.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.webpack",
+   "title": "webpack",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2014,
+   "status": "legacy",
+   "short": "A JavaScript module bundler by Tobias Koppers that joins files and their imports into browser-ready bundles. Widely used, but often named as hard to configure.",
+   "long": "Browsers originally had no module system, so one script tag per feature caused network bottlenecks, and wrapping files in immediately invoked function expressions avoided name clashes but meant rebuilding everything after any change. Bundlers such as Browserify, RequireJS and SystemJS appeared to bring Node-style modules to browsers. Tobias Koppers' webpack (listed as 2014) infers the dependency graph from what each file imports and exports and offers loaders, code splitting and a hot-reloading development server. That displaced task runners such as Grunt and Gulp, which made developers declare every dependency up front. State of JS 2025 respondents named configuration and setup the biggest pain of build tools, and webpack drew the lowest admiration in Stack Overflow's 2025 chart, 25.7 percent, yet it had about 65 million npm downloads in one week of September 2026.",
+   "tags": [
+    "bundler",
+    "module",
+    "javascript",
+    "loaders",
+    "tobias koppers"
+   ],
+   "refs": [
+    {
+     "label": "webpack: Why webpack",
+     "url": "https://webpack.js.org/concepts/why-webpack/"
+    },
+    {
+     "label": "State of JS 2025: build tools",
+     "url": "https://2025.stateofjs.com/en-US/libraries/build-tools/"
+    }
+   ]
+  },
+  {
+   "id": "tool.vite",
+   "title": "Vite",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2020,
+   "status": "thriving",
+   "short": "Evan You's front-end build tool, released in April 2020. It serves source files to the browser as native modules for fast startup and bundles for production.",
+   "long": "Evan You released Vite on April 20, 2020, and it is now backed by VoidZero Inc. Its stated reason for existing is that developers on large projects had painfully slow dev server startups, sluggish hot updates and long production builds with bundler-first tools. Vite serves source files to the browser as native ES modules on demand and pre-bundles dependencies with fast native tooling, though production builds still bundle because unbundled modules cause too many network round trips. Vite 8, announced on March 12, 2026, uses Rolldown, a Rust bundler, as its single bundler and claims builds 10 to 30 times faster. Stack Overflow's 2025 survey found 25.4 percent of respondents using Vite and 18.4 percent webpack. npm counted about 219 million Vite downloads in the week of September 23 to 29, 2026, including installs by other tools.",
+   "sleeper": "Front-end builds used to mean bundling everything before the browser could show anything. Vite relies on browsers now understanding modules natively, so it serves source files on demand and bundles only for production.",
+   "tags": [
+    "evan you",
+    "voidzero",
+    "rolldown",
+    "es modules",
+    "dev server"
+   ],
+   "refs": [
+    {
+     "label": "Vite: Why Vite",
+     "url": "https://vite.dev/guide/why.html"
+    },
+    {
+     "label": "Vite blog: Announcing Vite 8",
+     "url": "https://vite.dev/blog/announcing-vite8"
+    }
+   ]
+  },
+  {
+   "id": "tool.hermetic-builds",
+   "title": "Hermetic Builds and Remote Caching",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2015,
+   "status": "thriving",
+   "short": "A build is hermetic when it is isolated from the host machine, so the same inputs always give the same output. That makes results safe to cache and share.",
+   "long": "Bazel's documentation defines a hermetic build system as one that, given the same source code and product configuration, always returns the same output by isolating the build from changes to the host system. The listed benefits are speed, because actions can be cached, parallel execution, side-by-side builds, and easier troubleshooting. Bazel enforces this by sandboxing each action and identifying sources by hash. Remote caching builds on this: Bazel keeps a map from each action's hash to its result, so outputs from one machine can safely be reused on another. The Reproducible Builds project frames the goal as verification: given the same source code, build environment and build instructions, any party can recreate bit-by-bit identical copies of the artifacts, so a distributed binary can be checked against its source. That check is one reason supply-chain security work cares about it.",
+   "tags": [
+    "reproducible builds",
+    "sandbox",
+    "remote cache",
+    "content hash",
+    "determinism"
+   ],
+   "refs": [
+    {
+     "label": "Bazel: Hermeticity",
+     "url": "https://bazel.build/basics/hermeticity"
+    },
+    {
+     "label": "Reproducible Builds: Definition",
+     "url": "https://reproducible-builds.org/docs/definition/"
+    }
+   ]
+  },
+  {
+   "id": "tool.ide",
+   "title": "Integrated Development Environment",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1983,
+   "status": "thriving",
+   "short": "One program that holds the editor, compiler and debugger together, so you can write, run and fix code without leaving it. Turbo Pascal made it mainstream in 1983.",
+   "long": "An integrated development environment, or IDE, puts an editor, a compiler or build step, and a debugger in one program. An earlier Pascal system from UC San Diego wrapped a text editor, a file system and a debugger around a portable compiler and distributed it for $50. Turbo Pascal made the idea mass-market in 1983 by keeping editor and compiler in memory, so compiling was nearly instant. Visual Studio 97 bundled Microsoft's separate language products, IntelliJ IDEA (2001) added advanced code navigation and refactoring for Java, Eclipse (also 2001) became the most popular Java IDE until 2016, and Xcode arrived in 2003. Visual Studio Code, announced in 2015, is a lighter editor that gains IDE features from extensions and language servers. In Stack Overflow's 2025 survey 75.9 percent of respondents used it regularly, against 29 percent for Visual Studio and 27.1 percent for IntelliJ IDEA.",
+   "sleeper": "The IDE you may remember compiled your code and showed errors. Today's tools analyze the whole program as you type, offering completion, jump to definition and refactoring, and since 2016 a shared protocol lets even small editors borrow the same intelligence.",
+   "tags": [
+    "editor",
+    "debugger",
+    "refactoring",
+    "code completion",
+    "xcode"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Turbo Pascal",
+     "url": "https://en.wikipedia.org/wiki/Turbo_Pascal"
+    },
+    {
+     "label": "Stack Overflow Developer Survey 2025: Technology",
+     "url": "https://survey.stackoverflow.co/2025/technology"
+    }
+   ]
+  },
+  {
+   "id": "tool.vim",
+   "title": "vi and Vim",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1976,
+   "status": "thriving",
+   "short": "vi is the Unix screen editor Bill Joy wrote at Berkeley in the 1970s. Vim, begun by Bram Moolenaar in 1988, is its improved clone, and Neovim is a 2014 fork.",
+   "long": "Bill Joy created vi at UC Berkeley, dated 1976 in most accounts. It grew from the line editor ed through em, en and ex, and vi was the visual mode added to ex in 1977. Its terminal shaped it: the Lear Siegler ADM-3A had the Escape key within easy reach and arrows printed on the h, j, k and l keys, which is why vi moves with those letters, and 300-baud modems favored terse commands. Ex 1.1 shipped with the first BSD Unix in March 1978, and POSIX standardizes a portable subset of vi's behavior. Bram Moolenaar began Vim in 1988, based on the Stevie editor, and finished its first public release, version 1.14, on November 2, 1991; the name first meant Vi IMitation and later Vi IMproved. Vim 9.2 came out on February 14, 2026. Neovim, a fork begun in 2014, added a built-in LSP client in 2021. In Stack Overflow's 2025 survey 24.3 percent of respondents used Vim and 14 percent Neovim.",
+   "sleeper": "You may remember vi on Unix, shipped since the first BSD release. What changed is that Vim and Neovim now do IDE-style work, such as completion and jump to definition, by talking to language servers.",
+   "tags": [
+    "neovim",
+    "bill joy",
+    "bram moolenaar",
+    "terminal editor",
+    "ex",
+    "stevie"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: vi (text editor)",
+     "url": "https://en.wikipedia.org/wiki/Vi_(text_editor)"
+    },
+    {
+     "label": "Wikipedia: Vim (text editor)",
+     "url": "https://en.wikipedia.org/wiki/Vim_(text_editor)"
+    }
+   ]
+  },
+  {
+   "id": "tool.emacs",
+   "title": "Emacs",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1976,
+   "status": "niche",
+   "short": "An extensible editor that began at MIT in 1976 as macros for TECO. Richard Stallman's GNU Emacs, first public in 1985, is extended in its own Lisp dialect.",
+   "long": "The original EMACS, short for Editor MACroS, was developed in 1976 at the MIT AI Lab as macros for the TECO editor. Guy Steele began unifying the divergent TECO macro packages, and Richard Stallman largely completed and extended the result. James Gosling wrote Gosling Emacs in 1981, the first Emacs-like editor on Unix, and Stallman began GNU Emacs in 1984; its first public release, version 13, came on March 20, 1985. Emacs Lisp, the language users extend it with, replaced Gosling's Mocklisp. Lucid Emacs, a fork from 1991, later became XEmacs. GNU Emacs 31.1 was released on August 24, 2026.",
+   "tags": [
+    "gnu emacs",
+    "teco",
+    "emacs lisp",
+    "stallman",
+    "extensible editor"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Emacs",
+     "url": "https://en.wikipedia.org/wiki/Emacs"
+    }
+   ]
+  },
+  {
+   "id": "tool.turbo-pascal",
+   "title": "Turbo Pascal",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1983,
+   "yearEnd": 1995,
+   "status": "dead",
+   "short": "Borland's $49.95 Pascal compiler with a built-in editor, launched in November 1983. Compiling was nearly instant, and it set the pattern for the IDE.",
+   "long": "Philippe Kahn's company Borland released Turbo Pascal on November 20, 1983, licensing Anders Hejlsberg's compiler core, PolyPascal, from his Danish company Poly Data. It was sold by direct mail order for US$49.95, about one-tenth the price of comparable products, and it combined editor, compiler and linker in memory, so compiling was nearly instant. One reviewer wrote that under IBM Pascal the average program took two weeks to write and with Turbo Pascal two days. It sold about 250,000 copies in two years and later over 400,000, in a market once estimated at only 30,000 potential buyers. Version 3.0 appeared in September 1986, 5.0 in August 1988 and 7.0 in October 1992. Delphi replaced it in 1995.",
+   "sleeper": "Press a key, see the error, jump to the line: this is the program that made that loop feel instant. Today's IDEs still work that way, though they also analyze the whole program as you type.",
+   "tags": [
+    "borland",
+    "pascal",
+    "philippe kahn",
+    "polypascal",
+    "dos"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Turbo Pascal",
+     "url": "https://en.wikipedia.org/wiki/Turbo_Pascal"
+    }
+   ]
+  },
+  {
+   "id": "tool.visual-studio",
+   "title": "Visual Studio",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1997,
+   "status": "thriving",
+   "short": "Microsoft's full IDE, first shipped as Visual Studio 97. It later brought in the .NET environment and C#. It is a different product from Visual Studio Code.",
+   "long": "Visual Studio 97, released on March 19, 1997, bundled products that Microsoft had sold separately, including Visual Basic, Visual C++, Visual FoxPro and Visual SourceSafe, along with Visual J++ 1.1 and Visual InterDev. Visual Studio .NET 2002, released on February 13, 2002, introduced the managed .NET environment and C#. Microsoft announced a free Community edition on November 12, 2014. The Microsoft C++ compiler, MSVC, is part of it. Visual Studio 2026 is the current release, in its 18.10 series by September 2026, and 29 percent of respondents to Stack Overflow's 2025 survey used Visual Studio regularly. It is a different product from Visual Studio Code, which is a lighter editor.",
+   "tags": [
+    "microsoft",
+    "msvc",
+    "visual basic",
+    "visual c++",
+    ".net",
+    "community edition"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Microsoft Visual Studio",
+     "url": "https://en.wikipedia.org/wiki/Microsoft_Visual_Studio"
+    }
+   ]
+  },
+  {
+   "id": "tool.eclipse",
+   "title": "Eclipse",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2001,
+   "status": "legacy",
+   "short": "An open-source Java IDE that grew from IBM's VisualAge code. It was the most popular Java IDE until 2016, when IntelliJ IDEA passed it.",
+   "long": "Eclipse's codebase came from IBM's VisualAge. A consortium was formed in November 2001 with a board of stewards, after IBM had already invested nearly $40 million, and the Eclipse Foundation was created in January 2004. Since Eclipse 3.0 in 2004, plug-ins are bundles built on Equinox, an implementation of the OSGi module system. Eclipse was the most popular IDE for Java development until 2016, when IntelliJ IDEA surpassed it. It uses the Eclipse Public License, which is incompatible with the GPL. Version 4.41.0 appeared on September 9, 2026, on a quarterly schedule, yet only 7.1 percent of respondents to Stack Overflow's 2025 survey used it, against 27.1 percent for IntelliJ IDEA. Why it declined is not established; the explanation of plugin sprawl has no study behind it.",
+   "tags": [
+    "java ide",
+    "visualage",
+    "osgi",
+    "plug-ins",
+    "eclipse foundation"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Eclipse (software)",
+     "url": "https://en.wikipedia.org/wiki/Eclipse_(software)"
+    }
+   ]
+  },
+  {
+   "id": "tool.intellij",
+   "title": "IntelliJ IDEA",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2001,
+   "status": "thriving",
+   "short": "JetBrains' Java IDE from 2001, one of the first with built-in code navigation and refactoring. Android Studio is built on its open-source edition.",
+   "long": "JetBrains first released IntelliJ IDEA in January 2001. It was one of the first Java IDEs with advanced code navigation and refactoring, meaning safe automatic restructuring of code, built in. JetBrains released the source under the Apache License 2.0 in 2009 as a Community Edition, while the Ultimate edition stays paid. Android Studio is based on the open-source Community Edition. IntelliJ IDEA overtook Eclipse as the most popular Java IDE in 2016, and in Stack Overflow's 2025 survey 27.1 percent of respondents used it, with PyCharm and Android Studio at 15 percent each. JetBrains added support for AI coding agents, including Anthropic's Claude, in September 2025, and version 2026.2 was released on July 16, 2026.",
+   "tags": [
+    "jetbrains",
+    "java ide",
+    "refactoring",
+    "pycharm",
+    "android studio"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: IntelliJ IDEA",
+     "url": "https://en.wikipedia.org/wiki/IntelliJ_IDEA"
+    },
+    {
+     "label": "Stack Overflow Developer Survey 2025: Technology",
+     "url": "https://survey.stackoverflow.co/2025/technology"
+    }
+   ]
+  },
+  {
+   "id": "tool.vscode",
+   "title": "Visual Studio Code",
+   "cat": "tooling",
+   "tier": 2,
+   "year": 2015,
+   "status": "thriving",
+   "short": "Microsoft's free, extensible code editor, announced in 2015. About three quarters of the developers in Stack Overflow's 2025 survey used it regularly.",
+   "long": "Microsoft announced Visual Studio Code on April 29, 2015 at its Build conference and released the open-source project under the MIT licence on GitHub on November 18, 2015. The downloadable product is proprietary but built on that MIT-licensed code, and it runs on Electron, a web-technology shell derived from the Atom editor. It is an editor that gains IDE features from extensions and from language servers, using the protocol its own team announced in 2016. Its share of Stack Overflow respondents rose from about 7 percent in 2016 to 35 percent in 2018 and 75.9 percent in 2025. Forks include VSCodium, Cursor and Windsurf, and its extension marketplace carries AI assistants such as GitHub Copilot and Claude Code. Its repository had about 193,000 GitHub stars in September 2026.",
+   "sleeper": "Turbo Pascal cost $49.95 by mail order in 1983. The most-used editor in 2025 is free to download and is built on Electron, which packages web technologies as a desktop program.",
+   "tags": [
+    "vs code",
+    "editor",
+    "extensions",
+    "electron",
+    "cursor",
+    "microsoft"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Visual Studio Code",
+     "url": "https://en.wikipedia.org/wiki/Visual_Studio_Code"
+    },
+    {
+     "label": "Stack Overflow Developer Survey 2025: Technology",
+     "url": "https://survey.stackoverflow.co/2025/technology"
+    }
+   ]
+  },
+  {
+   "id": "tool.electron",
+   "title": "Electron",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2013,
+   "status": "thriving",
+   "short": "A framework that packages web technologies as desktop programs. It came out of GitHub's Atom editor and underlies Visual Studio Code, Slack and GitHub Desktop.",
+   "long": "Electron is a framework that wraps web technologies in a desktop program. It came out of GitHub's Atom editor, which GitHub's own blog calls foundational to Electron, and Visual Studio Code, Slack and GitHub Desktop all run on it. GitHub shut Atom down on December 15, 2022, saying that Atom had not had significant feature development for several years, that community involvement had declined, and that it preferred to focus on cloud development with GitHub Codespaces. Electron outlived the editor. Atom's other by-products were Tree-sitter, an incremental parsing system for programming tools, and the Zed editor from the same creators.",
+   "tags": [
+    "atom",
+    "desktop apps",
+    "web technologies",
+    "github",
+    "tree-sitter"
+   ],
+   "refs": [
+    {
+     "label": "GitHub blog: Sunsetting Atom",
+     "url": "https://github.blog/news-insights/product-news/sunsetting-atom/"
+    },
+    {
+     "label": "Wikipedia: Visual Studio Code",
+     "url": "https://en.wikipedia.org/wiki/Visual_Studio_Code"
+    }
+   ]
+  },
+  {
+   "id": "tool.lsp",
+   "title": "Language Server Protocol",
+   "cat": "tooling",
+   "tier": 2,
+   "year": 2016,
+   "status": "thriving",
+   "short": "A standard way for an editor to ask a separate language server for completion, go to definition and error checks. Microsoft announced it in June 2016.",
+   "long": "The Language Server Protocol, or LSP, defines how an editor talks to a language server, a separate program that provides features such as autocomplete, go to definition and find all references. Before it, the work of adding those features for a language had to be repeated for each development tool; with LSP one server can serve many editors, which turns an editors-times-languages problem into editors plus languages. The VS Code team announced it on June 27, 2016 at the DevNation conference, together with Red Hat and Codenvy, and Red Hat committed to publish a standalone Java language server. It is an open protocol built on JSON-RPC, and the latest specification version is 3.18. A companion Debug Adapter Protocol does the same job for debuggers. Linters and type checkers now ship as language servers, and Neovim added a built-in client in 2021.",
+   "sleeper": "Each editor once needed its own support for each language. Now a language ships one server, and Vim, Neovim, Emacs, Zed and VS Code can all offer IDE-grade features from it.",
+   "tags": [
+    "language server",
+    "json-rpc",
+    "debug adapter protocol",
+    "autocomplete",
+    "go to definition"
+   ],
+   "refs": [
+    {
+     "label": "Language Server Protocol: official site",
+     "url": "https://microsoft.github.io/language-server-protocol/"
+    },
+    {
+     "label": "VS Code blog: Language Server Protocol (27 June 2016)",
+     "url": "https://code.visualstudio.com/blogs/2016/06/27/common-language-protocol"
+    }
+   ]
+  },
+  {
+   "id": "tool.gdb-lldb",
+   "title": "GDB and LLDB",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1986,
+   "status": "thriving",
+   "short": "Command-line debuggers: GDB, begun by Richard Stallman in 1986, and LLDB from the LLVM project. They stop a running program so you can inspect and step through it.",
+   "long": "A debugger runs a program under control so that you can stop it, look inside and step through it. Richard Stallman began GDB, the GNU debugger, in 1986, modeled on Berkeley's dbx. It supports C, C++, Fortran, Ada, Go, Rust and many other languages, can debug embedded systems remotely, has offered reverse debugging, which steps backwards, and Python scripting since version 7.0, and is the usual back end behind IDE debuggers such as those in Eclipse and Qt Creator. LLDB, created by Chris Lattner as part of LLVM, is built from reusable components including the Clang expression parser and has been Xcode's default debugger since Xcode 5. The rr tool records a failing run once and lets you replay it deterministically under GDB, including backwards. GDB 18.1 was released on September 25, 2026, and LLDB 23.1.2 on September 22, 2026.",
+   "tags": [
+    "debugger",
+    "breakpoints",
+    "dbx",
+    "rr",
+    "reverse debugging",
+    "stallman"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: GNU Debugger",
+     "url": "https://en.wikipedia.org/wiki/GNU_Debugger"
+    },
+    {
+     "label": "rr project",
+     "url": "https://rr-project.org/"
+    }
+   ]
+  },
+  {
+   "id": "tool.profilers",
+   "title": "Profilers and Tracers",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2003,
+   "status": "thriving",
+   "short": "Tools that show where a running program spends its time or what it is doing: Linux perf, flame graphs, DTrace and eBPF.",
+   "long": "A profiler samples a running program to show where its time goes, and a tracer records what it does. DTrace, designed by Bryan Cantrill, Mike Shapiro and Adam Leventhal at Sun Microsystems, was available in November 2003 and released with Solaris 10 in January 2005; users write programs in the D language that attach to probes in a running system. Linux gained perf in kernel 2.6.31 in 2009, and eBPF lets sandboxed programs run safely inside the kernel for observability, networking and security. Brendan Gregg invented flame graphs, charts of sampled stack traces in which wider frames appear in more samples, while working on a MySQL performance issue at Joyent, and released them in December 2011. Apple added DTrace to Mac OS X 10.5, and Microsoft released a Windows version in 2019.",
+   "sleeper": "Debugging once meant print statements and a symbolic debugger. Now sampling profilers draw flame graphs, and tracers such as DTrace and eBPF examine live production systems.",
+   "tags": [
+    "perf",
+    "flame graphs",
+    "dtrace",
+    "ebpf",
+    "performance",
+    "observability"
+   ],
+   "refs": [
+    {
+     "label": "Brendan Gregg: Flame Graphs",
+     "url": "https://www.brendangregg.com/flamegraphs.html"
+    },
+    {
+     "label": "ebpf.io: What is eBPF?",
+     "url": "https://ebpf.io/what-is-ebpf/"
+    }
+   ]
+  },
+  {
+   "id": "tool.pre-commit",
+   "title": "pre-commit Hooks",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2014,
+   "status": "thriving",
+   "short": "Checks that run automatically before each Git commit, such as formatters and linters. The pre-commit framework shares them across a team through a config file.",
+   "long": "Git can run a script called a hook before it records a commit. The pre-commit hook runs before the commit message is requested and can be skipped with the --no-verify option. Hooks live in the repository's hooks directory rather than in version-controlled files, which is why a framework is needed to share them. The pre-commit framework, whose repository dates from March 2014, reads a .pre-commit-config.yaml file that lists hook repositories, runs only on staged files by stashing unstaged changes, and can check the whole repository with pre-commit run --all-files. Husky does a similar job for JavaScript projects. Because hooks can be skipped, the authoritative run happens in continuous integration, a server that builds and tests every change and can require checks to pass before a branch is merged.",
+   "sleeper": "A modern repository runs the same checks at four points: in the editor, in a commit hook, in continuous integration and as automated review comments. Style arguments that once cost review time are now settled by tools.",
+   "code": {
+    "lang": "yaml",
+    "text": "# .pre-commit-config.yaml\nrepos:\n-   repo: https://github.com/pre-commit/pre-commit-hooks\n    rev: v2.3.0\n    hooks:\n    -   id: check-yaml\n    -   id: end-of-file-fixer\n    -   id: trailing-whitespace\n-   repo: https://github.com/psf/black\n    rev: 22.10.0\n    hooks:\n    -   id: black"
+   },
+   "tags": [
+    "git hooks",
+    "husky",
+    "formatter",
+    "linter",
+    "commit"
+   ],
+   "refs": [
+    {
+     "label": "pre-commit",
+     "url": "https://pre-commit.com/"
+    },
+    {
+     "label": "Git docs: githooks",
+     "url": "https://git-scm.com/docs/githooks"
+    }
+   ]
+  },
+  {
+   "id": "tool.iac",
+   "title": "Infrastructure as Code",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 2005,
+   "status": "thriving",
+   "short": "Managing servers and networks from definition files kept in version control, not by hand. Examples are Puppet, Chef, Ansible, CloudFormation and Terraform.",
+   "long": "Infrastructure as code means managing and provisioning data-center resources through machine-readable definition files rather than through physical hardware configuration or interactive tools. Mark Burgess's CFEngine (1993) described system configuration in a declarative language, which is why some date the idea to 1993; this map uses 2005, the year of Puppet. Chef followed in 2009, AWS CloudFormation in 2011, Ansible in 2012 and Terraform in 2014. A declarative tool states what the final configuration should be, while an imperative one states the steps to change it. Because the definitions are files, they can be kept in version control, reviewed and rerun, which brought software practices to operations and made the approach a core part of DevOps.",
+   "sleeper": "Setting up a server used to be a person at a console. Now a file in version control describes it, a tool applies it, and changes are reviewed like code.",
+   "tags": [
+    "puppet",
+    "chef",
+    "ansible",
+    "cloudformation",
+    "declarative",
+    "provisioning"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Infrastructure as code",
+     "url": "https://en.wikipedia.org/wiki/Infrastructure_as_code"
+    }
+   ]
+  },
+  {
+   "id": "tool.terraform",
+   "title": "Terraform and OpenTofu",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2014,
+   "status": "thriving",
+   "short": "HashiCorp's infrastructure-as-code tool from 2014, and OpenTofu, the community fork made in 2023 after HashiCorp changed Terraform's licence.",
+   "long": "HashiCorp was founded in 2012 by Mitchell Hashimoto and Armon Dadgar, and Terraform followed in 2014 as a declarative tool for describing infrastructure in files. On August 10, 2023 HashiCorp moved Terraform and its other products from the Mozilla Public License to the Business Source License 1.1, which stops vendors from offering competing services built on future releases. A fork called OpenTF appeared that month and was renamed OpenTofu in September over trademark concerns. It is managed by the Linux Foundation under the MPL-2.0 licence. IBM agreed in April 2024 to buy HashiCorp for $6.4 billion and completed the deal on February 27, 2025. OpenTofu 1.12.6 was released on August 19, 2026.",
+   "tags": [
+    "hashicorp",
+    "opentofu",
+    "business source license",
+    "fork",
+    "provisioning"
+   ],
+   "refs": [
+    {
+     "label": "HashiCorp: adopts Business Source License",
+     "url": "https://www.hashicorp.com/en/blog/hashicorp-adopts-business-source-license"
+    },
+    {
+     "label": "Wikipedia: OpenTofu",
+     "url": "https://en.wikipedia.org/wiki/OpenTofu"
+    }
+   ]
+  },
+  {
+   "id": "tool.opentelemetry",
+   "title": "OpenTelemetry",
+   "cat": "tooling",
+   "tier": 4,
+   "year": 2019,
+   "status": "thriving",
+   "short": "A vendor-neutral standard and toolkit for producing traces, metrics and logs from running software, formed from a merger of OpenTracing and OpenCensus.",
+   "long": "OpenTelemetry describes itself as an observability framework, a toolkit for generating, exporting and collecting telemetry data (traces, metrics and logs) about what running software is doing. It is vendor and tool agnostic and is not itself an observability backend. It came from a merger of two earlier projects, OpenTracing and OpenCensus, and the Cloud Native Computing Foundation (CNCF) accepted it on May 7, 2019. It reached the Incubating level on August 26, 2021 and the Graduated level on May 11, 2026. Google's 2010 technical report on Dapper, its production tracing system, is an intellectual ancestor of open-source tracers; its goals were low overhead, application-level transparency and ubiquitous deployment, using sampling. The CNCF counts 25,547 contributors from 4,731 organizations.",
+   "tags": [
+    "observability",
+    "tracing",
+    "metrics",
+    "logs",
+    "dapper",
+    "cncf"
+   ],
+   "refs": [
+    {
+     "label": "OpenTelemetry docs: What is OpenTelemetry?",
+     "url": "https://opentelemetry.io/docs/what-is-opentelemetry/"
+    },
+    {
+     "label": "CNCF: OpenTelemetry project page",
+     "url": "https://www.cncf.io/projects/opentelemetry/"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "tool.sccs",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.sccs",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "created-by",
+   "note": "Marc Rochkind wrote it at Bell Labs"
+  },
+  {
+   "s": "tool.sccs",
+   "t": "tool.rcs",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "RCS stores the newest revision in full for faster retrieval"
+  },
+  {
+   "s": "tool.sccs",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related",
+   "note": "rewritten in C for Unix on a PDP-11 in 1973"
+  },
+  {
+   "s": "tool.sccs",
+   "t": "plat.os360",
+   "w": 1,
+   "k": "related",
+   "note": "the 1972 original ran under OS/360 MVT"
+  },
+  {
+   "s": "tool.rcs",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.rcs",
+   "t": "tool.cvs",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "tool.rcs",
+   "t": "tool.git",
+   "w": 2,
+   "k": "replaced-by",
+   "note": "superseded by distributed systems such as Git"
+  },
+  {
+   "s": "tool.rcs",
+   "t": "org.gnu-fsf",
+   "w": 1,
+   "k": "related",
+   "note": "GNU maintains RCS"
+  },
+  {
+   "s": "tool.cvs",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.cvs",
+   "t": "tool.svn",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "Subversion set out to fix CVS's most obvious flaws"
+  },
+  {
+   "s": "tool.cvs",
+   "t": "proc.open-source",
+   "w": 1,
+   "k": "related",
+   "note": "widely used by open-source projects in the 1990s"
+  },
+  {
+   "s": "tool.cvs",
+   "t": "tool.git-branches",
+   "w": 1,
+   "k": "related",
+   "note": "both merge concurrent edits; Git makes branching cheap"
+  },
+  {
+   "s": "tool.svn",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.svn",
+   "t": "tool.git",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "tool.svn",
+   "t": "org.apache-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "a top-level Apache project since February 2010"
+  },
+  {
+   "s": "tool.svn",
+   "t": "tool.git-branches",
+   "w": 2,
+   "k": "related",
+   "note": "before 1.5 merges were tracked by hand; Git records them as two-parent commits"
+  },
+  {
+   "s": "tool.svn",
+   "t": "proc.trunk-based",
+   "w": 1,
+   "k": "related",
+   "note": "painful merges are one argument for short-lived branches"
+  },
+  {
+   "s": "tool.perforce",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.perforce",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "Microsoft's internal Source Depot was a Perforce variant"
+  },
+  {
+   "s": "tool.perforce",
+   "t": "org.meta",
+   "w": 1,
+   "k": "related",
+   "note": "Facebook engineers criticized how it scales (2014)"
+  },
+  {
+   "s": "tool.perforce",
+   "t": "tool.git",
+   "w": 1,
+   "k": "competes-with",
+   "note": "a centralized system still used at very large scale"
+  },
+  {
+   "s": "tool.bitkeeper",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.bitkeeper",
+   "t": "tool.git",
+   "w": 3,
+   "k": "influenced",
+   "note": "its free licence ending in April 2005 led Torvalds to write Git"
+  },
+  {
+   "s": "tool.bitkeeper",
+   "t": "tool.mercurial",
+   "w": 2,
+   "k": "influenced",
+   "note": "Mercurial was announced days after the licence was withdrawn"
+  },
+  {
+   "s": "tool.bitkeeper",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "related",
+   "note": "the kernel used it from 2002 to 2005"
+  },
+  {
+   "s": "tool.bitkeeper",
+   "t": "ppl.stallman",
+   "w": 1,
+   "k": "related",
+   "note": "objected to the kernel using a proprietary tool"
+  },
+  {
+   "s": "tool.mercurial",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.mercurial",
+   "t": "tool.git",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "tool.mercurial",
+   "t": "tool.sapling",
+   "w": 2,
+   "k": "evolved-into",
+   "note": "Sapling began as a Mercurial extension at Meta"
+  },
+  {
+   "s": "tool.mercurial",
+   "t": "lang.python",
+   "w": 2,
+   "k": "uses",
+   "note": "written mostly in Python"
+  },
+  {
+   "s": "tool.mercurial",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "uses",
+   "note": "increasingly used for the performance-critical parts"
+  },
+  {
+   "s": "tool.mercurial",
+   "t": "org.meta",
+   "w": 2,
+   "k": "related",
+   "note": "Facebook adopted it in 2013 for its giant repository"
+  },
+  {
+   "s": "tool.mercurial",
+   "t": "org.mozilla",
+   "w": 2,
+   "k": "related",
+   "note": "Mozilla used it from 2007 until moving to Git in 2023"
+  },
+  {
+   "s": "tool.mercurial",
+   "t": "tool.jujutsu",
+   "w": 1,
+   "k": "influenced",
+   "note": "the revset query language and anonymous branches"
+  },
+  {
+   "s": "tool.jujutsu",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.jujutsu",
+   "t": "tool.git",
+   "w": 3,
+   "k": "uses",
+   "note": "Git repositories are its storage layer"
+  },
+  {
+   "s": "tool.jujutsu",
+   "t": "tool.sapling",
+   "w": 2,
+   "k": "related",
+   "note": "both put a different front end on Git-style storage"
+  },
+  {
+   "s": "tool.jujutsu",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "begun by a Google engineer; not a supported Google product"
+  },
+  {
+   "s": "tool.gerrit",
+   "t": "tool.vcs",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.gerrit",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by",
+   "note": "Shawn Pearce built it at Google"
+  },
+  {
+   "s": "tool.gerrit",
+   "t": "tool.git",
+   "w": 2,
+   "k": "uses",
+   "note": "reviews changes to Git repositories"
+  },
+  {
+   "s": "tool.gerrit",
+   "t": "tool.pull-request",
+   "w": 2,
+   "k": "competes-with",
+   "note": "a different review model for Git projects"
+  },
+  {
+   "s": "tool.gerrit",
+   "t": "ppl.van-rossum",
+   "w": 1,
+   "k": "related",
+   "note": "forked from Rietveld, a review tool by Guido van Rossum"
+  },
+  {
+   "s": "tool.gerrit",
+   "t": "plat.android",
+   "w": 2,
+   "k": "related",
+   "note": "used for Android's development"
+  },
+  {
+   "s": "tool.pull-request",
+   "t": "plat.github",
+   "w": 3,
+   "k": "part-of",
+   "note": "the unit of collaboration on GitHub"
+  },
+  {
+   "s": "tool.pull-request",
+   "t": "tool.vcs",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.pull-request",
+   "t": "tool.git",
+   "w": 2,
+   "k": "uses",
+   "note": "built on Git branches and forks"
+  },
+  {
+   "s": "tool.pull-request",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "uses",
+   "note": "required status checks can gate a merge"
+  },
+  {
+   "s": "tool.pull-request",
+   "t": "tool.git-branches",
+   "w": 2,
+   "k": "uses",
+   "note": "a pull request proposes merging a branch"
+  },
+  {
+   "s": "tool.pull-request",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related",
+   "note": "AI coding agents now open pull requests"
+  },
+  {
+   "s": "tool.pull-request",
+   "t": "proc.trunk-based",
+   "w": 1,
+   "k": "related",
+   "note": "short-lived branches reviewed and tested before merging"
+  },
+  {
+   "s": "tool.git-branches",
+   "t": "tool.git",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.git-branches",
+   "t": "proc.trunk-based",
+   "w": 2,
+   "k": "related",
+   "note": "Git Flow versus trunk-based development"
+  },
+  {
+   "s": "tool.git-branches",
+   "t": "data.graph",
+   "w": 1,
+   "k": "uses",
+   "note": "commits and their parents form a directed acyclic graph"
+  },
+  {
+   "s": "tool.git-branches",
+   "t": "conc.pointer",
+   "w": 1,
+   "k": "related",
+   "note": "a branch is a movable pointer to a commit"
+  },
+  {
+   "s": "tool.fossil",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.fossil",
+   "t": "data.sqlite",
+   "w": 2,
+   "k": "related",
+   "note": "same author; SQLite's source is hosted in Fossil"
+  },
+  {
+   "s": "tool.fossil",
+   "t": "tool.git",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "tool.fossil",
+   "t": "plat.http",
+   "w": 1,
+   "k": "related",
+   "note": "syncs over ordinary HTTP"
+  },
+  {
+   "s": "tool.sapling",
+   "t": "tool.vcs",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.sapling",
+   "t": "org.meta",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.sapling",
+   "t": "tool.git",
+   "w": 2,
+   "k": "related",
+   "note": "the client can clone and work with Git repositories"
+  },
+  {
+   "s": "tool.sapling",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Google's answer to a giant repository is its centralized Piper"
+  },
+  {
+   "s": "tool.sapling",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "Microsoft's answers were GVFS and Scalar for Git"
+  },
+  {
+   "s": "tool.build-system",
+   "t": "tool.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.build-system",
+   "t": "tool.make",
+   "w": 3,
+   "k": "related",
+   "note": "make (1976) set the model of targets, prerequisites and timestamps"
+  },
+  {
+   "s": "tool.build-system",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "uses",
+   "note": "a build runs the compiler on each changed file"
+  },
+  {
+   "s": "tool.build-system",
+   "t": "pkg.manager",
+   "w": 2,
+   "k": "related",
+   "note": "Cargo, Gradle and uv each fetch dependencies and build"
+  },
+  {
+   "s": "tool.build-system",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "related",
+   "note": "CI servers run the build and the tests on every change"
+  },
+  {
+   "s": "tool.autotools",
+   "t": "tool.build-system",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.autotools",
+   "t": "tool.make",
+   "w": 3,
+   "k": "uses",
+   "note": "writes Makefiles from templates"
+  },
+  {
+   "s": "tool.autotools",
+   "t": "org.gnu-fsf",
+   "w": 3,
+   "k": "created-by",
+   "note": "David MacKenzie wrote Autoconf for the FSF in 1991"
+  },
+  {
+   "s": "tool.autotools",
+   "t": "tool.cmake",
+   "w": 2,
+   "k": "competes-with",
+   "note": "CMake was created to replace configure scripts for ITK"
+  },
+  {
+   "s": "tool.autotools",
+   "t": "plat.unix",
+   "w": 1,
+   "k": "related",
+   "note": "configure needs only a Bourne-compatible shell"
+  },
+  {
+   "s": "tool.autotools",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related",
+   "note": "probes the C compiler and libraries for features"
+  },
+  {
+   "s": "tool.maven",
+   "t": "tool.build-system",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.maven",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related",
+   "note": "the standard build tool for many Java projects"
+  },
+  {
+   "s": "tool.maven",
+   "t": "org.apache-foundation",
+   "w": 2,
+   "k": "created-by",
+   "note": "began in the Jakarta project"
+  },
+  {
+   "s": "tool.maven",
+   "t": "tool.gradle",
+   "w": 2,
+   "k": "influenced",
+   "note": "Gradle builds on Ant and Maven ideas"
+  },
+  {
+   "s": "tool.gradle",
+   "t": "tool.build-system",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.gradle",
+   "t": "plat.android",
+   "w": 2,
+   "k": "related",
+   "note": "Android Studio's build system is based on Gradle"
+  },
+  {
+   "s": "tool.gradle",
+   "t": "lang.kotlin",
+   "w": 2,
+   "k": "uses",
+   "note": "build scripts can be written in Kotlin or Groovy"
+  },
+  {
+   "s": "tool.gradle",
+   "t": "tool.hermetic-builds",
+   "w": 1,
+   "k": "related",
+   "note": "build cache keys are computed from declared inputs"
+  },
+  {
+   "s": "tool.cmake",
+   "t": "tool.build-system",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.cmake",
+   "t": "tool.ninja",
+   "w": 2,
+   "k": "uses",
+   "note": "can generate Ninja files"
+  },
+  {
+   "s": "tool.cmake",
+   "t": "tool.make",
+   "w": 2,
+   "k": "uses",
+   "note": "can generate Makefiles"
+  },
+  {
+   "s": "tool.cmake",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "related",
+   "note": "the usual generator for C++ projects"
+  },
+  {
+   "s": "tool.cmake",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "tool.cmake",
+   "t": "tool.visual-studio",
+   "w": 1,
+   "k": "related",
+   "note": "can generate Visual Studio project files"
+  },
+  {
+   "s": "tool.cmake",
+   "t": "comp.llvm",
+   "w": 1,
+   "k": "related",
+   "note": "LLVM builds with CMake and Ninja"
+  },
+  {
+   "s": "tool.ninja",
+   "t": "tool.build-system",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.ninja",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by",
+   "note": "Evan Martin, Chrome team"
+  },
+  {
+   "s": "tool.ninja",
+   "t": "tool.make",
+   "w": 2,
+   "k": "competes-with",
+   "note": "does Make's job with a faster, generated input"
+  },
+  {
+   "s": "tool.ninja",
+   "t": "comp.llvm",
+   "w": 1,
+   "k": "related",
+   "note": "LLVM builds use Ninja"
+  },
+  {
+   "s": "tool.bazel",
+   "t": "tool.build-system",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.bazel",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by",
+   "note": "grew out of Google's internal Blaze"
+  },
+  {
+   "s": "tool.bazel",
+   "t": "tool.hermetic-builds",
+   "w": 3,
+   "k": "implements",
+   "note": "sandboxed actions and remote caching"
+  },
+  {
+   "s": "tool.bazel",
+   "t": "org.meta",
+   "w": 1,
+   "k": "related",
+   "note": "Meta's Buck2 is a similar system"
+  },
+  {
+   "s": "tool.bazel",
+   "t": "tool.gradle",
+   "w": 1,
+   "k": "competes-with",
+   "note": "its docs call it similar to Make, Maven and Gradle"
+  },
+  {
+   "s": "tool.webpack",
+   "t": "tool.build-system",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.webpack",
+   "t": "lang.js",
+   "w": 2,
+   "k": "related",
+   "note": "bundles JavaScript modules for browsers"
+  },
+  {
+   "s": "tool.webpack",
+   "t": "tool.vite",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Vite exists because bundler-first dev servers start slowly"
+  },
+  {
+   "s": "tool.webpack",
+   "t": "plat.nodejs",
+   "w": 2,
+   "k": "related",
+   "note": "Node's CommonJS require motivated browser bundlers"
+  },
+  {
+   "s": "tool.webpack",
+   "t": "pkg.npm",
+   "w": 1,
+   "k": "related",
+   "note": "about 65 million weekly npm downloads in September 2026"
+  },
+  {
+   "s": "tool.webpack",
+   "t": "pkg.react",
+   "w": 1,
+   "k": "related",
+   "note": "React deprecated Create React App, a starter kit of the webpack era, in 2025"
+  },
+  {
+   "s": "tool.vite",
+   "t": "tool.build-system",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.vite",
+   "t": "lang.js",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "tool.vite",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses",
+   "note": "Vite 8 bundles with the Rust-based Rolldown"
+  },
+  {
+   "s": "tool.vite",
+   "t": "plat.web",
+   "w": 1,
+   "k": "related",
+   "note": "serves source to the browser as native ES modules"
+  },
+  {
+   "s": "tool.hermetic-builds",
+   "t": "tool.build-system",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.hermetic-builds",
+   "t": "fail.solarwinds",
+   "w": 1,
+   "k": "related",
+   "note": "build tampering is the kind of attack this check helps catch"
+  },
+  {
+   "s": "tool.hermetic-builds",
+   "t": "qual.ci",
+   "w": 1,
+   "k": "related",
+   "note": "shared build caches are filled by CI builds"
+  },
+  {
+   "s": "tool.ide",
+   "t": "tool.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.ide",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "uses",
+   "note": "builds and runs the code from inside the editor"
+  },
+  {
+   "s": "tool.ide",
+   "t": "tool.gdb-lldb",
+   "w": 1,
+   "k": "uses",
+   "note": "IDE debugger panes often drive GDB or LLDB"
+  },
+  {
+   "s": "tool.ide",
+   "t": "qual.lint",
+   "w": 1,
+   "k": "uses",
+   "note": "flags problems as you type"
+  },
+  {
+   "s": "tool.ide",
+   "t": "tool.lsp",
+   "w": 2,
+   "k": "related",
+   "note": "language servers give any editor IDE features"
+  },
+  {
+   "s": "tool.ide",
+   "t": "mod.copilot",
+   "w": 1,
+   "k": "related",
+   "note": "AI assistants run inside editors and IDEs"
+  },
+  {
+   "s": "tool.vim",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.vim",
+   "t": "org.berkeley",
+   "w": 2,
+   "k": "created-by",
+   "note": "Bill Joy wrote vi at Berkeley"
+  },
+  {
+   "s": "tool.vim",
+   "t": "plat.bsd",
+   "w": 2,
+   "k": "related",
+   "note": "ex 1.1 shipped with the first BSD in March 1978"
+  },
+  {
+   "s": "tool.vim",
+   "t": "plat.posix",
+   "w": 1,
+   "k": "related",
+   "note": "POSIX standardizes a portable subset of vi"
+  },
+  {
+   "s": "tool.vim",
+   "t": "tool.emacs",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "tool.vim",
+   "t": "tool.lsp",
+   "w": 2,
+   "k": "related",
+   "note": "Neovim 0.5 added a built-in LSP client"
+  },
+  {
+   "s": "tool.emacs",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.emacs",
+   "t": "ppl.stallman",
+   "w": 3,
+   "k": "created-by",
+   "note": "completed the original EMACS and began GNU Emacs in 1984"
+  },
+  {
+   "s": "tool.emacs",
+   "t": "org.mit",
+   "w": 2,
+   "k": "created-by",
+   "note": "the original EMACS came from the MIT AI Lab"
+  },
+  {
+   "s": "tool.emacs",
+   "t": "org.gnu-fsf",
+   "w": 2,
+   "k": "created-by",
+   "note": "GNU Emacs is a GNU project"
+  },
+  {
+   "s": "tool.emacs",
+   "t": "lang.lisp",
+   "w": 2,
+   "k": "uses",
+   "note": "extended in Emacs Lisp"
+  },
+  {
+   "s": "tool.emacs",
+   "t": "tool.lsp",
+   "w": 1,
+   "k": "related",
+   "note": "can offer IDE-grade features through language servers"
+  },
+  {
+   "s": "tool.emacs",
+   "t": "ppl.gosling",
+   "w": 1,
+   "k": "related",
+   "note": "Gosling Emacs (1981) was the first Emacs-like editor on Unix"
+  },
+  {
+   "s": "tool.turbo-pascal",
+   "t": "tool.ide",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.turbo-pascal",
+   "t": "org.borland",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.turbo-pascal",
+   "t": "ppl.hejlsberg",
+   "w": 2,
+   "k": "created-by",
+   "note": "its compiler core came from his PolyPascal"
+  },
+  {
+   "s": "tool.turbo-pascal",
+   "t": "lang.pascal",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "tool.turbo-pascal",
+   "t": "lang.delphi",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "Delphi replaced it in 1995"
+  },
+  {
+   "s": "tool.visual-studio",
+   "t": "tool.ide",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.visual-studio",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.visual-studio",
+   "t": "lang.csharp",
+   "w": 2,
+   "k": "related",
+   "note": "Visual Studio .NET 2002 introduced C#"
+  },
+  {
+   "s": "tool.visual-studio",
+   "t": "plat.dotnet",
+   "w": 2,
+   "k": "related",
+   "note": "Visual Studio .NET 2002 introduced the managed .NET environment"
+  },
+  {
+   "s": "tool.visual-studio",
+   "t": "tool.vscode",
+   "w": 1,
+   "k": "related",
+   "note": "a different product despite the similar name"
+  },
+  {
+   "s": "tool.eclipse",
+   "t": "tool.ide",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.eclipse",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by",
+   "note": "grew from IBM's VisualAge"
+  },
+  {
+   "s": "tool.eclipse",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related",
+   "note": "the most popular Java IDE until 2016"
+  },
+  {
+   "s": "tool.eclipse",
+   "t": "tool.intellij",
+   "w": 2,
+   "k": "competes-with",
+   "note": "IntelliJ IDEA overtook it in 2016"
+  },
+  {
+   "s": "tool.eclipse",
+   "t": "tool.gdb-lldb",
+   "w": 1,
+   "k": "uses",
+   "note": "GDB is a usual back end for IDE debuggers such as Eclipse's"
+  },
+  {
+   "s": "tool.intellij",
+   "t": "tool.ide",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.intellij",
+   "t": "org.jetbrains",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.intellij",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related",
+   "note": "one of the first Java IDEs with built-in refactoring"
+  },
+  {
+   "s": "tool.intellij",
+   "t": "plat.android",
+   "w": 2,
+   "k": "related",
+   "note": "Android Studio is based on its Community Edition"
+  },
+  {
+   "s": "tool.intellij",
+   "t": "org.anthropic",
+   "w": 1,
+   "k": "related",
+   "note": "JetBrains added agent support including Claude in September 2025"
+  },
+  {
+   "s": "tool.vscode",
+   "t": "tool.ide",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "tool.vscode",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.vscode",
+   "t": "tool.electron",
+   "w": 3,
+   "k": "uses",
+   "note": "runs on Electron"
+  },
+  {
+   "s": "tool.vscode",
+   "t": "tool.lsp",
+   "w": 3,
+   "k": "uses",
+   "note": "its own team announced the protocol in 2016"
+  },
+  {
+   "s": "tool.vscode",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "related",
+   "note": "Copilot's 2021 preview launched inside VS Code"
+  },
+  {
+   "s": "tool.vscode",
+   "t": "plat.github",
+   "w": 1,
+   "k": "related",
+   "note": "GitHub Codespaces can be opened from VS Code"
+  },
+  {
+   "s": "tool.electron",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.electron",
+   "t": "plat.github",
+   "w": 2,
+   "k": "related",
+   "note": "came out of GitHub's Atom editor"
+  },
+  {
+   "s": "tool.electron",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related",
+   "note": "packages web technologies as desktop programs"
+  },
+  {
+   "s": "tool.lsp",
+   "t": "tool.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.lsp",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by",
+   "note": "announced by the VS Code team"
+  },
+  {
+   "s": "tool.lsp",
+   "t": "org.red-hat",
+   "w": 2,
+   "k": "related",
+   "note": "announced with Red Hat and Codenvy; Red Hat committed a Java server"
+  },
+  {
+   "s": "tool.lsp",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "related",
+   "note": "linters and type checkers now ship as language servers"
+  },
+  {
+   "s": "tool.lsp",
+   "t": "qual.biome",
+   "w": 1,
+   "k": "related",
+   "note": "Biome is usable through the command line and LSP"
+  },
+  {
+   "s": "tool.lsp",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related",
+   "note": "TypeScript 7 has a new language service"
+  },
+  {
+   "s": "tool.lsp",
+   "t": "tool.gdb-lldb",
+   "w": 1,
+   "k": "related",
+   "note": "the Debug Adapter Protocol does the same job for debuggers"
+  },
+  {
+   "s": "tool.gdb-lldb",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.gdb-lldb",
+   "t": "ppl.stallman",
+   "w": 3,
+   "k": "created-by",
+   "note": "wrote GDB in 1986"
+  },
+  {
+   "s": "tool.gdb-lldb",
+   "t": "org.gnu-fsf",
+   "w": 2,
+   "k": "created-by",
+   "note": "GDB is the GNU project debugger"
+  },
+  {
+   "s": "tool.gdb-lldb",
+   "t": "ppl.lattner",
+   "w": 2,
+   "k": "created-by",
+   "note": "created LLDB"
+  },
+  {
+   "s": "tool.gdb-lldb",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "related",
+   "note": "LLDB is part of the LLVM project"
+  },
+  {
+   "s": "tool.gdb-lldb",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related",
+   "note": "GDB began as a symbolic debugger for C code"
+  },
+  {
+   "s": "tool.gdb-lldb",
+   "t": "org.apple",
+   "w": 1,
+   "k": "related",
+   "note": "LLDB is Xcode's default debugger"
+  },
+  {
+   "s": "tool.profilers",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.profilers",
+   "t": "org.sun",
+   "w": 3,
+   "k": "created-by",
+   "note": "DTrace was designed at Sun Microsystems"
+  },
+  {
+   "s": "tool.profilers",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "related",
+   "note": "perf and eBPF are Linux kernel features"
+  },
+  {
+   "s": "tool.profilers",
+   "t": "tool.gdb-lldb",
+   "w": 2,
+   "k": "related",
+   "note": "debuggers and profilers answer different questions about a running program"
+  },
+  {
+   "s": "tool.profilers",
+   "t": "tool.opentelemetry",
+   "w": 2,
+   "k": "related",
+   "note": "tracing across many machines instead of one process"
+  },
+  {
+   "s": "tool.profilers",
+   "t": "proc.sre",
+   "w": 1,
+   "k": "related",
+   "note": "production observability is an SRE concern"
+  },
+  {
+   "s": "tool.pre-commit",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.pre-commit",
+   "t": "tool.git",
+   "w": 3,
+   "k": "uses",
+   "note": "builds on Git's hook mechanism"
+  },
+  {
+   "s": "tool.pre-commit",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "related",
+   "note": "hooks can be skipped, so CI is the enforced gate"
+  },
+  {
+   "s": "tool.pre-commit",
+   "t": "qual.lint",
+   "w": 2,
+   "k": "related",
+   "note": "usually runs linters and formatters"
+  },
+  {
+   "s": "tool.pre-commit",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related",
+   "note": "the framework is written in Python"
+  },
+  {
+   "s": "tool.pre-commit",
+   "t": "qual.code-review",
+   "w": 1,
+   "k": "related",
+   "note": "leaves reviewers free to discuss design instead of style"
+  },
+  {
+   "s": "tool.iac",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.iac",
+   "t": "proc.devops",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.iac",
+   "t": "tool.vcs",
+   "w": 2,
+   "k": "uses",
+   "note": "definitions are files kept in version control"
+  },
+  {
+   "s": "tool.iac",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "related",
+   "note": "provisions cloud servers, networks and services"
+  },
+  {
+   "s": "tool.iac",
+   "t": "org.aws",
+   "w": 1,
+   "k": "related",
+   "note": "AWS CloudFormation arrived in 2011"
+  },
+  {
+   "s": "tool.terraform",
+   "t": "tool.iac",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "tool.terraform",
+   "t": "org.hashicorp",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.terraform",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "related",
+   "note": "manages the OpenTofu fork"
+  },
+  {
+   "s": "tool.terraform",
+   "t": "org.ibm",
+   "w": 1,
+   "k": "related",
+   "note": "IBM completed its HashiCorp acquisition on February 27, 2025"
+  },
+  {
+   "s": "tool.terraform",
+   "t": "proc.licensing",
+   "w": 2,
+   "k": "related",
+   "note": "the 2023 licence change and the OpenTofu fork"
+  },
+  {
+   "s": "tool.opentelemetry",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.opentelemetry",
+   "t": "org.cncf",
+   "w": 2,
+   "k": "related",
+   "note": "a CNCF project, graduated in May 2026"
+  },
+  {
+   "s": "tool.opentelemetry",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Google's Dapper (2010) is an intellectual ancestor"
+  },
+  {
+   "s": "tool.opentelemetry",
+   "t": "proc.sre",
+   "w": 2,
+   "k": "related",
+   "note": "telemetry feeds reliability work"
+  },
+  {
+   "s": "tool.opentelemetry",
+   "t": "plat.kubernetes",
+   "w": 1,
+   "k": "related",
+   "note": "both are CNCF projects"
+  }
+ ]
+}

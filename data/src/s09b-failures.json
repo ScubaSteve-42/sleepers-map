@@ -1,0 +1,4532 @@
+{
+ "slice": "s09b-failures",
+ "nodes": [
+  {
+   "id": "fail.uncol",
+   "title": "UNCOL",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1958,
+   "status": "dead",
+   "short": "A 1958 proposal for one universal intermediate language, so N languages and M machines need only N plus M translators. Never built, but the idea won later.",
+   "long": "In 1958 a committee of the SHARE user group proposed UNCOL, the Universal Computer Oriented Language. Every compiler would translate its source language into UNCOL once, and one translator per machine would turn UNCOL into machine code, so N languages and M machines would need N plus M translators instead of N times M. It was never fully specified or implemented. A later white paper by Stavros Macrakis says it failed because language and compiler technology were not yet mature, and that compiler-compilers in the 1970s ended up solving the problem in another way. The same arithmetic now drives LLVM's intermediate representation and bytecode virtual machines such as the Java Virtual Machine.",
+   "sleeper": "What failed as a single standard in 1958 became ordinary practice: LLVM and the Java Virtual Machine both put a shared intermediate form between many languages and many processors.",
+   "tags": [
+    "intermediate language",
+    "share committee",
+    "n times m",
+    "universal"
+   ],
+   "refs": [
+    {
+     "label": "Lattner, LLVM chapter in The Architecture of Open Source Applications",
+     "url": "https://aosabook.org/en/v1/llvm.html"
+    },
+    {
+     "label": "Wikipedia: UNCOL",
+     "url": "https://en.wikipedia.org/wiki/UNCOL"
+    }
+   ]
+  },
+  {
+   "id": "fail.self-modifying-code",
+   "title": "Self-Modifying Code",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1949,
+   "status": "dead",
+   "short": "Early programs rewrote their own instructions to step through arrays. Index registers, and later the view of a program as fixed text, made the habit obsolete.",
+   "long": "On EDSAC and most computers of its day there were no index registers, so a program that walked through an array had to change the addresses inside its own instructions. David Wheeler's return jump worked the same way, writing an instruction into the code at run time, and the 1953 Speedcoding manual openly allowed one part of a program to modify another. The habit faded for three reasons: hardware supplied index registers (the IBM 704 had three), designers by the mid-1970s took it for granted that a running program does not rewrite itself, and reasoning about a program as a fixed text cannot cope with one that changes. A modern JIT compiler also writes machine code into memory, but a trusted program generates it from a defined source.",
+   "tags": [
+    "index registers",
+    "stored program",
+    "edsac",
+    "impure code"
+   ],
+   "refs": [
+    {
+     "label": "Campbell-Kelly, EDSAC technical guide (archived)",
+     "url": "https://web.archive.org/web/20151222132057/http://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf"
+    },
+    {
+     "label": "Speedcoding manual (Computer History Museum)",
+     "url": "https://archive.computerhistory.org/resources/access/text/2018/02/102678975-05-01-acc.pdf"
+    }
+   ]
+  },
+  {
+   "id": "fail.absolute-addresses",
+   "title": "Hand-Coded Absolute Addresses",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1949,
+   "status": "dead",
+   "short": "On early machines every address was written as a fixed number, so inserting one instruction meant fixing branches by hand. Relocation and assemblers ended it.",
+   "long": "The first EDSAC loader, in spring 1949, required addresses inside instructions to be written in absolute form. Campbell-Kelly's account calls this the worst feature: inserting one instruction meant altering the addresses in many branch instructions, which made debugging tedious, and without relocation it was hard to organize a subroutine library. David Wheeler's Initial Orders 2, ready in August 1949, added relocation and is described as the forerunner of the modern assembler. Grace Hopper wrote in 1955 that very few coders could write several hundred instructions perfectly the first time, and John Backus later called machine-code programming a pretty lousy business. Symbolic labels, relocatable object code, linkers and then compilers took over the bookkeeping.",
+   "tags": [
+    "relocation",
+    "machine code",
+    "edsac",
+    "assembly"
+   ],
+   "refs": [
+    {
+     "label": "Campbell-Kelly, EDSAC technical guide (archived)",
+     "url": "https://web.archive.org/web/20151222132057/http://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf"
+    },
+    {
+     "label": "IBM history: Fortran",
+     "url": "https://www.ibm.com/history/fortran"
+    }
+   ]
+  },
+  {
+   "id": "fail.automatic-programming-hype",
+   "title": "Automatic Programming Over-Promises",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1955,
+   "status": "n/a",
+   "short": "Since the 1950s each new tool has been sold as the end of programming. Compilers removed clerical work, but defining the problem still needed people.",
+   "long": "Claims that a tool would make programmers unnecessary began almost as soon as the first compilers appeared, between about 1950 and 1957. A write-up of Short Code around 1950 to 1952 said that the need for special programming had been eliminated. The 1954 FORTRAN preliminary report said FORTRAN should virtually eliminate coding and debugging, and the 1957 paper lowered the goal to cutting that work to under a fifth. Grace Hopper warned in 1955 that such routines cannot define a problem or adapt it to a computer, and estimated that analysis, programming and defining the problem took 85 percent of the preparation time against 15 percent for coding and debugging. Compilers removed the clerical work, not the thinking, and later waves of fourth-generation languages, CASE tools and low-code platforms repeated the promise.",
+   "tags": [
+    "short code",
+    "fortran",
+    "hopper",
+    "silver bullet",
+    "clerical"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo, The Early Development of Programming Languages (1976)",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    },
+    {
+     "label": "FORTRAN Preliminary Report (1954)",
+     "url": "https://softwarepreservation.computerhistory.org/FORTRAN/BackusEtAl-Preliminary%20Report-1954.pdf"
+    }
+   ]
+  },
+  {
+   "id": "fail.pl1-universal",
+   "title": "PL/I as the Universal Language",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1964,
+   "status": "dead",
+   "short": "IBM and SHARE designed PL/I to serve business, science and systems work in one language. It grew too large and never displaced FORTRAN or COBOL.",
+   "long": "PL/I was designed in 1963 by a committee from IBM and the SHARE user group and announced in 1964 for the System/360. It borrowed from FORTRAN, COBOL and ALGOL 60 and was advertised, in Niklaus Wirth's recollection, with the slogan 'Everybody can program thanks to PL/1'. Edsger Dijkstra wrote in 1972 that using it must be like flying a plane with 7000 buttons, switches and handles. The author of the Multics PL/1 compiler wrote in 1969 that the difficulty of building a compiler had been seriously underestimated and that object code was generally much worse than from FORTRAN or COBOL compilers. For years the only important implementations were IBM's and the Multics project's. It never displaced FORTRAN or COBOL, though Multics was written in PL/I and IBM still supports it on z/OS.",
+   "tags": [
+    "universal language",
+    "dijkstra",
+    "multics",
+    "share"
+   ],
+   "refs": [
+    {
+     "label": "Dijkstra, EWD340: The Humble Programmer",
+     "url": "https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html"
+    },
+    {
+     "label": "Freiburghouse, The Multics PL/1 Compiler (1969)",
+     "url": "https://www.multicians.org/pl1-raf.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.itanium",
+   "title": "Itanium (EPIC)",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2001,
+   "yearEnd": 2021,
+   "status": "dead",
+   "short": "Intel and HP's 64-bit chip depended on compilers to find parallelism. It arrived late, ran x86 software poorly, and lost to AMD's compatible x86-64.",
+   "long": "Itanium came from Hewlett-Packard research that began in 1989 on EPIC, explicitly parallel instruction computing, a variant of very long instruction word design in which the compiler decides which instructions run together. HP approached Intel in 1993, the partnership was announced in 1994 and the first Itanium shipped in June 2001. By 1997 the architecture and its compiler were known to be much harder to build than expected, and the chip's performance disappointed against RISC and x86 processors, with slow emulation of existing x86 programs. AMD's backward-compatible 64-bit extension of x86 supplanted it, and by 2009 most servers shipped with x86-64. Intel took final orders on 30 January 2020 and ended shipments on 29 July 2021. The usual explanation is that the 'sufficiently smart compiler' never appeared.",
+   "sleeper": "Intel's 1990s plan for 64 bits was a clean break from x86. What won was AMD's extension of the old instruction set, which stayed compatible with existing software.",
+   "tags": [
+    "epic",
+    "vliw",
+    "itanic",
+    "64-bit",
+    "hp"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Itanium",
+     "url": "https://en.wikipedia.org/wiki/Itanium"
+    }
+   ]
+  },
+  {
+   "id": "fail.os2",
+   "title": "OS/2",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1987,
+   "yearEnd": 2006,
+   "status": "dead",
+   "short": "IBM and Microsoft's planned successor to DOS. Microsoft moved to Windows, OS/2 Warp had too few applications, and IBM ended support at the end of 2006.",
+   "long": "OS/2 began in 1987 as the operating system IBM and Microsoft planned to replace DOS on the PC. Microsoft's turn toward Windows 3.x and NT ended the partnership around 1990 and 1991, and IBM carried on alone. OS/2 Warp, released in 1994, had fewer applications than Windows and heavy hardware demands, and IBM ended support on 31 December 2006. The first Microsoft SQL Server, released in 1989 as a joint project with Sybase and Ashton-Tate, was a 16-bit server for OS/2. These details come from secondary sources, and the usual diagnosis is that OS/2 worked but lost on its application ecosystem and on the break between its two makers.",
+   "sleeper": "In 1987 OS/2 looked like the heir to DOS. The Windows line that won is built on NT, the protected kernel from Dave Cutler's team, and OS/2 survives only as a niche successor called ArcaOS.",
+   "tags": [
+    "warp",
+    "dos successor",
+    "ibm",
+    "windows nt"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: OS/2",
+     "url": "https://en.wikipedia.org/wiki/OS/2"
+    }
+   ]
+  },
+  {
+   "id": "fail.unix-wars",
+   "title": "The Unix Wars",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1988,
+   "status": "n/a",
+   "short": "In the late 1980s Unix split into rival vendor versions and alliances. The fight and a 1992 lawsuit weakened commercial Unix just as Linux and Windows NT arrived.",
+   "long": "By the late 1980s Unix existed in many forms. AT&T's System V (1983, with SVR4 in 1989) was the commercial reference, Berkeley's BSD had its own line, and vendors built their own: SunOS and Solaris at Sun, AIX at IBM (1986), HP-UX at HP and IRIX at SGI. The so-called Unix wars set AT&T and Sun against the Open Software Foundation, and a 1992 to 1994 lawsuit by AT&T's Unix System Laboratories against BSDi, which sold a BSD-derived system, added uncertainty. POSIX, the 1988 IEEE standard, fixed a common programming interface but did not stop the fragmentation. Commodity Linux on x86 then undercut commercial systems such as Solaris, and Linus Torvalds argued in 1992 that Linux won on being 'available now'. These accounts rest on secondary sources.",
+   "sleeper": "A reader from 1990 might have bet on one commercial Unix winning the server market. Free Linux on cheap PCs won it, and the Unix lineage now lives mainly in Linux and macOS.",
+   "tags": [
+    "system v",
+    "osf",
+    "solaris",
+    "aix",
+    "hp-ux",
+    "bsdi lawsuit"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Unix wars",
+     "url": "https://en.wikipedia.org/wiki/Unix_wars"
+    },
+    {
+     "label": "Tanenbaum-Torvalds debate archive (O'Reilly Open Sources)",
+     "url": "https://www.oreilly.com/openbook/opensources/book/appa.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.browser-wars",
+   "title": "The Browser Wars",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1995,
+   "status": "n/a",
+   "short": "From 1995 Netscape and Microsoft fought over the browser. Microsoft bundled Internet Explorer with Windows and won by about 2000; Netscape's code became Mozilla.",
+   "long": "Mosaic, from the NCSA, made the Web visual in 1993, and Netscape, founded by Marc Andreessen of the Mosaic team and Jim Clark, shipped Navigator in December 1994. Its public offering on 9 August 1995 set off the dot-com boom. Microsoft shipped Internet Explorer in 1995, bundled it with Windows and won the browser war by about 1998 to 2000; a US antitrust case from 1998 to 2001 concerned that bundling. Netscape 6 arrived almost three years after version 4, by which time Internet Explorer led. AOL bought Netscape in 1998 and 1999, but Netscape had opened its code in 1998, and that code became Mozilla and Firefox. Google released Chrome in September 2008, and Microsoft's Edge moved to Chrome's engine in January 2020. Details beyond the 1993 Mosaic date come from secondary sources.",
+   "sleeper": "Browsers began as downloads that two companies fought over. Microsoft's own Edge now runs on Chrome's engine, and the browser has become a main place where applications run.",
+   "tags": [
+    "internet explorer",
+    "navigator",
+    "antitrust",
+    "bundling",
+    "chrome"
+   ],
+   "refs": [
+    {
+     "label": "W3C: A Little History of the World Wide Web",
+     "url": "https://www.w3.org/History.html"
+    },
+    {
+     "label": "Wikipedia: Browser wars",
+     "url": "https://en.wikipedia.org/wiki/Browser_wars"
+    }
+   ]
+  },
+  {
+   "id": "fail.java-applets",
+   "title": "Java Applets",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1995,
+   "yearEnd": 2026,
+   "status": "dead",
+   "short": "Java launched in 1995 with applets, programs that ran inside web pages. Security flaws and browser plugin removal killed them, and Java dropped the API in 2026.",
+   "long": "Java was announced on 23 May 1995 with applets, small programs downloaded into the browser, as its showpiece. On 10 January 2013 the US cybersecurity agency CISA warned that a flaw affected all Java 7 versions through update 10 and that browsers using the Java 7 plug-in were at high risk. Chrome announced that plugin support would be permanently removed in September 2015. The Applet API was deprecated in JDK 9, deprecated for removal in JDK 17 and removed in JDK 26 on 17 March 2026, with the removal proposal stating that neither recent JDK releases nor current web browsers support applets. JavaScript, and for heavy code WebAssembly, a W3C standard since 5 December 2019, took over the role.",
+   "sleeper": "In 1995 applets were Java's headline feature and the way to put real programs on the Web. The browser now runs JavaScript natively, and Java lives on in servers and in Android.",
+   "tags": [
+    "applet",
+    "plugin",
+    "npapi",
+    "browser",
+    "sun"
+   ],
+   "refs": [
+    {
+     "label": "OpenJDK JEP 504: Remove the Applet API",
+     "url": "https://openjdk.org/jeps/504"
+    },
+    {
+     "label": "CISA alert: Oracle Java 7 Security Manager Bypass Vulnerability (2013)",
+     "url": "https://www.cisa.gov/news-events/alerts/2013/01/10/oracle-java-7-security-manager-bypass-vulnerability"
+    }
+   ]
+  },
+  {
+   "id": "fail.flash",
+   "title": "Flash and Silverlight",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1996,
+   "yearEnd": 2021,
+   "status": "dead",
+   "short": "Browser plugins for animation, video and apps. Apple's refusal to run Flash on the iPhone, security holes and HTML5 ended Flash in 2020 and Silverlight in 2021.",
+   "long": "Flash, from Macromedia and later Adobe, was the Web's animation, video and game plugin from 1996, and Microsoft's Silverlight offered a similar plugin from 2007. In April 2010 Steve Jobs's letter 'Thoughts on Flash' argued that Flash was 100 percent proprietary, that video decoded in software drained batteries (up to 10 hours of H.264 playback against under 5), and that it was designed for mice, not touch; Apple would use HTML5, CSS and JavaScript. Adobe stopped supporting Flash Player on 31 December 2020 and blocked Flash content from 12 January 2021, naming HTML5, WebGL and WebAssembly as alternatives. Microsoft ended Silverlight support on 12 October 2021. Chrome had begun blocking the old plugin interface both depended on in 2015.",
+   "sleeper": "Flash and Java applets carried video and games on the Web in the late 1990s and 2000s. The browser now does this natively with HTML, JavaScript and WebAssembly, and none of those plugins survive.",
+   "tags": [
+    "adobe",
+    "macromedia",
+    "actionscript",
+    "plugin",
+    "thoughts on flash",
+    "silverlight"
+   ],
+   "refs": [
+    {
+     "label": "Apple, Thoughts on Flash (archived)",
+     "url": "https://web.archive.org/web/20110101132035/http://www.apple.com/hotnews/thoughts-on-flash/"
+    },
+    {
+     "label": "Adobe, Flash Player end of life (archived)",
+     "url": "https://web.archive.org/web/20220101000808/https://www.adobe.com/products/flashplayer/end-of-life.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.corba",
+   "title": "CORBA",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1991,
+   "status": "niche",
+   "short": "A 1991 standard for objects calling each other across machines and languages. Committee design, complexity and firewall trouble left it niche; REST replaced it.",
+   "long": "The Object Management Group published CORBA 1.0 in October 1991 so that objects written in different languages on different machines could call each other, and it was briefly popular in the mid to late 1990s. Michi Henning's 2006 post-mortem in ACM Queue blamed a consensus process that produced 'design by committee and political maneuvering', programming interfaces that were 'complex, inconsistent, and downright arcane', a difficult C++ mapping, and a protocol that needed a firewall port opened for each service. Simpler component models such as Enterprise JavaBeans, then SOAP web services, then REST with JSON took its place. Henning concluded that CORBA 'cannot be called anything but a niche technology now'. Sources differ on the start year, and version 1.0 appeared in October 1991.",
+   "sleeper": "In the 1990s distributed objects looked like the future of enterprise software. Programs now mostly call each other over HTTP with JSON, or through gRPC.",
+   "tags": [
+    "omg",
+    "middleware",
+    "distributed objects",
+    "design by committee",
+    "dcom"
+   ],
+   "refs": [
+    {
+     "label": "Henning, The Rise and Fall of CORBA, ACM Queue (archived)",
+     "url": "https://web.archive.org/web/20241205101322/https://queue.acm.org/detail.cfm?id=1142044"
+    },
+    {
+     "label": "Wikipedia: Common Object Request Broker Architecture",
+     "url": "https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture"
+    }
+   ]
+  },
+  {
+   "id": "fail.hungarian",
+   "title": "Systems Hungarian Notation",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1983,
+   "status": "legacy",
+   "short": "Prefixing names with their machine type, as in dwCount, spread through Windows code. It misread its inventor's idea and is now widely rejected.",
+   "long": "Charles Simonyi, who worked at Xerox PARC in the 1970s and later became Microsoft's chief architect, began prefixing names with a tag for their kind, such as rw for a row and col for a column. Joel Spolsky wrote in 2005 that this Apps Hungarian was useful, because a prefix like cb for a count of bytes made wrong code look wrong. Systems Hungarian, which encodes machine types such as dw for a double word, arose when Windows documentation writers misread Simonyi's use of the word type, and it spread through Microsoft documentation and Charles Petzold's Programming Windows. Programmers who never grasped the original idea then rebelled against it, and the Linux kernel style guide calls it asinine because the compiler already knows the types. Apps Hungarian survives as the idea that names and types should carry meaning. The year is approximate.",
+   "sleeper": "If you learned Windows programming in the early 1990s you were taught to write names like lpszName and dwFlags. Modern style guides drop those prefixes and leave type checking to the compiler.",
+   "tags": [
+    "simonyi",
+    "naming",
+    "apps hungarian",
+    "windows",
+    "style"
+   ],
+   "refs": [
+    {
+     "label": "Spolsky, Making Wrong Code Look Wrong (2005)",
+     "url": "https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/"
+    },
+    {
+     "label": "Linux kernel coding style",
+     "url": "https://docs.kernel.org/process/coding-style.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.gets-annex-k",
+   "title": "gets() and C Annex K",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2011,
+   "status": "legacy",
+   "short": "gets() could not limit how much it wrote, so C removed it in 2011. The standard's optional safer replacement, Annex K, was never widely adopted.",
+   "long": "The C library function gets reads a line into a buffer without any way to say how big the buffer is, so the reference documentation says it cannot be used safely. It was deprecated in 2007 and removed in C11 in 2011. The standard's own fix, the optional Annex K 'bounds-checking interfaces', began as a 2007 technical report and then joined C11, and it fared worse. A 2015 paper to the C committee by Carlos O'Donell of Red Hat and Martin Sebor reported that no viable conforming implementation had emerged, that glibc had repeatedly rejected it, and that using the functions had led to worse and less secure software; it recommended removal. Microsoft's Visual Studio has an implementation, but Annex K is still listed as optional in the C23 draft and the 2026 working draft.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\nint main(void) {\n    char name[16];\n    /* gets(name);  removed in C11: it cannot limit how much it writes */\n    if (fgets(name, sizeof name, stdin))   /* reads at most 15 characters */\n        printf(\"hello %s\", name);\n    return 0;\n}"
+   },
+   "tags": [
+    "buffer overflow",
+    "bounds checking",
+    "wg14",
+    "unsafe library",
+    "c11"
+   ],
+   "refs": [
+    {
+     "label": "WG14 N1967: Field Experience With Annex K",
+     "url": "https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1967.htm"
+    },
+    {
+     "label": "cppreference: gets",
+     "url": "https://en.cppreference.com/w/c/io/gets"
+    }
+   ]
+  },
+  {
+   "id": "fail.morris-worm",
+   "title": "Morris Worm",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1988,
+   "status": "n/a",
+   "short": "The first major Internet worm, released on 2 November 1988, spread through a buffer overflow and other flaws on Unix systems and led to the creation of CERT.",
+   "long": "On 2 November 1988 Robert Tappan Morris, a Cornell student, released the first major worm on the Internet. It exploited a buffer overflow in the finger network service on BSD Unix systems, a debug mode in the sendmail mail program, and weak passwords, and it reportedly infected about a tenth of the roughly 60,000 hosts then online. A buffer overflow means a program writes more data into a fixed-size area of memory than it can hold, overwriting what lies beyond. The incident led to the creation of the CERT Coordination Center, and Morris was convicted under the Computer Fraud and Abuse Act. A 2024 White House report still cites the worm among incidents made possible by memory-safety flaws. Details come from secondary sources.",
+   "tags": [
+    "worm",
+    "fingerd",
+    "sendmail",
+    "cert",
+    "security"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Morris worm",
+     "url": "https://en.wikipedia.org/wiki/Morris_worm"
+    },
+    {
+     "label": "ONCD, Back to the Building Blocks (2024)",
+     "url": "https://bidenwhitehouse.archives.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf"
+    }
+   ]
+  },
+  {
+   "id": "fail.ejb",
+   "title": "Enterprise JavaBeans 2",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1999,
+   "status": "dead",
+   "short": "Enterprise JavaBeans 2 made Java business objects heavy to write and slow, even when no distribution was needed. Spring and plain Java objects replaced its approach.",
+   "long": "Enterprise JavaBeans, specified between 1997 and 1999 as the component model of Java's enterprise platform, at first allowed only remote invocation, through CORBA, even though the large majority of business applications did not need distributed computing, which carried a performance penalty. Martin Fowler and two colleagues coined the term POJO, plain old Java object, in September 2000 because simple objects 'lacked a fancy name'. The Spring framework 'came into being in 2003 as a response to the complexity of the early J2EE specifications'. EJB 3.0, in 2006, took a lightweight approach influenced by Spring, using plain Java objects and dependency injection, and Java EE later moved to the Eclipse Foundation as Jakarta EE in 2017 and 2018.",
+   "sleeper": "Server-side Java in the early 2000s meant heavy deployment descriptors and containers. Spring's lighter style won, and most Java business code is now plain objects wired together by dependency injection.",
+   "tags": [
+    "j2ee",
+    "pojo",
+    "dependency injection",
+    "middleware",
+    "ejb 3"
+   ],
+   "refs": [
+    {
+     "label": "Fowler, POJO",
+     "url": "https://martinfowler.com/bliki/POJO.html"
+    },
+    {
+     "label": "Spring Framework reference: overview",
+     "url": "https://docs.spring.io/spring-framework/reference/overview.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.mobile-platforms",
+   "title": "Failed Mobile Platforms",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2011,
+   "status": "dead",
+   "short": "Symbian, BlackBerry OS, Windows Phone, webOS and Firefox OS lost to iOS and Android. None could break the loop in which apps need users and users need apps.",
+   "long": "Before the iPhone, Nokia's Symbian ran most of the world's smartphones, BlackBerry dominated business users and Palm OS had thousands of third-party apps. By 2025 Android had 72.77 percent of worldwide mobile web traffic and iOS 26.94 percent, according to StatCounter, which counts web use, not sales. Symbian fell from 39.18 percent in 2009 to 0.53 percent in 2016, and BlackBerry OS from 17.64 percent in 2010 to 0.11 percent in 2018. Nokia's chief executive Stephen Elop wrote on 8 February 2011 that competitors were 'taking our market share with an entire ecosystem', and Nokia chose Windows Phone, whose mainstream support ended in 2017. HP bought Palm in 2010, cancelled the TouchPad in 2011 and sold webOS to LG in 2013, and Mozilla stopped Firefox OS phones in December 2015. A platform needs apps, apps need users, and latecomers could not break the loop.",
+   "sleeper": "A reader who remembers Palm and Windows CE, or Nokia as the smartphone leader until about 2010, will find two platforms, iOS and Android, now holding nearly the whole market.",
+   "tags": [
+    "symbian",
+    "blackberry",
+    "windows phone",
+    "webos",
+    "firefox os",
+    "nokia",
+    "app gap"
+   ],
+   "refs": [
+    {
+     "label": "StatCounter: mobile operating system market share",
+     "url": "https://gs.statcounter.com/os-market-share/mobile/worldwide"
+    },
+    {
+     "label": "Engadget: Elop's burning platform memo (2011)",
+     "url": "https://www.engadget.com/2011-02-08-nokia-ceo-stephen-elop-rallies-troops-in-brutally-honest-burnin.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.perl6",
+   "title": "Perl 6 and Raku",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2000,
+   "yearEnd": 2019,
+   "status": "niche",
+   "short": "Larry Wall announced a rewrite of Perl in 2000. The first specification came in 2015, and in 2019 the language was renamed Raku and treated as a separate language.",
+   "long": "In July 2000 Larry Wall announced that work on Perl 6 had begun in earnest, expecting Perl 5 to still be widely used five years later. The design process drew 361 requests for comment, and compatibility with Perl was not a goal. The first official specification, Perl 6.c, appeared on 25 December 2015, about fifteen years later, and in October 2019 the language was renamed Raku because it had become a separate language in the same family. Over the same period Perl 5 fell from tenth place in the TIOBE index in September 2016 to 23rd in September 2026, and Raku is not in TIOBE's top 100. That is a correlation: no analysis found separates the delay from competition by Python and PHP.",
+   "sleeper": "Perl was the scripting language of the 1990s Web and system administration. A rewrite announced in 2000 took fifteen years to specify and ended as a separate language called Raku.",
+   "tags": [
+    "raku",
+    "perl 5",
+    "rewrite",
+    "second system",
+    "state of the onion"
+   ],
+   "refs": [
+    {
+     "label": "Wall, State of the Onion 2000",
+     "url": "https://www.perl.com/pub/2000/10/23/soto2000.html"
+    },
+    {
+     "label": "Wikipedia: Raku",
+     "url": "https://en.wikipedia.org/wiki/Raku_(programming_language)"
+    }
+   ]
+  },
+  {
+   "id": "fail.python2",
+   "title": "The Python 2 to 3 Transition",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2008,
+   "yearEnd": 2020,
+   "status": "dead",
+   "short": "Python 3.0 broke compatibility with Python 2 on purpose in 2008. Python 2 was retired on 1 January 2020, after an eleven-year overlap.",
+   "long": "Python 3.0, released on 3 December 2008, was 'a new version of the language that is incompatible with the 2.x line'. The Python project first said it would retire Python 2 in 2015, extended that to 2020 in 2014, and called 1 January 2020 the day it sunset Python 2; the last release, 2.7.18, came in April 2020, roughly eleven years after Python 3.0. Every library and application had to migrate. To make the move easier, major projects including NumPy, SciPy, pandas, Matplotlib, scikit-learn, IPython, Jupyter, TensorFlow and PyTorch pledged to require Python 3 by 2020, so that others could plan their own transitions. Set beside Perl 6, which took fifteen years to specify, it shows how long a breaking redesign can take.",
+   "tags": [
+    "python 3",
+    "end of life",
+    "migration",
+    "unicode",
+    "incompatible"
+   ],
+   "refs": [
+    {
+     "label": "python.org: Sunsetting Python 2",
+     "url": "https://www.python.org/doc/sunset-python-2/"
+    },
+    {
+     "label": "Python 3 Statement",
+     "url": "https://python3statement.org/"
+    }
+   ]
+  },
+  {
+   "id": "fail.coffeescript",
+   "title": "CoffeeScript",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2009,
+   "status": "niche",
+   "short": "CoffeeScript compiled shorter syntax into JavaScript. ES2015 absorbed its best ideas, and projects such as Rails moved back to plain JavaScript.",
+   "long": "CoffeeScript, which appeared in 2009, was a language that compiled into JavaScript and offered a shorter syntax. Its best ideas, including arrow functions and classes, were absorbed by ES2015, the 2015 edition of JavaScript's standard. Rails 6.0, in 2019, made Webpacker the default JavaScript compiler and converted Action Cable's JavaScript from CoffeeScript to ES2015. In the month to 29 September 2026 the npm registry counted 5.9 million downloads of coffeescript and 3.8 million of the older coffee-script package, against 1.16 billion for TypeScript. The project still ships, and version 2.7.0 is the latest.",
+   "tags": [
+    "transpiler",
+    "es2015",
+    "arrow functions",
+    "rails",
+    "syntax sugar"
+   ],
+   "refs": [
+    {
+     "label": "CoffeeScript home page",
+     "url": "https://coffeescript.org/"
+    },
+    {
+     "label": "Rails 6.0 release notes",
+     "url": "https://guides.rubyonrails.org/6_0_release_notes.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.gwt",
+   "title": "Google Web Toolkit",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2006,
+   "status": "niche",
+   "short": "Google Web Toolkit let developers write browser apps in Java. Google's later bets went elsewhere, and it is now a slow-moving community project.",
+   "long": "Google Web Toolkit, introduced in May 2006, let programmers write browser applications in Java and compile them to JavaScript. Google said in 2012 that it would become a fully open-source project, which Wikipedia records as completed in 2013. It now has a steering committee and a slow release cadence: 2.8.0 in October 2016, 2.9.0 in May 2020, 2.10.0 in June 2022, 2.11.0 in January 2024, 2.12.0 in October 2024 and 2.13.1 in June 2026. Wikipedia attributes the decline to Google's later bets, namely Dart in 2011, Angular and TypeScript. GWT is absent from the 2025 Stack Overflow framework list and from the other rankings checked.",
+   "tags": [
+    "java to javascript",
+    "web framework",
+    "dart",
+    "angular"
+   ],
+   "refs": [
+    {
+     "label": "GWT release notes",
+     "url": "https://www.gwtproject.org/release-notes.html"
+    },
+    {
+     "label": "Wikipedia: Google Web Toolkit",
+     "url": "https://en.wikipedia.org/wiki/Google_Web_Toolkit"
+    }
+   ]
+  },
+  {
+   "id": "fail.atom",
+   "title": "Atom Editor",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2014,
+   "yearEnd": 2022,
+   "status": "dead",
+   "short": "GitHub's text editor built on web technology. It was shut down on 15 December 2022, but Electron, Tree-sitter and the Zed editor came out of it.",
+   "long": "Atom was a text editor from GitHub built with web technologies. On 8 June 2022 GitHub announced that it would sunset Atom to focus on cloud development with GitHub Codespaces, saying Atom 'has not had significant feature development for the past several years' and that community involvement had declined significantly. On 15 December 2022 the repositories were archived, package management stopped and security updates ended. By then Microsoft, which owns GitHub, had Visual Studio Code, built on the Electron framework that had come out of Atom; 75.9 percent of respondents to the 2025 Stack Overflow survey said they used it regularly. No source found quantifies Atom's performance problems, so the stated reasons are GitHub's own.",
+   "sleeper": "Atom showed that a code editor could be a web application in a desktop shell. That idea lives on in Electron, which powers VS Code, Slack and GitHub Desktop, though not in Atom itself.",
+   "tags": [
+    "editor",
+    "electron",
+    "tree-sitter",
+    "zed",
+    "codespaces"
+   ],
+   "refs": [
+    {
+     "label": "GitHub blog: Sunsetting Atom",
+     "url": "https://github.blog/news-insights/product-news/sunsetting-atom/"
+    }
+   ]
+  },
+  {
+   "id": "fail.visual-sourcesafe",
+   "title": "Visual SourceSafe",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1995,
+   "yearEnd": 2017,
+   "status": "dead",
+   "short": "Microsoft's file-based version control tool was easy to adopt but could corrupt its database. Critics told developers to avoid it, and support ended in 2017.",
+   "long": "Visual SourceSafe came from One Tree Software, which Microsoft bought in 1994; version 3.1 appeared in February 1995 and the last, VSS 2005, in January 2006. It read and wrote its database directly as files, so a client machine that crashed during an update could corrupt it. In 2006 Jeff Atwood wrote that anyone serious about software development should not be using it, and that it taught bad habits: avoid branching, exclusive locks and easy permanent deletion. Microsoft's own teams mostly used Source Depot, a variant of Perforce, and its successor was Team Foundation Version Control. Mainstream support ended on 10 July 2012 and extended support on 11 July 2017. The corruption claims rest largely on Wikipedia and critics' articles, while Microsoft's own avoidance and the retirement are well attested.",
+   "tags": [
+    "vss",
+    "microsoft",
+    "source control",
+    "locking",
+    "coding horror"
+   ],
+   "refs": [
+    {
+     "label": "Coding Horror: Source Control, Anything But SourceSafe",
+     "url": "https://blog.codinghorror.com/source-control-anything-but-sourcesafe/"
+    },
+    {
+     "label": "Wikipedia: Microsoft Visual SourceSafe",
+     "url": "https://en.wikipedia.org/wiki/Microsoft_Visual_SourceSafe"
+    }
+   ]
+  },
+  {
+   "id": "fail.object-databases",
+   "title": "Object Databases",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1988,
+   "status": "niche",
+   "short": "Databases that stored programming-language objects directly, popular in the 1990s. Relational systems absorbed their best ideas, and mapping tools hid the mismatch.",
+   "long": "Object databases stored objects as a program sees them instead of splitting them into relational tables. Products included GemStone, for Smalltalk, ObjectStore, founded by Object Design in Burlington, Massachusetts in 1988, and Versant; for much of the 1990s C++ dominated the market. The vendors' standards body, the Object Data Management Group, disbanded in 2001 after passing its Java binding to the Java Community Process as the basis for Java Data Objects. Many ideas were absorbed into SQL:1999 and object-relational products, and a 2024 survey by Stonebraker and Pavlo judges that document databases are essentially the same as 1980s object databases. The embedded object database db4o was dropped in 2014, and GemStone/S survives as a niche Smalltalk product. The survey's authors favor relational systems, and no neutral sales or adoption figures were found.",
+   "sleeper": "Object databases were pitched in the late 1980s as the natural partner of object-oriented programming. Programs today usually keep objects in memory and map them to relational tables with an object-relational mapper.",
+   "tags": [
+    "gemstone",
+    "objectstore",
+    "versant",
+    "odmg",
+    "impedance mismatch"
+   ],
+   "refs": [
+    {
+     "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+     "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+    },
+    {
+     "label": "Wikipedia: Object database",
+     "url": "https://en.wikipedia.org/wiki/Object_database"
+    }
+   ]
+  },
+  {
+   "id": "fail.xml-databases",
+   "title": "XML Databases",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1998,
+   "status": "niche",
+   "short": "Databases built to store and query XML documents natively. JSON overtook XML for web data, and SQL systems added XML types instead.",
+   "long": "In the late 1990s the rise of XML as a data format produced a wave of databases designed to store and query XML documents natively. In their 2024 survey Stonebraker and Pavlo write that, despite the buzz, they predicted in 2005 that XML databases would not supplant relational systems, and that JSON has since overtaken XML as the standard for web data exchange. SQL absorbed the useful part: an XML data type and SQL/XML, added in SQL:2003 and given its own part of the standard in 2006, so that XML could live inside a relational database. MarkLogic, founded in 2001, is the survivor; Progress Software bought it in February 2023 for 355 million dollars. Its status is niche to legacy, and no usage figures were found.",
+   "tags": [
+    "native xml",
+    "marklogic",
+    "sql/xml",
+    "document store"
+   ],
+   "refs": [
+    {
+     "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+     "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+    },
+    {
+     "label": "Wikipedia: MarkLogic",
+     "url": "https://en.wikipedia.org/wiki/MarkLogic"
+    }
+   ]
+  },
+  {
+   "id": "fail.schemaless-myth",
+   "title": "The Schemaless Myth",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2010,
+   "status": "n/a",
+   "short": "The claim that NoSQL stores let you skip the schema. The schema does not vanish; it moves into application code, where mistakes surface later.",
+   "long": "When NoSQL stores became popular around 2009, a common claim was that they freed developers from declaring a schema. The sources say a schema always exists and merely moves into application code. DeWitt and Stonebraker wrote in 2008 that schemas are good and that separating the schema from the application is good, and Martin Fowler's 2013 infodeck on schemaless data structures calls the hidden structure an implicit schema. The cost comes later: the data lake's schema-on-read design punted data quality and governance downstream, according to the 2021 lakehouse paper. What remains different is mostly 'schema later'. SQLite, known for flexible typing, added STRICT tables in version 3.37.0 in November 2021. A wider move of NoSQL products back toward SQL is commonly described but was not sourced here.",
+   "code": {
+    "lang": "python",
+    "text": "import sqlite3, json\nc = sqlite3.connect(':memory:')\nc.execute('CREATE TABLE docs (doc TEXT)')   # 'schemaless': any JSON text is accepted\nfor d in ({'name': 'pen', 'color': 'blue'}, {'name': 'ink', 'colour': 'black'}):\n    c.execute('INSERT INTO docs VALUES (?)', (json.dumps(d),))\nprint(c.execute(\"SELECT json_extract(doc, '$.color') FROM docs\").fetchall())\n# [('blue',), (None,)]  the misspelled key silently becomes NULL\nc.execute('CREATE TABLE items (name TEXT NOT NULL, price_cents INTEGER NOT NULL) STRICT')\nc.execute(\"INSERT INTO items VALUES ('ink', 'three dollars')\")\n# sqlite3.IntegrityError: cannot store TEXT value in INTEGER column items.price_cents"
+   },
+   "tags": [
+    "nosql",
+    "schema on read",
+    "implicit schema",
+    "strict tables"
+   ],
+   "refs": [
+    {
+     "label": "Fowler, Schemaless Data Structures",
+     "url": "https://martinfowler.com/articles/schemaless/"
+    },
+    {
+     "label": "Armbrust et al., Lakehouse (CIDR 2021)",
+     "url": "https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf"
+    }
+   ]
+  },
+  {
+   "id": "fail.fifth-generation",
+   "title": "Fifth Generation Computer Systems",
+   "cat": "failures",
+   "tier": 2,
+   "year": 1982,
+   "yearEnd": 1994,
+   "status": "dead",
+   "short": "Japan's ten-year national project to build parallel logic-programming computers. It cost about 57 billion yen, left no commercial legacy and ended in 1994.",
+   "long": "In 1982 Japan's Ministry of International Trade and Industry (MITI) launched a ten-year initiative to build computers based on massively parallel processing and logic programming. It ran from 1982 to 1994, spent a little under 57 billion yen (about 320 million US dollars) and built five Parallel Inference Machines. It ended in commercial failure, though it contributed to concurrent logic programming, and MITI then stopped funding large computer research projects. One contested account, from a single secondary source, says the specialized hardware was overtaken by cheaper machines such as Sun workstations and Intel x86 systems, that the choice of concurrent logic programming undermined the logic it was meant to bridge, and that the project missed outside innovations such as graphical interfaces and the Internet.",
+   "sleeper": "In 1982 many expected Japan's logic-programming machines to define the next generation of computing. Ordinary microprocessors and workstations improved fast enough to overcome the barriers experts had expected.",
+   "tags": [
+    "miti",
+    "icot",
+    "logic programming",
+    "parallel inference machine",
+    "japan"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Fifth Generation Computer Systems",
+     "url": "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems"
+    }
+   ]
+  },
+  {
+   "id": "fail.lisp-machines",
+   "title": "Lisp Machines",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1980,
+   "status": "dead",
+   "short": "Computers built to run Lisp for AI work, from Symbolics, LMI, Texas Instruments and Xerox. Ordinary microprocessors caught up, and the market collapsed from 1987.",
+   "long": "Lisp machines were computers designed to run Lisp programs for artificial intelligence work. Makers included Symbolics, with models such as the 3600 and XL1200, Lisp Machines Incorporated, Texas Instruments with its Explorer line, and Xerox with Interlisp-D workstations. Symbolics existed from 9 April 1980 to 7 May 1996. Wikipedia lists the collapse of the Lisp machine market in 1987 among the events of the second AI winter, and says that the rapid improvement of mass-market microprocessors, better Lisp compilers and the economics of building custom processors removed the commercial advantage of purpose-built machines. Lisp itself survived, together with its ideas of garbage collection, closures and interactive development; TIOBE ranked it 43rd in September 2026.",
+   "sleeper": "Companies once sold special computers just to run Lisp. The language now runs on ordinary hardware, and the garbage collection and interactive development those machines showed off are common in mainstream languages.",
+   "tags": [
+    "symbolics",
+    "lmi",
+    "texas instruments",
+    "interlisp",
+    "ai hardware"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Symbolics",
+     "url": "https://en.wikipedia.org/wiki/Symbolics"
+    },
+    {
+     "label": "Wikipedia: Lisp machine",
+     "url": "https://en.wikipedia.org/wiki/Lisp_machine"
+    }
+   ]
+  },
+  {
+   "id": "fail.ai-winters",
+   "title": "AI Winters",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1974,
+   "status": "n/a",
+   "short": "Two stretches of cut funding and lost faith in AI, about 1974 to 1980 and 1987 to 2000. Promises ran ahead of results, and the Lisp machine market collapsed.",
+   "long": "An AI winter is a period of reduced funding and interest after hopes for artificial intelligence outrun results. Wikipedia counts two major ones, roughly 1974 to 1980 and 1987 to 2000, though sources differ. The first followed the 1973 Lighthill report for the British Science Research Council, which said that in no part of the field had the discoveries made so far produced the major impact that was then promised. The term itself first appeared in 1984, when Roger Schank and Marvin Minsky warned that enthusiasm had spiraled out of control. The second came with the 1987 collapse of the Lisp machine market, the 1988 cancellation of new AI spending by the US Strategic Computing Initiative and the abandonment of many expert systems in the 1990s. The 1969 book Perceptrons is often blamed for the first lull, but that reading is contested.",
+   "sleeper": "Anyone who followed AI in the 1980s lived through the expert-system boom and then the bust. The later revival came through machine learning on GPUs rather than hand-written rules.",
+   "tags": [
+    "lighthill report",
+    "expert systems",
+    "funding",
+    "hype cycle",
+    "perceptrons"
+   ],
+   "refs": [
+    {
+     "label": "Lighthill report (1973)",
+     "url": "https://www.chilton-computing.org.uk/inf/literature/reports/lighthill_report/p001.htm"
+    },
+    {
+     "label": "Wikipedia: AI winter",
+     "url": "https://en.wikipedia.org/wiki/AI_winter"
+    }
+   ]
+  },
+  {
+   "id": "fail.ada-mandate",
+   "title": "The Ada Mandate",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1983,
+   "yearEnd": 1997,
+   "status": "dead",
+   "short": "From 1983 the US Defense Department required Ada for new mission-critical software. A 1997 review found it helped custom systems but hurt elsewhere.",
+   "long": "Ada was designed from 1977 to 1983 by Jean Ichbiah's team at Honeywell Bull to replace more than 450 languages in use across the US Department of Defense. In 1983 Undersecretary of Defense Richard DeLauer set a policy requiring Ada for all new mission-critical applications, and a 1987 directive extended it to most procurements while adding Minimal BASIC and Pascal to the approved list. The National Research Council's 1997 review found that Ada systems 'continued to be in the minority' and that the policy was frequently counterproductive where commercial software was strong, because that software evolved faster than Ada solutions could follow. It judged the requirement beneficial for custom weapon systems and performance-critical command and control. The mandate was effectively removed in 1997. Ada survives in certified embedded work, with SPARK, its formal-proof subset.",
+   "sleeper": "A reader from the 1980s might expect Ada to have become the language of defense and aerospace software. It stayed in safety-critical niches, and TIOBE ranked it 17th in September 2026.",
+   "tags": [
+    "pentagon",
+    "defense",
+    "mandate",
+    "national research council",
+    "mission-critical"
+   ],
+   "refs": [
+    {
+     "label": "National Research Council, Ada and Beyond (1997), chapter 3",
+     "url": "https://nap.nationalacademies.org/read/5463/chapter/3"
+    }
+   ]
+  },
+  {
+   "id": "fail.pure-oo",
+   "title": "Pure-OO Maximalism",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1995,
+   "status": "legacy",
+   "short": "The belief that everything should be an object and that deep class hierarchies should structure all code. Newer languages favor composition and plain data.",
+   "long": "Pure-OO maximalism was the view that everything should be an object and that deep inheritance hierarchies should structure software. Later languages walked this back by design, not through any measured study. Go encourages composition over inheritance, using simple, often one-method interfaces. The Rust book says that if a language must have inheritance to be object oriented, then Rust is not such a language. Kotlin classes are final by default, and Java, C# and Python added records, sealed types and pattern matching. Java's 1996 white paper had already listed multiple inheritance among the features removed from C and C++. Classes and encapsulation survive: C++, Java and C# ranked third to fifth in TIOBE in September 2026. No study comparing inheritance with composition was found, so the evidence is design choices.",
+   "sleeper": "In 1990s textbooks inheritance was the headline feature of object-oriented design. Current languages tend to favor composition and plain data, and several make classes closed by default.",
+   "tags": [
+    "inheritance",
+    "composition over inheritance",
+    "class hierarchy",
+    "design"
+   ],
+   "refs": [
+    {
+     "label": "Pike, Go at Google",
+     "url": "https://go.dev/talks/2012/splash.article"
+    },
+    {
+     "label": "The Rust Book: What Is Object-Oriented?",
+     "url": "https://doc.rust-lang.org/book/ch18-01-what-is-oo.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.visual-programming",
+   "title": "Visual and Flowchart Programming",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1985,
+   "status": "niche",
+   "short": "The idea that programs should be drawn as flowcharts or diagrams rather than written. Brooks argued in 1986 it would not work, and it survives only in niches.",
+   "long": "Drawing programs instead of writing them has been tried repeatedly. In his 1986 essay No Silver Bullet, Fred Brooks wrote that nothing convincing had emerged from such efforts and that he was persuaded nothing would. He argued that the flowchart is a very poor abstraction of software structure, that programmers draw flowcharts after writing programs rather than before, and that screens were too small to show both the scope and the detail of a serious software diagram. The screen-size point has weakened since 1986, but the structural point, that software does not fit in one picture, has held. Visual languages persist in niches: in September 2026 TIOBE ranked Scratch 15th, LabVIEW 45th and Ladder Logic 46th, in teaching, instrumentation and industrial control. No general-purpose language is graphical.",
+   "tags": [
+    "flowcharts",
+    "diagrams",
+    "scratch",
+    "labview",
+    "brooks"
+   ],
+   "refs": [
+    {
+     "label": "Brooks, No Silver Bullet (1986)",
+     "url": "https://worrydream.com/refs/Brooks_1986_-_No_Silver_Bullet.pdf"
+    },
+    {
+     "label": "TIOBE Index",
+     "url": "https://www.tiobe.com/tiobe-index/"
+    }
+   ]
+  },
+  {
+   "id": "fail.big-bang-rewrite",
+   "title": "Big-Bang Rewrite",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2000,
+   "status": "n/a",
+   "short": "Discarding working software to start over has often gone badly. Joel Spolsky's 2000 essay used Netscape as the example; gradual replacement is the usual advice.",
+   "long": "A big-bang rewrite replaces a working system all at once with a new one built from scratch. Joel Spolsky argued on 6 April 2000 that this is 'the single worst strategic mistake that any software company can make', because old code embodies years of bug fixes and programmers think it a mess only because reading code is harder than writing it. He cited Netscape, Borland's dBase for Windows and Quattro Pro, and Microsoft's abandoned Pyramid rewrite of Word. Apple's Copland and Taligent fit the pattern, and so does Windows Longhorn, which recovered only by restarting from the Windows Server 2003 SP1 code base. The usual alternative is incremental refactoring and gradual replacement, often called the strangler fig approach and associated with Martin Fowler. The counter-example is Netscape's rewritten Gecko engine, which lived on in Firefox.",
+   "tags": [
+    "rewrite",
+    "second system",
+    "strangler fig",
+    "spolsky",
+    "legacy code"
+   ],
+   "refs": [
+    {
+     "label": "Spolsky, Things You Should Never Do, Part I (2000)",
+     "url": "https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/"
+    }
+   ]
+  },
+  {
+   "id": "fail.netscape-rewrite",
+   "title": "Netscape Rewrite",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1998,
+   "yearEnd": 2000,
+   "status": "n/a",
+   "short": "In late 1998 Netscape chose to scrap its browser code and start over. Netscape 6 took almost three years to follow version 4, while Internet Explorer took over.",
+   "long": "In late October 1998 the Mozilla engineers, working on the browser code Netscape had opened that year, decided to discard the existing code and start again, skipping version 5. Netscape 6.0 shipped on 14 November 2000, almost three years after version 4.0, while Internet Explorer took the market. Joel Spolsky wrote in April 2000 that old code 'has been used. It has been tested. Lots of bugs have been found, and they've been fixed', and that a rewrite hands competitors two or three years. The rewritten Gecko engine did survive: it became the engine of Firefox, so the code outlived the company's browser share, a counterpoint to Spolsky's verdict.",
+   "tags": [
+    "mozilla",
+    "gecko",
+    "netscape 6",
+    "spolsky"
+   ],
+   "refs": [
+    {
+     "label": "Spolsky, Things You Should Never Do, Part I (2000)",
+     "url": "https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/"
+    },
+    {
+     "label": "Wikipedia: Netscape 6",
+     "url": "https://en.wikipedia.org/wiki/Netscape_6"
+    }
+   ]
+  },
+  {
+   "id": "fail.copland",
+   "title": "Apple Copland and Taligent",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1996,
+   "yearEnd": 1998,
+   "status": "dead",
+   "short": "Apple's planned modern Mac OS was cancelled in 1996 after years of added features, and the Apple-IBM Taligent venture ended in 1998. Apple bought NeXT instead.",
+   "long": "Copland was Apple's planned successor to System 7, with protected memory and preemptive multitasking. Begun in March 1994 and promised for mid-1996, it kept collecting features as managers chased the next big thing. Ellen Hancock, brought in to review it, concluded it could never ship, and Apple cancelled it in August 1996 and bought NeXT, whose NeXTSTEP became Mac OS X. Taligent, the Apple and IBM (later HP) object-oriented operating system venture that grew out of Apple's Pink project, was founded on 2 March 1992, had about 400 staff by 1995 and was dissolved by IBM in January 1998 without a successful product. The lessons drawn are the second-system effect, no incremental path to shipping, building a platform before a product, and architecture by committee across companies.",
+   "sleeper": "If you remember System 7, the Mac's modern operating system did not come from Apple's own rewrite. It came from NeXT, whose Unix-based NeXTSTEP became Mac OS X in 2001.",
+   "tags": [
+    "system 7",
+    "pink",
+    "taligent",
+    "second system",
+    "mac os"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Copland (operating system)",
+     "url": "https://en.wikipedia.org/wiki/Copland_(operating_system)"
+    },
+    {
+     "label": "Wikipedia: Taligent",
+     "url": "https://en.wikipedia.org/wiki/Taligent"
+    }
+   ]
+  },
+  {
+   "id": "fail.longhorn",
+   "title": "Windows Longhorn Reset",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2004,
+   "status": "n/a",
+   "short": "Windows Longhorn grew from a minor release into an unshippable pile of features. Microsoft restarted it in 2004 from the Server 2003 code and shipped Vista in 2007.",
+   "long": "Longhorn began in May 2001 as a minor interim release due in 2003, then absorbed features meant for the next major Windows, including a new file system called WinFS and new graphics and communications stacks. On 27 August 2004 Microsoft announced a reset: development restarted from the Windows Server 2003 SP1 code base, re-adding only features meant for an actual release, while WinFS and another security feature were dropped or postponed. Windows Vista went to manufacturers on 8 November 2006 and to retail on 30 January 2007. The lesson drawn is that feature creep produced an unshippable branch, and that the cure, restarting from the shipping codebase rather than from nothing, matches the advice against rewrites.",
+   "tags": [
+    "vista",
+    "winfs",
+    "feature creep",
+    "reset"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Development of Windows Vista",
+     "url": "https://en.wikipedia.org/wiki/Development_of_Windows_Vista"
+    }
+   ]
+  },
+  {
+   "id": "fail.death-march",
+   "title": "Death March and Crunch",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1997,
+   "status": "n/a",
+   "short": "A project its own staff believe is doomed, kept alive by unsustainable overtime. Research and Peopleware argue against it, yet crunch is still common.",
+   "long": "A death march is a project whose participants believe it is doomed or that demands unsustainable overwork, usually because the schedule or scope was unrealistic. In video games the same thing is called crunch, which can mean 65 to 80 hour weeks, and a 2004 posting known as EA Spouse led to lawsuits over unpaid overtime; a decade later reporters noted little progress. Peopleware argues for quiet, sustainable work. Brooks is recalled as remarking that more projects fail from lack of calendar time than from all other causes together, and Yourdon published a 1997 book titled Death March, though both points are recalled rather than checked. No quantified study of crunch and productivity was found, so the claim that it does not work rests on industrial research and argument.",
+   "tags": [
+    "crunch",
+    "overtime",
+    "ea spouse",
+    "unrealistic schedules",
+    "yourdon"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Death march (project management)",
+     "url": "https://en.wikipedia.org/wiki/Death_march_(project_management)"
+    },
+    {
+     "label": "Wikipedia: Crunch (video games)",
+     "url": "https://en.wikipedia.org/wiki/Crunch_(video_games)"
+    }
+   ]
+  },
+  {
+   "id": "fail.dos-giants",
+   "title": "DOS-Era Software Giants",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1995,
+   "status": "n/a",
+   "short": "Lotus, WordPerfect, Borland, Ashton-Tate and Novell led PC software on DOS and lost their positions in the move to Windows, many to Microsoft products.",
+   "long": "In the DOS era the PC software leaders included Lotus, whose 1-2-3 spreadsheet of January 1983 made the IBM PC a business machine, WordPerfect, Borland, Ashton-Tate, maker of dBase, and Novell, whose NetWare dominated PC networking. Most failed to carry their lead to Windows. Lotus was slow to port, Microsoft's Excel won, and IBM bought Lotus in 1995. WordPerfect's first Windows version in 1991 was late and buggy; Novell bought it in 1994 and sold it to Corel in 1996 at a fraction of the price. Borland bought Ashton-Tate in 1991, took on heavy debt and renamed itself Inprise in 1998. Microsoft Access, released in 1992, became the dominant Windows database and effectively eliminated competitors that had not moved off DOS, and Windows NT and TCP/IP undercut NetWare. These histories rest on encyclopedia-level sources.",
+   "sleeper": "Lotus 1-2-3, WordPerfect and dBase were the leading business programs of the 1980s. Microsoft Office and Access took over their markets on Windows.",
+   "tags": [
+    "lotus 1-2-3",
+    "wordperfect",
+    "ashton-tate",
+    "novell",
+    "netware",
+    "office"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Borland",
+     "url": "https://en.wikipedia.org/wiki/Borland"
+    },
+    {
+     "label": "Wikipedia: WordPerfect",
+     "url": "https://en.wikipedia.org/wiki/WordPerfect"
+    }
+   ]
+  },
+  {
+   "id": "fail.dependency-hell",
+   "title": "Dependency Hell (Python Environments)",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2020,
+   "status": "n/a",
+   "short": "Conflicting library versions have broken installs since DLL hell. Python's many environment tools, and binary breaks such as NumPy 2, keep the problem alive.",
+   "long": "Dependency hell is the state in which installing one program's libraries breaks another's. On DOS and early Windows the cause was a single shared folder: a newer copy of a library installed for program A could silently break program B, which Dolstra's 2006 thesis calls DLL hell. Python repeats the problem in 2020s form. The pip installer gained a resolver that backtracks only in version 20.3, PEP 668 in May 2021 noted long-standing conflicts between operating-system package managers and pip, NumPy 2.0 broke binary compatibility so that compiled packages had to be rebuilt, and ten overlapping tools exist: pip, venv, virtualenv, pipx, conda, mamba, Poetry, PDM, Hatch and uv. Remedies fall into three families: isolate each application, make versions a machine-readable promise and let a tool resolve them, and make installs immutable, as Nix does.",
+   "sleeper": "On DOS, library clashes meant one folder of shared files. Every ecosystem now isolates projects, with virtual environments in Python and a node_modules folder in each JavaScript project, or ships whole environments in containers.",
+   "tags": [
+    "dll hell",
+    "virtual environment",
+    "version conflict",
+    "pip resolver",
+    "pep 668"
+   ],
+   "refs": [
+    {
+     "label": "Dolstra, The Purely Functional Software Deployment Model (2006)",
+     "url": "https://edolstra.github.io/pubs/phd-thesis.pdf"
+    },
+    {
+     "label": "PEP 668: Marking Python base environments as externally managed",
+     "url": "https://peps.python.org/pep-0668/"
+    }
+   ]
+  },
+  {
+   "id": "fail.notebook-repro",
+   "title": "The Notebook Reproducibility Problem",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2019,
+   "status": "n/a",
+   "short": "Large studies find most Jupyter notebooks cannot be re-run to the same result, because of hidden cell order, undeclared dependencies and unpinned versions.",
+   "long": "A notebook mixes code, results and prose in one document, and its cells can be run in any order. Wang and colleagues found in 2020 that of 936 published notebooks that could be executable in principle, 73 percent would not be reproducible by straightforward means, because people had to guess the order in which the author ran the cells. A biomedical study of 27,271 notebooks in 2,660 GitHub repositories tied to 3,467 publications re-ran the 15,817 Python notebooks that declared their dependencies in standard files: dependencies installed for 10,388, 1,203 ran without errors, and 879 gave identical results. That works out to 3.9 percent of all 22,578 Python notebooks. The causes are structural: hidden state, undeclared dependencies and unpinned versions. Pinned environments, restart-and-run-all, containers and conversion to scripts attack them.",
+   "sleeper": "Notebooks did not exist in 1990 and are now a default tool for data science and machine learning; 2.42 million GitHub repositories held one in 2025. The studies show that sharing a notebook does not mean sharing a reproducible result.",
+   "tags": [
+    "jupyter",
+    "reproducibility",
+    "hidden state",
+    "research software"
+   ],
+   "refs": [
+    {
+     "label": "Samuel and Mietchen, notebooks and reproducibility in biomedical publications (arXiv)",
+     "url": "https://arxiv.org/abs/2209.04308"
+    },
+    {
+     "label": "Wang et al., Assessing and Restoring Reproducibility of Jupyter Notebooks (ASE 2020)",
+     "url": "https://doi.org/10.1145/3324884.3416585"
+    }
+   ]
+  },
+  {
+   "id": "fail.numeric-numarray",
+   "title": "Numeric and Numarray",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1995,
+   "yearEnd": 2005,
+   "status": "dead",
+   "short": "Python's two competing array libraries, Numeric and Numarray, split the scientific community until NumPy merged them in 2005.",
+   "long": "Numeric appeared in 1995, led by Jim Hugunin, then an MIT graduate student, with Jim Fulton, Paul Dubois, Konrad Hinsen and Guido van Rossum; Hugunin had proposed on the Python Matrix Special Interest Group list a basic matrix object so that libraries could interoperate. Numarray was a reimplementation built for large Hubble Space Telescope images. It added structured arrays, flexible indexing, memory mapping and better type-casting rules, but because it was similar to Numeric yet incompatible with it, it divided the community. In 2005 NumPy emerged as a best-of-both-worlds unification, combining Numarray's features with Numeric's small-array performance and rich C interface; NumPy 1.0 reached PyPI in December 2006. Numeric and Numarray are dead.",
+   "tags": [
+    "arrays",
+    "hugunin",
+    "matrix-sig",
+    "hubble",
+    "unification"
+   ],
+   "refs": [
+    {
+     "label": "Harris et al., Array programming with NumPy, Nature (2020)",
+     "url": "https://doi.org/10.1038/s41586-020-2649-2"
+    }
+   ]
+  },
+  {
+   "id": "fail.theano",
+   "title": "Theano",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2010,
+   "yearEnd": 2017,
+   "status": "dead",
+   "short": "A University of Montreal Python library that compiled math expressions for GPUs. A core deep-learning tool until industry-backed rivals replaced it.",
+   "long": "Theano, from the University of Montreal's lab MILA, first appeared on PyPI on 23 November 2010 as a Python library for defining, optimizing and evaluating mathematical expressions on multi-dimensional arrays, and a 2016 paper called it one of the most used CPU and GPU mathematical compilers in the machine-learning community. Wikipedia records a message of 28 September 2017 from Yoshua Bengio saying that major development would end after version 1.0 because of competing offerings by strong industrial players. The final release, 1.0.5, came on 27 July 2020, and the README says MILA has stopped developing Theano; PyMC developers forked it as PyTensor. The pattern matches other dead frameworks: a competitor with better ergonomics on the same GPU back end, then the sponsor stepping back.",
+   "tags": [
+    "bengio",
+    "gpu compiler",
+    "symbolic",
+    "pytensor"
+   ],
+   "refs": [
+    {
+     "label": "Theano README",
+     "url": "https://github.com/Theano/Theano"
+    },
+    {
+     "label": "Wikipedia: Theano (software)",
+     "url": "https://en.wikipedia.org/wiki/Theano_(software)"
+    }
+   ]
+  },
+  {
+   "id": "fail.ml-graveyard",
+   "title": "Caffe, Torch, CNTK and MXNet",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2013,
+   "status": "dead",
+   "short": "Caffe, Lua Torch, CNTK and MXNet were leading deep-learning frameworks in the 2010s. Each lost ground to PyTorch or TensorFlow and has been archived or frozen.",
+   "long": "Several deep-learning frameworks common in the mid-2010s have ended. Caffe, begun by Yangqing Jia at UC Berkeley in 2013, has had no release since 1.0 in April 2017, and its successor Caffe2 was archived and folded into PyTorch's repository. Torch, written around the Lua language, moved to PyTorch in 2017. Microsoft's CNTK stopped with release 2.7 in April 2019, Apache MXNet's repository is archived with 1.9.1 as the last release in May 2022, and Chainer's last release came in June 2022. TensorFlow 1.x's graph mode was replaced when TensorFlow 2.0 made eager, line-by-line execution the default in September 2019. In September 2026 PyPI showed 62 million downloads for torch against 12.0 million for tensorflow. The common pattern was a rival with better usability on the same GPU back end, then withdrawal of the sponsor.",
+   "tags": [
+    "caffe",
+    "caffe2",
+    "lua torch",
+    "chainer",
+    "tensorflow 1",
+    "frameworks"
+   ],
+   "refs": [
+    {
+     "label": "Microsoft CNTK README",
+     "url": "https://github.com/microsoft/CNTK"
+    },
+    {
+     "label": "TensorFlow migration guide",
+     "url": "https://www.tensorflow.org/guide/migrate"
+    }
+   ]
+  },
+  {
+   "id": "fail.anaconda-licensing",
+   "title": "Anaconda Licensing Change",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2025,
+   "status": "n/a",
+   "short": "Anaconda's July 2025 terms make for-profit organizations with over 200 people buy a paid plan. Free alternatives such as Miniforge and uv avoid the question.",
+   "long": "Anaconda, the company behind the Anaconda Python distribution and the conda package manager, was founded in 2012 and had about 50 million users in 2024. Its Terms of Service, effective 15 July 2025, say that a for-profit organization with more than 200 employees or contractors, counting affiliates, must pay for a Business Plan to use the platform, while eligible academic institutions and non-profits may use it free. Large companies that had used it at no cost now have to pay or switch. Alternatives that avoid the question include Miniforge, which draws on the community conda-forge channel, mamba, pixi and uv. Only the 2025 terms were checked, not Anaconda's earlier 2020 and 2024 changes or any enforcement history.",
+   "tags": [
+    "terms of service",
+    "licensing",
+    "conda-forge",
+    "miniforge",
+    "pixi"
+   ],
+   "refs": [
+    {
+     "label": "Anaconda Terms of Service",
+     "url": "https://www.anaconda.com/legal/terms/terms-of-service"
+    }
+   ]
+  },
+  {
+   "id": "fail.therac25",
+   "title": "Therac-25",
+   "cat": "failures",
+   "tier": 2,
+   "year": 1985,
+   "status": "n/a",
+   "short": "A computer-controlled radiation machine gave massive overdoses in at least six accidents from 1985 to 1987 after hardware interlocks were removed.",
+   "long": "The Therac-25, a radiation-therapy machine from the Canadian company AECL, delivered massive overdoses in at least six accidents between 1985 and 1987. Doses were about 100 times the intended amount, in what has been called the worst series of radiation accidents in the 35-year history of medical accelerators; the commonly cited death toll is three, though sources differ. Causes included a race condition, in which an operator who changed the mode within about eight seconds left the machine in an unsafe state, and a flag that was incremented instead of set, so that integer overflow let the beam fire without its target. AECL had removed the hardware interlocks of earlier models and reused Therac-20 software. A commission blamed generally poor software design and development practices. Lessons include re-validating reused software and never relying on software alone for safety.",
+   "tags": [
+    "aecl",
+    "radiation",
+    "race condition",
+    "interlock",
+    "safety-critical",
+    "leveson"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Therac-25",
+     "url": "https://en.wikipedia.org/wiki/Therac-25"
+    }
+   ]
+  },
+  {
+   "id": "fail.ariane5",
+   "title": "Ariane 5 Flight 501",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1996,
+   "status": "n/a",
+   "short": "The first Ariane 5 rocket self-destructed 36.7 seconds into flight on 4 June 1996 because reused software overflowed converting a 64-bit number to 16 bits.",
+   "long": "On 4 June 1996 the first Ariane 5 rocket veered off course and self-destructed about 36.7 seconds into flight. The inquiry led by Professor J. L. Lions found that both inertial reference units shut down after software converted a 64-bit floating-point value, the horizontal bias, to a 16-bit signed integer and overflowed. This conversion was unprotected, and the code, alignment software needed only before lift-off, had been reused from Ariane 4, whose trajectory differed. The two units ran identical software, so the backup shared the fault, and the error handling treated a software error as a hardware failure and shut the unit down. Lessons: validate reused code against new conditions, remember that identical redundancy is not diversity, and never let error handling disable a healthy system. The loss, with four Cluster satellites, is often put at about 370 million dollars, unverified.",
+   "code": {
+    "lang": "python",
+    "text": "import struct\nhorizontal_bias = 40000.0   # a 64-bit float; a signed 16-bit integer holds at most 32767\ntry:\n    struct.pack('<h', int(horizontal_bias))\nexcept struct.error as e:\n    print('conversion failed:', e)"
+   },
+   "tags": [
+    "integer overflow",
+    "cluster",
+    "inertial reference",
+    "reuse",
+    "esa"
+   ],
+   "refs": [
+    {
+     "label": "Ariane 501 inquiry board report (hosted by D. N. Arnold)",
+     "url": "https://www.ima.umn.edu/~arnold/disasters/ariane5rep.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.mars-orbiter",
+   "title": "Mars Climate Orbiter",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1999,
+   "status": "n/a",
+   "short": "NASA lost the Mars Climate Orbiter in 1999 because one team's software gave thruster data in pound-force seconds where the specification called for newton-seconds.",
+   "long": "The Mars Climate Orbiter was launched on 11 December 1998 and lost on 23 September 1999. NASA's mishap board found the root cause was failure to use metric units in the coding of a ground software file: thruster impulse data were supplied in pound-force seconds instead of the specified newton-seconds, a factor of 4.45. Because the spacecraft's asymmetric solar array needed thruster firings 10 to 14 times more often than expected, the small error accumulated over nine months, leaving the orbiter about 170 kilometers lower than planned and too low to survive. The board also cited an unfamiliar navigation team, an unperformed correction maneuver, poor communication between project elements and a process that did not cover the move from development to operations. The lesson is to check interfaces and units end to end. The spacecraft cost about 125 million dollars, a figure not verified.",
+   "tags": [
+    "units",
+    "nasa",
+    "metric",
+    "interface",
+    "navigation"
+   ],
+   "refs": [
+    {
+     "label": "NASA Mars Climate Orbiter Mishap Investigation Board, Phase I report",
+     "url": "https://llis.nasa.gov/llis_lib/pdf/1009464main1_0641-mr.pdf"
+    }
+   ]
+  },
+  {
+   "id": "fail.patriot",
+   "title": "Patriot Missile Failure",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1991,
+   "status": "n/a",
+   "short": "A Patriot battery in Dhahran failed to stop a Scud on 25 February 1991 because its clock, counting tenths of a second, had drifted by about a third of a second.",
+   "long": "On 25 February 1991 a Patriot missile battery at Dhahran failed to intercept a Scud missile that struck a US barracks, killing 28 soldiers and injuring about 100. The GAO's report of 4 February 1992 traced the failure to the system's calculation of time since startup: time in tenths of a second was multiplied by one tenth in a 24-bit fixed-point register, which cannot hold one tenth exactly. After about 100 hours of continuous operation the error was about 0.34 seconds, enough for a Scud traveling about 1,676 meters per second to move more than half a kilometer. The error grew with uptime, so a freshly started system was accurate and one left running for days was not; the same root appears in the 0.1 plus 0.2 problem of binary arithmetic. The full GAO report could not be read, so the arithmetic here comes from a mathematician's summary of it.",
+   "tags": [
+    "rounding",
+    "fixed point",
+    "scud",
+    "dhahran",
+    "gao"
+   ],
+   "refs": [
+    {
+     "label": "GAO report IMTEC-92-26 (catalogue entry)",
+     "url": "https://www.gao.gov/products/imtec-92-26"
+    },
+    {
+     "label": "Arnold, summary of the Patriot failure",
+     "url": "https://www-users.cse.umn.edu/~arnold/disasters/patriot.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.denver-baggage",
+   "title": "Denver Airport Baggage System",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1995,
+   "status": "n/a",
+   "short": "An automated baggage system for Denver's new airport tore luggage in 1994 tests and delayed the opening by 16 months. It was abandoned in 2005.",
+   "long": "United Airlines agreed to move to Denver's new airport only if it had an automated baggage system. In April 1994 reporters watching the first test saw clothing scattered under the tracks and carts throwing luggage off the system, and the mayor cancelled the planned May opening. The airport opened on 28 February 1995, 16 months late and at 4.8 billion dollars, nearly 2 billion over budget. The baggage system was abandoned in 2005; figures such as 193 million dollars for the system and about a million dollars a day of delay are widely quoted but unverified. The case featured in W. Wayt Gibbs's 1994 Scientific American article Software's Chronic Crisis. The lessons drawn are an extremely ambitious custom system, scope added late, too little time for integration testing and no manual fallback.",
+   "tags": [
+    "baggage",
+    "integration testing",
+    "scope creep",
+    "united airlines"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Denver International Airport",
+     "url": "https://en.wikipedia.org/wiki/Denver_International_Airport"
+    }
+   ]
+  },
+  {
+   "id": "fail.knight-capital",
+   "title": "Knight Capital Incident",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2012,
+   "status": "n/a",
+   "short": "A deployment missed one of eight servers on 1 August 2012. Dead code on that server lost Knight Capital 460 million dollars in about 45 minutes.",
+   "long": "Knight Capital, a trading firm, lost 460 million dollars in about 45 minutes on 1 August 2012. The SEC's October 2013 order says a technician failed to copy new order-router code to one of eight servers, with no second-person review and no written deployment procedure. The new code reused a flag that had once activated Power Peg, a function discontinued around 2003 but still present on the servers. Orders reaching the eighth server triggered the old code, which sent millions of child orders for 212 customer orders. Automated alerts that read Power Peg disabled, 97 of them before the market opened, were not acted on. The SEC found a violation of the Market Access Rule, censured Knight and fined it 12 million dollars. The lessons drawn include removing dead code, never repurposing flags, automating and verifying deployments, and having kill switches.",
+   "tags": [
+    "deployment",
+    "power peg",
+    "trading",
+    "sec",
+    "dead code",
+    "feature flag"
+   ],
+   "refs": [
+    {
+     "label": "SEC administrative order on Knight Capital (2013)",
+     "url": "https://www.sec.gov/litigation/admin/2013/34-70694.pdf"
+    }
+   ]
+  },
+  {
+   "id": "fail.heartbleed",
+   "title": "Heartbleed",
+   "cat": "failures",
+   "tier": 2,
+   "year": 2014,
+   "status": "n/a",
+   "short": "A missing length check in OpenSSL's heartbeat feature let anyone read 64 KB chunks of server memory, including private keys. Disclosed on 7 April 2014.",
+   "long": "Heartbleed, CVE-2014-0160, was a missing bounds check in OpenSSL's version of the TLS heartbeat, a keep-alive message. The receiver trusted a 16-bit length field in the request, so a short request claiming a long length got back up to 64 KB of server memory, such as private keys, passwords and session cookies. The flawed code shipped in OpenSSL 1.0.1 in March 2012 and was fixed in 1.0.1g. Neel Mehta of Google reported it privately on 1 April 2014, Codenomicon found it independently, and about 17 percent of the Internet's certified secure web servers, roughly half a million, were believed vulnerable. The author of the change said he missed validating a length variable. Commentary pointed to memory-unsafe C, a critical library kept up by very few people and the weakness of the 'many eyes' argument; the Linux Foundation's Core Infrastructure Initiative and the LibreSSL fork followed.",
+   "sleeper": "The Internet's encryption rests on open-source libraries maintained by very few people. Heartbleed led to mass replacement of certificates and to new funding for open-source infrastructure.",
+   "tags": [
+    "openssl",
+    "heartbeat",
+    "cve-2014-0160",
+    "bounds check",
+    "libressl"
+   ],
+   "refs": [
+    {
+     "label": "heartbleed.com",
+     "url": "https://heartbleed.com/"
+    },
+    {
+     "label": "Wikipedia: Heartbleed",
+     "url": "https://en.wikipedia.org/wiki/Heartbleed"
+    }
+   ]
+  },
+  {
+   "id": "fail.737-max",
+   "title": "Boeing 737 MAX MCAS",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2019,
+   "status": "n/a",
+   "short": "MCAS software on the 737 MAX pushed the nose down based on one sensor. Two crashes in 2018 and 2019 killed 346 people; inquiries cited concealment.",
+   "long": "Two Boeing 737 MAX aircraft crashed, on 29 October 2018 and 10 March 2019, killing 346 people. The Maneuvering Characteristics Augmentation System (MCAS) pushed the nose down based on a single angle-of-attack sensor. A September 2020 US House committee report cites production pressure to compete with the Airbus A320neo, faulty design assumptions and a culture of concealment: Boeing withheld the existence of MCAS from pilots. A 2012 simulator test pilot took more than 10 seconds to respond to uncommanded MCAS activation, where FAA guidance expects four, and the engineer who approved the 2016 redesign did not know it relied on one sensor. The fleet was grounded from 13 March 2019 to 18 November 2020, at an estimated cost to Boeing of about 20 billion dollars plus over 60 billion in indirect losses. It was a systems and certification failure, not just a software bug.",
+   "tags": [
+    "mcas",
+    "angle of attack",
+    "certification",
+    "faa",
+    "boeing",
+    "concealment"
+   ],
+   "refs": [
+    {
+     "label": "US House Transportation Committee, Final Committee Report on the 737 MAX (2020)",
+     "url": "https://democrats-transportation.house.gov/imo/media/doc/2020.09.15%20FINAL%20737%20MAX%20Report%20for%20Public%20Release.pdf"
+    },
+    {
+     "label": "Wikipedia: Boeing 737 MAX groundings",
+     "url": "https://en.wikipedia.org/wiki/Boeing_737_MAX_groundings"
+    }
+   ]
+  },
+  {
+   "id": "fail.crowdstrike",
+   "title": "CrowdStrike Outage",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2024,
+   "status": "n/a",
+   "short": "A faulty security-software content update crashed about 8.5 million Windows machines on 19 July 2024. It reached every customer at once with no staged rollout.",
+   "long": "At 04:09 UTC on 19 July 2024 CrowdStrike pushed a content update, Channel File 291, for a new template type that defined 21 input fields while the sensor code supplied only 20. The mismatch passed validation and tests, partly because testing used wildcard matching for the 21st field. When later content used that field, an out-of-bounds memory read in the Windows kernel-mode sensor crashed machines. The update was reverted at 05:27 UTC, but affected computers had to be fixed by hand, by booting into safe mode and deleting a file. Microsoft estimated that 8.5 million Windows devices were affected, under one percent of all Windows machines. Parametrix put losses for the top 500 US companies at about 5.4 billion dollars, of which only 540 million to 1.08 billion was insured. CrowdStrike's analysis lists bounds checks, more testing and staged rollouts through canary rings as fixes.",
+   "sleeper": "Vendors now push content updates, data files that change a program's behavior, to millions of machines at once. CrowdStrike's own review concluded that even such updates need staged rollouts, with a small ring of machines first.",
+   "tags": [
+    "channel file 291",
+    "kernel",
+    "bsod",
+    "staged rollout",
+    "canary",
+    "outage"
+   ],
+   "refs": [
+    {
+     "label": "CrowdStrike, Channel File 291 Root Cause Analysis (2024)",
+     "url": "https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf"
+    },
+    {
+     "label": "Wikipedia: 2024 CrowdStrike incident",
+     "url": "https://en.wikipedia.org/wiki/2024_CrowdStrike_incident"
+    }
+   ]
+  },
+  {
+   "id": "fail.post-office-horizon",
+   "title": "Post Office Horizon Scandal",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1999,
+   "status": "n/a",
+   "short": "Fujitsu's Horizon accounting system showed false shortfalls and the UK Post Office prosecuted subpostmasters for them. More than 900 were wrongly convicted by 2015.",
+   "long": "Fujitsu's Horizon accounting system, in Post Office branches from 1999, showed phantom shortfalls, and the Post Office, able to prosecute privately, pursued the subpostmasters who ran branches. Between 1999 and 2015 more than 900 were wrongly convicted of theft, fraud or false accounting, and at least thirteen suicides are linked to the scandal. Fujitsu knew of bugs from 1999, yet the Post Office insisted Horizon was robust and did not disclose known faults. Computer Weekly broke the story in 2009, and in 2019 the High Court ruled in the Bates group action that Horizon contained bugs, errors and defects; the case settled for 58 million pounds. Convictions began to be quashed in December 2020, and compensation may exceed one billion pounds. The lesson is the cost of treating software evidence as infallible. The inquiry's final report was still incomplete on 1 October 2026.",
+   "tags": [
+    "fujitsu",
+    "subpostmasters",
+    "wrongful convictions",
+    "computer weekly",
+    "bates"
+   ],
+   "refs": [
+    {
+     "label": "Post Office Horizon IT Inquiry",
+     "url": "https://www.postofficehorizoninquiry.org.uk/"
+    },
+    {
+     "label": "Wikipedia: British Post Office scandal",
+     "url": "https://en.wikipedia.org/wiki/British_Post_Office_scandal"
+    }
+   ]
+  },
+  {
+   "id": "fail.log4shell",
+   "title": "Log4Shell",
+   "cat": "failures",
+   "tier": 2,
+   "year": 2021,
+   "status": "n/a",
+   "short": "A flaw in the widely embedded Log4j logging library let attackers run code on servers by getting a crafted string logged. Public on 9 and 10 December 2021.",
+   "long": "Log4Shell, CVE-2021-44228, was a flaw in Apache Log4j, a Java logging library embedded in countless products. Versions from 2.0-beta9 to 2.14.1 performed lookups on logged text, so an attacker who got a crafted string logged, such as a web header or a chat message, could make the server load attacker code. An engineer at Alibaba Cloud reported it to the Apache Software Foundation on 24 November 2021, the flaw became public on 9 and 10 December, and version 2.15.0 was released on 10 December. It scored the maximum 10.0 for severity. The US Cyber Safety Review Board called it an endemic vulnerability that could remain in systems for a decade or longer, and found that none of the organizations it surveyed had used software bills of materials to find vulnerable systems. Volunteers maintained the library, and the feature dated from 2013.",
+   "sleeper": "Applications now inherit hundreds of libraries, some several layers down. Log4Shell showed organizations often did not know whether they ran Log4j, which is why dependency inventories and SBOMs, lists of a product's components, became policy topics.",
+   "tags": [
+    "log4j",
+    "cve-2021-44228",
+    "jndi",
+    "remote code execution",
+    "csrb"
+   ],
+   "refs": [
+    {
+     "label": "Cyber Safety Review Board, Review of the December 2021 Log4j Event",
+     "url": "https://www.cisa.gov/sites/default/files/publications/CSRB-Report-on-Log4-July-11-2022_508.pdf"
+    },
+    {
+     "label": "Apache Logging Services security page",
+     "url": "https://logging.apache.org/security.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.xz",
+   "title": "xz-utils Backdoor",
+   "cat": "failures",
+   "tier": 2,
+   "year": 2024,
+   "status": "n/a",
+   "short": "A patient attacker took over the xz-utils compression project and hid a backdoor aimed at SSH logins on Linux servers. A slow login exposed it.",
+   "long": "In March 2024 Andres Freund noticed that SSH logins on a Debian development system were using extra processor time, and traced it to a backdoor, CVE-2024-3094, in the xz compression library. Russ Cox's reconstruction shows a persona called Jia Tan contributing from October 2021 while other accounts pressed the sole maintainer, Lasse Collin, to hand over work. Jia Tan became a maintainer in 2022 and built the 5.6.0 and 5.6.1 releases, which carried the backdoor in February and March 2024. The exploit hid in build files present only in the release tarball and in disguised test files, and reached the SSH server indirectly through libsystemd and liblzma. Those versions had reached mostly pre-release distribution builds. Lessons: a tired volunteer maintainer is a target, release tarballs can differ from the source repository, and trust passes through indirect links.",
+   "sleeper": "Open-source libraries are often kept alive by one volunteer. The xz case shows that taking over such a project is a workable attack, and that the source you read may differ from the tarball you build.",
+   "tags": [
+    "jia tan",
+    "cve-2024-3094",
+    "liblzma",
+    "sshd",
+    "social engineering",
+    "freund"
+   ],
+   "refs": [
+    {
+     "label": "Cox, The xz attack timeline",
+     "url": "https://research.swtch.com/xz-timeline"
+    },
+    {
+     "label": "Freund, oss-security post of 29 March 2024",
+     "url": "https://www.openwall.com/lists/oss-security/2024/03/29/4"
+    }
+   ]
+  },
+  {
+   "id": "fail.solarwinds",
+   "title": "SolarWinds SUNBURST",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2020,
+   "status": "n/a",
+   "short": "Attackers planted a backdoor in SolarWinds' Orion software during its build, so the vendor itself signed and delivered it to up to 18,000 customers.",
+   "long": "Attackers inside SolarWinds, maker of the Orion network-management product, installed a tool called SUNSPOT in an intrusion that ran from about September 2019 to December 2020. It watched for the build of Orion and swapped one source file for a version carrying the SUNBURST backdoor, leaving the stored source clean. The program was signed with SolarWinds' legitimate code-signing certificate, and malicious activity began in at least March 2020. A December 2020 filing said SolarWinds had notified about 33,000 Orion customers and believed fewer than 18,000 had an affected installation. In April 2021 the US Treasury said the SVR was responsible for an intrusion that compromised thousands of US government and private networks. Because the tampering happened at build time and was then signed by the vendor, it is the scenario that reproducible and hermetic builds are designed to expose.",
+   "sleeper": "A valid vendor signature used to be good evidence that software was genuine. SolarWinds showed it proves only who signed the file, not that the build was clean, which is why newer efforts such as SLSA record how software was built.",
+   "tags": [
+    "sunspot",
+    "orion",
+    "build system",
+    "code signing",
+    "supply chain"
+   ],
+   "refs": [
+    {
+     "label": "CISA advisory AA20-352A",
+     "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-352a"
+    },
+    {
+     "label": "CrowdStrike, SUNSPOT malware technical analysis",
+     "url": "https://www.crowdstrike.com/blog/sunspot-malware-technical-analysis/"
+    }
+   ]
+  },
+  {
+   "id": "fail.event-stream",
+   "title": "event-stream",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2018,
+   "status": "n/a",
+   "short": "In 2018 a stranger was handed publish rights to the popular event-stream npm package and slipped in code that targeted one bitcoin wallet.",
+   "long": "In September 2018 a new maintainer, an account named right9ctrl, was given publish rights to event-stream, a popular npm package. The attacker added a dependency, flatmap-stream, containing encrypted code that decrypted and ran only inside one specific application, assumed to be the Copay bitcoin wallet. Three days later the dependency was removed from the list with a version bump, which hid the problem across millions of installations. A user raised the alarm on 20 November 2018 in a GitHub issue titled 'I don't know what to say'; the incident is dated from September to 26 November 2018. A 2019 study of npm counts event-stream among the incidents that motivated it. Unlike the left-pad deletion, this was deliberate malice enabled by an informal handover of control.",
+   "tags": [
+    "npm",
+    "flatmap-stream",
+    "copay",
+    "maintainer handover",
+    "bitcoin"
+   ],
+   "refs": [
+    {
+     "label": "event-stream issue 116: I don't know what to say",
+     "url": "https://github.com/dominictarr/event-stream/issues/116"
+    }
+   ]
+  },
+  {
+   "id": "fail.shai-hulud",
+   "title": "Shai-Hulud npm Worm",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2025,
+   "status": "n/a",
+   "short": "A self-copying worm spread through npm from September 2025, stealing developers' tokens and publishing infected versions of their other packages.",
+   "long": "Shai-Hulud was a self-replicating worm that spread through npm packages from 14 September 2025; CISA reported that it had compromised over 500 packages. The malware searched for GitHub tokens and cloud keys, uploaded them to a public repository named Shai-Hulud, then logged in to npm as the victim and injected code into other packages that victim maintained. Early news counts were lower, such as 187 packages on 16 September, and counts differ between vendors. A second wave on 24 November 2025 ran earlier in installation and, according to Socket, could be destructive. CISA advised pinning versions to releases from before 16 September and rotating credentials. In response npm revoked its classic tokens on 9 December 2025, and npm 12, in July 2026, blocks install scripts by default. Vendor reports describe further 2026 waves, but their figures were not independently checked.",
+   "sleeper": "Software once spread on disks you handled yourself. A package registry like npm now lets code install other code automatically, which is the path this worm used to copy itself from one maintainer's packages to the next.",
+   "tags": [
+    "worm",
+    "npm",
+    "credential theft",
+    "postinstall",
+    "self-replicating"
+   ],
+   "refs": [
+    {
+     "label": "CISA alert: widespread supply chain compromise impacting npm (2025)",
+     "url": "https://www.cisa.gov/news-events/alerts/2025/09/23/widespread-supply-chain-compromise-impacting-npm-ecosystem"
+    }
+   ]
+  },
+  {
+   "id": "fail.npm-takeovers",
+   "title": "npm Account Takeovers",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2021,
+   "status": "n/a",
+   "short": "Attackers repeatedly took over maintainers' npm accounts, by stolen credentials or phishing, and published malicious versions of popular packages.",
+   "long": "A recurring npm attack is to take over a maintainer's account and publish a malicious release. On 22 October 2021 three malicious versions of ua-parser-js were published after such a takeover, and GitHub's advisory said any computer with the package installed should be considered fully compromised. On 8 September 2025 a maintainer was phished through a look-alike domain, and 18 popular packages, including chalk and debug, with more than 2 billion downloads a week between them, carried code that rewrote cryptocurrency payment destinations in browsers; the actual theft was small. On 31 March 2026 the axios maintainer's account was taken over and a remote-access trojan was added to a package with about 400 million monthly downloads, with about three hours passing before detection. Registries responded by replacing long-lived tokens with short-lived credentials.",
+   "tags": [
+    "ua-parser-js",
+    "chalk",
+    "debug",
+    "axios",
+    "phishing",
+    "tokens"
+   ],
+   "refs": [
+    {
+     "label": "GitHub advisory GHSA-pjwm-rvh2-c87w (ua-parser-js)",
+     "url": "https://github.com/advisories/GHSA-pjwm-rvh2-c87w"
+    },
+    {
+     "label": "Aikido: npm debug and chalk packages compromised",
+     "url": "https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised"
+    }
+   ]
+  },
+  {
+   "id": "fail.maintainer-sabotage",
+   "title": "colors and faker Sabotage",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2022,
+   "status": "n/a",
+   "short": "In January 2022 the author of the popular colors and faker npm packages deliberately broke them, disrupting thousands of projects.",
+   "long": "On 6 to 9 January 2022 Marak Squires, the author of the npm packages colors and faker, published versions that deliberately broke them: colors 1.4.44-liberty-2 and faker 6.6.6 contained an infinite loop that printed 'LIBERTY LIBERTY LIBERTY' and garbage characters. In November 2020 he had warned, 'Take this as an opportunity to send me a six figure yearly contract or fork the project.' Colors had over 20 million weekly downloads and about 19,000 dependent projects, and faker over 2.8 million weekly downloads. GitHub suspended his account and npm reverted faker. The episode, reported by BleepingComputer, shows that code a project trusts can be changed by one unpaid person who holds publish rights.",
+   "tags": [
+    "npm",
+    "sabotage",
+    "protestware",
+    "open-source maintainers",
+    "faker",
+    "colors"
+   ],
+   "refs": [
+    {
+     "label": "BleepingComputer: Dev corrupts npm libs colors and faker",
+     "url": "https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/"
+    }
+   ]
+  },
+  {
+   "id": "fail.slopsquatting",
+   "title": "Slopsquatting",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2025,
+   "status": "n/a",
+   "short": "AI coding assistants sometimes recommend packages that do not exist. Attackers can register those names with malware, an attack called slopsquatting.",
+   "long": "Language models that write code sometimes recommend software packages that do not exist. In a study by Spracklen and colleagues (USENIX Security 2025), 16 models produced 576,000 code samples, and about 19.7 percent of the recommended packages were not real, a total of 205,474 invented names. The rate was 21.7 percent for open-source models and 5.2 percent for commercial ones. Many invented names recurred across runs, so an attacker can register a likely name with malware and wait for developers to install it. The term slopsquatting is attributed to Seth Larson of the Python Software Foundation. It adapts typosquatting, in which a malicious package takes a name close to a popular one. The study and the attribution could not be checked at the source, so the figures are as recalled.",
+   "tags": [
+    "package hallucination",
+    "typosquatting",
+    "llm",
+    "malicious packages",
+    "spracklen"
+   ]
+  },
+  {
+   "id": "fail.prompt-injection",
+   "title": "Prompt Injection and the Lethal Trifecta",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2025,
+   "status": "n/a",
+   "short": "Text hidden in content that an AI agent reads can steer it. An agent with private data, untrusted input and a way to send data out can be made to leak.",
+   "long": "Prompt injection is an attack in which text placed in material an AI model reads, such as a web page, an issue or a document, is treated by the model as instructions. In June 2025 Simon Willison named a dangerous combination the lethal trifecta: an agent that can read private data, is exposed to untrusted content and can communicate externally can be steered into leaking data. April 2025 analyses of the Model Context Protocol flagged prompt injection and poisoned tools as ways to exfiltrate data. Mitigations in current practice are limited permissions, sandboxes, allowlists and a separate classifier that blocks scope escalation; Claude Code's documentation warns that after about ten approvals people click through instead of reviewing. It is a close cousin of SQL injection, where attacker text is interpreted as code.",
+   "sleeper": "In 1990 a program's code and its input data were kept apart by design. An LLM agent reads both as text, so content it is merely asked to read can end up steering what it does.",
+   "tags": [
+    "llm security",
+    "agents",
+    "exfiltration",
+    "willison",
+    "untrusted content"
+   ],
+   "refs": [
+    {
+     "label": "Willison, 2025: The year in LLMs",
+     "url": "https://simonwillison.net/2025/Dec/31/the-year-in-llms/"
+    },
+    {
+     "label": "Claude Code best practices",
+     "url": "https://code.claude.com/docs/en/best-practices"
+    }
+   ]
+  },
+  {
+   "id": "fail.ai-slop-reports",
+   "title": "AI Slop Vulnerability Reports",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2025,
+   "status": "n/a",
+   "short": "In 2025 curl's maintainer reported being flooded with AI-written bug reports that looked real but were not, costing hours of volunteer time per report.",
+   "long": "On 14 July 2025 Daniel Stenberg, the lead maintainer of curl, described how AI-generated slop was clogging the project's bug bounty. About 20 percent of 2025 submissions were such reports, and only about 5 percent of those in early July were genuine vulnerabilities. The project receives about two security reports a week, and each report occupies three to four people for 30 minutes to three hours. Since the bounty began in 2019 curl had confirmed 81 real vulnerabilities and paid out more than 90,000 dollars. Stenberg published 21 bogus reports, one titled 'Buffer Overflow in strcpy', and weighed ending cash rewards, better filtering or submission fees: 'We need to reduce the amount of sand in the machine.' A recollection that curl ended the bounty in January 2026 is unverified.",
+   "tags": [
+    "curl",
+    "bug bounty",
+    "stenberg",
+    "maintainer burden",
+    "llm"
+   ],
+   "refs": [
+    {
+     "label": "Stenberg, Death by a thousand slops",
+     "url": "https://daniel.haxx.se/blog/2025/07/14/death-by-a-thousand-slops/"
+    }
+   ]
+  },
+  {
+   "id": "fail.trusting-trust",
+   "title": "Reflections on Trusting Trust",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1984,
+   "status": "n/a",
+   "short": "Ken Thompson's 1984 lecture showed a compiler that inserts a hidden backdoor into the programs it compiles, including itself. The source code can look clean.",
+   "long": "In his 1984 Turing Award lecture Ken Thompson described a compiler modified to miscompile the Unix login command so that it also accepts a known password, and to re-insert this trick whenever it compiles the compiler itself. The compiler's source code then looks clean even though the binary is compromised. His conclusion was that you cannot trust code you did not totally create yourself, and that no amount of source-level scrutiny protects you from untrusted code; the problem worsens at lower levels such as the assembler, loader and microcode. Russ Cox wrote in 2019 that we are trusting more code with less justification for doing so. The lecture is the foundation for later concern over build tools and dependencies, and reproducible builds are one response.",
+   "tags": [
+    "thompson",
+    "backdoor",
+    "compiler trust",
+    "turing award",
+    "login"
+   ],
+   "refs": [
+    {
+     "label": "Thompson, Reflections on Trusting Trust (1984)",
+     "url": "https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf"
+    },
+    {
+     "label": "Cox, Our Software Dependency Problem (2019)",
+     "url": "https://research.swtch.com/deps"
+    }
+   ]
+  },
+  {
+   "id": "fail.cobol-unemployment",
+   "title": "COBOL and the 2020 Unemployment Systems",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2020,
+   "status": "n/a",
+   "short": "In 2020 several US states said they lacked COBOL programmers to adjust unemployment systems. Whether COBOL itself caused the delays is unproven.",
+   "long": "During the COVID-19 surge in unemployment claims in 2020, several US states reported a shortage of skilled COBOL programmers to support their legacy unemployment-benefit systems. Many of those systems had been in the process of conversion to modern languages, and the conversion had been put on hold. The IRS rushed to patch its COBOL-based Individual Master File for CARES Act payments. The news reports that spread the story, such as a CNN article of 8 April 2020 about states needing people who know a half-century-old language, could not be retrieved for checking. Whether COBOL itself, rather than a surge in demand and web front ends, caused the delays was not established, so the claim that COBOL caused the failures is unproven. The episode does show how long COBOL systems stay in service.",
+   "sleeper": "COBOL, which you may remember as the language of business data processing, still runs benefit and tax systems, and the 2020 episode made that visible to the public.",
+   "tags": [
+    "legacy systems",
+    "covid-19",
+    "irs",
+    "unemployment insurance",
+    "skills shortage"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: COBOL",
+     "url": "https://en.wikipedia.org/wiki/COBOL"
+    }
+   ]
+  },
+  {
+   "id": "fail.healthcare-gov",
+   "title": "Healthcare.gov Launch",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2013,
+   "status": "n/a",
+   "short": "The US health insurance marketplace site launched on 1 October 2013 and was nearly unusable for weeks, after changing rules and too little end-to-end testing.",
+   "long": "Healthcare.gov, the US federal health-insurance marketplace, launched on schedule on 1 October 2013 but was nearly unusable for weeks. The contract with CGI Federal grew from 93.7 million to 292 million dollars before launch, requirements kept changing until summer 2013, and a McKinsey assessment in March 2013 had warned that the effort was behind and at risk. President Obama said there was no excuse on 21 October 2013. Most problems were fixed by the 23 December enrollment deadline, and a later Health and Human Services inspector general report put the total cost at 1.7 billion dollars. Lessons usually drawn are a fixed date combined with changing scope, no end-to-end testing and diffuse accountability among many contractors. A GAO report and the creation of the US Digital Service in 2014 followed, though that GAO report was not checked.",
+   "tags": [
+    "cgi federal",
+    "us digital service",
+    "fixed deadline",
+    "contractors",
+    "obamacare"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: HealthCare.gov",
+     "url": "https://en.wikipedia.org/wiki/HealthCare.gov"
+    }
+   ]
+  },
+  {
+   "id": "fail.equifax",
+   "title": "Equifax Breach",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2017,
+   "status": "n/a",
+   "short": "Attackers stole data on 147.9 million Americans from Equifax in 2017 through a web-framework flaw that was disclosed months earlier and left unpatched on one system.",
+   "long": "Between May and July 2017 attackers stole personal data on 147.9 million Americans, 15.2 million Britons and about 19,000 Canadians from Equifax. A House Oversight report says a flaw in Apache Struts was publicly disclosed on 7 March 2017 and the Department of Homeland Security alerted Equifax the next day, but an internet-facing dispute portal, a decades-old custom system, was never patched. The attack began on 13 May and ran 76 days; Wikipedia gives 12 May. Attackers ran about 9,000 queries on 48 databases and found unencrypted personal data 265 times. The device that inspected the portal's traffic had been inactive because of an expired certificate, so the theft went unseen until the certificate was renewed on 29 July. The chief executive left on 26 September 2017, and the report cites a lack of accountability and no clear lines of authority in IT management.",
+   "tags": [
+    "apache struts",
+    "patching",
+    "data breach",
+    "certificate expiry",
+    "credit bureau"
+   ],
+   "refs": [
+    {
+     "label": "US House Oversight Committee, Equifax report (2018)",
+     "url": "https://oversight.house.gov/wp-content/uploads/2018/12/Equifax-Report.pdf"
+    }
+   ]
+  },
+  {
+   "id": "fail.fbi-vcf",
+   "title": "FBI Virtual Case File",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2005,
+   "status": "n/a",
+   "short": "The FBI's Virtual Case File was abandoned in April 2005 after about 170 million dollars, because of shifting requirements, rushed schedules and weak oversight.",
+   "long": "The Virtual Case File was a case-management system built as part of the Trilogy modernization announced in September 2000. SAIC won a cost-plus contract in mid-2001, and the system was abandoned in April 2005 after about 170 million dollars; IEEE Spectrum called it possibly the most highly publicized software failure in history. The Justice Department Inspector General's 2005 audit, by Glenn Fine, listed eight contributing factors, including poorly defined and slowly evolving design requirements, overly ambitious schedules and no plan to guide hardware purchases. The FBI went through three chief information officers in 2003. The lessons drawn are unstable requirements, cost-plus contracts without technical oversight and schedule pressure after the September 2001 attacks. The 2005 audit itself could not be retrieved, so this rests on secondary reports.",
+   "tags": [
+    "trilogy",
+    "saic",
+    "cost-plus contract",
+    "government it",
+    "requirements"
+   ],
+   "refs": [
+    {
+     "label": "IEEE Spectrum: Who Killed the Virtual Case File?",
+     "url": "https://spectrum.ieee.org/who-killed-the-virtual-case-file"
+    }
+   ]
+  },
+  {
+   "id": "fail.nhs-npfit",
+   "title": "NHS National Programme for IT",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2011,
+   "status": "n/a",
+   "short": "The UK programme to create national electronic care records grew from 2.3 to 12.4 billion pounds and was largely dismantled in 2011.",
+   "long": "The National Programme for IT in the NHS was set up in October 2002 to give the health service national electronic care records. It was first expected to cost 2.3 billion pounds over three years; by 2006 the National Audit Office put it at 12.4 billion over ten. In 2007 the chair of Parliament's Public Accounts Committee called it the biggest IT project in the world turning into the biggest disaster. In May 2011 the NAO concluded that the 2.7 billion pounds spent so far on care-records systems did not represent value for money and that it had no grounds for confidence about the further 4.3 billion planned. Most of the programme was dismantled in 2011, and the committee later called it among the worst and most expensive contracting fiascos. Lessons drawn are centralized top-down procurement, little involvement of users and clinicians, vendor lock-in and weak contract enforcement.",
+   "tags": [
+    "nhs",
+    "national audit office",
+    "procurement",
+    "care records",
+    "public accounts committee"
+   ],
+   "refs": [
+    {
+     "label": "National Audit Office: The National Programme for IT in the NHS, an update (2011)",
+     "url": "https://www.nao.org.uk/reports/the-national-programme-for-it-in-the-nhs-an-update-on-the-delivery-of-detailed-care-records-systems/"
+    }
+   ]
+  },
+  {
+   "id": "fail.soap-ws",
+   "title": "SOAP and WS-*",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1998,
+   "status": "legacy",
+   "short": "SOAP wrapped remote calls in verbose XML and was extended by dozens of vendor-driven WS-* specifications. REST with JSON proved simpler and won.",
+   "long": "SOAP was a way for programs to call each other over the network by exchanging XML messages, and large vendors backed it. Version 1.1 was submitted to the W3C as a Note on 8 May 2000 by authors from DevelopMentor, IBM, Microsoft and others, and dozens of vendor-driven add-on specifications, grouped as WS-*, followed. Verbose XML envelopes and that pile of extras lost to REST, the style Roy Fielding described in his 2000 dissertation, combined with JSON, which became an Internet standard, RFC 8259, in December 2017. Michi Henning wrote that SOAP 'had serious technical shortcomings, but, as a market strategy, it was a masterstroke'. No survey figures on how much XML or SOAP remains in use were found, so the decline is inferred from the history of standards.",
+   "tags": [
+    "web services",
+    "xml",
+    "wsdl",
+    "rest",
+    "enterprise"
+   ],
+   "refs": [
+    {
+     "label": "W3C: SOAP Version 1.1 Note (2000)",
+     "url": "https://www.w3.org/TR/2000/NOTE-SOAP-20000508/"
+    },
+    {
+     "label": "RFC 8259: The JSON Data Interchange Format",
+     "url": "https://www.rfc-editor.org/rfc/rfc8259.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.xhtml2",
+   "title": "XHTML 2.0",
+   "cat": "failures",
+   "tier": 4,
+   "year": 2002,
+   "yearEnd": 2009,
+   "status": "dead",
+   "short": "The W3C's strict, XML-based XHTML 2 broke compatibility with existing web pages. Its working group lapsed in 2009, and the compatible HTML5 became the standard.",
+   "long": "XHTML 2.0 was a W3C effort, running from about 2002, to rebuild HTML as a strict XML language that was not backward compatible with existing pages. The W3C let the working group's charter lapse at the end of 2009. The WHATWG, formed in 2004 by engineers from Apple, Mozilla and Opera, had instead pushed a backward-compatible HTML5, which became a W3C Recommendation in October 2014; since 2019 the WHATWG's living standard has been the single HTML specification. The episode is cited as an example of backward compatibility beating a clean-slate redesign, as AMD's 64-bit x86 did over Itanium. These dates come from secondary sources, and the specific W3C news item was not found.",
+   "tags": [
+    "html5",
+    "whatwg",
+    "w3c",
+    "backward compatibility",
+    "xml"
+   ],
+   "refs": [
+    {
+     "label": "WHATWG FAQ",
+     "url": "https://whatwg.org/faq"
+    },
+    {
+     "label": "Wikipedia: XHTML",
+     "url": "https://en.wikipedia.org/wiki/XHTML"
+    }
+   ]
+  },
+  {
+   "id": "fail.cpp-removed",
+   "title": "Removed C++ Features",
+   "cat": "failures",
+   "tier": 4,
+   "year": 1998,
+   "status": "dead",
+   "short": "C++ has dropped or reworked several features that proved too hard to implement or use, including export templates, auto_ptr and exception specifications.",
+   "long": "Several C++ features were removed or replaced after they proved too complex. Export templates, ratified in C++98, had only one implementation, from EDG, five years later, and a 2003 proposal to make them optional was defeated by 80 percent; the keyword was dropped for templates in C++11 and reused for modules in C++20. The std::auto_ptr smart pointer, deprecated in C++11 and removed in C++17, was replaced by unique_ptr, and C++17 also removed trigraphs, the register keyword and dynamic exception specifications. Cfront 4.0 was abandoned in 1993 after a failed attempt to add exceptions. Template error messages, which Bjarne Stroustrup called spectacularly long and unhelpful, were improved by concepts in C++20; one test with clang 21.1.0 produced 126 diagnostic lines before concepts and 22 after.",
+   "tags": [
+    "export templates",
+    "auto_ptr",
+    "exception specifications",
+    "concepts",
+    "cfront",
+    "templates"
+   ],
+   "refs": [
+    {
+     "label": "Stroustrup, HOPL-III: Evolving a language in and for the real world",
+     "url": "https://www.stroustrup.com/hopl-almost-final.pdf"
+    },
+    {
+     "label": "cppreference: export",
+     "url": "https://en.cppreference.com/w/cpp/keyword/export"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "fail.uncol",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.uncol",
+   "t": "comp.ir",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "the idea survived as shared intermediate representations"
+  },
+  {
+   "s": "fail.uncol",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "influenced",
+   "note": "the same N times M reasoning"
+  },
+  {
+   "s": "fail.uncol",
+   "t": "comp.bytecode",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "fail.uncol",
+   "t": "comp.jvm",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "fail.self-modifying-code",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.self-modifying-code",
+   "t": "found.stored-program",
+   "w": 2,
+   "k": "uses",
+   "note": "possible because instructions are stored as data"
+  },
+  {
+   "s": "fail.self-modifying-code",
+   "t": "found.edsac",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.self-modifying-code",
+   "t": "lang.speedcoding",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.self-modifying-code",
+   "t": "found.ibm-704",
+   "w": 2,
+   "k": "replaced-by",
+   "note": "hardware index registers took over the job"
+  },
+  {
+   "s": "fail.self-modifying-code",
+   "t": "comp.jit",
+   "w": 1,
+   "k": "related",
+   "note": "run-time code generation, done by a trusted program"
+  },
+  {
+   "s": "fail.absolute-addresses",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.absolute-addresses",
+   "t": "comp.relocation",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.absolute-addresses",
+   "t": "comp.assembler",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.absolute-addresses",
+   "t": "comp.initial-orders",
+   "w": 3,
+   "k": "related",
+   "note": "Wheeler's fix of 1949"
+  },
+  {
+   "s": "fail.absolute-addresses",
+   "t": "ppl.wheeler",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.absolute-addresses",
+   "t": "found.edsac",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.absolute-addresses",
+   "t": "comp.linker",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.absolute-addresses",
+   "t": "found.machine-code",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.automatic-programming-hype",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.automatic-programming-hype",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.automatic-programming-hype",
+   "t": "ppl.hopper",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.automatic-programming-hype",
+   "t": "ppl.backus",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.automatic-programming-hype",
+   "t": "fail.case",
+   "w": 2,
+   "k": "related",
+   "note": "a later wave of the same promise"
+  },
+  {
+   "s": "fail.automatic-programming-hype",
+   "t": "mod.low-code",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.automatic-programming-hype",
+   "t": "lang.cobol",
+   "w": 1,
+   "k": "related",
+   "note": "English-like syntax for business readers"
+  },
+  {
+   "s": "fail.pl1-universal",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.pl1-universal",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "fail.pl1-universal",
+   "t": "plat.multics",
+   "w": 2,
+   "k": "related",
+   "note": "the success side: Multics was written in PL/I"
+  },
+  {
+   "s": "fail.pl1-universal",
+   "t": "found.system360",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.pl1-universal",
+   "t": "ppl.dijkstra",
+   "w": 2,
+   "k": "related",
+   "note": "the best-known critic"
+  },
+  {
+   "s": "fail.pl1-universal",
+   "t": "lang.cobol",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "fail.pl1-universal",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "fail.itanium",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.itanium",
+   "t": "found.x86",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "AMD's backward-compatible x86-64 extension won"
+  },
+  {
+   "s": "fail.itanium",
+   "t": "found.risc",
+   "w": 2,
+   "k": "related",
+   "note": "its performance was disappointing against RISC chips"
+  },
+  {
+   "s": "fail.itanium",
+   "t": "comp.optimization",
+   "w": 2,
+   "k": "related",
+   "note": "it depended on compilers finding parallelism ahead of time"
+  },
+  {
+   "s": "fail.itanium",
+   "t": "plat.linux",
+   "w": 1,
+   "k": "related",
+   "note": "Linux later removed IA-64 support"
+  },
+  {
+   "s": "fail.os2",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.os2",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "fail.os2",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "fail.os2",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.os2",
+   "t": "plat.msdos",
+   "w": 2,
+   "k": "related",
+   "note": "planned as its successor"
+  },
+  {
+   "s": "fail.os2",
+   "t": "plat.windows-nt",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.unix-wars",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.unix-wars",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.unix-wars",
+   "t": "plat.bsd",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.unix-wars",
+   "t": "plat.posix",
+   "w": 2,
+   "k": "related",
+   "note": "the 1988 interface standard"
+  },
+  {
+   "s": "fail.unix-wars",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "free Linux on cheap x86 undercut commercial Unix"
+  },
+  {
+   "s": "fail.unix-wars",
+   "t": "org.bell-labs",
+   "w": 1,
+   "k": "related",
+   "note": "Unix's origin, later licensed by AT&T"
+  },
+  {
+   "s": "fail.unix-wars",
+   "t": "plat.windows-nt",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related",
+   "note": "bundled Internet Explorer with Windows"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "plat.mosaic",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "org.mozilla",
+   "w": 2,
+   "k": "related",
+   "note": "Netscape's open-sourced code became Mozilla"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "plat.browser-engines",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "plat.web",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "org.w3c-whatwg",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "lang.js",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.browser-wars",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "released Chrome in 2008"
+  },
+  {
+   "s": "fail.java-applets",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.java-applets",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related",
+   "note": "the language outlived its showpiece"
+  },
+  {
+   "s": "fail.java-applets",
+   "t": "lang.js",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.java-applets",
+   "t": "plat.wasm",
+   "w": 2,
+   "k": "replaced-by",
+   "note": "for heavy code in the browser"
+  },
+  {
+   "s": "fail.java-applets",
+   "t": "fail.flash",
+   "w": 2,
+   "k": "related",
+   "note": "the same plugin model failed the same way"
+  },
+  {
+   "s": "fail.java-applets",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Chrome removed the plugin interface"
+  },
+  {
+   "s": "fail.java-applets",
+   "t": "comp.jvm",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.flash",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.flash",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by",
+   "note": "Silverlight"
+  },
+  {
+   "s": "fail.flash",
+   "t": "ppl.jobs",
+   "w": 2,
+   "k": "related",
+   "note": "wrote Thoughts on Flash in 2010"
+  },
+  {
+   "s": "fail.flash",
+   "t": "org.apple",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.flash",
+   "t": "plat.iphone",
+   "w": 2,
+   "k": "related",
+   "note": "the iPhone would not run Flash"
+  },
+  {
+   "s": "fail.flash",
+   "t": "lang.js",
+   "w": 2,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.flash",
+   "t": "plat.wasm",
+   "w": 2,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.flash",
+   "t": "lang.html",
+   "w": 2,
+   "k": "replaced-by",
+   "note": "HTML5 video and canvas"
+  },
+  {
+   "s": "fail.corba",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.corba",
+   "t": "plat.rest",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.corba",
+   "t": "plat.graphql-grpc",
+   "w": 2,
+   "k": "replaced-by",
+   "note": "gRPC covers the remote-call niche"
+  },
+  {
+   "s": "fail.corba",
+   "t": "fail.ejb",
+   "w": 2,
+   "k": "related",
+   "note": "EJB first allowed remote calls only through CORBA"
+  },
+  {
+   "s": "fail.corba",
+   "t": "fail.soap-ws",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.corba",
+   "t": "lang.cpp",
+   "w": 1,
+   "k": "related",
+   "note": "its C++ mapping was hard to use"
+  },
+  {
+   "s": "fail.corba",
+   "t": "proc.worse-is-better",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.corba",
+   "t": "data.json",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.hungarian",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.hungarian",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.hungarian",
+   "t": "plat.win32",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.hungarian",
+   "t": "org.xerox-parc",
+   "w": 2,
+   "k": "related",
+   "note": "where Simonyi first worked on it"
+  },
+  {
+   "s": "fail.hungarian",
+   "t": "conc.static-typing",
+   "w": 2,
+   "k": "related",
+   "note": "the compiler already checks machine types"
+  },
+  {
+   "s": "fail.hungarian",
+   "t": "conc.types",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.hungarian",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.gets-annex-k",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.gets-annex-k",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.gets-annex-k",
+   "t": "fail.morris-worm",
+   "w": 2,
+   "k": "related",
+   "note": "the 1988 worm exploited a buffer overrun"
+  },
+  {
+   "s": "fail.gets-annex-k",
+   "t": "org.red-hat",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.gets-annex-k",
+   "t": "qual.asan-valgrind",
+   "w": 1,
+   "k": "related",
+   "note": "tools that catch such bugs instead"
+  },
+  {
+   "s": "fail.morris-worm",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.morris-worm",
+   "t": "plat.bsd",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.morris-worm",
+   "t": "plat.unix",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.morris-worm",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.morris-worm",
+   "t": "mod.oncd-report",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.ejb",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.ejb",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.ejb",
+   "t": "ppl.fowler",
+   "w": 2,
+   "k": "related",
+   "note": "coined POJO with two colleagues"
+  },
+  {
+   "s": "fail.ejb",
+   "t": "proc.over-abstraction",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.mobile-platforms",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.mobile-platforms",
+   "t": "plat.android",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.mobile-platforms",
+   "t": "plat.iphone",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.mobile-platforms",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related",
+   "note": "Windows Phone and Nokia"
+  },
+  {
+   "s": "fail.mobile-platforms",
+   "t": "plat.app-store",
+   "w": 2,
+   "k": "related",
+   "note": "app ecosystems decided the contest"
+  },
+  {
+   "s": "fail.mobile-platforms",
+   "t": "org.mozilla",
+   "w": 1,
+   "k": "related",
+   "note": "Firefox OS"
+  },
+  {
+   "s": "fail.perl6",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.perl6",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.perl6",
+   "t": "lang.php",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.perl6",
+   "t": "fail.python2",
+   "w": 2,
+   "k": "related",
+   "note": "another breaking redesign that took years to land"
+  },
+  {
+   "s": "fail.python2",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.python2",
+   "t": "lang.python",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.python2",
+   "t": "org.psf",
+   "w": 2,
+   "k": "related",
+   "note": "announced and ran the retirement"
+  },
+  {
+   "s": "fail.python2",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related",
+   "note": "the pledge of scientific projects to require Python 3"
+  },
+  {
+   "s": "fail.python2",
+   "t": "math.scipy",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.python2",
+   "t": "found.unicode",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.coffeescript",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.coffeescript",
+   "t": "lang.ecmascript",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "ES2015 absorbed its best ideas"
+  },
+  {
+   "s": "fail.coffeescript",
+   "t": "lang.js",
+   "w": 2,
+   "k": "uses",
+   "note": "it compiled to JavaScript"
+  },
+  {
+   "s": "fail.coffeescript",
+   "t": "pkg.rails",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.coffeescript",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.coffeescript",
+   "t": "tool.webpack",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.gwt",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.gwt",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "fail.gwt",
+   "t": "lang.java",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "fail.gwt",
+   "t": "lang.dart",
+   "w": 2,
+   "k": "related",
+   "note": "one of Google's later bets"
+  },
+  {
+   "s": "fail.gwt",
+   "t": "mod.typescript",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.gwt",
+   "t": "lang.js",
+   "w": 1,
+   "k": "uses",
+   "note": "it compiled Java to JavaScript"
+  },
+  {
+   "s": "fail.atom",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.atom",
+   "t": "tool.vscode",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.atom",
+   "t": "tool.electron",
+   "w": 3,
+   "k": "influenced",
+   "note": "Electron came out of Atom"
+  },
+  {
+   "s": "fail.atom",
+   "t": "plat.github",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.atom",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "owns GitHub and makes VS Code"
+  },
+  {
+   "s": "fail.visual-sourcesafe",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.visual-sourcesafe",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "fail.visual-sourcesafe",
+   "t": "tool.vcs",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.visual-sourcesafe",
+   "t": "tool.perforce",
+   "w": 2,
+   "k": "related",
+   "note": "Microsoft's own Source Depot was a Perforce variant"
+  },
+  {
+   "s": "fail.visual-sourcesafe",
+   "t": "tool.cvs",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.visual-sourcesafe",
+   "t": "tool.svn",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.object-databases",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.object-databases",
+   "t": "data.relational",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.object-databases",
+   "t": "data.sql-standard",
+   "w": 2,
+   "k": "related",
+   "note": "SQL:1999 absorbed object features"
+  },
+  {
+   "s": "fail.object-databases",
+   "t": "conc.oop",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.object-databases",
+   "t": "lang.smalltalk",
+   "w": 1,
+   "k": "related",
+   "note": "GemStone stored Smalltalk objects"
+  },
+  {
+   "s": "fail.object-databases",
+   "t": "ppl.stonebraker",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.xml-databases",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.xml-databases",
+   "t": "data.json",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.xml-databases",
+   "t": "data.sql-standard",
+   "w": 2,
+   "k": "related",
+   "note": "SQL/XML absorbed the useful part"
+  },
+  {
+   "s": "fail.xml-databases",
+   "t": "data.relational",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.schemaless-myth",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.schemaless-myth",
+   "t": "data.nosql",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.schemaless-myth",
+   "t": "data.sqlite",
+   "w": 2,
+   "k": "related",
+   "note": "STRICT tables"
+  },
+  {
+   "s": "fail.schemaless-myth",
+   "t": "ppl.stonebraker",
+   "w": 2,
+   "k": "related",
+   "note": "co-author of the 2008 critique"
+  },
+  {
+   "s": "fail.schemaless-myth",
+   "t": "data.json",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.fifth-generation",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.fifth-generation",
+   "t": "fail.ai-winters",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.fifth-generation",
+   "t": "fail.lisp-machines",
+   "w": 2,
+   "k": "related",
+   "note": "custom AI hardware lost to commodity chips"
+  },
+  {
+   "s": "fail.fifth-generation",
+   "t": "found.x86",
+   "w": 2,
+   "k": "related",
+   "note": "ordinary x86 machines overtook it"
+  },
+  {
+   "s": "fail.fifth-generation",
+   "t": "org.sun",
+   "w": 1,
+   "k": "related",
+   "note": "Sun workstations"
+  },
+  {
+   "s": "fail.fifth-generation",
+   "t": "plat.gui",
+   "w": 1,
+   "k": "related",
+   "note": "it failed to absorb graphical interfaces"
+  },
+  {
+   "s": "fail.fifth-generation",
+   "t": "conc.concurrency",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.lisp-machines",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.lisp-machines",
+   "t": "fail.ai-winters",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.lisp-machines",
+   "t": "found.microprocessor",
+   "w": 2,
+   "k": "related",
+   "note": "mass-market chips removed their edge"
+  },
+  {
+   "s": "fail.lisp-machines",
+   "t": "comp.gc",
+   "w": 1,
+   "k": "influenced",
+   "note": "garbage collection spread from Lisp"
+  },
+  {
+   "s": "fail.lisp-machines",
+   "t": "lang.common-lisp",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.ai-winters",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.ai-winters",
+   "t": "math.deep-learning",
+   "w": 2,
+   "k": "related",
+   "note": "the later revival"
+  },
+  {
+   "s": "fail.ai-winters",
+   "t": "proc.no-silver-bullet",
+   "w": 1,
+   "k": "related",
+   "note": "Brooks doubted AI would give a tenfold gain"
+  },
+  {
+   "s": "fail.ai-winters",
+   "t": "lang.lisp",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.ada-mandate",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.ada-mandate",
+   "t": "lang.pascal",
+   "w": 1,
+   "k": "related",
+   "note": "added to the approved list in 1987"
+  },
+  {
+   "s": "fail.ada-mandate",
+   "t": "lang.basic",
+   "w": 1,
+   "k": "related",
+   "note": "Minimal BASIC was also approved"
+  },
+  {
+   "s": "fail.pure-oo",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.pure-oo",
+   "t": "conc.oop",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.pure-oo",
+   "t": "lang.go",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.pure-oo",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.pure-oo",
+   "t": "lang.java",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.pure-oo",
+   "t": "conc.pattern-matching",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.visual-programming",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.visual-programming",
+   "t": "proc.no-silver-bullet",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.visual-programming",
+   "t": "ppl.brooks",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.visual-programming",
+   "t": "fail.case",
+   "w": 2,
+   "k": "related",
+   "note": "the same era of diagram-driven tools"
+  },
+  {
+   "s": "fail.visual-programming",
+   "t": "mod.low-code",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.visual-programming",
+   "t": "proc.uml",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.big-bang-rewrite",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.big-bang-rewrite",
+   "t": "ppl.fowler",
+   "w": 2,
+   "k": "related",
+   "note": "strangler fig approach"
+  },
+  {
+   "s": "fail.big-bang-rewrite",
+   "t": "proc.mmm",
+   "w": 2,
+   "k": "related",
+   "note": "the second-system effect"
+  },
+  {
+   "s": "fail.big-bang-rewrite",
+   "t": "org.mozilla",
+   "w": 1,
+   "k": "related",
+   "note": "the Gecko counter-example"
+  },
+  {
+   "s": "fail.big-bang-rewrite",
+   "t": "proc.technical-debt",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.netscape-rewrite",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.netscape-rewrite",
+   "t": "fail.big-bang-rewrite",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.netscape-rewrite",
+   "t": "plat.browser-engines",
+   "w": 2,
+   "k": "related",
+   "note": "the rewritten engine became Gecko"
+  },
+  {
+   "s": "fail.netscape-rewrite",
+   "t": "fail.browser-wars",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.copland",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.copland",
+   "t": "fail.big-bang-rewrite",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.copland",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "related",
+   "note": "Taligent was an Apple and IBM venture"
+  },
+  {
+   "s": "fail.copland",
+   "t": "plat.nextstep-macos",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.copland",
+   "t": "plat.mac-classic",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.copland",
+   "t": "ppl.jobs",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.copland",
+   "t": "proc.mmm",
+   "w": 1,
+   "k": "related",
+   "note": "second-system effect"
+  },
+  {
+   "s": "fail.longhorn",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.longhorn",
+   "t": "fail.big-bang-rewrite",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.longhorn",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "fail.longhorn",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.longhorn",
+   "t": "plat.windows-nt",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.death-march",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.death-march",
+   "t": "proc.mmm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.death-march",
+   "t": "proc.software-crisis",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.dos-giants",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.dos-giants",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.dos-giants",
+   "t": "plat.msdos",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.dos-giants",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.dos-giants",
+   "t": "org.ibm",
+   "w": 1,
+   "k": "related",
+   "note": "bought Lotus in 1995"
+  },
+  {
+   "s": "fail.dos-giants",
+   "t": "tool.turbo-pascal",
+   "w": 1,
+   "k": "related",
+   "note": "Borland's best-known product"
+  },
+  {
+   "s": "fail.dos-giants",
+   "t": "plat.windows-nt",
+   "w": 1,
+   "k": "related",
+   "note": "its file services undercut NetWare"
+  },
+  {
+   "s": "fail.dependency-hell",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.dependency-hell",
+   "t": "pkg.pip",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.dependency-hell",
+   "t": "pkg.semver",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.dependency-hell",
+   "t": "pkg.nix",
+   "w": 2,
+   "k": "related",
+   "note": "immutable, content-addressed installs"
+  },
+  {
+   "s": "fail.dependency-hell",
+   "t": "pkg.lockfile",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.dependency-hell",
+   "t": "plat.docker",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.dependency-hell",
+   "t": "math.numpy",
+   "w": 1,
+   "k": "related",
+   "note": "NumPy 2 broke binary compatibility"
+  },
+  {
+   "s": "fail.dependency-hell",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.notebook-repro",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.notebook-repro",
+   "t": "math.ipython",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.notebook-repro",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "related",
+   "note": "pinned environments"
+  },
+  {
+   "s": "fail.notebook-repro",
+   "t": "plat.docker",
+   "w": 2,
+   "k": "related",
+   "note": "containers as a bridge to reproducibility"
+  },
+  {
+   "s": "fail.notebook-repro",
+   "t": "fail.dependency-hell",
+   "w": 2,
+   "k": "related",
+   "note": "undeclared dependencies are a main cause"
+  },
+  {
+   "s": "fail.notebook-repro",
+   "t": "pkg.pyproject",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.notebook-repro",
+   "t": "math.colab",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.numeric-numarray",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.numeric-numarray",
+   "t": "math.numpy",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.numeric-numarray",
+   "t": "ppl.van-rossum",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.numeric-numarray",
+   "t": "math.scipy",
+   "w": 2,
+   "k": "related",
+   "note": "SciPy was first built on Numeric"
+  },
+  {
+   "s": "fail.numeric-numarray",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.numeric-numarray",
+   "t": "math.matrix",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.theano",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.theano",
+   "t": "math.tensorflow",
+   "w": 2,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.theano",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.theano",
+   "t": "math.deep-learning",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.theano",
+   "t": "math.gpu",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.ml-graveyard",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.ml-graveyard",
+   "t": "math.pytorch",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.ml-graveyard",
+   "t": "math.tensorflow",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.ml-graveyard",
+   "t": "org.meta",
+   "w": 2,
+   "k": "related",
+   "note": "Caffe2 and PyTorch"
+  },
+  {
+   "s": "fail.ml-graveyard",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related",
+   "note": "CNTK"
+  },
+  {
+   "s": "fail.ml-graveyard",
+   "t": "org.berkeley",
+   "w": 2,
+   "k": "related",
+   "note": "Caffe began there"
+  },
+  {
+   "s": "fail.ml-graveyard",
+   "t": "org.apache-foundation",
+   "w": 1,
+   "k": "related",
+   "note": "MXNet"
+  },
+  {
+   "s": "fail.anaconda-licensing",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.anaconda-licensing",
+   "t": "pkg.uv",
+   "w": 2,
+   "k": "related",
+   "note": "an alternative that avoids the question"
+  },
+  {
+   "s": "fail.anaconda-licensing",
+   "t": "org.astral",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.therac25",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.therac25",
+   "t": "conc.integer-overflow",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.therac25",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.therac25",
+   "t": "qual.code-review",
+   "w": 1,
+   "k": "related",
+   "note": "independent review was one lesson"
+  },
+  {
+   "s": "fail.therac25",
+   "t": "conc.error-handling",
+   "w": 1,
+   "k": "related",
+   "note": "clear error messages were another"
+  },
+  {
+   "s": "fail.ariane5",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.ariane5",
+   "t": "conc.error-handling",
+   "w": 2,
+   "k": "related",
+   "note": "the handler shut down a healthy unit"
+  },
+  {
+   "s": "fail.ariane5",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "related",
+   "note": "test with realistic inputs"
+  },
+  {
+   "s": "fail.ariane5",
+   "t": "fail.therac25",
+   "w": 2,
+   "k": "related",
+   "note": "both reused old software without re-validation"
+  },
+  {
+   "s": "fail.ariane5",
+   "t": "conc.data-types",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.ariane5",
+   "t": "found.ieee754",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.mars-orbiter",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.mars-orbiter",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.mars-orbiter",
+   "t": "fail.ariane5",
+   "w": 2,
+   "k": "related",
+   "note": "another interface and assumption mismatch"
+  },
+  {
+   "s": "fail.mars-orbiter",
+   "t": "conc.data-types",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.patriot",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.patriot",
+   "t": "found.ieee754",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.patriot",
+   "t": "fail.ariane5",
+   "w": 2,
+   "k": "related",
+   "note": "numbers changing representation"
+  },
+  {
+   "s": "fail.denver-baggage",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.denver-baggage",
+   "t": "proc.software-crisis",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.denver-baggage",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.denver-baggage",
+   "t": "proc.waterfall",
+   "w": 1,
+   "k": "related",
+   "note": "late integration"
+  },
+  {
+   "s": "fail.knight-capital",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.knight-capital",
+   "t": "qual.feature-flags",
+   "w": 2,
+   "k": "related",
+   "note": "a repurposed flag woke old code"
+  },
+  {
+   "s": "fail.knight-capital",
+   "t": "proc.devops",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.knight-capital",
+   "t": "qual.code-review",
+   "w": 2,
+   "k": "related",
+   "note": "no second-person review"
+  },
+  {
+   "s": "fail.knight-capital",
+   "t": "proc.refactoring",
+   "w": 1,
+   "k": "related",
+   "note": "dead code should have been removed"
+  },
+  {
+   "s": "fail.knight-capital",
+   "t": "fail.crowdstrike",
+   "w": 2,
+   "k": "related",
+   "note": "missing rollout controls"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "plat.tls",
+   "w": 2,
+   "k": "related",
+   "note": "OpenSSL implements TLS"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "conc.buffer-overflow",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related",
+   "note": "a memory-unsafe language"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "org.linux-foundation",
+   "w": 2,
+   "k": "influenced",
+   "note": "Core Infrastructure Initiative"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "fail.morris-worm",
+   "w": 1,
+   "k": "related",
+   "note": "the same family of memory-safety bug"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "a memory-safe alternative"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "org.google",
+   "w": 1,
+   "k": "related",
+   "note": "Neel Mehta reported it"
+  },
+  {
+   "s": "fail.heartbleed",
+   "t": "pkg.supply-chain",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.737-max",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.737-max",
+   "t": "fail.therac25",
+   "w": 2,
+   "k": "related",
+   "note": "software trusted without independent safeguards"
+  },
+  {
+   "s": "fail.crowdstrike",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.crowdstrike",
+   "t": "qual.feature-flags",
+   "w": 2,
+   "k": "related",
+   "note": "canary and staged rollouts"
+  },
+  {
+   "s": "fail.crowdstrike",
+   "t": "qual.fuzzing",
+   "w": 2,
+   "k": "related",
+   "note": "fuzzing and interface validation were among the lessons"
+  },
+  {
+   "s": "fail.crowdstrike",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.crowdstrike",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.crowdstrike",
+   "t": "fail.solarwinds",
+   "w": 2,
+   "k": "related",
+   "note": "same structural risk, no malice"
+  },
+  {
+   "s": "fail.crowdstrike",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.post-office-horizon",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.post-office-horizon",
+   "t": "fail.737-max",
+   "w": 2,
+   "k": "related",
+   "note": "concealment and denial"
+  },
+  {
+   "s": "fail.post-office-horizon",
+   "t": "fail.nhs-npfit",
+   "w": 1,
+   "k": "related",
+   "note": "UK public-sector IT"
+  },
+  {
+   "s": "fail.post-office-horizon",
+   "t": "qual.testing",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.log4shell",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.log4shell",
+   "t": "org.apache-foundation",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.log4shell",
+   "t": "mod.cisa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.log4shell",
+   "t": "fail.heartbleed",
+   "w": 2,
+   "k": "related",
+   "note": "a small embedded component as a global single point of failure"
+  },
+  {
+   "s": "fail.log4shell",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.log4shell",
+   "t": "proc.open-source",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.xz",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.xz",
+   "t": "proc.open-source",
+   "w": 2,
+   "k": "related",
+   "note": "a sole volunteer maintainer"
+  },
+  {
+   "s": "fail.xz",
+   "t": "plat.linux",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.xz",
+   "t": "tool.git",
+   "w": 1,
+   "k": "related",
+   "note": "source repository versus release tarball"
+  },
+  {
+   "s": "fail.xz",
+   "t": "fail.trusting-trust",
+   "w": 2,
+   "k": "related",
+   "note": "trust passes through code you did not write"
+  },
+  {
+   "s": "fail.xz",
+   "t": "fail.solarwinds",
+   "w": 2,
+   "k": "related",
+   "note": "tampering at build time"
+  },
+  {
+   "s": "fail.xz",
+   "t": "fail.event-stream",
+   "w": 2,
+   "k": "related",
+   "note": "a maintainer handing over access"
+  },
+  {
+   "s": "fail.solarwinds",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.solarwinds",
+   "t": "qual.ci",
+   "w": 1,
+   "k": "related",
+   "note": "the build system was the target"
+  },
+  {
+   "s": "fail.event-stream",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.event-stream",
+   "t": "pkg.npm",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.event-stream",
+   "t": "fail.leftpad",
+   "w": 2,
+   "k": "related",
+   "note": "an earlier npm dependency incident"
+  },
+  {
+   "s": "fail.shai-hulud",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.shai-hulud",
+   "t": "pkg.npm",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.shai-hulud",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "related",
+   "note": "CISA advised pinning versions"
+  },
+  {
+   "s": "fail.shai-hulud",
+   "t": "qual.zero-trust",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.shai-hulud",
+   "t": "qual.dependency-scanners",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.shai-hulud",
+   "t": "pkg.dependabot",
+   "w": 1,
+   "k": "related",
+   "note": "update delays were added in 2026"
+  },
+  {
+   "s": "fail.npm-takeovers",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.npm-takeovers",
+   "t": "pkg.npm",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.npm-takeovers",
+   "t": "pkg.trusted-publishing",
+   "w": 3,
+   "k": "influenced",
+   "note": "short-lived credentials replaced long-lived tokens"
+  },
+  {
+   "s": "fail.npm-takeovers",
+   "t": "fail.shai-hulud",
+   "w": 2,
+   "k": "related",
+   "note": "stolen tokens started most worms"
+  },
+  {
+   "s": "fail.npm-takeovers",
+   "t": "qual.zero-trust",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.maintainer-sabotage",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.maintainer-sabotage",
+   "t": "pkg.npm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.maintainer-sabotage",
+   "t": "fail.leftpad",
+   "w": 2,
+   "k": "related",
+   "note": "a maintainer-triggered break"
+  },
+  {
+   "s": "fail.maintainer-sabotage",
+   "t": "pkg.lockfile",
+   "w": 2,
+   "k": "related",
+   "note": "pinned versions limit the blast radius"
+  },
+  {
+   "s": "fail.maintainer-sabotage",
+   "t": "proc.open-source",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.slopsquatting",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.slopsquatting",
+   "t": "mod.copilot",
+   "w": 2,
+   "k": "related",
+   "note": "AI coding assistants"
+  },
+  {
+   "s": "fail.slopsquatting",
+   "t": "mod.veracode-genai",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.slopsquatting",
+   "t": "mod.vibe-coding",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.slopsquatting",
+   "t": "pkg.pip",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.slopsquatting",
+   "t": "pkg.npm",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.slopsquatting",
+   "t": "org.psf",
+   "w": 1,
+   "k": "related",
+   "note": "Seth Larson works there"
+  },
+  {
+   "s": "fail.prompt-injection",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.prompt-injection",
+   "t": "mod.mcp",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.prompt-injection",
+   "t": "mod.agent-sandboxing",
+   "w": 2,
+   "k": "related",
+   "note": "limiting what a steered agent can do"
+  },
+  {
+   "s": "fail.prompt-injection",
+   "t": "mod.claude-code",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.prompt-injection",
+   "t": "mod.coding-agents",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.prompt-injection",
+   "t": "qual.sql-injection",
+   "w": 2,
+   "k": "related",
+   "note": "attacker text treated as instructions"
+  },
+  {
+   "s": "fail.prompt-injection",
+   "t": "qual.zero-trust",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.prompt-injection",
+   "t": "mod.vibe-coding",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.ai-slop-reports",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.ai-slop-reports",
+   "t": "fail.xz",
+   "w": 2,
+   "k": "related",
+   "note": "open-source maintainers under strain"
+  },
+  {
+   "s": "fail.ai-slop-reports",
+   "t": "proc.open-source",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.ai-slop-reports",
+   "t": "mod.vibe-coding",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.ai-slop-reports",
+   "t": "qual.security",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.trusting-trust",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.trusting-trust",
+   "t": "comp.compiler",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.trusting-trust",
+   "t": "tool.hermetic-builds",
+   "w": 2,
+   "k": "related",
+   "note": "reproducible builds are one response"
+  },
+  {
+   "s": "fail.trusting-trust",
+   "t": "plat.unix",
+   "w": 1,
+   "k": "related",
+   "note": "the login command was the target"
+  },
+  {
+   "s": "fail.trusting-trust",
+   "t": "org.acm",
+   "w": 1,
+   "k": "related",
+   "note": "a Turing Award lecture"
+  },
+  {
+   "s": "fail.cobol-unemployment",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.cobol-unemployment",
+   "t": "lang.cobol",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.cobol-unemployment",
+   "t": "fail.y2k",
+   "w": 2,
+   "k": "related",
+   "note": "another episode of COBOL maintenance"
+  },
+  {
+   "s": "fail.cobol-unemployment",
+   "t": "mod.legacy-languages",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.healthcare-gov",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.healthcare-gov",
+   "t": "fail.fbi-vcf",
+   "w": 2,
+   "k": "related",
+   "note": "fixed political dates and changing scope"
+  },
+  {
+   "s": "fail.healthcare-gov",
+   "t": "qual.testing",
+   "w": 2,
+   "k": "related",
+   "note": "no end-to-end testing"
+  },
+  {
+   "s": "fail.healthcare-gov",
+   "t": "proc.waterfall",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.equifax",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.equifax",
+   "t": "fail.log4shell",
+   "w": 2,
+   "k": "related",
+   "note": "asset inventory and fast patching"
+  },
+  {
+   "s": "fail.equifax",
+   "t": "qual.dependency-scanners",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.equifax",
+   "t": "org.apache-foundation",
+   "w": 1,
+   "k": "related",
+   "note": "the Struts framework"
+  },
+  {
+   "s": "fail.equifax",
+   "t": "pkg.dependency-management",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.fbi-vcf",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.fbi-vcf",
+   "t": "fail.nhs-npfit",
+   "w": 2,
+   "k": "related",
+   "note": "large government IT failures"
+  },
+  {
+   "s": "fail.fbi-vcf",
+   "t": "proc.waterfall",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.fbi-vcf",
+   "t": "proc.software-crisis",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.nhs-npfit",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.nhs-npfit",
+   "t": "fail.healthcare-gov",
+   "w": 2,
+   "k": "related",
+   "note": "government IT with changing scope"
+  },
+  {
+   "s": "fail.nhs-npfit",
+   "t": "proc.software-crisis",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "plat.rest",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "data.xml",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "data.json",
+   "w": 2,
+   "k": "replaced-by"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "ppl.fielding",
+   "w": 2,
+   "k": "related",
+   "note": "REST came from his 2000 dissertation"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "plat.graphql-grpc",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "org.w3c-whatwg",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.soap-ws",
+   "t": "org.ibm",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.xhtml2",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.xhtml2",
+   "t": "lang.html",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "HTML5 won"
+  },
+  {
+   "s": "fail.xhtml2",
+   "t": "org.w3c-whatwg",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.xhtml2",
+   "t": "data.xml",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.xhtml2",
+   "t": "org.apple",
+   "w": 1,
+   "k": "related",
+   "note": "WHATWG founders"
+  },
+  {
+   "s": "fail.xhtml2",
+   "t": "org.mozilla",
+   "w": 1,
+   "k": "related",
+   "note": "WHATWG founders"
+  },
+  {
+   "s": "fail.xhtml2",
+   "t": "proc.worse-is-better",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.xhtml2",
+   "t": "fail.itanium",
+   "w": 1,
+   "k": "related",
+   "note": "compatibility beat a clean-slate design"
+  },
+  {
+   "s": "fail.cpp-removed",
+   "t": "fail.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.cpp-removed",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "fail.cpp-removed",
+   "t": "lang.cpp11",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.cpp-removed",
+   "t": "lang.cpp-stl",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.cpp-removed",
+   "t": "comp.cfront",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.cpp-removed",
+   "t": "org.wg21",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.cpp-removed",
+   "t": "ppl.stroustrup",
+   "w": 2,
+   "k": "related"
+  }
+ ]
+}

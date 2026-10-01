@@ -25,7 +25,7 @@ You are an author for "The Sleeper's Map", an interactive 3D map of the history 
 
 ## Check your work
 
-Run `node scripts/validate-data.mjs` after creating a temporary merge: `node scripts/merge-data.mjs` writes `data/graph.json` from every slice in `data/src/` (other slices may not exist yet, so unknown-target errors for edges pointing at them are expected until the end; fix every other error and warning that mentions your slice). Check lengths: `short` at most 165 characters, `long` 280 to 900 characters, `title` at most 46. Make sure the JSON parses.
+Run `node scripts/check-slice.mjs data/src/<slice name>.json` (do not run the merge: other authors are working at the same time, and `data/graph.json` is shared). It checks your slice against the registry and reports errors (fix all) and warnings (fix the ones about lengths, thin linking, markdown and registry mismatches). Targets: `short` at most 165 characters, `long` 280 to 900 characters, `title` at most 46. Do not use em dashes. Make sure the JSON parses. Do not use web tools; your sources are the notes.
 
 ## Report
 

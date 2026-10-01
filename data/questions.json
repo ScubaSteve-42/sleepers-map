@@ -1,0 +1,20 @@
+[
+  { "q": "What is a compiler?", "node": "comp.compiler" },
+  { "q": "What came before high-level languages?", "node": "found.assembly" },
+  { "q": "What are the basics of C?", "node": "lang.c-basics" },
+  { "q": "How is C different from C++?", "node": "lang.c-vs-cpp" },
+  { "q": "What is a variable?", "node": "conc.variable" },
+  { "q": "What is an array?", "node": "conc.array" },
+  { "q": "How do you ask a database for data?", "node": "data.sql-queries" },
+  { "q": "How does a program talk to a database?", "node": "data.drivers" },
+  { "q": "What kinds of linting are there?", "node": "qual.lint" },
+  { "q": "What is a matrix, and why does it matter?", "node": "math.matrix" },
+  { "q": "Which Python packages matter most?", "node": "math.numpy" },
+  { "q": "What is a package manager?", "node": "pkg.manager" },
+  { "q": "What is popular today?", "node": "mod.popular-2026" },
+  { "q": "What has worked, and what does the evidence say?", "node": "proc.hub" },
+  { "q": "What has been proven not to work?", "node": "fail.hub" },
+  { "q": "Which people and companies mattered?", "node": "ppl.hub" },
+  { "q": "How does the same program look in many languages?", "node": "lang.syntax-tour" },
+  { "q": "What are AI tools doing to programming?", "node": "mod.hub" }
+]

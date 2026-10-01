@@ -12,8 +12,9 @@ export function launch({ software = process.env.SMAP_SOFTWARE_GL === '1', args =
   return chromium.launch({ executablePath: EDGE, headless: true, args: ['--ignore-gpu-blocklist', ...gl, ...args] });
 }
 
-export async function openMap(browser, { query = 'test=1&still=1', hash = '', viewport = { width: 1440, height: 900 }, mobile = false, reducedMotion, deviceScaleFactor = 1, file = MAP_FILE, waitReady = true } = {}) {
+export async function openMap(browser, { query = 'test=1&still=1', hash = '', viewport = { width: 1440, height: 900 }, mobile = false, reducedMotion, deviceScaleFactor = 1, file = MAP_FILE, waitReady = true, initScript } = {}) {
   const ctx = await browser.newContext({ viewport, deviceScaleFactor, isMobile: mobile, hasTouch: mobile, reducedMotion });
+  if (initScript) await ctx.addInitScript(initScript);
   const page = await ctx.newPage();
   const errors = [], requests = [];
   page.on('console', (m) => { if (m.type() === 'error') errors.push(`console: ${m.text()}`); });

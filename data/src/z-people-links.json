@@ -1,0 +1,666 @@
+{
+ "slice": "z-people-links",
+ "nodes": [],
+ "edges": [
+  {
+   "s": "found.turing-machine",
+   "t": "ppl.turing",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.plankalkul",
+   "t": "ppl.zuse",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.initial-orders",
+   "t": "ppl.wheeler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.subroutine-library",
+   "t": "ppl.wheeler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "ppl.backus",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.bnf",
+   "t": "ppl.backus",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.lisp",
+   "t": "ppl.mccarthy",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.gc",
+   "t": "ppl.mccarthy",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.goto-harmful",
+   "t": "ppl.dijkstra",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.structured-programming",
+   "t": "ppl.dijkstra",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.taocp",
+   "t": "ppl.knuth",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.quicksort",
+   "t": "ppl.hoare",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.hoare-logic",
+   "t": "ppl.hoare",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.csp",
+   "t": "ppl.hoare",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.null",
+   "t": "ppl.hoare",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.pascal",
+   "t": "ppl.wirth",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.modula-oberon",
+   "t": "ppl.wirth",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.adt",
+   "t": "ppl.liskov",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.iterators",
+   "t": "ppl.liskov",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.unix",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.b",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "fail.trusting-trust",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.go",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.utf8",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.utf8",
+   "t": "ppl.pike",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.go",
+   "t": "ppl.pike",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.plan9",
+   "t": "ppl.pike",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.kr-book",
+   "t": "ppl.kernighan",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.awk",
+   "t": "ppl.kernighan",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "pkg.software-components",
+   "t": "ppl.mcilroy",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.unix-philosophy",
+   "t": "ppl.mcilroy",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.cpp",
+   "t": "ppl.stroustrup",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.cfront",
+   "t": "ppl.stroustrup",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.gnu-fsf",
+   "t": "ppl.stallman",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.gpl",
+   "t": "ppl.stallman",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.emacs",
+   "t": "ppl.stallman",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.gcc",
+   "t": "ppl.stallman",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.smalltalk",
+   "t": "ppl.kay",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.mmm",
+   "t": "ppl.brooks",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.brooks-law",
+   "t": "ppl.brooks",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.no-silver-bullet",
+   "t": "ppl.brooks",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.information-hiding",
+   "t": "ppl.parnas",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.relational",
+   "t": "ppl.codd",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.normalization",
+   "t": "ppl.codd",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.oracle",
+   "t": "ppl.ellison",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.oracle",
+   "t": "ppl.ellison",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "data.ingres",
+   "t": "ppl.stonebraker",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.postgres",
+   "t": "ppl.stonebraker",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.what-goes-around",
+   "t": "ppl.stonebraker",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "data.network-model",
+   "t": "ppl.bachman",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.microsoft",
+   "t": "ppl.gates-allen",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.apple",
+   "t": "ppl.jobs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.iphone",
+   "t": "ppl.jobs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.web",
+   "t": "ppl.berners-lee",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.http",
+   "t": "ppl.berners-lee",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.html",
+   "t": "ppl.berners-lee",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.w3c-whatwg",
+   "t": "ppl.berners-lee",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.python",
+   "t": "ppl.van-rossum",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.java",
+   "t": "ppl.gosling",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.jvm",
+   "t": "ppl.gosling",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.csharp",
+   "t": "ppl.hejlsberg",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.typescript",
+   "t": "ppl.hejlsberg",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.delphi",
+   "t": "ppl.hejlsberg",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.turbo-pascal",
+   "t": "ppl.hejlsberg",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.linq",
+   "t": "ppl.hejlsberg",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.js",
+   "t": "ppl.eich",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.perl",
+   "t": "ppl.wall",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.ruby",
+   "t": "ppl.matsumoto",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.php",
+   "t": "ppl.lerdorf",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.xp",
+   "t": "ppl.beck",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.tdd",
+   "t": "ppl.beck",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.xunit",
+   "t": "ppl.beck",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.refactoring",
+   "t": "ppl.fowler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.mapreduce",
+   "t": "ppl.dean-ghemawat",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.bigtable",
+   "t": "ppl.dean-ghemawat",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.spanner",
+   "t": "ppl.dean-ghemawat",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "math.tensorflow",
+   "t": "ppl.dean-ghemawat",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.rust",
+   "t": "ppl.graydon-hoare",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.tla-aws",
+   "t": "ppl.lamport",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.llvm",
+   "t": "ppl.lattner",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.clang",
+   "t": "ppl.lattner",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.swift",
+   "t": "ppl.lattner",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.mojo",
+   "t": "ppl.lattner",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.cppfront",
+   "t": "ppl.sutter",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "proc.free-lunch",
+   "t": "ppl.sutter",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "mod.vibe-coding",
+   "t": "ppl.karpathy",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.erlang",
+   "t": "ppl.armstrong",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.ml",
+   "t": "ppl.milner",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.type-inference",
+   "t": "ppl.milner",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.numpy",
+   "t": "ppl.oliphant",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.scipy",
+   "t": "ppl.oliphant",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.backprop",
+   "t": "ppl.hinton",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.linpack",
+   "t": "ppl.dongarra",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.blas",
+   "t": "ppl.dongarra",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.lapack",
+   "t": "ppl.dongarra",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.matlab",
+   "t": "ppl.moler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.mathworks",
+   "t": "ppl.moler",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.eispack",
+   "t": "ppl.moler",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.rest",
+   "t": "ppl.fielding",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.apache-foundation",
+   "t": "ppl.fielding",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.tcpip",
+   "t": "ppl.cerf-kahn",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.cpm",
+   "t": "ppl.kildall",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "found.ieee754",
+   "t": "ppl.kahan",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.lint-c",
+   "t": "ppl.sc-johnson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.lex-yacc",
+   "t": "ppl.sc-johnson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "math.pandas",
+   "t": "ppl.mckinney",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.arrow",
+   "t": "ppl.mckinney",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.apl",
+   "t": "ppl.iverson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.j-k",
+   "t": "ppl.iverson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "conc.array-programming",
+   "t": "ppl.iverson",
+   "w": 2,
+   "k": "created-by"
+  }
+ ]
+}

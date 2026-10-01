@@ -38,6 +38,26 @@ export function createLabels({ container, scene, graph, cats }) {
     });
   }
 
+  // axis labels: decades and category lanes on the timeline, era rings on the galaxy
+  const axis = graph.layouts?.axis, guideEls = [];
+  if (axis) {
+    const mk = (cls, text, color) => { const e = document.createElement('div'); e.className = `axis-lbl ${cls}`; e.textContent = text; if (color) e.style.setProperty('--c', color); container.prepend(e); return e; };
+    const tl = axis.timeline, xs = tl.decades.map((d) => d.x), x0 = Math.min(...xs) - 90;
+    tl.decades.forEach((d) => guideEls.push({ el: mk('dec', String(d.year)), key: 'timeline', p: [d.x, tl.bottom - 12, tl.z] }));
+    tl.lanes.forEach((l) => guideEls.push({ el: mk('lane', l.label.replace(/:.*$/, ''), cats.get(l.cat)?.color), key: 'timeline', p: [x0, l.y, tl.z] }));
+    const [cx, cy, cz] = axis.galaxy.center;
+    // stagger the ring labels around the galaxy so they do not pile up where the rings are close together
+    axis.galaxy.rings.forEach((r, i) => { const a = -0.9 + i * 0.5; guideEls.push({ el: mk('ring', String(r.year)), key: 'galaxy', p: [cx + Math.cos(a) * r.r, cy, cz + Math.sin(a) * r.r] }); });
+  }
+  function updateGuides() {
+    for (const g of guideEls) {
+      const m = scene.guideMix[g.key], pt = enabled && m > 0.02 ? scene.project(g.p[0], g.p[1], g.p[2]) : null;
+      if (!pt) { if (g.on) { g.el.style.opacity = '0'; g.on = false; } continue; }
+      g.on = true; g.el.style.opacity = (m * 0.8).toFixed(2);
+      g.el.style.transform = `translate3d(${Math.round(pt[0])}px,${Math.round(pt[1])}px,0) translate(-50%,-50%)`;
+    }
+  }
+
   const CELL = 110;
   let enabled = true;
   const rects = [];
@@ -104,6 +124,7 @@ export function createLabels({ container, scene, graph, cats }) {
       placed.add(i); want.set(i, { x: lx, ay, wantDesc, isFocus }); order.push([i, rect]);
     }
     updateRegions(focus, enabled);
+    updateGuides();
     placedRects = order;
     // apply to the DOM, touching only what changed
     const nearDepth = scene.camera.position.length();

@@ -1,0 +1,2601 @@
+{
+  "slice": "s03-languages-modern",
+  "nodes": [
+    {
+      "id": "lang.lisp",
+      "title": "Lisp",
+      "cat": "languages",
+      "tier": 2,
+      "year": 1958,
+      "short": "John McCarthy's 1958 list-processing language. Programs are nested lists, functions are values, and unused memory is reclaimed automatically, all new at the time.",
+      "long": "John McCarthy's wish for a list-processing language for artificial intelligence work arose during the 1956 Dartmouth summer project, and implementation began on the IBM 704 at MIT in fall 1958. A program is a nested, fully parenthesized list, so code is data, and recursion and conditional expressions replace most loops. Functions are values, and storage that nothing refers to is reclaimed by garbage collection, which Lisp introduced between 1958 and 1960. The interpreter was an accident: Steve Russell noticed that eval could serve as one and hand-coded it, and the names car and cdr come from fields of the 704's machine word. McCarthy admitted that early Lisps ran numerical code 10 to 100 times slower than FORTRAN. Lisp led to Scheme, Common Lisp, Emacs Lisp and Clojure, and the Lisp machines built to run it were part of the 1980s AI boom.",
+      "sleeper": "Lisp machines, the special computers sold for AI work, collapsed as a market in 1987, and TIOBE now ranks Lisp 43rd. Yet garbage collection and first-class functions, once Lisp's oddities, are standard in Java, Python and JavaScript.",
+      "code": {
+        "lang": "lisp",
+        "text": ";; Common Lisp (GNU CLISP): sum of the squares of the odd numbers 1 to 10\n(print (reduce #'+ (mapcar (lambda (x) (* x x)) (remove-if-not #'oddp (loop for i from 1 to 10 collect i)))))\n;; prints 165"
+      },
+      "status": "niche",
+      "tags": [
+        "list processing",
+        "mccarthy",
+        "s-expression",
+        "garbage collection",
+        "car",
+        "cdr",
+        "ai"
+      ],
+      "refs": [
+        {
+          "label": "McCarthy, History of Lisp",
+          "url": "https://www-formal.stanford.edu/jmc/history/lisp/lisp.html"
+        },
+        {
+          "label": "McCarthy, History of Lisp: implementation",
+          "url": "https://www-formal.stanford.edu/jmc/history/lisp/node3.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.scheme",
+      "title": "Scheme",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1975,
+      "short": "A small, clean Lisp dialect from MIT. Brendan Eich was recruited in 1995 to put Scheme in the browser, and its first-class functions ended up in JavaScript.",
+      "long": "Scheme is a compact dialect of Lisp described at MIT by Sussman and Steele in 1975 (MIT AI Memo 349). Like Lisp it writes programs as nested parenthesized lists and treats functions as ordinary values. Its best-known influence runs through JavaScript. Brendan Eich says Netscape recruited him with the promise of doing Scheme in the browser; management then required the language to look like Java, which ruled Scheme out, but he kept Scheme-style first-class functions as one of the main ingredients. The sample below, run under the Guile implementation, filters, squares and sums a list. TIOBE lists Scheme only in its unranked 51 to 100 band in September 2026.",
+      "code": {
+        "lang": "scheme",
+        "text": ";; Scheme (GNU Guile); filter and iota come from SRFI-1\n(use-modules (srfi srfi-1))\n(display (apply + (map (lambda (x) (* x x)) (filter odd? (iota 10 1)))))\n;; prints 165"
+      },
+      "status": "niche",
+      "tags": [
+        "lisp dialect",
+        "mit",
+        "sussman",
+        "steele",
+        "first-class functions"
+      ],
+      "refs": [
+        {
+          "label": "Eich, Popularity (2008)",
+          "url": "https://brendaneich.com/2008/04/popularity/"
+        }
+      ]
+    },
+    {
+      "id": "lang.common-lisp",
+      "title": "Common Lisp",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1984,
+      "short": "The large, standardized member of the Lisp family. It took shape in the 1980s and became an ANSI standard in 1994; the Lisp family is a niche today.",
+      "long": "McCarthy wrote in 1979 that no organization had ever tried to propagate Lisp and that there had never been an attempt to agree on a standard. Common Lisp, which took shape in the 1980s, is the large, standardized member of the family, and ANSI approved a standard for it in 1994. It keeps Lisp's parenthesized prefix syntax and adds a big library: the sum of the squares of the odd numbers from 1 to 10 combines loop, remove-if-not, mapcar, lambda and reduce, and prints 165 under GNU CLISP. TIOBE ranks Lisp 43rd in September 2026 at 0.42 percent, and the Stack Overflow 2025 survey found 2.4 percent of respondents using it.",
+      "status": "niche",
+      "tags": [
+        "clisp",
+        "ansi",
+        "lisp dialect",
+        "standard"
+      ],
+      "refs": [
+        {
+          "label": "McCarthy, History of Lisp: beyond LISP 1.5",
+          "url": "https://www-formal.stanford.edu/jmc/history/lisp/node5.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.clojure",
+      "title": "Clojure",
+      "cat": "languages",
+      "tier": 3,
+      "year": 2007,
+      "short": "Rich Hickey's Lisp for the Java virtual machine, built around immutable data structures and designed for concurrency.",
+      "long": "Clojure is a Lisp that runs on the Java virtual machine and calls Java libraries directly. Its rationale page describes it as a Lisp for functional programming, symbiotic with an established platform and designed for concurrency: Clojure is the language and the JVM is the platform. Its data structures are immutable and persistent, so adding an item to a vector yields a new vector and leaves the old one unchanged, and it offers software transactional memory and agents for shared state. Rich Hickey designed it, and it appeared around 2007. Clojure stays small: Compiler Explorer offers version 1.12.3, and TIOBE lists it only in the unranked 51 to 100 band.",
+      "code": {
+        "lang": "clojure",
+        "text": ";; Clojure: vectors are persistent, so conj returns a new vector\n(def v [1 2 3])\n(def w (conj v 4))\n(println v w)   ; prints [1 2 3] [1 2 3 4]"
+      },
+      "status": "niche",
+      "tags": [
+        "lisp",
+        "jvm",
+        "immutable",
+        "persistent data",
+        "hickey",
+        "stm"
+      ],
+      "refs": [
+        {
+          "label": "Clojure rationale",
+          "url": "https://clojure.org/about/rationale"
+        },
+        {
+          "label": "Clojure history",
+          "url": "https://clojure.org/about/history"
+        }
+      ]
+    },
+    {
+      "id": "lang.ml",
+      "title": "ML and Standard ML",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1973,
+      "short": "Robin Milner's 1970s Edinburgh language that introduced type inference and polymorphism. Its datatypes and pattern matching now appear in Rust, Swift and Java.",
+      "long": "ML began as the metalanguage, hence the name, of the LCF theorem-proving system that Robin Milner and his group built at Edinburgh from 1973 to 1978. Milner wanted a type discipline that combined the flexibility of a typeless language with the security of compile-time checking. The result lets the compiler work out types for you, called type inference, and lets one function work on many types, called polymorphism. His 1978 paper proved that well-typed programs cannot go wrong. Datatypes with pattern matching reached ML through the languages NPL and HOPE, and Standard ML became its standardized form. The most popular use of Standard ML has been writing compilers, and it also underlies proof assistants such as HOL and Isabelle; TIOBE lists ML only in its 51 to 100 band.",
+      "sleeper": "Almost nobody writes ML now, yet its ideas won. Type inference and generics reached mainstream languages from the mid-2000s, and pattern matching arrived in C# 9 (2020), Python 3.10 (2021) and Java 21 (2023).",
+      "code": {
+        "lang": "sml",
+        "text": "(* Standard ML (MLton): sum of the squares of the odd numbers 1 to 10 *)\nval r = List.foldl op+ 0 (List.map (fn x => x * x) (List.filter (fn x => x mod 2 = 1) (List.tabulate (10, fn i => i + 1))));\nval _ = print (Int.toString r ^ \"\\n\");   (* prints 165 *)"
+      },
+      "status": "niche",
+      "tags": [
+        "standard ml",
+        "hindley-milner",
+        "polymorphism",
+        "edinburgh",
+        "lcf"
+      ],
+      "refs": [
+        {
+          "label": "MacQueen, Harper and Reppy, The History of Standard ML",
+          "url": "https://smlfamily.github.io/history/SML-history.pdf"
+        },
+        {
+          "label": "Milner, A Theory of Type Polymorphism in Programming (1978)",
+          "url": "https://homepages.inf.ed.ac.uk/wadler/papers/papers-we-love/milner-type-polymorphism.pdf"
+        }
+      ]
+    },
+    {
+      "id": "lang.haskell",
+      "title": "Haskell",
+      "cat": "languages",
+      "tier": 2,
+      "year": 1990,
+      "short": "A purely functional, lazily evaluated language with static types, designed by a committee from 1987. Niche in use, but its ideas spread widely.",
+      "long": "In September 1987, at a functional-programming conference in Portland, Oregon, researchers formed a committee to replace more than a dozen similar non-strict, purely functional languages with one. David Turner's Miranda was the obvious base, but he wanted a single standard and asked for a language distinct from it. The Haskell 1.0 Report appeared on 1 April 1990, edited by Hudak and Wadler. Haskell is purely functional, so functions have no side effects, it evaluates lazily, it has a strong static type system with type inference, and it marks input and output with monads; type classes were the one costly idea the committee took. The authors say the language has not become too successful, an accidental virtue that keeps it agile. TIOBE ranks Haskell 49th in September 2026.",
+      "sleeper": "Pure functional code was a research curiosity in 1990, and Haskell itself is still small. Its ideas are not: LINQ was inspired by Haskell's monad comprehensions, and Option-style types and pattern matching are now in Rust, Swift, Java and C#.",
+      "code": {
+        "lang": "haskell",
+        "text": "-- Haskell: a data type with two shapes, taken apart by pattern matching\ndata Shape = Square Int | Rect Int Int\narea :: Shape -> Int\narea (Square s) = s * s\narea (Rect w h) = w * h\nmain = print (sum (map area [Square 3, Rect 2 4]))   -- prints 17"
+      },
+      "status": "niche",
+      "tags": [
+        "lazy evaluation",
+        "pure",
+        "type classes",
+        "monads",
+        "miranda",
+        "ghc"
+      ],
+      "refs": [
+        {
+          "label": "Hudak et al., A History of Haskell (HOPL III)",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf"
+        }
+      ]
+    },
+    {
+      "id": "lang.erlang",
+      "title": "Erlang",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1986,
+      "short": "Ericsson's language for telephone switches: swarms of tiny isolated processes that pass messages, restart independently and can be upgraded while running.",
+      "long": "Joe Armstrong began Erlang in 1986 at Ericsson's Computer Science Laboratory as an experiment to add concurrent processes to Prolog, since the best method for programming plain old telephony seemed to be a Prolog variant with parallel processes. By 1990 it was a language in its own right, with message passing and failure detection. Ericsson's AXD301 switch, first delivered in 1998, had over 1.7 million lines of Erlang by 2003, which Armstrong called probably the largest system ever written in a functional style. In February 1998 Ericsson banned Erlang for new products, and in December 1998 it released Erlang and the OTP libraries as open source. The much-quoted nine nines of reliability is an undocumented vendor claim, as Armstrong's own thesis notes.",
+      "sleeper": "Erlang began as proprietary telecom technology. Open source since December 1998, its default limit today is 1,048,576 simultaneous processes, and Elixir and Gleam run on the same virtual machine.",
+      "code": {
+        "lang": "erlang",
+        "text": "%% Erlang, run as an escript: sum of the squares of the odd numbers 1 to 10\nmain(_) -> io:format(\"~p~n\", [lists:sum([X * X || X <- lists:seq(1, 10), X rem 2 =:= 1])]).\n%% prints 165"
+      },
+      "status": "niche",
+      "tags": [
+        "otp",
+        "ericsson",
+        "actors",
+        "telecom",
+        "beam",
+        "fault tolerance"
+      ],
+      "refs": [
+        {
+          "label": "Armstrong, Making reliable distributed systems in the presence of software errors",
+          "url": "https://erlang.org/download/armstrong_thesis_2003.pdf"
+        }
+      ]
+    },
+    {
+      "id": "lang.ocaml",
+      "title": "OCaml",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1996,
+      "short": "INRIA's ML dialect that added objects and a fast native compiler. OCaml 5.0 (2022) rewrote the runtime to allow shared-memory parallelism.",
+      "long": "OCaml is the French branch of the ML family. Xavier Leroy designed Caml Light, a bytecode interpreter written in C, in 1990 and 1991, and Objective Caml followed in 1996 as the first language to combine the full power of object-oriented programming with an ML-style polymorphic type system and type inference. Caml originally stood for Categorical Abstract Machine Language, and the official name became OCaml in 2011. OCaml 5.0, released in 2022, was a complete rewrite of the language runtime that removed the global garbage-collector lock and added effect handlers, which makes shared-memory parallelism possible. TIOBE ranks OCaml 38th in September 2026 at 0.43 percent, with Caml itself 28th, and 1.2 percent of Stack Overflow 2025 respondents use it.",
+      "code": {
+        "lang": "ocaml",
+        "text": "(* OCaml: a variant type and pattern matching *)\ntype shape = Square of int | Rect of int * int\nlet area = function\n  | Square s -> s * s\n  | Rect (w, h) -> w * h\nlet () = print_int (area (Square 3) + area (Rect (2, 4)))   (* prints 17 *)"
+      },
+      "status": "niche",
+      "tags": [
+        "inria",
+        "caml",
+        "ml family",
+        "leroy"
+      ],
+      "refs": [
+        {
+          "label": "OCaml history",
+          "url": "https://ocaml.org/history"
+        }
+      ]
+    },
+    {
+      "id": "lang.fsharp",
+      "title": "F#",
+      "cat": "languages",
+      "tier": 4,
+      "year": 2002,
+      "short": "Microsoft's functional-first language for .NET, released near-silently in 2002. Its asynchronous workflows later shaped async/await in C#.",
+      "long": "Don Syme's history describes F# as one of several responses by advocates of strongly typed functional programming to the object-oriented tidal wave of the mid-1990s. Microsoft began internal projects in 1997 that became .NET and C#, which led to .NET generics in 1998 and to F# in 2002, and the first release was made near-silently on 4 June 2002. F# runs on the .NET runtime. Its asynchronous workflows, seeded around a 2007 visit to EPFL, were still influencing C# years later in async/await (C# 5.0) and async sequences (C# 8.0). F# remains small: Stack Overflow's 2025 survey found 1.3 percent of respondents using it, and TIOBE lists it only in the 51 to 100 band.",
+      "code": {
+        "lang": "fsharp",
+        "text": "// F#: filter, map and sum chained with the pipe operator\n[ 1 .. 10 ] |> List.filter (fun x -> x % 2 = 1) |> List.map (fun x -> x * x) |> List.sum |> printfn \"%d\"   // prints 165"
+      },
+      "status": "niche",
+      "tags": [
+        "syme",
+        "dotnet",
+        "ml family",
+        "async workflows"
+      ],
+      "refs": [
+        {
+          "label": "Syme, The Early History of F# (HOPL IV)",
+          "url": "https://fsharp.org/history/hopl-final/hopl-fsharp.pdf"
+        }
+      ]
+    },
+    {
+      "id": "lang.scala",
+      "title": "Scala",
+      "cat": "languages",
+      "tier": 4,
+      "year": 2004,
+      "short": "A Java-platform language from EPFL that fuses object-oriented and functional styles. Few developers use it as their main language, yet it tops salary rankings.",
+      "long": "Scala is a language for the Java platform that fuses object-oriented and functional programming. It came from Martin Odersky's group at EPFL, with a first release in 2004. Its homepage shows immutable collections, derived JSON codecs, Scala.js and pattern matching on enums. Scala 3 shipped on 14 May 2021 after eight years of work and 28,000 commits, and Scala 3.9.0 is both the latest and the long-term-support release in September 2026, maintained by the Scala Center at EPFL and VirtusLab with support from JetBrains. In JetBrains' 2025 survey only 2 percent of developers use Scala as a primary language, yet it leads the salary ranking at 38 percent of top-paid developers. TIOBE ranks it 44th.",
+      "code": {
+        "lang": "scala",
+        "text": "// Scala: filter, map and sum on a range\nobject Main {\n  def main(args: Array[String]): Unit =\n    println((1 to 10).filter(_ % 2 == 1).map(x => x * x).sum)   // prints 165\n}"
+      },
+      "status": "niche",
+      "tags": [
+        "epfl",
+        "odersky",
+        "jvm",
+        "scala 3",
+        "functional"
+      ],
+      "refs": [
+        {
+          "label": "Scala",
+          "url": "https://www.scala-lang.org/"
+        },
+        {
+          "label": "Scala 3 is here",
+          "url": "https://www.scala-lang.org/blog/2021/05/14/scala3-is-here.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.elixir",
+      "title": "Elixir",
+      "cat": "languages",
+      "tier": 4,
+      "year": 2011,
+      "short": "A modern language on the Erlang virtual machine, with a pipe operator and Erlang's fault tolerance. Stack Overflow's 2025 survey rated it among the most admired.",
+      "long": "Elixir runs on the Erlang virtual machine and describes itself as built on decades of Erlang reliability and fault tolerance. José Valim created it around 2011. Its pipe operator, written |>, feeds the result of one call into the next, which is how the sample below chains filter, map and sum. Its site lists Discord, Adobe, Apple, Spotify, Supabase, the BBC, Change.org, PagerDuty and Royal Bank of Canada among users, though that is a marketing list, not an audit. Elixir v1.20 came out on 3 June 2026, and its packages come from Hex, which listed 26,315 packages on 30 September 2026. In Stack Overflow's 2025 survey 2.7 percent of respondents used Elixir, and 65.9 percent of its users wanted to keep using it, the third-highest score among languages.",
+      "code": {
+        "lang": "elixir",
+        "text": "# Elixir: the pipe operator |> feeds each result into the next call\nIO.puts(1..10 |> Enum.filter(&(rem(&1, 2) == 1)) |> Enum.map(&(&1 * &1)) |> Enum.sum())   # prints 165"
+      },
+      "status": "niche",
+      "tags": [
+        "beam",
+        "phoenix",
+        "hex",
+        "pipe operator",
+        "valim"
+      ],
+      "refs": [
+        {
+          "label": "Elixir",
+          "url": "https://elixir-lang.org/"
+        },
+        {
+          "label": "Hex package manager",
+          "url": "https://hex.pm/"
+        }
+      ]
+    },
+    {
+      "id": "lang.gleam",
+      "title": "Gleam",
+      "cat": "languages",
+      "tier": 4,
+      "year": 2024,
+      "short": "A typed functional language for the Erlang virtual machine, at 1.0 since March 2024. Stack Overflow's 2025 survey ranked it the second most admired language.",
+      "long": "Gleam is a typed functional language that runs on the Erlang virtual machine, so it can share the platform's lightweight processes and the Hex package ecosystem with Elixir and Erlang. It reached version 1.0 in March 2024. In Stack Overflow's 2025 survey it was the second most admired language at 70.8 percent, behind Rust at 72.4 percent and ahead of Elixir and Zig, although that survey reports no usage figure for it. A 2026 review of new languages groups Gleam with Mojo, Zig and Carbon as promising but unproven, and found no adoption data for any of them.",
+      "status": "niche",
+      "tags": [
+        "beam",
+        "typed",
+        "hex",
+        "erlang vm"
+      ],
+      "refs": [
+        {
+          "label": "Stack Overflow Developer Survey 2025: technology",
+          "url": "https://survey.stackoverflow.co/2025/technology"
+        }
+      ]
+    },
+    {
+      "id": "lang.prolog",
+      "title": "Prolog",
+      "cat": "languages",
+      "tier": 2,
+      "year": 1972,
+      "short": "Logic programming from Marseille in 1972: state facts and rules, ask a question, and the system searches for answers, trying alternatives and backing up.",
+      "long": "Prolog was born of a project at Marseille to process natural language, in this case French, not to produce a programming language. A preliminary version appeared at the end of 1971 and a more definitive one at the end of 1972, after Robert Kowalski visited in June 1971 to explain resolution; the name abbreviates programmation en logique. A program is a set of facts and rules, and the system answers a question by searching for a proof, backing up when an attempt fails. Because rules state relations, a predicate such as append can often run in several directions. Japan's Fifth Generation project (1982 to 1994) bet on logic programming and failed commercially. Prolog is now niche, 29th on TIOBE in September 2026 at 0.60 percent.",
+      "sleeper": "In the 1980s Prolog was the hoped-for language of the next computer generation, and it did not win. Its lasting marks are declarative thinking, as in SQL queries, and Erlang, which began as Prolog with processes added.",
+      "code": {
+        "lang": "prolog",
+        "text": "% SWI-Prolog: prints ann, pat, then each split of [1,2]: []-[1,2], [1]-[2], [1,2]-[]\nparent(tom, bob).  parent(bob, ann).  parent(bob, pat).\ngrandparent(X, Z) :- parent(X, Y), parent(Y, Z).\nmain :- forall(grandparent(tom, W), (write(W), nl)),\n        forall(append(P, Q, [1,2]), (write(P-Q), nl)).\n:- initialization(main)."
+      },
+      "status": "niche",
+      "tags": [
+        "logic programming",
+        "colmerauer",
+        "backtracking",
+        "resolution",
+        "marseille",
+        "kowalski"
+      ],
+      "refs": [
+        {
+          "label": "Kowalski, The Early Years of Logic Programming (CACM 1988)",
+          "url": "https://www.doc.ic.ac.uk/~rak/papers/the%20early%20years.pdf"
+        }
+      ]
+    },
+    {
+      "id": "lang.apl",
+      "title": "APL",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1966,
+      "short": "Kenneth Iverson's notation of single-symbol array operations: a whole computation fits on one line with no loops, and Dyalog still sells it.",
+      "long": "APL began in about 1956 as Kenneth Iverson's mathematical notation for describing algorithms, first used in 1957 to communicate a complete system design, and his book A Programming Language appeared in 1962. IBM implemented it on System/360 as APL\\360, which was running in the fall of 1966, the year this map uses. Functions are single symbols that act on whole arrays, so the sum of 1 to 5 is +/⍳5, and the design was shaped by the 88-character set of the IBM 1050 terminal. The Computer History Museum says APL was widely used in scientific, financial and actuarial work. Edsger Dijkstra called it a mistake carried through to perfection in 1975. Dyalog Ltd still sells and supports it, but TIOBE does not list APL in its top 100.",
+      "sleeper": "APL's symbol keyboard looked strange in 1990, and the array-at-a-time idea it started now runs through MATLAB, R, Julia and NumPy. The family continues as J and K, and K sits under the kdb+ database.",
+      "code": {
+        "lang": "text",
+        "text": "⍝ Dyalog APL: primes up to 20, read right to left\n⍝ R is 2..20 (1↓⍳20); R∘.×R is every product of two members; R∊ marks the composites\n⎕←(~R∊R∘.×R)/R←1↓⍳20\n⍝ prints 2 3 5 7 11 13 17 19"
+      },
+      "status": "niche",
+      "tags": [
+        "iverson",
+        "array programming",
+        "dyalog",
+        "notation as a tool of thought"
+      ],
+      "refs": [
+        {
+          "label": "Falkoff and Iverson, The Evolution of APL",
+          "url": "https://www.jsoftware.com/papers/APLEvol1.htm"
+        },
+        {
+          "label": "Iverson, Notation as a Tool of Thought",
+          "url": "https://www.jsoftware.com/papers/tot1.htm"
+        }
+      ]
+    },
+    {
+      "id": "lang.matlab",
+      "title": "MATLAB",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1984,
+      "short": "Cleve Moler's MATrix LABoratory, commercialized in 1984. Matrices are the native type, so loops that need nested loops in Fortran become single statements.",
+      "long": "Cleve Moler wrote the first MATLAB in the late 1970s at the University of New Mexico so his students could use the LINPACK and EISPACK packages without writing Fortran. Its only data type was the matrix, it had 80 functions, and adding one meant editing the Fortran source and recompiling. After IBM announced its PC in August 1981, Jack Little and Steve Bangert reprogrammed it in C and added M-files, toolboxes and graphics, and the three founded The MathWorks in 1984. Moler says that things needing doubly or triply nested loops in Fortran, C or Java become single statements in MATLAB. It ships twice a year, with R2026b dated 24 September 2026, and TIOBE ranks it 27th. The free GNU Octave runs most of the same syntax.",
+      "code": {
+        "lang": "matlab",
+        "text": "% GNU Octave (free, MATLAB-compatible): solve A x = b\nA = [2 1; 1 3]; b = [3; 5];\nx = A \\ b            % prints x = 0.80000 1.40000"
+      },
+      "status": "thriving",
+      "tags": [
+        "moler",
+        "octave",
+        "linear algebra",
+        "matrix",
+        "little",
+        "bangert"
+      ],
+      "refs": [
+        {
+          "label": "Moler, The Origins of MATLAB",
+          "url": "https://www.mathworks.com/company/technical-articles/the-origins-of-matlab.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.r",
+      "title": "R",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1993,
+      "short": "A statistics language by Ihaka and Gentleman, announced in 1993 and modeled on S. Its CRAN archive holds more than 25,000 packages.",
+      "long": "Ihaka wrote that R began as an experiment in using the methods of Lisp implementors to build a small testbed for a statistical environment, and that early on the team chose an S-like syntax. R is in effect a different implementation of S, the Bell Laboratories statistics language of John Chambers and colleagues. Binaries went to Statlib with a small announcement on the s-news mailing list in August 1993, and the source was released under the GNU GPL in June 1995. A statistical model takes one line, as in the sample below. CRAN, the package archive, listed 25,284 packages on 1 October 2026. TIOBE ranks R 9th in September 2026, up from 13th a year earlier, and 4.9 percent of Stack Overflow 2025 respondents use it.",
+      "code": {
+        "lang": "r",
+        "text": "# R: a linear regression in one line\nprint(coef(lm(mpg ~ wt, data = mtcars)))\n# prints (Intercept) 37.285126 and wt -5.344472"
+      },
+      "status": "thriving",
+      "tags": [
+        "statistics",
+        "cran",
+        "s language",
+        "ihaka",
+        "gentleman",
+        "data frames"
+      ],
+      "refs": [
+        {
+          "label": "Ihaka, R: Past and Future History",
+          "url": "https://www.stat.auckland.ac.nz/~ihaka/downloads/Interface98.pdf"
+        },
+        {
+          "label": "The R Project: about R",
+          "url": "https://www.r-project.org/about.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.julia",
+      "title": "Julia",
+      "cat": "languages",
+      "tier": 3,
+      "year": 2012,
+      "short": "A 2012 language built so scientists need not prototype in a slow language and rewrite in a fast one. TIOBE says it is fast but has not broken through.",
+      "long": "Julia was announced on 14 February 2012 with a blunt rationale: because we are greedy. Its creators were power Matlab users and Lisp hackers who wanted the speed of C with the dynamism of Ruby, true macros like Lisp and familiar mathematical notation like Matlab. Their paper says Julia questions the idea that high-level dynamic programs have to be slow and that one must prototype in one language and then rewrite in another for speed or deployment, the two-language problem. Julia picks a method by the types of its arguments, called multiple dispatch. Version 1.0 appeared on 8 August 2018. In September 2026 TIOBE ranks Julia 21st at 0.74 percent, noting that it first entered the top 20 in summer 2023 and that it is fast, but there are faster languages.",
+      "code": {
+        "lang": "julia",
+        "text": "# Julia: multiple dispatch picks a method by argument type\nf(x::Int) = \"int\"\nf(x::Float64) = \"float\"\nprintln(f(1), \" \", f(1.0)); println([1, 2, 3] .^ 2)   # prints int float, then [1, 4, 9]"
+      },
+      "status": "niche",
+      "tags": [
+        "multiple dispatch",
+        "two-language problem",
+        "scientific computing",
+        "bezanson"
+      ],
+      "refs": [
+        {
+          "label": "Why We Created Julia (2012)",
+          "url": "https://julialang.org/blog/2012/02/why-we-created-julia/"
+        },
+        {
+          "label": "Bezanson et al., Julia: A Fresh Approach to Numerical Computing",
+          "url": "https://arxiv.org/abs/1411.1607"
+        }
+      ]
+    },
+    {
+      "id": "lang.mathematica",
+      "title": "Mathematica",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1988,
+      "short": "Wolfram's commercial system for symbolic and numeric mathematics, first released in June 1988. Its language works by rewriting expressions according to rules.",
+      "long": "Wolfram's revision history lists Mathematica 1.0 as the initial release in June 1988 and Mathematica 15 in June 2026, with 15.0.1 following in July 2026. It is a commercial symbolic and numeric system whose language rewrites expressions by rules. Function calls use square brackets: the sum of the squares of the odd numbers from 1 to 10 is written Total[Select[Range[10], OddQ]^2], which should give 165. Stephen Wolfram describes a notebook as an interactive document that freely mixes code, results, graphics, text and everything else. Jack Dongarra's linear-algebra libraries are incorporated into Mathematica, as they are into MATLAB, Maple, GNU Octave, R and SciPy. TIOBE does not list Mathematica in its top 100.",
+      "status": "niche",
+      "tags": [
+        "wolfram",
+        "symbolic",
+        "notebook",
+        "computer algebra",
+        "wolfram language"
+      ],
+      "refs": [
+        {
+          "label": "Wolfram: Mathematica quick revision history",
+          "url": "https://www.wolfram.com/mathematica/quick-revision-history.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.simula",
+      "title": "Simula",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1967,
+      "short": "A Norwegian simulation language. Simula 67 introduced classes, objects, inheritance and virtual methods, the core of later object-oriented languages.",
+      "long": "Ole-Johan Dahl and Kristen Nygaard designed Simula at the Norwegian Computing Center in Oslo between 1962 and 1967. Simula I, built on ALGOL 60, began as a language for describing and simulating systems; they then realized its ideas applied to programming in general and designed Simula 67. It had classes and objects, subclasses, virtual methods, coroutines and automatic memory management with garbage collection. The idea of prefixing, the origin of inheritance, came to them in December 1966. ACM's 2001 Turing Award citation credits them with ideas fundamental to object-oriented programming, and both Alan Kay and Bjarne Stroustrup name Simula as an inspiration. It never became widely used, and TIOBE does not list it in its top 100.",
+      "code": {
+        "lang": "simula",
+        "text": "! Simula (GNU Cim): a counter class; prints 3 ;\nBegin\n  Class Counter;\n  Begin\n    Integer n;\n    Procedure Inc; n := n + 1;\n  End;\n  Ref(Counter) c;\n  c :- New Counter;\n  c.Inc; c.Inc; c.Inc;\n  OutInt(c.n, 3); OutImage;\nEnd;"
+      },
+      "status": "legacy",
+      "tags": [
+        "dahl",
+        "nygaard",
+        "classes",
+        "inheritance",
+        "simulation",
+        "oslo",
+        "simula 67"
+      ],
+      "refs": [
+        {
+          "label": "ACM Turing Award: Kristen Nygaard",
+          "url": "https://web.archive.org/web/20241214185319/https://amturing.acm.org/award_winners/nygaard_5916220.cfm"
+        },
+        {
+          "label": "Holmevik, The History of Simula",
+          "url": "https://users.dcc.uchile.cl/~cgutierr/cursos/LP/SimulaHistory.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.smalltalk",
+      "title": "Smalltalk",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1972,
+      "short": "Alan Kay's group at Xerox PARC built the first dynamic object-oriented language: everything is an object, and computation is messages sent to objects.",
+      "long": "Smalltalk came from Alan Kay's Learning Research Group at Xerox PARC, with Dan Ingalls implementing it and Adele Goldberg a leading contributor. In September 1972 Kay bet that the \"most powerful language in the world\" could be defined in a page of code; the versions ran from Smalltalk-71 through -72, -74 and -76, which added inheritance, to Smalltalk-80, which reached a wide audience through the August 1981 issue of BYTE. Everything is an object, programs send messages, typing is dynamic, memory is garbage collected, and the language came with an integrated environment of debugger, editor and windows on the Alto. Objective-C's additions to C are mostly based on Smalltalk, and Ruby says that like Smalltalk everything in it is an object. Squeak and Pharo continue it, and Pharo 13.1.0 (June 2025) is the latest release.",
+      "sleeper": "In the late 1980s Smalltalk was the model of object-oriented programming. C++ and Java made Simula-style classes mainstream instead, and Kay says later Smalltalks backslid towards Simula. It survives in Squeak, Pharo, Cincom Smalltalk and the GemStone/S database.",
+      "status": "niche",
+      "tags": [
+        "kay",
+        "ingalls",
+        "goldberg",
+        "squeak",
+        "pharo",
+        "messages",
+        "alto",
+        "live environment"
+      ],
+      "refs": [
+        {
+          "label": "Kay, The Early History of Smalltalk (HOPL-II)",
+          "url": "https://worrydream.com/EarlyHistoryOfSmalltalk/"
+        },
+        {
+          "label": "Pharo",
+          "url": "https://pharo.org/"
+        }
+      ]
+    },
+    {
+      "id": "lang.csharp",
+      "title": "C#",
+      "cat": "languages",
+      "tier": 2,
+      "year": 2000,
+      "short": "Microsoft's answer to Java, led by Anders Hejlsberg since 2000. It kept evolving (generics, LINQ, async/await, records) and now runs on Linux and macOS too.",
+      "long": "Anders Hejlsberg, who wrote the compiler that became Turbo Pascal and was chief architect of Delphi at Borland, has led C# at Microsoft since 2000. C# 1.0 shipped with Visual Studio .NET 2002 and, in Microsoft's words, looked a lot like Java. It is statically typed, class-based and garbage collected, compiled to an intermediate language for the Common Language Runtime. It then kept adding features: generics (2005), LINQ and lambdas (2007), async/await (2012), nullable reference types (2019), records (2020) and extension members in C# 14 (November 2025). Microsoft open-sourced the server-side .NET stack on 12 November 2014, and .NET Core 1.0 (June 2016) ran on Linux and macOS. Standardized as ECMA-334, C# was TIOBE's language of the year for 2023 and 2025 and ranks fifth in September 2026 at 4.22 percent.",
+      "sleeper": "C# did not exist before 2000, and its first form was Windows-only. Since 2014 it has been open source and cross-platform, unified as one .NET since 2020, with a new language version every November.",
+      "code": {
+        "lang": "csharp",
+        "text": "// C# (.NET 10, top-level statements): a LINQ pipeline\nusing System; using System.Linq;\nConsole.WriteLine(Enumerable.Range(1, 10).Where(x => x % 2 == 1).Select(x => x * x).Sum());   // prints 165"
+      },
+      "status": "thriving",
+      "tags": [
+        "hejlsberg",
+        "dotnet",
+        "linq",
+        "async",
+        "clr",
+        "ecma-334"
+      ],
+      "refs": [
+        {
+          "label": "Microsoft Learn: the history of C#",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history"
+        },
+        {
+          "label": "Ecma International: ECMA-334",
+          "url": "https://ecma-international.org/publications-and-standards/standards/ecma-334/"
+        }
+      ]
+    },
+    {
+      "id": "lang.php",
+      "title": "PHP",
+      "cat": "languages",
+      "tier": 2,
+      "year": 1995,
+      "short": "Rasmus Lerdorf's 1994 CGI toolkit that became the web's default server-side language. It runs 69.8 percent of sites with a detectable server language.",
+      "long": "Rasmus Lerdorf created PHP in 1994 as a set of Common Gateway Interface programs written in C, called Personal Home Page Tools, originally to track visits to his online resume. The source was released in June 1995. In 1997 Andi Gutmans and Zeev Suraski rewrote the parser for an e-commerce project, and the name became the recursive acronym PHP: Hypertext Preprocessor; the Zend Engine and PHP 4 followed in May 2000. Cheap hosting and WordPress, written in PHP and first released in 2003, carried it. W3Techs reports PHP on 69.8 percent of sites with a detectable server-side language and WordPress on 40.2 percent of all websites. PHP 7 (2015) was up to twice as fast as PHP 5.6, and PHP 8.5 arrived on 20 November 2025.",
+      "sleeper": "PHP started as a personal toy and still runs most of the visible web server layer. New-project share is slipping, though: TIOBE ranked it 7th in 2016 and 14th in 2026, and JetBrains lists it among languages in long-term decline.",
+      "status": "thriving",
+      "tags": [
+        "lerdorf",
+        "wordpress",
+        "server-side",
+        "zend",
+        "web",
+        "cgi"
+      ],
+      "refs": [
+        {
+          "label": "php.net: A History of PHP",
+          "url": "https://www.php.net/manual/en/history.php.php"
+        },
+        {
+          "label": "W3Techs: PHP usage statistics",
+          "url": "https://w3techs.com/technologies/details/pl-php"
+        }
+      ]
+    },
+    {
+      "id": "lang.ruby",
+      "title": "Ruby",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1995,
+      "short": "Yukihiro Matsumoto's 1995 language, designed to feel natural to write. Rails brought it a large audience from 2004; it is now mature rather than growing.",
+      "long": "Yukihiro Matsumoto, known as Matz, released Ruby publicly in 1995, blending parts of Perl, Smalltalk, Eiffel, Ada and Lisp. The official site says he tried to make Ruby natural, not simple, and that like Smalltalk everything in Ruby is an object, with blocks, iterators and meta-classes. The Rails framework, extracted by David Heinemeier Hansson from Basecamp and first released in July 2004, made Ruby a web favorite on the principles of programmer happiness and convention over configuration. Ruby 4.0.0 shipped on 25 December 2025 with the new ZJIT compiler, and a major release arrives each December. The decline is relative: TIOBE ranked Ruby 12th in 2016 and 22nd in 2026, Stack Overflow 2025 usage is 6.4 percent, and RedMonk still ranks it 9th.",
+      "sleeper": "Rails (2004) set the pattern for convention-based web frameworks. On 27 July 2026 W3Techs reported that JavaScript had overtaken Ruby as the second most used server-side language, behind PHP.",
+      "status": "thriving",
+      "tags": [
+        "matz",
+        "rails",
+        "gems",
+        "dynamic",
+        "programmer happiness"
+      ],
+      "refs": [
+        {
+          "label": "ruby-lang.org: About Ruby",
+          "url": "https://www.ruby-lang.org/en/about/"
+        },
+        {
+          "label": "The Rails Doctrine",
+          "url": "https://rubyonrails.org/doctrine"
+        }
+      ]
+    },
+    {
+      "id": "lang.perl",
+      "title": "Perl",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1987,
+      "short": "Larry Wall's 1987 text-processing and scripting language, the early web's CGI workhorse. Still released yearly, but down from TIOBE's top 10 to 23rd.",
+      "long": "Larry Wall released Perl 1.000 on 18 December 1987, a general-purpose Unix scripting language that, in its own FAQ's words, derives from C and to a lesser extent from sed, awk and the Unix shell. Perl 5.000 arrived in October 1994, CPAN, the Comprehensive Perl Archive Network, was set up in October 1995, and Perl was widely used for CGI scripts on the mid-1990s web. In July 2000 Wall announced the effort to write Perl 6; its first official specification came in December 2015, and in 2019 it was renamed Raku, a separate language in the same family. Perl 5 kept shipping, with 5.44.0 on 15 July 2026. TIOBE ranks Perl 23rd in September 2026, down from 10th in 2016, and W3Techs finds it on 0.1 percent of sites.",
+      "sleeper": "Perl was the glue language of the early web and of system administration. TIOBE's September 2026 headline said Perl and Ruby had left its top 20, and 3.8 percent of Stack Overflow 2025 respondents still use it.",
+      "status": "legacy",
+      "tags": [
+        "wall",
+        "cpan",
+        "raku",
+        "text processing",
+        "cgi",
+        "glue language"
+      ],
+      "refs": [
+        {
+          "label": "perldoc: perlhist, the Perl history records",
+          "url": "https://perldoc.perl.org/perlhist"
+        },
+        {
+          "label": "perldoc: perlfaq1",
+          "url": "https://perldoc.perl.org/perlfaq1"
+        }
+      ]
+    },
+    {
+      "id": "lang.swift",
+      "title": "Swift",
+      "cat": "languages",
+      "tier": 3,
+      "year": 2014,
+      "short": "Apple's compiled, memory-safe language that displaced Objective-C. Chris Lattner began it in 2010; it was announced in June 2014 and open-sourced in December 2015.",
+      "long": "Chris Lattner started work on Swift at Apple in July 2010, building much of the basic language in secrecy until others joined in late 2011. Apple announced it on 2 June 2014 and launched the open-source project and Swift.org on 3 December 2015, with a Linux port. Swift is compiled and statically typed, and its book says variables are always initialized, array indices and integer overflow are checked, optionals make nil handling explicit, and memory is managed automatically by reference counting, not by a tracing collector. Swift 5 made the binary interface stable on Apple platforms in 2019. Swift 6.3 (March 2026) added an official Android SDK, and 6.4 (September 2026) improved WebAssembly and embedded use. TIOBE ranks Swift 18th, up from 25th a year earlier, and RedMonk ranks it 11th.",
+      "sleeper": "If you knew Apple's languages from the Mac and NeXT era, the one to know now is Swift. It replaced Objective-C as the main language for Apple platforms and also targets Linux, Windows, Android, WebAssembly and embedded systems.",
+      "code": {
+        "lang": "swift",
+        "text": "// Swift: an enum whose cases carry values, taken apart with switch\nenum Shape { case square(Int); case rect(Int, Int) }\nfunc area(_ s: Shape) -> Int {\n    switch s {\n    case .square(let side): return side * side\n    case .rect(let w, let h): return w * h\n    }\n}\nprint(area(.square(3)) + area(.rect(2, 4)))   // prints 17"
+      },
+      "status": "thriving",
+      "tags": [
+        "lattner",
+        "ios",
+        "apple",
+        "arc",
+        "optionals",
+        "objective-c successor"
+      ],
+      "refs": [
+        {
+          "label": "Swift.org: Welcome to Swift.org",
+          "url": "https://www.swift.org/blog/welcome/"
+        },
+        {
+          "label": "Swift.org: About Swift",
+          "url": "https://www.swift.org/about/"
+        }
+      ]
+    },
+    {
+      "id": "lang.kotlin",
+      "title": "Kotlin",
+      "cat": "languages",
+      "tier": 3,
+      "year": 2011,
+      "short": "JetBrains' concise, safer language for the Java virtual machine. Google made Android Kotlin-first in 2019, and Kotlin became its default language.",
+      "long": "JetBrains started Kotlin in 2010, kept it open source from early on and released version 1.0 on 15 February 2016, billing it as a pragmatic language for the JVM and Android that combines object-oriented and functional features and focuses on interoperability, safety, clarity and tooling. Google announced official Android support on 17 May 2017 and said at Google I/O 2019 that Android development would be increasingly Kotlin-first; Android's site claims over 60 percent of professional Android developers use it. Classes are closed to inheritance by default. Kotlin Multiplatform was declared stable in November 2023, and Kotlin 2.0 (May 2024) brought the K2 compiler. Stack Overflow 2025 usage is 10.8 percent, RedMonk ranks Kotlin 14th, and TIOBE ranks it 26th.",
+      "sleeper": "Java held Android until Kotlin. Since Google's 2019 Kotlin-first stance it is the default for new Android code, and with Kotlin Multiplatform it also targets iOS and the server.",
+      "code": {
+        "lang": "kotlin",
+        "text": "// Kotlin: a sealed class and an exhaustive when expression\nsealed class Shape\nclass Square(val side: Int) : Shape()\nclass Rect(val w: Int, val h: Int) : Shape()\nfun area(s: Shape): Int = when (s) {\n    is Square -> s.side * s.side\n    is Rect -> s.w * s.h\n}\nfun main() { println(area(Square(3)) + area(Rect(2, 4))) }   // prints 17"
+      },
+      "status": "thriving",
+      "tags": [
+        "jetbrains",
+        "android",
+        "jvm",
+        "multiplatform",
+        "compose",
+        "null safety"
+      ],
+      "refs": [
+        {
+          "label": "Kotlin FAQ",
+          "url": "https://kotlinlang.org/docs/faq.html"
+        },
+        {
+          "label": "Android Developers Blog: Android Announces Support for Kotlin",
+          "url": "https://android-developers.googleblog.com/2017/05/android-announces-support-for-kotlin.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.dart",
+      "title": "Dart",
+      "cat": "languages",
+      "tier": 4,
+      "year": 2011,
+      "short": "Google's language, announced in 2011 as a structured alternative to JavaScript, dropped from Chrome plans in 2015, then found a second life as Flutter's language.",
+      "long": "Lars Bak announced Dart on 10 October 2011 as a class-based, optionally typed language for web applications, running on a native virtual machine or compiled to JavaScript. His earlier work included Beta, Self, Strongtalk, Sun's HotSpot, OOVM Smalltalk and V8. On 25 March 2015 Bak and Kasper Lund wrote that the team had decided not to integrate the Dart VM into Chrome and would focus on compiling Dart to JavaScript. The language then found its audience in Flutter, Google's open-source framework for building apps for several platforms from a single codebase, which reached 1.0 on 4 December 2018. Stack Overflow 2025 usage is 5.9 percent, RedMonk placed Dart 18th in January 2026, ahead of Rust, and TIOBE ranks it 41st.",
+      "status": "niche",
+      "tags": [
+        "flutter",
+        "lars bak",
+        "google",
+        "cross-platform",
+        "optional types"
+      ],
+      "refs": [
+        {
+          "label": "Dart team: Dart for the entire web (2015)",
+          "url": "https://news.dartlang.org/2015/03/dart-for-entire-web.html"
+        },
+        {
+          "label": "Google Code Blog: Dart, a language for structured web programming (2011)",
+          "url": "https://web.archive.org/web/20120119001654/http://googlecode.blogspot.com/2011/10/dart-language-for-structured-web.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.awk",
+      "title": "AWK",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1977,
+      "short": "A Bell Labs text-processing language from 1977, named for Aho, Weinberger and Kernighan. Like grep and sed, it is a filter built to sit in a Unix pipe.",
+      "long": "AWK was created at Bell Labs by Alfred Aho, Peter Weinberger and Brian Kernighan, and first appeared in 1977; its name comes from their surnames. It is a data-driven language for text processing, and like sed and grep it is a filter, designed to be composed with the pipe that Unix gained in 1972 at Doug McIlroy's urging. The Unix text tools grep, sed and awk all came out of Bell Labs between 1973 and 1977. AWK is also one of the ancestors of Perl, whose own FAQ says the language derives to a lesser extent from sed, awk and the Unix shell.",
+      "tags": [
+        "aho",
+        "weinberger",
+        "kernighan",
+        "text processing",
+        "unix filter",
+        "one-liners"
+      ]
+    },
+    {
+      "id": "lang.bash",
+      "title": "Unix Shell and Bash",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1979,
+      "short": "A shell is the command line and a small language for chaining programs with pipes. From the 1979 Bourne shell to bash, it remains everyday glue.",
+      "long": "A Unix shell is the program you type commands into and also a scripting language that joins other programs. Dennis Ritchie wrote that it was crucial that the shell was a user-level program, not part of the operating system, and that the pipe, in Unix from 1972 thanks to Doug McIlroy's persistence, was among the most admired contributions of Unix. The Thompson shell of 1971 came first. The Bourne shell, introduced with Seventh Edition Unix in 1979, gave scripts real control structures and borrowed ALGOL 68-style reversed keywords, fi and esac, to close blocks. Bash, the GNU Bourne-Again SHell, was first released in 1989 and is at version 5.3. macOS has used zsh as its default login shell since 10.15. In Stack Overflow's 2025 survey 48.7 percent of respondents used Bash or shell.",
+      "sleeper": "Shell scripts are now the glue of build, deployment and AI-agent tooling. GitHub's Octoverse 2025 called shell scripts (up 324 percent) the fastest riser in new AI-related repositories.",
+      "status": "thriving",
+      "tags": [
+        "shell",
+        "bourne",
+        "zsh",
+        "pipes",
+        "scripting",
+        "posix",
+        "sh"
+      ],
+      "refs": [
+        {
+          "label": "Ritchie, The Evolution of the Unix Time-sharing System",
+          "url": "https://www.read.seas.harvard.edu/~kohler/class/aosref/ritchie84evolution.pdf"
+        },
+        {
+          "label": "bash(1) manual page",
+          "url": "https://man7.org/linux/man-pages/man1/bash.1.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.html",
+      "title": "HTML",
+      "cat": "languages",
+      "tier": 2,
+      "year": 1991,
+      "short": "Tim Berners-Lee's tagged-text format for web pages, from CERN in 1989 to 1991. HTML says what is on a page; CSS says how it looks and JavaScript what it does.",
+      "long": "Tim Berners-Lee made HTML at CERN between 1989 and 1991 along with the URL and HTTP, the three small inventions behind the Web. HTML, HyperText Markup Language, is tagged text for pages with links: headings, paragraphs, links and forms. The web software had its general release on CERN machines on 17 May 1991, and after NCSA's Mosaic put images inline in 1993 the format spread with browsers. In a page, HTML gives the structure, CSS the appearance and JavaScript the behavior, joined by the DOM, the browser's in-memory tree of the page. The W3C's strict XML-based XHTML 2 was dropped when its working group's charter lapsed at the end of 2009. The WHATWG's backward-compatible HTML5 became a W3C Recommendation in October 2014, and since 2019 the WHATWG living standard has been the single specification.",
+      "status": "thriving",
+      "tags": [
+        "markup",
+        "berners-lee",
+        "whatwg",
+        "html5",
+        "dom",
+        "xhtml"
+      ],
+      "refs": [
+        {
+          "label": "W3C: A Little History of the World Wide Web",
+          "url": "https://www.w3.org/History.html"
+        },
+        {
+          "label": "WHATWG FAQ",
+          "url": "https://whatwg.org/faq"
+        }
+      ]
+    },
+    {
+      "id": "lang.css",
+      "title": "CSS",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1996,
+      "short": "Cascading Style Sheets describe how a page looks: layout, fonts and colors. Dating from 1994 to 1996, CSS separates appearance from HTML's structure.",
+      "long": "CSS, Cascading Style Sheets, says how a web page looks, with layout, fonts and colors, while HTML says what is on it and JavaScript what it does; its origins date to 1994 to 1996. Ethan Marcotte's May 2010 article in A List Apart joined flexible grids and CSS media queries into responsive design, so one page adapts from phone to desktop, and Bootstrap spread the idea in 2011. When WebAssembly became a W3C Recommendation on 5 December 2019, the W3C called it the fourth language for the Web, after HTML, CSS and JavaScript. RedMonk's January 2026 ranking places CSS 7th, tied with C++, and Stack Overflow's 2025 survey counts HTML and CSS together at 61.9 percent of respondents and 66.6 percent of people learning to code.",
+      "status": "thriving",
+      "tags": [
+        "style sheets",
+        "responsive design",
+        "layout",
+        "media queries"
+      ],
+      "refs": [
+        {
+          "label": "Marcotte, Responsive Web Design (A List Apart)",
+          "url": "https://alistapart.com/article/responsive-web-design/"
+        },
+        {
+          "label": "W3C: WebAssembly becomes a W3C Recommendation",
+          "url": "https://www.w3.org/press-releases/2019/wasm/"
+        }
+      ]
+    },
+    {
+      "id": "lang.ecmascript",
+      "title": "ECMAScript",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1997,
+      "short": "The standard behind JavaScript (ECMA-262), first published in 1997. After the failed ES4, yearly editions since ES2015 turned it into an engineered language.",
+      "long": "ECMAScript is the standard that defines JavaScript, published as ECMA-262 by Ecma International and developed by its committee TC39. The 1st edition came in June 1997, the 2nd in August 1998 and the 3rd in December 1999; a 4th edition was never published. The 5th followed in December 2009, 5.1 in June 2011 and the 6th, ES2015, in June 2015, with a new edition every June since: ES2025 was the 16th and ES2026 the 17th. The ES4 split, in which TC39 divided between backers of ES4 and ES3.1, ended at a July 2008 meeting in Oslo with Harmony, which shelved packages, namespaces and early binding. ES2015 added classes, modules, iterators, generators, arrow functions, let and const. TC39 now moves proposals through stages.",
+      "code": {
+        "lang": "javascript",
+        "text": "// JavaScript (Node.js v22): arrow functions arrived with ES2015\nconsole.log(Array.from({length: 10}, (_, i) => i + 1).filter(x => x % 2 === 1).map(x => x * x).reduce((a, b) => a + b, 0));   // prints 165"
+      },
+      "status": "thriving",
+      "tags": [
+        "ecma-262",
+        "tc39",
+        "es2015",
+        "harmony",
+        "standard",
+        "es4"
+      ],
+      "refs": [
+        {
+          "label": "Ecma International: ECMA-262",
+          "url": "https://ecma-international.org/publications-and-standards/standards/ecma-262/"
+        },
+        {
+          "label": "Eich, Popularity (2008)",
+          "url": "https://brendaneich.com/2008/04/popularity/"
+        }
+      ]
+    },
+    {
+      "id": "lang.regex",
+      "title": "Regular Expressions",
+      "cat": "languages",
+      "tier": 3,
+      "year": 1968,
+      "short": "A compact pattern language for text. Ken Thompson's 1968 paper made it fast; grep, Lex, Perl, JavaScript and SQL all use it. Backtracking engines can blow up.",
+      "long": "A regular expression is a compact pattern for text, such as (\\d{4})-(\\d{2})-(\\d{2}), which splits 2026-10-01 into 2026, 10 and 01. Ken Thompson's 1968 CACM paper turned them into fast matchers, the grep tool, named for the ed command g/re/p, appeared in Unix in 1973, and Lex (1975) turns a table of regular expressions into a scanner built on a finite automaton. The catch is the engine's strategy. In 2007 Russ Cox reported that Perl needed over sixty seconds to match a 29-character string that a Thompson automaton matched in twenty microseconds, because many engines backtrack and can take exponential time. In Node v22, the pattern /^(a+)+$/ against a run of a's ending in b took 42 ms at 24 characters and 679 ms at 28, about four times longer for every two characters added.",
+      "code": {
+        "lang": "javascript",
+        "text": "// JavaScript (Node): three capture groups split a date\nconst m = \"2026-10-01\".match(/(\\d{4})-(\\d{2})-(\\d{2})/);\nconsole.log(m[1], m[2], m[3]);   // prints 2026 10 01"
+      },
+      "status": "thriving",
+      "tags": [
+        "regexp",
+        "thompson",
+        "grep",
+        "backtracking",
+        "pattern matching",
+        "lex"
+      ],
+      "refs": [
+        {
+          "label": "Cox, Regular Expression Matching Can Be Simple And Fast",
+          "url": "https://swtch.com/~rsc/regexp/regexp1.html"
+        }
+      ]
+    },
+    {
+      "id": "lang.fourth-gen",
+      "title": "Fourth-Generation Languages",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1982,
+      "short": "A 1980s marketing label for high-level application tools that promised software without programmers. They did not end programming, but some of their tools survived.",
+      "long": "Fourth-generation languages, called 4GLs, were high-level tools that vendors in the 1980s promoted as ending the need for programmers, and James Martin's 1982 book Application Development Without Programmers is the emblematic title. The 4GL and 5GL labels were buzzwords of the 1980s and 1990s, and a 2017 Computerwoche article called 4GL a rather vague term used mainly for marketing. In 1994 Bill Curtis said of structured programming, CASE and the third to fifth generation languages that many of the promised technologies had not been delivered. What lasted were domain tools used alongside programmers, among them SQL, spreadsheets, report writers and scripting. The label itself is dead, and low-code platforms now trace their roots back to 4GLs and the rapid-application-development tools of the 1990s.",
+      "sleeper": "The 4GL label is gone, but the promise returns each decade: rapid application development in the 1990s, low-code platforms from 2014, AI coding assistants now. Each wave widened who could build software without removing professional developers.",
+      "status": "dead",
+      "tags": [
+        "4gl",
+        "rapid application development",
+        "report writers",
+        "james martin",
+        "silver bullet"
+      ]
+    },
+    {
+      "id": "lang.paradigms",
+      "title": "Programming Paradigms",
+      "cat": "languages",
+      "tier": 2,
+      "year": 1957,
+      "short": "A paradigm is a style of organizing a program. Seven families recur: procedural, object-oriented, functional, logic, array, declarative and concurrent.",
+      "long": "A programming paradigm is a style of organizing a program, and the families differ mainly in what the programmer states. Procedural programs give steps to follow, as in FORTRAN (1957), C and Pascal, and object-oriented programs use objects that bundle data with behavior, as in Simula, Smalltalk and Java. Functional programs combine functions, as in Lisp, ML and Haskell, and logic programs are facts and rules that an engine searches, as in Prolog. Array languages such as APL and MATLAB act on whole arrays so loops disappear, declarative languages such as SQL state the result and leave the method to an engine, and concurrent models such as Erlang's actors run independent processes that exchange messages. Almost every real language mixes several. The ideas that spread were the small portable ones: closures, map and filter, garbage collection, type inference and pattern matching.",
+      "sleeper": "If you learned procedural and early object-oriented styles, the surprise is how far functional ideas spread. Lambdas reached C# 3.0 (2007), C++11 and Java 8 (2014), and filter-map-reduce pipelines now run in Java, Python, JavaScript, Rust and Swift.",
+      "status": "n/a",
+      "tags": [
+        "procedural",
+        "object-oriented",
+        "functional",
+        "logic",
+        "declarative",
+        "array",
+        "actor",
+        "styles"
+      ],
+      "refs": [
+        {
+          "label": "Brooks, No Silver Bullet (1986)",
+          "url": "https://worrydream.com/refs/Brooks_1986_-_No_Silver_Bullet.pdf"
+        }
+      ]
+    },
+    {
+      "id": "lang.syntax-tour",
+      "title": "Syntax Tour: One Task, Many Languages",
+      "cat": "languages",
+      "tier": 3,
+      "year": 2026,
+      "short": "The same small task, summing the squares of the odd numbers from 1 to 10, shown in about forty languages. Almost all were run on real compilers; the answer is 165.",
+      "long": "One task makes the differences between languages visible: sum the squares of the odd numbers from 1 to 10, which is 1 + 9 + 25 + 49 + 81 = 165. It was written in about forty languages, and nearly all were executed on 30 September and 1 October 2026 using Compiler Explorer, Try It Online and Node.js. C, Pascal, Ada, COBOL, BASIC and Go use loops and mutable variables. Functional languages chain filter, map and sum, and mainstream languages now offer the same pipeline: Java, C#, Rust, Swift, Kotlin, Python and JavaScript. Prolog collects the solutions of a query, APL, J and K state the whole computation on arrays with no loop, and SQL describes the rows wanted. A COBOL program declares in advance how many digits a number may hold, with a picture clause such as PIC 9(5); only Smalltalk and Mathematica were written from documentation and not run.",
+      "code": {
+        "lang": "text",
+        "text": "Python:   print(sum(x * x for x in range(1, 11) if x % 2 == 1))\nHaskell:  main = print (sum [x * x | x <- [1 .. 10], odd x])\nClojure:  (println (->> (range 1 11) (filter odd?) (map #(* % %)) (reduce +)))\nElixir:   IO.puts(1..10 |> Enum.filter(&(rem(&1, 2) == 1)) |> Enum.map(&(&1 * &1)) |> Enum.sum())\nJulia:    println(sum(x^2 for x in 1:10 if isodd(x)))\nSwift:    print((1...10).filter { $0 % 2 == 1 }.map { $0 * $0 }.reduce(0, +))\nAPL:      ⎕←+/×⍨(2|⍳10)/⍳10\nJ:        echo +/ *: (#~ 2&|) 1+i.10\n(each prints 165)"
+      },
+      "status": "n/a",
+      "tags": [
+        "sum of squares",
+        "comparison",
+        "samples",
+        "forty languages"
+      ]
+    },
+    {
+      "id": "lang.j-k",
+      "title": "J and K",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1990,
+      "short": "Descendants of APL. J, by Iverson and Roger Hui, appeared in 1990 and uses plain ASCII; K, by Arthur Whitney, is proprietary and underlies the kdb+ database.",
+      "long": "J was designed by Kenneth Iverson and Roger Hui and first appeared in 1990; it is now free software under the GPLv3, and J9.7 was released on 14 April 2026. K was designed by Arthur Whitney, first appeared in 1993 and is proprietary, sold by KX Systems; it underlies the kdb+ column database. Both keep APL's idea that one expression operates on a whole array, but their programs use ordinary ASCII characters, as in the samples below, which list the primes up to 20 in J and average five numbers in K without a loop. In TIOBE's September 2026 list neither J nor K is ranked, though Q, the language of kdb+, appears in the unranked 51 to 100 band.",
+      "code": {
+        "lang": "text",
+        "text": "NB. J: primes up to 20 prints 2 3 5 7 11 13 17 19\necho (#~ 1&p:) 1+i.20\n/ K (the oK interpreter): mean of 3 1 4 1 5 prints 2.8\n{(+/x)%#x}3 1 4 1 5"
+      },
+      "status": "niche",
+      "tags": [
+        "iverson",
+        "hui",
+        "whitney",
+        "kdb+",
+        "array programming",
+        "ascii"
+      ]
+    },
+    {
+      "id": "lang.spark",
+      "title": "SPARK",
+      "cat": "languages",
+      "tier": 4,
+      "year": 2014,
+      "short": "A proof-oriented dialect of Ada. Its GNATprove tool can prove programs free of run-time errors; users include aircraft engines, air-traffic systems and railways.",
+      "long": "SPARK began at the University of Southampton in 1987, with Bernard Carré and Trevor Jennings and sponsorship from the UK Ministry of Defence, and was later associated with Praxis Critical Systems, which became Altran Praxis. AdaCore describes SPARK as a dialect of Ada that removes the Ada features leading to undefined behavior and extends Ada's support for formal specification. Its GNATprove tool proves the absence of run-time errors using the provers CVC4, Z3 and Alt-Ergo. Uses listed include Rolls-Royce Trent engines, the Eurofighter Typhoon, the UK iFACTS air-traffic system and rail signaling, and AdaCore's home page promotes an NVIDIA case study on security-critical software. SPARK is the proof-oriented survivor of the Ada effort that began with a Pentagon mandate in 1983.",
+      "status": "niche",
+      "tags": [
+        "ada",
+        "gnatprove",
+        "adacore",
+        "southampton",
+        "formal proof",
+        "safety-critical"
+      ],
+      "refs": [
+        {
+          "label": "AdaCore: About SPARK",
+          "url": "https://www.adacore.com/about-spark"
+        }
+      ]
+    },
+    {
+      "id": "lang.powershell",
+      "title": "PowerShell",
+      "cat": "languages",
+      "tier": 3,
+      "year": 2006,
+      "short": "Microsoft's shell and scripting language. Jeffrey Snover's 2002 design passes .NET objects through pipes instead of text; it went open source in 2016.",
+      "long": "PowerShell began as Jeffrey Snover's Monad Manifesto of 8 August 2002, which argued that integrating tools through text requires clumsy, lossy, imprecise text manipulation utilities and proposed building administrative automation on the .NET platform. PowerShell 1.0 appeared on 14 November 2006. It keeps the pipe, but what flows through it are .NET objects, not lines of text. Microsoft open-sourced it on 18 August 2016, and cross-platform PowerShell now runs on Windows, Linux and macOS, while Windows PowerShell 5.1 is supported through Windows support channels. PowerShell 7.6.6, a long-term-support release, shipped on 8 September 2026. In Stack Overflow's 2025 survey 23.2 percent of respondents used it, RedMonk ranks it 17th and TIOBE ranks it 32nd.",
+      "sleeper": "If you remember DOS batch files, PowerShell is what Windows administrators use instead. It pipes .NET objects rather than text, and since 2016 it also runs on Linux and macOS.",
+      "status": "thriving",
+      "tags": [
+        "monad",
+        "snover",
+        "cmdlets",
+        "windows",
+        "automation",
+        "objects"
+      ],
+      "refs": [
+        {
+          "label": "Snover, Monad Manifesto (2002)",
+          "url": "https://www.jsnover.com/Docs/MonadManifesto.pdf"
+        },
+        {
+          "label": "Microsoft Learn: What is PowerShell",
+          "url": "https://learn.microsoft.com/en-us/powershell/scripting/overview"
+        }
+      ]
+    },
+    {
+      "id": "lang.lua",
+      "title": "Lua",
+      "cat": "languages",
+      "tier": 4,
+      "year": 1993,
+      "short": "A small embeddable scripting language from Brazil's Tecgraf, created in 1993. Games from World of Warcraft to Roblox's Luau use it as an extension language.",
+      "long": "Lua was created in 1993 at Tecgraf, a group at PUC-Rio in Brazil, by Roberto Ierusalimschy, Luiz Henrique de Figueiredo and Waldemar Celes. It grew out of two in-house data-description languages, DEL and Sol, built for Petrobras engineering programs, and its name is Portuguese for moon. The authors explain that from 1977 to 1992 Brazil's market reserve put strong trade barriers on computer hardware and software, so Tecgraf's clients could not buy customized software from abroad and Tecgraf built its own tools. Lua is dynamically typed, garbage collected, MIT-licensed and designed to be embedded in a host program. Adobe Photoshop Lightroom, World of Warcraft and Angry Birds use it, and lua.org calls it the leading scripting language in games. Stack Overflow 2025 usage is 9.2 percent and TIOBE ranks it 31st.",
+      "status": "niche",
+      "tags": [
+        "tecgraf",
+        "embedding",
+        "games",
+        "luau",
+        "roblox",
+        "luarocks"
+      ],
+      "refs": [
+        {
+          "label": "Lua: history",
+          "url": "https://www.lua.org/history.html"
+        },
+        {
+          "label": "Ierusalimschy et al., The Evolution of Lua (HOPL III)",
+          "url": "https://www.lua.org/doc/hopl.pdf"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "s": "lang.lisp",
+      "t": "lang.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "ppl.mccarthy",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "org.mit",
+      "w": 2,
+      "k": "created-by",
+      "note": "McCarthy and Minsky started the MIT AI Project in 1958"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "lang.scheme",
+      "w": 3,
+      "k": "evolved-into"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "lang.common-lisp",
+      "w": 3,
+      "k": "evolved-into"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "lang.clojure",
+      "w": 2,
+      "k": "evolved-into",
+      "note": "a Lisp for the Java virtual machine"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "conc.fp",
+      "w": 3,
+      "k": "influenced",
+      "note": "functions as values and recursion, from 1958"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "comp.gc",
+      "w": 3,
+      "k": "influenced",
+      "note": "garbage collection was invented for Lisp"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "lang.ruby",
+      "w": 1,
+      "k": "influenced",
+      "note": "Matz blended parts of Lisp into Ruby"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "lang.julia",
+      "w": 1,
+      "k": "influenced",
+      "note": "macros and homoiconicity, on the authors' wish list"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "lang.r",
+      "w": 2,
+      "k": "influenced",
+      "note": "R began by borrowing the methods of Lisp implementors"
+    },
+    {
+      "s": "lang.lisp",
+      "t": "fail.lisp-machines",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.scheme",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.scheme",
+      "t": "org.mit",
+      "w": 2,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.scheme",
+      "t": "lang.js",
+      "w": 2,
+      "k": "influenced",
+      "note": "Eich took Scheme-style first-class functions"
+    },
+    {
+      "s": "lang.common-lisp",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.common-lisp",
+      "t": "lang.scheme",
+      "w": 1,
+      "k": "related",
+      "note": "the two best-known Lisp dialect lines"
+    },
+    {
+      "s": "lang.common-lisp",
+      "t": "ppl.mccarthy",
+      "w": 1,
+      "k": "related",
+      "note": "he noted in 1979 that Lisp had no standard"
+    },
+    {
+      "s": "lang.clojure",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.clojure",
+      "t": "lang.java",
+      "w": 2,
+      "k": "uses",
+      "note": "runs on the JVM and calls Java libraries"
+    },
+    {
+      "s": "lang.clojure",
+      "t": "conc.immutability",
+      "w": 2,
+      "k": "related",
+      "note": "persistent immutable data structures"
+    },
+    {
+      "s": "lang.clojure",
+      "t": "conc.fp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.ml",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.ml",
+      "t": "ppl.milner",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.ml",
+      "t": "lang.ocaml",
+      "w": 3,
+      "k": "evolved-into",
+      "note": "the INRIA branch of ML"
+    },
+    {
+      "s": "lang.ml",
+      "t": "conc.fp",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.haskell",
+      "t": "lang.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.haskell",
+      "t": "conc.fp",
+      "w": 3,
+      "k": "implements",
+      "note": "purely functional and lazy"
+    },
+    {
+      "s": "lang.haskell",
+      "t": "lang.csharp",
+      "w": 2,
+      "k": "influenced",
+      "note": "LINQ was inspired by Haskell monad comprehensions"
+    },
+    {
+      "s": "lang.haskell",
+      "t": "lang.ml",
+      "w": 2,
+      "k": "related",
+      "note": "both are statically typed with type inference"
+    },
+    {
+      "s": "lang.haskell",
+      "t": "conc.pattern-matching",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.erlang",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.erlang",
+      "t": "ppl.armstrong",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.erlang",
+      "t": "comp.vm",
+      "w": 1,
+      "k": "uses",
+      "note": "runs on its own virtual machine"
+    },
+    {
+      "s": "lang.ocaml",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.ocaml",
+      "t": "conc.type-inference",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.ocaml",
+      "t": "conc.pattern-matching",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.ocaml",
+      "t": "conc.concurrency",
+      "w": 1,
+      "k": "related",
+      "note": "OCaml 5 removed the global GC lock"
+    },
+    {
+      "s": "lang.fsharp",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.fsharp",
+      "t": "org.microsoft",
+      "w": 2,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.fsharp",
+      "t": "plat.dotnet",
+      "w": 3,
+      "k": "uses"
+    },
+    {
+      "s": "lang.fsharp",
+      "t": "lang.csharp",
+      "w": 3,
+      "k": "influenced",
+      "note": "async/await grew from F# asynchronous workflows"
+    },
+    {
+      "s": "lang.scala",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.scala",
+      "t": "lang.java",
+      "w": 2,
+      "k": "uses",
+      "note": "runs on the Java virtual machine"
+    },
+    {
+      "s": "lang.scala",
+      "t": "lang.kotlin",
+      "w": 1,
+      "k": "competes-with",
+      "note": "both are JVM languages"
+    },
+    {
+      "s": "lang.scala",
+      "t": "conc.fp",
+      "w": 2,
+      "k": "related",
+      "note": "fuses object-oriented and functional styles"
+    },
+    {
+      "s": "lang.scala",
+      "t": "mod.jetbrains-survey",
+      "w": 1,
+      "k": "related",
+      "note": "tops the salary ranking with 2% primary use"
+    },
+    {
+      "s": "lang.elixir",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.elixir",
+      "t": "lang.erlang",
+      "w": 3,
+      "k": "uses",
+      "note": "runs on the Erlang virtual machine"
+    },
+    {
+      "s": "lang.elixir",
+      "t": "pkg.htmx",
+      "w": 1,
+      "k": "related",
+      "note": "Phoenix LiveView follows the same server-rendered idea"
+    },
+    {
+      "s": "lang.gleam",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.gleam",
+      "t": "lang.erlang",
+      "w": 2,
+      "k": "uses",
+      "note": "runs on the Erlang virtual machine"
+    },
+    {
+      "s": "lang.gleam",
+      "t": "lang.elixir",
+      "w": 2,
+      "k": "related",
+      "note": "sibling language on the same virtual machine"
+    },
+    {
+      "s": "lang.prolog",
+      "t": "lang.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.prolog",
+      "t": "lang.erlang",
+      "w": 2,
+      "k": "evolved-into",
+      "note": "Erlang began as Prolog with processes"
+    },
+    {
+      "s": "lang.prolog",
+      "t": "fail.fifth-generation",
+      "w": 2,
+      "k": "related",
+      "note": "the project bet on logic programming"
+    },
+    {
+      "s": "lang.prolog",
+      "t": "data.sql",
+      "w": 1,
+      "k": "related",
+      "note": "both are declarative"
+    },
+    {
+      "s": "lang.apl",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.apl",
+      "t": "ppl.iverson",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.apl",
+      "t": "org.ibm",
+      "w": 2,
+      "k": "created-by",
+      "note": "implemented at IBM on System/360"
+    },
+    {
+      "s": "lang.apl",
+      "t": "lang.j-k",
+      "w": 2,
+      "k": "evolved-into"
+    },
+    {
+      "s": "lang.apl",
+      "t": "math.numpy",
+      "w": 1,
+      "k": "related",
+      "note": "the same whole-array style"
+    },
+    {
+      "s": "lang.matlab",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.matlab",
+      "t": "ppl.moler",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.matlab",
+      "t": "org.mathworks",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.matlab",
+      "t": "lang.julia",
+      "w": 2,
+      "k": "influenced",
+      "note": "the Julia authors were power MATLAB users"
+    },
+    {
+      "s": "lang.matlab",
+      "t": "math.numpy",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "lang.matlab",
+      "t": "lang.fortran",
+      "w": 2,
+      "k": "related",
+      "note": "first written in Fortran on LINPACK and EISPACK"
+    },
+    {
+      "s": "lang.r",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.r",
+      "t": "org.bell-labs",
+      "w": 1,
+      "k": "related",
+      "note": "an implementation of the Bell Labs language S"
+    },
+    {
+      "s": "lang.r",
+      "t": "conc.array-programming",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.r",
+      "t": "lang.matlab",
+      "w": 1,
+      "k": "competes-with",
+      "note": "both are scientific computing environments"
+    },
+    {
+      "s": "lang.julia",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.julia",
+      "t": "math.numpy",
+      "w": 2,
+      "k": "competes-with",
+      "note": "avoids the two-language split by being fast itself"
+    },
+    {
+      "s": "lang.julia",
+      "t": "mod.tiobe",
+      "w": 1,
+      "k": "related",
+      "note": "21st in September 2026"
+    },
+    {
+      "s": "lang.mathematica",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.mathematica",
+      "t": "lang.matlab",
+      "w": 2,
+      "k": "competes-with",
+      "note": "commercial numeric and symbolic systems"
+    },
+    {
+      "s": "lang.mathematica",
+      "t": "math.jupyter",
+      "w": 1,
+      "k": "related",
+      "note": "Wolfram describes the notebook idea"
+    },
+    {
+      "s": "lang.simula",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.simula",
+      "t": "conc.oop",
+      "w": 3,
+      "k": "influenced",
+      "note": "introduced classes, objects and inheritance"
+    },
+    {
+      "s": "lang.simula",
+      "t": "lang.smalltalk",
+      "w": 3,
+      "k": "influenced",
+      "note": "Kay saw Simula in 1966"
+    },
+    {
+      "s": "lang.simula",
+      "t": "lang.cpp",
+      "w": 3,
+      "k": "influenced",
+      "note": "Stroustrup wanted Simula's style with C's efficiency"
+    },
+    {
+      "s": "lang.simula",
+      "t": "lang.java",
+      "w": 2,
+      "k": "influenced"
+    },
+    {
+      "s": "lang.smalltalk",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.smalltalk",
+      "t": "ppl.kay",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.smalltalk",
+      "t": "org.xerox-parc",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.smalltalk",
+      "t": "lang.objc",
+      "w": 3,
+      "k": "influenced",
+      "note": "Objective-C's additions to C are mostly based on Smalltalk"
+    },
+    {
+      "s": "lang.smalltalk",
+      "t": "lang.ruby",
+      "w": 2,
+      "k": "influenced",
+      "note": "everything in Ruby is an object"
+    },
+    {
+      "s": "lang.smalltalk",
+      "t": "lang.java",
+      "w": 2,
+      "k": "influenced",
+      "note": "the Java white paper cites Smalltalk among its sources"
+    },
+    {
+      "s": "lang.smalltalk",
+      "t": "conc.oop",
+      "w": 3,
+      "k": "implements",
+      "note": "objects and messages"
+    },
+    {
+      "s": "lang.smalltalk",
+      "t": "plat.gui",
+      "w": 2,
+      "k": "related",
+      "note": "built for the Alto's bitmap display"
+    },
+    {
+      "s": "lang.csharp",
+      "t": "lang.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.csharp",
+      "t": "org.microsoft",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.csharp",
+      "t": "ppl.hejlsberg",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.csharp",
+      "t": "plat.dotnet",
+      "w": 3,
+      "k": "uses"
+    },
+    {
+      "s": "lang.csharp",
+      "t": "lang.java",
+      "w": 3,
+      "k": "competes-with",
+      "note": "Microsoft's answer to Java"
+    },
+    {
+      "s": "lang.csharp",
+      "t": "conc.oop",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "lang.csharp",
+      "t": "fail.flash",
+      "w": 1,
+      "k": "related",
+      "note": "Silverlight, the .NET browser plugin, ended in 2021"
+    },
+    {
+      "s": "lang.csharp",
+      "t": "mod.tiobe",
+      "w": 1,
+      "k": "related",
+      "note": "language of the year in 2023 and 2025"
+    },
+    {
+      "s": "lang.php",
+      "t": "lang.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.php",
+      "t": "ppl.lerdorf",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.php",
+      "t": "plat.wordpress",
+      "w": 3,
+      "k": "related",
+      "note": "WordPress is written in PHP"
+    },
+    {
+      "s": "lang.php",
+      "t": "plat.cgi",
+      "w": 2,
+      "k": "related",
+      "note": "it began as CGI programs written in C"
+    },
+    {
+      "s": "lang.php",
+      "t": "plat.web",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.php",
+      "t": "mod.tiobe",
+      "w": 1,
+      "k": "related",
+      "note": "7th in 2016, 14th in 2026"
+    },
+    {
+      "s": "lang.ruby",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.ruby",
+      "t": "ppl.matsumoto",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.ruby",
+      "t": "lang.python",
+      "w": 2,
+      "k": "competes-with",
+      "note": "both are friendly scripting languages"
+    },
+    {
+      "s": "lang.ruby",
+      "t": "mod.tiobe",
+      "w": 1,
+      "k": "related",
+      "note": "language of the year 2006, 22nd in 2026"
+    },
+    {
+      "s": "lang.perl",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.perl",
+      "t": "ppl.wall",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.perl",
+      "t": "plat.cgi",
+      "w": 2,
+      "k": "related",
+      "note": "a leading CGI language of the mid-1990s"
+    },
+    {
+      "s": "lang.perl",
+      "t": "lang.ruby",
+      "w": 2,
+      "k": "influenced",
+      "note": "Matz blended parts of Perl into Ruby"
+    },
+    {
+      "s": "lang.perl",
+      "t": "fail.perl6",
+      "w": 3,
+      "k": "related",
+      "note": "the Perl 6 rewrite and the Raku rename"
+    },
+    {
+      "s": "lang.perl",
+      "t": "mod.tiobe",
+      "w": 1,
+      "k": "related",
+      "note": "10th in 2016, 23rd in 2026"
+    },
+    {
+      "s": "lang.swift",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.swift",
+      "t": "ppl.lattner",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.swift",
+      "t": "org.apple",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.swift",
+      "t": "comp.llvm",
+      "w": 2,
+      "k": "uses"
+    },
+    {
+      "s": "lang.swift",
+      "t": "plat.iphone",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "lang.swift",
+      "t": "conc.memory-safety",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.swift",
+      "t": "conc.null",
+      "w": 2,
+      "k": "related",
+      "note": "optionals make nil handling explicit"
+    },
+    {
+      "s": "lang.swift",
+      "t": "lang.kotlin",
+      "w": 2,
+      "k": "related",
+      "note": "the iOS and Android counterparts"
+    },
+    {
+      "s": "lang.kotlin",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.kotlin",
+      "t": "org.jetbrains",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.kotlin",
+      "t": "lang.java",
+      "w": 2,
+      "k": "competes-with",
+      "note": "displaced Java as Android's default"
+    },
+    {
+      "s": "lang.kotlin",
+      "t": "plat.android",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "lang.kotlin",
+      "t": "org.google",
+      "w": 2,
+      "k": "related",
+      "note": "Kotlin-first Android since 2019"
+    },
+    {
+      "s": "lang.kotlin",
+      "t": "plat.cross-platform-mobile",
+      "w": 2,
+      "k": "related",
+      "note": "Kotlin Multiplatform"
+    },
+    {
+      "s": "lang.kotlin",
+      "t": "fail.pure-oo",
+      "w": 1,
+      "k": "related",
+      "note": "classes are closed to inheritance by default"
+    },
+    {
+      "s": "lang.dart",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.dart",
+      "t": "org.google",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.dart",
+      "t": "plat.cross-platform-mobile",
+      "w": 3,
+      "k": "related",
+      "note": "the language of Flutter"
+    },
+    {
+      "s": "lang.dart",
+      "t": "lang.js",
+      "w": 2,
+      "k": "competes-with",
+      "note": "first pitched as a structured alternative to JavaScript"
+    },
+    {
+      "s": "lang.dart",
+      "t": "comp.v8",
+      "w": 2,
+      "k": "related",
+      "note": "Lars Bak also led V8"
+    },
+    {
+      "s": "lang.awk",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.awk",
+      "t": "org.bell-labs",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.awk",
+      "t": "ppl.kernighan",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.awk",
+      "t": "lang.perl",
+      "w": 2,
+      "k": "influenced"
+    },
+    {
+      "s": "lang.awk",
+      "t": "proc.unix-philosophy",
+      "w": 2,
+      "k": "related",
+      "note": "a filter composed with pipes"
+    },
+    {
+      "s": "lang.awk",
+      "t": "lang.bash",
+      "w": 2,
+      "k": "related",
+      "note": "awk programs sit inside shell pipelines"
+    },
+    {
+      "s": "lang.awk",
+      "t": "plat.unix",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.bash",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.bash",
+      "t": "org.bell-labs",
+      "w": 3,
+      "k": "created-by",
+      "note": "the Bourne shell of 1979"
+    },
+    {
+      "s": "lang.bash",
+      "t": "org.gnu-fsf",
+      "w": 2,
+      "k": "created-by",
+      "note": "bash is the GNU Bourne-Again shell"
+    },
+    {
+      "s": "lang.bash",
+      "t": "ppl.mcilroy",
+      "w": 2,
+      "k": "related",
+      "note": "pushed for the pipe"
+    },
+    {
+      "s": "lang.bash",
+      "t": "plat.unix",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "lang.bash",
+      "t": "plat.linux",
+      "w": 2,
+      "k": "related",
+      "note": "Torvalds's first post says he had ported bash"
+    },
+    {
+      "s": "lang.bash",
+      "t": "proc.unix-philosophy",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.bash",
+      "t": "plat.posix",
+      "w": 2,
+      "k": "related",
+      "note": "the POSIX shell defines the common core"
+    },
+    {
+      "s": "lang.bash",
+      "t": "mod.octoverse",
+      "w": 1,
+      "k": "related",
+      "note": "shell scripts led growth in new AI repositories"
+    },
+    {
+      "s": "lang.powershell",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.powershell",
+      "t": "org.microsoft",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.powershell",
+      "t": "plat.dotnet",
+      "w": 3,
+      "k": "uses",
+      "note": "pipes .NET objects"
+    },
+    {
+      "s": "lang.powershell",
+      "t": "lang.bash",
+      "w": 2,
+      "k": "competes-with",
+      "note": "objects instead of text"
+    },
+    {
+      "s": "lang.powershell",
+      "t": "plat.windows",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.powershell",
+      "t": "plat.msdos",
+      "w": 1,
+      "k": "related",
+      "note": "batch files are the legacy predecessor"
+    },
+    {
+      "s": "lang.lua",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.lua",
+      "t": "pkg.supply-chain",
+      "w": 1,
+      "k": "related",
+      "note": "the LuaRocks site reported an exploited flaw in 2026"
+    },
+    {
+      "s": "lang.lua",
+      "t": "tool.vim",
+      "w": 1,
+      "k": "related",
+      "note": "an extension language in Neovim"
+    },
+    {
+      "s": "lang.lua",
+      "t": "mod.octoverse",
+      "w": 1,
+      "k": "related",
+      "note": "Roblox's Luau was among the fast risers in 2025"
+    },
+    {
+      "s": "lang.html",
+      "t": "lang.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.html",
+      "t": "ppl.berners-lee",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.html",
+      "t": "org.cern",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.html",
+      "t": "plat.web",
+      "w": 3,
+      "k": "part-of",
+      "note": "one of the three inventions behind the Web"
+    },
+    {
+      "s": "lang.html",
+      "t": "plat.http",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.html",
+      "t": "lang.css",
+      "w": 3,
+      "k": "related",
+      "note": "HTML gives structure, CSS gives appearance"
+    },
+    {
+      "s": "lang.html",
+      "t": "lang.js",
+      "w": 2,
+      "k": "related",
+      "note": "JavaScript changes the page through the DOM"
+    },
+    {
+      "s": "lang.html",
+      "t": "org.w3c-whatwg",
+      "w": 3,
+      "k": "related",
+      "note": "HTML5 and the living standard"
+    },
+    {
+      "s": "lang.html",
+      "t": "plat.mosaic",
+      "w": 2,
+      "k": "related",
+      "note": "Mosaic put images inline in 1993"
+    },
+    {
+      "s": "lang.css",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.css",
+      "t": "plat.web",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.css",
+      "t": "lang.js",
+      "w": 2,
+      "k": "related",
+      "note": "the three languages of a page"
+    },
+    {
+      "s": "lang.css",
+      "t": "org.w3c-whatwg",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "lang.ecmascript",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.ecmascript",
+      "t": "lang.js",
+      "w": 3,
+      "k": "related",
+      "note": "the standard behind JavaScript"
+    },
+    {
+      "s": "lang.ecmascript",
+      "t": "org.tc39",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "lang.ecmascript",
+      "t": "mod.typescript",
+      "w": 1,
+      "k": "related",
+      "note": "TypeScript aligned with ES6 proposals"
+    },
+    {
+      "s": "lang.ecmascript",
+      "t": "ppl.eich",
+      "w": 2,
+      "k": "related",
+      "note": "his 2008 message announced Harmony"
+    },
+    {
+      "s": "lang.regex",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.regex",
+      "t": "ppl.thompson",
+      "w": 2,
+      "k": "related",
+      "note": "his 1968 paper made them fast matchers"
+    },
+    {
+      "s": "lang.regex",
+      "t": "comp.lex-yacc",
+      "w": 2,
+      "k": "related",
+      "note": "Lex turns regular expressions into a scanner"
+    },
+    {
+      "s": "lang.regex",
+      "t": "lang.perl",
+      "w": 2,
+      "k": "related",
+      "note": "Cox's backtracking example used Perl"
+    },
+    {
+      "s": "lang.regex",
+      "t": "data.sql",
+      "w": 1,
+      "k": "related",
+      "note": "SQL:1999 added regular expressions"
+    },
+    {
+      "s": "lang.fourth-gen",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.fourth-gen",
+      "t": "fail.hub",
+      "w": 2,
+      "k": "part-of",
+      "note": "a 1980s promise to end programming"
+    },
+    {
+      "s": "lang.fourth-gen",
+      "t": "fail.case",
+      "w": 2,
+      "k": "related",
+      "note": "a companion 1980s silver bullet"
+    },
+    {
+      "s": "lang.fourth-gen",
+      "t": "mod.low-code",
+      "w": 2,
+      "k": "evolved-into",
+      "note": "low-code platforms trace their roots to 4GLs"
+    },
+    {
+      "s": "lang.fourth-gen",
+      "t": "data.sql",
+      "w": 2,
+      "k": "related",
+      "note": "SQL survived as a domain tool"
+    },
+    {
+      "s": "lang.fourth-gen",
+      "t": "proc.no-silver-bullet",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "conc.oop",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "conc.fp",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "conc.declarative",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "conc.array-programming",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "conc.structured-programming",
+      "w": 2,
+      "k": "related",
+      "note": "the procedural family"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "conc.concurrency",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "conc.hub",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related",
+      "note": "functional"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.haskell",
+      "w": 2,
+      "k": "related",
+      "note": "functional"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.prolog",
+      "w": 2,
+      "k": "related",
+      "note": "logic"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.apl",
+      "w": 2,
+      "k": "related",
+      "note": "array"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.smalltalk",
+      "w": 2,
+      "k": "related",
+      "note": "object-oriented"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.erlang",
+      "w": 2,
+      "k": "related",
+      "note": "concurrent actors"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.c",
+      "w": 2,
+      "k": "related",
+      "note": "procedural"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.fortran",
+      "w": 2,
+      "k": "related",
+      "note": "procedural"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "lang.syntax-tour",
+      "w": 3,
+      "k": "related",
+      "note": "one task in every family"
+    },
+    {
+      "s": "lang.paradigms",
+      "t": "fail.pure-oo",
+      "w": 2,
+      "k": "related",
+      "note": "deep inheritance was walked back"
+    },
+    {
+      "s": "lang.syntax-tour",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.syntax-tour",
+      "t": "conc.pattern-matching",
+      "w": 2,
+      "k": "related",
+      "note": "one data type matched in eight languages"
+    },
+    {
+      "s": "lang.syntax-tour",
+      "t": "lang.python",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "lang.syntax-tour",
+      "t": "lang.cobol",
+      "w": 1,
+      "k": "related",
+      "note": "a PIC 9(5) clause fixes the digits"
+    },
+    {
+      "s": "lang.syntax-tour",
+      "t": "lang.haskell",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "lang.syntax-tour",
+      "t": "lang.apl",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "lang.j-k",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.j-k",
+      "t": "conc.array-programming",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.j-k",
+      "t": "ppl.iverson",
+      "w": 2,
+      "k": "related",
+      "note": "Iverson co-designed J"
+    },
+    {
+      "s": "lang.j-k",
+      "t": "data.hub",
+      "w": 1,
+      "k": "related",
+      "note": "K underlies the kdb+ column database"
+    },
+    {
+      "s": "lang.spark",
+      "t": "lang.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "lang.spark",
+      "t": "lang.ada",
+      "w": 3,
+      "k": "related",
+      "note": "a dialect of Ada"
+    },
+    {
+      "s": "lang.spark",
+      "t": "qual.proof-tools",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "lang.spark",
+      "t": "qual.formal-verification",
+      "w": 2,
+      "k": "implements"
+    },
+    {
+      "s": "lang.spark",
+      "t": "conc.design-by-contract",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "lang.spark",
+      "t": "fail.ada-mandate",
+      "w": 2,
+      "k": "related",
+      "note": "the proof-oriented survivor of the Ada effort"
+    },
+    {
+      "s": "lang.spark",
+      "t": "org.nvidia",
+      "w": 1,
+      "k": "related",
+      "note": "AdaCore promotes an NVIDIA case study"
+    },
+    {
+      "s": "lang.gleam",
+      "t": "mod.stackoverflow-survey",
+      "w": 1,
+      "k": "related",
+      "note": "second most admired language in 2025"
+    }
+  ]
+}

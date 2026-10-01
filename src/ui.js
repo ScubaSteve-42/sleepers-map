@@ -162,21 +162,37 @@ export function createUI(app) {
     const terms = norm(text).split(/\s+/).filter(Boolean); if (!terms.length) return [];
     return nodes.map((_, i) => [score(i, terms), i]).filter(([s]) => s > 0).sort((a, b) => b[0] - a[0]).slice(0, 12).map(([, i]) => i);
   }
+  function addOption(i, k, label, year) {
+    const li = el('li'); li.setAttribute('role', 'option'); li.setAttribute('aria-selected', String(k === sel)); li.id = `res-${k}`;
+    const d = el('i', 'cdot'); d.style.setProperty('--c', cats.get(nodes[i].cat)?.color ?? '#fff');
+    li.append(d, el('span', 'rt', label)); if (year) li.append(el('span', 'ry', year));
+    li.addEventListener('mousedown', (ev) => { ev.preventDefault(); choose(i); }); results.append(li);
+  }
+  // nothing typed yet: offer the questions this map was built to answer, each one opening the node that answers it
+  function renderStarters() {
+    const starters = (graph.questions ?? []).map((s) => ({ q: s.q, i: idxOf.get(s.node) })).filter((s) => s.i != null);
+    if (!starters.length) { results.hidden = true; q.setAttribute('aria-expanded', 'false'); return; }
+    hits = starters.map((s) => s.i); sel = -1;
+    const head = el('li', 'head', 'Start with a question'); head.setAttribute('aria-hidden', 'true'); results.append(head);
+    starters.forEach((s, k) => addOption(s.i, k, s.q));
+    results.hidden = false; q.setAttribute('aria-expanded', 'true');
+  }
   function renderResults() {
     results.replaceChildren(); const text = q.value.trim();
-    if (!text) { results.hidden = true; q.setAttribute('aria-expanded', 'false'); return; }
+    if (!text) { renderStarters(); return; }
     hits = search(text); sel = hits.length ? 0 : -1;
     if (!hits.length) { const li = el('li', 'empty', `Nothing matches "${text}"`); results.append(li); }
-    hits.forEach((i, k) => {
-      const li = el('li'); li.setAttribute('role', 'option'); li.setAttribute('aria-selected', String(k === sel)); li.id = `res-${k}`;
-      const d = el('i', 'cdot'); d.style.setProperty('--c', cats.get(nodes[i].cat)?.color ?? '#fff');
-      li.append(d, el('span', 'rt', nodes[i].title), el('span', 'ry', String(nodes[i].year)));
-      li.addEventListener('mousedown', (ev) => { ev.preventDefault(); choose(i); }); results.append(li);
-    });
+    hits.forEach((i, k) => addOption(i, k, nodes[i].title, String(nodes[i].year)));
     results.hidden = false; q.setAttribute('aria-expanded', 'true');
   }
   function choose(i) { results.hidden = true; q.value = ''; q.blur(); app.select(i); }
-  function moveSel(d) { if (!hits.length) return; sel = (sel + d + hits.length) % hits.length; [...results.children].forEach((li, k) => li.setAttribute('aria-selected', String(k === sel))); results.children[sel]?.scrollIntoView({ block: 'nearest' }); }
+  function moveSel(d) {
+    if (!hits.length) return;
+    sel = sel < 0 ? (d > 0 ? 0 : hits.length - 1) : (sel + d + hits.length) % hits.length;
+    const opts = results.querySelectorAll('[role="option"]');
+    opts.forEach((li, k) => li.setAttribute('aria-selected', String(k === sel)));
+    opts[sel]?.scrollIntoView({ block: 'nearest' });
+  }
   q.addEventListener('input', renderResults);
   q.addEventListener('focus', renderResults);
   q.addEventListener('blur', () => setTimeout(() => { results.hidden = true; q.setAttribute('aria-expanded', 'false'); }, 120));

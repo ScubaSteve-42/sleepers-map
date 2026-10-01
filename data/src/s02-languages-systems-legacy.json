@@ -1,0 +1,2326 @@
+{
+ "slice": "s02-languages-systems-legacy",
+ "nodes": [
+  {
+   "id": "lang.short-code",
+   "title": "Short Code",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1949,
+   "short": "The first high-level notation actually implemented: an interpreter for coded math formulas, suggested by John Mauchly in 1949 for the BINAC and UNIVAC.",
+   "long": "Short Code was an interpreter that let a user write mathematical formulas in a coded form instead of machine instructions. John Mauchly suggested it in 1949, William Schmitt coded it for the BINAC that year and recoded it for the UNIVAC in late 1950, and J. Robert Logan revised it in January 1952. Knuth and Trabb Pardo call it the first high-level language actually to be implemented. Its write-up claimed that any mathematical equation could be evaluated by the mere expedient of writing it down, that the need for special programming had been eliminated, and that it gave a speed ratio of at least fifty to one against manual methods. That is an early case of the over-promising that later 'automatic programming' efforts repeated, and the lack of published detail suggests Short Code was not an instant success.",
+   "status": "dead",
+   "tags": [
+    "interpreter",
+    "binac",
+    "univac",
+    "mauchly",
+    "1950s"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo, The Early Development of Programming Languages (1976)",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    }
+   ]
+  },
+  {
+   "id": "lang.plankalkul",
+   "title": "Plankalkül",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1945,
+   "short": "Konrad Zuse's 1945 'Plan Calculus', designed on paper with data types down to single bits and 49 pages of chess algorithms. It stayed unpublished until 1972.",
+   "long": "Plankalkül was designed by Konrad Zuse in 1945, after Allied bombs had destroyed most of his relay computers and he had moved the surviving machine to the village of Hinterstein. Knuth and Trabb Pardo say it arose purely as desk work, with no machine in view that could run its programs. Its data types ran all the way down to the bit level, with single bits, compound types, arrays and lists, a richness that did not enter programming languages again until the late 1950s, and the manuscript included 49 pages of algorithms for playing chess. Zuse's 1945 manuscript lay unpublished until 1972, with only brief excerpts printed in 1948 and 1959, so it influenced almost no one. The Computer History Museum calls it the first algorithmic programming language.",
+   "status": "dead",
+   "tags": [
+    "zuse",
+    "german",
+    "bit-level types",
+    "chess",
+    "plan calculus"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo, The Early Development of Programming Languages (1976)",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    },
+    {
+     "label": "Computer History Museum, Timeline of Software and Languages",
+     "url": "https://www.computerhistory.org/timeline/software-languages/"
+    }
+   ]
+  },
+  {
+   "id": "lang.autocode",
+   "title": "Autocode",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1952,
+   "short": "Alick Glennie's 1952 formula translator for the Manchester Mark 1, credited by Knuth and Trabb Pardo as the first compiler. Brooker's cleaner one came in 1955.",
+   "long": "Autocode was written by Alick Glennie at the Royal Armament Research Establishment, Fort Halstead, for the Manchester Mark 1 in 1952. It translated formulas written in a notation of the user's choosing into Mark 1 machine code. Knuth and Trabb Pardo chose to credit Glennie with the first compiler, even though Grace Hopper's A-0 was completed first, because his system really turned algebraic statements into machine language, and they call him the unsung hero. His own reasoning was that the best notation for programs is the usual mathematical notation, because it is already known. R. A. Brooker's Mark 1 Autocode, implemented in 1955, was nearly machine-independent, spared users the work of scaling numbers and managing the two-level store, and was heavily used.",
+   "status": "dead",
+   "tags": [
+    "manchester mark 1",
+    "glennie",
+    "brooker",
+    "first compiler"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo, The Early Development of Programming Languages (1976)",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    }
+   ]
+  },
+  {
+   "id": "lang.speedcoding",
+   "title": "Speedcoding",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1953,
+   "short": "John Backus's group at IBM made the 701 behave as if it had floating point and index registers. Speedcoding (1953) was easy to use but slow and memory-hungry.",
+   "long": "Speedcoding was a software layer built by John Backus's group at IBM, started in January 1953 and described in a manual dated 10 September 1953. The IBM 701 had no floating-point arithmetic and no index registers, so Speedcoding made it act as though it had both: users wrote numbers in decimal floating-point notation, the system converted between decimal and binary, and it handled address modification so that one part of a program could modify another instruction. It consumed scarce memory, leaving 714 words of electrostatic storage for the user's program and data, yet it greatly reduced the time needed to write a program. Backus said programming in machine code was a pretty lousy business. His next project, a compiler for the 704, took a different route, because the 704 had built-in floating point and index registers, which was all Speedcoding was meant to supply.",
+   "status": "dead",
+   "tags": [
+    "ibm 701",
+    "interpreter",
+    "floating point",
+    "backus"
+   ],
+   "refs": [
+    {
+     "label": "IBM Speedcoding System for the 701, manual 24-6059-0",
+     "url": "https://archive.computerhistory.org/resources/access/text/2018/02/102678975-05-01-acc.pdf"
+    }
+   ]
+  },
+  {
+   "id": "lang.algol60",
+   "title": "ALGOL 60",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1960,
+   "short": "The 1960 international language report that brought block structure and a formally defined grammar. Pascal, Simula and PL/I built on it.",
+   "long": "ALGOL 60 came from an international committee. Thirteen representatives from Denmark, England, France, Germany, Holland, Switzerland and the United States met in Paris on 11 to 16 January 1960 and produced a report edited by Peter Naur, building on a 1958 Zurich preliminary report. The aim was a machine-independent language for numerical processes, something neither FORTRAN, then tied to IBM, nor any manufacturer's language offered. Its syntax was defined in a formal notation, BNF, rather than by English and examples. It had block structure (begin and end with local declarations), compound statements, a for statement, and a distinction between value parameters and call by name. Recursion went in late and controversially, through one sentence that committee member F. L. Bauer called an Amsterdam plot. As a production language ALGOL 60 is gone, but Pascal, Simula and PL/I drew on it.",
+   "code": {
+    "lang": "algol",
+    "text": "begin integer i, k; real w;\n  for i := 1 step 1 until m do\n    for k := i+1 step 1 until m do\n      begin w := A[i,k]; A[i,k] := A[k,i]; A[k,i] := w end\nend"
+   },
+   "status": "dead",
+   "tags": [
+    "algol",
+    "block structure",
+    "naur",
+    "1960 report"
+   ],
+   "refs": [
+    {
+     "label": "Revised Report on the Algorithmic Language Algol 60",
+     "url": "https://www.masswerk.at/algol60/report.htm"
+    }
+   ]
+  },
+  {
+   "id": "lang.basic",
+   "title": "BASIC",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1964,
+   "short": "Kemeny and Kurtz's Beginner's All-purpose Symbolic Instruction Code, born at Dartmouth on 1 May 1964 and later built into the first personal computers.",
+   "long": "John Kemeny and Thomas Kurtz built BASIC with undergraduates at Dartmouth College. At 4 a.m. on 1 May 1964, in the basement of College Hall, Kemeny and a student programmer typed RUN on neighboring terminals and both got correct answers, which Dartmouth counts as the birth of BASIC and of its time-sharing system. The design goals were a language that was very easy to learn, that compiled quickly because twenty people shared the computer, that served as a stepping stone to FORTRAN or ALGOL, and that was general purpose. Each line had a number, an operation and an operand, and the 1964 manual listed END plus 13 other operations. A decade later most early personal computers shipped with a BASIC: Bill Gates and Paul Allen licensed their interpreter to MITS for the Altair, and the TRS-80 (1977) had one built in.",
+   "sleeper": "Dartmouth BASIC itself is history, but its descendants persist: TIOBE ranks Visual Basic 7th in September 2026, and 4.2% of Stack Overflow's 2025 respondents use VBA, a related dialect.",
+   "code": {
+    "lang": "basic",
+    "text": "10 let t = 0\n20 for n = 1 to 9 step 2\n30 let t = t + n * n\n40 next n\n50 print t"
+   },
+   "status": "legacy",
+   "tags": [
+    "dartmouth",
+    "kemeny",
+    "kurtz",
+    "line numbers",
+    "altair basic",
+    "time-sharing"
+   ],
+   "refs": [
+    {
+     "label": "Dartmouth, BASIC at 50",
+     "url": "https://www.dartmouth.edu/basicfifty/basic.html"
+    },
+    {
+     "label": "First BASIC instruction manual, May 1964",
+     "url": "https://www.dartmouth.edu/basicfifty/basicmanual_1964.pdf"
+    }
+   ]
+  },
+  {
+   "id": "lang.pl1",
+   "title": "PL/I",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1964,
+   "short": "IBM and SHARE's 1963 attempt at one language for business, science and systems work. It never displaced FORTRAN or COBOL, but Multics was written in it.",
+   "long": "PL/I (Programming Language One) was designed in 1963 by a committee drawn from IBM and SHARE, the IBM users' group, and announced in 1964. It was meant to serve business, scientific and systems programming, and it drew on FORTRAN for syntax, ALGOL 60 for block structure and COBOL for record structures. Its size was the problem. Dijkstra compared using it to flying a plane with 7000 buttons, switches and handles in the cockpit, and the author of the Multics PL/I compiler warned in 1969 that compilers were far harder to build than most implementors assumed. For years the only important implementations were IBM's own and the one for Multics, whose operating system was written in EPL, a large subset of PL/I. PL/I never displaced FORTRAN or COBOL, a standard appeared in 1976, and IBM still sells Enterprise PL/I for z/OS.",
+   "sleeper": "IBM no longer offers a PL/I compiler for Windows or AIX. The language survives on z/OS mainframes, and TIOBE lists it only among the languages ranked 51 to 100.",
+   "code": {
+    "lang": "pl1",
+    "text": "SUMSQ: PROCEDURE OPTIONS (MAIN);\n   DECLARE (N, TOTAL) FIXED BINARY;\n   TOTAL = 0;\n   DO N = 1 TO 10 BY 2;\n      TOTAL = TOTAL + N * N;\n   END;\n   PUT SKIP LIST (TOTAL);\nEND SUMSQ;"
+   },
+   "status": "legacy",
+   "tags": [
+    "ibm",
+    "share",
+    "multics",
+    "system/360",
+    "universal language"
+   ],
+   "refs": [
+    {
+     "label": "Freiburghouse, The Multics PL/1 Compiler (1969)",
+     "url": "https://www.multicians.org/pl1-raf.html"
+    },
+    {
+     "label": "IBM Enterprise PL/I for z/OS",
+     "url": "https://www.ibm.com/products/pli-compiler-zos"
+    }
+   ]
+  },
+  {
+   "id": "lang.pascal",
+   "title": "Pascal",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1970,
+   "short": "Niklaus Wirth's 1970 teaching language, built on ALGOL 60: structured programming, strict types, and a portable P-code compiler that carried it to micros.",
+   "long": "Niklaus Wirth introduced Pascal at ETH Zurich in 1970, and the language definition appeared in Acta Informatica in 1971. Named after Blaise Pascal, it was meant for both commercial and scientific work and for teaching programming, and it was closely based on ALGOL 60. It supports structured programming, and its grammar suits a compiler that reads the source in a single pass, which is why type declarations must come first in a block. A portable P-code compiler spread it: Ken Bowles's group at UC San Diego built an editor, a file system and a debugger around it and distributed the result for 50 dollars as UCSD Pascal. Modula-2 and Oberon followed it, Ada was largely based on it, and a 1987 Pentagon policy added Pascal to the approved list. Wirth observed that Pascal spread in schools and homes rather than in industry.",
+   "sleeper": "Pascal taught a generation in the 1980s; among Stack Overflow's 2025 respondents who are learning to code, 71.8% use Python and 48% use C. Its heir Delphi ranks 13th on TIOBE in September 2026.",
+   "code": {
+    "lang": "pascal",
+    "text": "program SumSquares;\nvar\n  n, total: integer;\nbegin\n  total := 0;\n  for n := 1 to 10 do\n    if odd(n) then\n      total := total + n * n;\n  writeln(total)\nend."
+   },
+   "status": "niche",
+   "tags": [
+    "wirth",
+    "eth zurich",
+    "p-code",
+    "ucsd pascal",
+    "structured programming",
+    "teaching"
+   ],
+   "refs": [
+    {
+     "label": "Wirth, A Brief History of Software Engineering (2008)",
+     "url": "https://people.inf.ethz.ch/wirth/Miscellaneous/IEEE-Annals.pdf"
+    },
+    {
+     "label": "Niklaus Wirth, ETH Zurich home page",
+     "url": "https://people.inf.ethz.ch/wirth/"
+    }
+   ]
+  },
+  {
+   "id": "lang.modula-oberon",
+   "title": "Modula-2 and Oberon",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1978,
+   "short": "Niklaus Wirth's successors to Pascal: Modula-2 (designed from 1978), built on modules, and Oberon (1987), a minimal language and system. Influential, little used.",
+   "long": "Niklaus Wirth followed Pascal with Modula-2, designed in 1978 to 1980 at ETH Zurich and published in 1979 by his own account, and with Oberon in 1987. Their main contribution was the module: a separately compiled unit that hides its internals and exports a defined interface. Wirth said modularization was the principal idea behind Modula-2, motivated by Xerox's Mesa, itself a descendant of Pascal, and that Ada adopted the idea as well. He also led construction of the Lilith workstation (1980) and the Ceres workstations at ETH, and his web page still lists Project Oberon, 2013 Edition. Go's own FAQ credits the Pascal, Modula and Oberon family for its declarations and packages. Neither language appears in TIOBE's September 2026 top 100, although GCC includes a Modula-2 front end.",
+   "code": {
+    "lang": "oberon",
+    "text": "MODULE SumSquares;\n  IMPORT Out;\n  VAR n, total: INTEGER;\nBEGIN\n  total := 0;\n  FOR n := 1 TO 9 BY 2 DO total := total + n * n END;\n  Out.Int(total, 0); Out.Ln\nEND SumSquares."
+   },
+   "status": "niche",
+   "tags": [
+    "wirth",
+    "modules",
+    "lilith",
+    "oberon-07",
+    "mesa"
+   ],
+   "refs": [
+    {
+     "label": "Niklaus Wirth, ETH Zurich home page",
+     "url": "https://people.inf.ethz.ch/wirth/"
+    },
+    {
+     "label": "Wirth, A Brief History of Software Engineering (2008)",
+     "url": "https://people.inf.ethz.ch/wirth/Miscellaneous/IEEE-Annals.pdf"
+    }
+   ]
+  },
+  {
+   "id": "lang.ada",
+   "title": "Ada",
+   "cat": "languages",
+   "tier": 3,
+   "year": 1983,
+   "short": "The Pentagon's strongly typed language with packages and built-in tasking, designed 1977 to 1983. Its mandate largely failed; it endures in safety-critical code.",
+   "long": "Ada was designed from 1977 to 1983, by a team led by Jean Ichbiah at Honeywell Bull, for the US Department of Defense, to replace more than 450 languages then in use. It is strongly typed, with packages, built-in tasking for concurrency and range-checked types: assigning 101 to an integer declared to range from 0 to 100 stops the program with a constraint error. A 1983 policy mandated Ada for new mission-critical software, with waivers; a 1987 directive prescribed it for most procurements; and the mandate was effectively removed in 1997. A 1997 National Research Council review judged the requirement helpful for custom weapons and command software but often counterproductive where commercial software was strong. Ada lives on in avionics, rail, space and medical systems, and in SPARK, a subset that adds formal proof. Ada 2012 added contracts, and the current standard is Ada 2022.",
+   "sleeper": "TIOBE ranked Ada 17th in September 2026 (0.85 percent) and said it is showing renewed strength, up from 31st on the 2021 twelve-month average. Its stronghold is certified safety-critical code.",
+   "code": {
+    "lang": "ada",
+    "text": "with Ada.Text_IO; use Ada.Text_IO;\n\nprocedure Main is\n   Total : Natural := 0;\nbegin\n   for N in 1 .. 10 loop\n      if N mod 2 = 1 then\n         Total := Total + N * N;\n      end if;\n   end loop;\n   Put_Line (Natural'Image (Total));\nend Main;"
+   },
+   "status": "niche",
+   "tags": [
+    "ichbiah",
+    "dod",
+    "spark",
+    "safety-critical",
+    "adacore",
+    "tasking"
+   ],
+   "refs": [
+    {
+     "label": "National Research Council, Ada and Beyond (1997)",
+     "url": "https://nap.nationalacademies.org/read/5463/chapter/3"
+    },
+    {
+     "label": "AdaCore, About SPARK",
+     "url": "https://www.adacore.com/about-spark"
+    }
+   ]
+  },
+  {
+   "id": "lang.eiffel",
+   "title": "Eiffel",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1986,
+   "short": "Bertrand Meyer's object-oriented language built around Design by Contract: preconditions, postconditions and class invariants that are checked as the program runs.",
+   "long": "Eiffel is an object-oriented language designed by Bertrand Meyer and tied to Design by Contract, a method in which the expected behavior of every component is explicitly defined, checked and enforced. A precondition is what a caller must guarantee, a postcondition is what the routine promises in return, and a class invariant must always hold. Meyer's 1992 article 'Applying Design by Contract' in IEEE Computer argued that reliability matters even more in object-oriented programming than elsewhere and showed how to cut bugs by building components on carefully designed contracts. The idea spread: Ada 2012 added a Pre aspect, and C++26 has contract assertions. Ritchie listed Eiffel among the languages that treat C as a portable assembly language, compiling to it. Eiffel itself is niche and is not in TIOBE's top 100.",
+   "code": {
+    "lang": "eiffel",
+    "text": "half (x: INTEGER): INTEGER\n    require\n        even: x \\\\ 2 = 0\n    do\n        Result := x // 2\n    ensure\n        exact: Result * 2 = x\n    end"
+   },
+   "status": "niche",
+   "tags": [
+    "meyer",
+    "design by contract",
+    "preconditions",
+    "invariants"
+   ],
+   "refs": [
+    {
+     "label": "Meyer, Applying Design by Contract, IEEE Computer, October 1992",
+     "url": "https://se.inf.ethz.ch/~meyer/publications/computer/contract.pdf"
+    },
+    {
+     "label": "Eiffel Software, Design by Contract",
+     "url": "https://www.eiffel.com/values/design-by-contract/"
+    }
+   ]
+  },
+  {
+   "id": "lang.bcpl",
+   "title": "BCPL",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1966,
+   "short": "Martin Richards's simple, typeless language (designed 1966, first run in 1967), the ancestor of B and C. C++ later revived its // comments.",
+   "long": "Martin Richards designed BCPL in 1966 as a research student at Cambridge, influenced by the committee-designed CPL, and first implemented it in spring 1967 while at MIT. It is simple and typeless: it has only one kind of value, the machine word. BCPL was used for the OS6 operating system at Oxford and for parts of Xerox PARC's Alto work, and Bell Labs people knew it because the MIT CTSS system on which Richards worked was used to develop Multics. Its file-inclusion mechanism, like PL/I's, was a model for C's #include. Ken Thompson squeezed BCPL into 8K bytes of memory to make B, and Dennis Ritchie turned B into C. In 1993 Ritchie noted that C++ had resurrected the BCPL comment convention, the // comment.",
+   "status": "dead",
+   "tags": [
+    "richards",
+    "typeless",
+    "cambridge",
+    "os6",
+    "cpl"
+   ],
+   "refs": [
+    {
+     "label": "Martin Richards, BCPL page",
+     "url": "https://www.cl.cam.ac.uk/~mr10/BCPL.html"
+    },
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    }
+   ]
+  },
+  {
+   "id": "lang.b",
+   "title": "B",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1969,
+   "short": "Ken Thompson's 1969-70 stripped-down BCPL for the first Unix on a PDP-7. It had a single data type, the word, and was reworked into C by Dennis Ritchie.",
+   "long": "After Bell Labs withdrew from the Multics project in 1969, Ken Thompson's group wanted a comfortable computing environment, and Unix began on a little-used PDP-7 minicomputer. Doug McIlroy quickly re-created the TMG compiler-writing language there, which challenged Thompson to provide a systems programming language; after a rapidly scuttled attempt at Fortran he wrote B. Ritchie summarized it as BCPL squeezed into 8K bytes of memory and filtered through Thompson's brain, or C without types. B had one data type, the word, and its documents describe it as intended for primarily non-numeric work such as system programming, with a small, unrestrictive syntax that is easy to compile. The byte-addressed PDP-11 exposed its weaknesses, so in 1971 Ritchie added a character type and wrote a compiler that emitted machine code. That version, NB for new B, grew into C.",
+   "status": "dead",
+   "tags": [
+    "thompson",
+    "pdp-7",
+    "pdp-11",
+    "nb",
+    "word-oriented"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    },
+    {
+     "label": "Thompson, Users' Reference to B",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/kbman.html"
+    }
+   ]
+  },
+  {
+   "id": "lang.objc",
+   "title": "Objective-C",
+   "cat": "languages",
+   "tier": 3,
+   "year": 1984,
+   "short": "C with Smalltalk-style messaging, from Brad Cox and Tom Love in the early 1980s. It became the language of NeXT, then of Mac OS X and iOS, until Swift.",
+   "long": "Brad Cox and Tom Love created Objective-C in the early 1980s at their company Productivity Products International, after meeting Smalltalk at ITT in 1981; Cox first wrote a C preprocessor to add Smalltalk-like abilities. The result is a strict superset of C with Smalltalk-style message passing: you do not call a method, you send a message, written in square brackets, and a dynamic runtime decides what to do with it. NeXT licensed Objective-C in 1988 and extended GCC to compile it, Apple acquired NeXT in 1996 and made it the language of Mac OS X (Cocoa) and then iOS, and at WWDC 2014 Apple introduced Swift, described as Objective-C without the C. TIOBE named Objective-C its Programming Language of the Year in 2011 and 2012, during the iPhone boom, and ranked it 19th in September 2026.",
+   "sleeper": "In 1990 Objective-C was a niche NeXT language. After Apple bought NeXT it became the language of Mac OS X and iOS until Swift took over, though TIOBE still ranks it 19th (up from 29th a year earlier).",
+   "code": {
+    "lang": "objc",
+    "text": "// Square brackets send a message to an object\n[array addObject:[NSString stringWithFormat:@\"Hello, %@\", name]];"
+   },
+   "status": "legacy",
+   "tags": [
+    "cox",
+    "love",
+    "nextstep",
+    "cocoa",
+    "smalltalk messaging",
+    "ios"
+   ],
+   "refs": [
+    {
+     "label": "Apple, Programming with Objective-C (documentation archive)",
+     "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html"
+    },
+    {
+     "label": "TIOBE Index, September 2026",
+     "url": "https://www.tiobe.com/tiobe-index/"
+    }
+   ]
+  },
+  {
+   "id": "lang.go",
+   "title": "Go",
+   "cat": "languages",
+   "tier": 2,
+   "year": 2009,
+   "short": "Google's language from Griesemer, Pike and Thompson: C-like syntax, garbage collection, goroutines and channels, fast builds. Public in 2009, version 1.0 in 2012.",
+   "long": "Robert Griesemer, Rob Pike and Ken Thompson began sketching Go on a whiteboard at Google on 21 September 2007. It became a public open-source project on 10 November 2009, and Go 1.0 shipped on 28 March 2012. The designers were frustrated by the complexity of building large software with the languages and build systems they had, they wanted first-class support for concurrency on multicore chips, and they wanted automatic memory management. Go's FAQ describes it as mostly in the C family for basic syntax, with declarations and packages from the Pascal, Modula and Oberon family and concurrency ideas from languages inspired by Hoare's CSP. It offers goroutines (cheap threads scheduled by the runtime), channels, garbage collection, interfaces, fast compilation and single static binaries. Generics arrived in Go 1.18 in 2022.",
+   "sleeper": "Go is what some of Unix's creators designed after decades of C: garbage collected, with indexes checked at run time. An out-of-range index stops the program with a panic instead of silently corrupting memory.",
+   "code": {
+    "lang": "go",
+    "text": "package main\nimport \"fmt\"\nfunc main() {\n\tch := make(chan int)\n\tgo func() { // 'go' starts a goroutine, a lightweight thread\n\t\tsum := 0\n\t\tfor i := 1; i <= 10; i += 2 { sum += i * i }\n\t\tch <- sum // send the result over the channel\n\t}()\n\tfmt.Println(<-ch) // receive it: prints 165\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "google",
+    "goroutines",
+    "channels",
+    "csp",
+    "plan 9",
+    "cloud"
+   ],
+   "refs": [
+    {
+     "label": "Go FAQ",
+     "url": "https://go.dev/doc/faq"
+    },
+    {
+     "label": "Go release history",
+     "url": "https://go.dev/doc/devel/release"
+    }
+   ]
+  },
+  {
+   "id": "lang.zig",
+   "title": "Zig",
+   "cat": "languages",
+   "tier": 3,
+   "year": 2016,
+   "short": "Andrew Kelley's C-like language with compile-time execution (comptime), explicit allocators and a built-in C compiler. Announced in 2016, still pre-1.0 in 2026.",
+   "long": "Andrew Kelley first announced Zig on 8 February 2016, and the nonprofit Zig Software Foundation funds it. It keeps C's explicitness and adds compile-time execution: ziglang.org promises no hidden control flow, no hidden memory allocations, and no preprocessor or macros, so code that allocates must be handed an allocator. Errors are values returned to the caller, and a defer statement releases a resource when its scope ends. A Zig download also works as a zero-dependency C and C++ compiler, zig cc, built on Clang, that cross-compiles out of the box. The current release, 0.16.0 of 13 April 2026, is still pre-1.0 and changes its APIs between releases. Adopters include TigerBeetle, a financial database, and Ghostty, a terminal emulator.",
+   "sleeper": "Bun, a flagship Zig project from 2021, moved to Rust in 2026. Its creator, who works at Anthropic after Anthropic bought Bun, cited memory bugs but said other Zig users do not have them.",
+   "code": {
+    "lang": "zig",
+    "text": "const std = @import(\"std\");\n\nfn fib(n: u32) u32 {\n    return if (n < 2) n else fib(n - 1) + fib(n - 2);\n}\n\npub fn main() !void {\n    const f10 = comptime fib(10); // evaluated while compiling\n    std.debug.print(\"fib(10) = {d}\\n\", .{f10});\n}"
+   },
+   "status": "niche",
+   "tags": [
+    "kelley",
+    "comptime",
+    "zig cc",
+    "allocators",
+    "systems"
+   ],
+   "refs": [
+    {
+     "label": "ziglang.org",
+     "url": "https://ziglang.org/"
+    },
+    {
+     "label": "Zig 0.16.0 release notes",
+     "url": "https://ziglang.org/download/0.16.0/release-notes.html"
+    }
+   ]
+  },
+  {
+   "id": "lang.carbon",
+   "title": "Carbon",
+   "cat": "languages",
+   "tier": 4,
+   "year": 2022,
+   "short": "Google's experimental C++ successor, announced in 2022: C++ interoperability with safer fundamentals. Its own README says it is not ready for use.",
+   "long": "Chandler Carruth of Google announced Carbon at CppNorth in Toronto on 19 July 2022 as a C++ successor. Its README calls it an experimental successor to C++ that is fast and works with C++, with safer fundamentals and an incremental path toward a memory-safe subset, and it states plainly that Carbon is not ready for use. It even tells developers who can use Go, Swift, Kotlin or Rust to do so instead. The roadmap lists potential goals of a working 0.1 language for evaluation in 2026, a finished 0.2 language in 2027 to 2028, and a 1.0 release beyond 2028. No source reviewed shows that the 0.1 milestone had shipped by the end of September 2026. Carbon is one of several attempts to move C++ codebases forward without rewriting them.",
+   "code": {
+    "lang": "carbon",
+    "text": "import Math;\n// Adapted from the Carbon design overview\nfn SmallestFactor(n: i32) -> (i32, bool) {\n  let limit: i32 = Math.Sqrt(n) as i32;\n  var i: i32 = 2;\n  while (i <= limit) {\n    if (n % i == 0) { return (i, false); }\n    i += 1;\n  }\n  return (n, true);\n}"
+   },
+   "status": "niche",
+   "tags": [
+    "carruth",
+    "cpp successor",
+    "experimental",
+    "interop"
+   ],
+   "refs": [
+    {
+     "label": "Carbon README",
+     "url": "https://raw.githubusercontent.com/carbon-language/carbon-lang/trunk/README.md"
+    },
+    {
+     "label": "Carbon roadmap",
+     "url": "https://raw.githubusercontent.com/carbon-language/carbon-lang/trunk/docs/project/roadmap.md"
+    }
+   ]
+  },
+  {
+   "id": "lang.cppfront",
+   "title": "cppfront (Cpp2)",
+   "cat": "languages",
+   "tier": 4,
+   "year": 2022,
+   "short": "Herb Sutter's experimental compiler from 'Cpp2', a cleaner syntax, to ordinary C++. A personal experiment to test ideas for ISO C++, not a successor language.",
+   "long": "cppfront is a compiler from an experimental syntax that Herb Sutter calls Cpp2 to today's C++ (Cpp1), written to prove out concepts and prototype features that can also be proposed for ISO C++. Its README says it aims to help evolve C++ itself, not to be a C++ successor. Sutter introduced it in a CppCon 2022 talk, and the latest GitHub release is v0.8.1 of 31 January 2025. Cpp2 keeps C++ semantics but changes the syntax: names come first, and one grammar covers every declaration. In a July 2026 status summary Sutter called it his personal experiment, said he deliberately did not support it as a production compiler, and said he was now concentrating on getting its features, such as metaclasses and call-site bounds checking, into ISO C++.",
+   "code": {
+    "lang": "cpp2",
+    "text": "main: () = {\n    words: std::vector = ( \"Alice\", \"Bob\" );\n    hello( words[0] );\n    hello( words[1] );\n}\nhello: (msg: std::string_view) = {\n    std::cout << \"Hello, (msg)$!\\n\";\n}"
+   },
+   "status": "niche",
+   "tags": [
+    "sutter",
+    "cpp2",
+    "transpiler",
+    "syntax 2",
+    "metaclasses"
+   ],
+   "refs": [
+    {
+     "label": "cppfront README",
+     "url": "https://raw.githubusercontent.com/hsutter/cppfront/main/README.md"
+    },
+    {
+     "label": "cppfront status summary, summer 2026",
+     "url": "https://github.com/hsutter/cppfront/discussions/1450"
+    }
+   ]
+  },
+  {
+   "id": "lang.mojo",
+   "title": "Mojo",
+   "cat": "languages",
+   "tier": 4,
+   "year": 2023,
+   "short": "Modular's Python-flavored language for AI and GPU code, from Chris Lattner. Mojo 1.0 shipped on 11 August 2026; the compiler was open-sourced a week later.",
+   "long": "Mojo comes from Modular Inc., founded by Chris Lattner and Tim Davis. Lattner was earlier the architect of LLVM, Clang and Swift. Mojo was first publicly testable in May 2023, its standard library was open-sourced in March 2024, Mojo 1.0.0 was released on 11 August 2026, and the compiler was open-sourced under Apache 2.0 on 18 August 2026. Its website calls it the systems language for the AI era: Python-like syntax with static types and ownership rules, GPU kernels written in the same language with no CUDA or separate language, and Python interoperability. Secondary sources report that the original aim of being a full superset of Python has been abandoned or postponed indefinitely. It targets AI and GPU kernels rather than operating systems, runs on Linux and macOS, and was not in TIOBE's top 50 in September 2026.",
+   "code": {
+    "lang": "mojo",
+    "text": "def main():\n    print(\"Hello, world!\")"
+   },
+   "status": "niche",
+   "tags": [
+    "modular",
+    "lattner",
+    "gpu",
+    "ai kernels",
+    "python-like"
+   ],
+   "refs": [
+    {
+     "label": "Mojo language site",
+     "url": "https://mojolang.org/"
+    },
+    {
+     "label": "Mojo basics",
+     "url": "https://mojolang.org/docs/manual/basics/"
+    }
+   ]
+  },
+  {
+   "id": "lang.delphi",
+   "title": "Delphi",
+   "cat": "languages",
+   "tier": 3,
+   "year": 1995,
+   "short": "Borland's visual Object Pascal for Windows, released 14 February 1995 with Anders Hejlsberg as chief architect. Now Embarcadero's RAD Studio, still maintained.",
+   "long": "Delphi 1.0 was released on 14 February 1995 as the successor to Turbo Pascal for Windows, with Anders Hejlsberg as chief architect. It let developers build Windows interfaces visually in Object Pascal, a descendant of Wirth's Pascal with classes, constructors and destructors, properties and method pointers. Its Visual Component Library, VCL, supported rapid application development, and Delphi kept a loyal Windows line-of-business base. Hejlsberg left Borland for Microsoft in 1996, and Embarcadero acquired the product line in 2008. RAD Studio 13.2, announced in September 2026, targets Windows, macOS, iOS, Android and Linux, with VCL for Windows and FireMonkey for cross-platform interfaces. TIOBE ranked Delphi/Object Pascal 13th in September 2026, and 2.5% of Stack Overflow's 2025 respondents said they use it. Free Pascal and Lazarus are open-source implementations.",
+   "status": "niche",
+   "tags": [
+    "borland",
+    "embarcadero",
+    "object pascal",
+    "vcl",
+    "rad",
+    "hejlsberg"
+   ],
+   "refs": [
+    {
+     "label": "Embarcadero, Delphi",
+     "url": "https://www.embarcadero.com/products/delphi"
+    },
+    {
+     "label": "TIOBE Index, September 2026",
+     "url": "https://www.tiobe.com/tiobe-index/"
+    }
+   ]
+  },
+  {
+   "id": "lang.vb",
+   "title": "Visual Basic",
+   "cat": "languages",
+   "tier": 3,
+   "year": 1991,
+   "short": "Microsoft's drag-and-drop BASIC for Windows, released in May 1991. Classic VB ended with VB6 in 1998, and the .NET version is frozen by policy.",
+   "long": "Visual Basic 1.0 was released for Windows in May 1991 at a trade show in Atlanta. According to secondary accounts, Alan Cooper's company Tripod built a drag-and-drop form generator that Microsoft contracted under the code name Ruby, and Microsoft combined it with an embedded BASIC engine. You drew the controls on a form and attached BASIC code to events such as a button click, the visual, event-driven style that Delphi and, later, C# with Windows Forms shared. VB6 arrived in 1998 and mainstream support ended in 2005; Microsoft still supports the VB6 runtime for the lifetime of each Windows version, but not the IDE. Visual Basic .NET followed in 2002. Microsoft's strategy page now says Visual Basic will keep a stable design, adopt a consumption-only approach, avoid new syntax and not be extended to new workloads.",
+   "code": {
+    "lang": "vb",
+    "text": "' Runs when the user clicks the button named Command1\nPrivate Sub Command1_Click()\n    Label1.Caption = \"Hello, world\"\nEnd Sub"
+   },
+   "status": "legacy",
+   "tags": [
+    "microsoft",
+    "vb6",
+    "vb.net",
+    "event-driven",
+    "forms",
+    "rad"
+   ],
+   "refs": [
+    {
+     "label": "Microsoft Learn, Visual Basic language strategy",
+     "url": "https://learn.microsoft.com/en-us/dotnet/visual-basic/getting-started/strategy"
+    },
+    {
+     "label": "Microsoft Learn, Support statement for Visual Basic 6.0",
+     "url": "https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-basic-6/visual-basic-6-support-policy"
+    }
+   ]
+  },
+  {
+   "id": "lang.forth",
+   "title": "Forth",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1971,
+   "short": "Charles Moore's stack-based, extensible, interactive language: operands first, operator last, and new words that extend the language. A niche in firmware.",
+   "long": "Forth is a stack-based language: you write the operands first and the operator last, so 2 3 + 4 * leaves 20 on the stack, and you define new words that become part of the language. Charles Moore wrote orbit programs at the Smithsonian Astrophysical Observatory and built a simple interpreter to read cards that controlled the program, so that he did not have to recompile it; he co-founded FORTH, Inc. in 1971. ANSI Forth dates from 1994, the same year Sun's Open Boot evolved into Open Firmware (IEEE 1275), the predominant boot-level plug-and-play firmware on non-Intel PCI systems from Apple, IBM and others as well as Sun. Forth has stayed a niche language for embedded systems and boot firmware and is not in TIOBE's top 100.",
+   "code": {
+    "lang": "forth",
+    "text": ": sumsq  0  10 1 do  i 2 mod if  i dup * +  then  loop ;\nsumsq . cr   \\ prints 165 (sum of the squares of the odd numbers 1 to 9)"
+   },
+   "status": "niche",
+   "tags": [
+    "moore",
+    "stack",
+    "postfix",
+    "open firmware",
+    "embedded"
+   ],
+   "refs": [
+    {
+     "label": "Forth, Inc., Forth programming language",
+     "url": "https://www.forth.com/resources/forth-programming-language/"
+    }
+   ]
+  },
+  {
+   "id": "lang.c-basics",
+   "title": "C Basics: Syntax and Structure",
+   "cat": "languages",
+   "tier": 3,
+   "year": 1978,
+   "short": "How to read C: main and functions, headers and the preprocessor, separate compilation and linking, fixed-size types, arrays, zero-terminated strings and pointers.",
+   "long": "A C program is a set of functions, and execution starts at main. Lines beginning with # go to the preprocessor: #include <stdio.h> pastes in a header of declarations, and #define N 5 substitutes text before the compiler proper runs. Each .c file is compiled alone into an object file and the linker joins the files, resolving names across them, so forgetting one gives the classic undefined-reference error. Integer sizes are not fixed by the language: int is typically 32 bits, and long is 4 bytes on 64-bit Windows but 8 on 64-bit Linux and macOS. Arrays have a fixed size, start at index 0 and carry no length or bounds check. There is no string type, only char arrays ending in a zero byte. A pointer holds an address, and an array name in an expression becomes a pointer to its first element, so a[2] means *(a + 2). Heap memory comes from malloc and must be released exactly once with free.",
+   "sleeper": "C itself still checks nothing at run time, but compilers help far more than in 1990: clang warns when sizeof is applied to an array parameter, and sanitizers abort a program that writes past the end of an array.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\n#define N 5                      /* the preprocessor replaces N with 5 */\n\nint main(void) {\n    int scores[N] = {72, 85, 90, 64, 78};   /* indexes run 0 to 4 */\n    int sum = 0;\n    for (int i = 0; i < N; i++)\n        sum += scores[i];\n    printf(\"sum=%d average=%.1f\\n\", sum, (double)sum / N);\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "syntax",
+    "tutorial",
+    "main",
+    "header files",
+    "linker",
+    "strings",
+    "pointers",
+    "malloc"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    },
+    {
+     "label": "cppreference, Pointer declaration",
+     "url": "https://en.cppreference.com/w/c/language/pointer"
+    }
+   ]
+  },
+  {
+   "id": "lang.c-structs",
+   "title": "C Structs, Unions and Function Pointers",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1973,
+   "short": "How C groups data and passes behavior: structs with padding, unions that overlay bytes, enums, and function pointers, the callback tool behind qsort.",
+   "long": "A struct groups named fields in declaration order; you reach a field with a dot, or through a pointer with an arrow, so e->id is shorthand for (*e).id. The compiler may insert padding to align fields: a struct holding a 16-byte name, a 4-byte int and two doubles takes 40 bytes rather than 36, because 4 bytes of padding follow the int. A union overlays its members on the same bytes, so the bit pattern of the float 1.0 can be read back as the integer 0x3f800000, and an enum names integer constants. Ritchie wanted structs partly to describe a Unix directory entry, and that need led to the rule that array names turn into pointers. A function pointer holds the address of code and is how C does callbacks: the library's qsort sorts any array by calling a comparison function you supply, and the same technique, built by hand, is what C++ virtual functions later automated.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\n#include <stdlib.h>\nstatic int cmp_int(const void *x, const void *y) {\n    int a = *(const int *)x, b = *(const int *)y;\n    return (a > b) - (a < b);\n}\nint main(void) {\n    int v[] = {42, 7, 19, 3};\n    qsort(v, 4, sizeof v[0], cmp_int);   /* qsort calls back into cmp_int */\n    for (int i = 0; i < 4; i++) printf(\"%d \", v[i]);   /* prints 3 7 19 42 */\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "struct",
+    "union",
+    "enum",
+    "padding",
+    "callbacks",
+    "qsort",
+    "function pointer",
+    "typedef"
+   ],
+   "refs": [
+    {
+     "label": "cppreference, struct declaration",
+     "url": "https://en.cppreference.com/w/c/language/struct"
+    },
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    }
+   ]
+  },
+  {
+   "id": "lang.c-vs-cpp",
+   "title": "C versus C++",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1983,
+   "short": "C++ is not a strict superset of C: it adds classes, templates and overloading, tightens typing, and drops some C features, so code valid in both can differ.",
+   "long": "Stroustrup's FAQ says that C is not strictly a subset of C++: some valid C programs are not valid C++, and a few constructs mean different things in the two languages, though C++ supports every programming technique C does. He calls C++ and C99 siblings, not parent and child. C++ adds classes, inheritance, virtual functions, templates, overloading, references, exceptions, namespaces and RAII, and it is stricter: it will not convert void * to int * without a cast, so the result of malloc needs one, and it treats 'a' as a char, so sizeof('a') is 1 in C++ but usually 4 in C. C has features C++ lacks, such as variable length arrays, restrict, compound literals and _Generic. C++ also encodes parameter types into symbol names, so a C++ library cannot be called from C unless it exposes extern \"C\" functions. Every example in the second edition of K&R is also a C++ program.",
+   "sleeper": "C and C++ have drifted apart under separate committees while still borrowing from each other. C99 took inline and // comments from C++, C23 added nullptr, constexpr and attributes, and #embed appears in both C23 and C++26.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int *p = malloc(4 * sizeof *p);   /* valid C; an error in C++ without a cast */\n    printf(\"%zu\\n\", sizeof('a'));     /* C prints 4, C++ prints 1 */\n    free(p);\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "superset",
+    "siblings",
+    "name mangling",
+    "extern c",
+    "differences",
+    "stroustrup faq"
+   ],
+   "refs": [
+    {
+     "label": "Stroustrup FAQ: Is C a subset of C++?",
+     "url": "https://www.stroustrup.com/bs_faq.html"
+    },
+    {
+     "label": "C++ draft standard, Annex C: C++ and ISO C",
+     "url": "https://eel.is/c++draft/diff.iso"
+    }
+   ]
+  },
+  {
+   "id": "lang.kr-book",
+   "title": "The C Programming Language (K&R)",
+   "cat": "languages",
+   "tier": 3,
+   "year": 1978,
+   "short": "Kernighan and Ritchie's 'white book' of 1978. It served as C's reference for over ten years, until ANSI C; the second edition (1988) described ANSI C.",
+   "long": "The C Programming Language by Brian Kernighan and Dennis Ritchie, published in 1978 and known as the white book or simply K&R, was written mostly by Kernighan, with Ritchie writing the reference manual in Appendix A and the chapter on interfacing with Unix. It served as the language reference until a formal standard was adopted more than ten years later, and the dialect it describes is called K&R C. Between 1973 and 1980 C had gained unsigned, long, union and enumeration types. A K&R function definition lists parameter names first and declares their types afterward, and that style has now been removed from the language. The second edition appeared in 1988 and described ANSI C. Stroustrup notes that every example in it is also a C++ program.",
+   "code": {
+    "lang": "c",
+    "text": "/* K&R-style definition: parameter types follow the name list.\n   Valid in 1978 and in C89; an error in C23. */\nint add(a, b)\nint a, b;\n{\n    return a + b;\n}"
+   },
+   "status": "n/a",
+   "tags": [
+    "white book",
+    "k&r c",
+    "kernighan",
+    "ritchie",
+    "1988 second edition"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    },
+    {
+     "label": "cppreference, History of C",
+     "url": "https://en.cppreference.com/w/c/language/history"
+    }
+   ]
+  },
+  {
+   "id": "lang.ansi-c",
+   "title": "ANSI C (C89/C90)",
+   "cat": "languages",
+   "tier": 3,
+   "year": 1989,
+   "short": "The first C standard, ANSI X3.159-1989, adopted by ISO as C90. It codified existing practice and made one big change: function prototypes, borrowed from C++.",
+   "long": "ANSI formed the X3J11 committee in the summer of 1983, at the urging of Doug McIlroy. It reported at the end of 1989, and ISO accepted the result as ISO/IEC 9899:1990, which is why the language is called both C89 and C90. The committee was cautious and conservative, and its stated goal was a clear, consistent and unambiguous standard that codifies the common, existing definition of C. Ritchie says it introduced only one genuinely important change: putting the types of a function's parameters into its signature, in a syntax borrowed from C++. These function prototypes let the compiler check every call. Amendment 1 in 1995 added wide-character support, and the second edition of K&R, published in 1988, described the language as it was being standardized.",
+   "sleeper": "C89 is probably the C you remember: comments only as /* */, declarations at the top of a block, int main() and char * strings. The standard has since been revised in 1999, 2011, 2018 and 2024.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\n\nint add(int a, int b);            /* prototype: the parameter types are declared */\n\nint main(void) {\n    printf(\"%d\\n\", add(2, 3));    /* the compiler checks this call: prints 5 */\n    return 0;\n}\n\nint add(int a, int b) { return a + b; }"
+   },
+   "status": "legacy",
+   "tags": [
+    "c89",
+    "c90",
+    "x3j11",
+    "prototypes",
+    "iso 9899",
+    "standard"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    },
+    {
+     "label": "WG14 project status",
+     "url": "https://www.open-std.org/jtc1/sc22/wg14/www/projects"
+    }
+   ]
+  },
+  {
+   "id": "lang.c-modern",
+   "title": "C99, C11, C23 and C2y",
+   "cat": "languages",
+   "tier": 4,
+   "year": 1999,
+   "short": "C's later standards: C99, C11, C17, C23 (published 2024) and C2y in draft. They add bool, fixed-width integers, threads, nullptr, constexpr and #embed.",
+   "long": "C99 (December 1999) added _Bool, long long, fixed-width integers in stdint.h, restrict, compound literals, variable length arrays and designated initializers, borrowed inline, // comments and declarations inside for from C++, and removed implicit int. C11 (December 2011) added a thread-aware memory model with threads.h and stdatomic.h, _Generic and static assertions, removed gets, and made variable length arrays optional. C17 fixed defects and added no major features. C23 (ISO/IEC 9899:2024) made bool, true and false keywords, added nullptr, constexpr, typeof, auto type inference, #embed, bit-precise integers and attributes, made two's complement the only signed representation, and removed K&R-style definitions. C2y is in draft (N3886, May 2026), with named loops, if declarations, case ranges and _Countof among its additions, while defer is a separate technical specification.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\n\nconstexpr int N = 5;                 /* C23: a true named constant */\n\nint main(void) {\n    int *p = nullptr;                /* C23: nullptr replaces NULL */\n    bool ok = true;                  /* C23: bool is a keyword */\n    auto total = 0;                  /* C23: the type is inferred */\n    for (int i = 1; i <= N; i++) total += i;   // C99: // comments, int in for\n    if (ok && !p) printf(\"%d\\n\", total);       // prints 15 (build with -std=c23)\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "c99",
+    "c11",
+    "c17",
+    "c23",
+    "c2y",
+    "stdint",
+    "nullptr",
+    "constexpr",
+    "threads"
+   ],
+   "refs": [
+    {
+     "label": "cppreference, History of C",
+     "url": "https://en.cppreference.com/w/c/language/history"
+    },
+    {
+     "label": "WG14 standards page",
+     "url": "https://www.open-std.org/jtc1/sc22/wg14/www/standards"
+    }
+   ]
+  },
+  {
+   "id": "lang.cpp-stl",
+   "title": "Templates and the STL",
+   "cat": "languages",
+   "tier": 3,
+   "year": 1994,
+   "short": "Templates let C++ code work for any type. Alexander Stepanov's Standard Template Library, accepted in 1994, supplied generic containers, iterators and algorithms.",
+   "long": "Templates, accepted by the C++ committee in 1990 and first shipped in Cfront 3.0 in October 1991, let one function or class definition work for many types. The Standard Template Library (STL), designed by Alexander Stepanov, then at HP Labs, applied them to containers, iterators and algorithms, so that an algorithm such as max_element is written once and works on many container types. Stroustrup learned of it in late 1993, found it very odd, even ugly and verbose, then judged it met all but one of his twelve criteria for a container library; the committee accepted it in 1994 and it joined the 1998 standard. Templates had a cost: a small mistake could produce spectacularly long and unhelpful error messages, which concepts in C++20 largely fixed. The export keyword, meant to allow separate compilation of templates, was standardized in 1998, implemented by one vendor, and later dropped.",
+   "sleeper": "In 1990 C++ had no standard library to speak of. The STL arrived in 1994 and the first ISO standard in 1998, so containers such as vector and algorithms such as sort are now ordinary parts of the language.",
+   "code": {
+    "lang": "cpp",
+    "text": "#include <algorithm>\n#include <cstdio>\n#include <vector>\n\ntemplate <typename T>   // one definition, many types\nT largest(const std::vector<T> &v) { return *std::max_element(v.begin(), v.end()); }\n\nint main() {\n    std::vector<int> nums{3, 9, 4};\n    nums.push_back(11);\n    std::printf(\"%d\\n\", largest(nums));   // 11\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "stepanov",
+    "hp labs",
+    "containers",
+    "iterators",
+    "algorithms",
+    "generic programming",
+    "export"
+   ],
+   "refs": [
+    {
+     "label": "Stroustrup, Evolving a language in and for the real world: C++ 1991-2006",
+     "url": "https://www.stroustrup.com/hopl-almost-final.pdf"
+    }
+   ]
+  },
+  {
+   "id": "lang.cpp11",
+   "title": "C++11 and Modern C++",
+   "cat": "languages",
+   "tier": 3,
+   "year": 2011,
+   "short": "The 2011 revision that modernized C++: auto, lambdas, move semantics, smart pointers and a threading memory model. New standards have come every three years since.",
+   "long": "C++11, approved by ISO on 12 August 2011, is the second major version of C++ and, according to cppreference, the most important update since C++98; it was called C++0x because it was expected before 2010. It added auto and decltype, lambda expressions, rvalue references and move semantics, constexpr, nullptr, range-based for loops, variadic templates, override and final, a multithreaded memory model, and a library that absorbed much of TR1 and Boost, including threads and smart pointers. Smart pointers such as unique_ptr, which replaced the old auto_ptr (removed in C++17), tie the release of memory to scope, the RAII idiom. New versions then came every three years: C++14, C++17, C++20 with concepts, modules, coroutines and ranges, C++23 and C++26. Herb Sutter, an advocate, calls C++11 the last big and impactful release before C++26.",
+   "code": {
+    "lang": "cpp",
+    "text": "#include <cstdio>\n#include <vector>\n\nint main() {\n    std::vector<int> v{1, 2, 3, 4};               // brace initialization\n    auto square = [](int x) { return x * x; };    // lambda expression\n    int total = 0;\n    for (int x : v) total += square(x);           // range-based for\n    std::printf(\"%d\\n\", total);                   // 30\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "c++0x",
+    "auto",
+    "lambda",
+    "move semantics",
+    "smart pointers",
+    "modern c++",
+    "three-year cadence"
+   ],
+   "refs": [
+    {
+     "label": "cppreference, C++11",
+     "url": "https://en.cppreference.com/w/cpp/11"
+    },
+    {
+     "label": "Sutter, C++26 is done: trip report, March 2026",
+     "url": "https://herbsutter.com/2026/03/29/c26-is-done-trip-report-march-2026-iso-c-standards-meeting-london-croydon-uk/"
+    }
+   ]
+  },
+  {
+   "id": "lang.cpp26",
+   "title": "C++26",
+   "cat": "languages",
+   "tier": 4,
+   "year": 2026,
+   "short": "The 2026 C++ standard, technically complete in March 2026: reflection, contracts, a hardened standard library, and no undefined behavior for uninitialized reads.",
+   "long": "On 28 March 2026, at a meeting in London Croydon, the ISO committee completed the technical work on C++26. The plenary vote to ship it was 114 in favor, 12 opposed and 3 abstaining, with the opposition mainly over contracts. Its headline features are static reflection (P2996), contracts (P2900), a hardened standard library that bounds-checks common operations on vector, span and string, and erroneous behavior, which means that reading an uninitialized local variable is no longer undefined behavior. It also adds std::execution, #embed and pack indexing, among much else. At the end of September 2026 isocpp.org still named C++23 as the current standard and no source confirmed ISO publication of C++26. GCC 16 implements reflection and contracts, while Clang's status page listed them as not yet implemented.",
+   "sleeper": "C++ now gets a new standard every three years, and its answer to memory-safety criticism is hardening, not a new language. Sutter cites Apple and Google deployments of a bounds-checked standard library at about 0.3 percent average cost.",
+   "status": "thriving",
+   "tags": [
+    "reflection",
+    "contracts",
+    "hardening",
+    "erroneous behavior",
+    "iso 14882",
+    "2026"
+   ],
+   "refs": [
+    {
+     "label": "Sutter, C++26 is done: trip report, March 2026",
+     "url": "https://herbsutter.com/2026/03/29/c26-is-done-trip-report-march-2026-iso-c-standards-meeting-london-croydon-uk/"
+    },
+    {
+     "label": "isocpp.org, The Standard",
+     "url": "https://isocpp.org/std/the-standard"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "lang.short-code",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.short-code",
+   "t": "comp.interpreter",
+   "w": 2,
+   "k": "implements",
+   "note": "an interpretive routine"
+  },
+  {
+   "s": "lang.short-code",
+   "t": "fail.automatic-programming-hype",
+   "w": 2,
+   "k": "related",
+   "note": "its write-up promised the end of special programming"
+  },
+  {
+   "s": "lang.short-code",
+   "t": "lang.speedcoding",
+   "w": 1,
+   "k": "related",
+   "note": "another interpretive system of the early 1950s"
+  },
+  {
+   "s": "lang.plankalkul",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.plankalkul",
+   "t": "ppl.zuse",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.plankalkul",
+   "t": "lang.short-code",
+   "w": 1,
+   "k": "related",
+   "note": "designed on paper years before any high-level notation ran on a machine"
+  },
+  {
+   "s": "lang.plankalkul",
+   "t": "lang.fortran",
+   "w": 1,
+   "k": "related",
+   "note": "a high-level language on paper twelve years before FORTRAN"
+  },
+  {
+   "s": "lang.autocode",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.autocode",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "implements",
+   "note": "credited by Knuth and Trabb Pardo as the first compiler"
+  },
+  {
+   "s": "lang.autocode",
+   "t": "org.cambridge-manchester",
+   "w": 1,
+   "k": "related",
+   "note": "written for the Manchester Mark 1"
+  },
+  {
+   "s": "lang.autocode",
+   "t": "ppl.hopper",
+   "w": 1,
+   "k": "related",
+   "note": "Hopper's A-0 is the rival claim to the first compiler"
+  },
+  {
+   "s": "lang.speedcoding",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.speedcoding",
+   "t": "ppl.backus",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.speedcoding",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.speedcoding",
+   "t": "comp.interpreter",
+   "w": 1,
+   "k": "implements",
+   "note": "classed as an interpretive routine"
+  },
+  {
+   "s": "lang.speedcoding",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "related",
+   "note": "the same team's next project took the compiler route"
+  },
+  {
+   "s": "lang.algol60",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.algol60",
+   "t": "lang.pascal",
+   "w": 3,
+   "k": "influenced",
+   "note": "Pascal was closely based on ALGOL 60"
+  },
+  {
+   "s": "lang.algol60",
+   "t": "lang.simula",
+   "w": 2,
+   "k": "influenced",
+   "note": "Simula was based largely on ALGOL 60"
+  },
+  {
+   "s": "lang.algol60",
+   "t": "lang.pl1",
+   "w": 2,
+   "k": "influenced",
+   "note": "PL/I took block structure from ALGOL 60"
+  },
+  {
+   "s": "lang.algol60",
+   "t": "ppl.backus",
+   "w": 2,
+   "k": "created-by",
+   "note": "one of the report's thirteen authors"
+  },
+  {
+   "s": "lang.algol60",
+   "t": "ppl.mccarthy",
+   "w": 2,
+   "k": "created-by",
+   "note": "one of the report's thirteen authors"
+  },
+  {
+   "s": "lang.algol60",
+   "t": "ppl.dijkstra",
+   "w": 1,
+   "k": "related",
+   "note": "backed the recursion sentence and praised the report"
+  },
+  {
+   "s": "lang.basic",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.basic",
+   "t": "lang.vb",
+   "w": 3,
+   "k": "influenced",
+   "note": "Visual Basic is BASIC with forms and events"
+  },
+  {
+   "s": "lang.basic",
+   "t": "plat.timesharing",
+   "w": 3,
+   "k": "related",
+   "note": "born together with Dartmouth's time-sharing system"
+  },
+  {
+   "s": "lang.basic",
+   "t": "ppl.gates-allen",
+   "w": 2,
+   "k": "related",
+   "note": "their Altair BASIC of 1975"
+  },
+  {
+   "s": "lang.basic",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related",
+   "note": "Microsoft began by writing BASIC for the Altair"
+  },
+  {
+   "s": "lang.basic",
+   "t": "comp.interpreter",
+   "w": 2,
+   "k": "uses",
+   "note": "personal-computer BASICs were interpreters"
+  },
+  {
+   "s": "lang.basic",
+   "t": "lang.fortran",
+   "w": 1,
+   "k": "related",
+   "note": "named as a stepping-stone target in the design goals"
+  },
+  {
+   "s": "lang.basic",
+   "t": "ppl.dijkstra",
+   "w": 1,
+   "k": "related",
+   "note": "his 1975 polemic against BASIC"
+  },
+  {
+   "s": "lang.pl1",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.pl1",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.pl1",
+   "t": "plat.multics",
+   "w": 2,
+   "k": "related",
+   "note": "Multics was written in EPL, a subset of PL/I"
+  },
+  {
+   "s": "lang.pl1",
+   "t": "fail.pl1-universal",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.pl1",
+   "t": "lang.fortran",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "lang.pl1",
+   "t": "lang.cobol",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "lang.pl1",
+   "t": "ppl.dijkstra",
+   "w": 1,
+   "k": "related",
+   "note": "his 7000-buttons criticism"
+  },
+  {
+   "s": "lang.pascal",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.pascal",
+   "t": "ppl.wirth",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.pascal",
+   "t": "lang.modula-oberon",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "Modula-2 was Pascal's successor"
+  },
+  {
+   "s": "lang.pascal",
+   "t": "lang.delphi",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "through Object Pascal and Turbo Pascal"
+  },
+  {
+   "s": "lang.pascal",
+   "t": "lang.ada",
+   "w": 2,
+   "k": "influenced",
+   "note": "Ada was largely based on Pascal"
+  },
+  {
+   "s": "lang.modula-oberon",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.modula-oberon",
+   "t": "ppl.wirth",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.modula-oberon",
+   "t": "lang.go",
+   "w": 2,
+   "k": "influenced",
+   "note": "Go takes declarations and packages from this family"
+  },
+  {
+   "s": "lang.modula-oberon",
+   "t": "lang.ada",
+   "w": 1,
+   "k": "influenced",
+   "note": "Ada adopted modularization"
+  },
+  {
+   "s": "lang.modula-oberon",
+   "t": "org.xerox-parc",
+   "w": 1,
+   "k": "related",
+   "note": "motivated by Xerox's Mesa"
+  },
+  {
+   "s": "lang.modula-oberon",
+   "t": "comp.gcc",
+   "w": 1,
+   "k": "related",
+   "note": "GCC includes a Modula-2 front end"
+  },
+  {
+   "s": "lang.ada",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.ada",
+   "t": "fail.ada-mandate",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.ada",
+   "t": "mod.legacy-languages",
+   "w": 2,
+   "k": "related",
+   "note": "still ranked among the legacy languages"
+  },
+  {
+   "s": "lang.ada",
+   "t": "qual.formal-verification",
+   "w": 1,
+   "k": "related",
+   "note": "SPARK adds formal proof"
+  },
+  {
+   "s": "lang.ada",
+   "t": "conc.concurrency",
+   "w": 2,
+   "k": "implements",
+   "note": "built-in tasking"
+  },
+  {
+   "s": "lang.ada",
+   "t": "conc.static-typing",
+   "w": 2,
+   "k": "uses",
+   "note": "strong, range-checked types"
+  },
+  {
+   "s": "lang.eiffel",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.eiffel",
+   "t": "conc.oop",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "lang.eiffel",
+   "t": "lang.ada",
+   "w": 2,
+   "k": "influenced",
+   "note": "Ada 2012 adopted contracts"
+  },
+  {
+   "s": "lang.eiffel",
+   "t": "lang.cpp26",
+   "w": 1,
+   "k": "influenced",
+   "note": "C++26 adds contract assertions"
+  },
+  {
+   "s": "lang.eiffel",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related",
+   "note": "compilers for Eiffel can target C"
+  },
+  {
+   "s": "lang.bcpl",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.bcpl",
+   "t": "lang.b",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "Thompson squeezed BCPL into 8K bytes to make B"
+  },
+  {
+   "s": "lang.bcpl",
+   "t": "lang.c",
+   "w": 2,
+   "k": "influenced",
+   "note": "C descends from BCPL by way of B"
+  },
+  {
+   "s": "lang.bcpl",
+   "t": "org.mit",
+   "w": 2,
+   "k": "related",
+   "note": "first implemented at MIT in 1967"
+  },
+  {
+   "s": "lang.bcpl",
+   "t": "org.xerox-parc",
+   "w": 1,
+   "k": "related",
+   "note": "used for parts of the Alto software"
+  },
+  {
+   "s": "lang.bcpl",
+   "t": "org.cambridge-manchester",
+   "w": 1,
+   "k": "related",
+   "note": "designed at Cambridge"
+  },
+  {
+   "s": "lang.b",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.b",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.b",
+   "t": "ppl.ritchie",
+   "w": 2,
+   "k": "created-by",
+   "note": "Ritchie's NB rework led to C"
+  },
+  {
+   "s": "lang.b",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.b",
+   "t": "lang.c",
+   "w": 3,
+   "k": "evolved-into",
+   "note": "NB, the 1971 typed rewrite, became C"
+  },
+  {
+   "s": "lang.b",
+   "t": "plat.unix",
+   "w": 2,
+   "k": "related",
+   "note": "the language of the first Unix on the PDP-7"
+  },
+  {
+   "s": "lang.b",
+   "t": "ppl.mcilroy",
+   "w": 1,
+   "k": "related",
+   "note": "his quick TMG on the first Unix challenged Thompson to write B"
+  },
+  {
+   "s": "lang.objc",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.objc",
+   "t": "lang.swift",
+   "w": 3,
+   "k": "replaced-by",
+   "note": "Swift was introduced as Objective-C without the C"
+  },
+  {
+   "s": "lang.objc",
+   "t": "lang.c",
+   "w": 3,
+   "k": "related",
+   "note": "a strict superset of C"
+  },
+  {
+   "s": "lang.objc",
+   "t": "plat.nextstep-macos",
+   "w": 3,
+   "k": "related",
+   "note": "NeXT licensed it in 1988; it became Cocoa on macOS"
+  },
+  {
+   "s": "lang.objc",
+   "t": "plat.iphone",
+   "w": 2,
+   "k": "related",
+   "note": "the original language of iOS"
+  },
+  {
+   "s": "lang.objc",
+   "t": "org.apple",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.objc",
+   "t": "conc.oop",
+   "w": 2,
+   "k": "implements",
+   "note": "Smalltalk-style message passing"
+  },
+  {
+   "s": "lang.objc",
+   "t": "comp.gcc",
+   "w": 1,
+   "k": "related",
+   "note": "NeXT extended GCC to compile it"
+  },
+  {
+   "s": "lang.objc",
+   "t": "mod.tiobe",
+   "w": 1,
+   "k": "related",
+   "note": "TIOBE language of the year in 2011 and 2012"
+  },
+  {
+   "s": "lang.go",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.go",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.go",
+   "t": "ppl.thompson",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.go",
+   "t": "ppl.pike",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.go",
+   "t": "plat.plan9",
+   "w": 2,
+   "k": "related",
+   "note": "Go is the Plan 9 team's heir"
+  },
+  {
+   "s": "lang.go",
+   "t": "comp.gc",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "lang.go",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related",
+   "note": "mostly in the C family for basic syntax"
+  },
+  {
+   "s": "lang.go",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "modern systems languages; Go uses a garbage collector, Rust uses ownership"
+  },
+  {
+   "s": "lang.go",
+   "t": "pkg.go-modules",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "lang.go",
+   "t": "qual.gofmt",
+   "w": 1,
+   "k": "uses"
+  },
+  {
+   "s": "lang.go",
+   "t": "conc.memory-safety",
+   "w": 1,
+   "k": "related",
+   "note": "bounds are checked at run time"
+  },
+  {
+   "s": "lang.go",
+   "t": "plat.cloud",
+   "w": 1,
+   "k": "related",
+   "note": "Go is widely used for cloud software"
+  },
+  {
+   "s": "lang.zig",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.zig",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related",
+   "note": "aims to improve on C: explicit and simple"
+  },
+  {
+   "s": "lang.zig",
+   "t": "comp.clang",
+   "w": 2,
+   "k": "uses",
+   "note": "zig cc bundles Clang"
+  },
+  {
+   "s": "lang.zig",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "competes-with",
+   "note": "Bun moved from Zig to Rust in 2026"
+  },
+  {
+   "s": "lang.zig",
+   "t": "plat.bun",
+   "w": 2,
+   "k": "related",
+   "note": "Bun used Zig from 2021 until its 2026 move to Rust"
+  },
+  {
+   "s": "lang.zig",
+   "t": "conc.manual-memory",
+   "w": 1,
+   "k": "related",
+   "note": "explicit allocators, no hidden allocation"
+  },
+  {
+   "s": "lang.zig",
+   "t": "conc.abi-ffi",
+   "w": 1,
+   "k": "related",
+   "note": "imports and compiles C directly"
+  },
+  {
+   "s": "lang.carbon",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.carbon",
+   "t": "org.google",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.carbon",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "related",
+   "note": "designed as a C++ successor with C++ interoperability"
+  },
+  {
+   "s": "lang.carbon",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "uses",
+   "note": "targets C++-level performance through LLVM"
+  },
+  {
+   "s": "lang.carbon",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related",
+   "note": "plans an incremental path to a memory-safe subset"
+  },
+  {
+   "s": "lang.carbon",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "its README names Rust as an alternative"
+  },
+  {
+   "s": "lang.carbon",
+   "t": "lang.cppfront",
+   "w": 1,
+   "k": "related",
+   "note": "another C++ evolution experiment"
+  },
+  {
+   "s": "lang.cppfront",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.cppfront",
+   "t": "ppl.sutter",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.cppfront",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "uses",
+   "note": "it compiles Cpp2 to ordinary C++"
+  },
+  {
+   "s": "lang.cppfront",
+   "t": "org.wg21",
+   "w": 2,
+   "k": "related",
+   "note": "prototypes features proposed for ISO C++"
+  },
+  {
+   "s": "lang.mojo",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.mojo",
+   "t": "ppl.lattner",
+   "w": 3,
+   "k": "created-by",
+   "note": "Modular's co-founder"
+  },
+  {
+   "s": "lang.mojo",
+   "t": "lang.python",
+   "w": 2,
+   "k": "related",
+   "note": "Python-like syntax and Python interoperability"
+  },
+  {
+   "s": "lang.mojo",
+   "t": "math.gpu",
+   "w": 2,
+   "k": "related",
+   "note": "GPU kernels in the same language"
+  },
+  {
+   "s": "lang.mojo",
+   "t": "math.cuda",
+   "w": 1,
+   "k": "related",
+   "note": "aims to replace separate CUDA code"
+  },
+  {
+   "s": "lang.mojo",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "related",
+   "note": "ownership rules similar to a borrow checker"
+  },
+  {
+   "s": "lang.mojo",
+   "t": "comp.llvm",
+   "w": 1,
+   "k": "related",
+   "note": "same creator as LLVM"
+  },
+  {
+   "s": "lang.delphi",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.delphi",
+   "t": "org.borland",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.delphi",
+   "t": "ppl.hejlsberg",
+   "w": 3,
+   "k": "created-by",
+   "note": "chief architect"
+  },
+  {
+   "s": "lang.delphi",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "related",
+   "note": "built for Windows line-of-business software"
+  },
+  {
+   "s": "lang.delphi",
+   "t": "lang.csharp",
+   "w": 2,
+   "k": "related",
+   "note": "the same chief architect, Anders Hejlsberg"
+  },
+  {
+   "s": "lang.delphi",
+   "t": "mod.legacy-languages",
+   "w": 2,
+   "k": "related",
+   "note": "still ranked among the legacy languages"
+  },
+  {
+   "s": "lang.vb",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.vb",
+   "t": "org.microsoft",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.vb",
+   "t": "lang.delphi",
+   "w": 2,
+   "k": "competes-with",
+   "note": "the two Windows visual-programming lineages"
+  },
+  {
+   "s": "lang.vb",
+   "t": "lang.csharp",
+   "w": 2,
+   "k": "related",
+   "note": "C# received the language investment while VB was frozen"
+  },
+  {
+   "s": "lang.vb",
+   "t": "plat.dotnet",
+   "w": 2,
+   "k": "uses",
+   "note": "Visual Basic .NET, 2002"
+  },
+  {
+   "s": "lang.vb",
+   "t": "tool.visual-studio",
+   "w": 2,
+   "k": "related",
+   "note": "bundled into Visual Studio 97"
+  },
+  {
+   "s": "lang.vb",
+   "t": "plat.windows",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.vb",
+   "t": "mod.legacy-languages",
+   "w": 2,
+   "k": "related",
+   "note": "still ranked among the legacy languages"
+  },
+  {
+   "s": "lang.forth",
+   "t": "lang.hub",
+   "w": 1,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.forth",
+   "t": "comp.interpreter",
+   "w": 2,
+   "k": "related",
+   "note": "began as a small interpreter"
+  },
+  {
+   "s": "lang.forth",
+   "t": "plat.rtos",
+   "w": 1,
+   "k": "related",
+   "note": "niche in embedded and firmware work"
+  },
+  {
+   "s": "lang.forth",
+   "t": "org.sun",
+   "w": 1,
+   "k": "related",
+   "note": "Sun's Open Boot became Open Firmware"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "lang.c",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "conc.pointer",
+   "w": 3,
+   "k": "related",
+   "note": "an array name becomes a pointer to its first element"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "conc.array",
+   "w": 2,
+   "k": "related",
+   "note": "fixed size, zero-based, no bounds check"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "conc.cstring",
+   "w": 3,
+   "k": "related",
+   "note": "strings are char arrays ending in a zero byte"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "comp.preprocessor",
+   "w": 3,
+   "k": "uses",
+   "note": "#include and #define"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "comp.toolchain",
+   "w": 2,
+   "k": "uses",
+   "note": "compile each file, then link"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "comp.linker",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "conc.manual-memory",
+   "w": 3,
+   "k": "related",
+   "note": "malloc and free"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "conc.undefined-behavior",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "conc.buffer-overflow",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "conc.data-types",
+   "w": 2,
+   "k": "related",
+   "note": "sizes depend on the platform"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "tool.make",
+   "w": 1,
+   "k": "uses",
+   "note": "rebuilds only what changed"
+  },
+  {
+   "s": "lang.c-basics",
+   "t": "qual.asan-valgrind",
+   "w": 2,
+   "k": "related",
+   "note": "sanitizers abort on writes past the end of an array"
+  },
+  {
+   "s": "lang.c-structs",
+   "t": "lang.c",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.c-structs",
+   "t": "lang.c-basics",
+   "w": 2,
+   "k": "related",
+   "note": "the next step after the basics"
+  },
+  {
+   "s": "lang.c-structs",
+   "t": "conc.pointer",
+   "w": 2,
+   "k": "related",
+   "note": "function pointers and struct pointers"
+  },
+  {
+   "s": "lang.c-structs",
+   "t": "conc.adt",
+   "w": 1,
+   "k": "related",
+   "note": "structs group the data of a type"
+  },
+  {
+   "s": "lang.c-structs",
+   "t": "conc.oop",
+   "w": 1,
+   "k": "related",
+   "note": "hand-built function-pointer tables are what virtual functions automate"
+  },
+  {
+   "s": "lang.c-structs",
+   "t": "ppl.ritchie",
+   "w": 1,
+   "k": "related",
+   "note": "structs forced the array and pointer redesign"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "lang.c",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "lang.c-basics",
+   "w": 2,
+   "k": "related",
+   "note": "read the basics of C first"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "conc.abi-ffi",
+   "w": 2,
+   "k": "related",
+   "note": "name mangling and extern \"C\""
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "ppl.stroustrup",
+   "w": 2,
+   "k": "related",
+   "note": "his FAQ states the relationship"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "comp.cfront",
+   "w": 1,
+   "k": "related",
+   "note": "name mangling began with Cfront"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "org.wg14",
+   "w": 1,
+   "k": "related",
+   "note": "the C committee"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "org.wg21",
+   "w": 1,
+   "k": "related",
+   "note": "the separate C++ committee"
+  },
+  {
+   "s": "lang.c-vs-cpp",
+   "t": "conc.raii",
+   "w": 1,
+   "k": "related",
+   "note": "C++'s answer to C's goto-cleanup pattern"
+  },
+  {
+   "s": "lang.kr-book",
+   "t": "ppl.kernighan",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.kr-book",
+   "t": "ppl.ritchie",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.kr-book",
+   "t": "lang.c",
+   "w": 3,
+   "k": "related",
+   "note": "C's reference for more than ten years"
+  },
+  {
+   "s": "lang.kr-book",
+   "t": "lang.ansi-c",
+   "w": 3,
+   "k": "influenced",
+   "note": "the standard codified the language the book described"
+  },
+  {
+   "s": "lang.kr-book",
+   "t": "lang.c-vs-cpp",
+   "w": 1,
+   "k": "related",
+   "note": "every example in the second edition is also a C++ program"
+  },
+  {
+   "s": "lang.ansi-c",
+   "t": "lang.c",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.ansi-c",
+   "t": "lang.c-modern",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "lang.ansi-c",
+   "t": "lang.cpp",
+   "w": 2,
+   "k": "related",
+   "note": "prototypes were borrowed from C++"
+  },
+  {
+   "s": "lang.ansi-c",
+   "t": "org.wg14",
+   "w": 2,
+   "k": "created-by",
+   "note": "standardized through ANSI X3J11 and ISO"
+  },
+  {
+   "s": "lang.ansi-c",
+   "t": "conc.undefined-behavior",
+   "w": 2,
+   "k": "related",
+   "note": "the standard defined what is undefined"
+  },
+  {
+   "s": "lang.ansi-c",
+   "t": "plat.posix",
+   "w": 2,
+   "k": "related",
+   "note": "POSIX incorporates standard ANSI C"
+  },
+  {
+   "s": "lang.ansi-c",
+   "t": "ppl.mcilroy",
+   "w": 1,
+   "k": "related",
+   "note": "urged ANSI to start the committee"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "lang.c",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "org.wg14",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "lang.cpp26",
+   "w": 1,
+   "k": "related",
+   "note": "#embed appears in both C23 and C++26"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "conc.undefined-behavior",
+   "w": 2,
+   "k": "related",
+   "note": "C2y removes or tightens undefined behavior"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "fail.gets-annex-k",
+   "w": 2,
+   "k": "related",
+   "note": "gets was removed in C11; Annex K remains optional"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "comp.msvc",
+   "w": 1,
+   "k": "related",
+   "note": "MSVC supported C11 and C17 only from 2020"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "comp.gcc",
+   "w": 1,
+   "k": "related",
+   "note": "GCC 16 implements some C2y features"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "plat.linux",
+   "w": 1,
+   "k": "related",
+   "note": "the Linux kernel is built as the GNU dialect of C11"
+  },
+  {
+   "s": "lang.c-modern",
+   "t": "conc.integer-overflow",
+   "w": 1,
+   "k": "related",
+   "note": "C23 adds checked arithmetic and requires two's complement"
+  },
+  {
+   "s": "lang.cpp-stl",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.cpp-stl",
+   "t": "ppl.stroustrup",
+   "w": 2,
+   "k": "related",
+   "note": "he pushed the STL into the 1998 standard"
+  },
+  {
+   "s": "lang.cpp-stl",
+   "t": "conc.iterators",
+   "w": 2,
+   "k": "implements",
+   "note": "iterators connect containers and algorithms"
+  },
+  {
+   "s": "lang.cpp-stl",
+   "t": "comp.cfront",
+   "w": 1,
+   "k": "related",
+   "note": "Cfront 3.0 was the first compiler with templates"
+  },
+  {
+   "s": "lang.cpp-stl",
+   "t": "org.wg21",
+   "w": 2,
+   "k": "related",
+   "note": "the committee accepted the STL in 1994"
+  },
+  {
+   "s": "lang.cpp11",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.cpp11",
+   "t": "lang.cpp26",
+   "w": 2,
+   "k": "evolved-into",
+   "note": "after C++14, C++17, C++20 and C++23"
+  },
+  {
+   "s": "lang.cpp11",
+   "t": "conc.raii",
+   "w": 2,
+   "k": "uses",
+   "note": "smart pointers"
+  },
+  {
+   "s": "lang.cpp11",
+   "t": "conc.closures",
+   "w": 2,
+   "k": "implements",
+   "note": "lambda expressions"
+  },
+  {
+   "s": "lang.cpp11",
+   "t": "conc.threads-locks",
+   "w": 1,
+   "k": "implements",
+   "note": "a multithreaded memory model and std::thread"
+  },
+  {
+   "s": "lang.cpp11",
+   "t": "org.wg21",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.cpp11",
+   "t": "ppl.sutter",
+   "w": 1,
+   "k": "related",
+   "note": "calls it the last big and impactful release before C++26"
+  },
+  {
+   "s": "lang.cpp26",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.cpp26",
+   "t": "org.wg21",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.cpp26",
+   "t": "conc.memory-safety",
+   "w": 2,
+   "k": "related",
+   "note": "hardened library and erroneous behavior"
+  },
+  {
+   "s": "lang.cpp26",
+   "t": "ppl.sutter",
+   "w": 2,
+   "k": "related",
+   "note": "chaired the committee through 2025"
+  },
+  {
+   "s": "lang.cpp26",
+   "t": "ppl.stroustrup",
+   "w": 1,
+   "k": "related",
+   "note": "his profiles proposals target C++29"
+  },
+  {
+   "s": "lang.cpp26",
+   "t": "comp.gcc",
+   "w": 1,
+   "k": "related",
+   "note": "GCC 16 implements reflection and contracts"
+  },
+  {
+   "s": "lang.cpp26",
+   "t": "comp.clang",
+   "w": 1,
+   "k": "related",
+   "note": "reflection and contracts not yet implemented"
+  }
+ ]
+}

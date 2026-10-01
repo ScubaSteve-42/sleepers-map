@@ -45,6 +45,8 @@ kbd { font: 500 11px var(--mono); padding: 1px 6px; border-radius: 6px; border: 
 #results .rt { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #results .ry { font: 500 11px var(--mono); color: var(--faint); }
 #results .empty { color: var(--muted); cursor: default; }
+#results li.head { padding: 8px 10px 4px; cursor: default; color: var(--faint); font: 600 10.5px var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+#results li.head:hover { background: none; }
 
 /* ---------- controls ---------- */
 #controls { position: fixed; top: var(--gap); right: var(--gap); display: flex; align-items: center; gap: 8px; padding: 6px; z-index: 6; border-radius: 999px; }
@@ -178,6 +180,9 @@ body.intro-open #labels { opacity: .12; }
 #nogl p { margin: 0; color: #f4c9d2; }
 
 /* ---------- labels ---------- */
+.axis-lbl { position: absolute; left: 0; top: 0; opacity: 0; pointer-events: none; white-space: nowrap; transition: opacity .4s ease; will-change: transform; }
+.axis-lbl.dec, .axis-lbl.ring { font: 500 11px var(--mono); letter-spacing: .08em; color: #a9b8ff; padding: 2px 8px; border-radius: 99px; background: rgba(8, 12, 32, .6); border: 1px solid rgba(160, 180, 255, .22); }
+.axis-lbl.lane { font: 600 10.5px var(--ui); letter-spacing: .14em; text-transform: uppercase; color: var(--c, #a9b8ff); text-shadow: 0 0 12px rgba(2, 3, 10, .9); }
 .region { position: absolute; left: 0; top: 0; opacity: 0; pointer-events: none; white-space: nowrap; font: 600 clamp(10px, 1.05vw, 15px)/1 var(--ui); letter-spacing: .36em; text-transform: uppercase; color: var(--c); text-shadow: 0 0 18px var(--c), 0 0 3px rgba(0, 0, 0, .8); transition: opacity .5s ease; will-change: transform; }
 .lbl { position: absolute; left: 0; top: 0; max-width: 300px; opacity: 0; transition: opacity .28s ease; pointer-events: none; will-change: transform; text-align: center; }
 .lbl.on { opacity: var(--op, 1); }

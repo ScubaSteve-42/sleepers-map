@@ -1,0 +1,2571 @@
+{
+  "slice": "s09a-process",
+  "nodes": [
+    {
+      "id": "proc.software-crisis",
+      "title": "The Software Crisis",
+      "cat": "process",
+      "tier": 2,
+      "year": 1968,
+      "short": "The late-1960s complaint that big software projects ran late, over budget and unreliable. It gave the 1968 NATO conference its agenda.",
+      "long": "By the mid-1960s computers had become far more powerful, yet large systems such as IBM's OS/360 were chronically late, over budget and unreliable. At the 1968 NATO conference in Garmisch, Germany, participants openly debated what some called a \"software crisis\", and the word was disputed: one attendee said crises affected only large systems, while another compared the situation to a heart attack that matters whatever the state of the other organs. Edsger Dijkstra's 1972 Turing lecture blamed the machines themselves: once computers became a thousand times more powerful, society's ambitions grew in proportion, and programming became an equally large problem. The phrase survives as shorthand, and in 1986 Fred Brooks argued that no single cure would arrive.",
+      "status": "n/a",
+      "tags": [
+        "garmisch",
+        "os/360",
+        "late projects",
+        "dijkstra",
+        "humble programmer"
+      ],
+      "refs": [
+        {
+          "label": "Dijkstra, The Humble Programmer (EWD340, 1972)",
+          "url": "https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html"
+        },
+        {
+          "label": "Wikipedia: Software crisis",
+          "url": "https://en.wikipedia.org/wiki/Software_crisis"
+        }
+      ]
+    },
+    {
+      "id": "proc.nato-1968",
+      "title": "NATO Software Engineering Conference",
+      "cat": "process",
+      "tier": 4,
+      "year": 1968,
+      "short": "A 1968 meeting at Garmisch, Germany, that deliberately adopted the name \"software engineering\" to say software needed the discipline of older engineering fields.",
+      "long": "The NATO Science Committee sponsored a working conference at Garmisch, Germany, from 7 to 11 October 1968. Its report, edited by Peter Naur and Brian Randell, says the phrase \"software engineering\" was deliberately chosen as provocative, implying that software manufacture should rest on the theoretical foundations and practical disciplines of the established branches of engineering. More than fifty people from eleven countries attended. Randell believed the idea of the title came from Professor Fritz Bauer, although other claimants for the term exist. Doug McIlroy used the meeting to call for a components industry selling catalogues of routines, and a follow-up conference in Rome in 1969 was judged far less harmonious and successful.",
+      "status": "n/a",
+      "tags": [
+        "garmisch",
+        "naur",
+        "randell",
+        "rome 1969",
+        "fritz bauer",
+        "term software engineering"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Software engineering",
+          "url": "https://en.wikipedia.org/wiki/Software_engineering"
+        }
+      ]
+    },
+    {
+      "id": "proc.goto-harmful",
+      "title": "\"Go To Statement Considered Harmful\"",
+      "cat": "process",
+      "tier": 3,
+      "year": 1968,
+      "short": "Dijkstra's 1968 letter arguing that unrestricted jumps make programs hard to follow. It opened the structured programming debate and launched a headline template.",
+      "long": "Edsger Dijkstra submitted the piece as \"A Case against the GO TO Statement\"; it appeared in Communications of the ACM in March 1968 as a letter to the editor, under a title supplied by the editor, Niklaus Wirth. Dijkstra argued that human minds grasp static text far better than processes unfolding in time, and that unrestricted go to statements, which jump from one place in a program to any other, make it terribly hard to say where a running program is. Bohm and Jacopini had shown in 1966 that any program can be written with sequence, choice and loops. Donald Knuth's 1974 reply defended go to in some cases, and Dijkstra himself wrote that others were making a religion of it. The letter launched the \"considered harmful\" headline template, and nearly every language since builds its control flow from if, while and for.",
+      "status": "n/a",
+      "tags": [
+        "dijkstra",
+        "goto",
+        "structured programming",
+        "considered harmful",
+        "letter to the editor"
+      ],
+      "refs": [
+        {
+          "label": "Dijkstra, A Case against the GO TO Statement (EWD215)",
+          "url": "https://www.cs.utexas.edu/~EWD/transcriptions/EWD02xx/EWD215.html"
+        },
+        {
+          "label": "Knuth, Structured Programming with go to Statements (1974)",
+          "url": "https://pic.plover.com/knuth-GOTO.pdf"
+        }
+      ]
+    },
+    {
+      "id": "proc.iterative",
+      "title": "Iterative and Incremental Development",
+      "cat": "process",
+      "tier": 4,
+      "year": 1957,
+      "short": "Building a system in repeated passes rather than one. It predates waterfall: teams worked this way in the 1950s, and Royce's 1970 paper advised doing it twice.",
+      "long": "Larman and Basili's 2003 history traces iterative and incremental development to Walter Shewhart's 1930s plan-do-study-act cycles, the 1950s X-15 program and NASA's Project Mercury, which ran time-boxed iterations. One veteran recalled incremental development as early as 1957 at IBM's Service Bureau Corporation. IBM built the Trident submarine command system (1972, over a million lines) in four time-boxed iterations of about six months each. Winston Royce's 1970 paper, later labeled \"waterfall\" although it never uses the word, called the single-pass sequence risky and said to build the system twice. The label may first appear in 1976. So strict one-pass development was never the only practice, and Agile's iterative core is not new.",
+      "sleeper": "If you were taught that software gets built once, in order, from requirements to testing, the record says otherwise. Iterative delivery is now the default, and it predates the waterfall label by decades.",
+      "status": "thriving",
+      "tags": [
+        "incremental",
+        "time-boxed",
+        "larman",
+        "basili",
+        "royce",
+        "project mercury"
+      ],
+      "refs": [
+        {
+          "label": "Larman and Basili, history of iterative development (IEEE Computer, 2003)",
+          "url": "https://www.craiglarman.com/wiki/downloads/misc/history-of-iterative-larman-and-basili-ieee-computer.pdf"
+        },
+        {
+          "label": "Royce, Managing the Development of Large Software Systems (1970), archived copy",
+          "url": "https://web.archive.org/web/2023/http://www-scf.usc.edu/~csci201/lectures/Lecture11/royce1970.pdf"
+        }
+      ]
+    },
+    {
+      "id": "proc.spiral",
+      "title": "Spiral Model",
+      "cat": "process",
+      "tier": 4,
+      "year": 1986,
+      "short": "Barry Boehm's risk-driven process: each loop tackles the riskiest unknowns first, using a prototype, an increment or a waterfall step as needed.",
+      "long": "Barry Boehm of TRW described the spiral model in a 1986 paper, and a 1988 IEEE Computer version reached a wider audience. Each turn of the spiral identifies the riskiest unknowns and picks whichever approach attacks them best: a prototype, an increment or an ordinary waterfall step. Boehm later called it a \"process model generator\" and defined six invariants and anchor-point milestones. The widely copied spiral diagram is described as conveying several misconceptions through oversimplification. The evidence for the model is case studies only. It influenced risk-first planning and the Rational Unified Process, but few teams adopt it by name.",
+      "status": "niche",
+      "tags": [
+        "boehm",
+        "trw",
+        "risk-driven",
+        "prototyping",
+        "process model generator"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Spiral model",
+          "url": "https://en.wikipedia.org/wiki/Spiral_model"
+        }
+      ]
+    },
+    {
+      "id": "proc.cmm",
+      "title": "Capability Maturity Model",
+      "cat": "process",
+      "tier": 3,
+      "year": 1986,
+      "short": "A 1980s framework from Carnegie Mellon's Software Engineering Institute that rated organizations by how repeatable their processes were.",
+      "long": "The Capability Maturity Model began in 1986 after a US Department of Defense-funded study of its software contractors. Watts Humphrey, who had spent 27 years at IBM, joined the Software Engineering Institute (SEI) at Carnegie Mellon University that year. The framework was published in 1988 and in his 1989 book Managing the Software Process, and it rated organizations on five maturity levels. Version 1.1 appeared in July 1993, and the integrated CMMI followed; ISACA took over CMMI in 2016 and released versions 2.0 (2021) and 3.0 (2023). The idea is that a predictable process produces predictable outcomes. The supporting evidence is reportedly before-and-after case studies from organizations that chose to take part, and no independent trial.",
+      "sleeper": "In the early 1990s process maturity was a leading answer to late software. The model has reportedly lived on mainly in defense, government and outsourcing contracts, and is marginal in product companies.",
+      "status": "niche",
+      "tags": [
+        "cmmi",
+        "humphrey",
+        "sei",
+        "maturity levels",
+        "process improvement"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Capability Maturity Model",
+          "url": "https://en.wikipedia.org/wiki/Capability_Maturity_Model"
+        }
+      ]
+    },
+    {
+      "id": "proc.xp",
+      "title": "Extreme Programming",
+      "cat": "process",
+      "tier": 2,
+      "year": 1999,
+      "short": "Kent Beck's 1999 method: pair programming, unit tests for everything, code review and simple design. Many practices went mainstream; the XP name did not.",
+      "long": "Kent Beck became leader of Chrysler's C3 payroll project in March 1996 and refined its practices there: pair programming, extensive code review, unit tests for all code, simple design, building features only when needed, and an expectation that requirements will change. He published Extreme Programming Explained in October 1999. C3 paid about 9,000 people, covering the vast majority of monthly Chrysler salaries, but never managed another release, and DaimlerChrysler stopped the project in February 2000. A DaimlerChrysler manager told the 2000 XP conference that the company had effectively banned XP afterwards. XP's showcase project therefore ended badly, even as its ideas spread elsewhere.",
+      "sleeper": "Practices that looked eccentric in 1999, such as unit tests for all code and merging to a shared build every day, are routine now. Continuous integration, refactoring and user stories went mainstream; the XP name faded.",
+      "status": "niche",
+      "tags": [
+        "beck",
+        "chrysler c3",
+        "pair programming",
+        "unit tests",
+        "user stories",
+        "continuous integration"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Extreme programming",
+          "url": "https://en.wikipedia.org/wiki/Extreme_programming"
+        },
+        {
+          "label": "Wikipedia: Chrysler Comprehensive Compensation System",
+          "url": "https://en.wikipedia.org/wiki/Chrysler_Comprehensive_Compensation_System"
+        }
+      ]
+    },
+    {
+      "id": "proc.scrum",
+      "title": "Scrum",
+      "cat": "process",
+      "tier": 2,
+      "year": 1995,
+      "short": "An Agile framework built on fixed-length sprints, a backlog and a daily check-in. The name comes from a 1986 article on product development.",
+      "long": "The word \"scrum\" comes from Takeuchi and Nonaka's January 1986 Harvard Business Review paper \"The New New Product Development Game\", about developing products in general. In the early 1990s Ken Schwaber (Advanced Development Methods) and Jeff Sutherland (Easel Corporation) developed similar approaches for software, and they presented Scrum at the OOPSLA object-oriented programming conference in Austin in 1995. Teams work in fixed-length sprints with a product owner, a scrum master, a backlog, a daily scrum, a review and a retrospective. The Scrum Alliance (2002) and Scrum.org (2009) followed, and a public Scrum Guide has existed since 2009 or 2010; the current version is dated November 2020.",
+      "sleeper": "If you remember phase-by-phase project plans, many teams now plan in sprints instead. Surveys rank Scrum the most widely used Agile framework, but they come from a tooling vendor's audience and are self-reported.",
+      "status": "thriving",
+      "tags": [
+        "sprint",
+        "backlog",
+        "schwaber",
+        "sutherland",
+        "product owner",
+        "takeuchi",
+        "nonaka"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Scrum (software development)",
+          "url": "https://en.wikipedia.org/wiki/Scrum_(software_development)"
+        },
+        {
+          "label": "Digital.ai State of Agile reports",
+          "url": "https://digital.ai/resource-center/analyst-reports/state-of-agile-report/"
+        }
+      ]
+    },
+    {
+      "id": "proc.kanban",
+      "title": "Kanban Method",
+      "cat": "process",
+      "tier": 3,
+      "year": 2004,
+      "short": "A method borrowed from Toyota: show the work on a board and limit how much is in progress at once. David J. Anderson adapted it for software around 2004.",
+      "long": "Kanban comes from the Toyota Production System of the 1940s and 1950s. Its two primary practices in software are to visualize the work, usually on a board, and to limit work in progress (WIP), so that new items start only when others finish. David J. Anderson adapted it for software at Microsoft around 2004 and wrote a book on it in 2010. The method is widely used, and teams often combine it with Scrum.",
+      "status": "thriving",
+      "tags": [
+        "toyota",
+        "wip limit",
+        "lean",
+        "anderson",
+        "board",
+        "flow"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Kanban (development)",
+          "url": "https://en.wikipedia.org/wiki/Kanban_(development)"
+        }
+      ]
+    },
+    {
+      "id": "proc.sre",
+      "title": "Site Reliability Engineering",
+      "cat": "process",
+      "tier": 3,
+      "year": 2003,
+      "short": "Google's way of running services: software engineers do operations, guided by reliability targets and error budgets. The practice began in 2003.",
+      "long": "Site reliability engineering began at Google in 2003, when Benjamin Treynor Sloss founded a team of seven production engineers; by 2016 there were more than 1,000 SREs. He described it as what happens when you ask a software engineer to design an operations team. Its signature ideas are service-level objectives, error budgets, reducing toil (repetitive manual operations work) and blameless postmortems. Google caps routine operations work at 50 percent of an SRE's time, and the SRE book says 100 percent is the wrong reliability target for basically everything; the error budget is one minus the availability target. It also says roughly 70 percent of outages are due to changes in a live system, so changes are tried on a few users first (canary releases) and rolled out gradually.",
+      "sleeper": "Operations used to be a separate group from the developers. SRE staffs it with software engineers, limits routine ops work to half their time, and treats a small amount of failure as a budget to spend.",
+      "status": "thriving",
+      "tags": [
+        "google",
+        "error budget",
+        "slo",
+        "toil",
+        "reliability",
+        "on-call"
+      ],
+      "refs": [
+        {
+          "label": "Google SRE book: Introduction",
+          "url": "https://sre.google/sre-book/introduction/"
+        },
+        {
+          "label": "Wikipedia: Site reliability engineering",
+          "url": "https://en.wikipedia.org/wiki/Site_reliability_engineering"
+        }
+      ]
+    },
+    {
+      "id": "proc.team-topologies",
+      "title": "Team Topologies",
+      "cat": "process",
+      "tier": 4,
+      "year": 2019,
+      "short": "A 2019 book by Matthew Skelton and Manuel Pais on shaping team structure so that it produces the software architecture you want.",
+      "long": "Matthew Skelton and Manuel Pais propose four team types: stream-aligned, enabling, complicated-subsystem and platform teams. Teams relate to one another in three ways: collaboration, X-as-a-Service and facilitating. The book applies Conway's Law deliberately, shaping team boundaries to get the architecture you want, which is sometimes called the inverse Conway maneuver. It also limits what any one team must hold in its head, a limit it calls cognitive load. The approach is popular in architecture and platform-engineering circles, and its support comes from experience reports rather than controlled studies.",
+      "status": "thriving",
+      "tags": [
+        "skelton",
+        "pais",
+        "stream-aligned",
+        "platform team",
+        "cognitive load",
+        "inverse conway maneuver"
+      ],
+      "refs": [
+        {
+          "label": "Team Topologies: key concepts",
+          "url": "https://teamtopologies.com/key-concepts"
+        }
+      ]
+    },
+    {
+      "id": "proc.brooks-law",
+      "title": "Brooks's Law",
+      "cat": "process",
+      "tier": 3,
+      "year": 1975,
+      "short": "Adding people to a software project that is already late makes it later. Fred Brooks drew the rule from managing IBM's OS/360.",
+      "long": "Fred Brooks stated the rule in The Mythical Man-Month (1975), drawing on his experience managing IBM's OS/360: adding manpower to a software project that is behind schedule delays it further. The logic was already in Melvin Conway's 1968 paper, which called it a fallacy that two people working for a year and a hundred working for a week are resources of equal value. The evidence is one large project plus simulation studies, and no controlled experiment exists. As a rule of thumb it is widely accepted, though it depends on how far along the project is and how divisible the work is. The usual advice is to cut scope, re-plan early and keep teams small.",
+      "status": "thriving",
+      "tags": [
+        "man-month",
+        "late projects",
+        "staffing",
+        "os/360",
+        "brooks"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: The Mythical Man-Month",
+          "url": "https://en.wikipedia.org/wiki/The_Mythical_Man-Month"
+        }
+      ]
+    },
+    {
+      "id": "proc.no-silver-bullet",
+      "title": "No Silver Bullet",
+      "cat": "process",
+      "tier": 2,
+      "year": 1986,
+      "short": "Fred Brooks's 1986 essay arguing that no single technique would deliver a tenfold gain within a decade, because software's essential difficulty is conceptual.",
+      "long": "In 1986 Fred Brooks argued that no single development, in technology or management technique, promises even one order-of-magnitude improvement within a decade in productivity, reliability or simplicity. He separated the essence of software, a construct of interlocking concepts, from the accidents of how it is expressed, and named four inherent properties of the essence: complexity, conformity, changeability and invisibility. High-level languages had already removed the biggest accidental difficulty, and he predicted that Ada, object-oriented programming, AI and expert systems would not be silver bullets. The attacks he endorsed were buying instead of building, rapid prototyping, growing software incrementally and finding great designers. He added that skepticism is not pessimism: disciplined effort on many innovations could still add up to a tenfold gain.",
+      "sleeper": "The essay predates the web, open source and the cloud. No single tool has delivered a tenfold gain in a decade, but forty years of accumulated change arguably has, which fits Brooks's own caveat. It is routinely invoked in debates about AI coding tools.",
+      "status": "thriving",
+      "tags": [
+        "brooks",
+        "essence and accident",
+        "essential complexity",
+        "accidental complexity",
+        "productivity",
+        "10x"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: The Mythical Man-Month (the essay is reprinted in the 1995 edition)",
+          "url": "https://en.wikipedia.org/wiki/The_Mythical_Man-Month"
+        }
+      ]
+    },
+    {
+      "id": "proc.peopleware",
+      "title": "Peopleware",
+      "cat": "process",
+      "tier": 4,
+      "year": 1987,
+      "short": "Tom DeMarco and Timothy Lister's 1987 book arguing that software's major problems are human rather than technical: teams, quiet and uninterrupted time.",
+      "long": "Tom DeMarco and Timothy Lister published Peopleware in 1987, with revised editions in 1999 and 2013. Its central claim is that the major problems of software work are not so much technological as sociological. It discusses how teams jell, the value of uninterrupted \"flow time\", quiet workplaces and the cost of staff turnover, and it argues for sustainable work rather than crunch. Their \"Coding War Games\" study of hundreds of developers reportedly found performance tracking workspace quiet and privacy, though the figures could not be verified. The diagnosis has aged well, yet open-plan offices spread anyway, and a 2024 randomized trial of hybrid work is a modern test of its themes.",
+      "status": "thriving",
+      "tags": [
+        "demarco",
+        "lister",
+        "flow time",
+        "teams",
+        "open-plan offices",
+        "turnover"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Peopleware",
+          "url": "https://en.wikipedia.org/wiki/Peopleware:_Productive_Projects_and_Teams"
+        }
+      ]
+    },
+    {
+      "id": "proc.cathedral-bazaar",
+      "title": "The Cathedral and the Bazaar",
+      "cat": "process",
+      "tier": 3,
+      "year": 1997,
+      "short": "Eric Raymond's 1997 essay contrasting closed, planned \"cathedral\" development with open, many-contributor \"bazaar\" development, and the slogan \"many eyes\".",
+      "long": "Eric S. Raymond presented the essay in May 1997, and O'Reilly published it as a book in 1999. It contrasted closed, planned \"cathedral\" development with the open \"bazaar\" development of Linux, and coined \"Linus's law\": given enough eyeballs, all bugs are shallow. Netscape's January 1998 decision to release its browser source was reportedly influenced by the essay, and Raymond became president of the new Open Source Initiative that year. The slogan has a counter-example in Heartbleed, a flaw that sat in the widely deployed OpenSSL encryption library from December 2011 until April 2014. Many eyes help only when someone is funded and motivated to look.",
+      "sleeper": "If you remember open development as a hobbyist fringe, it has since won in infrastructure: Linux, Git and Apache are all developed in the open.",
+      "status": "thriving",
+      "tags": [
+        "raymond",
+        "linus's law",
+        "many eyes",
+        "bazaar",
+        "linux",
+        "o'reilly"
+      ],
+      "refs": [
+        {
+          "label": "Open Source Initiative: history",
+          "url": "https://opensource.org/history"
+        }
+      ]
+    },
+    {
+      "id": "proc.design-patterns",
+      "title": "Design Patterns",
+      "cat": "process",
+      "tier": 3,
+      "year": 1994,
+      "short": "The \"Gang of Four\" book cataloguing 23 recurring object-oriented designs. Its vocabulary stuck, though many patterns are now built into languages.",
+      "long": "Design Patterns: Elements of Reusable Object-Oriented Software, by Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides (the \"Gang of Four\"), was published on 31 October 1994 with a 1995 copyright. It catalogued 23 recurring designs with names such as Observer, Factory and Singleton. Its advice to favor object composition over class inheritance has held up: in 2005 Gamma said he still thought it true after ten years. In 1996 Peter Norvig argued that 16 of the 23 patterns have qualitatively simpler implementations in Lisp or Dylan than in C++, which suggests patterns partly patch weaknesses in a language. The vocabulary survived, while many patterns are now language features such as closures and iterators.",
+      "sleeper": "If you learned object-oriented design in the early 1990s, note that language features such as closures and iterators now cover several of the patterns, and composition is preferred over deep inheritance.",
+      "code": {
+        "lang": "python",
+        "text": "# A swappable \"strategy\" object is just a function argument\n# in a language with first-class functions.\nwords = [\"pear\", \"fig\", \"banana\"]\nprint(sorted(words, key=len))  # ['fig', 'pear', 'banana']"
+      },
+      "status": "legacy",
+      "tags": [
+        "gang of four",
+        "gamma",
+        "observer",
+        "singleton",
+        "norvig",
+        "composition over inheritance"
+      ],
+      "refs": [
+        {
+          "label": "Norvig, Design Patterns in Dynamic Languages",
+          "url": "https://norvig.com/design-patterns/design-patterns.pdf"
+        },
+        {
+          "label": "Wikipedia: Design Patterns",
+          "url": "https://en.wikipedia.org/wiki/Design_Patterns"
+        }
+      ]
+    },
+    {
+      "id": "proc.conways-law",
+      "title": "Conway's Law",
+      "cat": "process",
+      "tier": 3,
+      "year": 1968,
+      "short": "Any organization that designs a system will produce a design that copies its own communication structure. Melvin Conway wrote it in 1968.",
+      "long": "Melvin Conway's April 1968 Datamation article \"How Do Committees Invent?\" held that any organization that designs a system will inevitably produce a design whose structure is a copy of the organization's communication structure. His example was two military services told by their Commander-in-Chief to develop a common weapon system; after great effort they produced a copy of their organization chart. He also argued that the communication structures of large design organizations tend to disintegrate under conventional management, and that the system then mirrors the disintegration. The law is used to reason about boundaries between teams and between microservices (small, independently deployed programs), and Team Topologies turns it into advice: shape the teams to get the architecture you want.",
+      "status": "thriving",
+      "tags": [
+        "conway",
+        "organization chart",
+        "communication structure",
+        "inverse conway maneuver",
+        "datamation",
+        "architecture"
+      ]
+    },
+    {
+      "id": "proc.postels-law",
+      "title": "Postel's Law",
+      "cat": "process",
+      "tier": 4,
+      "year": 1979,
+      "short": "\"Be conservative in what you do, be liberal in what you accept from others.\" Jon Postel's rule for Internet protocols, written in 1979, is now disputed.",
+      "long": "Jon Postel's robustness principle reads: \"Be conservative in what you do, be liberal in what you accept from others.\" It was first written down in the 1979 specification of the Internet Protocol (IPv4), though one source dates it to RFC 761 of 1980. In 2023 the Internet Engineering Task Force (IETF) published RFC 9413, \"Maintaining Robust Protocols\", which says the principle has been interpreted in a variety of ways: some help ensure the health of the Internet, while others can harm interoperability over time. Thomson and Schinazi argued that being liberal in what you accept actually reduces robustness, including security, and the RFC recommends active protocol maintenance instead. Hyrum's law helps explain the problem: once receivers tolerate sloppy input, senders come to depend on that tolerance, and the protocol hardens around it.",
+      "sleeper": "If you learned the robustness principle as good practice, note that the IETF's 2023 RFC 9413 now recommends active protocol maintenance instead, and warns that liberal acceptance can damage interoperability over time.",
+      "status": "legacy",
+      "tags": [
+        "robustness principle",
+        "rfc 9413",
+        "interoperability",
+        "protocols",
+        "ipv4",
+        "jon postel"
+      ],
+      "refs": [
+        {
+          "label": "RFC 9413: Maintaining Robust Protocols",
+          "url": "https://www.rfc-editor.org/rfc/rfc9413.txt"
+        },
+        {
+          "label": "Wikipedia: Robustness principle",
+          "url": "https://en.wikipedia.org/wiki/Robustness_principle"
+        }
+      ]
+    },
+    {
+      "id": "proc.hyrums-law",
+      "title": "Hyrum's Law",
+      "cat": "process",
+      "tier": 4,
+      "year": 2016,
+      "short": "With enough users of an API, every observable behavior of your system will be depended on by somebody, whatever the documentation promises.",
+      "long": "Hyrum's Law reads: with a sufficient number of users of an API (the interface one program offers to others), it does not matter what you promise in the contract, because all observable behaviors of your system will be depended on by somebody. Hyrum Wright stated it from large-scale infrastructure migrations at Google, and Titus Winters named it after him; it is also called the Law of Implicit Interfaces. It explains why changing \"undefined\" behavior breaks other people's programs, and why Postel-style tolerance tends to freeze a protocol in place. It is widely cited in API and versioning design. No exact first-publication date was confirmed; it dates from the 2010s.",
+      "code": {
+        "lang": "python",
+        "text": "USERS = {\"carol\", \"alice\", \"bob\"}\n\ndef list_users():\n    \"\"\"Return all users, in no particular order.\"\"\"\n    return sorted(USERS)  # alphabetical today, by accident\n\nprint(list_users()[0])  # a caller now depends on \"alice\" coming first"
+      },
+      "status": "thriving",
+      "tags": [
+        "api design",
+        "implicit interfaces",
+        "backward compatibility",
+        "google",
+        "versioning"
+      ],
+      "refs": [
+        {
+          "label": "Hyrum's Law",
+          "url": "https://www.hyrumslaw.com/"
+        }
+      ]
+    },
+    {
+      "id": "proc.goodharts-law",
+      "title": "Goodhart's Law",
+      "cat": "process",
+      "tier": 3,
+      "year": 1975,
+      "short": "When a measure becomes a target, it ceases to be a good measure. In software it corrupts lines of code, velocity, test coverage and even delivery metrics.",
+      "long": "The wording \"When a measure becomes a target, it ceases to be a good measure\" is the anthropologist Marilyn Strathern's 1997 summary of an idea credited to the economist Charles Goodhart's 1975 article on UK monetary policy. In software it explains why lines of code, story-point velocity (units of estimated work finished per sprint) and test-coverage percentages go wrong once people are judged by them. DORA, the research group behind the best-known delivery metrics, warns about it in its own guidance: setting the metrics as goals makes teams more likely to game them, so they should drive improvement, not comparisons between teams. The Standish CHAOS figures show another form: in one organization, steering by their definition of success led managers to pad their estimates, by tenfold to a hundredfold.",
+      "status": "thriving",
+      "tags": [
+        "measures",
+        "targets",
+        "gaming metrics",
+        "strathern",
+        "velocity",
+        "perverse incentives"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Goodhart's law",
+          "url": "https://en.wikipedia.org/wiki/Goodhart%27s_law"
+        },
+        {
+          "label": "DORA metrics guide",
+          "url": "https://dora.dev/guides/dora-metrics-four-keys/"
+        }
+      ]
+    },
+    {
+      "id": "proc.10x-programmer",
+      "title": "The 10x Programmer Claim",
+      "cat": "process",
+      "tier": 3,
+      "year": 1968,
+      "short": "The belief that the best programmers are ten times as productive as average ones. It traces to a tiny 1968 experiment that was not about productivity.",
+      "long": "The usual origin is a 1968 paper by Sackman, Erikson and Grant in Communications of the ACM, a small experiment with about a dozen experienced programmers that was designed to compare online with offline debugging, not to measure productivity. Best-to-worst ratios as large as 28 to 1 appeared on some measures. Critics, including Lutz Prechelt's 1999 report on \"the 28:1 Grant/Sackman legend\" and Laurent Bossavit's book The Leprechauns of Software Engineering, point to the tiny sample, mixed languages and outliers, and note that best-versus-worst ratios overstate typical gaps; the details of those critiques could not be verified. Individual variation is real and large, but a precise \"10x\" is folklore.",
+      "status": "n/a",
+      "tags": [
+        "sackman",
+        "productivity",
+        "folklore",
+        "leprechauns",
+        "bossavit",
+        "28:1"
+      ],
+      "refs": [
+        {
+          "label": "Bossavit, The Leprechauns of Software Engineering",
+          "url": "https://leanpub.com/leprechauns"
+        }
+      ]
+    },
+    {
+      "id": "proc.standish-chaos",
+      "title": "Standish CHAOS Report",
+      "cat": "process",
+      "tier": 3,
+      "year": 1994,
+      "short": "A 1994 survey claiming only 16 percent of IT projects succeed. A 2010 analysis showed its definitions are misleading and its figures meaningless.",
+      "long": "The Standish Group's first CHAOS report (1994) sorted IT projects into successful, challenged or failed. From 365 respondents representing 8,380 applications it reported 16 percent successful, 53 percent challenged and 31 percent failed. Standish defines success purely as meeting the original forecast of cost, time and functionality. In 2010 Eveleens and Verhoef of Vrije Universiteit Amsterdam applied those definitions to 5,457 forecasts for 1,211 real projects and found them misleading, one-sided because they ignore under-runs, harmful to estimating, and productive of meaningless figures. One organization that steered by the definitions padded its estimates tenfold to a hundredfold and so scored about 70 percent successes. The Standish numbers are not a measure of project health.",
+      "sleeper": "Later editions put success between 26 and 35 percent from 1996 to 2009. The figures are still widely repeated, but they should be treated as discredited.",
+      "status": "legacy",
+      "tags": [
+        "chaos report",
+        "project failure",
+        "eveleens",
+        "verhoef",
+        "estimation",
+        "success rate"
+      ],
+      "refs": [
+        {
+          "label": "Eveleens and Verhoef, The Rise and Fall of the Chaos Report Figures",
+          "url": "https://www.cs.vu.nl/~x/the_rise_and_fall_of_the_chaos_report_figures.pdf"
+        }
+      ]
+    },
+    {
+      "id": "proc.pair-programming",
+      "title": "Pair Programming",
+      "cat": "process",
+      "tier": 4,
+      "year": 1999,
+      "short": "Two developers share one workstation and work on the same code. An Extreme Programming practice whose evidence is mixed.",
+      "long": "In pair programming two developers work together at one workstation. It was one of the practices of Extreme Programming, and the original enthusiastic papers (Cockburn and Williams, 2000; Williams, Kessler, Cunningham and Jeffries, 2000) were written by XP proponents. A later meta-analysis found that pairs consider more design alternatives, arrive at simpler and more maintainable designs and catch design defects earlier, but it flagged signs of publication bias and concluded that pair programming is not uniformly beneficial or effective. Total human hours rise even when tasks finish faster. It is best treated as a situational tool, not a universal win.",
+      "status": "niche",
+      "tags": [
+        "xp",
+        "meta-analysis",
+        "publication bias",
+        "williams",
+        "collaboration"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Pair programming",
+          "url": "https://en.wikipedia.org/wiki/Pair_programming"
+        }
+      ]
+    },
+    {
+      "id": "proc.over-abstraction",
+      "title": "Over-Abstraction",
+      "cat": "process",
+      "tier": 4,
+      "year": 2016,
+      "short": "Building a general abstraction too early costs more than copying code. Sandi Metz's maxim: duplication is far cheaper than the wrong abstraction.",
+      "long": "Sandi Metz gave the line \"duplication is far cheaper than the wrong abstraction\" at the RailsConf conference in 2014 and wrote it up on her blog on 20 January 2016. The concern is premature generalization: pulling similar-looking code into one shared abstraction before the real shape of the problem is clear. John Ousterhout's objection to very small methods that create \"shallow\" interfaces, with a lot of interface for little functionality, is the same worry from another direction. Taking the \"don't repeat yourself\" rule to extremes is a common source. No controlled evidence exists either way, and the accepted heuristic is to wait for the third use before abstracting.",
+      "status": "n/a",
+      "tags": [
+        "sandi metz",
+        "wrong abstraction",
+        "dry",
+        "premature generalization",
+        "duplication",
+        "ousterhout"
+      ],
+      "refs": [
+        {
+          "label": "Sandi Metz: The Wrong Abstraction",
+          "url": "https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction"
+        },
+        {
+          "label": "Ousterhout and Martin: A Philosophy of Software Design vs Clean Code",
+          "url": "https://github.com/johnousterhout/aposd-vs-clean-code"
+        }
+      ]
+    },
+    {
+      "id": "proc.blameless",
+      "title": "Blameless Postmortems",
+      "cat": "process",
+      "tier": 4,
+      "year": 2012,
+      "short": "After an outage, write up what happened and why without hunting for someone to blame, so the team can learn. Standard in SRE and DevOps cultures.",
+      "long": "Google's SRE book defines a postmortem as a written record of an incident, its impact, the actions taken to mitigate or resolve it, the root causes and the follow-up actions to prevent a recurrence. The blameless version, set out by John Allspaw in an Etsy essay around 2012, views mistakes, errors, slips and lapses from a perspective of learning rather than fault. The idea is said to borrow from \"just culture\" thinking in aviation and healthcare. Published analyses such as CrowdStrike's root-cause report, the Ariane 5 inquiry and NASA's Mars Climate Orbiter board report follow the style. The Post Office Horizon scandal shows the opposite: an institution that would not believe its own system could be wrong.",
+      "status": "thriving",
+      "tags": [
+        "postmortem",
+        "incident review",
+        "just culture",
+        "allspaw",
+        "root cause",
+        "etsy"
+      ],
+      "refs": [
+        {
+          "label": "Google SRE book: Postmortem Culture",
+          "url": "https://sre.google/sre-book/postmortem-culture/"
+        },
+        {
+          "label": "Allspaw, Blameless PostMortems and a Just Culture (archived copy)",
+          "url": "https://web.archive.org/web/2023/https://www.etsy.com/codeascraft/blameless-postmortems/"
+        }
+      ]
+    },
+    {
+      "id": "proc.trunk-based",
+      "title": "Trunk-Based Development",
+      "cat": "process",
+      "tier": 4,
+      "year": 2010,
+      "short": "Developers merge small changes into one shared main line at least daily instead of keeping long-lived branches. DORA's surveys link it to better delivery.",
+      "long": "In trunk-based development developers collaborate on a single branch called the trunk and resist pressure to create other long-lived branches. Short-lived branches are allowed for review and continuous integration (automatic builds and tests on each merge), and feature flags, switches that keep unfinished code turned off, separate deploying code from releasing it. DORA, the DevOps research program run by Google Cloud, defines it as each developer merging small batches into trunk at least once a day, with branches lasting no more than a few hours. Its analysis of 2016 and 2017 survey data linked three or fewer active branches, daily merges and no code freezes to better delivery performance, which is correlation, not an experiment. Vincent Driessen's Git Flow post of 5 January 2010, built on long-lived branches, is the usual contrast; in 2020 he suggested simpler workflows for continuous delivery.",
+      "sleeper": "If you remember CVS and Subversion branches merged after weeks, the advice for fast-moving teams is now the reverse: merge to the main line at least daily, with unfinished work hidden behind feature flags.",
+      "status": "thriving",
+      "tags": [
+        "trunk",
+        "branching",
+        "feature flags",
+        "git flow",
+        "small batches",
+        "dora",
+        "merge hell"
+      ],
+      "refs": [
+        {
+          "label": "DORA: Trunk-based development",
+          "url": "https://dora.dev/capabilities/trunk-based-development/"
+        },
+        {
+          "label": "trunkbaseddevelopment.com",
+          "url": "https://trunkbaseddevelopment.com/"
+        }
+      ]
+    },
+    {
+      "id": "proc.open-source",
+      "title": "Open Source Software",
+      "cat": "process",
+      "tier": 2,
+      "year": 1998,
+      "short": "Software whose source code is published for anyone to use, change and share. The term was coined in 1998; Linux, Git and Apache are its best-known successes.",
+      "long": "Netscape announced on 23 January 1998 that its browser would be free with source code. A strategy meeting on 3 February in Palo Alto led Christine Peterson to suggest the term \"open source\", and the Open Source Initiative was founded later that month with Eric Raymond as president and Bruce Perens as vice-president. Its Open Source Definition derives from the Debian Free Software Guidelines, and its first list of approved licenses appeared in October 1999. The model won in infrastructure: Linux, Git and Apache. Fred Brooks's advice to buy rather than build is the case for reusing such components, and the downside is dependency risk, as Heartbleed showed in an under-resourced OpenSSL. Open source has succeeded commercially when a neutral body holds the code while companies compete on services.",
+      "sleeper": "In 1990 the nearest idea was the Free Software Foundation's \"free software\". The term \"open source\" did not exist until 1998.",
+      "status": "thriving",
+      "tags": [
+        "osi",
+        "free software",
+        "raymond",
+        "perens",
+        "peterson",
+        "netscape",
+        "debian"
+      ],
+      "refs": [
+        {
+          "label": "Open Source Initiative: history",
+          "url": "https://opensource.org/history"
+        }
+      ]
+    },
+    {
+      "id": "proc.gpl",
+      "title": "GNU General Public License",
+      "cat": "process",
+      "tier": 3,
+      "year": 1989,
+      "short": "Richard Stallman's license that lets anyone use and change a program but requires derivatives to stay free. This copyleft idea underlies GNU and Linux.",
+      "long": "Richard Stallman announced the GNU project on 27 September 1983, began work in January 1984 after leaving MIT, and founded the Free Software Foundation in October 1985. The GNU General Public License introduced copyleft, which requires derivative works to stay free; version 1 appeared in 1989, version 2 in 1991 and version 3 in 2007. GNU produced the Emacs editor, the GCC compiler, the GDB debugger, the Bash shell and the glibc C library, and Linux supplied the missing kernel, the core of an operating system, after Linus Torvalds adopted version 2 of the GPL in 1992. Sun released Java under the GPL in 2006 and 2007 as OpenJDK. Permissive licenses such as MIT, BSD and Apache 2.0 allow closed derivatives, while copyleft licenses such as the GPL and AGPL require sharing.",
+      "status": "thriving",
+      "tags": [
+        "copyleft",
+        "stallman",
+        "free software",
+        "gnu",
+        "fsf",
+        "license",
+        "agpl"
+      ],
+      "refs": [
+        {
+          "label": "GNU Project history",
+          "url": "https://www.gnu.org/gnu/thegnuproject.html"
+        }
+      ]
+    },
+    {
+      "id": "proc.licensing",
+      "title": "Open-Source Relicensing",
+      "cat": "process",
+      "tier": 3,
+      "year": 2018,
+      "short": "From 2018 several open-source vendors moved to licenses that restrict cloud resellers, and the cloud providers and foundations answered with forks.",
+      "long": "A pattern played out from 2018: a company whose open-source product was being sold as a service by cloud providers changed its license to stop that, and the cloud vendors or a foundation forked the last open version, meaning they copied it to continue independently. MongoDB moved from the AGPL, a copyleft license, to the Server Side Public License in October 2018, which the Open Source Initiative does not consider open source. Elastic moved Elasticsearch to SSPL and the Elastic License in January 2021, AWS forked it as OpenSearch in April 2021, and Elastic offered the AGPL again in August 2024. HashiCorp moved from the Mozilla Public License to the Business Source License on 10 August 2023, prompting the OpenTofu fork. Redis relicensed in March 2024, prompting the Valkey fork, and added the AGPLv3 as an option in May 2025.",
+      "sleeper": "The old worry was closed-source rivals. For these vendors the risk became large cloud providers reselling their code as a service, and forks now appear within weeks.",
+      "status": "n/a",
+      "tags": [
+        "sspl",
+        "bsl",
+        "agpl",
+        "source-available",
+        "opensearch",
+        "opentofu",
+        "valkey",
+        "mongodb"
+      ],
+      "refs": [
+        {
+          "label": "HashiCorp blog on the Business Source License",
+          "url": "https://www.hashicorp.com/en/blog/hashicorp-adopts-business-source-license"
+        },
+        {
+          "label": "Elastic blog: Elasticsearch is open source again",
+          "url": "https://www.elastic.co/blog/elasticsearch-is-open-source-again"
+        }
+      ]
+    },
+    {
+      "id": "proc.what-goes-around",
+      "title": "What Goes Around Comes Around",
+      "cat": "process",
+      "tier": 3,
+      "year": 2024,
+      "short": "Stonebraker and Pavlo's 2024 survey of database history, concluding that SQL and the relational model outlasted every challenger.",
+      "long": "Stonebraker and Pavlo's paper \"What Goes Around Comes Around... And Around...\" appeared in SIGMOD Record in June 2024. It follows a 2005 chapter by Stonebraker and Hellerstein that examined nine data-model movements and concluded the relational model with an extendable type system had dominated all comers. The 2024 survey says SQL kept absorbing the best ideas of its rivals, including JSON in 2016 and property graphs in 2023, so most systems that deviated from SQL or the relational model have not dominated. It calls document databases essentially the same as 1980s object-oriented and late-1990s XML databases, and it lists database machines, custom hardware accelerators and blockchain databases among failed bets. The authors have a stake in the relational story, so their judgments are opinion.",
+      "sleeper": "Object databases, XML databases and early NoSQL were each expected to replace SQL. The survey's view is that each faded or was absorbed into SQL systems.",
+      "status": "n/a",
+      "tags": [
+        "stonebraker",
+        "pavlo",
+        "sigmod record",
+        "sql",
+        "relational model",
+        "nosql",
+        "database history"
+      ],
+      "refs": [
+        {
+          "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around... (2024)",
+          "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "proc.taocp",
+      "title": "The Art of Computer Programming",
+      "cat": "process",
+      "tier": 3,
+      "year": 1968,
+      "short": "Donald Knuth's multi-volume treatise on algorithms, begun in 1968 and still being extended. It made the analysis of algorithms a teachable subject.",
+      "long": "Volume 1, Fundamental Algorithms, appeared in 1968. The series later added Volume 2 Seminumerical Algorithms, Volume 3 Sorting and Searching, Volume 4A Combinatorial Algorithms Part 1 (2011) and Volume 4B (2023). At the end of 1999 American Scientist named the set among the twelve best physical-science monographs of the century. It made the analysis of algorithms, meaning how much time and memory a procedure needs, a respectable and teachable subject, and it set a standard of rigor for describing procedures. Knuth applied the same rigor to the structured-programming debate in his 1974 paper on go to statements.",
+      "sleeper": "The set was unfinished in 1990 and still is: Volume 4A appeared in 2011 and Volume 4B in 2023.",
+      "status": "thriving",
+      "tags": [
+        "knuth",
+        "algorithms",
+        "analysis of algorithms",
+        "addison-wesley",
+        "textbook"
+      ],
+      "refs": [
+        {
+          "label": "Knuth's TAOCP page, Stanford",
+          "url": "https://www-cs-faculty.stanford.edu/~knuth/taocp.html"
+        }
+      ]
+    },
+    {
+      "id": "proc.worse-is-better",
+      "title": "Worse Is Better",
+      "cat": "process",
+      "tier": 4,
+      "year": 1989,
+      "short": "Richard Gabriel's slogan that simpler designs often beat more elaborate ones in the marketplace, a pattern seen in Unix, TCP/IP and HTTP.",
+      "long": "Richard Gabriel's \"worse is better\" is a slogan for the observation that simple designs tend to win over more elaborate ones. Accounts of platform and internet history draw on it to explain several outcomes: simple, inspectable, text-based formats beat elaborate ones; open specifications with free implementations beat licensed ones; backward compatibility beat clean-slate redesign, as HTML5 did over XHTML 2 and AMD64 over Itanium; and commodity hardware beat bespoke hardware. Unix, TCP/IP, HTTP and Linux are the usual examples. These are generalizations from history rather than measured laws.",
+      "status": "n/a",
+      "tags": [
+        "gabriel",
+        "simplicity",
+        "design philosophy",
+        "backward compatibility",
+        "dreamsongs"
+      ],
+      "refs": [
+        {
+          "label": "Richard Gabriel, Worse Is Better",
+          "url": "https://www.dreamsongs.com/WorseIsBetter.html"
+        }
+      ]
+    },
+    {
+      "id": "proc.unix-philosophy",
+      "title": "The Unix Philosophy",
+      "cat": "process",
+      "tier": 3,
+      "year": 1978,
+      "short": "Build small programs that each do one thing well and combine them, with plain text as the common interface. First written down at Bell Labs in 1978.",
+      "long": "The Unix philosophy was first set down as maxims in the foreword to the July-August 1978 Bell System Technical Journal issue on Unix, by Doug McIlroy, E. N. Pinson and B. A. Tague. They said to make each program do one thing well; to expect the output of every program to become the input of another, as yet unknown, program; to design and build software to be tried early, ideally within weeks, and to throw away the clumsy parts; and to use tools in preference to unskilled help. A compact summary from 1994, usually attributed to McIlroy, says to write programs that do one thing well, write programs that work together, and write programs that handle text streams, because that is a universal interface.",
+      "code": {
+        "lang": "bash",
+        "text": "# the five most common words in a file, built from small tools joined by pipes\ntr -cs 'A-Za-z' '\\n' < book.txt | tr 'A-Z' 'a-z' | sort | uniq -c | sort -rn | head -5"
+      },
+      "status": "thriving",
+      "tags": [
+        "mcilroy",
+        "pipes",
+        "small tools",
+        "text streams",
+        "bell labs",
+        "bstj"
+      ],
+      "refs": [
+        {
+          "label": "Bell System Technical Journal, UNIX Time-Sharing System: Foreword (1978)",
+          "url": "https://archive.org/stream/bstj57-6-1899/bstj57-6-1899_djvu.txt"
+        },
+        {
+          "label": "Wikipedia: Unix philosophy",
+          "url": "https://en.wikipedia.org/wiki/Unix_philosophy"
+        }
+      ]
+    },
+    {
+      "id": "proc.refactoring",
+      "title": "Refactoring",
+      "cat": "process",
+      "tier": 3,
+      "year": 1999,
+      "short": "Changing code's structure in small steps without changing what it does. Martin Fowler published a book on it in 1999, and programming tools now automate much of it.",
+      "long": "Refactoring means improving the internal structure of code in small, behavior-preserving steps. Martin Fowler, later chief scientist at Thoughtworks, published his book Refactoring in 1999, the year Extreme Programming Explained appeared; refactoring is one of XP's practices and the last step of the test-driven development cycle. It is also the usual alternative to rewriting from scratch, which Joel Spolsky called the single worst strategic mistake a software company can make. A code-analytics vendor, GitClear, reported that moved code, its proxy for refactoring, fell from about 25 percent of changed lines in 2021 to under 10 percent in 2024; this correlates with the rise of AI tools but does not prove they caused it.",
+      "sleeper": "Integrated development environments (IDEs), the editors programmers work in, now automate many refactorings, so small, frequent restructuring is practical. IntelliJ IDEA, released in 2001, was one of the first Java IDEs with advanced refactoring built in.",
+      "code": {
+        "lang": "python",
+        "text": "cart = [{\"price\": 5, \"qty\": 2}, {\"price\": 3, \"qty\": 1}]\n# Before: the totaling loop sits inline\ntotal = 0\nfor item in cart:\n    total += item[\"price\"] * item[\"qty\"]\nprint(total * 1.2)\n\n# After: same behavior, with the loop extracted and named\ndef subtotal(cart):\n    return sum(i[\"price\"] * i[\"qty\"] for i in cart)\n\nprint(subtotal(cart) * 1.2)"
+      },
+      "status": "thriving",
+      "tags": [
+        "fowler",
+        "restructuring",
+        "behavior preserving",
+        "small steps",
+        "ide support",
+        "rewrite alternative"
+      ]
+    },
+    {
+      "id": "proc.technical-debt",
+      "title": "Technical Debt",
+      "cat": "process",
+      "tier": 4,
+      "year": 1992,
+      "short": "A metaphor for shortcuts in code: they save time now but cost extra work later, like interest. Ward Cunningham is credited with the term in 1992.",
+      "long": "Ward Cunningham, who also created the wiki (a web site anyone can edit) in 1995, is credited with the \"technical debt\" metaphor in 1992. The comparison is to a loan: a shortcut in design or code gets something working sooner, but the extra effort of working around it later is the interest, and cleaning up is paying down the principal. The theory behind it is Lehman's laws of software evolution, which say a system must keep changing and grows more complex unless work reduces it. The term has stretched to cover neglected maintenance, tangled design and even low-value tests: Google warns that chasing a coverage number can create technical debt from tests that check little.",
+      "status": "n/a",
+      "tags": [
+        "cunningham",
+        "shortcuts",
+        "maintenance",
+        "interest",
+        "legacy code"
+      ],
+      "refs": [
+        {
+          "label": "Google Testing Blog: Code Coverage Best Practices",
+          "url": "https://testing.googleblog.com/2020/08/code-coverage-best-practices.html"
+        }
+      ]
+    },
+    {
+      "id": "proc.uml",
+      "title": "UML and Model-Driven Architecture",
+      "cat": "process",
+      "tier": 4,
+      "year": 1997,
+      "short": "A standard set of diagram notations for software design, adopted in 1997, and the later push to generate code from such models. It survives mainly as sketching.",
+      "long": "The Unified Modeling Language merged the diagram notations of Booch and Rumbaugh after Rational bought Jacobson's Objectory method. The Object Management Group adopted it as a standard in 1997, ISO published it in 2005, and UML 2 defines 14 diagram types. Model-Driven Architecture, the OMG's 2001 approach, aimed to generate code from abstract models. Like the computer-aided software engineering (CASE) tools of the late 1980s before it, this promise of code from diagrams did not take hold: generated code was hard to maintain and diagrams drifted from reality. UML survives mainly as a whiteboard sketching notation, and executable-model code generation is niche.",
+      "sleeper": "In the late 1990s UML was expected to be the blueprint from which programs were generated. It survives as a sketching notation, and refactoring-capable IDEs took the place of round-trip code generation.",
+      "status": "niche",
+      "tags": [
+        "booch",
+        "rumbaugh",
+        "jacobson",
+        "omg",
+        "mda",
+        "diagrams",
+        "case tools"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Unified Modeling Language",
+          "url": "https://en.wikipedia.org/wiki/Unified_Modeling_Language"
+        },
+        {
+          "label": "Wikipedia: Model-driven architecture",
+          "url": "https://en.wikipedia.org/wiki/Model-driven_architecture"
+        }
+      ]
+    },
+    {
+      "id": "proc.language-defects",
+      "title": "Language and Defects Studies",
+      "cat": "process",
+      "tier": 4,
+      "year": 2014,
+      "short": "A 2014 GitHub study linked some programming languages to more bugs than others. A 2019 reproduction found that almost all of the effect disappears.",
+      "long": "Ray, Posnett, Filkov and Devanbu (FSE 2014) analyzed 729 GitHub projects covering 80 million lines, 29,000 authors and 1.5 million commits in 17 languages. They reported that some languages are associated with more defects than others, although the effect is small, with functional languages associated with fewer. Berger, Hollenbeck, Maj, Vitek and Vitek reproduced the study in 2019 and found the repetition only partially successful. Their reanalysis found flaws that undermine the conclusions: only four languages had a statistically significant association with defects, and the effect size was exceedingly small. Ten developers relabeled 400 commits and estimated a 36 percent false-positive rate in the original's automated bug-fix labels. The claim that language choice measurably changes defect rates at repository scale is unsupported.",
+      "status": "n/a",
+      "tags": [
+        "ray",
+        "devanbu",
+        "berger",
+        "github",
+        "reproduction",
+        "defect rates",
+        "replication"
+      ],
+      "refs": [
+        {
+          "label": "Ray, Posnett, Filkov and Devanbu, FSE 2014",
+          "url": "https://web.cs.ucdavis.edu/~filkov/papers/lang_github.pdf"
+        },
+        {
+          "label": "Berger et al., reproduction of the study (2019)",
+          "url": "https://arxiv.org/pdf/1901.10220"
+        }
+      ]
+    },
+    {
+      "id": "proc.static-typing-evidence",
+      "title": "Evidence on Static Typing",
+      "cat": "process",
+      "tier": 3,
+      "year": 2017,
+      "short": "A 2017 study found that Flow or TypeScript would have caught about 15 percent of real JavaScript bugs: a modest effect, and among the cleanest evidence on typing.",
+      "long": "Static typing means a tool checks, before a program runs, that values are used consistently, such as numbers not treated as text. Gao, Bird and Barr (ICSE 2017) took 400 real, already public JavaScript bugs that had survived testing and review, added type annotations to the buggy code, and checked whether Facebook's Flow 0.30 or Microsoft's TypeScript 2.0 would have flagged each one. Flow detected 59 and TypeScript 58, and the true share lies between 11.5 and 18.5 percent, with a mean of 15 percent. The authors say this probably understates the value of static typing, since it ignores bugs caught privately and benefits such as documentation and tooling. It also measures what the checkers could detect, not what typing costs, and the authors argue for typing. No large, replicated defect reduction from static typing has been shown, although industry adopts types anyway for tooling reasons.",
+      "sleeper": "The debate used to rest on taste. Since then dynamic languages have grown optional types, and by August 2025 TypeScript was the most-used language on GitHub by contributor count.",
+      "status": "n/a",
+      "tags": [
+        "gao",
+        "bird",
+        "barr",
+        "flow",
+        "typescript",
+        "javascript",
+        "bugs",
+        "mining study"
+      ],
+      "refs": [
+        {
+          "label": "Gao, Bird and Barr, To Type or Not to Type (ICSE 2017)",
+          "url": "https://earlbarr.com/publications/typestudy.pdf"
+        }
+      ]
+    },
+    {
+      "id": "proc.free-lunch",
+      "title": "\"The Free Lunch Is Over\"",
+      "cat": "process",
+      "tier": 3,
+      "year": 2005,
+      "short": "Herb Sutter's 2005 essay: processor clock speeds had stopped rising, so programs must become concurrent to keep getting faster.",
+      "long": "Herb Sutter's essay appeared in Dr. Dobb's Journal in March 2005, with the text first posted in December 2004. Its thesis was that the biggest sea change in software since object-oriented programming was concurrency, meaning programs that do several things at the same time. The \"free lunch\" had been faster software without changing it. Sutter noted that Intel chips reached 2 GHz (two billion clock ticks per second) in August 2001, and that trends before 2003 would have put 10 GHz Pentium-family chips on the market by early 2005; they had not appeared. Heat, power consumption and current leakage were the obstacles. Transistor counts kept growing, so manufacturers turned to multicore chips, with several processors on one chip, and to hyperthreading. Two 3 GHz cores are not 6 GHz, and most multi-threaded applications will not run twice as fast on a dual-core machine.",
+      "sleeper": "If you remember clock speeds climbing with every new chip, that ended around 2003. Sutter's argument was that faster programs would depend on using extra cores, and threads, async code and message passing have since become everyday tools.",
+      "status": "n/a",
+      "tags": [
+        "sutter",
+        "multicore",
+        "concurrency",
+        "clock speed",
+        "dr. dobb's",
+        "hyperthreading"
+      ]
+    },
+    {
+      "id": "proc.cobol-claims",
+      "title": "COBOL Usage Claims",
+      "cat": "process",
+      "tier": 4,
+      "year": 2020,
+      "short": "Popular figures such as \"95 percent of ATM transactions run on COBOL\" come from vendors and journalists. No audited count exists.",
+      "long": "COBOL does run inside banks and governments, but no audited figure exists for its share. IBM's website says COBOL supports 80 percent of in-person credit card transactions and handles 95 percent of all ATM transactions, with no method given. A 2020 Wealthsimple Magazine article repeats them and adds that Bank of New York Mellon found in 2012 it had 112,500 COBOL programs and almost 350 million lines, and that estimates run as high as 240 billion lines in all. A 1997 Gartner figure of 200 billion lines is also cited everywhere, though the actual report is hard to find. \"Uses COBOL somewhere in the chain\" is not \"COBOL executes the transaction\", lines of code are not transactions, and the figures repeat one another rather than confirming each other.",
+      "sleeper": "COBOL ranked 20th in the TIOBE index of language popularity in September 2026, and 1 percent of respondents to the 2025 Stack Overflow survey used it.",
+      "status": "n/a",
+      "tags": [
+        "cobol",
+        "atm",
+        "banking",
+        "gartner",
+        "legacy systems",
+        "unaudited figures"
+      ],
+      "refs": [
+        {
+          "label": "Wealthsimple Magazine on COBOL (10 November 2020)",
+          "url": "https://www.wealthsimple.com/en-ca/magazine/cobol-controls-your-money"
+        },
+        {
+          "label": "IBM: What is COBOL?",
+          "url": "https://www.ibm.com/think/topics/cobol"
+        }
+      ]
+    },
+    {
+      "id": "proc.clean-code",
+      "title": "Clean Code",
+      "cat": "process",
+      "tier": 4,
+      "year": 2008,
+      "short": "Robert C. Martin's 2008 book of rules for readable code, such as very short functions. Critics say its rules are taste backed by experience, not evidence.",
+      "long": "Robert C. Martin, known as Uncle Bob, is an Agile Manifesto signatory and the originator of the SOLID design principles; his book Clean Code appeared in 2008. In a published written discussion, John Ousterhout, author of A Philosophy of Software Design, argued that very small methods create \"shallow\" interfaces, with a lot of interface for little functionality. Martin replied that he strongly recommends very short functions but that the book sets no arbitrary limits, citing 2-to-4-line functions from a 1999 exercise with Kent Beck. On a worked example they concluded that they disagree on how far to decompose code, and they also disagreed on test-driven development. No controlled study of these style rules exists. The book is still widely read and contested.",
+      "status": "thriving",
+      "tags": [
+        "uncle bob",
+        "martin",
+        "solid",
+        "ousterhout",
+        "readability",
+        "functions",
+        "style"
+      ],
+      "refs": [
+        {
+          "label": "Ousterhout and Martin: A Philosophy of Software Design vs Clean Code",
+          "url": "https://github.com/johnousterhout/aposd-vs-clean-code"
+        },
+        {
+          "label": "Wikipedia: Robert C. Martin",
+          "url": "https://en.wikipedia.org/wiki/Robert_C._Martin"
+        }
+      ]
+    },
+    {
+      "id": "proc.v-model",
+      "title": "V-Model",
+      "cat": "process",
+      "tier": 4,
+      "year": 1991,
+      "short": "A waterfall variant pairing each design stage with a test stage, drawn as a V. Reportedly still common in automotive, aerospace and medical devices.",
+      "long": "The V-model arranges development as a V: design levels descend the left side and the matching test levels, unit, integration, system and acceptance, ascend the right, so each design level has a test that checks it. It is credited to the Forsberg and Mooz systems-engineering \"Vee\" (1991) and the German federal V-Modell (1992), although those origins have not been verified. As a waterfall variant it assumes requirements are known up front. It is reportedly still common in automotive, aerospace and medical-device work.",
+      "status": "niche",
+      "tags": [
+        "vee",
+        "testing levels",
+        "systems engineering",
+        "safety-critical",
+        "v-modell"
+      ]
+    },
+    {
+      "id": "proc.rup",
+      "title": "Rational Unified Process",
+      "cat": "process",
+      "tier": 4,
+      "year": 1998,
+      "short": "Rational Software's 1998 iterative framework built around use cases and UML. Critics found it ceremony-heavy; Agile kept the iteration.",
+      "long": "The Rational Unified Process was Rational Software's iterative framework, organized in four phases: Inception, Elaboration, Construction and Transition. It was built around use cases and UML, and was sold as the IBM Rational Method Composer. Critics saw it as heavy on ceremony, and Agile took its iterative core while dropping the paperwork. Boehm's spiral model is counted among its influences, through risk-first planning. Frameworks such as RUP, CMMI and SAFe tend to be adopted through procurement and consulting channels first and shown to work second. RUP is now regarded as legacy.",
+      "status": "legacy",
+      "tags": [
+        "rational",
+        "use cases",
+        "inception",
+        "elaboration",
+        "construction",
+        "transition"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Rational Unified Process",
+          "url": "https://en.wikipedia.org/wiki/Rational_unified_process"
+        }
+      ]
+    },
+    {
+      "id": "proc.safe",
+      "title": "Scaled Agile Framework (SAFe)",
+      "cat": "process",
+      "tier": 4,
+      "year": 2011,
+      "short": "Dean Leffingwell's packaged framework for Agile in large organizations, with defined roles, ceremonies and planning cycles. Widely sold and criticized.",
+      "long": "The Scaled Agile Framework, by Dean Leffingwell, packages Agile for large enterprises with defined roles, ceremonies (recurring meetings) and planning cycles. Wikipedia dates its first formal description to a 2007 book, with version 1.0 following in 2011, and its article has a criticism section. Agile Manifesto signatory Dave Thomas wrote on 4 March 2014 that \"agile\" had been subverted to the point of being effectively meaningless, with the agile community largely an arena for consultants and vendors, and he called for retiring the word as a noun. The phrase \"Agile industrial complex\" is usually credited to Martin Fowler around 2018, though that attribution is unverified. No reliable adoption figures were found.",
+      "status": "thriving",
+      "tags": [
+        "leffingwell",
+        "enterprise agile",
+        "agile industrial complex",
+        "dave thomas",
+        "scaling"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Scaled agile framework",
+          "url": "https://en.wikipedia.org/wiki/Scaled_agile_framework"
+        },
+        {
+          "label": "Dave Thomas, essay on retiring the word agile (4 March 2014)",
+          "url": "https://pragdave.me/thoughts/active/2014-03-04-time-to-kill-agile.html"
+        }
+      ]
+    },
+    {
+      "id": "proc.shape-up",
+      "title": "Shape Up",
+      "cat": "process",
+      "tier": 4,
+      "year": 2019,
+      "short": "Basecamp's free book describing six-week cycles, an \"appetite\" for each problem and a betting table that replaces the ever-growing backlog.",
+      "long": "Shape Up is a free book from the software company Basecamp, credited to Ryan Singer and dated 2019. It describes work in six-week cycles. Before a project is designed, leaders set its \"appetite\": how much time the problem deserves. At a \"betting table\" they then choose which projects to take on, instead of maintaining an ever-growing backlog of requests. The method is admired but niche, and the only evidence for it is one company's experience.",
+      "status": "niche",
+      "tags": [
+        "basecamp",
+        "singer",
+        "six-week cycles",
+        "appetite",
+        "betting table"
+      ],
+      "refs": [
+        {
+          "label": "Shape Up (Basecamp)",
+          "url": "https://basecamp.com/shapeup/webbook"
+        }
+      ]
+    },
+    {
+      "id": "proc.lehmans-laws",
+      "title": "Lehman's Laws of Software Evolution",
+      "cat": "process",
+      "tier": 3,
+      "year": 1974,
+      "short": "Meir Lehman and Les Belady's observations that real-world software must keep changing, and grows more complex unless effort is spent to reduce it.",
+      "long": "From 1974 Meir Lehman and Les Belady formulated laws for real-world systems, called E-type systems, that operate in a changing environment. \"Continuing change\" says such a system must be continually adapted or become progressively less satisfactory; \"increasing complexity\" says its complexity grows unless work is done to reduce it. Laws added in 1996 include \"declining quality\", which says quality appears to decline unless rigorously maintained, and \"feedback system\". The laws were derived from OS/360 and later systems, and the quantitative support is reportedly mixed. They are qualitatively accepted, and they are the theory behind the metaphor of technical debt.",
+      "status": "n/a",
+      "tags": [
+        "lehman",
+        "belady",
+        "software evolution",
+        "maintenance",
+        "e-type systems"
+      ],
+      "refs": [
+        {
+          "label": "Wikipedia: Lehman's laws of software evolution",
+          "url": "https://en.wikipedia.org/wiki/Lehman%27s_laws_of_software_evolution"
+        }
+      ]
+    },
+    {
+      "id": "proc.premature-optimization",
+      "title": "Premature Optimization",
+      "cat": "process",
+      "tier": 4,
+      "year": 1974,
+      "short": "Knuth's 1974 line that premature optimization is the root of all evil, usually quoted without the sentences around it.",
+      "long": "In his 1974 paper \"Structured Programming with go to Statements\", Donald Knuth wrote: \"We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%.\" The sentences around it say that the grail of efficiency leads to abuse, and that a good programmer will look carefully at the critical code, but only after that code has been identified. The advice is to measure first. The line is often quoted without its second sentence, and it is used to excuse neglect of performance in the design itself.",
+      "status": "n/a",
+      "tags": [
+        "knuth",
+        "performance",
+        "profiling",
+        "measure first",
+        "optimization"
+      ],
+      "refs": [
+        {
+          "label": "Knuth, Structured Programming with go to Statements (1974)",
+          "url": "https://pic.plover.com/knuth-GOTO.pdf"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "s": "proc.software-crisis",
+      "t": "proc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.software-crisis",
+      "t": "conc.structured-programming",
+      "w": 2,
+      "k": "influenced",
+      "note": "one of the profession's first answers to it"
+    },
+    {
+      "s": "proc.software-crisis",
+      "t": "plat.os360",
+      "w": 2,
+      "k": "related",
+      "note": "OS/360 was the standard example of a late, unreliable system"
+    },
+    {
+      "s": "proc.software-crisis",
+      "t": "ppl.dijkstra",
+      "w": 2,
+      "k": "related",
+      "note": "his 1972 Turing lecture analyzed it"
+    },
+    {
+      "s": "proc.software-crisis",
+      "t": "proc.mmm",
+      "w": 2,
+      "k": "influenced",
+      "note": "Brooks wrote from the OS/360 experience"
+    },
+    {
+      "s": "proc.software-crisis",
+      "t": "proc.no-silver-bullet",
+      "w": 2,
+      "k": "influenced",
+      "note": "Brooks argued in 1986 that no single cure would come"
+    },
+    {
+      "s": "proc.nato-1968",
+      "t": "se",
+      "w": 3,
+      "k": "influenced",
+      "note": "gave the field its name and agenda"
+    },
+    {
+      "s": "proc.nato-1968",
+      "t": "proc.software-crisis",
+      "w": 3,
+      "k": "influenced",
+      "note": "the crisis was debated openly there in October 1968"
+    },
+    {
+      "s": "proc.nato-1968",
+      "t": "ppl.mcilroy",
+      "w": 2,
+      "k": "related",
+      "note": "McIlroy delivered his components address there"
+    },
+    {
+      "s": "proc.nato-1968",
+      "t": "ppl.dijkstra",
+      "w": 1,
+      "k": "related",
+      "note": "he welcomed the open admission of a crisis"
+    },
+    {
+      "s": "proc.nato-1968",
+      "t": "conc.structured-programming",
+      "w": 2,
+      "k": "influenced",
+      "note": "Dijkstra named it as an outside stimulus for his structured programming notes"
+    },
+    {
+      "s": "proc.goto-harmful",
+      "t": "ppl.dijkstra",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.goto-harmful",
+      "t": "ppl.knuth",
+      "w": 2,
+      "k": "related",
+      "note": "his 1974 reply defended go to in some cases"
+    },
+    {
+      "s": "proc.goto-harmful",
+      "t": "ppl.wirth",
+      "w": 1,
+      "k": "related",
+      "note": "as editor he supplied the published title"
+    },
+    {
+      "s": "proc.goto-harmful",
+      "t": "lang.pascal",
+      "w": 2,
+      "k": "influenced",
+      "note": "Pascal was built to support the structured style"
+    },
+    {
+      "s": "proc.iterative",
+      "t": "proc.waterfall",
+      "w": 2,
+      "k": "competes-with",
+      "note": "iterative work predates the 1970 paper, and Royce advised building twice"
+    },
+    {
+      "s": "proc.iterative",
+      "t": "proc.agile",
+      "w": 3,
+      "k": "influenced",
+      "note": "Agile's iterative core is not new"
+    },
+    {
+      "s": "proc.iterative",
+      "t": "proc.spiral",
+      "w": 2,
+      "k": "influenced"
+    },
+    {
+      "s": "proc.iterative",
+      "t": "org.ibm",
+      "w": 2,
+      "k": "related",
+      "note": "Trident, the Service Bureau Corporation and a 1968 report"
+    },
+    {
+      "s": "proc.iterative",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.spiral",
+      "t": "proc.rup",
+      "w": 2,
+      "k": "influenced",
+      "note": "risk-first planning carried into RUP"
+    },
+    {
+      "s": "proc.spiral",
+      "t": "proc.waterfall",
+      "w": 2,
+      "k": "competes-with",
+      "note": "risk-driven loops instead of a single pass"
+    },
+    {
+      "s": "proc.spiral",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.cmm",
+      "t": "proc.agile",
+      "w": 2,
+      "k": "competes-with",
+      "note": "two opposite bets: control the process or shorten the loop"
+    },
+    {
+      "s": "proc.cmm",
+      "t": "proc.waterfall",
+      "w": 2,
+      "k": "related",
+      "note": "both bet on up-front discipline"
+    },
+    {
+      "s": "proc.cmm",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.cmm",
+      "t": "org.ibm",
+      "w": 1,
+      "k": "related",
+      "note": "Humphrey spent 27 years at IBM before joining the SEI"
+    },
+    {
+      "s": "proc.v-model",
+      "t": "proc.waterfall",
+      "w": 3,
+      "k": "related",
+      "note": "a waterfall variant"
+    },
+    {
+      "s": "proc.v-model",
+      "t": "qual.testing",
+      "w": 2,
+      "k": "related",
+      "note": "a test level for every design level"
+    },
+    {
+      "s": "proc.v-model",
+      "t": "qual.test-pyramid",
+      "w": 1,
+      "k": "related",
+      "note": "another way of layering unit, integration and system tests"
+    },
+    {
+      "s": "proc.rup",
+      "t": "proc.uml",
+      "w": 3,
+      "k": "uses"
+    },
+    {
+      "s": "proc.rup",
+      "t": "proc.agile",
+      "w": 2,
+      "k": "replaced-by",
+      "note": "Agile kept the iteration and dropped the paperwork"
+    },
+    {
+      "s": "proc.rup",
+      "t": "org.ibm",
+      "w": 1,
+      "k": "related",
+      "note": "sold as the IBM Rational Method Composer"
+    },
+    {
+      "s": "proc.rup",
+      "t": "proc.iterative",
+      "w": 2,
+      "k": "uses"
+    },
+    {
+      "s": "proc.rup",
+      "t": "proc.cmm",
+      "w": 1,
+      "k": "related",
+      "note": "both adopted through procurement and consulting channels"
+    },
+    {
+      "s": "proc.xp",
+      "t": "ppl.beck",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.xp",
+      "t": "proc.agile",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.xp",
+      "t": "qual.ci",
+      "w": 2,
+      "k": "uses",
+      "note": "merging to a shared build every day"
+    },
+    {
+      "s": "proc.xp",
+      "t": "proc.refactoring",
+      "w": 2,
+      "k": "uses"
+    },
+    {
+      "s": "proc.xp",
+      "t": "qual.testing",
+      "w": 2,
+      "k": "uses",
+      "note": "unit tests for all code"
+    },
+    {
+      "s": "proc.xp",
+      "t": "proc.scrum",
+      "w": 2,
+      "k": "related",
+      "note": "the two best-known Agile methods"
+    },
+    {
+      "s": "proc.scrum",
+      "t": "proc.agile",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.scrum",
+      "t": "proc.iterative",
+      "w": 2,
+      "k": "uses",
+      "note": "fixed-length sprints are time-boxed iterations"
+    },
+    {
+      "s": "proc.scrum",
+      "t": "proc.goodharts-law",
+      "w": 1,
+      "k": "related",
+      "note": "velocity used as a target gets gamed"
+    },
+    {
+      "s": "proc.kanban",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.kanban",
+      "t": "proc.agile",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "proc.kanban",
+      "t": "proc.scrum",
+      "w": 2,
+      "k": "related",
+      "note": "often combined"
+    },
+    {
+      "s": "proc.kanban",
+      "t": "org.microsoft",
+      "w": 1,
+      "k": "related",
+      "note": "Anderson adapted it for software at Microsoft around 2004"
+    },
+    {
+      "s": "proc.pair-programming",
+      "t": "proc.xp",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.pair-programming",
+      "t": "qual.tdd",
+      "w": 1,
+      "k": "related",
+      "note": "another XP practice with mixed evidence"
+    },
+    {
+      "s": "proc.safe",
+      "t": "proc.agile",
+      "w": 2,
+      "k": "related",
+      "note": "packages Agile for large organizations"
+    },
+    {
+      "s": "proc.safe",
+      "t": "proc.scrum",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.safe",
+      "t": "proc.cmm",
+      "w": 1,
+      "k": "related",
+      "note": "both adopted through procurement and consulting channels"
+    },
+    {
+      "s": "proc.shape-up",
+      "t": "proc.scrum",
+      "w": 2,
+      "k": "related",
+      "note": "a betting table instead of an ever-growing backlog"
+    },
+    {
+      "s": "proc.shape-up",
+      "t": "proc.agile",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.shape-up",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.sre",
+      "t": "org.google",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.sre",
+      "t": "proc.devops",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "proc.sre",
+      "t": "proc.blameless",
+      "w": 3,
+      "k": "uses",
+      "note": "blameless postmortems are one of its signature practices"
+    },
+    {
+      "s": "proc.sre",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.sre",
+      "t": "mod.platform-engineering",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.sre",
+      "t": "qual.dora",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.blameless",
+      "t": "proc.devops",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "proc.blameless",
+      "t": "fail.crowdstrike",
+      "w": 2,
+      "k": "related",
+      "note": "its root-cause report follows the style"
+    },
+    {
+      "s": "proc.blameless",
+      "t": "fail.post-office-horizon",
+      "w": 2,
+      "k": "related",
+      "note": "the opposite culture: denial"
+    },
+    {
+      "s": "proc.blameless",
+      "t": "fail.ariane5",
+      "w": 1,
+      "k": "related",
+      "note": "its inquiry report follows the style"
+    },
+    {
+      "s": "proc.blameless",
+      "t": "fail.mars-orbiter",
+      "w": 1,
+      "k": "related",
+      "note": "its board report follows the style"
+    },
+    {
+      "s": "proc.trunk-based",
+      "t": "qual.ci",
+      "w": 2,
+      "k": "uses",
+      "note": "daily merges to the main line, each built and tested"
+    },
+    {
+      "s": "proc.trunk-based",
+      "t": "proc.devops",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "proc.trunk-based",
+      "t": "org.google",
+      "w": 1,
+      "k": "related",
+      "note": "a single shared trunk is its best-known example (self-reported)"
+    },
+    {
+      "s": "proc.trunk-based",
+      "t": "qual.code-review",
+      "w": 1,
+      "k": "related",
+      "note": "slow reviews undermine daily merging"
+    },
+    {
+      "s": "proc.trunk-based",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.team-topologies",
+      "t": "proc.conways-law",
+      "w": 3,
+      "k": "uses",
+      "note": "applies it deliberately to team design"
+    },
+    {
+      "s": "proc.team-topologies",
+      "t": "mod.platform-engineering",
+      "w": 2,
+      "k": "related",
+      "note": "platform teams are one of its four team types"
+    },
+    {
+      "s": "proc.team-topologies",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.team-topologies",
+      "t": "plat.microservices",
+      "w": 1,
+      "k": "related",
+      "note": "team boundaries and service boundaries"
+    },
+    {
+      "s": "proc.brooks-law",
+      "t": "proc.mmm",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.brooks-law",
+      "t": "ppl.brooks",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.brooks-law",
+      "t": "proc.conways-law",
+      "w": 2,
+      "k": "related",
+      "note": "Conway's 1968 paper already made the argument"
+    },
+    {
+      "s": "proc.brooks-law",
+      "t": "plat.os360",
+      "w": 2,
+      "k": "related",
+      "note": "drawn from the OS/360 project"
+    },
+    {
+      "s": "proc.brooks-law",
+      "t": "fail.death-march",
+      "w": 1,
+      "k": "related",
+      "note": "unrealistic schedules are a common cause"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "proc.mmm",
+      "w": 3,
+      "k": "related",
+      "note": "reprinted in the 1995 edition"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "ppl.brooks",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "proc.hub",
+      "w": 3,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "mod.low-code",
+      "w": 2,
+      "k": "related",
+      "note": "each no-code wave repeats the claim"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "mod.copilot",
+      "w": 2,
+      "k": "related",
+      "note": "the AI debate repeats the argument"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "mod.metr-trials",
+      "w": 2,
+      "k": "related",
+      "note": "a measured slowdown against claims of large gains"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "lang.ada",
+      "w": 1,
+      "k": "related",
+      "note": "Brooks predicted it would not be a silver bullet"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "conc.oop",
+      "w": 1,
+      "k": "related",
+      "note": "Brooks predicted it would not be a silver bullet"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "math.expert-systems",
+      "w": 1,
+      "k": "related",
+      "note": "Brooks predicted they would not be a silver bullet"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "fail.automatic-programming-hype",
+      "w": 2,
+      "k": "related",
+      "note": "an earlier promise to end the hard parts of programming"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "fail.case",
+      "w": 1,
+      "k": "related",
+      "note": "Brooks predicted tools would give only incremental gains"
+    },
+    {
+      "s": "proc.no-silver-bullet",
+      "t": "proc.open-source",
+      "w": 2,
+      "k": "related",
+      "note": "buy rather than build"
+    },
+    {
+      "s": "proc.peopleware",
+      "t": "mod.remote-hybrid",
+      "w": 2,
+      "k": "related",
+      "note": "a randomized trial is a modern test of its themes"
+    },
+    {
+      "s": "proc.peopleware",
+      "t": "fail.death-march",
+      "w": 2,
+      "k": "related",
+      "note": "it argues for sustainable work"
+    },
+    {
+      "s": "proc.peopleware",
+      "t": "proc.10x-programmer",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.peopleware",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.cathedral-bazaar",
+      "t": "proc.open-source",
+      "w": 3,
+      "k": "influenced",
+      "note": "Raymond became president of the Open Source Initiative"
+    },
+    {
+      "s": "proc.cathedral-bazaar",
+      "t": "plat.linux",
+      "w": 2,
+      "k": "related",
+      "note": "the model for its bazaar"
+    },
+    {
+      "s": "proc.cathedral-bazaar",
+      "t": "ppl.torvalds",
+      "w": 2,
+      "k": "related",
+      "note": "Raymond named \"Linus's law\" after him"
+    },
+    {
+      "s": "proc.cathedral-bazaar",
+      "t": "fail.heartbleed",
+      "w": 2,
+      "k": "related",
+      "note": "a counter-example to \"many eyes\""
+    },
+    {
+      "s": "proc.cathedral-bazaar",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.design-patterns",
+      "t": "conc.oop",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "proc.design-patterns",
+      "t": "lang.lisp",
+      "w": 2,
+      "k": "related",
+      "note": "Norvig's critique compared patterns in Lisp and Dylan"
+    },
+    {
+      "s": "proc.design-patterns",
+      "t": "lang.cpp",
+      "w": 1,
+      "k": "related",
+      "note": "Norvig compared the patterns with their C++ versions"
+    },
+    {
+      "s": "proc.design-patterns",
+      "t": "proc.clean-code",
+      "w": 1,
+      "k": "related",
+      "note": "style prescriptions with little controlled evidence"
+    },
+    {
+      "s": "proc.design-patterns",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.conways-law",
+      "t": "plat.microservices",
+      "w": 2,
+      "k": "related",
+      "note": "used to reason about service boundaries"
+    },
+    {
+      "s": "proc.conways-law",
+      "t": "plat.monolith-revival",
+      "w": 1,
+      "k": "related",
+      "note": "a monolith is not automatically right at larger organizational scale"
+    },
+    {
+      "s": "proc.conways-law",
+      "t": "conc.information-hiding",
+      "w": 1,
+      "k": "related",
+      "note": "both follow from limits of communication and abstraction"
+    },
+    {
+      "s": "proc.conways-law",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.postels-law",
+      "t": "proc.hyrums-law",
+      "w": 2,
+      "k": "related",
+      "note": "tolerance lets senders depend on sloppy behavior"
+    },
+    {
+      "s": "proc.postels-law",
+      "t": "plat.tcpip",
+      "w": 2,
+      "k": "related",
+      "note": "first written down in an early IP specification"
+    },
+    {
+      "s": "proc.postels-law",
+      "t": "qual.security",
+      "w": 1,
+      "k": "related",
+      "note": "liberal acceptance can weaken security"
+    },
+    {
+      "s": "proc.hyrums-law",
+      "t": "org.google",
+      "w": 2,
+      "k": "related",
+      "note": "stated from large-scale migrations at Google"
+    },
+    {
+      "s": "proc.hyrums-law",
+      "t": "plat.api-products",
+      "w": 1,
+      "k": "related",
+      "note": "API design"
+    },
+    {
+      "s": "proc.hyrums-law",
+      "t": "conc.information-hiding",
+      "w": 1,
+      "k": "related",
+      "note": "hidden behavior gets depended on anyway"
+    },
+    {
+      "s": "proc.hyrums-law",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.goodharts-law",
+      "t": "fail.loc",
+      "w": 2,
+      "k": "related",
+      "note": "lines of code turned into a target"
+    },
+    {
+      "s": "proc.goodharts-law",
+      "t": "proc.standish-chaos",
+      "w": 2,
+      "k": "related",
+      "note": "steering by its definitions led to padded estimates"
+    },
+    {
+      "s": "proc.goodharts-law",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.lehmans-laws",
+      "t": "plat.os360",
+      "w": 1,
+      "k": "related",
+      "note": "derived from OS/360 and later systems"
+    },
+    {
+      "s": "proc.lehmans-laws",
+      "t": "proc.conways-law",
+      "w": 1,
+      "k": "related",
+      "note": "another structural law"
+    },
+    {
+      "s": "proc.lehmans-laws",
+      "t": "proc.hyrums-law",
+      "w": 1,
+      "k": "related",
+      "note": "another structural law"
+    },
+    {
+      "s": "proc.lehmans-laws",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.premature-optimization",
+      "t": "ppl.knuth",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.premature-optimization",
+      "t": "proc.goto-harmful",
+      "w": 2,
+      "k": "related",
+      "note": "the quote comes from Knuth's reply to the go to debate"
+    },
+    {
+      "s": "proc.premature-optimization",
+      "t": "tool.profilers",
+      "w": 2,
+      "k": "related",
+      "note": "profilers find the critical few percent"
+    },
+    {
+      "s": "proc.premature-optimization",
+      "t": "proc.clean-code",
+      "w": 1,
+      "k": "related",
+      "note": "quoted to excuse design-level performance neglect"
+    },
+    {
+      "s": "proc.premature-optimization",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.taocp",
+      "t": "ppl.knuth",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.taocp",
+      "t": "conc.big-o",
+      "w": 2,
+      "k": "related",
+      "note": "analysis of algorithms"
+    },
+    {
+      "s": "proc.taocp",
+      "t": "proc.software-crisis",
+      "w": 1,
+      "k": "related",
+      "note": "one of the discipline-building textbooks of the crisis years"
+    },
+    {
+      "s": "proc.clean-code",
+      "t": "ppl.beck",
+      "w": 1,
+      "k": "related",
+      "note": "Martin cites a 1999 exercise with Beck"
+    },
+    {
+      "s": "proc.clean-code",
+      "t": "proc.agile",
+      "w": 1,
+      "k": "related",
+      "note": "its author signed the Agile Manifesto"
+    },
+    {
+      "s": "proc.clean-code",
+      "t": "qual.tdd",
+      "w": 1,
+      "k": "related",
+      "note": "Martin and Ousterhout also disagreed about it"
+    },
+    {
+      "s": "proc.clean-code",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.over-abstraction",
+      "t": "proc.clean-code",
+      "w": 2,
+      "k": "related",
+      "note": "Ousterhout's critique of very small methods"
+    },
+    {
+      "s": "proc.over-abstraction",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.refactoring",
+      "t": "ppl.fowler",
+      "w": 3,
+      "k": "created-by",
+      "note": "his 1999 book"
+    },
+    {
+      "s": "proc.refactoring",
+      "t": "tool.intellij",
+      "w": 2,
+      "k": "related",
+      "note": "one of the first IDEs with refactoring built in"
+    },
+    {
+      "s": "proc.refactoring",
+      "t": "fail.big-bang-rewrite",
+      "w": 2,
+      "k": "related",
+      "note": "the incremental alternative to rewriting"
+    },
+    {
+      "s": "proc.refactoring",
+      "t": "proc.technical-debt",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "proc.technical-debt",
+      "t": "proc.lehmans-laws",
+      "w": 2,
+      "k": "related",
+      "note": "the theory behind the metaphor"
+    },
+    {
+      "s": "proc.technical-debt",
+      "t": "qual.code-coverage",
+      "w": 1,
+      "k": "related",
+      "note": "chasing a coverage number can create it"
+    },
+    {
+      "s": "proc.uml",
+      "t": "fail.case",
+      "w": 2,
+      "k": "related",
+      "note": "code from diagrams, the same promise"
+    },
+    {
+      "s": "proc.uml",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.unix-philosophy",
+      "t": "plat.unix",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.unix-philosophy",
+      "t": "ppl.mcilroy",
+      "w": 2,
+      "k": "created-by",
+      "note": "the 1978 maxims"
+    },
+    {
+      "s": "proc.unix-philosophy",
+      "t": "org.bell-labs",
+      "w": 2,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.unix-philosophy",
+      "t": "ppl.kernighan",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.unix-philosophy",
+      "t": "plat.plan9",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.worse-is-better",
+      "t": "plat.unix",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "proc.worse-is-better",
+      "t": "plat.http",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.worse-is-better",
+      "t": "plat.tcpip",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.worse-is-better",
+      "t": "proc.unix-philosophy",
+      "w": 2,
+      "k": "related",
+      "note": "both favor small, simple designs"
+    },
+    {
+      "s": "proc.open-source",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.open-source",
+      "t": "plat.linux",
+      "w": 2,
+      "k": "related",
+      "note": "the best-known project"
+    },
+    {
+      "s": "proc.open-source",
+      "t": "fail.heartbleed",
+      "w": 2,
+      "k": "related",
+      "note": "dependency risk in an under-resourced OpenSSL"
+    },
+    {
+      "s": "proc.open-source",
+      "t": "tool.git",
+      "w": 1,
+      "k": "related",
+      "note": "one of its best-known successes"
+    },
+    {
+      "s": "proc.gpl",
+      "t": "ppl.stallman",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.gpl",
+      "t": "org.gnu-fsf",
+      "w": 2,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.gpl",
+      "t": "proc.open-source",
+      "w": 2,
+      "k": "influenced",
+      "note": "copyleft came before the open source label"
+    },
+    {
+      "s": "proc.gpl",
+      "t": "plat.linux",
+      "w": 2,
+      "k": "related",
+      "note": "Linux adopted version 2 in 1992"
+    },
+    {
+      "s": "proc.gpl",
+      "t": "lang.java",
+      "w": 1,
+      "k": "related",
+      "note": "Sun released Java under the GPL in 2006 and 2007"
+    },
+    {
+      "s": "proc.licensing",
+      "t": "proc.open-source",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.licensing",
+      "t": "data.mongodb",
+      "w": 2,
+      "k": "related",
+      "note": "AGPL to SSPL in October 2018"
+    },
+    {
+      "s": "proc.licensing",
+      "t": "org.linux-foundation",
+      "w": 2,
+      "k": "related",
+      "note": "hosts the OpenTofu and Valkey forks"
+    },
+    {
+      "s": "proc.licensing",
+      "t": "org.aws",
+      "w": 2,
+      "k": "related",
+      "note": "forked Elasticsearch as OpenSearch"
+    },
+    {
+      "s": "proc.licensing",
+      "t": "plat.docker",
+      "w": 1,
+      "k": "related",
+      "note": "Docker Desktop got a paid tier for large firms in August 2021"
+    },
+    {
+      "s": "proc.licensing",
+      "t": "fail.anaconda-licensing",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.licensing",
+      "t": "proc.gpl",
+      "w": 1,
+      "k": "related",
+      "note": "copyleft is one of the licensing models"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "ppl.stonebraker",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "data.relational",
+      "w": 3,
+      "k": "related",
+      "note": "concludes it outlasted every challenger"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "data.sql",
+      "w": 2,
+      "k": "related",
+      "note": "absorbed the best ideas of its rivals"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "data.nosql",
+      "w": 2,
+      "k": "related",
+      "note": "calls document databases a repeat of earlier ideas"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "proc.licensing",
+      "w": 2,
+      "k": "related",
+      "note": "open-source databases monetized by cloud providers"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "fail.object-databases",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "fail.xml-databases",
+      "w": 1,
+      "k": "related"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "data.orm",
+      "w": 1,
+      "k": "related",
+      "note": "it criticizes ORMs"
+    },
+    {
+      "s": "proc.what-goes-around",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.10x-programmer",
+      "t": "proc.standish-chaos",
+      "w": 2,
+      "k": "related",
+      "note": "another popular number resting on a thin study"
+    },
+    {
+      "s": "proc.10x-programmer",
+      "t": "proc.language-defects",
+      "w": 1,
+      "k": "related",
+      "note": "another popular claim that shrinks under replication"
+    },
+    {
+      "s": "proc.10x-programmer",
+      "t": "fail.loc",
+      "w": 1,
+      "k": "related",
+      "note": "both concern how developer productivity is measured"
+    },
+    {
+      "s": "proc.10x-programmer",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.standish-chaos",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.standish-chaos",
+      "t": "proc.agile",
+      "w": 1,
+      "k": "related",
+      "note": "success means meeting the original forecast"
+    },
+    {
+      "s": "proc.language-defects",
+      "t": "proc.static-typing-evidence",
+      "w": 2,
+      "k": "related"
+    },
+    {
+      "s": "proc.language-defects",
+      "t": "plat.github",
+      "w": 1,
+      "k": "related",
+      "note": "it mined 729 GitHub projects"
+    },
+    {
+      "s": "proc.language-defects",
+      "t": "conc.fp",
+      "w": 1,
+      "k": "related",
+      "note": "functional languages appeared to have fewer defects"
+    },
+    {
+      "s": "proc.static-typing-evidence",
+      "t": "mod.typescript",
+      "w": 2,
+      "k": "related",
+      "note": "one of the two checkers tested"
+    },
+    {
+      "s": "proc.static-typing-evidence",
+      "t": "lang.js",
+      "w": 2,
+      "k": "related",
+      "note": "the bugs studied were in JavaScript"
+    },
+    {
+      "s": "proc.static-typing-evidence",
+      "t": "qual.flow-sorbet-hack",
+      "w": 2,
+      "k": "related",
+      "note": "Flow was the other checker tested"
+    },
+    {
+      "s": "proc.static-typing-evidence",
+      "t": "proc.hub",
+      "w": 2,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.free-lunch",
+      "t": "ppl.sutter",
+      "w": 3,
+      "k": "created-by"
+    },
+    {
+      "s": "proc.free-lunch",
+      "t": "found.moores-law",
+      "w": 2,
+      "k": "related",
+      "note": "transistor counts kept growing while clock speeds stalled"
+    },
+    {
+      "s": "proc.free-lunch",
+      "t": "org.intel",
+      "w": 1,
+      "k": "related",
+      "note": "its clock speeds fell short of the trend Sutter plotted"
+    },
+    {
+      "s": "proc.free-lunch",
+      "t": "conc.threads-locks",
+      "w": 1,
+      "k": "related",
+      "note": "the model programmers had to learn"
+    },
+    {
+      "s": "proc.free-lunch",
+      "t": "proc.hub",
+      "w": 1,
+      "k": "part-of"
+    },
+    {
+      "s": "proc.cobol-claims",
+      "t": "lang.cobol",
+      "w": 3,
+      "k": "related"
+    },
+    {
+      "s": "proc.cobol-claims",
+      "t": "fail.cobol-unemployment",
+      "w": 2,
+      "k": "related",
+      "note": "the 2020 unemployment-system story"
+    },
+    {
+      "s": "proc.cobol-claims",
+      "t": "mod.legacy-languages",
+      "w": 2,
+      "k": "related",
+      "note": "how COBOL and other legacy languages rank today"
+    },
+    {
+      "s": "proc.cobol-claims",
+      "t": "org.ibm",
+      "w": 1,
+      "k": "related",
+      "note": "its website makes the best-known claims"
+    }
+  ]
+}
