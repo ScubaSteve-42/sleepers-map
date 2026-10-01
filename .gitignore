@@ -4,3 +4,5 @@ dist/.cache/
 .DS_Store
 Thumbs.db
 .tmp/
+dist/
+.tmp/

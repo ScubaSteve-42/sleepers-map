@@ -1,0 +1,1956 @@
+{
+ "meta": {
+  "title": "The Sleeper's Map",
+  "subtitle": "The history of software engineering, from machine code to AI",
+  "generated": "2026-10-01",
+  "nodes": 77,
+  "edges": 163
+ },
+ "categories": [
+  {
+   "key": "root",
+   "label": "Software engineering",
+   "color": "#ffffff",
+   "order": 0,
+   "desc": "The whole field."
+  },
+  {
+   "key": "foundations",
+   "label": "Foundations & hardware",
+   "color": "#ffb020",
+   "order": 1,
+   "desc": "Machine code, assembly, early computers and instruction sets."
+  },
+  {
+   "key": "compilers",
+   "label": "Compilers & runtimes",
+   "color": "#ff8a4c",
+   "order": 2,
+   "desc": "Compilers, interpreters, virtual machines, linkers and garbage collectors."
+  },
+  {
+   "key": "languages",
+   "label": "Programming languages",
+   "color": "#3fd2ff",
+   "order": 3,
+   "desc": "Notable languages, their syntax and what defined them."
+  },
+  {
+   "key": "concepts",
+   "label": "Core concepts",
+   "color": "#9a8cff",
+   "order": 4,
+   "desc": "Variables, types, arrays, pointers, functions, objects, concurrency and algorithms."
+  },
+  {
+   "key": "data",
+   "label": "Data & databases",
+   "color": "#7bea6b",
+   "order": 5,
+   "desc": "Data structures, SQL, relational and NoSQL databases."
+  },
+  {
+   "key": "mathai",
+   "label": "Math, numerics & AI",
+   "color": "#ff5fd2",
+   "order": 6,
+   "desc": "Matrices, numerical libraries, machine learning and GPUs."
+  },
+  {
+   "key": "tooling",
+   "label": "Tooling",
+   "color": "#3ee6a0",
+   "order": 7,
+   "desc": "Version control, build systems, editors, IDEs and debuggers."
+  },
+  {
+   "key": "packages",
+   "label": "Packages & ecosystems",
+   "color": "#c8ee45",
+   "order": 8,
+   "desc": "Package managers, registries, libraries and supply-chain security."
+  },
+  {
+   "key": "quality",
+   "label": "Quality: lint, test, CI",
+   "color": "#28e0c5",
+   "order": 9,
+   "desc": "Linting, static analysis, testing and continuous integration."
+  },
+  {
+   "key": "process",
+   "label": "Methods & evidence",
+   "color": "#6f86ff",
+   "order": 10,
+   "desc": "Methodologies, laws, books and what the evidence says."
+  },
+  {
+   "key": "failures",
+   "label": "Dead ends & cautionary tales",
+   "color": "#ff4d6d",
+   "order": 11,
+   "desc": "Ideas that did not work and famous failures."
+  },
+  {
+   "key": "orgs",
+   "label": "Companies & institutions",
+   "color": "#fff1c1",
+   "order": 12,
+   "desc": "Companies, labs, foundations and standards bodies."
+  },
+  {
+   "key": "people",
+   "label": "People",
+   "color": "#ffd0dc",
+   "order": 13,
+   "desc": "Pioneers and builders."
+  },
+  {
+   "key": "platforms",
+   "label": "Platforms: OS, web, cloud, mobile",
+   "color": "#4da3ff",
+   "order": 14,
+   "desc": "Operating systems, the Internet, the web, cloud and mobile."
+  },
+  {
+   "key": "modern",
+   "label": "The modern era & AI",
+   "color": "#c26bff",
+   "order": 15,
+   "desc": "What is popular now and how AI is changing coding."
+  }
+ ],
+ "nodes": [
+  {
+   "id": "se",
+   "title": "Software Engineering",
+   "cat": "root",
+   "tier": 0,
+   "year": 1968,
+   "short": "The craft of building programs that keep working: from hand-wired machine code to teams shipping AI-assisted code.",
+   "long": "The term was popularized at a 1968 NATO conference that argued programming needed engineering discipline. Since then the field has gained high-level languages, version control, packages, tests, the web and the cloud. This map follows those threads and how they connect.",
+   "sleeper": "If you stopped following in the late 1980s, most of what you rely on today (Git, package managers, the web, containers, CI) did not exist yet.",
+   "status": "thriving"
+  },
+  {
+   "id": "found.machine-code",
+   "title": "Machine Code",
+   "cat": "foundations",
+   "tier": 1,
+   "year": 1945,
+   "short": "The raw numbers a processor executes. Every program, in every language, ends up as this.",
+   "long": "Machine code is a sequence of binary instructions that a specific processor decodes and runs directly. Early programmers wrote it by hand on switches and punch cards. Everything else in this map is a way to avoid doing that.",
+   "sleeper": "Nothing changed about the idea. Only the instruction sets did: x86-64 and ARM now dominate.",
+   "status": "thriving"
+  },
+  {
+   "id": "found.assembly",
+   "title": "Assembly Language",
+   "cat": "foundations",
+   "tier": 1,
+   "year": 1947,
+   "short": "Human-readable names for machine instructions, such as MOV and ADD, translated by an assembler.",
+   "long": "Assembly gives each machine instruction a short mnemonic and lets you name memory locations with labels. An assembler turns that text into machine code one-to-one. It is still used for boot code, drivers and tiny hot loops, and it is what compiler output looks like.",
+   "code": {
+    "lang": "asm",
+    "text": "; x86-64: sum = a + b\nmov eax, [a]\nadd eax, [b]\nmov [sum], eax"
+   },
+   "status": "niche"
+  },
+  {
+   "id": "found.stored-program",
+   "title": "Stored-Program Computer",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1948,
+   "short": "Keep the program in memory next to the data, so changing software means changing numbers, not rewiring.",
+   "long": "The von Neumann architecture, first run on the Manchester Baby in 1948 and EDSAC in 1949, put instructions and data in the same memory. That single idea made software possible as a separate thing from hardware.",
+   "status": "thriving"
+  },
+  {
+   "id": "found.isa",
+   "title": "Instruction Set Architecture",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1964,
+   "short": "The contract between software and a processor: which instructions exist and what they do (x86, ARM, RISC-V).",
+   "long": "IBM's System/360 (1964) was the first family of machines sharing one instruction set, so software could outlive hardware. Today x86-64 runs most servers and PCs, ARM runs phones and Apple Silicon, and RISC-V is the open newcomer.",
+   "sleeper": "ARM, not x86, now powers most phones and Apple's Macs. RISC-V is an open instruction set anyone can build.",
+   "status": "thriving"
+  },
+  {
+   "id": "comp.compiler",
+   "title": "Compiler",
+   "cat": "compilers",
+   "tier": 1,
+   "year": 1952,
+   "short": "A program that translates source code in one language into another form, usually machine code, before it runs.",
+   "long": "A compiler reads your whole program, checks it, optimizes it and emits machine code or bytecode. Grace Hopper's A-0 (1952) and John Backus's FORTRAN compiler (1957) proved that compiled high-level code could rival hand-written assembly.",
+   "sleeper": "Compilers are far better now. Free ones (GCC, Clang) beat most hand-tuned assembly and ship with every major language.",
+   "status": "thriving"
+  },
+  {
+   "id": "comp.interpreter",
+   "title": "Interpreter",
+   "cat": "compilers",
+   "tier": 2,
+   "year": 1958,
+   "short": "Runs a program directly by reading and executing it step by step instead of producing a separate executable.",
+   "long": "Lisp (1958) and BASIC (1964) popularized interpreters. They make experimenting fast at the cost of speed. Modern languages blur the line: Python and JavaScript compile to bytecode and use just-in-time compilers.",
+   "status": "thriving"
+  },
+  {
+   "id": "comp.gc",
+   "title": "Garbage Collection",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1959,
+   "short": "Automatic memory reclamation, invented for Lisp, now standard in Java, Go, JavaScript and Python.",
+   "long": "John McCarthy's Lisp collected unused memory automatically in 1959. Manual memory management (malloc and free in C) is faster and riskier. Rust offers a third path: ownership rules that free memory at compile time without a collector.",
+   "status": "thriving"
+  },
+  {
+   "id": "comp.pipeline",
+   "title": "Lexer, Parser, Optimizer, Code Generator",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1960,
+   "short": "The stages inside a compiler: split text into tokens, build a syntax tree, improve it, then emit machine code.",
+   "long": "A lexer groups characters into tokens. A parser checks the grammar and builds an abstract syntax tree. Later stages type-check, optimize (constant folding, inlining, register allocation) and generate code. Tools such as lex and yacc automated the first stages from the 1970s.",
+   "status": "thriving"
+  },
+  {
+   "id": "comp.jit",
+   "title": "Just-in-Time Compilation",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1998,
+   "short": "Compile hot code while the program runs, using what the runtime has learned about how it is actually used.",
+   "long": "Java's HotSpot (1999) and later JavaScript engines such as V8 (2008) compile frequently run code to machine code on the fly. That is why Java and JavaScript are much faster than the interpreters you may remember.",
+   "status": "thriving"
+  },
+  {
+   "id": "comp.llvm",
+   "title": "LLVM",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 2003,
+   "short": "A reusable compiler back end that powers Clang, Rust, Swift and many others.",
+   "long": "Chris Lattner's LLVM project started at the University of Illinois and was later backed by Apple. Instead of every language building its own optimizer and code generator, they emit LLVM's intermediate form and get optimization and many CPU targets for free.",
+   "status": "thriving"
+  },
+  {
+   "id": "lang.hub",
+   "title": "Programming Languages",
+   "cat": "languages",
+   "tier": 1,
+   "year": 1957,
+   "short": "Hundreds of notation systems for telling computers what to do. A few dozen shaped everything.",
+   "long": "Languages differ in how close they sit to the machine, how they handle types and memory, and which style they favor (procedural, object-oriented, functional). The same few ideas keep reappearing in new syntax.",
+   "sleeper": "Python, JavaScript and TypeScript lead today. C, C++, Java, C# and SQL are still everywhere. Rust is the new systems favorite.",
+   "status": "thriving"
+  },
+  {
+   "id": "lang.fortran",
+   "title": "FORTRAN",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1957,
+   "short": "The first widely used high-level language, built at IBM for numerical work. Still running weather and physics codes.",
+   "long": "John Backus's team at IBM delivered FORTRAN in 1957 with an optimizing compiler that convinced skeptics. Modern Fortran (2018, 2023 standards) remains common in scientific computing, and its array libraries underpin NumPy.",
+   "code": {
+    "lang": "fortran",
+    "text": "program sum\n  integer :: i, total\n  total = 0\n  do i = 1, 10\n    total = total + i\n  end do\n  print *, total\nend program sum"
+   },
+   "status": "niche"
+  },
+  {
+   "id": "lang.cobol",
+   "title": "COBOL",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1959,
+   "short": "English-like business language from 1959. Still moves much of the world's bank and government transactions.",
+   "long": "COBOL was designed by a committee (CODASYL) with Grace Hopper's influence for business data processing. Billions of lines still run in banks, insurers and governments, which is why COBOL programmers remain in demand.",
+   "status": "legacy"
+  },
+  {
+   "id": "lang.c",
+   "title": "C",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1972,
+   "short": "Dennis Ritchie's small, fast systems language. Unix, Linux, databases and most runtimes are written in it.",
+   "long": "C gives direct access to memory through pointers and compiles to efficient machine code, which is also why it permits buffer overflows. The 1978 book by Kernighan and Ritchie defined it. ISO standards followed: C89, C99, C11, C17 and C23.",
+   "sleeper": "C is still everywhere underneath: operating systems, embedded devices, and the interpreters of other languages.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\n\nint main(void) {\n    int total = 0;\n    for (int i = 1; i <= 10; i++) total += i;\n    printf(\"%d\\n\", total);\n    return 0;\n}"
+   },
+   "status": "thriving"
+  },
+  {
+   "id": "lang.cpp",
+   "title": "C++",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1983,
+   "short": "C plus classes, templates and a huge standard library. Games, browsers and trading systems run on it.",
+   "long": "Bjarne Stroustrup began 'C with Classes' in 1979 at Bell Labs and renamed it C++ in 1983. It is not a strict superset of C. Modern C++ (11 and later) adds smart pointers, lambdas and move semantics that make it far safer than the 1990s version.",
+   "status": "thriving"
+  },
+  {
+   "id": "lang.python",
+   "title": "Python",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1991,
+   "short": "Guido van Rossum's readable language. Today the most-used language, thanks to data science, AI and scripting.",
+   "long": "Python uses indentation instead of braces and ships a large standard library. The 2008 move to Python 3 took a decade. Its scientific stack (NumPy, pandas, PyTorch) made it the default language of data science and AI.",
+   "sleeper": "Python was a hobby language in 1991. Today it is the number one language for AI, data and teaching.",
+   "code": {
+    "lang": "python",
+    "text": "total = sum(range(1, 11))\nprint(total)  # 55"
+   },
+   "status": "thriving"
+  },
+  {
+   "id": "lang.java",
+   "title": "Java",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1995,
+   "short": "Sun's 'write once, run anywhere' language: compiled to bytecode and run on a virtual machine with garbage collection.",
+   "long": "James Gosling's team released Java in 1995. The JVM made enterprise software portable and spawned Kotlin, Scala and Android's app ecosystem. Oracle acquired Sun in 2010 and Java now ships a new version every six months.",
+   "status": "thriving"
+  },
+  {
+   "id": "lang.js",
+   "title": "JavaScript",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1995,
+   "short": "Written in ten days for Netscape in 1995; now the language of every web page and, via Node.js, many servers.",
+   "long": "Brendan Eich created JavaScript for Netscape Navigator. Standardized as ECMAScript, it grew with the V8 engine (2008), Node.js (2009), and frameworks such as React. TypeScript (2012) adds static types and now outranks it in many surveys.",
+   "status": "thriving"
+  },
+  {
+   "id": "lang.rust",
+   "title": "Rust",
+   "cat": "languages",
+   "tier": 2,
+   "year": 2015,
+   "short": "A systems language that prevents memory errors at compile time through ownership, without a garbage collector.",
+   "long": "Graydon Hoare started Rust at Mozilla; version 1.0 shipped in 2015. Its borrow checker rejects code with dangling pointers and data races. Rust now appears in the Linux kernel, Android, Windows and Chromium.",
+   "status": "thriving"
+  },
+  {
+   "id": "conc.hub",
+   "title": "Core Programming Concepts",
+   "cat": "concepts",
+   "tier": 1,
+   "year": 1957,
+   "short": "Variables, types, arrays, functions, objects, memory and concurrency: the vocabulary every language shares.",
+   "long": "Once you know these ideas, a new language is mostly a new spelling. They fall into how data is named and stored, how code is organized, and how programs run at the same time.",
+   "status": "thriving"
+  },
+  {
+   "id": "conc.array",
+   "title": "Array",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1957,
+   "short": "A numbered row of values stored side by side in memory, accessed by index. Index zero comes first.",
+   "long": "Arrays make lookup by position instantaneous because the address is start plus index times size. Dynamic arrays (Python lists, JavaScript arrays, C++ vectors) grow automatically. Matrices are arrays of arrays.",
+   "status": "thriving"
+  },
+  {
+   "id": "conc.variable",
+   "title": "Variable",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1957,
+   "short": "A name bound to a value in memory. Change the value and every use of the name sees it.",
+   "long": "In C a variable has a fixed type and a memory address. In Python a name simply refers to an object. Scope rules decide where a name is visible, and constants and immutability limit what can change.",
+   "status": "thriving"
+  },
+  {
+   "id": "conc.fp",
+   "title": "Functional Programming",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1958,
+   "short": "Build programs from functions that avoid side effects. Lambdas and map/filter/reduce are now everywhere.",
+   "long": "Lisp, ML and Haskell developed the style. Ideas such as closures, immutability, pattern matching and option types have been copied into Java, C#, JavaScript, Python and Rust.",
+   "status": "thriving"
+  },
+  {
+   "id": "conc.pointer",
+   "title": "Pointer",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1964,
+   "short": "A variable that holds a memory address. Powerful, and the root of C's most famous bugs.",
+   "long": "Pointers let C build linked lists, trees and dynamic arrays and pass big data cheaply. Dereferencing a bad pointer crashes programs or opens security holes, which is why newer languages hide or restrict them.",
+   "status": "thriving"
+  },
+  {
+   "id": "conc.oop",
+   "title": "Object-Oriented Programming",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1967,
+   "short": "Bundle data with the code that works on it. Classes, inheritance and polymorphism, from Simula to Java.",
+   "long": "Simula 67 introduced classes. Smalltalk at Xerox PARC refined objects and messages. C++ and Java made the style mainstream. Later experience favored composition over deep inheritance.",
+   "status": "thriving"
+  },
+  {
+   "id": "data.hub",
+   "title": "Data & Databases",
+   "cat": "data",
+   "tier": 1,
+   "year": 1966,
+   "short": "How programs keep information: in memory structures while running, and in databases between runs.",
+   "long": "The journey runs from flat files and IBM's hierarchical IMS (1966) through Codd's relational model (1970) and SQL to NoSQL, data warehouses and vector databases.",
+   "status": "thriving"
+  },
+  {
+   "id": "data.relational",
+   "title": "Relational Model",
+   "cat": "data",
+   "tier": 2,
+   "year": 1970,
+   "short": "Edgar Codd's idea: store data in tables and query it by what you want, not how to fetch it.",
+   "long": "Codd's 1970 paper at IBM proposed tables, keys and set-based queries. System R and Ingres proved it could be fast enough, and Oracle sold it. Every mainstream database still descends from it.",
+   "status": "thriving"
+  },
+  {
+   "id": "data.sql",
+   "title": "SQL",
+   "cat": "data",
+   "tier": 2,
+   "year": 1974,
+   "short": "A declarative language for asking relational databases questions. Over fifty years old and still the default.",
+   "long": "Donald Chamberlin and Raymond Boyce designed SQL at IBM from Edgar Codd's relational model. You describe the result you want and the database plans how to get it. It outlived every proposed replacement.",
+   "code": {
+    "lang": "sql",
+    "text": "SELECT name, COUNT(*) AS n\nFROM commits\nGROUP BY name\nORDER BY n DESC\nLIMIT 5;"
+   },
+   "status": "thriving"
+  },
+  {
+   "id": "data.postgres",
+   "title": "PostgreSQL",
+   "cat": "data",
+   "tier": 3,
+   "year": 1996,
+   "short": "The open-source relational database that became the default choice for new projects.",
+   "long": "PostgreSQL grew out of Michael Stonebraker's Ingres and Postgres projects at Berkeley. It handles JSON, full-text search and, with pgvector, AI embeddings, which is why many teams use it for everything.",
+   "status": "thriving"
+  },
+  {
+   "id": "data.sqlite",
+   "title": "SQLite",
+   "cat": "data",
+   "tier": 3,
+   "year": 2000,
+   "short": "A whole SQL database in one file. Probably the most widely deployed database in the world.",
+   "long": "D. Richard Hipp's SQLite is built into phones, browsers and countless applications. It needs no server, which makes it ideal for local data and testing.",
+   "status": "thriving"
+  },
+  {
+   "id": "data.nosql",
+   "title": "NoSQL",
+   "cat": "data",
+   "tier": 3,
+   "year": 2009,
+   "short": "Key-value, document and wide-column stores built for web scale. Useful tools, not a replacement for SQL.",
+   "long": "Google's Bigtable (2006) and Amazon's Dynamo (2007) inspired MongoDB, Cassandra and Redis. The hype that NoSQL would replace SQL faded as relational systems added scale and flexibility.",
+   "status": "thriving"
+  },
+  {
+   "id": "math.hub",
+   "title": "Numerics, Matrices & AI",
+   "cat": "mathai",
+   "tier": 1,
+   "year": 1957,
+   "short": "Numbers in bulk: arrays and matrices, the libraries that crunch them, and the machine learning built on top.",
+   "long": "From FORTRAN's numeric libraries to Python's NumPy and GPU-trained neural networks, the same operation recurs: multiplying large arrays of numbers quickly.",
+   "status": "thriving"
+  },
+  {
+   "id": "math.matrix",
+   "title": "Matrix",
+   "cat": "mathai",
+   "tier": 2,
+   "year": 1850,
+   "short": "A rectangle of numbers with rules for adding and multiplying. The workhorse of graphics, statistics and AI.",
+   "long": "A matrix is a grid of rows and columns. Multiplying matrices combines transformations, solves linear systems and powers neural networks. In code it is a two-dimensional array stored row by row (C) or column by column (Fortran).",
+   "status": "thriving"
+  },
+  {
+   "id": "math.numpy",
+   "title": "NumPy",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2006,
+   "short": "Python's fast array library. Nearly every scientific and machine learning package builds on it.",
+   "long": "Travis Oliphant unified the Numeric and Numarray projects into NumPy. It stores arrays in compact C memory and calls optimized BLAS and LAPACK routines, so a vectorized operation can beat a Python loop by orders of magnitude.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\na = np.array([[1, 2], [3, 4]])\nprint(a @ a)  # matrix product"
+   },
+   "status": "thriving"
+  },
+  {
+   "id": "math.pytorch",
+   "title": "PyTorch",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2016,
+   "short": "The dominant deep-learning framework: tensors on GPUs with automatic differentiation.",
+   "long": "Released by Facebook's AI group in 2016, PyTorch overtook TensorFlow in research by making models feel like ordinary Python. Training a neural network is mostly matrix multiplication on GPUs.",
+   "status": "thriving"
+  },
+  {
+   "id": "tool.hub",
+   "title": "Tooling",
+   "cat": "tooling",
+   "tier": 1,
+   "year": 1972,
+   "short": "Everything around the code: version control, builds, editors, debuggers.",
+   "long": "Good tools turned programming from solitary typing into collaborative engineering.",
+   "status": "thriving"
+  },
+  {
+   "id": "tool.vcs",
+   "title": "Version Control",
+   "cat": "tooling",
+   "tier": 1,
+   "year": 1972,
+   "short": "A recorded history of every change, so teams can merge work and undo mistakes.",
+   "long": "SCCS (1972), RCS, CVS and Subversion gave each file a history on a central server. Distributed systems such as Git and Mercurial let everyone hold the full history and branch freely.",
+   "sleeper": "If you remember copying folders named final_v2, version control replaced that. Git is the universal standard.",
+   "status": "thriving"
+  },
+  {
+   "id": "tool.git",
+   "title": "Git",
+   "cat": "tooling",
+   "tier": 2,
+   "year": 2005,
+   "short": "Linus Torvalds's distributed version control system, now used by almost every developer.",
+   "long": "Torvalds wrote Git in April 2005 after the Linux kernel lost access to BitKeeper. It stores snapshots as a graph of commits identified by hashes. GitHub (2008) built a social platform around it and Microsoft bought GitHub in 2018.",
+   "code": {
+    "lang": "bash",
+    "text": "git clone https://github.com/torvalds/linux\ngit switch -c my-fix\ngit commit -am \"Fix off-by-one\"\ngit push origin my-fix"
+   },
+   "status": "thriving"
+  },
+  {
+   "id": "tool.make",
+   "title": "Make",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1976,
+   "short": "Rebuild only what changed. Stuart Feldman's build tool from Bell Labs, still used in countless projects.",
+   "long": "A Makefile lists targets, their dependencies and the commands that build them. Newer systems (CMake, Gradle, Bazel) scale the idea.",
+   "status": "thriving"
+  },
+  {
+   "id": "pkg.manager",
+   "title": "Package Manager",
+   "cat": "packages",
+   "tier": 1,
+   "year": 1993,
+   "short": "A tool that downloads, installs and updates libraries and their dependencies for you.",
+   "long": "Linux's dpkg and apt (1990s) came first, then language ecosystems: CPAN for Perl (1995), pip for Python, npm for JavaScript (2010), Maven, NuGet and Cargo. Lockfiles pin exact versions for repeatable builds.",
+   "sleeper": "You no longer download libraries by hand. One command pulls hundreds of dependencies, which is both the magic and the danger.",
+   "status": "thriving"
+  },
+  {
+   "id": "pkg.hub",
+   "title": "Packages & Ecosystems",
+   "cat": "packages",
+   "tier": 1,
+   "year": 1995,
+   "short": "Reusable libraries and the tools that fetch them. Modern programs are mostly other people's code.",
+   "long": "Package managers resolve versions of dependencies automatically. The convenience brought huge productivity and a new class of supply-chain risk.",
+   "status": "thriving"
+  },
+  {
+   "id": "pkg.pip",
+   "title": "pip and PyPI",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2008,
+   "short": "Python's installer and package index. Newer tools such as uv make it dramatically faster.",
+   "long": "pip installs packages from PyPI. Virtual environments isolate projects. Poetry and Astral's uv (2024) improve resolution speed and reproducibility.",
+   "status": "thriving"
+  },
+  {
+   "id": "pkg.npm",
+   "title": "npm",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2010,
+   "short": "JavaScript's package registry: millions of packages, including the famous one-line left-pad.",
+   "long": "Isaac Schlueter created npm. GitHub acquired it in 2020. Its tiny-package culture produced the 2016 left-pad incident, when a deleted 11-line package broke builds across the web.",
+   "status": "thriving"
+  },
+  {
+   "id": "qual.hub",
+   "title": "Quality: Lint, Test, CI",
+   "cat": "quality",
+   "tier": 1,
+   "year": 1978,
+   "short": "Automated checks that catch mistakes before users do.",
+   "long": "Linters, type checkers, tests and continuous integration run on every change. They are the reason modern teams can ship many times a day.",
+   "status": "thriving"
+  },
+  {
+   "id": "qual.lint",
+   "title": "Linting & Static Analysis",
+   "cat": "quality",
+   "tier": 1,
+   "year": 1978,
+   "short": "Tools that read code without running it and flag likely bugs and style problems. Named after lint on cloth.",
+   "long": "Stephen Johnson wrote the original lint for C at Bell Labs in 1978. Today there are style linters, formatters, type checkers, bug finders and security scanners, often run automatically on every commit.",
+   "sleeper": "Where you once argued about brace style, a formatter now ends the debate automatically.",
+   "status": "thriving"
+  },
+  {
+   "id": "qual.testing",
+   "title": "Automated Testing",
+   "cat": "quality",
+   "tier": 2,
+   "year": 1998,
+   "short": "Code that checks your code. Unit, integration and end-to-end tests run on every change.",
+   "long": "Kent Beck's SUnit led to JUnit and the xUnit family. Test-driven development writes the test first. Evidence for its benefits is mixed, but automated tests plus CI are now the norm.",
+   "status": "thriving"
+  },
+  {
+   "id": "qual.ci",
+   "title": "Continuous Integration",
+   "cat": "quality",
+   "tier": 2,
+   "year": 2001,
+   "short": "Build and test every change automatically. CruiseControl, Jenkins, then GitHub Actions.",
+   "long": "CI servers run the test suite on each commit so broken changes are caught within minutes. Continuous delivery extends the idea to deploying safely many times a day.",
+   "status": "thriving"
+  },
+  {
+   "id": "qual.eslint",
+   "title": "ESLint",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2013,
+   "short": "The standard JavaScript linter. Plugins check style, bugs and framework rules.",
+   "long": "Nicholas Zakas created ESLint in 2013. Faster Rust-based tools such as Biome and oxlint now compete with it.",
+   "status": "thriving"
+  },
+  {
+   "id": "proc.hub",
+   "title": "Methods & Evidence",
+   "cat": "process",
+   "tier": 1,
+   "year": 1970,
+   "short": "How teams organize the work, and what research really shows about what helps.",
+   "long": "From waterfall to Agile to DevOps, each fashion promised more predictable delivery. Studies support some practices (small batches, code review, continuous delivery) and cast doubt on others.",
+   "status": "thriving"
+  },
+  {
+   "id": "proc.waterfall",
+   "title": "Waterfall",
+   "cat": "process",
+   "tier": 2,
+   "year": 1970,
+   "short": "Requirements, design, code, test in a strict sequence. Winston Royce presented it as a flawed model.",
+   "long": "Royce's 1970 paper showed the sequence and then argued it was risky without feedback. Later procurement rules nonetheless adopted it as a template. It works for well-understood problems and fails for uncertain ones.",
+   "status": "legacy"
+  },
+  {
+   "id": "proc.agile",
+   "title": "Agile",
+   "cat": "process",
+   "tier": 2,
+   "year": 2001,
+   "short": "Short iterations, working software and feedback. Born at a 2001 meeting in Snowbird, Utah.",
+   "long": "The Agile Manifesto reacted against heavyweight process. Scrum and Extreme Programming are its best-known forms. Many organizations now do ritual Agile without the feedback loop that made it work.",
+   "status": "thriving"
+  },
+  {
+   "id": "proc.mmm",
+   "title": "The Mythical Man-Month",
+   "cat": "process",
+   "tier": 3,
+   "year": 1975,
+   "short": "Fred Brooks's lessons from IBM's OS/360: adding people to a late project makes it later.",
+   "long": "Brooks's essays introduced Brooks's law, the second-system effect and 'No Silver Bullet' (1986), which argued no single technique would deliver a tenfold gain. Fifty years later they still hold up.",
+   "status": "thriving"
+  },
+  {
+   "id": "proc.devops",
+   "title": "DevOps",
+   "cat": "process",
+   "tier": 3,
+   "year": 2009,
+   "short": "Developers and operators sharing responsibility, automating releases and monitoring.",
+   "long": "The movement combined version control, CI/CD, infrastructure as code and monitoring. DORA research links its practices to faster, more reliable delivery.",
+   "status": "thriving"
+  },
+  {
+   "id": "fail.hub",
+   "title": "Dead Ends & Cautionary Tales",
+   "cat": "failures",
+   "tier": 1,
+   "year": 1985,
+   "short": "Ideas that promised to end programming's hard parts and did not, plus the famous disasters.",
+   "long": "Each wave (4GLs, CASE tools, UML code generation, low-code, now AI) raised the abstraction level without eliminating programmers. Disasters from the Therac-25 to CrowdStrike show what unchecked software costs.",
+   "status": "n/a"
+  },
+  {
+   "id": "fail.case",
+   "title": "CASE Tools",
+   "cat": "failures",
+   "tier": 2,
+   "year": 1985,
+   "short": "Computer-aided software engineering: draw the design, generate the code. Mostly abandoned.",
+   "long": "In the late 1980s CASE tools promised automatic code from diagrams. Generated code was hard to maintain and diagrams drifted from reality. UML code generation had the same fate.",
+   "status": "dead"
+  },
+  {
+   "id": "fail.loc",
+   "title": "Lines of Code as a Metric",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1970,
+   "short": "Measuring productivity by volume rewards bloat. Decades of evidence say don't.",
+   "long": "Counting lines punishes concise solutions and rewards copy-paste. Researchers and practitioners have recommended against it for fifty years, yet it keeps returning in new forms.",
+   "status": "dead"
+  },
+  {
+   "id": "fail.y2k",
+   "title": "Y2K",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1999,
+   "short": "Two-digit years threatened 2000. The disaster was avoided by years of costly remediation.",
+   "long": "Programs that stored years as two digits would misread 2000 as 1900. Companies and governments spent years and billions fixing code, mostly COBOL. The quiet outcome fed a myth that the problem was exaggerated.",
+   "status": "dead"
+  },
+  {
+   "id": "fail.leftpad",
+   "title": "left-pad Incident",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2016,
+   "short": "An 11-line npm package was deleted and thousands of builds broke, exposing fragile dependency chains.",
+   "long": "The author removed his packages over a naming dispute. Because large projects depended on left-pad indirectly, builds failed worldwide until npm restored it. Later supply-chain attacks made the lesson sharper.",
+   "status": "dead"
+  },
+  {
+   "id": "org.hub",
+   "title": "Companies & Institutions",
+   "cat": "orgs",
+   "tier": 1,
+   "year": 1911,
+   "short": "The firms, labs and foundations that moved software forward.",
+   "long": "From IBM and Bell Labs to Microsoft, Google and the open-source foundations, a few organizations supplied much of the field's infrastructure.",
+   "status": "thriving"
+  },
+  {
+   "id": "org.ibm",
+   "title": "IBM",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1911,
+   "short": "FORTRAN, System/360, the relational database, SQL, and the PC that standardized the industry.",
+   "long": "IBM funded Backus's FORTRAN, built OS/360, and its labs created the relational model, System R and SQL. It acquired Red Hat in 2019.",
+   "status": "thriving"
+  },
+  {
+   "id": "org.bell-labs",
+   "title": "Bell Labs",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1925,
+   "short": "Where the transistor, Unix, C, C++, lint and awk were invented.",
+   "long": "AT&T's research lab produced Thompson and Ritchie's Unix and C, Stroustrup's C++, Kernighan's tools and Johnson's lint. Its influence is everywhere in today's systems.",
+   "status": "legacy"
+  },
+  {
+   "id": "org.microsoft",
+   "title": "Microsoft",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1975,
+   "short": "From BASIC and MS-DOS to Windows, Visual Studio, .NET, TypeScript, VS Code and GitHub.",
+   "long": "Bill Gates and Paul Allen began by writing BASIC for the Altair. Under Satya Nadella the company embraced open source, bought GitHub in 2018 and made VS Code the most-used editor.",
+   "status": "thriving"
+  },
+  {
+   "id": "org.google",
+   "title": "Google",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1998,
+   "short": "Scale pioneers: MapReduce, Bigtable, Kubernetes, Go, Chrome's V8 and the Transformer paper.",
+   "long": "Google's internal systems inspired Hadoop, Kubernetes and a generation of cloud-native tools. It also runs one of the world's largest monorepos.",
+   "status": "thriving"
+  },
+  {
+   "id": "ppl.hub",
+   "title": "Pioneers",
+   "cat": "people",
+   "tier": 1,
+   "year": 1843,
+   "short": "A handful of people whose ideas still shape every program.",
+   "long": "From Ada Lovelace's notes to Linus Torvalds's kernel, individual insight often moved the field.",
+   "status": "n/a"
+  },
+  {
+   "id": "ppl.hopper",
+   "title": "Grace Hopper",
+   "cat": "people",
+   "tier": 2,
+   "year": 1952,
+   "short": "Built one of the first compilers and championed English-like languages that led to COBOL.",
+   "long": "A US Navy rear admiral, Hopper's A-0 system (1952) compiled subroutines from a library. She argued programs should be written in language closer to English.",
+   "status": "n/a"
+  },
+  {
+   "id": "ppl.ritchie",
+   "title": "Dennis Ritchie",
+   "cat": "people",
+   "tier": 2,
+   "year": 1972,
+   "short": "Created C and, with Ken Thompson, Unix. His work underlies nearly every modern system.",
+   "long": "At Bell Labs Ritchie evolved B into C and rewrote Unix in it. He and Thompson received the 1983 Turing Award.",
+   "status": "n/a"
+  },
+  {
+   "id": "ppl.torvalds",
+   "title": "Linus Torvalds",
+   "cat": "people",
+   "tier": 2,
+   "year": 1991,
+   "short": "Wrote the Linux kernel (1991) and Git (2005).",
+   "long": "Torvalds began Linux as a student project and still oversees its development. He created Git in weeks to manage the kernel.",
+   "status": "n/a"
+  },
+  {
+   "id": "plat.hub",
+   "title": "Platforms: OS, Web, Cloud, Mobile",
+   "cat": "platforms",
+   "tier": 1,
+   "year": 1969,
+   "short": "What software runs on: operating systems, the Internet, the web, the cloud and phones.",
+   "long": "Each platform shift (PC, web, mobile, cloud) changed what developers build and how they ship it.",
+   "status": "thriving"
+  },
+  {
+   "id": "plat.unix",
+   "title": "Unix",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1969,
+   "short": "A small, portable operating system from Bell Labs whose ideas power Linux, macOS and Android.",
+   "long": "Thompson and Ritchie's Unix introduced hierarchical files, pipes and small tools that do one job. BSD, System V and later Linux carried it forward.",
+   "status": "thriving"
+  },
+  {
+   "id": "plat.linux",
+   "title": "Linux",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1991,
+   "short": "The open-source kernel that runs most servers, the cloud, Android and all supercomputers.",
+   "long": "Linus Torvalds announced Linux in 1991. Distributions package it with GNU tools. It dominates servers and powers Android phones.",
+   "sleeper": "The free Unix-like system you may have heard rumors about now runs most of the internet.",
+   "status": "thriving"
+  },
+  {
+   "id": "plat.web",
+   "title": "The World Wide Web",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1991,
+   "short": "Tim Berners-Lee's hypertext system. Now the default platform for applications.",
+   "long": "At CERN, Berners-Lee combined URLs, HTTP and HTML. Mosaic (1993) and Netscape (1994) brought it to the public. JavaScript turned pages into applications.",
+   "status": "thriving"
+  },
+  {
+   "id": "plat.cloud",
+   "title": "Cloud Computing",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 2006,
+   "short": "Rent computers by the hour. Amazon launched S3 and EC2 in 2006, then everyone followed.",
+   "long": "AWS, Azure and Google Cloud sell servers, databases and services on demand. Containers (Docker, 2013) and Kubernetes (2014) standardized how applications are packaged and run.",
+   "status": "thriving"
+  },
+  {
+   "id": "plat.docker",
+   "title": "Docker & Containers",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2013,
+   "short": "Package an app with its dependencies so it runs the same everywhere.",
+   "long": "Docker made Linux containers easy. Kubernetes, from Google, orchestrates them across clusters.",
+   "status": "thriving"
+  },
+  {
+   "id": "mod.hub",
+   "title": "AI-Assisted Coding & the Modern Era",
+   "cat": "modern",
+   "tier": 1,
+   "year": 2021,
+   "short": "Language models now write, review and fix code. The evidence on their effect is still being gathered.",
+   "long": "GitHub Copilot (2021) started it, ChatGPT (2022) popularized it, and agentic tools now work through multi-step tasks. Studies show large gains on some tasks and slowdowns for experts on others.",
+   "status": "thriving"
+  },
+  {
+   "id": "mod.copilot",
+   "title": "AI Coding Assistants",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2021,
+   "short": "Autocomplete, chat and agents powered by large language models.",
+   "long": "Tools include GitHub Copilot, Cursor and Claude Code. Randomized trials report mixed results, and reviewers worry about subtle errors and fabricated package names.",
+   "status": "thriving"
+  },
+  {
+   "id": "mod.typescript",
+   "title": "TypeScript",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2012,
+   "short": "JavaScript with static types, by Microsoft. Now among the most-used languages.",
+   "long": "Anders Hejlsberg's team added optional types that compile away to JavaScript. Editors use the types for completion and refactoring, and large codebases rely on it.",
+   "status": "thriving"
+  }
+ ],
+ "edges": [
+  {
+   "s": "found.machine-code",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "data.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "found.machine-code",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "found.machine-code",
+   "t": "found.isa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.machine-code",
+   "t": "found.stored-program",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "found.assembly",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "evolved-into"
+  },
+  {
+   "s": "found.assembly",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.isa",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.isa",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "comp.interpreter",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "comp.pipeline",
+   "t": "comp.compiler",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "lang.fortran",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "ppl.hopper",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.interpreter",
+   "t": "comp.jit",
+   "w": 2,
+   "k": "evolved-into"
+  },
+  {
+   "s": "lang.python",
+   "t": "comp.interpreter",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.jit",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.jit",
+   "t": "lang.js",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.llvm",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.gc",
+   "t": "lang.java",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.gc",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "comp.gc",
+   "t": "conc.pointer",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.cobol",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.c",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.cpp",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.java",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.python",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.js",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.rust",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "data.sql",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.typescript",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "math.matrix",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.c",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "lang.c",
+   "t": "lang.java",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "lang.c",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "lang.c",
+   "t": "conc.pointer",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.c",
+   "t": "conc.array",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.c",
+   "t": "ppl.ritchie",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.c",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.c",
+   "t": "plat.unix",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.c",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.cpp",
+   "t": "conc.oop",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "lang.cpp",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.java",
+   "t": "conc.oop",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "lang.java",
+   "t": "org.ibm",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "lang.python",
+   "t": "math.numpy",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "lang.python",
+   "t": "pkg.pip",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "lang.python",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "lang.python",
+   "t": "conc.variable",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "lang.js",
+   "t": "pkg.npm",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "lang.js",
+   "t": "plat.web",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.js",
+   "t": "mod.typescript",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "lang.js",
+   "t": "qual.eslint",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "mod.typescript",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.linux",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "conc.variable",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.array",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.pointer",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.oop",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.fp",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.variable",
+   "t": "conc.array",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "conc.array",
+   "t": "math.matrix",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "conc.array",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "conc.oop",
+   "t": "conc.fp",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "conc.fp",
+   "t": "lang.js",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "data.relational",
+   "t": "data.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "data.sql",
+   "t": "data.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "data.postgres",
+   "t": "data.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "data.sqlite",
+   "t": "data.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "data.nosql",
+   "t": "data.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "data.sql",
+   "t": "data.relational",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "data.relational",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.postgres",
+   "t": "data.sql",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "data.sqlite",
+   "t": "data.sql",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "data.sql",
+   "t": "data.nosql",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "org.google",
+   "t": "data.nosql",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "math.matrix",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.numpy",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.pytorch",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.numpy",
+   "t": "math.matrix",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "math.matrix",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.pytorch",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "tool.vcs",
+   "t": "tool.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.make",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.vcs",
+   "t": "tool.git",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "tool.git",
+   "t": "ppl.torvalds",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.git",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "tool.git",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "tool.make",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.make",
+   "t": "lang.c",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.manager",
+   "t": "pkg.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.npm",
+   "t": "pkg.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.pip",
+   "t": "pkg.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.npm",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.pip",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.npm",
+   "t": "fail.leftpad",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "qual.lint",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.testing",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.ci",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.eslint",
+   "t": "qual.lint",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "qual.lint",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.lint",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.testing",
+   "t": "qual.ci",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "qual.testing",
+   "t": "proc.agile",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "proc.waterfall",
+   "t": "proc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.agile",
+   "t": "proc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.mmm",
+   "t": "proc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.devops",
+   "t": "proc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.waterfall",
+   "t": "proc.agile",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "proc.agile",
+   "t": "proc.devops",
+   "w": 2,
+   "k": "evolved-into"
+  },
+  {
+   "s": "proc.devops",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "proc.devops",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "proc.mmm",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "proc.mmm",
+   "t": "fail.loc",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.case",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.loc",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.y2k",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.leftpad",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.y2k",
+   "t": "lang.cobol",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.case",
+   "t": "proc.waterfall",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.ibm",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.bell-labs",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.microsoft",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.google",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.ibm",
+   "t": "lang.cobol",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.unix",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.microsoft",
+   "t": "lang.js",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.google",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "org.google",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "ppl.hopper",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.ritchie",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.torvalds",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.hopper",
+   "t": "lang.cobol",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "plat.unix",
+   "t": "ppl.ritchie",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.linux",
+   "t": "ppl.torvalds",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.unix",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.linux",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.web",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.cloud",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.docker",
+   "t": "plat.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.unix",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "plat.cloud",
+   "t": "plat.docker",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "mod.copilot",
+   "t": "mod.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.typescript",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.copilot",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.copilot",
+   "t": "qual.testing",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.copilot",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  }
+ ],
+ "tour": [
+  {
+   "node": "found.machine-code",
+   "title": "1945: bare numbers",
+   "text": "You begin where software began: binary instructions fed to a processor, one machine at a time."
+  },
+  {
+   "node": "comp.compiler",
+   "title": "1957: the compiler",
+   "text": "Grace Hopper and John Backus prove a program can translate readable code into fast machine code. Programming stops being wiring."
+  },
+  {
+   "node": "lang.c",
+   "title": "1972: C and Unix",
+   "text": "Dennis Ritchie's C and the Unix system written in it become the template for almost everything that follows."
+  },
+  {
+   "node": "data.sql",
+   "title": "1974: SQL",
+   "text": "Databases get a question language. You describe the answer you want and the system works out how."
+  },
+  {
+   "node": "tool.git",
+   "title": "2005: Git",
+   "text": "Linus Torvalds writes a distributed version control system in weeks. It becomes the universal standard."
+  },
+  {
+   "node": "pkg.manager",
+   "title": "Package managers",
+   "text": "One command now pulls in hundreds of libraries. It is the magic of modern programming, and its biggest risk."
+  },
+  {
+   "node": "plat.cloud",
+   "title": "2006: the cloud",
+   "text": "Amazon rents computers by the hour. Containers and Kubernetes follow, and servers become software."
+  },
+  {
+   "node": "mod.hub",
+   "title": "Now: AI writes code",
+   "text": "Language models write, review and repair code. You wake up in the middle of that change."
+  }
+ ]
+}

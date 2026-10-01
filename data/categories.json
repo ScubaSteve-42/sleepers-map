@@ -1,0 +1,18 @@
+[
+  { "key": "root",        "label": "Software engineering",            "color": "#ffffff", "order": 0,  "desc": "The whole field." },
+  { "key": "foundations", "label": "Foundations & hardware",          "color": "#ffb020", "order": 1,  "desc": "Machine code, assembly, early computers and instruction sets." },
+  { "key": "compilers",   "label": "Compilers & runtimes",            "color": "#ff8a4c", "order": 2,  "desc": "Compilers, interpreters, virtual machines, linkers and garbage collectors." },
+  { "key": "languages",   "label": "Programming languages",           "color": "#3fd2ff", "order": 3,  "desc": "Notable languages, their syntax and what defined them." },
+  { "key": "concepts",    "label": "Core concepts",                   "color": "#9a8cff", "order": 4,  "desc": "Variables, types, arrays, pointers, functions, objects, concurrency and algorithms." },
+  { "key": "data",        "label": "Data & databases",                "color": "#7bea6b", "order": 5,  "desc": "Data structures, SQL, relational and NoSQL databases." },
+  { "key": "mathai",      "label": "Math, numerics & AI",             "color": "#ff5fd2", "order": 6,  "desc": "Matrices, numerical libraries, machine learning and GPUs." },
+  { "key": "tooling",     "label": "Tooling",                         "color": "#3ee6a0", "order": 7,  "desc": "Version control, build systems, editors, IDEs and debuggers." },
+  { "key": "packages",    "label": "Packages & ecosystems",           "color": "#c8ee45", "order": 8,  "desc": "Package managers, registries, libraries and supply-chain security." },
+  { "key": "quality",     "label": "Quality: lint, test, CI",         "color": "#28e0c5", "order": 9,  "desc": "Linting, static analysis, testing and continuous integration." },
+  { "key": "process",     "label": "Methods & evidence",              "color": "#6f86ff", "order": 10, "desc": "Methodologies, laws, books and what the evidence says." },
+  { "key": "failures",    "label": "Dead ends & cautionary tales",    "color": "#ff4d6d", "order": 11, "desc": "Ideas that did not work and famous failures." },
+  { "key": "orgs",        "label": "Companies & institutions",        "color": "#fff1c1", "order": 12, "desc": "Companies, labs, foundations and standards bodies." },
+  { "key": "people",      "label": "People",                          "color": "#ffd0dc", "order": 13, "desc": "Pioneers and builders." },
+  { "key": "platforms",   "label": "Platforms: OS, web, cloud, mobile", "color": "#4da3ff", "order": 14, "desc": "Operating systems, the Internet, the web, cloud and mobile." },
+  { "key": "modern",      "label": "The modern era & AI",             "color": "#c26bff", "order": 15, "desc": "What is popular now and how AI is changing coding." }
+]

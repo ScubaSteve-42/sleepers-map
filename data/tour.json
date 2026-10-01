@@ -1,0 +1,10 @@
+[
+  { "node": "found.machine-code", "title": "1945: bare numbers", "text": "You begin where software began: binary instructions fed to a processor, one machine at a time." },
+  { "node": "comp.compiler", "title": "1957: the compiler", "text": "Grace Hopper and John Backus prove a program can translate readable code into fast machine code. Programming stops being wiring." },
+  { "node": "lang.c", "title": "1972: C and Unix", "text": "Dennis Ritchie's C and the Unix system written in it become the template for almost everything that follows." },
+  { "node": "data.sql", "title": "1974: SQL", "text": "Databases get a question language. You describe the answer you want and the system works out how." },
+  { "node": "tool.git", "title": "2005: Git", "text": "Linus Torvalds writes a distributed version control system in weeks. It becomes the universal standard." },
+  { "node": "pkg.manager", "title": "Package managers", "text": "One command now pulls in hundreds of libraries. It is the magic of modern programming, and its biggest risk." },
+  { "node": "plat.cloud", "title": "2006: the cloud", "text": "Amazon rents computers by the hour. Containers and Kubernetes follow, and servers become software." },
+  { "node": "mod.hub", "title": "Now: AI writes code", "text": "Language models write, review and repair code. You wake up in the middle of that change." }
+]
