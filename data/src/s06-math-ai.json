@@ -622,7 +622,7 @@
    "short": "Google's machine-learning framework, open-sourced in November 2015. It built models as dataflow graphs, and PyTorch overtook it in research papers by 2019.",
    "long": "Google Brain released TensorFlow as open source on 9 November 2015. The 2016 paper describes it as an interface for expressing machine-learning algorithms and an implementation for running them on anything from mobile devices to thousands of GPU cards. TensorFlow 1.x had users define a graph of operations and then run it; TensorFlow 2.0, released on 30 September 2019, made line-by-line eager execution the default. Counts of papers at top conferences show PyTorch overtaking it in research during 2018 and 2019. TensorFlow remains maintained and widely installed, with about 12 million PyPI downloads in September 2026 against 62 million for torch, and its only 2026 minor release so far was 2.21.0 in March.",
    "sleeper": "TensorFlow 1.x made you describe a computation as a graph first and run it afterwards, unlike ordinary code. Version 2 (2019) switched to running line by line, which is how PyTorch had worked from the start. PyTorch 2 (2023) later added compilation, so the two designs have converged.",
-   "status": "legacy",
+   "status": "niche",
    "tags": [
     "google brain",
     "dataflow graph",
@@ -1057,7 +1057,7 @@
    "title": "cuBLAS and cuDNN",
    "cat": "mathai",
    "tier": 4,
-   "year": 2014,
+   "year": 2007,
    "short": "NVIDIA's GPU versions of the BLAS (cuBLAS, 2007) and of deep-learning primitives (cuDNN, 2014), the vendor kernel libraries beneath PyTorch and other frameworks.",
    "long": "cuBLAS, first documented in June 2007 as CUBLAS 1.0, implements the BLAS on top of CUDA. To stay compatible with Fortran environments it uses column-major storage and one-based indexing, and its manual even includes Fortran bindings and a Fortran 77 example. cuDNN, described in a 2014 paper, supplies optimized deep-learning primitives; its authors argued that kernels must be reoptimized for each new processor, the same reasoning that created the BLAS. In the usual stack, Python code calls a framework such as PyTorch, which calls cuDNN and cuBLAS, which run on CUDA and the GPU.",
    "sleeper": "NVIDIA's GPU library of 2007 used column-major storage and counted from 1, to stay compatible with Fortran, whose first compiler dates from 1957.",

@@ -30,7 +30,8 @@ export function createUI(app) {
   }
   function renderPanel(i) {
     const nd = nodes[i], cat = cats.get(nd.cat);
-    panel.hidden = false; panel.replaceChildren();
+    const hadFocus = panel.contains(document.activeElement);   // the chip or button the reader just used is about to be replaced
+    panel.hidden = false; panel.replaceChildren(); document.body.classList.add('panel-open');
     const bar = el('div', 'bar');
     const back = el('button', null, '‹'); back.title = 'Back ([)'; back.setAttribute('aria-label', 'Back'); back.disabled = !app.canBack(); back.addEventListener('click', () => app.back());
     const fwd = el('button', null, '›'); fwd.title = 'Forward (])'; fwd.setAttribute('aria-label', 'Forward'); fwd.disabled = !app.canForward(); fwd.addEventListener('click', () => app.forward());
@@ -67,8 +68,9 @@ export function createUI(app) {
     }
     panel.append(bar, sc); sc.scrollTop = 0;
     panel.setAttribute('aria-labelledby', 'panel-title');
+    if (hadFocus) panel.focus({ preventScroll: true });   // keep keyboard focus inside the new content instead of dropping it on the page
   }
-  function closePanel() { panel.hidden = true; panel.replaceChildren(); }
+  function closePanel() { panel.hidden = true; panel.replaceChildren(); document.body.classList.remove('panel-open'); }
 
   // ---------- legend ----------
   const legendList = $('#legend-list'), legend = $('#legend');
@@ -109,12 +111,17 @@ export function createUI(app) {
   $('#set-quality').addEventListener('change', (ev) => app.setQuality(ev.target.value));
   $('#set-rotate').addEventListener('change', (ev) => { app.autoRotate = ev.target.checked; });
   $('#set-labels').addEventListener('change', (ev) => app.setLabels(ev.target.checked));
-  function toggleHelp(force) { const h = $('#help'); h.hidden = force === undefined ? !h.hidden : !force; if (!h.hidden) h.focus?.(); }
+  function toggleHelp(force) {
+    const h = $('#help'), wasInside = h.contains(document.activeElement);
+    h.hidden = force === undefined ? !h.hidden : !force;
+    if (!h.hidden) h.focus({ preventScroll: true }); else if (wasInside) $('#btn-help').focus({ preventScroll: true });
+  }
 
   // ---------- tour card ----------
   const tourcard = $('#tourcard');
   function renderTour(step) {
     const stops = graph.tour, s = stops[step];
+    const used = tourcard.contains(document.activeElement) ? document.activeElement.textContent : null;   // the button that was just pressed
     tourcard.hidden = false; tourcard.replaceChildren();
     tourcard.append(el('div', 'step', `STOP ${step + 1} OF ${stops.length}`), el('h3', null, s.title), el('p', null, s.text));
     const row = el('div', 'row'), dots = el('div', 'dots');
@@ -124,6 +131,7 @@ export function createUI(app) {
     const next = el('button', 'primary', step === stops.length - 1 ? 'Finish' : 'Next'); next.addEventListener('click', () => (step === stops.length - 1 ? app.exitTour() : app.tourStep(1)));
     const x = el('button', null, 'Exit'); x.addEventListener('click', () => app.exitTour());
     row.append(dots, prev, more, next, x); tourcard.append(row);
+    if (used) (([...tourcard.querySelectorAll('button')].find((b) => b.textContent === used && !b.disabled)) ?? next).focus({ preventScroll: true });
   }
   function hideTour() { tourcard.hidden = true; tourcard.replaceChildren(); }
 
@@ -131,7 +139,7 @@ export function createUI(app) {
   const listview = $('#listview');
   function toggleList(force) {
     const open = force === undefined ? listview.hidden : force;
-    if (!open) { listview.hidden = true; return; }
+    if (!open) { const wasInside = listview.contains(document.activeElement); listview.hidden = true; if (wasInside) $('#btn-list').focus({ preventScroll: true }); return; }
     listview.hidden = false; listview.replaceChildren();
     const x = el('button', 'x', '×'); x.setAttribute('aria-label', 'Close list'); x.addEventListener('click', () => toggleList(false));
     listview.append(x, el('h2', null, 'All ideas'));
@@ -143,6 +151,7 @@ export function createUI(app) {
       items.forEach(([n, i]) => { const li = el('li'), b = el('button'); b.type = 'button'; b.append(el('span', null, n.title), el('span', 'y', String(n.year))); b.title = n.short; b.addEventListener('click', () => { toggleList(false); app.select(i); }); li.append(b); ul.append(li); });
       listview.append(ul);
     });
+    listview.focus({ preventScroll: true });
   }
 
   // ---------- search ----------
@@ -169,13 +178,16 @@ export function createUI(app) {
     li.addEventListener('mousedown', (ev) => { ev.preventDefault(); choose(i); }); results.append(li);
   }
   // nothing typed yet: offer the questions this map was built to answer, each one opening the node that answers it
+  // tell assistive technology which option the arrow keys are on (the input keeps focus, so the list cannot take it)
+  const announce = () => (sel >= 0 && !results.hidden ? q.setAttribute('aria-activedescendant', `res-${sel}`) : q.removeAttribute('aria-activedescendant'));
+  function hideResults() { results.hidden = true; q.setAttribute('aria-expanded', 'false'); q.removeAttribute('aria-activedescendant'); }
   function renderStarters() {
     const starters = (graph.questions ?? []).map((s) => ({ q: s.q, i: idxOf.get(s.node) })).filter((s) => s.i != null);
-    if (!starters.length) { results.hidden = true; q.setAttribute('aria-expanded', 'false'); return; }
+    if (!starters.length) { hideResults(); return; }
     hits = starters.map((s) => s.i); sel = -1;
     const head = el('li', 'head', 'Start with a question'); head.setAttribute('aria-hidden', 'true'); results.append(head);
     starters.forEach((s, k) => addOption(s.i, k, s.q));
-    results.hidden = false; q.setAttribute('aria-expanded', 'true');
+    results.hidden = false; q.setAttribute('aria-expanded', 'true'); announce();
   }
   function renderResults() {
     results.replaceChildren(); const text = q.value.trim();
@@ -183,23 +195,23 @@ export function createUI(app) {
     hits = search(text); sel = hits.length ? 0 : -1;
     if (!hits.length) { const li = el('li', 'empty', `Nothing matches "${text}"`); results.append(li); }
     hits.forEach((i, k) => addOption(i, k, nodes[i].title, String(nodes[i].year)));
-    results.hidden = false; q.setAttribute('aria-expanded', 'true');
+    results.hidden = false; q.setAttribute('aria-expanded', 'true'); announce();
   }
-  function choose(i) { results.hidden = true; q.value = ''; q.blur(); app.select(i); }
+  function choose(i) { hideResults(); q.value = ''; q.blur(); app.select(i); }
   function moveSel(d) {
     if (!hits.length) return;
     sel = sel < 0 ? (d > 0 ? 0 : hits.length - 1) : (sel + d + hits.length) % hits.length;
     const opts = results.querySelectorAll('[role="option"]');
     opts.forEach((li, k) => li.setAttribute('aria-selected', String(k === sel)));
-    opts[sel]?.scrollIntoView({ block: 'nearest' });
+    opts[sel]?.scrollIntoView({ block: 'nearest' }); announce();
   }
   q.addEventListener('input', renderResults);
   q.addEventListener('focus', renderResults);
-  q.addEventListener('blur', () => setTimeout(() => { results.hidden = true; q.setAttribute('aria-expanded', 'false'); }, 120));
+  q.addEventListener('blur', () => setTimeout(hideResults, 120));
   q.addEventListener('keydown', (ev) => {
     if (ev.key === 'ArrowDown') { ev.preventDefault(); moveSel(1); } else if (ev.key === 'ArrowUp') { ev.preventDefault(); moveSel(-1); }
     else if (ev.key === 'Enter') { ev.preventDefault(); if (hits[sel] != null) choose(hits[sel]); }
-    else if (ev.key === 'Escape') { q.value = ''; results.hidden = true; q.blur(); }
+    else if (ev.key === 'Escape') { q.value = ''; hideResults(); q.blur(); }
   });
 
   return { renderPanel, closePanel, updateLegend, updateTimeline, updateLayoutButtons, renderTour, hideTour, toggleHelp, toggleList, search, minYear, maxYear, focusSearch: () => { q.focus(); q.select(); }, links };

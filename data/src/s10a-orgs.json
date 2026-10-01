@@ -61,7 +61,7 @@
    "year": 1976,
    "short": "Brought the graphical interface to a mass market with the Macintosh, then added NeXTSTEP-based macOS and iOS, Swift, the App Store and its own chips.",
    "long": "Steve Jobs, Steve Wozniak and Ronald Wayne founded Apple on 1 April 1976. The Macintosh (24 January 1984) brought a Xerox-style graphical interface to a mass market, and HyperCard (1987) anticipated the web. Apple bought NeXT (announced 20 December 1996); NeXTSTEP, built on the Mach kernel, BSD Unix and Objective-C, became Mac OS X (2001) and later macOS and iOS. It hired Chris Lattner in 2005, adopted LLVM and Clang, and announced Swift on 2 June 2014. The iPhone (2007) and the App Store (10 July 2008) created the modern app economy, with a 30 percent commission, and Apple silicon (M1, November 2020) moved the Mac to ARM-based chips.\n\nApple remains a platform owner in 2026. Reported but not yet reconfirmed: Tim Cook stepped down as CEO on 1 September 2026, and John Ternus succeeded him.",
-   "sleeper": "The Mac's operating system is Unix underneath, through NeXT, and Apple now designs its own processors. Programs reach iPhone users through the App Store, which has charged a 30 percent commission since 2008.",
+   "sleeper": "The Mac's operating system is Unix underneath, through NeXT, and Apple now designs its own processors. Programs reach iPhone users through the App Store, which opened in 2008 with a 30 percent commission.",
    "status": "thriving",
    "tags": [
     "macintosh",
@@ -108,7 +108,7 @@
    "tier": 3,
    "year": 1977,
    "short": "Shipped the first commercial SQL database in 1979, bought Sun in 2010 to become Java's steward, and in 2026 sells databases, cloud and AI infrastructure.",
-   "long": "Larry Ellison, Bob Miner and Ed Oates founded Software Development Laboratories on 16 June 1977; it became Relational Software in 1979 and Oracle Systems in 1983, and went public on 12 March 1986. Working from Codd's paper and IBM's published System R papers, it shipped the first commercial SQL database, Oracle V2, in 1979. Later purchases included PeopleSoft (a hostile bid, 2005), Siebel, BEA, Sun (completed January 2010) and Cerner (closed 8 June 2022). As Java's steward, Oracle gave Java EE to the Eclipse Foundation (2017, renamed Jakarta EE) and moved Java to a six-month release cadence in 2018.\n\nIt sued Google in 2010 over Android's use of Java APIs; on 5 April 2021 the US Supreme Court ruled 6 to 2 that Google's copying was fair use. In 2026 Oracle is a partner in OpenAI's Stargate data-center venture, and Magouyrk and Sicilia have been co-CEOs since September 2025.",
+   "long": "Larry Ellison, Bob Miner and Ed Oates founded Software Development Laboratories on 16 June 1977; it became Relational Software in 1979 and Oracle Systems in 1983, and went public on 12 March 1986. Working from Codd's paper and IBM's published System R papers, it shipped the first commercial SQL database, Oracle V2, in 1979. Later purchases included PeopleSoft (a hostile bid, 2005), Siebel, BEA, Sun (completed January 2010) and Cerner (closed 8 June 2022). As Java's steward, Oracle gave Java EE to the Eclipse Foundation (2017, renamed Jakarta EE) and moved Java to a six-month release cadence in 2018.\n\nIt sued Google in 2010 over Android's use of Java APIs; on 5 April 2021 the US Supreme Court ruled 6 to 2 that Google's copying was fair use. In 2026 Oracle is a partner in OpenAI's Stargate data-center venture, and Wikipedia reports Magouyrk and Sicilia became co-CEOs in September 2025.",
    "sleeper": "The 2021 Supreme Court ruling in Google v. Oracle found Google's copying fair use but assumed, without deciding, that APIs can be copyrighted, so that question was left unsettled.",
    "status": "thriving",
    "tags": [
@@ -185,8 +185,8 @@
    "cat": "orgs",
    "tier": 3,
    "year": 1998,
-   "short": "Born from Netscape's 1998 source release; it made Firefox and sponsored Rust from 2009, and held about 3.3 percent of browser usage in July 2026.",
-   "long": "Netscape announced on 23 January 1998 that its browser would be free with source code, and the Mozilla project was founded on 31 March 1998. After AOL withdrew, the Mozilla Foundation became the legal steward in 2003, with Mozilla Corporation as its taxable subsidiary, and Firefox 1.0 shipped in November 2004. Mozilla sponsored Graydon Hoare's Rust from 2009 (Rust 1.0, 15 May 2015) and handed Rust to the Rust Foundation in February 2021. It cut about a quarter of its staff in August 2020.\n\nIn July 2026 Firefox had about 3.3 percent of worldwide browser usage, and Anthony Enzor-DeMeo became CEO in December 2025. A 2011 report put roughly 85 percent of Mozilla's revenue in Google's search deal; the current share could not be verified.",
+   "short": "Born from Netscape's 1998 source release; it made Firefox and sponsored Rust from 2009, and reportedly held about 3.3 percent of browser usage in July 2026.",
+   "long": "Netscape announced on 23 January 1998 that its browser would be free with source code, and the Mozilla project was founded on 31 March 1998. After AOL withdrew, the Mozilla Foundation became the legal steward in 2003, with Mozilla Corporation as its taxable subsidiary, and Firefox 1.0 shipped in November 2004. Mozilla sponsored Graydon Hoare's Rust from 2009 (Rust 1.0, 15 May 2015) and handed Rust to the Rust Foundation in February 2021. It cut about a quarter of its staff in August 2020.\n\nWikipedia reports that in July 2026 Firefox had about 3.3 percent of worldwide browser usage and that Anthony Enzor-DeMeo became CEO in December 2025. A 2011 report put roughly 85 percent of Mozilla's revenue in Google's search deal; the current share could not be verified.",
    "status": "niche",
    "tags": [
     "firefox",
@@ -213,7 +213,7 @@
    "tier": 2,
    "year": 2006,
    "short": "Turned servers and storage into metered web services with S3 and EC2 in 2006, then Dynamo, Lambda and Graviton, creating the cloud.",
-   "long": "Amazon's infrastructure arm began selling services as APIs: SQS (beta November 2004), the S3 storage service (14 March 2006) and EC2 virtual servers (August 2006). Renting a server by the hour created what is now called the cloud and drove DevOps, containers and serverless computing. Later pieces include the Dynamo paper (2007) and the DynamoDB service (2012), Aurora (October 2014), Lambda functions that run on demand with no servers to manage (November 2014) and the Arm-based Graviton chips (announced November 2018). Werner Vogels's 'you build it, you run it' (2006) shaped team ownership.\n\nA story of a 2002 Bezos 'API mandate' comes from a 2011 Steve Yegge post, not an Amazon document, so treat it as lore. AWS earned US$128.7 billion in 2025, Matt Garman became its CEO in 2024, and a large us-east-1 outage in October 2025 disrupted Snapchat, Reddit and Roblox, among others.",
+   "long": "Amazon's infrastructure arm began selling services as APIs: SQS (beta November 2004), the S3 storage service (14 March 2006) and EC2 virtual servers (August 2006). Renting a server by the hour created what is now called the cloud and drove DevOps, containers and serverless computing. Later pieces include the Dynamo paper (2007) and the DynamoDB service (2012), Aurora (October 2014), Lambda functions that run on demand with no servers to manage (November 2014) and the Arm-based Graviton chips (announced November 2018). Werner Vogels's 'you build it, you run it' (2006) shaped team ownership.\n\nA story of a 2002 Bezos 'API mandate' comes from a 2011 Steve Yegge post, not an Amazon document, so treat it as lore. Wikipedia reports AWS revenue of US$128.7 billion in 2025; Matt Garman became its CEO in 2024, and a large us-east-1 outage in October 2025 disrupted Snapchat, Reddit and Roblox.",
    "sleeper": "A server used to be something a company bought and housed. Since 2006 the default is renting capacity by the hour through an API: in the 2025 Stack Overflow survey, 43.3 percent of respondents used AWS, ahead of Azure (26.3 percent) and Google Cloud (24.6 percent).",
    "status": "thriving",
    "tags": [
@@ -241,7 +241,7 @@
    "tier": 3,
    "year": 2004,
    "short": "Facebook's open-source output includes Cassandra, React, GraphQL, PyTorch and Llama; React and PyTorch now sit under neutral foundations.",
-   "long": "Founded on 4 February 2004 as Facebook and renamed Meta in October 2021, the company released a large body of infrastructure software: Cassandra (2008), React (Jordan Walke; internal 2011, open-sourced May 2013) and React Native (2015), GraphQL (internal 2012, open-sourced 2015), Hack (typed PHP, 2014), the Infer static analyzer (2015), RocksDB, Presto, Zstandard and PyTorch (2016 to 2017). Governance has since moved to neutral bodies: PyTorch to the Linux Foundation's PyTorch Foundation (2022), and React and React Native to an independent React Foundation (7 October 2025).\n\nThe Llama language models ran from Llama 1 (24 February 2023) to Llama 4 (5 April 2025). Their license is source-available, with use restrictions, and the Open Source Initiative disputes calling it open source. In April 2026 Meta Superintelligence Labs released Muse Spark as a replacement for Llama in Meta's chatbots.",
+   "long": "Founded on 4 February 2004 as Facebook and renamed Meta in October 2021, the company released much infrastructure software: Cassandra (2008), React (Jordan Walke; open-sourced May 2013) and React Native (2015), GraphQL (internal 2012, open-sourced 2015), Hack (typed PHP, 2014), the Infer static analyzer (2015), RocksDB, Presto, Zstandard and PyTorch (2016 to 2017). Governance has since moved to neutral bodies: PyTorch to the Linux Foundation's PyTorch Foundation (2022), and React and React Native to an independent React Foundation (7 October 2025).\n\nThe Llama language models ran from Llama 1 (24 February 2023) to Llama 4 (5 April 2025). Their license is source-available, with use restrictions, and the Open Source Initiative disputes calling it open source. Per Wikipedia, in April 2026 Meta Superintelligence Labs released Muse Spark as a replacement for Llama in Meta's chatbots.",
    "status": "thriving",
    "tags": [
     "facebook",
@@ -377,8 +377,8 @@
    "cat": "orgs",
    "tier": 2,
    "year": 1993,
-   "short": "Made the GPU a general computing engine with CUDA (2007); deep learning turned it into the AI industry's hardware supplier, valued at $5 trillion in 2025.",
-   "long": "Jensen Huang, Chris Malachowsky and Curtis Priem founded NVIDIA on 5 April 1993. It launched the GeForce 256, its first 'GPU' (graphics processing unit), in late 1999, then invested more than a billion dollars in CUDA, a platform that lets programmers use graphics chips for general computation. CUDA arrived in 2007 (sources differ between February and June), led by Ian Buck and John Nickolls, and was followed by cuDNN (2014) and Tensor Cores (Volta V100, 2017). Deep learning made NVIDIA the supplier of AI hardware, with market values of $1 trillion (May 2023), $4 trillion (10 July 2025) and $5 trillion (29 October 2025).\n\nIts $40 billion bid for Arm was cancelled in February 2022. On 2 September 2026 NVIDIA signed a definitive agreement to acquire Hugging Face for about $11.9 billion plus up to $1.0 billion in retention, according to its SEC filing; whether the deal has closed is not confirmed.",
+   "short": "Made the GPU a general computing engine with CUDA (2007); deep learning made it the AI hardware supplier, with a reported $5 trillion market value in 2025.",
+   "long": "Jensen Huang, Chris Malachowsky and Curtis Priem founded NVIDIA on 5 April 1993. It launched the GeForce 256, its first 'GPU' (graphics processing unit), in late 1999, then reportedly invested more than a billion dollars in CUDA, a platform that lets programmers use graphics chips for general computation. CUDA arrived in 2007 (sources differ between February and June), led by Ian Buck and John Nickolls, and was followed by cuDNN (2014) and Tensor Cores (2017). Deep learning made NVIDIA the supplier of AI hardware, with reported market values of $1 trillion (May 2023), $4 trillion (10 July 2025) and $5 trillion (29 October 2025).\n\nIts $40 billion bid for Arm was cancelled in February 2022. On 2 September 2026 NVIDIA signed a definitive agreement to acquire Hugging Face for about $11.9 billion plus up to $1.0 billion in retention, according to its SEC filing; closing is not confirmed.",
    "status": "thriving",
    "tags": [
     "gpu",
@@ -434,7 +434,7 @@
    "year": 2022,
    "short": "Charlie Marsh's company makes Ruff and uv, Python tools written in Rust; in March 2026 it agreed to join OpenAI's Codex team.",
    "long": "Astral builds Python tooling in Rust under Charlie Marsh. Its Ruff linter and formatter had its first commit on 9 August 2022; uv, a package and project manager meant as a drop-in replacement for pip and pip-tools, was announced on 15 February 2024. Astral added pyx, a hosted package registry (13 August 2025), and ty, a type checker (16 December 2025). On 19 March 2026 it announced that it 'has entered into an agreement to join OpenAI as part of the Codex team', and promised that OpenAI would keep supporting its open-source tools. No completion date, price or governance terms were found, and the future licensing of Ruff, uv and ty is unstated.",
-   "sleeper": "uv was the most admired tool in the 2025 Stack Overflow survey (74.2 percent). Key open-source Python tooling now belongs to an AI lab, and nothing yet states its future licensing or governance.",
+   "sleeper": "uv was the most admired tool in the 2025 Stack Overflow survey (74.2 percent). Key open-source Python tooling is due to join an AI lab, and no completion date, licensing or governance terms have been found.",
    "code": {
     "lang": "bash",
     "text": "ruff check .\nuv run script.py"
@@ -466,7 +466,7 @@
    "year": 2021,
    "short": "AI lab behind Claude, the Model Context Protocol (2024) and Claude Code; it bought Bun in December 2025 and Stainless in May 2026.",
    "long": "Dario Amodei, Daniela Amodei, Jared Kaplan, Jack Clark, Chris Olah, Ben Mann, Sam McCandlish and Tom Brown founded Anthropic on 26 January 2021 as a public benefit corporation. Its Claude models run from Claude 1 (March 2023) to Claude Opus 5.5 (22 September 2026). It introduced the Model Context Protocol, an open standard for connecting AI tools to data and software, on 25 November 2024, and donated it to the Linux Foundation's Agentic AI Foundation in December 2025. Claude Code, a command-line coding agent, began as a research preview on 24 February 2025 and reached general availability in May 2025. Anthropic bought Bun (December 2025) and Stainless (18 May 2026).\n\nReported, but not confirmed from Anthropic's own pages: a $380 billion valuation (February 2026), a $965 billion valuation (May 2026) and a confidential IPO filing (1 June 2026).",
-   "sleeper": "Since 2023 AI labs and cloud vendors have been buying developer tools, including Astral (OpenAI) and Bun (Anthropic). One reading is that the coding agent is becoming the new front door to software development.",
+   "sleeper": "Since 2023 AI labs and cloud vendors have been buying developer tools, including Bun (Anthropic) and, by an announced agreement, Astral (OpenAI). One reading is that the coding agent is becoming the new front door to software development.",
    "status": "thriving",
    "tags": [
     "claude",
@@ -548,8 +548,8 @@
    "tier": 4,
    "year": 2008,
    "short": "The programming question-and-answer site and annual developer survey; Prosus bought it in 2021, and its question volume was reported to fall sharply after 2024.",
-   "long": "Stack Overflow is a question-and-answer site for programmers. It runs the annual Developer Survey, a common source for figures on languages, tools and AI use; the 2025 survey's language question drew 31,771 respondents. The survey is an opt-in sample recruited largely through Stack Overflow's own channels, so it over-represents web and cloud developers. Prosus acquired the company on 2 June 2021 for $1.8 billion.\n\nWikipedia reports that the number of questions submitted fell 78 percent between December 2024 and December 2025, which it attributes to a perceived hostile moderation culture and to generative AI. That is a secondary report. RedMonk likewise says Stack Overflow's relevance to a generation of developers has been in decline.",
-   "sleeper": "Looking things up once meant manuals and colleagues. In Stack Overflow's own 2025 survey, 66 percent of developers said AI answers are 'almost right, but not quite', and 46 percent distrusted AI accuracy.",
+   "long": "Stack Overflow is a question-and-answer site for programmers. It runs the annual Developer Survey, a common source for figures on languages, tools and AI use; the 2025 survey's language question drew 31,771 respondents. The survey is an opt-in sample recruited largely through Stack Overflow's own channels, so it over-represents web developers and professionals. Prosus acquired the company on 2 June 2021 for $1.8 billion.\n\nWikipedia reports that the number of questions submitted fell 78 percent between December 2024 and December 2025, which it attributes to a perceived hostile moderation culture and to generative AI. That is a secondary report. RedMonk likewise says Stack Overflow's relevance to a generation of developers has been in decline.",
+   "sleeper": "Looking things up once meant manuals and colleagues. In Stack Overflow's own 2025 survey, 66 percent named AI answers that are 'almost right, but not quite' as their top frustration, and 46 percent distrusted AI accuracy.",
    "status": "legacy",
    "tags": [
     "q&a",
@@ -869,7 +869,7 @@
    "title": "Linux Foundation",
    "cat": "orgs",
    "tier": 3,
-   "year": 2000,
+   "year": 2007,
    "short": "Formed in 2007 from the Open Source Development Labs; hosts Linux kernel infrastructure, the CNCF, PyTorch, OpenTofu, Valkey and the Agentic AI Foundation.",
    "long": "The Linux Foundation was formed in 2007 by merging the Open Source Development Labs (founded 2000) with the Free Standards Group. It hosts the Linux kernel's infrastructure, and Linus Torvalds is a fellow. It also hosts the Cloud Native Computing Foundation (2015, home of Kubernetes), the PyTorch Foundation, OpenSSF for supply-chain security, OpenJS, LF AI and Data, the Continuous Delivery Foundation, and the forks OpenTofu, Valkey and the OpenSearch Software Foundation. Since December 2025 it has also hosted the Agentic AI Foundation, which lists the Model Context Protocol. Microsoft became a platinum member in November 2016.\n\nThe usual pattern is that a neutral body holds the trademark and code while companies compete on services, and forks of relicensed products now appear within weeks.",
    "status": "thriving",
@@ -1104,7 +1104,7 @@
    "tier": 3,
    "year": 2008,
    "short": "dotCloud (2008) became Docker in 2013 and made Linux containers easy; the Open Container Initiative (2015) standardized them and Kubernetes won orchestration.",
-   "long": "Kamel Founadi, Solomon Hykes and Sebastien Pahl founded dotCloud in Paris in 2008; it was renamed Docker on 29 October 2013. Docker was unveiled in March 2013 and made Linux containers easy: it packages an application with its dependencies into an image that runs as a lightweight, isolated process sharing the host's kernel. That image became the unit of deployment in the cloud era. The Open Container Initiative (2015) standardized the formats, and Kubernetes beat Docker's own Swarm orchestrator. Docker sold its enterprise business to Mirantis in November 2019, changed Docker Desktop licensing for large firms on 31 August 2021, and has had Don Johnson as CEO since 2025.",
+   "long": "Kamel Founadi, Solomon Hykes and Sebastien Pahl founded dotCloud in Paris in 2008; it was renamed Docker on 29 October 2013. Docker was unveiled in March 2013 and made Linux containers easy: it packages an application with its dependencies into an image that runs as a lightweight, isolated process sharing the host's kernel. That image became the unit of deployment in the cloud era. The Open Container Initiative (2015) standardized the formats, and Kubernetes beat Docker's own Swarm orchestrator. Docker sold its enterprise business to Mirantis in November 2019, changed Docker Desktop licensing for large firms on 31 August 2021, and, Wikipedia reports, has had Don Johnson as CEO since 2025.",
    "status": "thriving",
    "tags": [
     "containers",

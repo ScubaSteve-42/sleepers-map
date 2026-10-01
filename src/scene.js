@@ -37,7 +37,13 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   controls.target.set(0, 0, 0);
 
   const scene = new THREE.Scene();
-  const state = { time: 0, quality: quality === 'auto' ? 'high' : quality, auto: quality === 'auto', pulse: reduced ? 0 : 1, still };
+  // A software renderer (a virtual machine, a remote desktop, a blocked GPU) fills pixels far too slowly for the full effects, so it
+  // starts on the low preset at reduced resolution. The frame-time governor takes it further if that is still too slow.
+  const gl = renderer.getContext(), dbg = gl.getExtension('WEBGL_debug_renderer_info');
+  const software = /swiftshader|llvmpipe|softpipe|software|basic render/i.test(dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : '');
+  const autoQuality = software ? 'low' : 'high', autoScale = software ? 0.6 : 1;
+  const state = { time: 0, quality: quality === 'auto' ? autoQuality : quality, scale: quality === 'auto' ? autoScale : 1, auto: quality === 'auto', pulse: reduced ? 0 : 1, still };
+  if (state.quality === 'low') state.pulse = 0;
 
   // ---------- per-node data ----------
   const pos = new Float32Array(n * 3);          // current positions
@@ -232,10 +238,11 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   }
 
   // ---------- post-processing ----------
-  let composer, bloom, finalPass, rt;
+  let composer, bloom, finalPass, rt, builtFor = '';
   const finalUniforms = { tDiffuse: { value: null }, uTime: { value: 0 }, uVig: { value: 0.55 }, uGrain: { value: 0.018 }, uCA: { value: 0.006 }, uRes: { value: new THREE.Vector2(1, 1) } };
   function buildComposer(w, h) {
-    composer?.dispose?.(); rt?.dispose?.();
+    // dispose the passes too: composer.dispose() frees only its own two targets, not the bloom chain or the MSAA target
+    composer?.passes.forEach((p) => p.dispose?.()); composer?.dispose?.(); rt?.dispose?.();
     rt = new THREE.WebGLRenderTarget(w, h, { type: THREE.HalfFloatType, samples: state.quality === 'high' ? 4 : 0 });
     composer = new EffectComposer(renderer, rt);
     composer.addPass(new RenderPass(scene, camera));
@@ -244,30 +251,39 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
     finalPass = new ShaderPass(new THREE.ShaderMaterial({ uniforms: finalUniforms, vertexShader: SH.finalVert, fragmentShader: SH.finalFrag }));
     composer.addPass(finalPass);
     composer.addPass(new OutputPass());
+    builtFor = state.quality;
   }
 
   let cssW = 1, cssH = 1;
   function resize() {
     cssW = Math.max(1, canvas.clientWidth || innerWidth); cssH = Math.max(1, canvas.clientHeight || innerHeight);
     const cap = state.quality === 'low' ? 1 : state.quality === 'medium' ? 1.5 : 2;
-    const pr = Math.min(devicePixelRatio || 1, cap);
+    const pr = Math.min(devicePixelRatio || 1, cap) * state.scale;
     renderer.setPixelRatio(pr); renderer.setSize(cssW, cssH, false);
     camera.aspect = cssW / cssH; camera.updateProjectionMatrix();
     uniforms.uRes.value.set(cssW * pr, cssH * pr); uniforms.uPx.value = pr;
     finalUniforms.uRes.value.set(cssW * pr, cssH * pr);
-    buildComposer(Math.floor(cssW * pr), Math.floor(cssH * pr));
+    const w = Math.floor(cssW * pr), h = Math.floor(cssH * pr);
+    // a window drag fires resize every frame: resizing the existing targets is cheap, rebuilding the chain is not
+    if (composer && builtFor === state.quality) composer.setSize(w, h); else buildComposer(w, h);
     composer.setPixelRatio?.(1);
+    updateLimits();
   }
+  // a wide layout on a portrait screen needs more distance than the default zoom-out limit
+  function updateLimits() { controls.maxDistance = Math.max(3200, fitDistance() * 1.6); }
 
   // ---------- layout transitions ----------
   let layoutName = 'constellation';
   let layoutTween = null;
   const layoutArr = (name) => Float32Array.from(layouts[name]);
+  const LAYOUT_NAMES = ['constellation', 'timeline', 'galaxy'];   // layouts also holds the axis guides, and a plain object answers to names like "constructor"
   function setLayout(name, { animate = true, duration = 2.2 } = {}) {
-    if (!layouts[name]) return;
+    if (!LAYOUT_NAMES.includes(name) || !layouts[name]) return;
     layoutName = name; const to = layoutArr(name);
-    if (!animate || reduced) { pos.set(to); toPos.set(to); layoutTween = null; return; }
-    fromPos.set(pos); toPos.set(to); layoutTween = { t: 0, duration };
+    toPos.set(to); updateLimits();
+    // during the intro the nodes are placed from toPos every frame, so there is nothing to tween
+    if (!animate || reduced || intro) { pos.set(to); layoutTween = null; return; }
+    fromPos.set(pos); layoutTween = { t: 0, duration };
   }
   function layoutBounds() {
     let m = 1; for (let i = 0; i < n; i++) m = Math.max(m, Math.hypot(toPos[i * 3], toPos[i * 3 + 1], toPos[i * 3 + 2])); return m;
@@ -304,11 +320,18 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
     }
     return (r / Math.min(half, half * camera.aspect)) * 1.02 * extra;
   }
-  function overview(extra = 1, elevation = 0.2) {
+  // where the camera sits to frame the whole layout: aiming a little left of centre puts the map right of centre on screen,
+  // clear of the legend panel
+  function overviewPose(extra = 1, elevation = 0.2) {
     const dist = fitDistance(extra);
     const worldPerPx = (2 * dist * Math.tan((camera.fov * Math.PI) / 360)) / cssH;
-    const shift = (insets().left / 2) * worldPerPx;   // aiming left of centre puts the map right of centre on screen
-    return flyToPoint(new THREE.Vector3(-shift, 0, 0), dist, { duration: 1.6, dirFrom: new THREE.Vector3(0, elevation, 1) });
+    const target = new THREE.Vector3(-(insets().left / 2) * worldPerPx, 0, 0);
+    const dir = new THREE.Vector3(0, elevation, 1).normalize();
+    return { target, dist, dir, position: target.clone().addScaledVector(dir, dist) };
+  }
+  function overview(extra = 1, elevation = 0.2) {
+    const p = overviewPose(extra, elevation);
+    return flyToPoint(p.target, p.dist, { duration: 1.6, dirFrom: p.dir });
   }
   const stopFlight = () => { if (camTween) { camTween.resolve?.(); camTween = null; } };
 
@@ -341,7 +364,7 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
     uniforms.uReveal.value = 0;
     const r = layoutBounds();
     camera.position.set(r * 0.5, r * 0.35, r * 3.6); controls.target.set(0, 0, 0);
-    intro = { t: 0, duration: 5.2 };
+    intro = { t: 0, duration: 5.2, aim: overviewPose().target.x };
     layoutTween = null;
   }
   function finishIntro() {
@@ -410,8 +433,9 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
       const r = layoutBounds(), end = fitDistance();
       const dist = THREE.MathUtils.lerp(r * 3.6, end, easeInOut(k));
       const ang = (1 - easeInOut(k)) * 1.1;
-      camera.position.set(Math.sin(ang) * dist * 0.9, dist * (0.12 + 0.2 * (1 - k)), Math.cos(ang) * dist * 0.9);
-      controls.target.set(0, 0, 0);
+      const aim = intro.aim * easeInOut(k);   // finish aimed where overview() aims, so the first view matches later resets
+      camera.position.set(Math.sin(ang) * dist * 0.9 + aim, dist * (0.12 + 0.2 * (1 - k)), Math.cos(ang) * dist * 0.9);
+      controls.target.set(aim, 0, 0);
       if (k >= 1) { intro = null; uniforms.uReveal.value = 1; }
     } else if (layoutTween) {
       layoutTween.t += dt; const k = clamp01(layoutTween.t / layoutTween.duration);
@@ -428,7 +452,7 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
       if (camTween.t >= camTween.duration) { const r = camTween.resolve; camTween = null; r?.(); }
     }
     controls.enabled = !camTween && !intro;
-    controls.update();
+    controls.update(dt);   // with a delta, auto-rotate speed no longer depends on the frame rate
 
     const ease = (rate) => 1 - Math.exp(-dt * rate);
     const eV = ease(5), eF = ease(9);
@@ -467,12 +491,13 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   function degrade() {
     if (state.quality === 'high') setQuality('medium', true);
     else if (state.quality === 'medium') setQuality('low', true);
+    else if (state.scale > 0.5) { state.scale = Math.max(0.5, state.scale * 0.8); resize(); }   // last resort: draw fewer pixels and let the page stretch them
   }
   function setQuality(q, fromAuto = false) {
-    if (!fromAuto) state.auto = false;
-    state.quality = q;
-    state.pulse = reduced || q === 'low' ? 0 : 1;
-    finalUniforms.uGrain.value = q === 'low' ? 0 : 0.018; finalUniforms.uCA.value = q === 'low' ? 0 : 0.006;
+    if (!fromAuto) { state.auto = q === 'auto'; state.scale = q === 'auto' ? autoScale : 1; }   // choosing "auto" hands control back to the frame-time governor
+    state.quality = q === 'auto' ? autoQuality : q;
+    state.pulse = reduced || state.quality === 'low' ? 0 : 1;
+    finalUniforms.uGrain.value = state.quality === 'low' ? 0 : 0.018; finalUniforms.uCA.value = state.quality === 'low' ? 0 : 0.006;
     resize();
   }
 
@@ -489,7 +514,7 @@ export function createScene({ canvas, graph, layouts, reduced = false, quality =
   return {
     camera, controls, renderer, graph, indexOf, adj, pos, rad, screen, vis, state, uniforms, regions, guideMix, project,
     update, render, resize, pick, setHover, setSelected, setVisibleMask, setLayout, startIntro, finishIntro,
-    flyToNode, flyToPoint, overview, stopFlight, nodePoint, setQuality, layoutBounds, fitDistance,
+    flyToNode, flyToPoint, overview, overviewPose, stopFlight, nodePoint, setQuality, layoutBounds, fitDistance,
     setBloom(strength) { if (bloom) bloom.strength = strength; },
     fxOf: (i) => ({ emph: emph[i], dim: dim[i], tVis: tVis[i] }),
     get layoutName() { return layoutName; }, get hover() { return hover; }, get selected() { return selected; },

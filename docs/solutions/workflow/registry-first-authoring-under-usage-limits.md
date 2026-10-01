@@ -24,7 +24,22 @@ The map needs several hundred nodes and well over a thousand edges, written from
 
 **When an agent stalls or is stopped, write the slice by hand.** The people slice was small enough (60 nodes) to write directly from the notes in three part files plus one assembler that checks ids against the registry. That was faster than relaunching a large agent against the same limit.
 
+**Fact-check in a second pass, by slice, against the notes.** Seven checkers (one per slice group) each compared every claim in their files with the research notes, using `docs/authoring/factcheck-task.md`. They changed about 130 of 760 nodes. The recurring problems were:
+
+- A vendor's own figure written as plain fact (speed-ups, adoption counts, productivity numbers). The fix is to attribute it ("the vendor says").
+- "First" and "introduced" claims that the sources dispute.
+- Present-tense statements about 2026 that the notes only report (valuations, pending deals, CEO changes).
+- Round numbers that did not match the cited paper.
+- Universal negatives such as "no controlled study exists".
+
+Checkers were told never to change ids, titles, tiers, years or edges, and to list those problems for the coordinator instead. That kept parallel edits from colliding, and the proposed changes (a handful of years, statuses and edge kinds) were applied afterwards in one script.
+
+**Re-audit the seed nodes with the same bar.** The 77 nodes written before the research existed (the root, every hub, the main language and tool exemplars) averaged about 180 characters of text with no code samples or sources, while the later nodes averaged 700. They were also the biggest and most-clicked nodes on the map. A final inventory of text length per node, by tier, found the gap; the seed nodes were then rewritten from the notes in two parallel slices.
+
 ## Pitfalls to avoid
+
+- Do not round-trip UTF-8 data files through Windows PowerShell 5.1 (`Get-Content` then `WriteAllLines`, or `Set-Content` without `-Encoding utf8`). It decodes as ANSI and writes back mojibake: "Plankalkül" became "PlankalkÃ¼l" in one node. Scan the merged text for unexpected non-ASCII characters before a release.
+- Keep the scripts that read other slices (`check-slice.mjs`) free of hard-coded file names. Splitting `core.json` into two files broke the checker for every other author until it was changed to read all slices.
 
 - Do not let npm install into a OneDrive folder. It replaced the `node_modules` junction with a real directory of tens of thousands of files. Keep `node_modules` in a local tooling directory and junction it in; check it is still a junction after any `npm install`.
 - Do not share a scratch path between agents. Give each a work folder named for its slice.

@@ -7,15 +7,15 @@
    "cat": "packages",
    "tier": 4,
    "year": 1968,
-   "short": "Doug McIlroy's 1968 call for an industry of catalogued, interchangeable software parts, an early statement of the idea behind libraries and packages.",
-   "long": "At the 1968 NATO software engineering conference, Doug McIlroy gave an invited address titled \"Mass Produced Software Components\". He argued that the software industry was weakly founded because it had no components subindustry, and he said programmers were the crofters to the hardware makers' industrialists. His proposal was catalogues of routines offered in varying degrees of precision, robustness, speed and generality, so that builders could choose parts instead of writing everything again. He tied the idea to interchangeable parts in manufacturing, which he said corresponded roughly to modularity. The talk is an early seed of the library, package and reuse culture that came later.",
-   "sleeper": "McIlroy asked for catalogues of parts in 1968. Registries such as npm, PyPI and Maven Central are close to what he described, with the catch that every part brings dependencies of its own.",
+   "short": "Doug McIlroy's 1968 call for an industry of cataloged, interchangeable software parts, an early statement of the idea behind libraries and packages.",
+   "long": "At the 1968 NATO software engineering conference, Doug McIlroy gave an invited address titled \"Mass Produced Software Components\". He argued that the software industry was weakly founded because it had no components subindustry, and he said programmers were the crofters to the hardware makers' industrialists. His proposal was catalogs of routines offered in varying degrees of precision, robustness, speed and generality, so that builders could choose parts instead of writing everything again. He tied the idea to interchangeable parts in manufacturing, which he said corresponded roughly to modularity. The talk is an early seed of the library, package and reuse culture that came later.",
+   "sleeper": "McIlroy asked for catalogs of parts in 1968. Registries such as npm, PyPI and Maven Central are close to what he described, with the catch that every part brings dependencies of its own.",
    "status": "n/a",
    "tags": [
     "mass produced software components",
     "reuse",
     "modularity",
-    "catalogue",
+    "catalog",
     "nato 1968"
    ]
   },
@@ -116,7 +116,7 @@
    "title": "Semantic Versioning",
    "cat": "packages",
    "tier": 3,
-   "year": 2010,
+   "year": 2009,
    "short": "A version-numbering convention, MAJOR.MINOR.PATCH, in which the numbers tell users whether an upgrade can break their code.",
    "long": "Semantic Versioning was written by Tom Preston-Werner, a co-founder of GitHub. A version reads MAJOR.MINOR.PATCH: raise MAJOR for incompatible API changes, MINOR for backward compatible new features and PATCH for backward compatible fixes, and treat 0.y.z as initial development where anything may change. The semver.org repository was created in December 2009, version 1.0.0 was tagged in September 2011 and 2.0.0 in June 2013. Cargo assumes packages follow it, and Go builds the major version into import paths from v2 onward. It is a promise made by humans: Google calls it a lossy estimate of how risky a change is, yet a study of 119,879 Maven Central upgrades found that 83.4 percent complied.",
    "sleeper": "Version numbers used to mean whatever a vendor chose. With this convention a tool can accept \"any compatible 1.x release\" without asking, which large dependency trees rely on.",
@@ -172,7 +172,7 @@
    "title": "Minimal Version Selection",
    "cat": "packages",
    "tier": 4,
-   "year": 2019,
+   "year": 2018,
    "short": "Go's resolution rule: use the highest of the minimum versions that any module asks for, which needs no lockfile and no general solver.",
    "long": "Minimal Version Selection was described by Russ Cox in 2018 as part of the Go modules design. Each module declares the minimum version of each dependency it needs, and a build uses the maximum of all those minimums, so it never selects a release that nobody in the graph asked for. Cox calls such builds high-fidelity, because they differ from the author's own build only when another requirement forces it, and the approach removes the need for a separate lock file. It stays computationally tractable, unlike general constraint solving. The price is that upgrades do not happen until a developer asks for them. Google's engineering book endorses it for builds that stay as close as possible to what the author tested.",
    "sleeper": "Most tools take the newest compatible release by default. MVS never picks a version nobody asked for, which also keeps a freshly published malicious release out. That is a side effect rather than a stated goal.",
@@ -593,7 +593,7 @@
    "tier": 3,
    "year": 2024,
    "short": "Astral's very fast Python package and project manager, written in Rust and announced in February 2024 as a drop-in replacement for pip.",
-   "long": "Charlie Marsh's company Astral announced uv on 15 February 2024 as an extremely fast Python package resolver and installer written in Rust, a drop-in replacement for pip and pip-tools. Astral reported it as 8 to 10 times faster than pip without caching and 80 to 115 times faster with a warm cache; those are the vendor's own figures. Its documentation now describes one tool that replaces pip, pip-tools, pipx, poetry, pyenv, twine, virtualenv and more, with a universal lockfile, Python version management and a tool runner, uvx. In September 2026 PyPI counted about 129 million uv downloads against pip's 414 million, a count that understates uv because it is mostly installed by other routes. On 19 March 2026 Astral announced an agreement to join OpenAI as part of the Codex team and promised to keep building in the open.",
+   "long": "Charlie Marsh's company Astral announced uv on 15 February 2024 as an extremely fast Python package resolver and installer written in Rust, a drop-in replacement for pip and pip-tools. Astral reported it as 8 to 10 times faster than pip without caching and 80 to 115 times faster with a warm cache; those are the vendor's own figures. Its documentation now describes one tool that replaces pip, pip-tools, pipx, poetry, pyenv, twine, virtualenv and more, with a universal lockfile, Python version management and a tool runner, uvx. The top-pypi-packages dataset counted about 186.5 million uv downloads against 674.8 million for pip over 30 days in 2026, which is a lower bound for uv. On 19 March 2026 Astral announced an agreement to join OpenAI as part of the Codex team and promised to keep building in the open.",
    "sleeper": "Python packaging was a set of overlapping tools that each did part of the job. uv shows the 2020s habit of rewriting developer tools in Rust behind a familiar interface, and it topped the Stack Overflow 2025 \"most admired\" list at 74.2 percent.",
    "code": {
     "lang": "bash",
@@ -659,7 +659,7 @@
    "tier": 3,
    "year": 2012,
    "short": "A language-agnostic package and environment manager from Anaconda that installs Python together with non-Python software such as compilers and CUDA.",
-   "long": "conda began in 2012 (its first commit is dated 15 October 2012, by Ilan Schnell) and is developed by Anaconda, Inc. It is a cross-platform, language-agnostic package and environment manager, so it can install Python together with compiled non-Python software such as C libraries, compilers and CUDA. Its default channel lists over 7,500 packages, and since conda 23.10.0 in November 2023 the faster libmamba solver has been the default. Anaconda changed its licensing in 2024, and its Terms of Service, effective 15 July 2025, require a paid Business Plan for for-profit organisations with more than 200 employees or contractors. Miniforge, mamba, pixi and uv are alternatives that sidestep that question.",
+   "long": "conda began in 2012 (its first commit is dated 15 October 2012, by Ilan Schnell) and is developed by Anaconda, Inc. It is a cross-platform, language-agnostic package and environment manager, so it can install Python together with compiled non-Python software such as C libraries, compilers and CUDA. Wikipedia says its default channel lists over 7,500 packages, and since conda 23.10.0 in November 2023 the faster libmamba solver has been the default. Anaconda changed its licensing in 2024, and its Terms of Service, effective 15 July 2025, require a paid Business Plan for for-profit organizations with more than 200 employees or contractors. Miniforge, mamba, pixi and uv are alternatives that sidestep that question.",
    "code": {
     "lang": "bash",
     "text": "conda create -n sci python=3.12 numpy\nconda activate sci"
@@ -880,7 +880,7 @@
    "tier": 4,
    "year": 2010,
    "short": "The maintained fork of the Python Imaging Library, used to open, resize and save images; the original PIL dates to 1995.",
-   "long": "The Python Imaging Library, by Fredrik Lundh and contributors, was first released in 1995 according to Wikipedia. Pillow is a fork of it, first uploaded to PyPI on 31 July 2010. It opens, resizes and saves images in many formats, as in Image.open(\"a.png\").resize((64, 64)). Pillow is licensed under the MIT-CMU (HPND) licence. Version 12.3.0 appeared on 1 July 2026, and the package had 426 million downloads in September 2026, ranking 59th on PyPI.",
+   "long": "The Python Imaging Library, by Fredrik Lundh and contributors, was first released in 1995 according to Wikipedia. Pillow is a fork of it, first uploaded to PyPI on 31 July 2010. It opens, resizes and saves images in many formats, as in Image.open(\"a.png\").resize((64, 64)). Pillow is licensed under the MIT-CMU (HPND) license. Version 12.3.0 appeared on 1 July 2026, and the package had 426 million downloads in September 2026, ranking 59th on PyPI.",
    "code": {
     "lang": "python",
     "text": "from PIL import Image\n\nImage.open(\"a.png\").resize((64, 64)).save(\"small.png\")"
@@ -911,7 +911,7 @@
    "tier": 4,
    "year": 2004,
    "short": "Leonard Richardson's Python library for pulling data out of messy HTML, first released in 2004.",
-   "long": "Beautiful Soup was created in 2004 by Leonard Richardson. It parses messy HTML and lets a program search the result: BeautifulSoup(html, \"html.parser\").find_all(\"a\") returns every link. Version 4 is MIT licensed, and version 3 used the PSF licence. Version 4.15.0 appeared on 7 June 2026, and the package had 297 million downloads in September 2026, ranking 99th on PyPI. For crawling many pages there is a separate framework, Scrapy, and for pages that need JavaScript to run there are browser drivers such as Selenium and Playwright.",
+   "long": "Beautiful Soup was created in 2004 by Leonard Richardson. It parses messy HTML and lets a program search the result: BeautifulSoup(html, \"html.parser\").find_all(\"a\") returns every link. Version 4 is MIT licensed, and version 3 used the PSF license. Version 4.15.0 appeared on 7 June 2026, and the package had 297 million downloads in September 2026, ranking 99th on PyPI. For crawling many pages there is a separate framework, Scrapy, and for pages that need JavaScript to run there are browser drivers such as Selenium and Playwright.",
    "code": {
     "lang": "python",
     "text": "from bs4 import BeautifulSoup\n\nhtml = \"<p>See <a href='/a'>one</a> and <a href='/b'>two</a></p>\"\nsoup = BeautifulSoup(html, \"html.parser\")\nprint([a[\"href\"] for a in soup.find_all(\"a\")])   # ['/a', '/b']"
@@ -1054,7 +1054,7 @@
    "tier": 3,
    "year": 2021,
    "short": "A software bill of materials: a machine-readable list of the components in a program, promoted by US Executive Order 14028 in 2021.",
-   "long": "An SBOM lists the ingredients of a piece of software so that buyers and defenders can check them against vulnerability reports. The two main formats are SPDX, which began in 2010 inside a Linux Foundation work group and is now the international standard ISO/IEC 5962:2021, and CycloneDX, OWASP's format, standardised as ECMA-424. US Executive Order 14028, signed on 12 May 2021, charged agencies including NIST with software supply chain security, and the NTIA defined minimum SBOM elements. The limits showed quickly: the Cyber Safety Review Board found that none of the organisations that reported to it had used SBOMs to identify vulnerable Log4j deployments, and described SBOMs as limited by inconsistent field descriptions and missing version information.",
+   "long": "An SBOM lists the ingredients of a piece of software so that buyers and defenders can check them against vulnerability reports. The two main formats are SPDX, which began in 2010 inside a Linux Foundation work group and is now the international standard ISO/IEC 5962:2021, and CycloneDX, OWASP's format, standardised as ECMA-424. US Executive Order 14028, signed on 12 May 2021, charged agencies including NIST with software supply chain security, and the NTIA defined minimum SBOM elements. The limits showed quickly: the Cyber Safety Review Board found that none of the organizations that reported to it had used SBOMs to identify vulnerable Log4j deployments, and described SBOMs as limited by inconsistent field descriptions and missing version information.",
    "sleeper": "Software was once judged by what it did. Regulators and buyers now ask what it contains, much as a food label lists ingredients.",
    "code": {
     "lang": "json",
@@ -1404,7 +1404,7 @@
    "tier": 3,
    "year": 2026,
    "short": "In the 2025 Stack Overflow survey npm leads package managers at 56.8 percent, followed by pip, Homebrew, Yarn, NuGet, APT, Maven, Gradle and Cargo.",
-   "long": "In the Stack Overflow 2025 survey the share of all respondents using each tool was: npm 56.8 percent, pip 40.9, Homebrew 25.7, Yarn 21.1, NuGet 18.9, APT 18.4, Maven 16.4, Gradle 14.4, Cargo 14.4, pnpm 13.4, Composer 11, Poetry 9 and Bun 5.5. State of JavaScript 2025 found pnpm the clear leader among monorepo users. In September 2026 pip had about 414 million PyPI downloads and uv 129 million, though uv is mostly installed by other routes.\n\nRegistries differ in size: about 4.4 million package records on npm, over 900,000 projects on PyPI, 492,566 hits on NuGet, 469,642 packages on Packagist, 343,176 crates and 25,284 packages on CRAN. Go has built-in modules, Swift has Swift Package Manager, Elixir has Hex, and C and C++ have no single winner. Counts measure installs and uploads, not users.",
+   "long": "In the Stack Overflow 2025 survey the share of all respondents using each tool was: npm 56.8 percent, pip 40.9, Homebrew 25.7, Yarn 21.1, NuGet 18.9, APT 18.4, Maven 16.4, Gradle 14.4, Cargo 14.4, pnpm 13.4, Composer 11, Poetry 9 and Bun 5.5. State of JavaScript 2025 found pnpm the clear leader among monorepo users. In one PyPI download count for September 2026, pip had about 414 million downloads and uv 129 million, though uv is mostly installed by other routes.\n\nRegistries differ in size: about 4.4 million package records on npm, over 900,000 projects on PyPI, 492,566 hits on NuGet, 469,642 packages on Packagist, 343,176 crates and 25,284 packages on CRAN. Go has built-in modules, Swift has Swift Package Manager, Elixir has Hex, and C and C++ have no single winner. Counts measure installs and uploads, not users.",
    "status": "n/a",
    "tags": [
     "stack overflow survey",
@@ -1448,7 +1448,7 @@
    "t": "pkg.manager",
    "w": 2,
    "k": "influenced",
-   "note": "the idea of catalogued, reusable parts"
+   "note": "the idea of cataloged, reusable parts"
   },
   {
    "s": "pkg.software-components",
@@ -1627,7 +1627,7 @@
    "t": "proc.hyrums-law",
    "w": 2,
    "k": "related",
-   "note": "with enough users, every observable behaviour is depended on"
+   "note": "with enough users, every observable behavior is depended on"
   },
   {
    "s": "pkg.semver",

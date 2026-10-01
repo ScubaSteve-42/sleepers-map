@@ -11,8 +11,10 @@ import { buildMap } from '../scripts/build.mjs';
 const data = JSON.parse(readFileSync(path.join(root, 'data/graph.json'), 'utf8'));
 const byId = new Map(data.nodes.map((n) => [n.id, n]));
 const nbrs = (id) => data.edges.filter((e) => e.s === id || e.t === id).map((e) => (e.s === id ? e.t : e.s));
-const SHOTS = path.join(root, 'screenshots');
-let browser, glRenderer = 'unknown';
+const SHOTS = process.env.SMAP_SHOTS ? path.resolve(process.env.SMAP_SHOTS) : path.join(root, 'screenshots');   // software-rendering runs can write elsewhere so they do not replace the README images
+// software rendering (SwiftShader) starts on the low preset at reduced resolution and manages about 10 frames a second on the full map
+const SOFTWARE_FPS_FLOOR = 5;
+let browser;
 
 before(async () => {
   assert.ok(existsSync(MAP_FILE), `build first: ${MAP_FILE} is missing`);
@@ -31,7 +33,7 @@ test('loads with no console errors and no network requests, and draws the whole 
   assert.deepEqual(errors, []);
   assert.ok(requests.every((u) => /^(file|data|blob):/.test(u)), `unexpected requests: ${requests.filter((u) => !/^(file|data|blob):/.test(u)).join(', ')}`);
   const s = await state(page);
-  glRenderer = s.gl.renderer; console.log(`# GL renderer: ${glRenderer}`);
+  console.log(`# GL renderer: ${s.gl.renderer}`);
   assert.equal(s.gl.webgl2, true);
   assert.equal(s.nodes, data.nodes.length);
   assert.equal(s.visible, data.nodes.length);
@@ -40,7 +42,10 @@ test('loads with no console errors and no network requests, and draws the whole 
 }));
 
 test('overview shows hub titles but no descriptions', withPage({}, async ({ page }) => {
-  await page.evaluate(() => window.__mapTest.jumpOverview()); await page.waitForTimeout(700);
+  await page.evaluate(() => window.__mapTest.jumpOverview());
+  const rootId = data.nodes.find((n) => n.tier === 0).id;
+  await page.waitForFunction((id) => window.__mapTest.labels().visible.includes(id), rootId, { timeout: 30000 }).catch(() => {});
+  await page.waitForTimeout(500);
   const { visible, described } = await page.evaluate(() => window.__mapTest.labels());
   const hubs = data.nodes.filter((n) => n.tier <= 1).map((n) => n.id);
   const shownHubs = hubs.filter((id) => visible.includes(id));
@@ -50,7 +55,8 @@ test('overview shows hub titles but no descriptions', withPage({}, async ({ page
 }));
 
 test('zooming in fades a description in', withPage({}, async ({ page }) => {
-  await page.evaluate(() => window.__mapTest.jumpTo('lang.python', 34)); await page.waitForTimeout(900);
+  await page.evaluate(() => window.__mapTest.jumpTo('lang.python', 34));
+  await page.waitForFunction(() => window.__mapTest.labels().described.includes('lang.python'), null, { timeout: 30000 }).catch(() => {});
   const { described } = await page.evaluate(() => window.__mapTest.labels());
   assert.ok(described.includes('lang.python'), `described: ${described.join(', ')}`);
   const text = await page.locator('.lbl.desc .d').first().textContent();
@@ -68,8 +74,10 @@ test('every hub, and a sample of all other nodes, shows its title once you zoom 
 }));
 
 test('hovering a node lights its neighbours and dims everything else', withPage({}, async ({ page }) => {
-  await page.evaluate(() => { window.__mapTest.jumpOverview(); window.__mapTest.hover('lang.c'); }); await page.waitForTimeout(900);
+  await page.evaluate(() => { window.__mapTest.jumpOverview(); window.__mapTest.hover('lang.c'); });
   const n1 = nbrs('lang.c')[0], stranger = data.nodes.find((n) => n.id !== 'lang.c' && !nbrs('lang.c').includes(n.id)).id;
+  // the emphasis eases in over a few frames, so wait for it instead of sleeping (software rendering draws only a few frames a second)
+  await page.waitForFunction(([a, b, c]) => { const t = window.__mapTest, x = t.fx(a), y = t.fx(b), z = t.fx(c); return x.emph > 0.9 && y.emph > 0.3 && y.dim < 0.3 && z.dim > 0.6; }, ['lang.c', n1, stranger], { timeout: 30000 }).catch(() => {});
   const f = await page.evaluate(([a, b, c]) => [window.__mapTest.fx(a), window.__mapTest.fx(b), window.__mapTest.fx(c)], ['lang.c', n1, stranger]);
   assert.ok(f[0].emph > 0.9, 'hovered node not emphasised'); assert.ok(f[1].emph > 0.3 && f[1].dim < 0.3, 'neighbour not lit'); assert.ok(f[2].dim > 0.6, 'unrelated node not dimmed');
 }));
@@ -149,24 +157,32 @@ test('an empty search box offers starter questions, and each opens the node that
 
 test('category legend hides and restores nodes', withPage({}, async ({ page }) => {
   const total = data.nodes.length, fail = data.nodes.filter((n) => n.cat === 'failures').length;
-  await page.click('#legend-list button[data-cat="failures"]'); await page.waitForTimeout(1200);
+  await page.click('#legend-list button[data-cat="failures"]');
+  await page.waitForFunction((n) => window.__mapTest.state().visible === n, total - fail, { timeout: 30000 }).catch(() => {});
   assert.equal((await state(page)).visible, total - fail);
   const vis = (await page.evaluate(() => window.__mapTest.labels())).visible;
   assert.ok(!vis.some((id) => byId.get(id).cat === 'failures'), 'a hidden category still shows labels');
-  await page.click('#legend-all'); await page.waitForTimeout(1200);
+  await page.click('#legend-all');
+  await page.waitForFunction((n) => window.__mapTest.state().visible === n, total, { timeout: 30000 }).catch(() => {});
   assert.equal((await state(page)).visible, total);
 }));
 
 test('time scrubber hides ideas newer than the chosen year', withPage({}, async ({ page }) => {
-  await page.$eval('#year', (el) => { el.value = '1980'; el.dispatchEvent(new Event('input', { bubbles: true })); }); await page.waitForTimeout(1300);
+  await page.$eval('#year', (el) => { el.value = '1980'; el.dispatchEvent(new Event('input', { bubbles: true })); });
   const expected = data.nodes.filter((n) => n.year <= 1980).length;
+  await page.waitForFunction((n) => window.__mapTest.state().visible === n, expected, { timeout: 30000 }).catch(() => {});
   assert.equal((await state(page)).visible, expected); assert.equal(await page.locator('#year-out').textContent(), '1980');
   assert.ok(expected < data.nodes.length);
 }));
 
 test('play replays history from the start', withPage({}, async ({ page }) => {
-  await page.click('#play'); await page.waitForTimeout(2200);
-  const mid = await state(page); assert.ok(mid.year < Math.max(...data.nodes.map((n) => n.year)), 'timeline did not rewind'); assert.ok(mid.visible < data.nodes.length);
+  const [first, last] = [Math.min(...data.nodes.map((n) => n.year)), Math.max(...data.nodes.map((n) => n.year))];
+  await page.click('#play');
+  // the replay starts at the first year and then advances; wait until it has clearly moved on, and still has not reached the end
+  await page.waitForFunction((y) => window.__mapTest.state().year >= y, first + 4, { timeout: 30000 });
+  const mid = await state(page);
+  assert.ok(mid.year > first && mid.year < last, `year ${mid.year} should be between ${first} and ${last} while replaying`);
+  assert.ok(mid.visible < data.nodes.length, 'the replay should hide ideas newer than the current year');
   await page.click('#play');
 }));
 
@@ -216,6 +232,31 @@ test('keyboard shortcuts work', withPage({}, async ({ page }) => {
   await page.keyboard.press('l'); assert.ok((await page.locator('#listview button').count()) >= data.nodes.length); await page.keyboard.press('Escape');
 }));
 
+test('Escape in the search box closes only the suggestions, and shortcuts still work after using the year slider', withPage({}, async ({ page }) => {
+  await page.evaluate(() => window.__mapTest.select('lang.python')); await settle(page);
+  await page.keyboard.press('/'); await page.waitForSelector('#results li[role="option"]'); await page.keyboard.press('Escape');
+  assert.equal(await page.locator('#results').isHidden(), true);
+  assert.equal((await state(page)).selected, 'lang.python', 'Escape in the search box should not close the panel behind it');
+  await page.focus('#year'); await page.keyboard.press('l');
+  assert.equal(await page.locator('#listview').isVisible(), true, 'a focused slider should not swallow letter shortcuts'); await page.keyboard.press('Escape');
+  assert.equal(await page.locator('#listview').isHidden(), true);
+}));
+
+test('a deep link skips the opening animation and lands on its node', withPage({ query: 'test=1&intro=1&still=1', hash: '#n=lang.c', waitReady: false }, async ({ page }) => {
+  await page.waitForFunction(() => window.__mapTest?.state().selected === 'lang.c', null, { timeout: 30000 });
+  await settle(page);
+  const s = await state(page);
+  assert.equal(await page.locator('#panel h2').textContent(), 'C');
+  assert.equal(await page.locator('#intro.show').count(), 0, 'the welcome card should not cover a deep link');
+  assert.equal(s.intro, false); assert.ok(s.cam.dist < 120, `the camera should end up near the node (distance ${s.cam.dist.toFixed(0)})`);
+}));
+
+test('a bogus layout name in the link is ignored instead of breaking the scene', withPage({ hash: '#l=constructor' }, async ({ page, errors }) => {
+  const s = await state(page); assert.equal(s.layout, 'constellation'); assert.deepEqual(errors, []);
+  assert.ok(s.cam.pos.every(Number.isFinite), 'the camera position should be a real number');
+  const a = analyze(await page.screenshot()); assert.ok(a.std > 12, 'the canvas should still draw');
+}));
+
 test('first-run intro appears and can be dismissed', withPage({ query: 'test=1&intro=1&still=1', waitReady: false }, async ({ page, errors }) => {
   await page.waitForSelector('#intro.show', { timeout: 40000 });
   assert.match(await page.locator('#intro h2').textContent(), /Sleeper/);
@@ -234,8 +275,11 @@ test('phone viewport: no horizontal overflow and the panel is a bottom sheet', w
   d = await m(); assert.ok(d.sw <= d.iw);
 }));
 
-test('reduced motion turns off pulses and skips the intro', withPage({ reducedMotion: 'reduce' }, async ({ page }) => {
+test('reduced motion turns off pulses and skips the opening animation', withPage({ reducedMotion: 'reduce', query: 'test=1&intro=1&still=1' }, async ({ page }) => {
   const f = await page.evaluate(() => window.__mapTest.flags()); assert.equal(f.pulse, 0); assert.equal(f.reduced, true);
+  // with intro=1 the welcome card still shows, but the animated big bang must not run
+  assert.equal((await state(page)).intro, false, 'the opening animation should not run under reduced motion');
+  await page.waitForSelector('#intro.show');
 }));
 
 test('without WebGL the full list is still readable', withPage({
@@ -252,8 +296,9 @@ test('without WebGL the full list is still readable', withPage({
 
 test('frame rate is reported and above a floor', withPage({}, async ({ page }) => {
   const fps = await page.evaluate(() => window.__mapTest.measureFps(2500));
-  const soft = /swiftshader|software|llvmpipe/i.test(glRenderer); const floor = soft ? 8 : 40;
-  console.log(`# ${fps.toFixed(0)} fps on ${glRenderer}`); assert.ok(fps >= floor, `${fps.toFixed(1)} fps is below ${floor}`);
+  const renderer = (await state(page)).gl.renderer;   // read here, not from an earlier test, so a lone run uses the right floor
+  const soft = /swiftshader|software|llvmpipe/i.test(renderer); const floor = soft ? SOFTWARE_FPS_FLOOR : 40;
+  console.log(`# ${fps.toFixed(0)} fps on ${renderer}`); assert.ok(fps >= floor, `${fps.toFixed(1)} fps is below ${floor}`);
 }));
 
 test('scales to thousands of nodes (3,000 generated points)', { timeout: 300000 }, async () => {
@@ -263,9 +308,10 @@ test('scales to thousands of nodes (3,000 generated points)', { timeout: 300000 
   try {
     const s = await state(page); assert.equal(s.nodes, graph.nodes.length); assert.deepEqual(errors, []);
     const fps = await page.evaluate(() => window.__mapTest.measureFps(2500)); console.log(`# ${graph.nodes.length} nodes: ${fps.toFixed(0)} fps`);
-    await page.evaluate(() => window.__mapTest.jumpTo('syn.n2500', 80)); await page.waitForTimeout(600);
-    assert.ok((await page.evaluate(() => window.__mapTest.labels())).visible.length > 3);
-    assert.ok(fps >= (/swiftshader|software/i.test(glRenderer) ? 3 : 25), `only ${fps.toFixed(1)} fps with ${graph.nodes.length} nodes`);
+    await page.evaluate(() => window.__mapTest.jumpTo('syn.n2500', 80));
+    await page.waitForFunction(() => window.__mapTest.labels().visible.length > 3, null, { timeout: 30000 });
+    const soft = /swiftshader|software|llvmpipe/i.test(s.gl.renderer);
+    assert.ok(fps >= (soft ? SOFTWARE_FPS_FLOOR / 2 : 25), `only ${fps.toFixed(1)} fps with ${graph.nodes.length} nodes`);
   } finally { await ctx.close(); }
 });
 
@@ -281,6 +327,7 @@ test('captures the README screenshots', withPage({}, async ({ page }) => {
   await page.evaluate(() => window.__mapTest.setYear(1985)); await page.evaluate(() => window.__mapTest.jumpOverview()); await shot('06-time-travel-1985');
   await page.evaluate(() => window.__mapTest.setYear(2100)); await page.evaluate(() => window.__mapTest.startTour()); await settle(page); await page.evaluate(() => window.__mapTest.tourStep(3)); await settle(page); await shot('07-guided-tour');
   await page.keyboard.press('Escape'); await page.fill('#q', 'compiler'); await shot('08-search');
+  await page.fill('#q', ''); await page.waitForSelector('#results li[role="option"]'); await shot('10-start-with-a-question');
 }));
 
 test('captures the phone screenshot', withPage({ viewport: { width: 390, height: 844 }, mobile: true, deviceScaleFactor: 2 }, async ({ page }) => {

@@ -156,14 +156,15 @@ pre.code { margin: 0 0 18px; padding: 12px 14px; overflow: auto; border-radius: 
 #help p { margin: 0 0 10px; color: #c9d1f2; }
 #help dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; }
 #help dd { margin: 0; color: #c9d1f2; }
+#help p.fine { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1.5; color: var(--muted); }
 .x { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255, 255, 255, .05); color: var(--muted); font-size: 18px; line-height: 1; }
 #help .x { position: absolute; top: 14px; right: 14px; }
 
 /* ---------- intro ---------- */
-#intro { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; text-align: center; padding: 24px; background: radial-gradient(ellipse at 50% 52%, rgba(2, 3, 10, .88), rgba(2, 3, 10, .7) 75%); opacity: 0; pointer-events: none; transition: opacity 1.1s ease; }
+#intro { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; text-align: center; padding: 24px; background: radial-gradient(ellipse at 50% 52%, rgba(2, 3, 10, .88), rgba(2, 3, 10, .7) 75%); opacity: 0; pointer-events: none; visibility: hidden; transition: opacity 1.1s ease, visibility 0s 1.1s; }   /* hidden, not just transparent, so its buttons leave the tab order */
 body.intro-open #labels { opacity: .12; }
 #labels { transition: opacity .8s ease; }
-#intro.show { opacity: 1; pointer-events: auto; }
+#intro.show { opacity: 1; pointer-events: auto; visibility: visible; transition: opacity 1.1s ease, visibility 0s; }
 #intro .intro-inner { max-width: 640px; transform: translateY(14px); transition: transform 1.2s cubic-bezier(.2, .8, .2, 1); }
 #intro.show .intro-inner { transform: none; }
 #intro .kicker { margin: 0 0 8px; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--warm); }
@@ -200,6 +201,7 @@ body.intro-open #labels { opacity: .12; }
 
 /* ---------- phones ---------- */
 @media (max-width: 860px) {
+  body.panel-open .lbl.desc .lbl-desc { display: none; }   /* the bottom sheet already shows the description */
   #search { width: min(420px, calc(100vw - 2 * var(--gap) - 130px)); left: calc(var(--gap) + 130px); transform: none; top: var(--gap); }
   #brand { max-width: 150px; padding: 10px 14px; }
   #brand h1 { font-size: 22px; }

@@ -264,7 +264,7 @@
    "tier": 4,
    "year": 2014,
    "short": "Type checkers that big companies built for dynamic languages: Facebook's Flow for JavaScript, Facebook's Hack for PHP and Stripe's Sorbet for Ruby.",
-   "long": "Companies with huge codebases in dynamic languages built type checkers for them rather than rewrite. Facebook's Flow, whose repository dates from October 2014, checks JavaScript. Hack, which Facebook opened in March 2014 for its HHVM runtime, is typed PHP; it checks files incrementally as you edit and typically finishes in under 200 milliseconds. Stripe's Sorbet does the same job for Ruby, and its repository dates from 2018. Flow was one of the two checkers in the study that found each of Flow and TypeScript catching 15 percent of real JavaScript bugs. Microsoft's TypeScript took a different route, a new language that compiles to JavaScript, while Flow remains active with a smaller footprint.",
+   "long": "Companies with huge codebases in dynamic languages built type checkers for them rather than rewrite. Facebook's Flow, whose repository dates from October 2014, checks JavaScript. Hack, which Facebook opened in March 2014 for its HHVM runtime, is typed PHP; it checks files incrementally as you edit and, its site says, typically finishes in under 200 milliseconds. Stripe's Sorbet does the same job for Ruby, and its repository dates from 2018. Flow was one of the two checkers in the study that found each of Flow and TypeScript catching 15 percent of real JavaScript bugs. Microsoft's TypeScript took a different route, a new language that compiles to JavaScript, while Flow remains active with a smaller footprint.",
    "status": "niche",
    "tags": [
     "flow",
@@ -309,7 +309,8 @@
      "label": "Sadowski et al., Lessons from Building Static Analysis Tools at Google (CACM 2018)",
      "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4365.pdf"
     }
-   ]
+   ],
+   "status": "n/a"
   },
   {
    "id": "qual.infer",
@@ -317,8 +318,8 @@
    "cat": "quality",
    "tier": 4,
    "year": 2015,
-   "short": "Facebook's open-source bug finder. Switching it from a batch report to comments during code review lifted its fix rate from near zero to over 70 percent.",
-   "long": "Infer is a static analyzer written in OCaml whose public repository dates from 2015. It checks Java, C, C++, Objective-C and Erlang code for null dereferences, data races and many other problems, and it runs in continuous integration on every change across Facebook, Messenger, Instagram and WhatsApp. Its most-quoted lesson is about timing, not technique. Run as a nightly batch job, it produced lists of issues that engineers almost never fixed. Run at \"diff time\", as a bot commenting during code review, the same analysis with the same false-positive rate had a fix rate of over 70 percent. By 2019 developers had fixed over 100,000 reported issues before the code reached production. A sibling tool, Zoncolan, looks for security bugs in Facebook's Hack code.",
+   "short": "Facebook's open-source bug finder. Facebook says moving it from a batch report to comments in code review lifted its fix rate from near zero to over 70 percent.",
+   "long": "Infer is a static analyzer written in OCaml whose public repository dates from 2015. It checks Java, C, C++, Objective-C and Erlang code for null dereferences, data races and many other problems, and it runs in continuous integration on every change across Facebook, Messenger, Instagram and WhatsApp. Its most-quoted lesson is about timing, not technique. Run as a batch job, it produced lists of issues that engineers almost never fixed. Run at \"diff time\", as a bot commenting during code review, the same analysis with the same false-positive rate had, Facebook reports, a fix rate of over 70 percent. Facebook's 2019 paper says developers had fixed over 100,000 reported issues before the code reached production. A sibling tool, Zoncolan, looks for security bugs in Facebook's Hack code.",
    "status": "niche",
    "tags": [
     "facebook",
@@ -346,7 +347,7 @@
    "tier": 3,
    "year": 2002,
    "short": "A commercial bug finder built in 2002 from a Stanford research checker. Its engineers' 2010 account of false positives shaped the whole field.",
-   "long": "Coverity began in November 2002 as a company built around a Stanford research bug finder, with Dawson Engler as technical adviser. It found bugs by following data and control flow through whole programs, ran overnight, and was unsound by design: its authors tried to find as many bugs as possible rather than prove none remained. By December 2009 about 700 customers had licensed it, covering somewhat more than a billion lines of code. A free Coverity Scan service, run under a 2006 US Department of Homeland Security contract, examined more than 150 open-source applications, and about 6,000 of the bugs it found were fixed across 53 projects. Synopsys bought the company in 2014 for $375 million in cash. The 2010 paper by its engineers is the standard source on why false positives sink static analysis.",
+   "long": "Coverity began in November 2002 as a company built around a Stanford research bug finder, with Dawson Engler as technical adviser. It found bugs by following data and control flow through whole programs, ran overnight, and was unsound by design: its authors tried to find as many bugs as possible rather than prove none remained. Its engineers reported that by December 2009 about 700 customers had licensed it, covering somewhat more than a billion lines of code. A free Coverity Scan service, run under a 2006 US Department of Homeland Security contract, examined more than 150 open-source applications, and about 6,000 of the bugs it found were fixed across 53 projects. Synopsys bought the company in 2014 for $375 million in cash. The 2010 paper by its engineers is the standard source on why false positives sink static analysis.",
    "sleeper": "A Coverity co-founder recalled in 2010 that pitching a static bug finder had drawn \"Huh?\" or \"Lint? Yuck.\" Companies now run such analyzers on every code change.",
    "status": "niche",
    "tags": [
@@ -430,7 +431,7 @@
    "tier": 3,
    "year": 2002,
    "short": "Static application security testing: tools that read source code for exploitable patterns such as SQL injection. Their best-known weakness is noise.",
-   "long": "SAST tools analyze source or compiled code for security flaws. OWASP says they scale to large codebases, repeat scans cheaply, find well-known problems such as buffer overflows and SQL injection, and point to the file and line. Its list of weaknesses is just as clear: high numbers of false positives, no view of configuration problems, little ability to find broken authentication or access control, and trouble with code that cannot be built. The first commercial products appeared in the early 2000s, including Coverity in 2002 and Checkmarx in 2006. Open-source examples are Bandit for Python, Brakeman for Rails, Semgrep and SpotBugs; commercial ones include Fortify, Veracode and Snyk Code. Semgrep matches patterns that look like source code, while CodeQL lets analysts write queries.",
+   "long": "SAST tools analyze source or compiled code for security flaws. OWASP says they scale to large codebases, repeat scans cheaply, find well-known problems such as buffer overflows and SQL injection, and point to the file and line. Its list of weaknesses is just as clear: high numbers of false positives, no view of configuration problems, little ability to find broken authentication or access control, and trouble with code that cannot be built. Early commercial examples are Coverity, begun in 2002, and Checkmarx, founded in 2006. Open-source examples are Bandit for Python, Brakeman for Rails, Semgrep and SpotBugs; other commercial ones include Fortify, Veracode and Snyk Code. Semgrep matches patterns that look like source code, while CodeQL lets analysts write queries.",
    "code": {
     "lang": "python",
     "text": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE users (name TEXT)\")\nname = \"x' OR '1'='1\"\n# before: Bandit B608 flags SQL built by string formatting\nrows = db.execute(\"SELECT * FROM users WHERE name = '%s'\" % name).fetchall()\n# after: the driver passes the value separately\nrows = db.execute(\"SELECT * FROM users WHERE name = ?\", (name,)).fetchall()"
@@ -508,7 +509,7 @@
    "tier": 4,
    "year": 2017,
    "short": "Tools that compare your libraries against lists of known vulnerabilities and licenses, and search code and git history for leaked passwords and keys.",
-   "long": "Modern programs are mostly other people's code, so a class of checker reads each project's manifest and lockfile and compares every library version with databases of known vulnerabilities and licenses. Dependabot, from GitHub, raises alerts and opens pull requests that update vulnerable or outdated dependencies; Renovate, from Mend, does similar work across platforms; npm audit and pip-audit check one ecosystem each. Trivy, from Aqua Security, scans containers and repositories, and Gitleaks searches code and git history for secrets. These tools only know about published problems, and they can flag a vulnerable function your code never calls. In 2026 Dependabot began applying a three-day delay to non-security updates by default, a defense against freshly poisoned releases.",
+   "long": "Modern programs are mostly other people's code, so a class of checker reads each project's manifest and lockfile and compares every library version with databases of known vulnerabilities and licenses. Dependabot, from GitHub, raises alerts and opens pull requests that update vulnerable or outdated dependencies; Renovate, from Mend, does similar work across platforms; npm audit and pip-audit check one ecosystem each. Trivy, from Aqua Security, scans containers and repositories, and Gitleaks searches code and git history for secrets. These tools only know about published problems, and they can flag a vulnerable function your code never calls. As of 2026 Dependabot applies a three-day delay to non-security updates by default, a defense against freshly poisoned releases.",
    "sleeper": "You used to pick libraries yourself and rarely heard about their flaws. Now a bot compares every dependency with databases of known vulnerabilities and opens a pull request to update it.",
    "code": {
     "lang": "yaml",
@@ -601,9 +602,9 @@
    "cat": "quality",
    "tier": 3,
    "year": 2002,
-   "short": "Tools that watch a running program for memory errors. Valgrind (2002) is thorough but over 20 times slower; AddressSanitizer (2012) costs roughly 2 times.",
+   "short": "Tools that watch a running program for memory errors. Valgrind (2002) is thorough but over 20 times slower; AddressSanitizer (2012) averages about 1.7 times.",
    "long": "Valgrind, whose Memcheck tool tracks memory accesses and uninitialized values, was first released in 2002 and is used by thousands of C and C++ programmers, at the cost of a mean 22 times slowdown in a 2007 benchmark. Serebryany, Bruening, Potapenko and Vyukov, all at Google, published AddressSanitizer in 2012. It poisons \"redzones\" around objects and keeps a shadow map of memory, finding out-of-bounds accesses and use-after-free bugs with an average slowdown of 73 percent, and it found over 300 previously unknown bugs in Chromium. Sibling sanitizers cover data races (ThreadSanitizer) and undefined behavior (UBSan). Because the bug really happened, these tools almost never give false alarms, but they only see code that the tests actually run.",
-   "sleeper": "Heavyweight memory checkers of the early 2000s slowed programs 20 times or more. AddressSanitizer finds the same class of bugs at roughly 2 times, cheap enough to run in routine tests.",
+   "sleeper": "Heavyweight memory checkers of the early 2000s slowed programs 20 times or more. AddressSanitizer finds the same class of bugs at about 1.7 times, cheap enough to run in routine tests.",
    "code": {
     "lang": "c",
     "text": "/* clang -fsanitize=address -g -O0 overflow.c && ./a.out */\nint main(int argc, char **argv) {\n    int a[4];\n    a[argc + 3] = 1;   /* argc is 1, so this writes a[4]: ASan reports stack-buffer-overflow */\n    return 0;\n}"
@@ -634,9 +635,9 @@
    "cat": "quality",
    "tier": 3,
    "year": 1988,
-   "short": "Throwing random or mutated input at a program until it crashes. It began as a 1988 class project; Google's OSS-Fuzz now runs it on about 1,000 projects.",
-   "long": "The word comes from a 1988 graduate class project of Barton Miller at the University of Wisconsin, and his 1990 study found that fuzzing could crash 25 to 33 percent of the utilities tested. Modern fuzzers are guided by coverage: libFuzzer, part of LLVM, runs your function on mutated inputs inside the process, and you compile it with sanitizers so memory errors are caught the moment they occur. Google's OSS-Fuzz, started in 2016 in response to the Heartbleed flaw in OpenSSL, had helped identify and fix over 10,000 vulnerabilities and 36,000 bugs across about 1,000 projects by August 2023. Fuzzing finds only what the generated inputs reach.",
-   "sleeper": "Random input once looked like a crude trick. By August 2023 Google's OSS-Fuzz had helped identify and fix over 10,000 vulnerabilities and 36,000 other bugs in open-source software.",
+   "short": "Throwing random or mutated input at a program until it crashes. It began as a 1988 class project; Google's OSS-Fuzz ran it on about 1,000 projects by 2023.",
+   "long": "The word comes from a 1988 graduate class project of Barton Miller at the University of Wisconsin, and his 1990 study found that fuzzing could crash 25 to 33 percent of the utilities tested. Modern fuzzers are guided by coverage: libFuzzer, part of LLVM, runs your function on mutated inputs inside the process, and you compile it with sanitizers so memory errors are caught the moment they occur. Google's OSS-Fuzz, started in 2016 in response to the Heartbleed flaw in OpenSSL, had by August 2023, according to Google, helped identify and fix over 10,000 vulnerabilities and 36,000 bugs across about 1,000 projects. Fuzzing finds only what the generated inputs reach.",
+   "sleeper": "Random input once looked like a crude trick. Google says that by August 2023 its OSS-Fuzz had helped identify and fix over 10,000 vulnerabilities and 36,000 other bugs in open-source software.",
    "code": {
     "lang": "cpp",
     "text": "// clang++ -g -fsanitize=fuzzer,address fuzz.cpp && ./a.out\n#include <cstddef>\n#include <cstdint>\nextern \"C\" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {\n  if (size >= 3 && data[0] == 'F' && data[1] == 'U' && data[2] == 'Z')\n    __builtin_trap();                  // a crash only the right input reaches\n  return 0;\n}"
@@ -667,7 +668,7 @@
    "cat": "quality",
    "tier": 3,
    "year": 1972,
-   "short": "Proving a property of a program or design with mathematics instead of testing examples. Dijkstra, 1972: tests show that bugs are present, never that they are absent.",
+   "short": "Proving a program or design correct with mathematics, not examples. Dijkstra, 1972: testing can show bugs but is hopelessly inadequate for showing their absence.",
    "long": "In his 1972 Turing lecture Edsger Dijkstra said that program testing can be very effective for showing the presence of bugs but is hopelessly inadequate for showing their absence. Formal verification aims at absence. Model checking explores every state of a finite model of a design. Proof assistants such as Rocq and Lean check mathematical proofs, and tools such as SPARK and Frama-C prove properties of programs written in restricted or annotated languages. Rust's borrow checker is a lightweight form that every Rust programmer meets. Rice's theorem is why these methods restrict the language, require annotations or specifications, or look only at a finite abstraction. Memory safety is the usual target: roughly 70 percent of the security issues Microsoft assigns a CVE to are memory-safety bugs.",
    "sleeper": "You may remember formal methods as a niche for avionics. Since 2011 Amazon engineers have model-checked cloud designs, and the Rust compiler's ownership rules act as a built-in proof of memory safety for everyday programmers.",
    "code": {
@@ -758,7 +759,7 @@
    "tier": 4,
    "year": 1987,
    "short": "Tools for proving software correct: SPARK for Ada (1987), the seL4 kernel, and the Rocq and Lean proof assistants, which check proofs by machine.",
-   "long": "SPARK began at the University of Southampton in 1987 as a provable subset of Ada, sponsored by the UK Ministry of Defence. Its prover can show that a program has no runtime errors, and it has been used in Rolls-Royce Trent engines, the Eurofighter Typhoon, UK air traffic management and rail signaling. Rocq, formerly Coq, is a proof assistant that has hosted CompCert, a verified C compiler, and a proof of the Four-Color theorem. Lean, begun by Leonardo de Moura at Microsoft Research in 2013, has a library, Mathlib, with over 210,000 theorems. The seL4 kernel has machine-checked proofs of functional correctness and integrity, and confidentiality proofs were completed on AArch64 in August 2026. RustBelt, a 2018 project, used Coq to prove that a core of Rust's ownership rules is sound.",
+   "long": "SPARK began at the University of Southampton in 1987 as a provable subset of Ada, sponsored by the UK Ministry of Defence. Its prover can show that a program has no runtime errors, and it has been used in Rolls-Royce Trent engines, the Eurofighter Typhoon, UK air traffic management and rail signaling. Rocq, formerly Coq, is a proof assistant that has hosted CompCert, a verified C compiler, and a proof of the Four-Color theorem. Lean, begun by Leonardo de Moura at Microsoft Research in 2013, has a library, Mathlib, with over 210,000 theorems as of May 2025. The seL4 kernel has machine-checked proofs of functional correctness and integrity, and confidentiality proofs were completed on AArch64 in August 2026. RustBelt's 2018 paper used Coq to prove that a core of Rust's ownership rules is sound.",
    "code": {
     "lang": "lean",
     "text": "theorem add_zero' (n : Nat) : n + 0 = n := rfl         -- true by the definition of +\ntheorem zero_add' (n : Nat) : 0 + n = n := by omega    -- needs a little arithmetic\n#check @zero_add'"
@@ -855,7 +856,7 @@
    "tier": 4,
    "year": 2006,
    "short": "Dan North's 2006 refinement of TDD: name tests as sentences about behavior, in language the customer understands. RSpec and Cucumber grew from it.",
-   "long": "Dan North introduced behaviour-driven development in a September 2006 article. Programmers kept asking where to start, what to test, how much to test at once, what to call tests and why a test failed. His answer grew out of two ideas: agiledox, a utility by his colleague Chris Stevenson that turned JUnit test method names into plain sentences, and a naming habit of writing \"the class should do something\". BDD then widened into agile analysis and automated acceptance tests written in the customer's language. RSpec, a Ruby tool begun in 2005, reads like a specification with describe, it and expect, and Cucumber for Ruby carries the idea into acceptance tests. RSpec's latest release in the sources is 3.13.0, from February 2024.",
+   "long": "Dan North introduced behavior-driven development in a September 2006 article. Programmers kept asking where to start, what to test, how much to test at once, what to call tests and why a test failed. His answer grew out of two ideas: agiledox, a utility by his colleague Chris Stevenson that turned JUnit test method names into plain sentences, and a naming habit of writing \"the class should do something\". BDD then widened into agile analysis and automated acceptance tests written in the customer's language. RSpec, a Ruby tool begun in 2005, reads like a specification with describe, it and expect, and Cucumber for Ruby carries the idea into acceptance tests. RSpec's latest release in the sources is 3.13.0, from February 2024.",
    "code": {
     "lang": "ruby",
     "text": "def price(amount, coupon: nil) = coupon == \"TEN\" ? amount * 0.9 : amount\n\nRSpec.describe \"price\" do\n  it \"takes ten percent off with the TEN coupon\" do\n    expect(price(100, coupon: \"TEN\")).to eq(90)\n  end\nend"
@@ -1115,7 +1116,7 @@
    "tier": 3,
    "year": 2020,
    "short": "Microsoft's browser-testing library, released in 2020. One API drives Chromium, Firefox and WebKit, and it waits automatically for pages to be ready.",
-   "long": "Playwright, from Microsoft, was first released on 31 January 2020. One programming interface drives three browser engines: Chromium, Firefox and WebKit. It was built by engineers who had previously worked on Puppeteer at Google. Its automatic waiting for elements to become ready targets the biggest single cause of flaky browser tests, which a 2014 study found was not waiting properly for asynchronous work. The GitHub repository has about 97,000 stars, ahead of Cypress (about 51,000) and Selenium (about 34,500), and Playwright and Cypress have become the defaults for many new web projects.",
+   "long": "Playwright, from Microsoft, was first released on 31 January 2020. One programming interface drives three browser engines: Chromium, Firefox and WebKit. It was built by engineers who had previously worked on Puppeteer at Google. Its automatic waiting for elements to become ready targets the most common cause of flaky tests in a 2014 study of open-source projects: not waiting properly for asynchronous work. The GitHub repository has about 97,000 stars, ahead of Cypress (about 51,000) and Selenium (about 34,500), and Playwright and Cypress have become the defaults for many new web projects.",
    "code": {
     "lang": "python",
     "text": "from playwright.sync_api import sync_playwright\n\nwith sync_playwright() as p:\n    browser = p.chromium.launch()\n    page = browser.new_page()\n    page.goto(\"https://example.com\")\n    print(page.title())          # Example Domain\n    browser.close()"
@@ -1251,8 +1252,8 @@
    "tier": 2,
    "year": 2010,
    "short": "Keep every change in a state that could ship, and release it in small, automated steps. Humble and Farley's 2010 book turned the idea into a method.",
-   "long": "Humble and Farley's 2010 book Continuous Delivery defines the practice as the ability to get all kinds of changes into production, or into users' hands, safely, quickly and sustainably. The mechanism is a deployment pipeline that every change passes through, with automated checks at each stage. Their slogan is that if it hurts, you should do it more often and bring the pain forward. Continuous delivery means every passing change is ready to release at the push of a button; continuous deployment releases it automatically with no human step. IMVU reported in 2009 that it deployed about fifty times a day, and Google Search ships a new binary every other day, guarding changes with flags and rolling them out in stages.",
-   "sleeper": "If you remember a nightly build and a release every year or two, the pace has inverted: IMVU deployed about fifty times a day in 2009, and Google Search ships a new binary every other day.",
+   "long": "Humble and Farley's 2010 book Continuous Delivery defines the practice as the ability to get all kinds of changes into production, or into users' hands, safely, quickly and sustainably. The mechanism is a deployment pipeline that every change passes through, with automated checks at each stage. Their slogan is that if it hurts, you should do it more often and bring the pain forward. Continuous delivery means every passing change is ready to release at the push of a button; continuous deployment releases it automatically with no human step. IMVU reported in 2009 that it deployed about fifty times a day, and Google says Search ships a new binary every other day, guarding changes with flags and rolling them out in stages.",
+   "sleeper": "If you remember a nightly build and a release every year or two, the pace has inverted: IMVU reported deploying about fifty times a day in 2009, and Google says Search ships a new binary every other day.",
    "status": "thriving",
    "tags": [
     "deployment pipeline",
@@ -1279,7 +1280,7 @@
    "tier": 3,
    "year": 2011,
    "short": "The long-running open-source automation server for building and testing code. It began as Hudson and was renamed in 2011 after a dispute with Oracle.",
-   "long": "Jenkins began as Hudson, a Java continuous integration server that around 2007 became known as a better alternative to CruiseControl, the first open-source CI tool (2001). Hudson won a Duke's Choice Award at JavaOne in May 2008. After Oracle acquired Sun it claimed trademark rights to the Hudson name in December 2010; the community voted to rename the project Jenkins in January 2011, and Oracle said it would continue Hudson and treat Jenkins as a fork. Jenkins won the community: by June 2019 it had 667 GitHub members to Hudson's 28. Its Pipeline plugin 2.0, released in April 2016, let a build be defined in a file in the repository called a Jenkinsfile. Hosted services such as Travis CI, CircleCI and finally GitHub Actions later became the default for many projects.",
+   "long": "Jenkins began as Hudson, a Java continuous integration server that around 2007 became known as a better alternative to CruiseControl, one of the first open-source CI tools (2001). Hudson won a Duke's Choice Award at JavaOne in May 2008. After Oracle acquired Sun it claimed trademark rights to the Hudson name in December 2010; the community voted to rename the project Jenkins in January 2011, and Oracle said it would continue Hudson and treat Jenkins as a fork. Jenkins won the community: by June 2019 it had 667 GitHub members to Hudson's 28. Its Pipeline plugin 2.0, released in April 2016, let a build be defined in a file in the repository called a Jenkinsfile. Hosted services such as Travis CI, CircleCI and finally GitHub Actions later became the default for many projects.",
    "code": {
     "lang": "groovy",
     "text": "pipeline {\n  agent any\n  stages {\n    stage('Test') {\n      steps { sh 'pytest' }\n    }\n  }\n}"
@@ -1307,7 +1308,7 @@
    "tier": 3,
    "year": 2019,
    "short": "GitHub's built-in automation, generally available in November 2019. Workflows stored in the repository run tests and deployments on hosted machines.",
-   "long": "GitHub announced Actions in October 2018 and made it generally available on 13 November 2019. A workflow is a YAML file in the repository that says what to run on which events, on hosted Linux, Windows or macOS machines, with a marketplace of reusable actions. Because it sits beside the code and the pull request, it took over from separate CI services: Travis CI ended free builds for open-source projects in December 2020, and many of them moved to Actions. Required status checks from workflows can block a merge into a protected branch. The convenience has a cost: workflows that handle untrusted pull-request input with elevated rights were the root cause of the August 2025 Nx compromise and, together with cache poisoning, of the May 2026 TanStack one.",
+   "long": "GitHub announced Actions in October 2018 and made it generally available on 13 November 2019. A workflow is a YAML file in the repository that says what to run on which events, on hosted Linux, Windows or macOS machines, with a marketplace of reusable actions. Because it sits beside the code and the pull request, it took over from separate CI services: Travis CI ended free builds for open-source projects in December 2020, and many of them moved to Actions. Required status checks from workflows can block a merge into a protected branch. The convenience has a cost: workflows that handle untrusted pull-request input with elevated rights were the root cause of the August 2025 Nx compromise and, reportedly together with cache poisoning, of the May 2026 TanStack one.",
    "sleeper": "CI used to mean running a server such as CruiseControl or Jenkins yourself. Now the pipeline is a YAML file in the repository and the machines are hosted for you.",
    "code": {
     "lang": "yaml",
@@ -1368,7 +1369,7 @@
    "title": "DORA and Accelerate",
    "cat": "quality",
    "tier": 2,
-   "year": 2014,
+   "year": 2013,
    "short": "A research program that measures software delivery with a few outcome metrics, and the 2018 book Accelerate. It finds that speed and stability go together.",
    "long": "DORA, now run by Google Cloud, publishes annual State of DevOps research; its first reports appeared around 2012 or 2013, depending on the source. The 2018 book Accelerate, by Nicole Forsgren, Jez Humble and Gene Kim, drew on 23,000 data points and named 24 capabilities and four key metrics. DORA now uses five: deployment frequency, change lead time, failed-deployment recovery time, change failure rate and deployment rework rate. Its headline finding is that speed and stability are not tradeoffs: top performers do well on all of them. The data are surveys and show correlation, and DORA itself warns against setting the metrics as goals or comparing teams, because that invites gaming. Its 2025 report found that AI amplifies what a team already does, with a negative link to delivery stability.",
    "sleeper": "Where older management measured effort, such as lines of code, DORA measures outcomes: how often you deploy, how long a change takes to reach users, how often changes fail and how quickly you recover.",
@@ -2057,7 +2058,7 @@
    "t": "qual.coverity",
    "w": 1,
    "k": "related",
-   "note": "Google tried Coverity and set it aside for workflow reasons"
+   "note": "Coverity's customers and Google reached similar rules about false positives and changed-code findings"
   },
   {
    "s": "qual.tricorder",
@@ -3515,7 +3516,7 @@
    "s": "qual.jenkins",
    "t": "qual.github-actions",
    "w": 2,
-   "k": "replaced-by",
+   "k": "competes-with",
    "note": "hosted services became the default"
   },
   {

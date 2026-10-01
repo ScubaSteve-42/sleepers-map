@@ -10,13 +10,6 @@
    "note": "structural"
   },
   {
-   "s": "found.ieee754",
-   "t": "found.machine-code",
-   "w": 3,
-   "k": "part-of",
-   "note": "structural"
-  },
-  {
    "s": "found.microprocessor",
    "t": "found.machine-code",
    "w": 3,
@@ -32,13 +25,6 @@
   },
   {
    "s": "found.system360",
-   "t": "found.machine-code",
-   "w": 3,
-   "k": "part-of",
-   "note": "structural"
-  },
-  {
-   "s": "found.unicode",
    "t": "found.machine-code",
    "w": 3,
    "k": "part-of",
@@ -73,20 +59,6 @@
    "note": "structural"
   },
   {
-   "s": "found.ieee754",
-   "t": "found.assembly",
-   "w": 3,
-   "k": "part-of",
-   "note": "structural"
-  },
-  {
-   "s": "found.stored-program",
-   "t": "found.assembly",
-   "w": 3,
-   "k": "part-of",
-   "note": "structural"
-  },
-  {
    "s": "found.isa",
    "t": "found.assembly",
    "w": 3,
@@ -109,13 +81,6 @@
   },
   {
    "s": "found.system360",
-   "t": "found.assembly",
-   "w": 3,
-   "k": "part-of",
-   "note": "structural"
-  },
-  {
-   "s": "found.unicode",
    "t": "found.assembly",
    "w": 3,
    "k": "part-of",

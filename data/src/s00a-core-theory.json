@@ -1,0 +1,1678 @@
+{
+ "slice": "s00a-core-theory",
+ "nodes": [
+  {
+   "id": "se",
+   "title": "Software Engineering",
+   "cat": "root",
+   "tier": 0,
+   "year": 1968,
+   "short": "The craft of building programs that keep working: from hand-wired machine code to teams shipping AI-assisted code.",
+   "long": "The name 'software engineering' reached the public at a NATO conference in Garmisch, Germany, on 7 to 11 October 1968. Large systems such as IBM's OS/360 were running late and unreliable, and the organizers adopted the then practically unknown term as a deliberately provocative title: programming needed the discipline of engineering. This map follows that effort from machine instructions to AI assistants. Start with Machine Code, Compiler, Programming Languages, Core Programming Concepts, Data & Databases and Numerics, Matrices & AI. Around them sit tools, packages, testing, methods, failures, companies, people and platforms. Since 1990 the field has gained the web (1991), free compilers, Git (2005), the cloud (2006) and, from 2021, AI coding assistants.",
+   "sleeper": "If you stopped following in about 1990, the web (1991), package managers, Git (2005), cloud computing (2006) and AI coding assistants (2021) all came after your last update.",
+   "status": "thriving",
+   "tags": [
+    "overview",
+    "history",
+    "nato",
+    "garmisch",
+    "software crisis"
+   ],
+   "refs": [
+    {
+     "label": "Wirth, A Brief History of Software Engineering (IEEE Annals, 2008)",
+     "url": "https://people.inf.ethz.ch/wirth/Miscellaneous/IEEE-Annals.pdf"
+    },
+    {
+     "label": "Wikipedia: Software crisis",
+     "url": "https://en.wikipedia.org/wiki/Software_crisis"
+    }
+   ]
+  },
+  {
+   "id": "found.machine-code",
+   "title": "Machine Code",
+   "cat": "foundations",
+   "tier": 1,
+   "year": 1945,
+   "short": "The raw numbers a processor executes. Every program, in every language, ends up as this.",
+   "long": "Machine code is the only language a processor understands: a stream of numbers, each one an instruction such as add these two registers, load this memory cell or jump back to an earlier address. Early programmers fed such numbers in by plugboard or punched card, and a program ran only on the machine it was written for. Every other language in this map is a way to avoid writing it, because a compiler or an interpreter ends up producing or executing it.\n\nStart with Stored-Program Computer, Assembly Language, Instruction Set Architecture, x86 and ARM Architecture. Since 1990 the numbers have changed more than the idea: x86 grew from the 16-bit 8086 (1978) to 64 bits, ARM moved from phones into Macs and cloud servers, and RISC-V arrived as an open design.",
+   "sleeper": "Compiler Explorer (godbolt.org), a free website, shows the assembly and, with 'Compile to binary object' ticked, the machine-code bytes that real compilers produce for x86-64, ARM64 and other targets. The bytes above were checked there.",
+   "code": {
+    "lang": "text",
+    "text": "x86-64 machine code for: sum = 1 + 2 + ... + 10 (17 bytes)\n31 C0              xor eax, eax      sum = 0\nB9 01 00 00 00     mov ecx, 1        i = 1\n01 C8              add eax, ecx      sum += i   (the loop starts here)\nFF C1              inc ecx           i++\n83 F9 0A           cmp ecx, 10       compare i with 10\n7E F7              jle again         if i <= 10, jump back 9 bytes\nC3                 ret               the answer, 55, is in eax"
+   },
+   "status": "thriving",
+   "tags": [
+    "binary",
+    "instructions",
+    "opcode",
+    "hex"
+   ],
+   "refs": [
+    {
+     "label": "Compiler Explorer: the sum loop as x86-64 machine code (gcc)",
+     "url": "https://godbolt.org/z/obGGdh3sc"
+    },
+    {
+     "label": "Computer History Museum: Timeline of Computers",
+     "url": "https://www.computerhistory.org/timeline/computers/"
+    }
+   ]
+  },
+  {
+   "id": "found.assembly",
+   "title": "Assembly Language",
+   "cat": "foundations",
+   "tier": 1,
+   "year": 1947,
+   "short": "Human-readable names for machine instructions, such as MOV and ADD, translated by an assembler.",
+   "long": "Assembly language gives each machine instruction a short name, such as mov, add or jmp, and lets the programmer name memory locations with labels instead of calculating numeric addresses by hand. An assembler, itself a program, turns the text into machine code, nearly one instruction per line. Kathleen Booth described a very early notation for Birkbeck College's machines in 1947, and David Wheeler's Initial Orders for the EDSAC (1949) are the earliest known working assembler program. By 1957 assemblers were so ordinary that the FORTRAN team called the last stage of their compiler a fairly conventional assembly program.\n\nStart with Assembler, Instruction Set Architecture, x86, RISC and Compiler. Since 1990 the work has moved: in the C toolchain the compiler writes the assembly and the assembler is one of its stages.",
+   "sleeper": "TIOBE still ranked Assembly 16th in September 2026, and 7.1 percent of Stack Overflow's 2025 respondents said they use it. Any C compiler will show you its assembly: cc -S file.c writes it to file.s.",
+   "code": {
+    "lang": "asm",
+    "text": "; x86-64, Intel syntax: add up 1 to 10 (the 17 bytes shown under Machine Code)\nsum_to_10:\n        xor  eax, eax        ; sum = 0\n        mov  ecx, 1          ; i = 1\nagain:  add  eax, ecx        ; sum += i       \"again\" is a label, a name for an address\n        inc  ecx             ; i++\n        cmp  ecx, 10         ; compare i with 10\n        jle  again           ; repeat while i <= 10\n        ret                  ; the answer, 55, is in eax"
+   },
+   "status": "niche",
+   "tags": [
+    "mnemonic",
+    "assembler",
+    "label",
+    "booth",
+    "wheeler"
+   ],
+   "refs": [
+    {
+     "label": "University of Cambridge: EDSAC statistics page (the Initial Orders)",
+     "url": "https://www.cl.cam.ac.uk/events/EDSAC99/statistics.html"
+    },
+    {
+     "label": "Backus et al., The FORTRAN Automatic Coding System (1957)",
+     "url": "https://softwarepreservation.computerhistory.org/FORTRAN/paper/BackusEtAl-FortranAutomaticCodingSystem-1957.pdf"
+    }
+   ]
+  },
+  {
+   "id": "found.stored-program",
+   "title": "Stored-Program Computer",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1948,
+   "short": "Keep the program in memory next to the data, so changing software means changing numbers, not rewiring.",
+   "long": "A stored-program computer keeps its instructions in the same memory as its data. John von Neumann's 'First Draft of a Report on the EDVAC' (30 June 1945) set out the design, which is why it is often called the von Neumann architecture. Before it, machines such as ENIAC (1946) were programmed by wiring. The Manchester 'Baby' ran its first program, seventeen instructions written by Tom Kilburn, on 21 June 1948, and Cambridge's EDSAC made its first fully automatic calculation on 6 May 1949 and went on to run a regular computing service. Once programs were data, one program could load, translate or even rewrite another, and that made assemblers, compilers and operating systems possible. The Institute for Advanced Study computer, operational in 1952, gave the idea the name 'stored program concept'.",
+   "sleeper": "Nothing replaced it: today's computers still keep code and data in one address space, which is why a JIT compiler can write machine code into memory and then run it. In his 1977 Turing lecture John Backus attacked the single path between memory and processor as the 'von Neumann bottleneck'.",
+   "status": "thriving",
+   "tags": [
+    "von neumann",
+    "edvac",
+    "baby",
+    "edsac",
+    "architecture"
+   ],
+   "refs": [
+    {
+     "label": "von Neumann, First Draft of a Report on the EDVAC (1945)",
+     "url": "https://web.mit.edu/STS.035/www/PDFs/edvac.pdf"
+    },
+    {
+     "label": "Computer History Museum: Timeline of Computers",
+     "url": "https://www.computerhistory.org/timeline/computers/"
+    }
+   ]
+  },
+  {
+   "id": "found.isa",
+   "title": "Instruction Set Architecture",
+   "cat": "foundations",
+   "tier": 2,
+   "year": 1964,
+   "short": "The contract between software and a processor: which instructions exist and what they do (x86, ARM, RISC-V).",
+   "long": "An instruction set architecture (ISA) is the exact list of instructions a processor family accepts, the registers it exposes and how instructions are encoded in bits. It is the contract between hardware designers and software writers: any chip that honors it can run the same programs. IBM's System/360, announced on 7 April 1964, made the contract explicit. In IBM's words it replaced all five of its existing product lines with one strictly compatible family, so customers no longer had to scrap their programs when they bought a new machine. Intel's 8086 (1978) kept assembly-level compatibility with the 8080 in the same spirit. In the 1970s designers split into complex (CISC) and reduced (RISC) camps, and today x86-64, ARM and RISC-V are the instruction sets that matter.",
+   "sleeper": "ARM designs dominate phones, and Apple moved its Macs from Intel to its own ARM-based chips, announced in June 2020 with the M1 shipping in November 2020. RISC-V, born at UC Berkeley in 2010, is an open, royalty-free instruction set that anyone may build.",
+   "code": {
+    "lang": "text",
+    "text": "Same step, sum += i, in two instruction sets (bytes as stored in memory)\nx86-64   add eax, ecx        01 C8          2 bytes; x86 instruction lengths vary\nARM64    add w0, w0, w1      00 00 01 0B    always 4 bytes (the word 0x0B010000)"
+   },
+   "status": "thriving",
+   "tags": [
+    "x86",
+    "arm",
+    "risc-v",
+    "encoding",
+    "compatibility"
+   ],
+   "refs": [
+    {
+     "label": "IBM history: System/360",
+     "url": "https://www.ibm.com/history/system-360"
+    },
+    {
+     "label": "RISC-V International",
+     "url": "https://riscv.org/"
+    }
+   ]
+  },
+  {
+   "id": "comp.compiler",
+   "title": "Compiler",
+   "cat": "compilers",
+   "tier": 1,
+   "year": 1952,
+   "short": "A program that translates source code in one language into another form, usually machine code, before it runs.",
+   "long": "A compiler translates a whole program from one language into another, usually lower-level, form, such as machine code or bytecode, before the program runs. Grace Hopper's A-0 (1952) is usually called the first compiler, though it behaved more like a macro expander and linker, and Knuth and Trabb Pardo give the credit to Alick Glennie's Autocode of the same year, which turned algebraic statements into machine code. IBM's FORTRAN compiler (1957) proved that compiled code could rival hand-written assembly. A compiler checks the program, optimizes it and emits code, so many mistakes are caught before anything runs.\n\nStart with Interpreter, Intermediate Representation, LLVM and Just-in-Time Compilation, and open Lexer, Parser, Optimizer, Code Generator for the stages inside a compiler.",
+   "sleeper": "In 1990 a compiler was usually a product you bought, such as a vendor's cc or Turbo C. Two free families, GCC (1987) and Clang/LLVM (2007), now cover C and C++, and Rust and Swift compile through LLVM.",
+   "code": {
+    "lang": "c",
+    "text": "int sum_to_10(void) {          /* the source: add up 1 to 10 with a loop */\n    int sum = 0;\n    for (int i = 1; i <= 10; i++)\n        sum += i;\n    return sum;\n}\n/* gcc -O2 -S -masm=intel emits, apart from directives, this for x86-64 (gcc 16.2):\n   sum_to_10:\n        mov  eax, 55          the compiler ran the loop itself\n        ret                                                          */"
+   },
+   "status": "thriving",
+   "tags": [
+    "translator",
+    "source code",
+    "optimization",
+    "bytecode",
+    "hopper"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo, The Early Development of Programming Languages (1976)",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    },
+    {
+     "label": "IBM history: Fortran",
+     "url": "https://www.ibm.com/history/fortran"
+    }
+   ]
+  },
+  {
+   "id": "comp.interpreter",
+   "title": "Interpreter",
+   "cat": "compilers",
+   "tier": 2,
+   "year": 1958,
+   "short": "Runs a program directly by reading and executing it step by step instead of producing a separate executable.",
+   "long": "An interpreter runs a program by reading it and carrying out each step directly, instead of first translating the whole program into a separate machine-code file. Interpretive routines such as Short Code (1949 to 1950) and Speedcoding (1953) let people write in a notation nearer to mathematics, at a cost in speed. Lisp's interpreter came by accident: John McCarthy wrote that Steve Russell noticed the function eval could serve as an interpreter, hand-coded it, and the language suddenly had one. Interpreters give instant feedback and short programs, which suits experiments and scripting. The line with compilers has blurred: CPython compiles source to bytecode and then interprets the bytecode, and JavaScript engines compile the hot parts of a program to machine code while it runs.",
+   "sleeper": "Python's reference implementation, CPython, is itself a C program that interprets bytecode. Python 3.14 (October 2025) includes an experimental JIT compiler in its Windows and macOS binaries.",
+   "code": {
+    "lang": "python",
+    "text": "def run(node):                       # walk a tree of operations and carry each one out now\n    if isinstance(node, int):\n        return node\n    op, left, right = node\n    a, b = run(left), run(right)\n    return a + b if op == \"+\" else a * b\n\nprogram = (\"+\", 2, (\"*\", 3, 4))      # the expression 2 + 3 * 4 as a tree\nprint(run(program))                  # 14"
+   },
+   "status": "thriving",
+   "tags": [
+    "repl",
+    "bytecode",
+    "eval",
+    "scripting",
+    "mccarthy"
+   ],
+   "refs": [
+    {
+     "label": "McCarthy, History of Lisp: the interpreter",
+     "url": "https://www-formal.stanford.edu/jmc/history/lisp/node3.html"
+    },
+    {
+     "label": "Python glossary: bytecode",
+     "url": "https://docs.python.org/3/glossary.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.pipeline",
+   "title": "Lexer, Parser, Optimizer, Code Generator",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1960,
+   "short": "The stages inside a compiler: split text into tokens, build a syntax tree, improve it, then emit machine code.",
+   "long": "A compiler works as a pipeline in which each stage rewrites the program into a form that makes the next stage easier. The lexer groups characters into tokens such as names, numbers and operators. The parser checks the tokens against the grammar and builds a tree. Later stages check types and meaning, convert the tree into an intermediate representation that is neither source nor machine code, optimize it (constant folding, dead code elimination, register allocation) and finally choose machine instructions. BNF, a notation for writing grammars (Backus, 1959, then the ALGOL 60 report of 1960), made syntax a formal object, and Lex and Yacc (Bell Labs, 1975) generated lexers and parsers from such descriptions. Most of these stages were already present in IBM's 1957 FORTRAN translator, which was built to convince skeptics that compiled code could be fast.",
+   "sleeper": "Modern compilers usually put an intermediate representation in the middle, so a language's front end and a processor's back end can be mixed and matched: Clang for C and C++, rustc for Rust and Swift's compiler all hand LLVM's intermediate form to the same optimizer and code generators.",
+   "code": {
+    "lang": "text",
+    "text": "source:     total = 2 * (3 + 4)\nlexer:      NAME(total) EQUALS NUMBER(2) STAR LPAREN NUMBER(3) PLUS NUMBER(4) RPAREN\nparser:     assign(total, mul(2, add(3, 4)))      the tree\noptimizer:  assign(total, 14)                     constant folding: 3 + 4, then 2 * 7\ngenerator:  store 14 into total                   then pick and encode the real instruction"
+   },
+   "status": "thriving",
+   "tags": [
+    "lexer",
+    "parser",
+    "ast",
+    "grammar",
+    "bnf",
+    "lex",
+    "yacc"
+   ],
+   "refs": [
+    {
+     "label": "Backus et al., The FORTRAN Automatic Coding System (1957)",
+     "url": "https://softwarepreservation.computerhistory.org/FORTRAN/paper/BackusEtAl-FortranAutomaticCodingSystem-1957.pdf"
+    },
+    {
+     "label": "The Architecture of Open Source Applications: LLVM",
+     "url": "https://aosabook.org/en/v1/llvm.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.jit",
+   "title": "Just-in-Time Compilation",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1998,
+   "short": "Compile hot code while the program runs, using what the runtime has learned about how it is actually used.",
+   "long": "A just-in-time (JIT) compiler translates a program to machine code while it is running, on the user's machine, rather than before delivery. The most sophisticated ones insert profiling hooks into the generated code to see which regions run most often, then recompile those hot spots with stronger optimizations. The Java HotSpot virtual machine, the main JVM, is named for that idea. Google's V8 JavaScript engine was open-sourced on 2 September 2008, the day Chrome launched, and later added the optimizing compilers Crankshaft (2010) and TurboFan (2014). That is why modern Java and JavaScript run much faster than the early interpreters did. The year on the map is approximate.",
+   "sleeper": "Node.js (2009) embeds V8, which is how JavaScript moved from browser pages to servers. Python's JIT is still experimental: the Windows and macOS binaries of Python 3.14 include one.",
+   "status": "thriving",
+   "tags": [
+    "hotspot",
+    "v8",
+    "profiling",
+    "dynamic compilation"
+   ],
+   "refs": [
+    {
+     "label": "V8 blog: 10 years of V8",
+     "url": "https://v8.dev/blog/10-years"
+    },
+    {
+     "label": "OpenJDK: HotSpot group",
+     "url": "https://openjdk.org/groups/hotspot/"
+    }
+   ]
+  },
+  {
+   "id": "comp.llvm",
+   "title": "LLVM",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 2003,
+   "short": "A reusable compiler back end that powers Clang, Rust, Swift and many others.",
+   "long": "LLVM began in December 2000 at the University of Illinois at Urbana-Champaign, where Chris Lattner and his adviser Vikram Adve built a research system around a language-independent intermediate representation: a low-level, RISC-like instruction set that uses an unlimited supply of named temporaries. Language front ends emit that form, LLVM's optimizer improves it, and a back end turns it into machine code for a particular processor, so a new language does not need its own optimizer. The name first meant Low Level Virtual Machine and is officially no longer an acronym. Apple hired Lattner in 2005, Clang (C, C++ and Objective-C) was started in 2006 and released in 2007, and Rust and Swift compile through LLVM. LLVM won the ACM Software System Award in 2012.",
+   "sleeper": "In 1990 a new compiler meant writing a new optimizer and code generator. Swift (2014) and Rust (1.0 in 2015) both compile through LLVM instead, and Clang and GCC are now interchangeable choices for C and C++ on most systems.",
+   "code": {
+    "lang": "llvm",
+    "text": "; C source: int add(int a, int b) { return a + b; }\ndefine i32 @add(i32 %a, i32 %b) {\n  %sum = add nsw i32 %a, %b      ; nsw: signed overflow is undefined, as in C\n  ret i32 %sum\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "clang",
+    "ir",
+    "back end",
+    "lattner",
+    "ssa"
+   ],
+   "refs": [
+    {
+     "label": "Lattner and Adve, LLVM: a compilation framework (CGO 2004)",
+     "url": "https://llvm.org/pubs/2004-01-30-CGO-LLVM.html"
+    },
+    {
+     "label": "The Architecture of Open Source Applications: LLVM",
+     "url": "https://aosabook.org/en/v1/llvm.html"
+    }
+   ]
+  },
+  {
+   "id": "comp.gc",
+   "title": "Garbage Collection",
+   "cat": "compilers",
+   "tier": 3,
+   "year": 1959,
+   "short": "Automatic memory reclamation, invented for Lisp, now standard in Java, Go, JavaScript and Python.",
+   "long": "Garbage collection frees memory automatically once a program can no longer reach it. John McCarthy built it into Lisp between 1958 and 1960: storage is abandoned until the free list runs out, then everything reachable from the program's variables and stack is marked, and the unmarked rest becomes the new free list. A footnote to his 1960 paper says the process was already called garbage collection. Reference counting, described by Collins in 1960, is the alternative, and Python uses it with a backup collector for cycles. Java (1995) made collection normal, and Go uses a tracing collector too. C leaves the job to the programmer through malloc and free, which is fast and risky. Rust (1.0 in 2015) checks ownership rules at compile time and needs neither a collector nor manual freeing.",
+   "sleeper": "In 1990 a garbage collector meant Lisp and a speed penalty. A 2005 study found a generational collector matched explicit freeing only with about five times as much memory, though collectors have improved since.",
+   "code": {
+    "lang": "python",
+    "text": "import gc, weakref\n\ngc.disable()                      # switch off automatic runs so the demo is predictable\nclass Node: pass\na, b = Node(), Node()\na.other, b.other = b, a           # two objects that refer to each other\nprobe = weakref.ref(a)            # a watcher that does not keep a alive\ndel a, b                          # unreachable now, yet each still holds a count of 1\nprint(probe() is None)            # False: reference counting alone cannot free a cycle\ngc.collect()                      # the cycle collector finds what is unreachable\nprint(probe() is None)            # True"
+   },
+   "status": "thriving",
+   "tags": [
+    "mark and sweep",
+    "reference counting",
+    "mccarthy",
+    "memory",
+    "collector"
+   ],
+   "refs": [
+    {
+     "label": "McCarthy, History of Lisp: garbage collection",
+     "url": "https://www-formal.stanford.edu/jmc/history/lisp/node3.html"
+    },
+    {
+     "label": "Python documentation: the gc module",
+     "url": "https://docs.python.org/3/library/gc.html"
+    }
+   ]
+  },
+  {
+   "id": "lang.hub",
+   "title": "Programming Languages",
+   "cat": "languages",
+   "tier": 1,
+   "year": 1957,
+   "short": "The notations people use to tell computers what to do, from FORTRAN and COBOL in the 1950s to Python, JavaScript and Rust today.",
+   "long": "A programming language is a notation for instructions that a compiler or interpreter turns into something a machine can run. FORTRAN (1957) and COBOL (1959) showed that high-level notation could replace assembly for science and business, C (1972) carried Unix, and C++ and Java brought object-oriented programming to the mainstream. Languages differ in how close they sit to the machine, how they check types, how they handle memory and which style they favor: procedural, object-oriented or functional. Start with FORTRAN, COBOL, C, Python, JavaScript and Rust. For syntax, see C Basics: Syntax and Structure, C versus C++ and Syntax Tour: One Task, Many Languages. Since 1990 scripting languages, garbage collection and memory-safe systems languages such as Rust have moved from the margins into wide use.",
+   "sleeper": "TIOBE's September 2026 order is Python, C, C++, Java and C#, then JavaScript; Rust is tenth. On GitHub, TypeScript passed Python and JavaScript by contributor count in August 2025. Each ranking counts something different, so none names a single most popular language.",
+   "status": "thriving",
+   "tags": [
+    "languages",
+    "syntax",
+    "history",
+    "paradigms"
+   ],
+   "refs": [
+    {
+     "label": "TIOBE Index",
+     "url": "https://www.tiobe.com/tiobe-index/"
+    },
+    {
+     "label": "Stack Overflow Developer Survey 2025: technology",
+     "url": "https://survey.stackoverflow.co/2025/technology"
+    },
+    {
+     "label": "Computer History Museum: Timeline of Software and Languages",
+     "url": "https://www.computerhistory.org/timeline/software-languages/"
+    }
+   ]
+  },
+  {
+   "id": "lang.fortran",
+   "title": "FORTRAN",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1957,
+   "short": "IBM's 1957 language for scientific formulas. Its compiler showed that compiled code could rival hand-written assembly, and numerical Fortran code still runs.",
+   "long": "FORTRAN (Formula Translation) was built by John Backus's team at IBM, begun in the summer of 1954 and delivered in April 1957 for the IBM 704. Programmers wrote formulas close to mathematics, and the team expected the system to cut coding and debugging to under a fifth of the old effort. By the team's own 1957 count the compiler took two and one-half years and 18 person-years, and it confounded skeptics who thought compiled code could never match handcrafted code, as IBM puts it. Defining traits: names beginning with I to N are integers, the DO loop, DIMENSION declarations for arrays, FORMAT statements and the three-way arithmetic IF. Standards followed (FORTRAN 66 and 77, then Fortran 90 through 2023), and numerical libraries such as BLAS, LINPACK and LAPACK were written in it.",
+   "sleeper": "Fortran is not gone: TIOBE ranked it 11th in September 2026, and a Fortran 2028 draft exists. Python's SciPy still wraps Fortran 77 libraries, and its roadmap says the goal is to remove them because they make builds hard on platforms such as Apple silicon and Windows on Arm.",
+   "code": {
+    "lang": "fortran",
+    "text": "C     Fixed form: labels in columns 1 to 5, statements from column 7.\nC     Names beginning with I to N are integers unless declared otherwise.\n      PROGRAM SUM10\n      ISUM = 0\n      DO 10 I = 1, 10\n   10 ISUM = ISUM + I\n      PRINT *, ISUM\n      END\nC     Output: 55"
+   },
+   "status": "niche",
+   "tags": [
+    "backus",
+    "ibm 704",
+    "numerical",
+    "scientific computing",
+    "hpc",
+    "linpack"
+   ],
+   "refs": [
+    {
+     "label": "IBM history: Fortran",
+     "url": "https://www.ibm.com/history/fortran"
+    },
+    {
+     "label": "Backus et al., The FORTRAN Automatic Coding System (1957)",
+     "url": "https://softwarepreservation.computerhistory.org/FORTRAN/paper/BackusEtAl-FortranAutomaticCodingSystem-1957.pdf"
+    },
+    {
+     "label": "WG5: the Fortran standards committee",
+     "url": "https://wg5-fortran.org/"
+    }
+   ]
+  },
+  {
+   "id": "lang.cobol",
+   "title": "COBOL",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1959,
+   "short": "English-like language for business data, designed by a CODASYL committee in 1959. Banks and governments still run it, but no audit says how much.",
+   "long": "COBOL (Common Business-Oriented Language) came out of a Pentagon meeting on 28 and 29 May 1959 that set up CODASYL, a committee of manufacturers and users led by Charles Phillips of the Defense Department. Grace Hopper and Bob Bemer advised, and the committee was told to take the best of FLOW-MATIC, AIMACO and Commercial Translator. On 6 and 7 December 1960 UNIVAC and RCA machines ran the same programs in a public demonstration. COBOL is wordy by design, with four divisions, records described by picture clauses and fixed-point decimal arithmetic, which suits money because binary floating point cannot store 0.10 exactly: JavaScript prints 0.1 + 0.2 as 0.30000000000000004. It was among the first languages standardized by ANSI and ISO (1968), and COBOL 2023 is the latest standard.",
+   "sleeper": "The claims that COBOL handles 95 percent of ATM transactions and 80 percent of in-person card transactions come from IBM and press features, with no method given and no independent audit; IBM's own page traces them to a 2023 magazine article. TIOBE ranked COBOL 20th in September 2026.",
+   "code": {
+    "lang": "cobol",
+    "text": "      * Decimal digits are exact. GnuCOBOL 3.2 prints 0.30\n       IDENTIFICATION DIVISION.\n       PROGRAM-ID. PENNIES.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 A PIC 9V99 VALUE 0.10.\n       01 B PIC 9V99 VALUE 0.20.\n       01 C PIC 9V99.\n       PROCEDURE DIVISION.\n           COMPUTE C = A + B\n           DISPLAY C\n           STOP RUN."
+   },
+   "status": "legacy",
+   "tags": [
+    "codasyl",
+    "business",
+    "mainframe",
+    "hopper",
+    "decimal",
+    "legacy"
+   ],
+   "refs": [
+    {
+     "label": "IBM: What is COBOL?",
+     "url": "https://www.ibm.com/think/topics/cobol"
+    },
+    {
+     "label": "CODASYL COBOL Journal of Development (Internet Archive)",
+     "url": "https://archive.org/details/codasylcoboljour00conf"
+    }
+   ]
+  },
+  {
+   "id": "lang.c",
+   "title": "C",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1972,
+   "short": "Dennis Ritchie's small systems language from Bell Labs. Unix, the Linux kernel, SQLite and CPython are C programs; TIOBE ranks it second (September 2026).",
+   "long": "Dennis Ritchie created C at Bell Labs between 1969 and 1973 from Ken Thompson's B, itself a squeezed-down BCPL, as the language for Unix. By early 1973 the essentials were complete, and that summer the Unix kernel was rewritten in it. C is compiled, statically typed and small. It gives direct access to memory through pointers, does no bounds checking, has no string type (a string is bytes ending in a zero byte) and leaves memory to malloc and free, which makes it fast and also makes buffer overflows possible. Kernighan and Ritchie's 1978 book served as its definition until ANSI C (1989, adopted by ISO as C90); later standards are C99, C11, C17 and C23. Ritchie's own verdict: 'C is quirky, flawed, and an enormous success.' See C Basics: Syntax and Structure and C versus C++.",
+   "sleeper": "C has changed less than most languages, yet what you remember is out of date: C99 (1999) added // comments and declarations inside for loops, C23 added nullptr, constexpr and #embed, and C23 removed K&R-style function definitions, so int f(a, b) int a, b; { ... } is now an error.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>                      /* a header: declarations for printf */\n\nint square(int n) { return n * n; }     /* a function: type, name, parameters */\n\nint main(void) {                        /* execution starts here */\n    int total = 0;                      /* variables have declared types */\n    for (int n = 1; n <= 10; n += 2)    /* the odd numbers 1, 3, 5, 7, 9 */\n        total += square(n);\n    printf(\"%d\\n\", total);              /* prints 165 */\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "ritchie",
+    "bell labs",
+    "unix",
+    "systems programming",
+    "k&r",
+    "pointers"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    },
+    {
+     "label": "WG14: the ISO C committee",
+     "url": "https://www.open-std.org/jtc1/sc22/wg14/"
+    }
+   ]
+  },
+  {
+   "id": "lang.cpp",
+   "title": "C++",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1983,
+   "short": "Bjarne Stroustrup's extension of C with classes, templates and a standard library. Not a strict superset of C; game engines, browsers and databases use it.",
+   "long": "Bjarne Stroustrup began 'C with Classes' in April 1979 at Bell Labs, adding Simula-style classes to C. Rick Mascitti suggested the name C++ in 1983, and Cfront 1.0, the first commercial release, shipped in 1985 with the first edition of Stroustrup's book. Templates and exceptions were accepted in 1990, Alexander Stepanov's Standard Template Library (containers, iterators and algorithms) in 1994, and the first ISO standard in 1998. C++ is not a strict superset of C: Stroustrup calls C++ and C99 siblings. His design rule is that what you do not use, you do not pay for. C++11 added auto, lambdas, move semantics and smart pointers, and a new standard has appeared every three years since, the latest published being C++23, with C++26 technically complete in March 2026. See C versus C++.",
+   "sleeper": "The C++ you remember (Cfront, raw new and delete, C-style strings, almost no standard library) is two or three generations old. Modern C++ uses containers, smart pointers and lambdas, and C++26 adds static reflection and contracts. TIOBE ranked C++ third in September 2026.",
+   "code": {
+    "lang": "cpp",
+    "text": "#include <cstdio>\n#include <vector>\n\nstruct Account {                         // a class: data plus the code that works on it\n    std::vector<int> cents;              // a growable array that frees its own memory\n    void deposit(int c) { cents.push_back(c); }\n    int total() const { int t = 0; for (int c : cents) t += c; return t; }\n};\n\nint main() {\n    Account a;\n    a.deposit(500);\n    a.deposit(250);\n    std::printf(\"%d\\n\", a.total());      // 750; no malloc or free anywhere\n}                                        // a and its vector are destroyed here, automatically"
+   },
+   "status": "thriving",
+   "tags": [
+    "stroustrup",
+    "stl",
+    "templates",
+    "raii",
+    "cfront",
+    "classes"
+   ],
+   "refs": [
+    {
+     "label": "Stroustrup FAQ: Is C a subset of C++?",
+     "url": "https://www.stroustrup.com/bs_faq.html"
+    },
+    {
+     "label": "Stroustrup, Evolving a language in and for the real world: C++ 1991-2006",
+     "url": "https://www.stroustrup.com/hopl-almost-final.pdf"
+    }
+   ]
+  },
+  {
+   "id": "lang.java",
+   "title": "Java",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1995,
+   "short": "Sun's 1995 language: programs compile to bytecode that runs on a virtual machine with garbage collection. Still a top-four language on TIOBE (September 2026).",
+   "long": "Java was announced on 23 May 1995 by John Gage of Sun and Marc Andreessen of Netscape at SunWorld. It grew from a closed project begun in 1991 by Patrick Naughton, Mike Sheridan and James Gosling, whose language, first called Oak, was meant for consumer devices before the team turned to the Internet. Java is statically typed and class-based. The compiler produces bytecode, an architecture-neutral form that a Java virtual machine (JVM) runs on any platform, and a garbage collector frees memory. Gosling and McGilton's 1996 white paper listed 'No More Pointers' and no multiple inheritance. Browser applets died, but servers, Android and the other JVM languages (Kotlin, Scala, Clojure) kept Java central. Oracle announced its purchase of Sun in April 2009, and since March 2018 a new Java version ships every six months.",
+   "sleeper": "Since Java 25 (September 2025) a whole program can be one method, void main() { IO.println(\"Hello, World!\"); }, with no class, public or static (JEP 512). Applets are gone: the Applet API was removed in JDK 26 (March 2026) because web browsers no longer support applets.",
+   "code": {
+    "lang": "java",
+    "text": "import java.util.stream.IntStream;\n\npublic class SumSquares {\n    public static void main(String[] args) {\n        int total = IntStream.rangeClosed(1, 10)\n                .filter(n -> n % 2 == 1)      // a lambda (Java 8, 2014)\n                .map(n -> n * n)\n                .sum();\n        System.out.println(total);            // 165\n    }\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "jvm",
+    "bytecode",
+    "sun",
+    "gosling",
+    "oracle",
+    "enterprise"
+   ],
+   "refs": [
+    {
+     "label": "Reinhold, Moving Java Forward Faster (2017)",
+     "url": "https://mreinhold.org/blog/forward-faster"
+    },
+    {
+     "label": "JEP 512: Compact Source Files and Instance Main Methods",
+     "url": "https://openjdk.org/jeps/512"
+    }
+   ]
+  },
+  {
+   "id": "lang.python",
+   "title": "Python",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1991,
+   "short": "Guido van Rossum's readable scripting language, released in 1991. TIOBE ranked it first in September 2026, and it is widely used for data science and AI.",
+   "long": "Guido van Rossum began Python in December 1989 as a Christmas-week hobby project at CWI in Amsterdam, a descendant of the teaching language ABC meant to appeal to Unix and C programmers; version 0.9.0 appeared on 20 February 1991. Blocks are marked by indentation, an idea from ABC, instead of braces. Python is dynamically typed, runs by interpreting bytecode, and manages memory with reference counting plus a cycle collector. A large standard library and easy gluing to C code, such as NumPy, made it a main language of scientific computing and machine learning. Python 3.0 (3 December 2008) broke compatibility with 2.x, and Python 2 was retired on 1 January 2020. Optional type hints arrived with Python 3.5.",
+   "sleeper": "Python began as a Christmas-week hobby project. TIOBE's yearly averages ranked it 25th in 2001 and first in 2026, and 71.8 percent of people learning to code in Stack Overflow's 2025 survey use it.",
+   "code": {
+    "lang": "python",
+    "text": "creators = {\"C\": \"Dennis Ritchie\", \"Python\": \"Guido van Rossum\"}   # a dictionary\n\nfor language, person in creators.items():   # the indented lines are the loop body\n    print(f\"{language} was made by {person}\")\n# C was made by Dennis Ritchie\n# Python was made by Guido van Rossum\n\ntotal = sum(x * x for x in range(1, 11) if x % 2 == 1)\nprint(total)                                # 165"
+   },
+   "status": "thriving",
+   "tags": [
+    "van rossum",
+    "scripting",
+    "indentation",
+    "data science",
+    "cpython",
+    "dynamic typing"
+   ],
+   "refs": [
+    {
+     "label": "van Rossum, Foreword to Programming Python",
+     "url": "https://www.python.org/doc/essays/foreword/"
+    },
+    {
+     "label": "van Rossum, A Brief Timeline of Python",
+     "url": "https://python-history.blogspot.com/2009/01/brief-timeline-of-python.html"
+    },
+    {
+     "label": "PEP 20: The Zen of Python",
+     "url": "https://peps.python.org/pep-0020/"
+    }
+   ]
+  },
+  {
+   "id": "lang.js",
+   "title": "JavaScript",
+   "cat": "languages",
+   "tier": 2,
+   "year": 1995,
+   "short": "Brendan Eich prototyped it at Netscape in May 1995. Every browser runs it, Node.js (2009) runs it on servers, and TypeScript adds types on top.",
+   "long": "Brendan Eich prototyped JavaScript at Netscape in May 1995. He says he was recruited with the promise of doing Scheme in the browser, but management required the language to look like Java, so he combined Scheme-style first-class functions with Self-style prototype objects. Netscape and Sun announced the name JavaScript on 4 December 1995, with Navigator 2.0. Standardization as ECMAScript began with ECMA-262 in June 1997, ES2015 added classes, modules, arrow functions, let and const, and a new edition has appeared every June since. JavaScript is dynamically and weakly typed and garbage collected, and fast engines such as Chrome's V8 (2008) compile it as it runs. Node.js (2009) brought it to servers, and TypeScript (2012) adds optional static types.",
+   "sleeper": "In 1995 it was a small scripting add-on. In GitHub's 2025 Octoverse TypeScript, which compiles to JavaScript, passed both Python and JavaScript by monthly contributors, while Stack Overflow's 2025 survey still has JavaScript first, used by 66 percent of respondents.",
+   "code": {
+    "lang": "javascript",
+    "text": "const xs = [1, 2, 3, 4, 5];                       // const: the name cannot be reassigned\nconst odd = xs.filter(x => x % 2 === 1);          // functions are values; => is the short form\nconsole.log(odd.map(x => x * x));                 // [ 1, 9, 25 ]\nconsole.log(0.1 + 0.2);                           // 0.30000000000000004 (numbers are 64-bit floats)\nconsole.log(0.1 + 0.2 === 0.3);                   // false"
+   },
+   "status": "thriving",
+   "tags": [
+    "eich",
+    "netscape",
+    "browser",
+    "ecmascript",
+    "node",
+    "dom"
+   ],
+   "refs": [
+    {
+     "label": "Eich, Popularity (2008)",
+     "url": "https://brendaneich.com/2008/04/popularity/"
+    },
+    {
+     "label": "Ecma International: ECMA-262",
+     "url": "https://ecma-international.org/publications-and-standards/standards/ecma-262/"
+    },
+    {
+     "label": "V8 blog: 10 years of V8",
+     "url": "https://v8.dev/blog/10-years"
+    }
+   ]
+  },
+  {
+   "id": "lang.rust",
+   "title": "Rust",
+   "cat": "languages",
+   "tier": 2,
+   "year": 2015,
+   "short": "A systems language that prevents memory errors at compile time through ownership, without a garbage collector.",
+   "long": "Graydon Hoare began Rust in 2006 as a personal project; Mozilla sponsored it from 2009, the first public release (0.1) came on 20 January 2012, and Rust 1.0 on 15 May 2015. The Rust Foundation was formed on 8 February 2021 by AWS, Google, Huawei, Microsoft and Mozilla. Its core idea is ownership: each value has one owner, the value is freed when the owner goes out of scope, and other code may only borrow it, with either one mutable borrow or any number of read-only borrows at a time. The compiler enforces this, so use after move, two simultaneous mutable references and dangling references are compile errors, with no garbage collector. Out-of-bounds indexing is checked at run time. Rust code is in the Linux kernel (since version 6.1), in Android and in Chromium's PNG, JSON and font parsers.",
+   "sleeper": "In December 2025 Linux kernel maintainers concluded that the Rust 'experiment' had succeeded and decided to drop the experimental label, according to LWN. Stack Overflow's 2025 survey named Rust the most admired language (72.4 percent), though only 14.8 percent of respondents use it.",
+   "code": {
+    "lang": "rust",
+    "text": "fn length(s: &str) -> usize { s.len() }        // borrows the text; the caller keeps it\n\nfn main() {\n    let s1 = String::from(\"hello\");            // s1 owns the text\n    let s2 = s1;                               // ownership moves to s2\n    // println!(\"{s1}\");                       // error[E0382]: borrow of moved value: `s1`\n    println!(\"{s2} has length {}\", length(&s2));   // hello has length 5\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "ownership",
+    "borrow checker",
+    "memory safety",
+    "hoare",
+    "mozilla",
+    "cargo"
+   ],
+   "refs": [
+    {
+     "label": "Announcing Rust 1.0 (2015)",
+     "url": "https://blog.rust-lang.org/2015/05/15/Rust-1.0/"
+    },
+    {
+     "label": "The Rust Book: What is ownership?",
+     "url": "https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html"
+    },
+    {
+     "label": "LWN: The state of the kernel Rust experiment",
+     "url": "https://lwn.net/Articles/1050174/"
+    }
+   ]
+  },
+  {
+   "id": "data.sql",
+   "title": "SQL",
+   "cat": "data",
+   "tier": 2,
+   "year": 1974,
+   "short": "A declarative language for asking relational databases questions. Over fifty years old and still the default.",
+   "long": "SQL, the Structured Query Language, lets you state the rows you want and leaves it to the database to choose how to fetch them. Donald Chamberlin and Raymond Boyce at IBM's San Jose laboratory, after learning of Edgar Codd's relational model, followed their hard-to-use SQUARE with an English-like language they called SEQUEL, described in 1974. It was renamed SQL after a trademark challenge. By one veteran's account Oracle brought SQL to market in 1979, before IBM's SQL/DS (1981) and Db2 (1983), and SQL became an ANSI standard in 1986 and an ISO standard in 1987. A statement defines tables (CREATE), changes rows (INSERT, UPDATE, DELETE), queries them (SELECT) or controls access (GRANT). No product follows the standard completely, so moving SQL between databases usually needs some changes.",
+   "sleeper": "By the end of the 2010s almost every NoSQL database had added a SQL interface (Stonebraker and Pavlo, 2024). SQL also no longer needs a costly server: MySQL (1995), PostgreSQL (1996) and SQLite (2000) are free.",
+   "code": {
+    "lang": "sql",
+    "text": "CREATE TABLE sale (region TEXT, amount INTEGER);\nINSERT INTO sale VALUES ('east', 10), ('west', 5), ('east', 7);\n\nSELECT region, SUM(amount) AS total     -- say what you want...\nFROM sale\nGROUP BY region                         -- ...not how to loop over the rows\nORDER BY total DESC;\n-- east | 17\n-- west | 5"
+   },
+   "status": "thriving",
+   "tags": [
+    "query",
+    "declarative",
+    "chamberlin",
+    "boyce",
+    "ansi",
+    "iso"
+   ],
+   "refs": [
+    {
+     "label": "The 1995 SQL Reunion: System R",
+     "url": "https://www.mcjones.org/System_R/SQL_Reunion_95/sqlr95-System.html"
+    },
+    {
+     "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around (2024)",
+     "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+    }
+   ]
+  },
+  {
+   "id": "conc.hub",
+   "title": "Core Programming Concepts",
+   "cat": "concepts",
+   "tier": 1,
+   "year": 1957,
+   "short": "Variables, types, arrays, functions, objects, memory and concurrency: the vocabulary every language shares.",
+   "long": "Once you know these ideas, a new language is mostly a new spelling. They fall into how data is named and stored, how code is organized, and how programs deal with memory and with running at the same time. Start with Variable, Data Types, Array, Pointer, Object-Oriented Programming and Functional Programming. Variables and arrays were already in FORTRAN (1957), recursion came with Lisp (1958) and ALGOL 60 (1960), and objects with Simula 67. Since 1990 three things changed most: automatic Memory Management became ordinary with Java (1995), functions as values (lambdas) reached every major language by 2014, and from about 2004 chips gained cores instead of speed, so Concurrency and Parallelism stopped being a specialist topic.",
+   "sleeper": "Concurrency is no longer a specialist topic. Until about 2004 programs got faster as clock speeds rose; when heat and power ended that, chips added cores instead, and Herb Sutter's 2005 article 'The Free Lunch Is Over' told programmers to write concurrent code.",
+   "status": "thriving",
+   "tags": [
+    "fundamentals",
+    "vocabulary",
+    "programming basics"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Programming paradigm",
+     "url": "https://en.wikipedia.org/wiki/Programming_paradigm"
+    }
+   ]
+  },
+  {
+   "id": "conc.variable",
+   "title": "Variable",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1957,
+   "short": "A name for a value the program can read and change. In C it labels a typed memory location; in Python it is a label attached to an object.",
+   "long": "A variable is the label a program uses to reach a stored value. FORTRAN (1957) let programmers write formulas with named variables instead of memory addresses, and decided each variable's type by its first letter: names beginning with I to N were integers and the rest floating-point. What the label is attached to differs by language. In C a declaration such as int x; creates a named region of memory of fixed type and size, and assignment copies a value into it. In Python every value is an object, and a name is closer to a label stuck on the object than to a box holding a value, so after b = a both names refer to the same list. Python and JavaScript variables have no declared type; the value carries it. JavaScript's let declares block-scoped variables, and reading one before its declaration is an error.",
+   "sleeper": "If you learned BASIC, Pascal or C, where a variable is a typed box, Python will surprise you: a name can be rebound to any value, and b = a copies nothing. Changing a list through b changes what a sees; integers and strings cannot be changed in place, so they behave like copies.",
+   "code": {
+    "lang": "python",
+    "text": "# In C, int count = 0; fixes count's type for good. Python does not.\ncount = 0                 # create a name and bind it to the integer 0\ncount = count + 1         # rebind it: the name now refers to 1\ncount = \"one\"             # legal: the name has no type, the value does\na = [1, 2]\nb = a                     # b is a second name for the same list, not a copy\nb.append(3)\nprint(count, a)           # one [1, 2, 3]"
+   },
+   "status": "thriving",
+   "tags": [
+    "name",
+    "binding",
+    "assignment",
+    "scope",
+    "type"
+   ],
+   "refs": [
+    {
+     "label": "Python language reference: the data model",
+     "url": "https://docs.python.org/3/reference/datamodel.html"
+    },
+    {
+     "label": "MDN: let",
+     "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+    }
+   ]
+  },
+  {
+   "id": "conc.array",
+   "title": "Array",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1957,
+   "short": "A numbered row of values stored side by side in memory and reached by index. C, Java and Python count from zero; Fortran counts from one.",
+   "long": "An array is a numbered sequence of values stored next to each other in memory. Because the address of element i is the start address plus i times the element size, reading or writing any element takes the same short time. FORTRAN (1957) had arrays from the start, declared with DIMENSION. C, Java and Python count from zero, as BCPL did; its designer Martin Richards started arrays at zero because the value of a pointer p used as an address reaches the position p + 0. Fortran and COBOL count from one, so that subscripts match ordinary ordinal numbers. A C array has a fixed size and no bounds check, while Python lists and JavaScript arrays grow on demand and are checked. A grid is an array of arrays, and a matrix is a two-dimensional array. NumPy arrays hold one type of number in a single block.",
+   "sleeper": "A fixed-size array with no length attached is mostly a C idea now. Python and JavaScript arrays know their length, check every index and grow when full, and numerical work uses NumPy arrays, which keep one number type in one block and loop in compiled code.",
+   "code": {
+    "lang": "python",
+    "text": "a = [10, 20, 30, 40]           # a list: Python's growable array\nprint(a[0], a[3], a[-1])       # 10 40 40   (index 0 is first, -1 is last)\na.append(50)                   # it grows: [10, 20, 30, 40, 50]\nprint(a[1:3], len(a))          # [20, 30] 5   (a slice stops before index 3)\ngrid = [[1, 2, 3], [4, 5, 6]]  # an array of arrays: 2 rows, 3 columns\nprint(grid[1][2])              # 6"
+   },
+   "status": "thriving",
+   "tags": [
+    "index",
+    "list",
+    "vector",
+    "zero-based",
+    "subscript"
+   ],
+   "refs": [
+    {
+     "label": "cppreference: array declaration in C",
+     "url": "https://en.cppreference.com/w/c/language/array"
+    },
+    {
+     "label": "Python tutorial: lists",
+     "url": "https://docs.python.org/3/tutorial/introduction.html"
+    }
+   ]
+  },
+  {
+   "id": "conc.pointer",
+   "title": "Pointer",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1964,
+   "short": "A variable that holds a memory address. C uses pointers for arrays, strings and dynamic memory, and misusing them causes its worst bugs.",
+   "long": "A pointer is a variable that holds the address of another object, or the special value null, meaning nothing. In C, &x takes the address of x and *p follows a pointer to what it points at. Pointers let a function change its caller's variables, link records into lists and trees, allocate memory while the program runs and pass callbacks. Pointer arithmetic is scaled by the type: if p is an int pointer, p + 2 moves two ints. Ritchie's rule that an array name turns into a pointer to its first element in an expression is why a[i] means *(a + i). The risks are the classic ones: use after free, a null pointer dereference and running past the end of a buffer. Chromium reports that about 70 percent of its serious security bugs are memory-safety problems.",
+   "sleeper": "Many languages created since 1990 hide pointers. Java's designers listed 'No More Pointers' in 1996, and Rust replaces raw pointers with references checked at compile time. In December 2023 CISA urged software makers to publish roadmaps to memory-safe languages.",
+   "code": {
+    "lang": "c",
+    "text": "#include <stdio.h>\n\nvoid swap(int *a, int *b) {        /* a and b hold addresses of ints */\n    int t = *a;                    /* *a means the int that a points at */\n    *a = *b;\n    *b = t;\n}\n\nint main(void) {\n    int x = 1, y = 2;\n    swap(&x, &y);                  /* &x is the address of x */\n    printf(\"%d %d\\n\", x, y);       /* prints 2 1 */\n    return 0;\n}"
+   },
+   "status": "thriving",
+   "tags": [
+    "address",
+    "dereference",
+    "null",
+    "memory",
+    "c"
+   ],
+   "refs": [
+    {
+     "label": "cppreference: pointer declaration in C",
+     "url": "https://en.cppreference.com/w/c/language/pointer"
+    },
+    {
+     "label": "Ritchie, The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    }
+   ]
+  },
+  {
+   "id": "conc.oop",
+   "title": "Object-Oriented Programming",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1967,
+   "short": "Bundle data with the code that works on it. Classes, inheritance and polymorphism, from Simula to Java.",
+   "long": "Object-oriented programming organizes a program as objects, each bundling its own data with the code that works on that data, created from templates called classes. Simula 67, designed by Ole-Johan Dahl and Kristen Nygaard in Oslo for simulation, had classes, objects, subclasses and virtual methods. Alan Kay's group at Xerox PARC built Smalltalk in the 1970s, and Smalltalk-80 reached a wide audience in the August 1981 issue of BYTE. C++ (1983) and Java (1995) carried the style into the mainstream. The textbook features are encapsulation (hiding state behind methods), inheritance and polymorphism (different classes answering the same call in their own way). The reaction has been steady: Erich Gamma said in 2005 that he still favored composition over class inheritance, and Steve Yegge satirized Java as a kingdom of nouns.",
+   "sleeper": "Alan Kay, who coined the term at Utah in about 1967, said OOP to him meant messaging, local protection of state and extreme late binding, and that he left inheritance out of Smalltalk at first. His definition is not the textbook one.",
+   "code": {
+    "lang": "python",
+    "text": "class Shape:\n    def describe(self):                      # written once, for every kind of shape\n        return f\"{self.name()} with area {self.area()}\"\n\nclass Rect(Shape):                           # inheritance: a Rect is a Shape\n    def __init__(self, w, h): self.w, self.h = w, h    # data...\n    def name(self): return \"rectangle\"\n    def area(self): return self.w * self.h             # ...and the code that uses it\n\nclass Square(Rect):\n    def __init__(self, side): super().__init__(side, side)\n    def name(self): return \"square\"          # overrides Rect.name\n\nfor s in [Rect(2, 3), Square(4)]:\n    print(s.describe())     # rectangle with area 6, then square with area 16"
+   },
+   "status": "thriving",
+   "tags": [
+    "class",
+    "inheritance",
+    "polymorphism",
+    "simula",
+    "smalltalk",
+    "encapsulation"
+   ],
+   "refs": [
+    {
+     "label": "Alan Kay on the meaning of object-oriented programming (2003)",
+     "url": "https://purl.archive.org/stefan_ram/pub/doc_kay_oop_en"
+    },
+    {
+     "label": "Kay, The Early History of Smalltalk",
+     "url": "https://worrydream.com/EarlyHistoryOfSmalltalk/"
+    }
+   ]
+  },
+  {
+   "id": "conc.fp",
+   "title": "Functional Programming",
+   "cat": "concepts",
+   "tier": 2,
+   "year": 1958,
+   "short": "Build programs from functions that avoid side effects. Lambdas and map/filter/reduce are now everywhere.",
+   "long": "Functional programming builds programs from functions used as values: functions can be stored, passed to other functions and returned, and the pure style avoids side effects and changes to existing data. John McCarthy's Lisp (1958) brought the idea to computers, using Church's lambda notation, recursion and conditional expressions. Robin Milner's ML (1973 to 1978) added type inference and pattern matching, and the Haskell committee published its Report 1.0 on 1 April 1990, keeping the language pure. The ideas then spread: lambdas reached C# 3.0 (2007), C++11 and Java 8 (2014), and closures, immutability, pattern matching and option types are now found in JavaScript, Python and Rust. Map, filter and reduce pipelines are the everyday form.",
+   "sleeper": "Python's creator said he never considered Python heavily influenced by functional languages: lambda, map and filter were added because users asked, and reduce left the built-ins in Python 3.0 and now lives in functools.",
+   "code": {
+    "lang": "python",
+    "text": "from functools import reduce\n\ndef adder(n):\n    return lambda x: x + n            # a function made at run time that remembers n (a closure)\n\nadd5 = adder(5)\nprint(list(map(add5, [1, 2, 3])))     # [6, 7, 8]   map: apply a function to every item\nodd = filter(lambda x: x % 2 == 1, range(1, 11))              # filter: keep what passes a test\nprint(reduce(lambda a, b: a + b, map(lambda x: x * x, odd)))  # reduce: fold to one value: 165\n# Haskell says the same as: sum [x * x | x <- [1 .. 10], odd x]"
+   },
+   "status": "thriving",
+   "tags": [
+    "lambda",
+    "map",
+    "filter",
+    "reduce",
+    "pure function",
+    "immutability",
+    "closure",
+    "haskell"
+   ],
+   "refs": [
+    {
+     "label": "Hudak et al., A History of Haskell (2007)",
+     "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf"
+    },
+    {
+     "label": "McCarthy, History of Lisp",
+     "url": "https://www-formal.stanford.edu/jmc/history/lisp/lisp.html"
+    }
+   ]
+  },
+  {
+   "id": "data.hub",
+   "title": "Data & Databases",
+   "cat": "data",
+   "tier": 1,
+   "year": 1966,
+   "short": "How programs keep information: in memory structures while running, and in databases between runs.",
+   "long": "Programs keep data in two places: in memory structures such as arrays and hash tables while they run, and in files or databases between runs. A database management system adds what plain files lack: queries, many users at once, integrity rules and recovery after a crash. The history runs from flat files and IBM's hierarchical IMS (formally defined in 1966, first shipped in 1967) through Edgar Codd's relational model (1970) and SQL to free servers, SQLite, NoSQL stores, data warehouses and vector databases. Start with Relational Model, SQL, SQL Queries and Joins, PostgreSQL, SQLite and NoSQL, and see Database Driver APIs (ODBC, JDBC, DB-API) for how a program talks to a database. Since 1990 production-grade servers have become free, SQLite has put a database inside ordinary applications, and in 2023 several relational systems added vector search for AI embeddings.",
+   "sleeper": "A database is no longer always a server. SQLite is a library inside your program, and DuckDB (2019) queries CSV and Parquet files in place. In 2024 Michael Stonebraker and Andrew Pavlo concluded that SQL databases had absorbed the best ideas of their later rivals.",
+   "status": "thriving",
+   "tags": [
+    "database",
+    "storage",
+    "persistence",
+    "records"
+   ],
+   "refs": [
+    {
+     "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around (2024)",
+     "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+    },
+    {
+     "label": "DB-Engines Ranking",
+     "url": "https://db-engines.com/en/ranking"
+    }
+   ]
+  },
+  {
+   "id": "data.relational",
+   "title": "Relational Model",
+   "cat": "data",
+   "tier": 2,
+   "year": 1970,
+   "short": "Edgar Codd's idea: store data in tables and query it by what you want, not how to fetch it.",
+   "long": "Edgar F. Codd of IBM's San Jose research laboratory published 'A Relational Model of Data for Large Shared Data Banks' in Communications of the ACM in June 1970. A relation is a set of rows, shown as a table in which row order does not matter and no row repeats. A primary key uniquely identifies a row, a foreign key holds the primary key of another table, and normalization splits nested records into flat tables. The point was data independence: users and programs should be protected from knowing how data is laid out in the machine, which the navigational systems of the day, IMS and CODASYL, did not give them. The paper left implementation open. IBM's System R and Berkeley's Ingres showed it could be fast enough, Oracle sold it, and relational systems became the dominant design. Codd received the Turing Award in 1981.",
+   "sleeper": "Codd's paper was hard going even inside IBM. Bob Yost, who worked with the IMS group, recalled at a 1995 reunion: 'we thought it's going to take at least ten years before there's going to be anything. And it was ten years.'",
+   "code": {
+    "lang": "sql",
+    "text": "-- Before (CODASYL or IMS style, illustrative pseudo-code): follow pointers record by record\n--   get department with name = 'Sales'\n--   get first employee in set department-employees\n--   until end-of-set do { process employee; get next employee in set department-employees }\n\n-- After: the relational model. Tables and keys, then a query that says what is wanted\nCREATE TABLE department (code INTEGER PRIMARY KEY, name TEXT);\nCREATE TABLE employee (id INTEGER PRIMARY KEY, name TEXT, department_code INTEGER REFERENCES department(code));\nSELECT e.name FROM employee AS e JOIN department AS d ON d.code = e.department_code WHERE d.name = 'Sales';"
+   },
+   "status": "thriving",
+   "tags": [
+    "codd",
+    "tables",
+    "keys",
+    "data independence",
+    "normalization",
+    "relations"
+   ],
+   "refs": [
+    {
+     "label": "Codd, A Relational Model of Data for Large Shared Data Banks (1970)",
+     "url": "https://www.engineering.upenn.edu/~zives/03f/cis550/codd.pdf"
+    },
+    {
+     "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around (2024)",
+     "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+    }
+   ]
+  },
+  {
+   "id": "data.postgres",
+   "title": "PostgreSQL",
+   "cat": "data",
+   "tier": 3,
+   "year": 1996,
+   "short": "Free relational database descended from Berkeley's POSTGRES. The most used database in Stack Overflow's 2025 survey.",
+   "long": "The implementation of POSTGRES began in 1986 under Michael Stonebraker at Berkeley, sponsored by DARPA, ARO, NSF and ESL, Inc.; Version 1 was released in June 1989 and the Berkeley project ended with Version 4.2. In 1994 Andrew Yu and Jolly Chen replaced its query language with SQL, producing Postgres95, and in 1996 the project took the name PostgreSQL and started version numbering at 6.0. It is a full relational server with transactions, crash recovery and multiversion concurrency control, so readers do not block writers. It is also extensible: custom types, indexes and functions, add-ons such as the PostGIS geospatial extension, JSON and JSONB documents and, through pgvector, vector search for AI embeddings. It uses the permissive PostgreSQL License, and a major version arrives about once a year; PostgreSQL 18 appeared in September 2025.",
+   "sleeper": "PostgreSQL was the most used database in Stack Overflow's 2025 survey (55.6 percent of respondents), and Databricks, Snowflake, Google, Microsoft and AWS all sell Postgres-compatible products.",
+   "code": {
+    "lang": "sql",
+    "text": "CREATE TABLE note (id serial PRIMARY KEY, body jsonb);      -- JSON stored inside a relational table\nINSERT INTO note (body) VALUES ('{\"user\": \"ada\", \"tags\": [\"sql\", \"history\"]}');\nSELECT body->>'user' FROM note WHERE body @> '{\"tags\": [\"sql\"]}';   -- ada\n\nCREATE EXTENSION vector;                                    -- pgvector, an add-on\nCREATE TABLE item (id serial PRIMARY KEY, embedding vector(3));\nSELECT id FROM item ORDER BY embedding <-> '[3,1,2]' LIMIT 5;       -- nearest vectors first"
+   },
+   "status": "thriving",
+   "tags": [
+    "stonebraker",
+    "ingres",
+    "berkeley",
+    "open source",
+    "extensions",
+    "mvcc",
+    "jsonb",
+    "pgvector"
+   ],
+   "refs": [
+    {
+     "label": "PostgreSQL documentation: A Brief History of PostgreSQL",
+     "url": "https://www.postgresql.org/docs/current/history.html"
+    },
+    {
+     "label": "PostgreSQL: About",
+     "url": "https://www.postgresql.org/about/"
+    }
+   ]
+  },
+  {
+   "id": "data.sqlite",
+   "title": "SQLite",
+   "cat": "data",
+   "tier": 3,
+   "year": 2000,
+   "short": "A SQL database library whose entire database is one ordinary file, with no server. Its developers estimate over a trillion databases are in use.",
+   "long": "SQLite was first released in August 2000 by D. Richard Hipp as a small library, originally packaged as an extension to the Tcl language; it was born out of frustration with debugging a database server running in a separate process. It is a library, not a server: your program links it in and the whole database is one ordinary file, with no separate process, no network and no administrator. Its documentation says it competes with fopen(), not with client/server databases. The code is in the public domain, and the developers say they plan to support it until 2050. By the developers' own estimate SQLite is likely used more than all other database engines combined, because it is in every smartphone, Mac, Windows 10 and 11 installation and major browser. Python ships a sqlite3 module in its standard library.",
+   "sleeper": "SQLite does not enforce column types by default: an INTEGER column accepts the text 'hello'. STRICT tables, added in version 3.37.0 (November 2021), turn type checking on.",
+   "code": {
+    "lang": "text",
+    "text": "$ sqlite3 shop.db                 # the whole database will live in this one file\nsqlite> CREATE TABLE t (x INTEGER);\nsqlite> INSERT INTO t VALUES (42), ('hello');\nsqlite> SELECT x, typeof(x) FROM t;\n42|integer\nhello|text"
+   },
+   "status": "thriving",
+   "tags": [
+    "embedded",
+    "hipp",
+    "single file",
+    "public domain",
+    "library"
+   ],
+   "refs": [
+    {
+     "label": "SQLite: Most Widely Deployed",
+     "url": "https://www.sqlite.org/mostdeployed.html"
+    },
+    {
+     "label": "SQLite: Appropriate Uses For SQLite",
+     "url": "https://www.sqlite.org/whentouse.html"
+    },
+    {
+     "label": "Gaffney et al., SQLite: Past, Present, and Future (VLDB 2022)",
+     "url": "https://www.vldb.org/pvldb/vol15/p3535-gaffney.pdf"
+    }
+   ]
+  },
+  {
+   "id": "data.nosql",
+   "title": "NoSQL",
+   "cat": "data",
+   "tier": 3,
+   "year": 2009,
+   "short": "Key-value, document and wide-column stores built for web scale. Useful tools, not a replacement for SQL.",
+   "long": "NoSQL is the label for databases that gave up the relational table, SQL or strict transactions to spread data across many cheap machines. Google published designs for GFS (2003), MapReduce (2004) and Bigtable (2006), and Amazon one for Dynamo (2007); open-source systems followed, including Cassandra, MongoDB and Redis. The label was reintroduced in early 2009 by Johan Oskarsson of Last.fm for a meetup on open-source, distributed, non-relational databases; an earlier 1998 'NoSQL' by Carlo Strozzi was a relational database without SQL. The main families are key-value stores, document stores, wide-column stores and graph databases. The pitch, in Stonebraker and Pavlo's summary, was that SQL and joins are slow and that ACID transactions are unnecessary for modern applications, so a weaker guarantee called BASE would do.",
+   "sleeper": "At the peak, in November 2011, Martin Fowler advised that a new strategic enterprise application should 'no longer be assuming that your persistence should be relational'. By the end of the 2010s, per Stonebraker and Pavlo, almost every NoSQL database had added a SQL interface and many had added ACID transactions.",
+   "code": {
+    "lang": "text",
+    "text": "Relational: two tables, joined at query time\n  customers(id, name)        orders(id, customer_id, item, qty)\n  1, Ada                     1, 1, pen, 2\n                             2, 1, ink, 1\n\nDocument store: one self-contained record, fetched whole\n  { \"name\": \"Ada\", \"orders\": [ { \"item\": \"pen\", \"qty\": 2 }, { \"item\": \"ink\", \"qty\": 1 } ] }"
+   },
+   "status": "thriving",
+   "tags": [
+    "key-value",
+    "document",
+    "wide-column",
+    "graph",
+    "mongodb",
+    "cassandra",
+    "redis",
+    "bigtable",
+    "dynamo"
+   ],
+   "refs": [
+    {
+     "label": "Stonebraker and Pavlo, What Goes Around Comes Around... And Around (2024)",
+     "url": "https://db.cs.cmu.edu/papers/2024/whatgoesaround-sigmodrec2024.pdf"
+    },
+    {
+     "label": "Fowler, Polyglot Persistence (2011)",
+     "url": "https://martinfowler.com/bliki/PolyglotPersistence.html"
+    }
+   ]
+  },
+  {
+   "id": "math.hub",
+   "title": "Numerics, Matrices & AI",
+   "cat": "mathai",
+   "tier": 1,
+   "year": 1957,
+   "short": "Numbers in bulk: arrays and matrices, the libraries that crunch them, and the machine learning built on top.",
+   "long": "This category covers numerical computing: arrays and matrices, the libraries that process them, and the machine learning built on top. From FORTRAN's numerical libraries (BLAS in 1979, LAPACK in 1992) to Python's NumPy and GPU-trained neural networks, one operation keeps recurring: multiplying large arrays of numbers quickly. Start with Matrix, Matrix Multiplication, NumPy, Tensor, GPUs for Computing and PyTorch, then The Transformer and Large Language Models. Since 1990 Python's NumPy and SciPy have made free scientific computing practical, graphics processors have become general parallel engines (CUDA, 2007), and AlexNet, a GPU-trained network, won the 2012 ImageNet contest with a top-5 error of 15.3 percent against 26.2 percent for the runner-up.",
+   "sleeper": "Much of today's AI reduces to one operation: NVIDIA's guide calls general matrix multiplication (GEMM) a fundamental building block of neural-network layers. The base is old: in 2020 about a quarter of SciPy's code base was Fortran.",
+   "status": "thriving",
+   "tags": [
+    "numerics",
+    "linear algebra",
+    "machine learning",
+    "gpu",
+    "arrays"
+   ],
+   "refs": [
+    {
+     "label": "Harris et al., Array programming with NumPy (Nature, 2020)",
+     "url": "https://doi.org/10.1038/s41586-020-2649-2"
+    },
+    {
+     "label": "NVIDIA: Matrix Multiplication Background User's Guide",
+     "url": "https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html"
+    }
+   ]
+  },
+  {
+   "id": "math.matrix",
+   "title": "Matrix",
+   "cat": "mathai",
+   "tier": 2,
+   "year": 1850,
+   "short": "A rectangular grid of numbers with rules for adding and multiplying. It describes a transformation of space, and underlies graphics and neural networks.",
+   "long": "A matrix is a rectangular grid of numbers arranged in rows and columns; an m-by-n matrix has m rows and n columns. James Joseph Sylvester first used the word in 1850, and Arthur Cayley's 1858 'Memoir on the theory of matrices' gave the first abstract definition of a matrix algebra. A matrix is best read as a recipe for transforming space: its columns show where the axes land, so multiplying a matrix by a point rotates, stretches or shears it, and multiplying two matrices combines two transformations. The same idea covers 3D graphics, solving simultaneous equations, PageRank, recommender systems and neural-network layers. In code a matrix is a two-dimensional array held in one run of memory: row by row in C and NumPy, column by column in Fortran, MATLAB, Julia and R.",
+   "sleeper": "MATLAB, begun by Cleve Moler in the late 1970s so students could use the Fortran packages LINPACK and EISPACK without writing Fortran, made the matrix its native type; the name is short for Matrix Laboratory. Julia and NumPy later followed that idea.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\n\nturn = np.array([[0, -1],\n                 [1,  0]])      # 2 rows, 2 columns: turns a point 90 degrees counterclockwise\npoint = np.array([3, 1])\nprint(turn @ point)             # [-1  3]\nprint(turn @ turn)              # two quarter turns make a half turn: [[-1  0] [ 0 -1]]"
+   },
+   "status": "thriving",
+   "tags": [
+    "linear algebra",
+    "rows and columns",
+    "transformation",
+    "vector",
+    "array"
+   ],
+   "refs": [
+    {
+     "label": "MacTutor: Matrices and determinants",
+     "url": "https://mathshistory.st-andrews.ac.uk/HistTopics/Matrices_and_determinants/"
+    },
+    {
+     "label": "3Blue1Brown: Linear transformations and matrices",
+     "url": "https://www.3blue1brown.com/lessons/linear-transformations"
+    }
+   ]
+  },
+  {
+   "id": "math.numpy",
+   "title": "NumPy",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2006,
+   "short": "Python's fast array library. Nearly every scientific and machine learning package builds on it.",
+   "long": "NumPy supplies the n-dimensional array that Python lacks. Numeric (1995, Jim Hugunin and others) and Numarray, a rewrite for Hubble Space Telescope images, split the community until 2005, when Travis Oliphant and others merged the best of both into NumPy; the first release on PyPI is dated December 2006. A NumPy array is a pointer to one block of memory plus a data type, a shape and strides, so it stores numbers compactly and loops over them in compiled code. Writing operations on whole arrays, called vectorization, avoids the interpreter's cost per element, and broadcasting stretches smaller arrays across larger ones without copying. SciPy, pandas, Matplotlib and scikit-learn build on it. NumPy 2.0 (June 2024) was its first major release since 2006.",
+   "sleeper": "NumPy can store arrays row by row (C order) or column by column (Fortran order), so libraries written in C or Fortran, including the numerical codes of the 1970s and 1980s, can read its arrays directly in memory.",
+   "code": {
+    "lang": "python",
+    "text": "import numpy as np\na = np.arange(6).reshape(2, 3)     # [[0, 1, 2], [3, 4, 5]] stored as one block of integers\nprint(a * 10 + 1)                  # whole-array arithmetic, no loop: [[ 1 11 21] [31 41 51]]\nprint(a.sum(axis=0))               # column sums: [3 5 7]\nprint(a @ a.T)                     # matrix product of a and its transpose: [[ 5 14] [14 50]]"
+   },
+   "status": "thriving",
+   "tags": [
+    "ndarray",
+    "vectorization",
+    "broadcasting",
+    "oliphant",
+    "blas",
+    "array"
+   ],
+   "refs": [
+    {
+     "label": "Harris et al., Array programming with NumPy (Nature, 2020)",
+     "url": "https://doi.org/10.1038/s41586-020-2649-2"
+    },
+    {
+     "label": "NumPy: About",
+     "url": "https://numpy.org/about/"
+    },
+    {
+     "label": "NumPy: the absolute basics for beginners",
+     "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+    }
+   ]
+  },
+  {
+   "id": "math.pytorch",
+   "title": "PyTorch",
+   "cat": "mathai",
+   "tier": 3,
+   "year": 2016,
+   "short": "Meta's deep-learning library: tensors that run on GPUs and record operations so that gradients are computed automatically.",
+   "long": "PyTorch, released at Facebook (now Meta) in 2016, is a Python library for deep learning. Its tensors are n-dimensional arrays that can live on a GPU and record the operations applied to them, so backpropagation, the calculation of how each weight should change to reduce the error, runs automatically. Its 2019 paper says it was designed from first principles to support an imperative and Pythonic style: the network runs line by line like ordinary Python instead of being compiled from a graph first. It succeeded the Lua-based Torch. Among papers using a framework at top conferences in 2019, about 69 percent at CVPR and over 75 percent at NAACL and ACL used PyTorch, and TensorFlow (Google, open-sourced 9 November 2015) moved to the same eager style in version 2.0. PyTorch 2 (March 2023) added torch.compile. Training is mostly matrix multiplication on GPUs.",
+   "sleeper": "A training step is a few lines of ordinary Python: a forward pass (a matrix multiply), loss.backward() for the gradients and a small step downhill. In September 2026 PyPI counted about 62 million downloads of torch against 12 million of tensorflow.",
+   "code": {
+    "lang": "python",
+    "text": "import torch\n\nx = torch.tensor(3.0, requires_grad=True)   # a tensor that records what is done to it\ny = x ** 2 + 2 * x                          # y = x squared plus 2x\ny.backward()                                # compute dy/dx automatically (backpropagation)\nprint(x.grad)                               # tensor(8.): the slope 2x + 2 at x = 3"
+   },
+   "status": "thriving",
+   "tags": [
+    "deep learning",
+    "autograd",
+    "gpu",
+    "tensor",
+    "meta",
+    "neural network"
+   ],
+   "refs": [
+    {
+     "label": "Paszke et al., PyTorch: An Imperative Style, High-Performance Deep Learning Library (2019)",
+     "url": "https://arxiv.org/abs/1912.01703"
+    },
+    {
+     "label": "PyTorch tutorial: Tensors",
+     "url": "https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "found.machine-code",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "data.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "found.machine-code",
+   "t": "found.assembly",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "found.machine-code",
+   "t": "found.isa",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.machine-code",
+   "t": "found.stored-program",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "found.assembly",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "evolved-into"
+  },
+  {
+   "s": "found.assembly",
+   "t": "lang.c",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "found.isa",
+   "t": "comp.compiler",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "found.isa",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "comp.interpreter",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "comp.pipeline",
+   "t": "comp.compiler",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "comp.llvm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "lang.fortran",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "comp.compiler",
+   "t": "ppl.hopper",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "comp.interpreter",
+   "t": "comp.jit",
+   "w": 2,
+   "k": "evolved-into"
+  },
+  {
+   "s": "lang.python",
+   "t": "comp.interpreter",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.jit",
+   "t": "lang.java",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.jit",
+   "t": "lang.js",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "comp.llvm",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.gc",
+   "t": "lang.java",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "comp.gc",
+   "t": "lang.rust",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "comp.gc",
+   "t": "conc.pointer",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.cobol",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.c",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.cpp",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.java",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.python",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.js",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.rust",
+   "t": "lang.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "data.sql",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "math.matrix",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.c",
+   "t": "lang.cpp",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "lang.c",
+   "t": "lang.java",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "lang.c",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "lang.c",
+   "t": "conc.pointer",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.c",
+   "t": "conc.array",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.c",
+   "t": "ppl.ritchie",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.c",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.c",
+   "t": "plat.unix",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.c",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.cpp",
+   "t": "conc.oop",
+   "w": 2,
+   "k": "implements"
+  },
+  {
+   "s": "lang.cpp",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "lang.java",
+   "t": "conc.oop",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "lang.python",
+   "t": "math.numpy",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "lang.python",
+   "t": "pkg.pip",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "lang.python",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "lang.python",
+   "t": "conc.variable",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "lang.js",
+   "t": "pkg.npm",
+   "w": 3,
+   "k": "uses"
+  },
+  {
+   "s": "lang.js",
+   "t": "plat.web",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "lang.js",
+   "t": "mod.typescript",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "lang.js",
+   "t": "qual.eslint",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "conc.variable",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.array",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.pointer",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.oop",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.fp",
+   "t": "conc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "conc.variable",
+   "t": "conc.array",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "conc.array",
+   "t": "math.matrix",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "conc.array",
+   "t": "math.numpy",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "conc.oop",
+   "t": "conc.fp",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "conc.fp",
+   "t": "lang.js",
+   "w": 1,
+   "k": "influenced"
+  },
+  {
+   "s": "data.relational",
+   "t": "data.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "data.sql",
+   "t": "data.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "data.postgres",
+   "t": "data.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "data.sqlite",
+   "t": "data.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "data.nosql",
+   "t": "data.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "data.sql",
+   "t": "data.relational",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "data.relational",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "data.postgres",
+   "t": "data.sql",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "data.sqlite",
+   "t": "data.sql",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "data.sql",
+   "t": "data.nosql",
+   "w": 2,
+   "k": "competes-with"
+  },
+  {
+   "s": "math.matrix",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.numpy",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.pytorch",
+   "t": "math.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "math.numpy",
+   "t": "math.matrix",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "math.matrix",
+   "t": "math.pytorch",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "math.pytorch",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "lang.fortran",
+   "t": "org.ibm",
+   "w": 3,
+   "k": "created-by"
+  }
+ ]
+}

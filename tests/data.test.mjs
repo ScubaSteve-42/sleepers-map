@@ -8,7 +8,7 @@ import { mergeData } from '../scripts/merge-data.mjs';
 import { validateGraph } from '../scripts/validate-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const strict = process.env.SMAP_STRICT !== '0' && process.env.SMAP_RELEASE === '1';
+const strict = process.env.SMAP_STRICT !== '0';   // the release bars apply unless a run opts out while data is still being written
 
 test('merged graph has no duplicate ids or merge problems', () => {
   const { graph, problems } = mergeData({ write: false });
@@ -26,8 +26,10 @@ test('merged graph passes validation', () => {
 test('data/graph.json on disk matches a fresh merge', () => {
   const disk = JSON.parse(readFileSync(path.join(root, 'data/graph.json'), 'utf8'));
   const { graph } = mergeData({ write: false });
-  assert.equal(disk.nodes.length, graph.nodes.length, 'run `npm run merge` to refresh data/graph.json');
-  assert.equal(disk.edges.length, graph.edges.length);
+  // compare the content, not just the counts: an edited sentence or a changed weight must also show up as a stale file
+  assert.deepEqual(disk.nodes, graph.nodes, 'run `npm run merge` to refresh data/graph.json');
+  assert.deepEqual(disk.edges, graph.edges, 'run `npm run merge` to refresh data/graph.json');
+  assert.deepEqual(disk.tour, graph.tour); assert.deepEqual(disk.questions, graph.questions);
 });
 
 const base = () => ({

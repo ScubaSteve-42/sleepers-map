@@ -9,7 +9,7 @@
    "year": 2026,
    "short": "No single ranking says which language is most used: TIOBE, Stack Overflow, GitHub, RedMonk and JetBrains each count something different.",
    "long": "In TIOBE's September 2026 index Python is first, followed by C, C++, Java and C#. In Stack Overflow's 2025 survey JavaScript is the most-used language (66 percent of respondents), and GitHub's 2025 Octoverse reported TypeScript passing both Python and JavaScript by monthly contributors. The orders differ because the methods differ: search-engine hits, survey replies, committers on one platform, or pull requests combined with Stack Overflow tags. Beyond languages, the Stack Overflow survey shows PostgreSQL as the most-used database (55.6 percent), Docker at 71.1 percent and Visual Studio Code at 75.9 percent. A figure should be quoted with its source and date. RedMonk itself says Stack Overflow's relevance to a generation of developers has declined, which weakens its own ranking.",
-   "sleeper": "Several languages from your era are still ranked: C is second in TIOBE, and Fortran, COBOL and Ada remain in its top 20. The two leaders on most lists, Python (1991) and JavaScript (1995), are likely names you never used.",
+   "sleeper": "Several languages from your era are still ranked: C is second in TIOBE, and Fortran, COBOL and Ada remain in its top 20. Python (1991) and JavaScript (1995), which sit at or near the top of several lists, are likely names you never used.",
    "status": "n/a",
    "tags": [
     "rankings",
@@ -35,7 +35,7 @@
    "tier": 3,
    "year": 2001,
    "short": "A monthly language ranking built from search-engine hit counts. TIOBE says it reflects skilled engineers, courses and vendors, not code volume or quality.",
-   "long": "TIOBE publishes a monthly rating of programming languages computed from search-engine queries (Google, Amazon, Wikipedia, Bing and more than 20 other sites) for phrases such as \"<language> programming\". Its stated basis is the number of skilled engineers, courses and third-party vendors, and it says the index is not about the best language or the one with the most lines of code written. In September 2026 Python was first at 17.76 percent, down 8.22 points in a year, with C, C++, Java and C# next; Rust entered the top 10, and Perl and Ruby left the top 20. TIOBE does not explain Python's drop. Sources date the index's start to 1997 or 2001, and its long-term table reconstructs positions before 2001 from Usenet hits.",
+   "long": "TIOBE publishes a monthly rating of programming languages computed from search-engine queries (Google, Amazon, Wikipedia, Bing and more than 20 other sites) for phrases such as \"<language> programming\". Its stated basis is the number of skilled engineers, courses and third-party vendors, and it says the index is not about the best language or the one with the most lines of code written. In September 2026 Python was first at 17.76 percent, down 8.22 points in a year, with C, C++, Java and C# next; Rust entered the top 10, and Perl and Ruby left the top 20. No explanation from TIOBE for Python's drop was found. Sources date the index's start to 1997 or 2001, and its long-term table reconstructs positions before 2001 from Usenet hits.",
    "sleeper": "TIOBE counts web chatter, so long-lived teaching material can lift a language: Visual Basic ranks 7th and Delphi 13th, though only 4.4 and 2.5 percent of Stack Overflow's 2025 respondents use them. That reading is an inference.",
    "status": "thriving",
    "tags": [
@@ -57,7 +57,7 @@
    "tier": 3,
    "year": 2011,
    "short": "An annual opt-in survey of developers. The 2025 edition had over 49,000 responses and found 84 percent using or planning to use AI tools.",
-   "long": "Stack Overflow has run its Developer Survey since 2011, and the 2025 edition was its fifteenth. It drew 49,009 responses from 177 countries, fielded from 29 May to 23 June 2025 and covering 314 technologies. Respondents were recruited mainly through Stack Overflow's own channels, so the sample leans toward engaged users of that site. Results: JavaScript 66 percent, HTML/CSS 61.9, SQL 58.6, Python 57.9 (up 7 points) and TypeScript 43.6; PostgreSQL the leading database at 55.6; Visual Studio Code the leading editor at 75.9; uv the most admired tool at 74.2. On AI, 84 percent use or plan to use AI tools, 51 percent of professionals daily, while 46 percent distrust the accuracy of AI output and 33 percent trust it. No 2026 edition had appeared by the end of September 2026.",
+   "long": "Stack Overflow has run its Developer Survey since 2011, and the 2025 edition was its fifteenth. It drew 49,009 responses from 177 countries, fielded from 29 May to 23 June 2025 and covering 314 technologies. Respondents were recruited mainly through Stack Overflow's own channels, so the sample leans toward engaged users of that site. Results: JavaScript 66 percent, HTML/CSS 61.9, SQL 58.6, Python 57.9 (up 7 points) and TypeScript 43.6; PostgreSQL the leading database at 55.6; Visual Studio Code the leading editor at 75.9; uv the most admired tool at 74.2. On AI, 84 percent use or plan to use AI tools, 51 percent of professionals daily, while 46 percent distrust the accuracy of AI output and 33 percent trust it. No 2026 edition was found as of the end of September 2026.",
    "sleeper": "Nothing like it existed in 1990, when there was no public question-and-answer site to recruit from. One survey now reaches tens of thousands of developers in 177 countries, though mainly those engaged with Stack Overflow.",
    "status": "thriving",
    "tags": [
@@ -84,7 +84,7 @@
    "tier": 3,
    "year": 2014,
    "short": "GitHub's annual report on activity on its platform. The 2025 edition counted over 180 million developers and ranked TypeScript first by monthly contributors.",
-   "long": "GitHub has published its Octoverse report annually since about 2014. The 2025 edition, released on 28 October 2025, counted more than 180 million developers, with a new one joining about every second, and nearly 1 billion commits in the year. It ranks languages by distinct monthly contributors. In August 2025 TypeScript led with 2,636,006, about 42,000 ahead of Python, and the report called this the most significant language shift in more than a decade. GitHub's explanation is that major front-end frameworks now scaffold TypeScript by default and that types suit AI-assisted work; that is its interpretation, not a tested cause. The report itself warns that other indices may still rank JavaScript and Python higher. It also counted over 1 million pull requests opened by coding agents between May and September 2025.",
+   "long": "GitHub has published its Octoverse report annually since about 2014, a start year that was not verified. The 2025 edition, released on 28 October 2025, counted more than 180 million developers, with a new one joining about every second, and nearly 1 billion commits in the year. It ranks languages by distinct monthly contributors. In August 2025 TypeScript led with 2,636,006, about 42,000 ahead of Python, and the report called this the most significant language shift in more than a decade. GitHub's explanation is that major front-end frameworks now scaffold TypeScript by default and that types suit AI-assisted work; that is its interpretation, not a tested cause. The report itself warns that other indices may still rank JavaScript and Python higher. It also counted over 1 million pull requests opened by coding agents between May and September 2025.",
    "sleeper": "GitHub did not exist until 2008, and Git itself dates from 2005. Counting people who commit code is a different measure from counting search hits or survey answers, and it covers only work done on GitHub.",
    "status": "thriving",
    "tags": [
@@ -107,7 +107,7 @@
    "tier": 4,
    "year": 2012,
    "short": "JetBrains' annual survey. In 2025 it polled 24,534 developers: 85 percent regularly used AI tools, and Go and Rust led the languages people planned to adopt.",
-   "long": "JetBrains, the maker of IntelliJ IDEA and PyCharm, runs a yearly developer survey that dates from about 2012. The 2025 edition, published in October 2025, drew 24,534 developers in 194 countries who answered between April and June; JetBrains weighted responses for geography, employment, languages and product use, and notes that its own users may have been more likely to respond. Findings: 85 percent regularly use AI tools for coding, 62 percent rely on at least one AI coding assistant, agent or editor, and nearly nine in ten save at least an hour a week. TypeScript showed the most dramatic rise in real use, Go (11 percent) and Rust (10) led the languages developers plan to adopt, and PHP, Ruby and Objective-C were described as in long-term decline.",
+   "long": "JetBrains, the maker of IntelliJ IDEA and PyCharm, runs a yearly developer survey; a start date of about 2012 was not verified. The 2025 edition, published in October 2025, drew 24,534 developers in 194 countries who answered between April and June; JetBrains weighted responses for geography, employment, languages and product use, and notes that its own users may have been more likely to respond. Findings: 85 percent regularly use AI tools for coding, 62 percent rely on at least one AI coding assistant, agent or editor, and nearly nine in ten save at least an hour a week. TypeScript showed the most dramatic rise in real use, Go (11 percent) and Rust (10) led the languages developers plan to adopt, and PHP, Ruby and Objective-C were described as in long-term decline.",
    "status": "thriving",
    "tags": [
     "survey",
@@ -174,8 +174,8 @@
    "tier": 4,
    "year": 2026,
    "short": "In September 2026 PyPI served about 127.6 billion downloads. The most-downloaded packages are plumbing such as boto3, packaging and urllib3, not famous libraries.",
-   "long": "PyPI, the Python Package Index, is the public repository that pip and uv download from. For September 2026 a count from the public ClickPy dataset gave about 127.6 billion downloads across about 932,000 projects, up 52.7 percent and 37.8 percent on September 2025. The top of the list is infrastructure that other packages pull in: boto3 (the AWS library) first with 2,461 million, then packaging, typing-extensions, idna and urllib3, with requests seventh. NumPy ranks 23rd and pandas 40th. Fast risers since 2023 include uv, Ruff, Polars, DuckDB, Pydantic and FastAPI, while TensorFlow's downloads fell to 12 million and PyTorch has about five times its count. Downloads include automated installs by build systems, so they measure installs, not users, and monthly counts can swing by 30 to 40 percent.",
-   "sleeper": "In your day a library came on a disk or as source you typed in. A single repository now handles about 127.6 billion downloads in a month, mostly requested automatically by other software.",
+   "long": "PyPI, the Python Package Index, is the public repository that pip and uv download from. For September 2026 a count from the public ClickPy dataset gave about 127.6 billion downloads across about 932,000 projects, up 52.7 percent and 37.8 percent on September 2025. The top of the list is infrastructure that other packages pull in: boto3 (the AWS library) first with 2,461 million, then packaging, typing-extensions, idna and urllib3, with requests seventh. NumPy ranks 23rd and pandas 40th. Fast risers since 2023 include uv, Ruff, Polars, DuckDB, Pydantic and FastAPI, while TensorFlow's downloads fell to 12 million and PyTorch has about five times its count. Downloads include automated installs by build systems, so they measure installs, not users, and monthly counts swing: NumPy fell from 1,111 million in August to 802 million in September.",
+   "sleeper": "In your day a library came on a disk or as source you typed in. A single repository now handles about 127.6 billion downloads in a month, many of them requested automatically by build systems and other software.",
    "status": "n/a",
    "tags": [
     "downloads",
@@ -299,7 +299,7 @@
    "cat": "modern",
    "tier": 4,
    "year": 2024,
-   "short": "Cognition's Devin, announced on 12 March 2024 as the first AI software engineer. It resolved 13.86 percent of SWE-bench issues working unassisted.",
+   "short": "Cognition's Devin, announced on 12 March 2024 as the first AI software engineer. Cognition reported it resolved 13.86 percent of a SWE-bench subset unassisted.",
    "long": "Cognition announced Devin on 12 March 2024 and called it the first AI software engineer. Cognition reported that Devin resolved 13.86 percent of issues end to end on a random 25 percent subset of SWE-bench, working unassisted. The previous best result, 1.96 percent, had been obtained by a model that was told which files to edit, and the benchmark itself was only five months old. These figures are Cognition's own, from its announcement, and the fuller technical report it promised is not cited here. Devin is among the tools that the AGENTS.md site lists as supporting that convention. No usage figures for Devin were found in the sources reviewed.",
    "status": "niche",
    "tags": [
@@ -480,7 +480,7 @@
    "tier": 3,
    "year": 2025,
    "short": "Plain files in a repository that tell a coding agent how to build, test and behave. AGENTS.md is the cross-tool convention; CLAUDE.md is Claude Code's.",
-   "long": "AGENTS.md describes itself as a README for agents: build and test commands, code style, security notes and commit or pull-request rules, kept in the repository where an agent will read them. It was developed collaboratively by OpenAI's Codex, Amp, Google's Jules, Cursor and Factory, and its site reports use in more than 60,000 open-source projects and support from 25 or more tools. It is stewarded by the Agentic AI Foundation. Claude Code reads a file named CLAUDE.md at the start of every conversation; its documentation advises keeping it short, checking it into Git and pruning it like code, because a bloated file leads the model to ignore real instructions. The AGENTS.md site does not mention CLAUDE.md, and no independent trial shows that either file improves results.",
+   "long": "AGENTS.md describes itself as a README for agents: build and test commands, code style, security notes and commit or pull-request rules, kept in the repository where an agent will read them. It was developed collaboratively by OpenAI's Codex, Amp, Google's Jules, Cursor and Factory, and its site reports use in more than 60,000 open-source projects and support from 25 or more tools. It is stewarded by the Agentic AI Foundation. Claude Code reads a file named CLAUDE.md at the start of every conversation; its documentation advises keeping it short, checking it into Git and pruning it like code, because a bloated file leads the model to ignore real instructions. The AGENTS.md site does not mention CLAUDE.md, and no independent trial was found showing that either file improves results.",
    "code": {
     "lang": "markdown",
     "text": "# AGENTS.md\n\n## Build and test\n- Install: npm install\n- Run all tests: npm test (they must pass before any commit)\n\n## Style\n- TypeScript in strict mode; format with npm run format\n\n## Commits\n- One logical change per commit; mention the issue number"
@@ -630,7 +630,7 @@
    "tier": 3,
    "year": 2026,
    "short": "Limits on what a coding agent may do: permission prompts, allowlists, sandboxes and classifier-based auto modes that review each action.",
-   "long": "Agents can run commands, so their reach has to be limited. Claude Code's documentation says that in manual mode \"after the tenth approval you're clicking through rather than reviewing\", and recommends allowlists, operating-system sandboxing and an auto mode in which a separate classifier model blocks scope escalation, unknown infrastructure and hostile-content-driven actions. Auto mode became the default on 8 August 2026. A vendor-reported figure, that auto mode caught 89 percent of harmful actions against 13.6 percent for human review, could not be verified. Simon Willison's notes describe a July 2026 bug report of an agent deleting a user's home directory in a session with no sandbox, and worry about malicious dependencies inside sandboxes. His \"lethal trifecta\", private data plus untrusted content plus outside communication, explains why this matters.",
+   "long": "Agents can run commands, so their reach has to be limited. Claude Code's documentation says that in manual mode \"after the tenth approval you're clicking through rather than reviewing\", and recommends allowlists, operating-system sandboxing and an auto mode in which a separate classifier model blocks scope escalation, unknown infrastructure and hostile-content-driven actions. Auto mode reportedly became the default on 8 August 2026. A vendor-reported figure, that auto mode caught 89 percent of harmful actions against 13.6 percent for human review, could not be verified. Simon Willison's notes describe a July 2026 bug report of an agent deleting a user's home directory in a session with no sandbox, and worry about malicious dependencies inside sandboxes. His \"lethal trifecta\", private data plus untrusted content plus outside communication, explains why this matters.",
    "sleeper": "Programs of your era did what they were written to do. An agent can improvise, so the old idea of least privilege, giving a process only the access it needs, is now applied to a tool that decides for itself.",
    "status": "n/a",
    "tags": [
@@ -657,8 +657,8 @@
    "cat": "modern",
    "tier": 3,
    "year": 2023,
-   "short": "A test set of 2,294 real GitHub issues from 12 Python projects. Best score: 1.96 percent in October 2023, then 63.7 percent on its Verified subset by February 2025.",
-   "long": "SWE-bench was introduced on 10 October 2023 by Jimenez and colleagues at Princeton. It draws 2,294 tasks from real GitHub issues in 12 popular Python repositories; each task is an actual issue, and a model resolves it by producing a fix. The best model at the time, Claude 2, resolved 1.96 percent. Cognition's Devin reported 13.86 percent on a random 25 percent subset in March 2024, and Claude 3.7 Sonnet scored 63.7 percent in February 2025 on SWE-bench Verified, a 500-task, human-validated subset released in August 2024 (70.3 percent with extra test-time compute). Scores on the full set and on Verified are not directly comparable. Scale AI's harder successor reports much lower scores, and its authors warn that models may have memorized public solutions.",
+   "short": "A test set of 2,294 GitHub issues from 12 Python projects. The best 2023 score was 1.96 percent; Anthropic reported 63.7 percent on a Verified subset in 2025.",
+   "long": "SWE-bench was introduced on 10 October 2023 by Jimenez and colleagues at Princeton. It draws 2,294 tasks from real GitHub issues in 12 popular Python repositories; each task is an actual issue, and a model resolves it by producing a fix. The best model at the time, Claude 2, resolved 1.96 percent. Cognition's Devin reported 13.86 percent on a random 25 percent subset in March 2024, and Anthropic reported in February 2025 that Claude 3.7 Sonnet scored 63.7 percent on SWE-bench Verified, a 500-task, human-validated subset released in August 2024 (70.3 percent with extra test-time compute). Scores on the full set and on Verified are not directly comparable. Scale AI's harder successor reports much lower scores, and its authors warn that models may have memorized public solutions.",
    "status": "n/a",
    "tags": [
     "benchmark",
@@ -751,7 +751,7 @@
    "year": 2025,
    "short": "METR's 2025 trial: experienced developers took 19 percent longer with AI tools yet believed they were faster. Its 2026 follow-up was inconclusive.",
    "long": "METR, an AI-evaluation group, published a randomized trial on 10 July 2025. Sixteen experienced developers worked on 246 real issues, averaging about two hours, in large open-source repositories (averaging over 22,000 stars and a million lines of code); each issue was randomly allowed or disallowed AI, mainly Cursor Pro with Claude 3.5 and 3.7 Sonnet. Tasks took 19 percent longer with AI. Developers had predicted a 24 percent speedup and afterwards still believed AI had saved about 20 percent. METR says this does not show that AI fails to help most developers, in other settings or with later tools. A follow-up on 24 February 2026, with 57 developers and over 800 tasks, estimated 4 to 18 percent less time with AI, with wide intervals. METR called it only very weak evidence, since developers refused to work without AI and withheld tasks, but said developers are likely more sped up now.",
-   "sleeper": "The argument is the one Fred Brooks made in 1986 in \"No Silver Bullet\": no single tool gives a tenfold gain. What is new is testing it with randomized trials on working developers instead of relying on opinion.",
+   "sleeper": "The dispute echoes Fred Brooks's 1986 argument in \"No Silver Bullet\" that no single tool gives a tenfold gain. What is new is testing it with randomized trials on working developers instead of relying on opinion.",
    "status": "n/a",
    "tags": [
     "productivity",
@@ -776,7 +776,7 @@
    "cat": "modern",
    "tier": 4,
    "year": 2022,
-   "short": "GitHub's 2022 controlled experiment with 95 developers: those using Copilot finished a JavaScript HTTP-server task 55 percent faster than those without.",
+   "short": "GitHub's own 2022 controlled experiment with 95 developers reported that those using Copilot finished a JavaScript HTTP-server task 55 percent faster.",
    "long": "GitHub Next and Microsoft's Office of the Chief Economist published this study on 7 September 2022. They randomly split 95 professional developers, and the task was to write an HTTP server in JavaScript. The Copilot group finished 55 percent faster (1 hour 11 minutes against 2 hours 41 minutes; 95 percent confidence interval 21 to 89 percent) and had a higher completion rate, 78 percent against 70. Limits to note: one small, self-contained task, run by the vendor, with speed judged against a test suite. It is the best-known evidence for large gains and contrasts with METR's 2025 trial of experienced developers in mature codebases. In June 2022 GitHub also claimed that nearly 40 percent of code in files where Copilot was active, in popular languages such as Python, was written by it; that is a vendor claim.",
    "status": "n/a",
    "tags": [
@@ -848,7 +848,7 @@
    "tier": 4,
    "year": 2025,
    "short": "GitClear's 2025 analysis of 211 million changed lines found refactoring fell and copy-pasted code rose from 2021 to 2024. GitClear sells code-analytics tools.",
-   "long": "GitClear, a vendor of code-analytics tools, published a 2025 report analysing 211 million changed lines from January 2020 to December 2024 in repositories owned by Google, Microsoft, Meta and enterprises. It reports that the share of changed lines that were refactoring, meaning moved code, fell from about 25 percent in 2021 to under 10 percent in 2024, while copy-pasted lines rose from 8.3 to 12.3 percent, which it summarizes as four times as many code clones. Caveats apply: the data show a correlation with the years of AI adoption, not that AI caused the change; the page does not define how lines were classified or state its limitations; and GitClear has a commercial interest. No randomized trial supports or refutes the result.",
+   "long": "GitClear, a vendor of code-analytics tools, published a 2025 report analysing 211 million changed lines from January 2020 to December 2024 in repositories owned by Google, Microsoft, Meta and enterprises. It reports that the share of changed lines that were refactoring, meaning moved code, fell from about 25 percent in 2021 to under 10 percent in 2024, while copy-pasted lines rose from 8.3 to 12.3 percent, which it summarizes as four times as many code clones. Caveats apply: the data show a correlation with the years of AI adoption, not that AI caused the change; the page does not define how lines were classified or state its limitations; and GitClear has a commercial interest. No randomized trial of the result was found.",
    "status": "n/a",
    "tags": [
     "code quality",
@@ -891,7 +891,7 @@
    "cat": "modern",
    "tier": 4,
    "year": 2025,
-   "short": "A 2025 Stanford payroll study: early-career employment in AI-exposed jobs, software developers included, fell about 13 percent relative to other jobs.",
+   "short": "A 2025 Stanford payroll study reportedly found early-career employment in AI-exposed jobs, software developers included, fell about 13 percent relative to others.",
    "long": "In August 2025 Brynjolfsson, Chandar and Chen of Stanford's Digital Economy Lab published \"Canaries in the Coal Mine\", an analysis of payroll data from ADP. As reported, employment of workers aged 22 to 25 in the most AI-exposed occupations, software developers among them, fell about 13 percent relative to less-exposed jobs after late 2022, with little decline for older workers. The authors caution about causality. The paper's text could not be extracted for checking, so these figures are approximate and unverified. Interest-rate-driven hiring slowdowns and post-pandemic overhiring coincide with the period, so the result is suggestive of an AI effect on junior hiring but is not proof of one.",
    "status": "n/a",
    "tags": [
@@ -941,7 +941,7 @@
    "tier": 4,
    "year": 2020,
    "short": "The strongest randomized evidence, a Nature paper of 2024 on a trial at Trip.com, found hybrid work raised job satisfaction and cut quit rates by a third.",
-   "long": "Working from home became widespread among developers during the pandemic that began in 2020; the best randomized evidence on it was published only in 2024, which is why sources differ on the year. Bloom, Han and Liang's Nature paper reports a six-month trial from August 2021 to January 2022 of 1,612 graduate employees in the Airfare and IT divisions of Trip.com, randomized by birthday into hybrid work (at home on Wednesday and Friday) or full-time office. Hybrid work improved job satisfaction and reduced quit rates by one-third, with no evidence of an effect on performance reviews or promotions over two years and no effect on the lines of code written by software engineers. Managers had expected a 2.6 percent productivity loss and non-managers a 0.7 percent gain. Caveats: one large Chinese company, hybrid rather than fully remote work, and lines of code as an output measure.",
+   "long": "Working from home became widespread among developers during the pandemic that began in 2020; the best randomized evidence on it was published only in 2024. Bloom, Han and Liang's Nature paper reports a six-month trial from August 2021 to January 2022 of 1,612 graduate employees in the Airfare and IT divisions of Trip.com, randomized by birthday into hybrid work (at home on Wednesday and Friday) or full-time office. Hybrid work improved job satisfaction and reduced quit rates by one-third, with no evidence of an effect on performance reviews or promotions over two years and no effect on the lines of code written by software engineers. Managers had expected a 2.6 percent productivity loss and non-managers a 0.7 percent gain. Caveats: one large Chinese company, hybrid rather than fully remote work, and lines of code as an output measure.",
    "status": "n/a",
    "tags": [
     "work from home",
@@ -1014,7 +1014,7 @@
    "cat": "modern",
    "tier": 3,
    "year": 2026,
-   "short": "Microsoft's TypeScript 7, released on 8 July 2026, is a port of the compiler to native Go code, often about 10 times faster than TypeScript 6.",
+   "short": "TypeScript 7, released on 8 July 2026, ports the compiler to native Go code. Microsoft says it is often about 10 times faster than TypeScript 6.",
    "long": "TypeScript 6.0 (23 March 2026) was described as the last release based on the existing JavaScript codebase. TypeScript 7.0 (8 July 2026, after a beta in April and a release candidate in June) is a native port written in Go, codenamed Project Corsa, which Microsoft says is often about 10 times faster than 6.0. In the 7.0 announcement, running the compiler on the VS Code project fell from 125.7 to 10.6 seconds (11.9 times), Sentry from 139.8 to 15.7 seconds and Playwright from 12.8 to 1.47 seconds, with memory use down 6 to 26 percent; these are Microsoft's own benchmarks. The release makes strict mode the default and drops the es5 target, and frameworks such as Vue, Angular, Astro and Svelte wait for 7.1 for a stable programmatic API. Speed matters for huge codebases and for AI agents that run checks in a loop.",
    "status": "thriving",
    "tags": [
@@ -1230,7 +1230,7 @@
    "cat": "modern",
    "tier": 4,
    "year": 2026,
-   "short": "Google's plan to verify the identity of developers behind every app on certified Android devices, even apps installed outside Google Play, from September 2026.",
+   "short": "Google's plan to verify developer identity for apps on certified Android devices, even those outside Google Play, starting in four countries in September 2026.",
    "long": "Google says that to protect users from malware and scams it is verifying the identity of developers whose apps run on certified Android 7 and later devices, including apps distributed outside Google Play. Developer tools were due in August 2026, enforcement was scheduled to begin on 30 September 2026 in Brazil, Indonesia, Singapore and Thailand, and verification is to expand globally in 2027. Exceptions include limited distribution accounts for students, teachers and hobbyists (no government ID or fee, up to 20 devices) and an advanced flow for power users who want to install unverified apps. Whether enforcement actually began on schedule is not confirmed in the sources reviewed. Courts and regulators are loosening app-store rules while Google tightens sideloading, the installing of apps from outside the store.",
    "sleeper": "Software in your day came on a disk you chose to insert. On a phone the platform maker decides, and sideloading, installing from outside the official store, is the part Google is now restricting.",
    "status": "n/a",
@@ -1660,7 +1660,7 @@
    "s": "mod.autocomplete",
    "t": "mod.copilot",
    "w": 2,
-   "k": "replaced-by",
+   "k": "evolved-into",
    "note": "Whole-function generation went beyond next-name completion"
   },
   {

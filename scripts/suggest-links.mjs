@@ -3,7 +3,7 @@
 //   node scripts/suggest-links.mjs --write  (writes data/src/z-links.json, which the merge reads last)
 // Rules: every node with fewer than 3 connections gains a part-of edge to its category's hub; every hub with fewer
 // than 15 connections gains part-of edges from the nodes of its category that rank highest by tier.
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { mergeData } from './merge-data.mjs';
@@ -36,4 +36,9 @@ const thin = graph.nodes.filter((n) => (deg.get(n.id) ?? 0) < 3);
 const hubs = graph.nodes.filter((n) => n.tier === 1).map((h) => `${h.id}:${deg.get(h.id)}`);
 console.log(`${graph.nodes.length} nodes, ${graph.edges.length} edges; added ${add.length} structural edges; nodes still under 3 connections: ${thin.length}`);
 console.log('hub degrees:', hubs.join(' '));
-if (write) { writeFileSync(path.join(root, 'data/src/z-links.json'), JSON.stringify({ slice: 'z-links', nodes: [], edges: add }, null, 1) + '\n'); console.log('wrote data/src/z-links.json'); }
+if (write) {
+  // the merge already includes the edges written by an earlier run, so `add` holds only what is still missing: keep the old ones too
+  const file = path.join(root, 'data/src/z-links.json');
+  const earlier = existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')).edges ?? []) : [];
+  writeFileSync(file, JSON.stringify({ slice: 'z-links', nodes: [], edges: [...earlier, ...add] }, null, 1) + '\n'); console.log(`wrote data/src/z-links.json (${earlier.length} kept, ${add.length} new)`);
+}

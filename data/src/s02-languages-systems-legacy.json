@@ -7,7 +7,7 @@
    "cat": "languages",
    "tier": 4,
    "year": 1949,
-   "short": "The first high-level notation actually implemented: an interpreter for coded math formulas, suggested by John Mauchly in 1949 for the BINAC and UNIVAC.",
+   "short": "Knuth and Trabb Pardo call it the first high-level language actually implemented: an interpreter for coded math formulas, suggested by John Mauchly in 1949.",
    "long": "Short Code was an interpreter that let a user write mathematical formulas in a coded form instead of machine instructions. John Mauchly suggested it in 1949, William Schmitt coded it for the BINAC that year and recoded it for the UNIVAC in late 1950, and J. Robert Logan revised it in January 1952. Knuth and Trabb Pardo call it the first high-level language actually to be implemented. Its write-up claimed that any mathematical equation could be evaluated by the mere expedient of writing it down, that the need for special programming had been eliminated, and that it gave a speed ratio of at least fifty to one against manual methods. That is an early case of the over-promising that later 'automatic programming' efforts repeated, and the lack of published detail suggests Short Code was not an instant success.",
    "status": "dead",
    "tags": [
@@ -226,7 +226,7 @@
    "tier": 4,
    "year": 1978,
    "short": "Niklaus Wirth's successors to Pascal: Modula-2 (designed from 1978), built on modules, and Oberon (1987), a minimal language and system. Influential, little used.",
-   "long": "Niklaus Wirth followed Pascal with Modula-2, designed in 1978 to 1980 at ETH Zurich and published in 1979 by his own account, and with Oberon in 1987. Their main contribution was the module: a separately compiled unit that hides its internals and exports a defined interface. Wirth said modularization was the principal idea behind Modula-2, motivated by Xerox's Mesa, itself a descendant of Pascal, and that Ada adopted the idea as well. He also led construction of the Lilith workstation (1980) and the Ceres workstations at ETH, and his web page still lists Project Oberon, 2013 Edition. Go's own FAQ credits the Pascal, Modula and Oberon family for its declarations and packages. Neither language appears in TIOBE's September 2026 top 100, although GCC includes a Modula-2 front end.",
+   "long": "Niklaus Wirth followed Pascal with Modula-2, designed from 1978 at ETH Zurich and, by his own account, published in 1979, and with Oberon in 1987. Their main contribution was the module: a separately compiled unit that hides its internals and exports a defined interface. Wirth said modularization was the principal idea behind Modula-2, motivated by Xerox's Mesa, itself a descendant of Pascal, and that Ada adopted the idea as well. He also led construction of the Lilith workstation (1980) and the Ceres workstations at ETH, and his web page still lists Project Oberon, 2013 Edition. Go's own FAQ credits the Pascal, Modula and Oberon family for its declarations and packages. Neither language appears in TIOBE's September 2026 top 100, although GCC includes a Modula-2 front end.",
    "code": {
     "lang": "oberon",
     "text": "MODULE SumSquares;\n  IMPORT Out;\n  VAR n, total: INTEGER;\nBEGIN\n  total := 0;\n  FOR n := 1 TO 9 BY 2 DO total := total + n * n END;\n  Out.Int(total, 0); Out.Ln\nEND SumSquares."
@@ -1097,7 +1097,7 @@
    "t": "ppl.dijkstra",
    "w": 1,
    "k": "related",
-   "note": "backed the recursion sentence and praised the report"
+   "note": "backed the recursion sentence"
   },
   {
    "s": "lang.basic",

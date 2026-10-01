@@ -8,8 +8,8 @@
    "tier": 3,
    "year": 1958,
    "status": "dead",
-   "short": "A 1958 proposal for one universal intermediate language, so N languages and M machines need only N plus M translators. Never built, but the idea won later.",
-   "long": "In 1958 a committee of the SHARE user group proposed UNCOL, the Universal Computer Oriented Language. Every compiler would translate its source language into UNCOL once, and one translator per machine would turn UNCOL into machine code, so N languages and M machines would need N plus M translators instead of N times M. It was never fully specified or implemented. A later white paper by Stavros Macrakis says it failed because language and compiler technology were not yet mature, and that compiler-compilers in the 1970s ended up solving the problem in another way. The same arithmetic now drives LLVM's intermediate representation and bytecode virtual machines such as the Java Virtual Machine.",
+   "short": "A 1958 proposal for one universal intermediate language, so N languages and M machines need only N plus M translators. Never fully built, but the idea won later.",
+   "long": "In 1958 a committee of the SHARE user group proposed UNCOL, the Universal Computer Oriented Language. Every compiler would translate its source language into UNCOL once, and one translator per machine would turn UNCOL into machine code, so N languages and M machines would need N plus M translators instead of N times M. It was never fully specified or implemented. A later white paper by Stavros Macrakis says it failed because language and compiler technology were not yet mature, and that in the 1970s compiler-compilers ultimately contributed to solving the problem. The same arithmetic now drives LLVM's intermediate representation and bytecode virtual machines such as the Java Virtual Machine.",
    "sleeper": "What failed as a single standard in 1958 became ordinary practice: LLVM and the Java Virtual Machine both put a shared intermediate form between many languages and many processors.",
    "tags": [
     "intermediate language",
@@ -448,7 +448,7 @@
    "year": 2011,
    "status": "dead",
    "short": "Symbian, BlackBerry OS, Windows Phone, webOS and Firefox OS lost to iOS and Android. None could break the loop in which apps need users and users need apps.",
-   "long": "Before the iPhone, Nokia's Symbian ran most of the world's smartphones, BlackBerry dominated business users and Palm OS had thousands of third-party apps. By 2025 Android had 72.77 percent of worldwide mobile web traffic and iOS 26.94 percent, according to StatCounter, which counts web use, not sales. Symbian fell from 39.18 percent in 2009 to 0.53 percent in 2016, and BlackBerry OS from 17.64 percent in 2010 to 0.11 percent in 2018. Nokia's chief executive Stephen Elop wrote on 8 February 2011 that competitors were 'taking our market share with an entire ecosystem', and Nokia chose Windows Phone, whose mainstream support ended in 2017. HP bought Palm in 2010, cancelled the TouchPad in 2011 and sold webOS to LG in 2013, and Mozilla stopped Firefox OS phones in December 2015. A platform needs apps, apps need users, and latecomers could not break the loop.",
+   "long": "Before the iPhone, Nokia's Symbian ran most of the world's smartphones, BlackBerry dominated business users and Palm OS had thousands of third-party apps. By 2025 Android had 72.77 percent of worldwide mobile web traffic and iOS 26.94 percent, according to StatCounter, which counts web use, not sales. Symbian fell from 39.18 percent in 2009 to 0.53 percent in 2016, and BlackBerry OS from 17.64 percent in 2010 to 0.11 percent in 2018. Nokia's chief executive Stephen Elop wrote on 8 February 2011 that competitors were 'taking our market share with an entire ecosystem', and Nokia chose Windows Phone, whose last version, Windows 10 Mobile, lost support in December 2019. HP bought Palm in 2010, cancelled the TouchPad in 2011 and sold webOS to LG in 2013, and Mozilla stopped Firefox OS phones in December 2015. A platform needs apps, apps need users, and latecomers could not break the loop.",
    "sleeper": "A reader who remembers Palm and Windows CE, or Nokia as the smartphone leader until about 2010, will find two platforms, iOS and Android, now holding nearly the whole market.",
    "tags": [
     "symbian",
@@ -522,8 +522,8 @@
      "url": "https://www.python.org/doc/sunset-python-2/"
     },
     {
-     "label": "Python 3 Statement",
-     "url": "https://python3statement.org/"
+     "label": "Python 3 Statement (archived copy)",
+     "url": "https://web.archive.org/web/2020/https://python3statement.org/"
     }
    ]
   },
@@ -727,7 +727,7 @@
    "status": "dead",
    "short": "Japan's ten-year national project to build parallel logic-programming computers. It cost about 57 billion yen, left no commercial legacy and ended in 1994.",
    "long": "In 1982 Japan's Ministry of International Trade and Industry (MITI) launched a ten-year initiative to build computers based on massively parallel processing and logic programming. It ran from 1982 to 1994, spent a little under 57 billion yen (about 320 million US dollars) and built five Parallel Inference Machines. It ended in commercial failure, though it contributed to concurrent logic programming, and MITI then stopped funding large computer research projects. One contested account, from a single secondary source, says the specialized hardware was overtaken by cheaper machines such as Sun workstations and Intel x86 systems, that the choice of concurrent logic programming undermined the logic it was meant to bridge, and that the project missed outside innovations such as graphical interfaces and the Internet.",
-   "sleeper": "In 1982 many expected Japan's logic-programming machines to define the next generation of computing. Ordinary microprocessors and workstations improved fast enough to overcome the barriers experts had expected.",
+   "sleeper": "In 1982 many expected Japan's logic-programming machines to define the next generation of computing. One account says ordinary microprocessors and workstations improved fast enough to overcome the barriers experts had expected.",
    "tags": [
     "miti",
     "icot",
@@ -1042,7 +1042,7 @@
    "year": 2020,
    "status": "n/a",
    "short": "Conflicting library versions have broken installs since DLL hell. Python's many environment tools, and binary breaks such as NumPy 2, keep the problem alive.",
-   "long": "Dependency hell is the state in which installing one program's libraries breaks another's. On DOS and early Windows the cause was a single shared folder: a newer copy of a library installed for program A could silently break program B, which Dolstra's 2006 thesis calls DLL hell. Python repeats the problem in 2020s form. The pip installer gained a resolver that backtracks only in version 20.3, PEP 668 in May 2021 noted long-standing conflicts between operating-system package managers and pip, NumPy 2.0 broke binary compatibility so that compiled packages had to be rebuilt, and ten overlapping tools exist: pip, venv, virtualenv, pipx, conda, mamba, Poetry, PDM, Hatch and uv. Remedies fall into three families: isolate each application, make versions a machine-readable promise and let a tool resolve them, and make installs immutable, as Nix does.",
+   "long": "Dependency hell is the state in which installing one program's libraries breaks another's. On DOS and early Windows the cause was a single shared folder: a newer copy of a library installed for program A could silently break program B, which Dolstra's 2006 thesis calls DLL hell. Python repeats the problem in 2020s form. The pip installer gained a resolver that backtracks only in version 20.3, PEP 668 in May 2021 noted long-standing conflicts between operating-system package managers and pip, NumPy 2.0 broke binary compatibility so that compiled packages had to be rebuilt, and at least ten overlapping tools exist: pip, venv, virtualenv, pipx, conda, mamba, Poetry, PDM, Hatch and uv. Remedies fall into three families: isolate each application, make versions a machine-readable promise and let a tool resolve them, and make installs immutable, as Nix does.",
    "sleeper": "On DOS, library clashes meant one folder of shared files. Every ecosystem now isolates projects, with virtual environments in Python and a node_modules folder in each JavaScript project, or ships whole environments in containers.",
    "tags": [
     "dll hell",
@@ -1148,7 +1148,7 @@
    "year": 2013,
    "status": "dead",
    "short": "Caffe, Lua Torch, CNTK and MXNet were leading deep-learning frameworks in the 2010s. Each lost ground to PyTorch or TensorFlow and has been archived or frozen.",
-   "long": "Several deep-learning frameworks common in the mid-2010s have ended. Caffe, begun by Yangqing Jia at UC Berkeley in 2013, has had no release since 1.0 in April 2017, and its successor Caffe2 was archived and folded into PyTorch's repository. Torch, written around the Lua language, moved to PyTorch in 2017. Microsoft's CNTK stopped with release 2.7 in April 2019, Apache MXNet's repository is archived with 1.9.1 as the last release in May 2022, and Chainer's last release came in June 2022. TensorFlow 1.x's graph mode was replaced when TensorFlow 2.0 made eager, line-by-line execution the default in September 2019. In September 2026 PyPI showed 62 million downloads for torch against 12.0 million for tensorflow. The common pattern was a rival with better usability on the same GPU back end, then withdrawal of the sponsor.",
+   "long": "Several deep-learning frameworks common in the mid-2010s have ended. Caffe, begun by Yangqing Jia at UC Berkeley in 2013, has had no release since 1.0 in April 2017, and its successor Caffe2 was archived and folded into PyTorch's repository. Torch, written around the Lua language, moved to PyTorch in 2017. Microsoft's CNTK stopped with release 2.7 in April 2019, Apache MXNet's repository is archived with 1.9.1 as the last release in May 2022, and Chainer's last release came in June 2022. TensorFlow 1.x's graph mode was replaced when TensorFlow 2.0 made eager, line-by-line execution the default in September 2019. In September 2026 PyPI's monthly download counts, a rough measure of use, were 62 million for torch and 12.0 million for tensorflow. The common pattern was a rival with better usability on the same GPU back end, then withdrawal of the sponsor.",
    "tags": [
     "caffe",
     "caffe2",
@@ -1176,7 +1176,7 @@
    "year": 2025,
    "status": "n/a",
    "short": "Anaconda's July 2025 terms make for-profit organizations with over 200 people buy a paid plan. Free alternatives such as Miniforge and uv avoid the question.",
-   "long": "Anaconda, the company behind the Anaconda Python distribution and the conda package manager, was founded in 2012 and had about 50 million users in 2024. Its Terms of Service, effective 15 July 2025, say that a for-profit organization with more than 200 employees or contractors, counting affiliates, must pay for a Business Plan to use the platform, while eligible academic institutions and non-profits may use it free. Large companies that had used it at no cost now have to pay or switch. Alternatives that avoid the question include Miniforge, which draws on the community conda-forge channel, mamba, pixi and uv. Only the 2025 terms were checked, not Anaconda's earlier 2020 and 2024 changes or any enforcement history.",
+   "long": "Anaconda, the company behind the Anaconda Python distribution and the conda package manager, was founded in 2012 and, according to Wikipedia, had about 50 million users in 2024. Its Terms of Service, effective 15 July 2025, say that a for-profit organization with more than 200 employees or contractors, counting affiliates, must pay for a Business Plan to use the platform, while eligible academic institutions and non-profits may use it free. Large companies that had used it at no cost now have to pay or switch. Alternatives that avoid the question include Miniforge, which draws on the community conda-forge channel, mamba, pixi and uv. Only the 2025 terms were checked, not Anaconda's earlier 2020 and 2024 changes or any enforcement history.",
    "tags": [
     "terms of service",
     "licensing",
@@ -1222,7 +1222,7 @@
    "tier": 3,
    "year": 1996,
    "status": "n/a",
-   "short": "The first Ariane 5 rocket self-destructed 36.7 seconds into flight on 4 June 1996 because reused software overflowed converting a 64-bit number to 16 bits.",
+   "short": "The first Ariane 5 rocket self-destructed about 36.7 seconds into flight on 4 June 1996 because reused software overflowed converting a 64-bit number to 16 bits.",
    "long": "On 4 June 1996 the first Ariane 5 rocket veered off course and self-destructed about 36.7 seconds into flight. The inquiry led by Professor J. L. Lions found that both inertial reference units shut down after software converted a 64-bit floating-point value, the horizontal bias, to a 16-bit signed integer and overflowed. This conversion was unprotected, and the code, alignment software needed only before lift-off, had been reused from Ariane 4, whose trajectory differed. The two units ran identical software, so the backup shared the fault, and the error handling treated a software error as a hardware failure and shut the unit down. Lessons: validate reused code against new conditions, remember that identical redundancy is not diversity, and never let error handling disable a healthy system. The loss, with four Cluster satellites, is often put at about 370 million dollars, unverified.",
    "code": {
     "lang": "python",
@@ -1374,7 +1374,7 @@
    "year": 2019,
    "status": "n/a",
    "short": "MCAS software on the 737 MAX pushed the nose down based on one sensor. Two crashes in 2018 and 2019 killed 346 people; inquiries cited concealment.",
-   "long": "Two Boeing 737 MAX aircraft crashed, on 29 October 2018 and 10 March 2019, killing 346 people. The Maneuvering Characteristics Augmentation System (MCAS) pushed the nose down based on a single angle-of-attack sensor. A September 2020 US House committee report cites production pressure to compete with the Airbus A320neo, faulty design assumptions and a culture of concealment: Boeing withheld the existence of MCAS from pilots. A 2012 simulator test pilot took more than 10 seconds to respond to uncommanded MCAS activation, where FAA guidance expects four, and the engineer who approved the 2016 redesign did not know it relied on one sensor. The fleet was grounded from 13 March 2019 to 18 November 2020, at an estimated cost to Boeing of about 20 billion dollars plus over 60 billion in indirect losses. It was a systems and certification failure, not just a software bug.",
+   "long": "Two Boeing 737 MAX aircraft crashed, on 29 October 2018 and 10 March 2019, killing 346 people. The Maneuvering Characteristics Augmentation System (MCAS) pushed the nose down based on a single angle-of-attack sensor. A September 2020 US House committee report cites production pressure to compete with the Airbus A320neo, faulty design assumptions and a culture of concealment: Boeing withheld the existence of MCAS from pilots. A 2012 simulator test pilot took more than 10 seconds to respond to uncommanded MCAS activation, where FAA guidance expects four, and the engineer who approved the 2016 redesign did not know it relied on one sensor. The fleet was grounded from 13 March 2019 to 18 November 2020, at an estimated cost to Boeing of about 20 billion dollars plus over 60 billion in indirect losses, per Wikipedia. It was a systems and certification failure, not just a software bug.",
    "tags": [
     "mcas",
     "angle of attack",
@@ -1401,7 +1401,7 @@
    "tier": 3,
    "year": 2024,
    "status": "n/a",
-   "short": "A faulty security-software content update crashed about 8.5 million Windows machines on 19 July 2024. It reached every customer at once with no staged rollout.",
+   "short": "A faulty security-software content update crashed about 8.5 million Windows machines, by Microsoft's estimate, on 19 July 2024. It had no staged rollout.",
    "long": "At 04:09 UTC on 19 July 2024 CrowdStrike pushed a content update, Channel File 291, for a new template type that defined 21 input fields while the sensor code supplied only 20. The mismatch passed validation and tests, partly because testing used wildcard matching for the 21st field. When later content used that field, an out-of-bounds memory read in the Windows kernel-mode sensor crashed machines. The update was reverted at 05:27 UTC, but affected computers had to be fixed by hand, by booting into safe mode and deleting a file. Microsoft estimated that 8.5 million Windows devices were affected, under one percent of all Windows machines. Parametrix put losses for the top 500 US companies at about 5.4 billion dollars, of which only 540 million to 1.08 billion was insured. CrowdStrike's analysis lists bounds checks, more testing and staged rollouts through canary rings as fixes.",
    "sleeper": "Vendors now push content updates, data files that change a program's behavior, to millions of machines at once. CrowdStrike's own review concluded that even such updates need staged rollouts, with a small ring of machines first.",
    "tags": [
@@ -1590,7 +1590,7 @@
    "year": 2021,
    "status": "n/a",
    "short": "Attackers repeatedly took over maintainers' npm accounts, by stolen credentials or phishing, and published malicious versions of popular packages.",
-   "long": "A recurring npm attack is to take over a maintainer's account and publish a malicious release. On 22 October 2021 three malicious versions of ua-parser-js were published after such a takeover, and GitHub's advisory said any computer with the package installed should be considered fully compromised. On 8 September 2025 a maintainer was phished through a look-alike domain, and 18 popular packages, including chalk and debug, with more than 2 billion downloads a week between them, carried code that rewrote cryptocurrency payment destinations in browsers; the actual theft was small. On 31 March 2026 the axios maintainer's account was taken over and a remote-access trojan was added to a package with about 400 million monthly downloads, with about three hours passing before detection. Registries responded by replacing long-lived tokens with short-lived credentials.",
+   "long": "A recurring npm attack is to take over a maintainer's account and publish a malicious release. On 22 October 2021 three malicious versions of ua-parser-js were published after such a takeover, and GitHub's advisory said any computer with the package installed should be considered fully compromised. On 8 September 2025 a maintainer was phished through a look-alike domain, and 18 popular packages, including chalk and debug, carried code that rewrote cryptocurrency payment destinations in browsers; the security firm Aikido counted over 2 billion downloads a week for them, but the actual theft was small. On 31 March 2026 the axios maintainer's account was taken over and a remote-access trojan was added to a package with reportedly about 400 million monthly downloads, and detection took about three hours. Registries responded by replacing long-lived tokens with short-lived credentials.",
    "tags": [
     "ua-parser-js",
     "chalk",
@@ -1618,7 +1618,7 @@
    "year": 2022,
    "status": "n/a",
    "short": "In January 2022 the author of the popular colors and faker npm packages deliberately broke them, disrupting thousands of projects.",
-   "long": "On 6 to 9 January 2022 Marak Squires, the author of the npm packages colors and faker, published versions that deliberately broke them: colors 1.4.44-liberty-2 and faker 6.6.6 contained an infinite loop that printed 'LIBERTY LIBERTY LIBERTY' and garbage characters. In November 2020 he had warned, 'Take this as an opportunity to send me a six figure yearly contract or fork the project.' Colors had over 20 million weekly downloads and about 19,000 dependent projects, and faker over 2.8 million weekly downloads. GitHub suspended his account and npm reverted faker. The episode, reported by BleepingComputer, shows that code a project trusts can be changed by one unpaid person who holds publish rights.",
+   "long": "On 6 to 9 January 2022 Marak Squires, the author of the npm packages colors and faker, published versions that deliberately broke them: colors 1.4.44-liberty-2 and faker 6.6.6 contained an infinite loop that printed 'LIBERTY LIBERTY LIBERTY' and garbage characters. In November 2020 he had warned, 'Take this as an opportunity to send me a six figure yearly contract or fork the project.' Colors reportedly had over 20 million weekly downloads and about 19,000 dependent projects, and faker over 2.8 million. GitHub suspended his account and npm reverted faker. The episode, reported by BleepingComputer, shows that code a project trusts can be changed by one unpaid person who holds publish rights.",
    "tags": [
     "npm",
     "sabotage",
@@ -1908,7 +1908,7 @@
    "year": 1998,
    "status": "dead",
    "short": "C++ has dropped or reworked several features that proved too hard to implement or use, including export templates, auto_ptr and exception specifications.",
-   "long": "Several C++ features were removed or replaced after they proved too complex. Export templates, ratified in C++98, had only one implementation, from EDG, five years later, and a 2003 proposal to make them optional was defeated by 80 percent; the keyword was dropped for templates in C++11 and reused for modules in C++20. The std::auto_ptr smart pointer, deprecated in C++11 and removed in C++17, was replaced by unique_ptr, and C++17 also removed trigraphs, the register keyword and dynamic exception specifications. Cfront 4.0 was abandoned in 1993 after a failed attempt to add exceptions. Template error messages, which Bjarne Stroustrup called spectacularly long and unhelpful, were improved by concepts in C++20; one test with clang 21.1.0 produced 126 diagnostic lines before concepts and 22 after.",
+   "long": "Several C++ features were removed or replaced after they proved too complex. Export templates, ratified in C++98, had only one implementation, from EDG, five years later, and a 2003 proposal to make them optional was defeated by 80 percent; the keyword was dropped for templates in C++11 and reused for modules in C++20. The std::auto_ptr smart pointer, deprecated in C++11 and removed in C++17, was replaced by unique_ptr, and C++17 also removed trigraphs, the register keyword and dynamic exception specifications. Cfront 4.0 was abandoned in 1993 after a failed attempt to add exceptions. Template error messages, which Bjarne Stroustrup called spectacularly long and unhelpful, were improved by concepts in C++20; in one small test by this map's author, clang 21.1.0 printed 126 lines of diagnostics for std::sort on a list and 22 for the concept-constrained std::ranges::sort.",
    "tags": [
     "export templates",
     "auto_ptr",
@@ -2367,7 +2367,7 @@
    "s": "fail.flash",
    "t": "org.microsoft",
    "w": 2,
-   "k": "created-by",
+   "k": "related",
    "note": "Silverlight"
   },
   {
@@ -2957,21 +2957,21 @@
    "t": "found.x86",
    "w": 2,
    "k": "related",
-   "note": "ordinary x86 machines overtook it"
+   "note": "one contested account says ordinary x86 machines overtook it"
   },
   {
    "s": "fail.fifth-generation",
    "t": "org.sun",
    "w": 1,
    "k": "related",
-   "note": "Sun workstations"
+   "note": "the same account names Sun workstations as the cheaper rival"
   },
   {
    "s": "fail.fifth-generation",
    "t": "plat.gui",
    "w": 1,
    "k": "related",
-   "note": "it failed to absorb graphical interfaces"
+   "note": "the same account says it failed to absorb graphical interfaces"
   },
   {
    "s": "fail.fifth-generation",

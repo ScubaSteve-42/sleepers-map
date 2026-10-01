@@ -73,7 +73,7 @@
    "cat": "foundations",
    "tier": 3,
    "year": 1946,
-   "short": "The first general-purpose electronic computer, announced in 1946; it was programmed by rewiring panels and setting switches.",
+   "short": "Announced in 1946 and billed by Penn as the first general-purpose electronic computer; it was programmed by rewiring panels and setting switches.",
    "long": "ENIAC was announced at the University of Pennsylvania on 14 February 1946. John Mauchly and J. Presper Eckert built it at the Moore School, and Penn describes it as the first general-purpose electronic computer. It was programmed with panel-to-panel wiring and switches, occupied more than 1,000 square feet, used about 18,000 vacuum tubes and weighed 30 tons. A team of six women operated it: Kathleen McNulty Mauchly Antonelli, Jean Jennings Bartik, Frances Betty Snyder Holberton, Marlyn Wescoff Meltzer, Frances Bilas Spence and Ruth Lichterman Teitelbaum. Changing the program meant changing the wiring, the clumsy method that the stored-program design described in 1945 was meant to eliminate.",
    "status": "dead",
    "tags": [
@@ -95,7 +95,7 @@
    "cat": "foundations",
    "tier": 3,
    "year": 1949,
-   "short": "Cambridge's stored-program computer of 1949, the first to give a regular computing service; its software introduced the assembler and the subroutine library.",
+   "short": "Cambridge's stored-program computer of 1949, the first to give a regular computing service; its software pioneered the assembler and the subroutine library.",
    "long": "EDSAC was built by Maurice Wilkes's group at the University of Cambridge and performed its first fully automatic calculation on 6 May 1949. The Computer History Museum calls it the first practical stored-program computer to provide a regular computing service. It held 1,024 17-bit words in mercury delay lines, ran about 650 instructions per second, read paper tape and printed on a teleprinter. Its programmers produced lasting ideas: the Initial Orders, a loader that accepted programs in symbolic form; relocation, which let subroutines sit anywhere in memory; and the first programming textbook, published in 1951. The LEO computer of the J. Lyons company was modelled on EDSAC.",
    "sleeper": "You can still run EDSAC programs: the University of Warwick's EdsacPC simulator lets modern readers run the original programs on a current computer.",
    "status": "dead",
@@ -119,7 +119,7 @@
    "tier": 3,
    "year": 1951,
    "short": "The first commercial computer to attract widespread public attention, delivered in 1951; Grace Hopper's group wrote its programming tools.",
-   "long": "UNIVAC I came from J. Presper Eckert and John Mauchly at Remington Rand and was delivered to the US Census Bureau in 1951. The Computer History Museum calls it the first commercial computer to attract widespread public attention. It used 5,200 vacuum tubes, weighed 29,000 pounds, and 46 were sold at more than $1 million each. It matters to software history because Grace Hopper's group wrote its programming tools: the A-series compilers beginning with A-0 in 1952, and FLOW-MATIC, which had a significant effect on the design of COBOL. John Mauchly's Short Code, the first high-level notation actually implemented, was recoded for it in late 1950.",
+   "long": "UNIVAC I came from J. Presper Eckert and John Mauchly at Remington Rand and was delivered to the US Census Bureau in 1951. The Computer History Museum calls it the first commercial computer to attract widespread public attention. It used 5,200 vacuum tubes, weighed 29,000 pounds, and 46 were sold at more than $1 million each. It matters to software history because Grace Hopper's group wrote its programming tools: the A-series compilers beginning with A-0 in 1952, and FLOW-MATIC, which had a significant effect on the design of COBOL. John Mauchly's Short Code, which Knuth and Trabb Pardo call the first high-level language actually implemented, was recoded for it in late 1950.",
    "status": "dead",
    "tags": [
     "remington rand",
@@ -550,7 +550,7 @@
    "tier": 3,
    "year": 1949,
    "short": "A program that turns assembly text into machine code, working out the numeric address behind every label.",
-   "long": "An assembler reads assembly language, in which each machine instruction has a short name and locations carry labels, and writes out machine code, working out the numeric address for each label. The earliest documented assembler is the EDSAC Initial Orders of 1949, which David Wheeler extended in August 1949 with relocation. Kathleen Booth developed a very early assembly notation at Birkbeck College from 1947, although it is unclear whether a program or a person translated it. By 1957 assemblers were so ordinary that the FORTRAN team called the last stage of their compiler a fairly conventional assembly program. A macro assembler adds named templates that expand into many instructions. In the classic toolchain the compiler emits assembly, the assembler produces an object file, and the linker joins the pieces.",
+   "long": "An assembler reads assembly language, in which each machine instruction has a short name and locations carry labels, and writes out machine code, working out the numeric address for each label. The EDSAC Initial Orders of 1949, which Cambridge calls the forerunner of the modern assembler, were extended by David Wheeler in August 1949 with relocation. Kathleen Booth developed a very early assembly notation at Birkbeck College from 1947, although it is unclear whether a program or a person translated it. By 1957 assemblers were so ordinary that the FORTRAN team called the last stage of their compiler a fairly conventional assembly program. A macro assembler adds named templates that expand into many instructions. In the classic toolchain the compiler emits assembly, the assembler produces an object file, and the linker joins the pieces.",
    "sleeper": "Few people write assembly now, though it survives in boot code, kernels, firmware and tight inner loops. The September 2026 TIOBE index still ranks it 16th, at 0.89 percent.",
    "code": {
     "lang": "asm",
@@ -576,7 +576,7 @@
    "cat": "compilers",
    "tier": 4,
    "year": 1949,
-   "short": "David Wheeler's 1949 loader for EDSAC, wired into the machine; it read symbolic programs from paper tape and is the earliest documented assembler.",
+   "short": "David Wheeler's 1949 loader for EDSAC, wired into the machine; it read symbolic programs from paper tape and was a forerunner of the modern assembler.",
    "long": "The Initial Orders were a short program permanently wired into EDSAC that read a program from paper tape into memory. The first version, in spring 1949, took 31 instructions on uniselectors, a mechanical read-only memory, and assembled programs written in symbolic form. Its worst feature was that addresses had to be written in absolute form, so inserting one instruction meant altering many branch addresses, and the lack of relocation made a subroutine library hard to organize. Maurice Wilkes gave the replacement job to research student David Wheeler, who produced what Cambridge calls the forerunner of the modern assembler. Initial Orders 2, installed in August 1949 in 41 words, added relocation. In one device it was assembler, loader and relocating linker.",
    "status": "dead",
    "tags": [
@@ -826,11 +826,11 @@
    "tier": 4,
    "year": 1957,
    "short": "Deciding which values live in a processor's few fast registers and which stay in memory, a problem already present in the first FORTRAN compiler.",
-   "long": "Processors have only a handful of registers, the fast storage built into the chip, so a compiler must decide which values live in them and which stay in slower memory. The problem is older than C. The 1957 FORTRAN compiler for the IBM 704 had three real index registers and, as each new tagged instruction was encountered, searched ahead to find which of the three was the least undesirable to replace; it also used frequency information from a simulated run of the program. At -O0 a modern compiler keeps variables in memory, while its optimized loops keep everything in registers. The textbook answer today is graph colouring, from Gregory Chaitin and colleagues in 1981.",
+   "long": "Processors have only a handful of registers, the fast storage built into the chip, so a compiler must decide which values live in them and which stay in slower memory. The problem is older than C. The 1957 FORTRAN compiler for the IBM 704 had three real index registers and, as each new tagged instruction was encountered, searched ahead to find which of the three was the least undesirable to replace; it also used frequency information from a simulated run of the program. At -O0 a modern compiler keeps variables in memory, while its optimized loops keep everything in registers. The textbook answer today is graph coloring, from Gregory Chaitin and colleagues in 1981.",
    "status": "thriving",
    "tags": [
     "registers",
-    "graph colouring",
+    "graph coloring",
     "code generation",
     "index registers",
     "spilling"

@@ -64,8 +64,8 @@
    "cat": "people",
    "tier": 4,
    "year": 1941,
-   "short": "Built the Z3, the first working programmable digital computer, in 1941, and designed the high-level language PlankalkÃ¼l.",
-   "long": "Konrad Zuse, working in Germany, built the Z3 in 1941, a relay-based machine usually described as the first working programmable automatic digital computer. It was destroyed in 1943. Between 1942 and 1945 he designed PlankalkÃ¼l, a high-level programming language decades ahead of its time that was not implemented until later. His Z4 was installed at ETH Zurich in 1950, and his company Zuse KG was absorbed by Siemens in 1967.",
+   "short": "Built the Z3 in 1941, usually described as the first working programmable digital computer, and designed the high-level language Plankalkül.",
+   "long": "Konrad Zuse, working in Germany, built the Z3 in 1941, a relay-based machine usually described as the first working programmable automatic digital computer. It was destroyed in 1943. Between 1942 and 1945 he designed Plankalkül, a high-level programming language decades ahead of its time that was not implemented until later. His Z4 was installed at ETH Zurich in 1950, and his company Zuse KG was absorbed by Siemens in 1967.",
    "status": "n/a",
    "tags": [
     "z3",
@@ -101,7 +101,7 @@
    "tier": 3,
    "year": 1949,
    "short": "Wrote EDSAC's initial orders and subroutine library at Cambridge in 1949, the forerunners of the assembler, loader and software library.",
-   "long": "David Wheeler, with Maurice Wilkes at Cambridge, built the software side of EDSAC, which ran its first program on 6 May 1949. His initial orders worked as a loader and assembler, and his subroutine library showed that code could be packaged and reused. The 1951 book The Preparation of Programs for an Electronic Digital Computer, by Wilkes, Wheeler and Gill, was the first book on programming. The line that all problems in computer science can be solved by another level of indirection is credited to him.",
+   "long": "David Wheeler, with Maurice Wilkes at Cambridge, built the software side of EDSAC, which ran its first program on 6 May 1949. His initial orders worked as a loader and assembler, and his subroutine library showed that code could be packaged and reused. The 1951 book The Preparation of Programs for an Electronic Digital Computer, by Wilkes, Wheeler and Gill, is described by Cambridge as the first book on programming. The line that all problems in computer science can be solved by another level of indirection is credited to him.",
    "status": "n/a",
    "tags": [
     "edsac",
@@ -137,6 +137,12 @@
     "fortran",
     "bnf",
     "ibm"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/John_Backus"
+    }
    ]
   },
   {
@@ -152,6 +158,12 @@
     "lisp",
     "ai",
     "time-sharing"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)"
+    }
    ]
   },
   {
@@ -203,6 +215,16 @@
     "taocp",
     "tex",
     "algorithms"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Donald_Knuth"
+    },
+    {
+     "label": "Knuth at Stanford",
+     "url": "https://www-cs-faculty.stanford.edu/~knuth/"
+    }
    ]
   },
   {
@@ -239,6 +261,12 @@
     "pascal",
     "oberon",
     "eth zurich"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Niklaus_Wirth"
+    }
    ]
   },
   {
@@ -321,7 +349,7 @@
    "tier": 4,
    "year": 1972,
    "short": "Proposed Unix pipes, argued for software components in 1968, and helped write down the Unix philosophy.",
-   "long": "Doug McIlroy at Bell Labs pushed for pipes in Unix, which arrived in 1972 and 1973 at his suggestion, or perhaps his insistence. At the 1968 NATO conference he called for mass-produced software components, an idea that package managers eventually delivered. He is also credited as the author of the compact summary of the Unix philosophy: write programs that do one thing well, work together, and handle text streams. He also urged the formation of the ANSI C committee.",
+   "long": "Doug McIlroy at Bell Labs pushed for pipes in Unix, which Ritchie says appeared in 1972 at McIlroy's suggestion or perhaps his insistence; other accounts date them to 1973. At the 1968 NATO conference he called for mass-produced software components, an idea that package managers eventually delivered. He is also credited as the author of the compact summary of the Unix philosophy: write programs that do one thing well, work together, and handle text streams. He also urged the formation of the ANSI C committee.",
    "status": "n/a",
    "tags": [
     "pipes",
@@ -342,6 +370,16 @@
     "c++",
     "bell labs",
     "zero overhead"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Bjarne_Stroustrup"
+    },
+    {
+     "label": "Stroustrup's home page",
+     "url": "https://www.stroustrup.com/"
+    }
    ]
   },
   {
@@ -357,6 +395,12 @@
     "gnu",
     "free software",
     "gpl"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Richard_Stallman"
+    }
    ]
   },
   {
@@ -365,13 +409,19 @@
    "cat": "people",
    "tier": 2,
    "year": 1972,
-   "short": "Led the Smalltalk effort at Xerox PARC, imagined the Dynabook and coined the term object-oriented.",
-   "long": "Alan Kay worked at Utah and then Xerox PARC, where he led the Smalltalk effort with Dan Ingalls and Adele Goldberg and conceived the Dynabook, a portable personal computer, between 1968 and 1972. He coined object-oriented programming but says messaging, not classes, is its core idea. Smalltalk also popularized overlapping windows and the graphical interface style that later reached the Macintosh. He received the Turing Award in 2003.",
+   "short": "Led the Smalltalk effort at Xerox PARC, imagined the Dynabook and is credited with coining the term object-oriented.",
+   "long": "Alan Kay worked at Utah and then Xerox PARC, where he led the Smalltalk effort with Dan Ingalls and Adele Goldberg and conceived the Dynabook, a portable personal computer, between 1968 and 1972. He is credited with coining the term object-oriented programming, but says messaging, not classes, is its core idea. Smalltalk also popularized overlapping windows and the graphical interface style that later reached the Macintosh. He received the Turing Award in 2003.",
    "status": "n/a",
    "tags": [
     "smalltalk",
     "dynabook",
     "parc"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Alan_Kay"
+    }
    ]
   },
   {
@@ -387,6 +437,12 @@
     "mythical man-month",
     "ibm",
     "os/360"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Fred_Brooks"
+    }
    ]
   },
   {
@@ -460,7 +516,7 @@
    "cat": "people",
    "tier": 4,
    "year": 1963,
-   "short": "Designed the Integrated Data Store at General Electric in 1963, the first navigational database, which led to the CODASYL network model.",
+   "short": "Designed the Integrated Data Store at General Electric in 1963, an early navigational database that became the basis of the CODASYL network model.",
    "long": "Charles Bachman developed the Integrated Data Store at General Electric in 1963, an early database system in which programs navigate from record to record by following links. It shaped the CODASYL network model of the late 1960s, the main rival to IBM's hierarchical IMS before Codd's relational model took over. He received the Turing Award in 1973. Chasing pointers through such a database is the style the relational model was designed to replace.",
    "status": "n/a",
    "tags": [
@@ -512,6 +568,16 @@
     "web",
     "cern",
     "w3c"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Tim_Berners-Lee"
+    },
+    {
+     "label": "Berners-Lee at the W3C",
+     "url": "https://www.w3.org/People/Berners-Lee/"
+    }
    ]
   },
   {
@@ -527,6 +593,12 @@
     "python",
     "cwi",
     "bdfl"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Guido_van_Rossum"
+    }
    ]
   },
   {
@@ -536,7 +608,7 @@
    "tier": 3,
    "year": 1995,
    "short": "Led Java's design at Sun, begun in 1991 and released publicly in 1995.",
-   "long": "James Gosling led the design of Java at Sun Microsystems, starting around 1991 under the name Oak. Java was announced publicly in 1995, and version 1.0 followed in 1996. Earlier he wrote the NeWS window system and Gosling Emacs. He left Oracle in 2010 after the purchase of Sun.",
+   "long": "James Gosling led the design of Java at Sun Microsystems, starting around 1991 under the name Oak, which he took from the tree outside his window. Java was announced publicly at SunWorld on 23 May 1995, and version 1.0 followed in 1996. Earlier he wrote the NeWS window system and Gosling Emacs. He left Oracle in 2010 after the purchase of Sun.",
    "status": "n/a",
    "tags": [
     "java",
@@ -551,7 +623,7 @@
    "tier": 3,
    "year": 1983,
    "short": "Wrote Turbo Pascal, led Delphi, then designed C# and TypeScript at Microsoft.",
-   "long": "Anders Hejlsberg, a Dane, wrote Turbo Pascal in 1983, was chief architect of Delphi in 1995, and moved to Microsoft in 1996. There he designed C# between 2000 and 2002, led the design of LINQ and async/await, and created TypeScript in 2012. Reports say he is leading the port of the TypeScript compiler to Go, announced in 2025 and released as TypeScript 7 in 2026.",
+   "long": "Anders Hejlsberg, a Dane, wrote Turbo Pascal in 1983, was chief architect of Delphi in 1995, and moved to Microsoft in 1996. There he designed C# between 2000 and 2002, led the design of LINQ and async/await, and created TypeScript in 2012. In March 2025 he announced a port of the TypeScript compiler to Go, and TypeScript 7.0, the native port, was released on 8 July 2026.",
    "status": "n/a",
    "tags": [
     "turbo pascal",
@@ -565,8 +637,8 @@
    "cat": "people",
    "tier": 3,
    "year": 1995,
-   "short": "Wrote JavaScript at Netscape in May 1995; the first prototype took about ten days.",
-   "long": "Brendan Eich wrote JavaScript in May 1995 at Netscape, building a first prototype in about ten days. That figure is true of the prototype, not of the language as it later evolved under standardization. He co-founded Mozilla in 1998, served as its chief executive for under two weeks in April 2014, and founded the Brave browser in 2015.",
+   "short": "Wrote JavaScript at Netscape in May 1995; the first prototype reportedly took about ten days.",
+   "long": "Brendan Eich wrote JavaScript in May 1995 at Netscape, building a first prototype in what is widely reported to be about ten days. That figure, if right, applies to the prototype, not to the language as it later evolved under standardization. He co-founded Mozilla in 1998, served as its chief executive for under two weeks in April 2014, and founded the Brave browser in 2015.",
    "status": "n/a",
    "tags": [
     "javascript",
@@ -596,7 +668,7 @@
    "tier": 4,
    "year": 1995,
    "short": "Created Ruby, conceived in 1993 and released publicly in December 1995, optimized for developer happiness.",
-   "long": "Yukihiro Matsumoto, known as Matz, a Japanese programmer, conceived Ruby in 1993 and released it publicly in December 1995, designing it to be pleasant for programmers to use. David Heinemeier Hansson's Rails framework of 2004 made Ruby famous worldwide.",
+   "long": "Yukihiro Matsumoto, known as Matz, a Japanese programmer, conceived Ruby in 1993 and released it publicly in December 1995, blending parts of his favorite languages (Perl, Smalltalk, Eiffel, Ada and Lisp) and designing it to be pleasant for programmers to use. David Heinemeier Hansson's Rails framework of 2004 made Ruby famous worldwide.",
    "status": "n/a",
    "tags": [
     "ruby",
@@ -677,7 +749,7 @@
    "tier": 4,
    "year": 2006,
    "short": "Started Rust in 2006 as a personal project; Mozilla sponsored it from 2009 and version 1.0 shipped in 2015.",
-   "long": "Graydon Hoare, a Canadian programmer, began Rust in 2006 as a personal project, aiming for a language with the speed of C and C++ but without their memory-safety hazards. Mozilla sponsored it from 2009, and Rust 1.0 shipped on 15 May 2015. Hoare handed the project to its core team in 2013 and moved on to other work. The ownership and borrow-checking ideas that now define Rust were refined by that team in the years that followed.",
+   "long": "Graydon Hoare, a Canadian programmer, began Rust in 2006 as a personal project, aiming for a language with the speed of C and C++ but without their memory-safety hazards. Mozilla sponsored it from 2009, and Rust 1.0 shipped on 15 May 2015. Hoare handed the project to its core team in 2013 and moved on to other work.",
    "status": "n/a",
    "tags": [
     "rust",
@@ -726,8 +798,8 @@
    "cat": "people",
    "tier": 4,
    "year": 2002,
-   "short": "Chair of the ISO C++ committee and author of The Free Lunch Is Over; experiments with C++ syntax through cppfront.",
-   "long": "Herb Sutter has chaired the ISO C++ committee since 2002. His 2005 essay The Free Lunch Is Over warned that processors would stop getting faster and programs would have to use parallelism, which marked the multicore turn. Since 2022 he has developed cppfront, a personal experiment that compiles a cleaner syntax called Cpp2 to C++. He is an advocate for C++, and his claims are best read that way.",
+   "short": "Chaired the ISO C++ committee from 2002 to 2025 and wrote The Free Lunch Is Over; experiments with C++ syntax through cppfront.",
+   "long": "Herb Sutter chaired the ISO C++ committee from 2002 to 2025. His 2005 essay The Free Lunch Is Over argued that clock speeds had stopped rising, so programs would have to use parallelism to get faster, which marked the multicore turn. Since 2022 he has developed cppfront, a personal experiment that compiles a cleaner syntax called Cpp2 to C++. He is an advocate for C++, and his claims are best read that way.",
    "status": "n/a",
    "tags": [
     "c++",
@@ -757,7 +829,7 @@
    "tier": 4,
    "year": 1986,
    "short": "Co-created Erlang at Ericsson in 1986 for telephone switches, with lightweight processes and message passing.",
-   "long": "Joe Armstrong led the creation of Erlang at Ericsson, starting in 1986, to program telephone switches that had to run without stopping. Erlang uses lightweight processes that share nothing and communicate by messages, an approach that influenced the actor model in other systems and powered messaging services such as WhatsApp.",
+   "long": "Joe Armstrong, with Robert Virding and Mike Williams, created Erlang at Ericsson, starting in 1986, to program telephone switches that had to run without stopping. Erlang uses lightweight processes that share nothing and communicate by messages, an approach that actor toolkits such as Akka later followed, and it powered messaging services such as WhatsApp.",
    "status": "n/a",
    "tags": [
     "erlang",
@@ -786,8 +858,8 @@
    "cat": "people",
    "tier": 4,
    "year": 2001,
-   "short": "Unified the Numeric and Numarray projects into NumPy in 2006 and started SciPy, the base of Python's scientific stack.",
-   "long": "Travis Oliphant merged the earlier Numeric and Numarray array libraries into NumPy in 2006 and co-created SciPy around 2001. Together they gave Python a fast array type and a library of numerical routines, which is why Python became the main language of data science and machine learning.",
+   "short": "Unified the Numeric and Numarray projects into NumPy (2005 to 2006) and co-created SciPy, the base of Python's scientific stack.",
+   "long": "Travis Oliphant merged the earlier Numeric and Numarray array libraries into NumPy, which appeared in 2005 and reached version 1.0 in December 2006, and co-created SciPy around 2001. Together they gave Python a fast array type and a library of numerical routines, which helped Python become the main language of data science and machine learning.",
    "status": "n/a",
    "tags": [
     "numpy",
@@ -862,7 +934,7 @@
    "tier": 3,
    "year": 1974,
    "short": "Designed TCP/IP in 1974, the protocols that connect the Internet.",
-   "long": "Vint Cerf and Bob Kahn designed the TCP/IP protocols in 1974, with DARPA funding. ARPANET switched to them in a flag-day cutover on 1 January 1983, and they have connected the Internet ever since. Both received the Turing Award in 2004.",
+   "long": "Vint Cerf and Bob Kahn designed the TCP/IP protocols in 1974, with DARPA funding, around the idea of open-architecture networking, in which separately run networks interwork through common protocols. ARPANET switched to them in a flag-day cutover on 1 January 1983, and they have connected the Internet ever since. Both received the Turing Award in 2004.",
    "status": "n/a",
    "tags": [
     "tcp/ip",
@@ -907,7 +979,7 @@
    "tier": 4,
    "year": 1978,
    "short": "Wrote lint in 1978 and the yacc parser generator at Bell Labs.",
-   "long": "Stephen C. Johnson at Bell Labs wrote yacc, a parser generator, in the mid-1970s, helped write the portable C compiler, and wrote lint in 1978, the first widely used static checker for C. Lint's name, like the fuzz it picks off cloth, stayed on every later class of code checker.",
+   "long": "Stephen C. Johnson at Bell Labs wrote yacc, a parser generator, in the mid-1970s, helped write the portable C compiler, and wrote lint in 1978, an early and widely used static checker for C. Lint's name, like the fuzz it picks off cloth, stayed on every later class of code checker.",
    "status": "n/a",
    "tags": [
     "lint",
@@ -922,7 +994,7 @@
    "tier": 4,
    "year": 2008,
    "short": "Created pandas in 2008, the library that made tabular data analysis practical in Python, and co-created Apache Arrow.",
-   "long": "Wes McKinney began pandas in 2008 while working in finance, giving Python data frames and fast tabular operations. He later co-created Apache Arrow, a shared in-memory format for columnar data. pandas became the default data-analysis library in Python.",
+   "long": "Wes McKinney began pandas in 2008 while working in finance at AQR Capital Management and open-sourced it by the end of 2009, giving Python data frames and fast tabular operations. He later co-created Apache Arrow, a shared in-memory format for columnar data. pandas became the default data-analysis library in Python.",
    "status": "n/a",
    "tags": [
     "pandas",
@@ -936,8 +1008,8 @@
    "cat": "people",
    "tier": 4,
    "year": 1960,
-   "short": "Created APL and its array notation at IBM, and later J; Turing Award winner for notation as a tool of thought.",
-   "long": "Kenneth Iverson invented the notation that became APL, described in his 1962 book, and worked on it at IBM. It treats whole arrays as single values and uses symbols for operations, a style that influenced MATLAB, NumPy and array programming generally. With Roger Hui he later designed J. He received the Turing Award in 1979.",
+   "short": "Created the array notation behind APL, at Harvard and then IBM, and later J; won the 1979 Turing Award and wrote Notation as a Tool of Thought.",
+   "long": "Kenneth Iverson began developing the notation that became APL at Harvard in the 1950s, joined IBM in 1960, and described it in his 1962 book A Programming Language. It treats whole arrays as single values and uses symbols for operations, a style that influenced MATLAB, NumPy and array programming generally. With Roger Hui he later designed J. He received the Turing Award in 1979.",
    "status": "n/a",
    "tags": [
     "apl",
@@ -952,7 +1024,7 @@
    "tier": 4,
    "year": 1976,
    "short": "Designed the Apple I and Apple II, including its disk controller and Integer BASIC.",
-   "long": "Steve Wozniak designed the Apple I in 1976 and the Apple II in 1977, along with its disk controller and Integer BASIC. The Apple II, with its open slots and a spreadsheet program called VisiCalc, helped make personal computers a business tool.",
+   "long": "Steve Wozniak designed the Apple I, which went on sale in 1976, and the Apple II, introduced in 1977. He also designed the Apple II's disk controller and its Integer BASIC. The Apple II, with its open slots and a spreadsheet program called VisiCalc, helped make personal computers a business tool.",
    "status": "n/a",
    "tags": [
     "apple ii",
@@ -1524,7 +1596,7 @@
    "s": "ppl.armstrong",
    "t": "conc.actor-model",
    "w": 2,
-   "k": "influenced"
+   "k": "related"
   },
   {
    "s": "ppl.milner",

@@ -18,12 +18,16 @@ try { slice = JSON.parse(readFileSync(file, 'utf8')); } catch (e) { console.erro
 
 const reg = JSON.parse(readFileSync(path.join(root, 'data/src/registry.json'), 'utf8'));
 const regById = new Map(reg.nodes.map((n) => [n.id, n]));
-const core = JSON.parse(readFileSync(path.join(root, 'data/src/core.json'), 'utf8'));
-const coreIds = new Set(core.nodes.map((n) => n.id));
+// nodes written in the other slices (the core slices hold the nodes that are not in the registry); a slice that someone is
+// rewriting right now may be unreadable for a moment, so skip it rather than fail
+const srcDir = path.join(root, 'data/src');
+const others = readdirSync(srcDir).filter((f) => f.endsWith('.json') && f !== 'registry.json' && path.join(srcDir, f) !== file)
+  .flatMap((f) => { try { return JSON.parse(readFileSync(path.join(srcDir, f), 'utf8')).nodes ?? []; } catch { return []; } });
+const otherById = new Map(others.map((n) => [n.id, n]));
 const cats = new Map(JSON.parse(readFileSync(path.join(root, 'data/categories.json'), 'utf8')).map((c) => [c.key, c]));
-const known = new Set([...regById.keys(), ...coreIds]);
+const known = new Set([...regById.keys(), ...otherById.keys()]);
 const own = new Set((slice.nodes ?? []).map((n) => n.id));
-const catOf = (id) => (regById.get(id) ?? core.nodes.find((n) => n.id === id))?.cat;
+const catOf = (id) => (regById.get(id) ?? otherById.get(id))?.cat;
 
 const sliceName = slice.slice ?? path.basename(file, '.json');
 const expected = reg.nodes.filter((n) => n.slice === sliceName);
@@ -39,7 +43,7 @@ for (const nd of slice.nodes ?? []) {
   }
   for (const f of ['title', 'cat', 'short', 'long']) if (typeof nd[f] !== 'string' || !nd[f].trim()) err(`${w}: missing ${f}`);
   if (!cats.has(nd.cat)) err(`${w}: unknown category`);
-  if (!Number.isInteger(nd.tier) || nd.tier < 1 || nd.tier > 4) err(`${w}: tier must be 1-4`);
+  if (!Number.isInteger(nd.tier) || nd.tier < 0 || nd.tier > 4) err(`${w}: tier must be 0-4`);
   if (!Number.isInteger(nd.year) || nd.year < 1800 || nd.year > 2026) err(`${w}: bad year`);
   if (nd.status && !STATUS.has(nd.status)) err(`${w}: bad status`);
   if (nd.title?.length > 46) err(`${w}: title over 46 characters`);

@@ -1,0 +1,1656 @@
+{
+ "slice": "s00b-core-practice",
+ "nodes": [
+  {
+   "id": "tool.hub",
+   "title": "Tooling",
+   "cat": "tooling",
+   "tier": 1,
+   "year": 1972,
+   "short": "Everything around the code: version control, builds, editors, debuggers and the protocols that connect them.",
+   "long": "Tooling is everything around the code itself: how changes are recorded, how source becomes a running program, and how programmers edit, debug and observe their work. In 1990 that meant an editor, a compiler, a debugger and, for some teams, SCCS, RCS or CVS.\n\nStart with Version Control and Git, which gave every developer the full history and made branching cheap. Then Build Systems and Make, which rebuild only what changed. Integrated Development Environment shows editor, compiler and debugger merging, and Language Server Protocol (2016) lets any editor borrow the same code intelligence. Infrastructure as Code and OpenTelemetry carry the toolkit onto servers and running systems.",
+   "sleeper": "The most used editor is now Visual Studio Code, a free Microsoft program built with web technology (75.9 percent of Stack Overflow's 2025 respondents). Version control, once optional, is Git for nearly everyone: Bitbucket cited Stack Overflow data of almost 90 percent in 2020.",
+   "status": "thriving",
+   "tags": [
+    "editors",
+    "debugging",
+    "builds"
+   ],
+   "refs": [
+    {
+     "label": "Stack Overflow Developer Survey 2025: technology",
+     "url": "https://survey.stackoverflow.co/2025/technology"
+    },
+    {
+     "label": "Language Server Protocol",
+     "url": "https://microsoft.github.io/language-server-protocol/"
+    }
+   ]
+  },
+  {
+   "id": "tool.vcs",
+   "title": "Version Control",
+   "cat": "tooling",
+   "tier": 1,
+   "year": 1972,
+   "short": "A recorded history of every change, so teams can merge work and undo mistakes.",
+   "long": "Version control records every change to a set of files, with who made it and why, so that you can recall any earlier state and combine the work of many people. It is the formal version of copying a folder to PROJECT_OLD and PROJECT_FINAL.\n\nThree generations followed. SCCS (Bell Labs, 1972) and RCS (1982) kept history per file and locked a file while one person edited it. CVS (1986 to 1990), Subversion (started 2000, version 1.0 in 2004) and Perforce (1995) used one central server, and CVS and Subversion let people edit at the same time and merge afterwards. Distributed systems, where every clone holds the full history, began with BitKeeper (2000); Git and Mercurial both began in April 2005. Git won, and GitHub (2008) built the pull request around it. Start with SCCS, CVS, Subversion, Git and Mercurial.",
+   "sleeper": "Version control once meant locking a file so only one person could edit it. Now everyone edits freely and merges later, branches cost almost nothing, and every Git clone is a full backup that works offline.",
+   "status": "thriving",
+   "tags": [
+    "history",
+    "branching",
+    "merge",
+    "repository"
+   ],
+   "refs": [
+    {
+     "label": "Pro Git: About Version Control",
+     "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+    },
+    {
+     "label": "Subversion book: Version Control Basics",
+     "url": "https://svnbook.red-bean.com/en/1.7/svn.basic.version-control-basics.html"
+    }
+   ]
+  },
+  {
+   "id": "tool.git",
+   "title": "Git",
+   "cat": "tooling",
+   "tier": 2,
+   "year": 2005,
+   "short": "Linus Torvalds's distributed version control system, begun in April 2005. In 2020 Bitbucket cited Stack Overflow data of almost 90 percent of developers using it.",
+   "long": "Linus Torvalds began Git in the first week of April 2005, after BitMover ended the free license for BitKeeper, the proprietary tool the Linux kernel had used since 2002. Its stated goals were speed, a simple design, strong support for thousands of parallel branches and a fully distributed model. By Torvalds's account it was self-hosting within about a day and came together in about ten days. Junio Hamano took over maintenance on 26 July 2005, and version 1.0 followed in December.\n\nGit stores snapshots, not differences. Each file, directory and commit is named by a hash of its content, and every commit points to its parent commits, so history is a graph that cannot be altered without Git noticing. A branch is a 41-byte label, so branching is nearly free. Every clone holds the whole history, and most commands work offline. GitHub (2008) added the pull request.",
+   "sleeper": "Git is a data structure as much as a tool: a graph of hash-named snapshots. That is why branches are free, why history cannot be changed without Git noticing, and why your laptop holds a complete copy of the project.",
+   "code": {
+    "lang": "bash",
+    "text": "git init -b main hello && cd hello\ngit config user.name \"Ada Example\"\ngit config user.email \"ada@example.com\"\necho \"Hello\" > hello.txt\ngit add hello.txt                  # stage the file for the next snapshot\ngit commit -m \"Add hello.txt\"      # take the snapshot\ngit switch -c feature/farewell     # a branch is just a 41-byte label\necho \"Goodbye\" > bye.txt\ngit add bye.txt && git commit -m \"Add bye.txt\"\ngit switch main                    # bye.txt disappears from the folder\ngit merge feature/farewell         # fast-forward: main catches up\ngit log --oneline                  # two commits, newest first"
+   },
+   "status": "thriving",
+   "tags": [
+    "distributed",
+    "branching",
+    "linux",
+    "github"
+   ],
+   "refs": [
+    {
+     "label": "Pro Git: A Short History of Git",
+     "url": "https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git"
+    },
+    {
+     "label": "LWN: the kernel SCM saga, 6 April 2005",
+     "url": "https://lwn.net/Articles/130746/"
+    },
+    {
+     "label": "Linux Foundation: 10 Years of Git, interview with Linus Torvalds",
+     "url": "https://www.linuxfoundation.org/blog/blog/10-years-of-git-an-interview-with-git-creator-linus-torvalds"
+    }
+   ]
+  },
+  {
+   "id": "tool.make",
+   "title": "Make",
+   "cat": "tooling",
+   "tier": 3,
+   "year": 1976,
+   "short": "Stuart Feldman's 1976 Bell Labs tool that rebuilds only what is out of date, by comparing file timestamps. 23.2 percent of 2025 Stack Overflow respondents use it.",
+   "long": "Stuart Feldman wrote make at Bell Labs, with an early version done in April 1976. He has told the story that it grew from a colleague's frustration when a bug had been fixed but the file had not been recompiled. A Makefile lists targets (files to produce), prerequisites (the files they are built from) and a recipe, the shell commands that make one from the other. Make compares file timestamps and runs a recipe only when a prerequisite is newer than its target.\n\nPOSIX defines it, GNU Make is the usual version on Linux and macOS, and Feldman received the 2003 ACM Software System Award. Recipe lines must begin with a tab, which Eric Raymond called one of the worst design botches in the history of Unix. Build Systems covers the later tools, such as Maven and Gradle.",
+   "sleeper": "Make is about 50 years old and still standard on Linux and macOS: 23.2 percent of respondents to Stack Overflow's 2025 survey use it, and 30.4 percent of those learning to code. What changed is scale: huge projects moved to generated build files and shared caches.",
+   "code": {
+    "lang": "makefile",
+    "text": "# Makefile (recipe lines start with a TAB)\nhello: hello.o greet.o\n\tcc -o hello hello.o greet.o\nhello.o: hello.c greet.h\n\tcc -c hello.c\ngreet.o: greet.c greet.h\n\tcc -c greet.c\n\n# $ make          builds all three steps\n# $ touch hello.c\n# $ make          runs only: cc -c hello.c\n#                          and: cc -o hello hello.o greet.o"
+   },
+   "status": "thriving",
+   "tags": [
+    "makefile",
+    "build",
+    "timestamps"
+   ],
+   "refs": [
+    {
+     "label": "POSIX specification of make",
+     "url": "https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html"
+    },
+    {
+     "label": "Peter Miller: Recursive Make Considered Harmful",
+     "url": "https://accu.org/journals/overload/14/71/miller_2004/"
+    }
+   ]
+  },
+  {
+   "id": "pkg.hub",
+   "title": "Packages & Ecosystems",
+   "cat": "packages",
+   "tier": 1,
+   "year": 1995,
+   "short": "Reusable libraries and the tools that fetch them. Modern programs are mostly other people's code.",
+   "long": "A package is a bundle of code with a name, a version and a list of what it needs; a registry is the server that holds them. From the mid-1990s language communities built registries and tools to fetch from them: CPAN for Perl (online October 1995), then RubyGems, PyPI, npm (2010) and Cargo (2014).\n\nStart with Package Manager for the idea and Dependency Management for why versions are hard. Then read npm, pip and PyPI, uv, Cargo and crates.io, and APT; Package Manager Popularity, 2025 to 2026 compares current use. In Stack Overflow's 2025 survey npm was used by 56.8 percent of respondents and pip by 40.9 percent. The convenience has a cost: Software Supply-Chain Security covers what happens when a dependency is deleted or hijacked.",
+   "sleeper": "In 1990 a library was a file you copied next to your source. Now one command pulls in dozens or hundreds of packages written by strangers, which is why one deleted or hijacked package can stop thousands of builds.",
+   "status": "thriving",
+   "tags": [
+    "libraries",
+    "registry",
+    "dependencies"
+   ],
+   "refs": [
+    {
+     "label": "Stack Overflow Developer Survey 2025: technology",
+     "url": "https://survey.stackoverflow.co/2025/technology"
+    },
+    {
+     "label": "Russ Cox: Our Software Dependency Problem",
+     "url": "https://research.swtch.com/deps"
+    }
+   ]
+  },
+  {
+   "id": "pkg.manager",
+   "title": "Package Manager",
+   "cat": "packages",
+   "tier": 1,
+   "year": 1993,
+   "short": "A tool that downloads, installs and updates libraries and their dependencies for you.",
+   "long": "A package manager installs software, and the other software it depends on, from a registry, working out compatible versions by itself. Three layers exist. Operating-system managers install programs system-wide: dpkg and APT (APT from 1998), RPM (1995) with yum and DNF, Homebrew (2009). Language managers fetch libraries for one project: CPAN (1995), RubyGems (2004), pip (2008), npm (2010), NuGet for .NET (2010), Cargo (2014) and Go modules (2018), while Maven (2004) does the job for Java. Image managers ship whole environments, such as Docker images and Nix.\n\nA lockfile records the exact versions chosen, so every machine builds the same thing. Choosing compatible versions is computationally hard, which is why DNF and Composer use SAT solvers. Start with APT, npm, pip and PyPI, Cargo and crates.io, and uv.",
+   "sleeper": "A library used to be a file you copied. Now a manifest names the few libraries you want, the tool fetches the many they need in turn, and a lockfile freezes the result. Convenience and risk both grow with that depth.",
+   "code": {
+    "lang": "bash",
+    "text": "sudo apt install git             # system programs (Debian, Ubuntu)\nnpm install express              # JavaScript libraries, from the npm registry\npython -m pip install requests   # Python libraries, from PyPI\ncargo add serde                  # Rust libraries, from crates.io (inside a project)"
+   },
+   "status": "thriving",
+   "tags": [
+    "lockfile",
+    "registry",
+    "resolver"
+   ],
+   "refs": [
+    {
+     "label": "Rust Blog: Cargo, Rust's community crate host",
+     "url": "https://blog.rust-lang.org/2014/11/20/Cargo/"
+    },
+    {
+     "label": "Microsoft Learn: What is NuGet",
+     "url": "https://learn.microsoft.com/en-us/nuget/what-is-nuget"
+    }
+   ]
+  },
+  {
+   "id": "pkg.npm",
+   "title": "npm",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2010,
+   "short": "JavaScript's package manager and registry, created by Isaac Schlueter in 2010. GitHub bought it in 2020. The registry holds millions of package records.",
+   "long": "Isaac Schlueter released npm on 12 January 2010, inspired by earlier systems such as CPAN and PEAR. It ships with Node.js, which took JavaScript to servers, and it works against a public registry where anyone can publish. A project lists its dependencies in package.json; npm installs them, and the packages they need in turn, into a node_modules folder, and records exact versions in package-lock.json. The company npm, Inc. was founded in 2014, and on 16 March 2020 GitHub, owned by Microsoft, announced it was buying npm, which then held over 1.3 million packages. The registry now reports about 4.4 million package records. Small single-purpose packages are the norm, which made the March 2016 left-pad incident possible. Yarn and pnpm, both 2016, are alternative clients.",
+   "sleeper": "npm popularized the tiny package: one function, one package. A 2019 study found that installing an average npm package puts implicit trust in 79 other packages and 39 maintainers, so a single deleted or hijacked package can reach thousands of projects.",
+   "code": {
+    "lang": "bash",
+    "text": "npm init -y          # create package.json\nnpm install express  # fetch express and everything it needs into node_modules/\n                     # package.json gets a range such as \"^4.19.0\" (4.19.0 up to, not including, 5.0.0)\n                     # package-lock.json records the exact versions chosen\nnpm ci               # reinstall exactly what package-lock.json records (used in CI)\nnpm audit            # list known vulnerabilities in the dependency tree"
+   },
+   "status": "thriving",
+   "tags": [
+    "javascript",
+    "node",
+    "registry"
+   ],
+   "refs": [
+    {
+     "label": "GitHub Blog: npm is joining GitHub",
+     "url": "https://github.blog/news-insights/company-news/npm-is-joining-github/"
+    },
+    {
+     "label": "npm blog: kik, left-pad, and npm",
+     "url": "https://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm"
+    }
+   ]
+  },
+  {
+   "id": "pkg.pip",
+   "title": "pip and PyPI",
+   "cat": "packages",
+   "tier": 3,
+   "year": 2008,
+   "short": "Python's standard installer, built on the PyPI package index. About 41 percent of 2025 Stack Overflow respondents used it. uv is a newer Rust-written rival.",
+   "long": "pip installs Python packages from PyPI, the Python Package Index, which the Python Software Foundation runs. PyPI began in 2003 as the Cheese Shop and listed about 900,000 project names in September 2026. Ian Bicking wrote pip in 2008 under the name pyinstall as an alternative to easy_install, the Python Packaging Authority took it over in 2011, and it is bundled with Python 2.7.9 and later and 3.4 and later. Virtual environments keep each project's packages separate, and operating systems can now block pip from changing their own Python (PEP 668). The resolver gained backtracking in version 20.3.\n\nRivals include Poetry and conda. Astral's uv (2024), written in Rust, is the fast newcomer and the most admired tool in Stack Overflow's 2025 survey.",
+   "sleeper": "Python packaging long meant a patchwork of overlapping tools: pip, pip-tools, pipx, Poetry, pyenv and virtualenv. Astral says its Rust-written uv replaces all of them in one program, and in March 2026 Astral announced it would join OpenAI.",
+   "code": {
+    "lang": "bash",
+    "text": "python -m venv .venv                      # a private folder of packages for this project\nsource .venv/bin/activate                 # on Windows: .venv\\Scripts\\activate\npython -m pip install requests            # download from PyPI, plus what requests needs\npython -m pip freeze > requirements.txt   # record exact versions, one name==version per line\nuv pip install requests                   # the same install, done with uv"
+   },
+   "status": "thriving",
+   "tags": [
+    "python",
+    "pypi",
+    "virtualenv"
+   ],
+   "refs": [
+    {
+     "label": "Python Packaging User Guide: tool recommendations",
+     "url": "https://packaging.python.org/en/latest/guides/tool-recommendations/"
+    },
+    {
+     "label": "Astral: uv announcement",
+     "url": "https://astral.sh/blog/uv"
+    }
+   ]
+  },
+  {
+   "id": "qual.hub",
+   "title": "Quality: Lint, Test, CI",
+   "cat": "quality",
+   "tier": 1,
+   "year": 1978,
+   "short": "Automated checks that catch mistakes before users do: linters, type checkers, tests and continuous integration.",
+   "long": "Quality covers the machines that check software before people see it. Lint began in 1978 as a stricter C checker from Bell Labs and has since split into about ten kinds of tool. Start with Linting & Static Analysis and Ten Kinds of Code Checker, then ESLint and Ruff, the best-known linters for JavaScript and Python. Automated Testing and Test-Driven Development cover tests, Continuous Integration and Continuous Delivery run them on every change, and DORA and Accelerate holds the research on what speeds delivery up.\n\nThe best evidence favors checks that run automatically, appear while the author is still working, and are rarely wrong. Dashboards, batch reports, coverage targets and large end-to-end suites did badly. Code Review is valued more for sharing knowledge than for finding bugs: in a Microsoft study only 14 percent of comments concerned defects.",
+   "sleeper": "In 1990 testing was usually a separate phase near the end. Now pushing a change to the shared repository starts builds, tests and checks automatically, and a failing check can block the merge.",
+   "status": "thriving",
+   "tags": [
+    "lint",
+    "tests",
+    "ci",
+    "static-analysis"
+   ],
+   "refs": [
+    {
+     "label": "Sadowski et al.: Lessons from building static analysis tools at Google, CACM 2018",
+     "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4365.pdf"
+    },
+    {
+     "label": "DORA: software delivery metrics",
+     "url": "https://dora.dev/guides/dora-metrics/"
+    }
+   ]
+  },
+  {
+   "id": "qual.lint",
+   "title": "Linting & Static Analysis",
+   "cat": "quality",
+   "tier": 1,
+   "year": 1978,
+   "short": "Tools that read code without running it and flag likely bugs and style problems. Stephen Johnson's lint for C (Bell Labs, 1978) began the line.",
+   "long": "Stephen Johnson wrote lint at Bell Labs in 1978 because the C compiler checked little between separately compiled files; lint took a slower, stricter view. Rice's theorem says no tool can answer every question about what a program will do, so each kind makes a different compromise. The kinds are: style linters (ESLint, Ruff); formatters that only rewrite layout (gofmt, Prettier, Black); type checkers (mypy); bug finders that follow data flow (Coverity, Facebook Infer); security scanners (CodeQL); dependency and secrets scanners; complexity and architecture checks; domain linters for one file format (ShellCheck); dynamic tools that watch a running program (AddressSanitizer and Valgrind, Fuzzing); and Formal Verification (TLA+, seL4). Start with Ten Kinds of Code Checker, lint (the C Program Checker), ESLint and Ruff.",
+   "sleeper": "Where you once argued about brace style, a formatter now ends the debate by rewriting the file, and most checks run in the editor as you type instead of as a separate command you might skip.",
+   "status": "thriving",
+   "tags": [
+    "static-analysis",
+    "formatter",
+    "type-checker",
+    "sast",
+    "false-positives"
+   ],
+   "refs": [
+    {
+     "label": "Johnson: Lint, a C Program Checker (Unix V7 manual)",
+     "url": "https://wolfram.schneider.org/bsd/7thEdManVol2/lint/lint.pdf"
+    },
+    {
+     "label": "Bessey et al.: A Few Billion Lines of Code Later, CACM 2010",
+     "url": "https://web.stanford.edu/~engler/BLOC-coverity.pdf"
+    }
+   ]
+  },
+  {
+   "id": "qual.eslint",
+   "title": "ESLint",
+   "cat": "quality",
+   "tier": 3,
+   "year": 2013,
+   "short": "The standard JavaScript linter, created by Nicholas Zakas in June 2013. Every rule can be turned on or off, and plugins add more.",
+   "long": "Nicholas C. Zakas created ESLint in June 2013. JSLint (Douglas Crockford, 2002) had been criticized as uncomfortably opinionated, and its fork JSHint (2011) still lacked a way to add rules of your own. ESLint's stated reason for existing is that developers can write their own linting rules: everything is pluggable, and every rule can be turned off or on, because nothing is too important to turn off. Rules live in a configuration file next to the code, now eslint.config.js in the flat config format, and plugins such as typescript-eslint add rules that use type information. Some problems can be fixed automatically with the --fix option. ESLint is maintained under the OpenJS Foundation. Faster Rust-written challengers exist: Oxlint claims 50 to 100 times its speed, and Biome combines a formatter and a linter.",
+   "sleeper": "Older lint tools shipped with fixed rules. ESLint's design is that you choose, add and share rules, so a project's lint setup is a file in the repository and is reviewed like code.",
+   "code": {
+    "lang": "javascript",
+    "text": "// eslint.config.mjs\nexport default [{ rules: { eqeqeq: \"error\", \"no-unused-vars\": \"warn\" } }];\n\n// app.js\nconst unused = 1;\nlet count = 0;\nif (count == 0) count++;\n\n// npx eslint app.js reports two problems:\n//   1:7   warning  'unused' is assigned a value but never used  no-unused-vars\n//   3:11  error    Expected '===' and instead saw '=='          eqeqeq"
+   },
+   "status": "thriving",
+   "tags": [
+    "javascript",
+    "plugins",
+    "flat-config"
+   ],
+   "refs": [
+    {
+     "label": "ESLint: About",
+     "url": "https://eslint.org/docs/latest/about/"
+    },
+    {
+     "label": "ESLint: configuration files",
+     "url": "https://eslint.org/docs/latest/use/configure/configuration-files"
+    }
+   ]
+  },
+  {
+   "id": "qual.testing",
+   "title": "Automated Testing",
+   "cat": "quality",
+   "tier": 2,
+   "year": 1998,
+   "short": "Code that checks your code. Unit, integration and end-to-end tests run on every change.",
+   "long": "An automated test is a small program that runs your code and checks the answer, so a machine can recheck everything after every change. Kent Beck wrote the first xUnit framework, SUnit, for Smalltalk, and he and Erich Gamma wrote JUnit for Java on a flight to the 1997 OOPSLA conference. Nearly every language has at least one port, such as NUnit for .NET; pytest and Jest are widely used in Python and JavaScript. Unit tests check one small piece in isolation, integration tests several real parts together, and end-to-end tests drive the whole product as a user would. Google's published numbers show that the large, slow tests are the unreliable ones: 14 percent of its large tests were flaky against 0.5 percent of small ones. Test-Driven Development, writing the test first, has mixed evidence, and coverage percentage is a poor target.",
+   "sleeper": "Testing used to be a separate phase near the end, often run by a separate team. Google says its projects typically have no separate quality-assurance group: engineers test their own code, with automated tests that run on every change.",
+   "code": {
+    "lang": "python",
+    "text": "# test_leap.py (run it with: pytest)\ndef is_leap(year):\n    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n\ndef test_leap_years():\n    assert is_leap(2000)\n    assert is_leap(2024)\n\ndef test_century_rule():\n    assert not is_leap(1900)\n\n# pytest finds the test_ functions and reports \"2 passed\""
+   },
+   "status": "thriving",
+   "tags": [
+    "unit-test",
+    "junit",
+    "pytest",
+    "flaky"
+   ],
+   "refs": [
+    {
+     "label": "Fowler: Xunit",
+     "url": "https://martinfowler.com/bliki/Xunit.html"
+    },
+    {
+     "label": "Fowler: The Test Pyramid",
+     "url": "https://martinfowler.com/bliki/TestPyramid.html"
+    },
+    {
+     "label": "Software Engineering at Google: Testing Overview",
+     "url": "https://abseil.io/resources/swe-book/html/ch11.html"
+    }
+   ]
+  },
+  {
+   "id": "qual.ci",
+   "title": "Continuous Integration",
+   "cat": "quality",
+   "tier": 2,
+   "year": 2001,
+   "short": "Merge to a shared mainline daily and let a server build and test every change. CruiseControl (2001), then Jenkins, then GitHub Actions.",
+   "long": "Continuous integration means each developer merges into a shared mainline at least daily, and a server builds the code and runs the tests on every merge. Martin Fowler published his article on it on 10 September 2000 and credits his Thoughtworks colleagues' CruiseControl, released in March 2001, as the first CI service. Hudson, renamed Jenkins in 2011 after a dispute with Oracle, led the next decade; hosted services such as Travis CI and CircleCI, both founded in 2011, followed, and GitHub Actions, generally available in November 2019, is now a common default. Fowler advises a build of about ten minutes and fixing a broken build at once. A 2016 study of 34,544 GitHub projects found that CI helps projects release more often.",
+   "sleeper": "If you remember nightly builds, the pace has inverted. A server now tests every change within minutes, and at Google the system handles more than 50,000 changes and runs more than four billion test cases a day.",
+   "code": {
+    "lang": "yaml",
+    "text": "# .github/workflows/ci.yml\nname: ci\non: [push, pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: 22 }\n      - run: npm ci\n      - run: npm test"
+   },
+   "status": "thriving",
+   "tags": [
+    "jenkins",
+    "github-actions",
+    "build-server",
+    "pipeline"
+   ],
+   "refs": [
+    {
+     "label": "Fowler: Continuous Integration",
+     "url": "https://martinfowler.com/articles/continuousIntegration.html"
+    },
+    {
+     "label": "Software Engineering at Google: Continuous Integration",
+     "url": "https://abseil.io/resources/swe-book/html/ch23.html"
+    }
+   ]
+  },
+  {
+   "id": "proc.hub",
+   "title": "Methods & Evidence",
+   "cat": "process",
+   "tier": 1,
+   "year": 1970,
+   "short": "How teams organize the work, from waterfall to Agile to DevOps, and what research really shows about what helps.",
+   "long": "This hub is the history of how teams organize software work, and of the evidence about it. Almost all of that evidence is anecdote, vendor surveys or correlation, and no randomized trial of whole methodologies is known. Start with The Software Crisis (the late-1960s complaint that big projects ran late), Waterfall (Winston Royce, 1970), Agile (the 2001 manifesto) and DevOps (2009). The Mythical Man-Month and No Silver Bullet are Fred Brooks's classic cautions. The best-supported thread is that short feedback loops go with better delivery: small batches, continuous integration and frequent releases, as DORA's surveys report. Strict waterfall for uncertain requirements, and measuring people by proxies such as lines of code, did not hold up.",
+   "sleeper": "In 1990 the dominant model, especially in government procurement, was a plan fixed in advance. Short cycles and constant feedback are now the default, and the same teams often run their own software in production (DevOps).",
+   "status": "thriving",
+   "tags": [
+    "methodology",
+    "evidence",
+    "teams"
+   ],
+   "refs": [
+    {
+     "label": "The Agile Manifesto: history",
+     "url": "https://agilemanifesto.org/history.html"
+    },
+    {
+     "label": "Larman and Basili: A History of Iterative and Incremental Development",
+     "url": "https://www.craiglarman.com/wiki/downloads/misc/history-of-iterative-larman-and-basili-ieee-computer.pdf"
+    }
+   ]
+  },
+  {
+   "id": "proc.waterfall",
+   "title": "Waterfall",
+   "cat": "process",
+   "tier": 2,
+   "year": 1970,
+   "short": "Requirements, design, code, test in strict sequence. Winston Royce's 1970 paper drew it and called it risky; he never used the word waterfall.",
+   "long": "Waterfall runs a project in fixed phases: requirements, design, coding, testing and operations, each finished before the next. Winston Royce's 1970 paper \"Managing the Development of Large Software Systems\" is the usual source, yet it never uses the word waterfall, which may first appear in Bell and Thayer in 1976. Royce drew the simple sequence and wrote that he believed in the concept, but that this implementation was risky and invited failure, since testing at the end is the first time timing, storage and input and output are actually experienced. He added five features: design first, document it, do it twice, plan and monitor testing, and involve the customer. US defense software standards from 1985 later made phased development a procurement template. Waterfall still works where requirements are stable or sign-offs are legally required.",
+   "sleeper": "Waterfall was never the only practice. Larman and Basili traced iterative, incremental development back through NASA's Project Mercury in the early 1960s to Shewhart's cycles of the 1930s, so Agile revived an older idea more than it invented one.",
+   "status": "legacy",
+   "tags": [
+    "royce",
+    "phases",
+    "sequential"
+   ],
+   "refs": [
+    {
+     "label": "Larman and Basili: A History of Iterative and Incremental Development",
+     "url": "https://www.craiglarman.com/wiki/downloads/misc/history-of-iterative-larman-and-basili-ieee-computer.pdf"
+    },
+    {
+     "label": "Wikipedia: Waterfall model",
+     "url": "https://en.wikipedia.org/wiki/Waterfall_model"
+    }
+   ]
+  },
+  {
+   "id": "proc.agile",
+   "title": "Agile",
+   "cat": "process",
+   "tier": 2,
+   "year": 2001,
+   "short": "Short iterations, working software and feedback. Seventeen practitioners wrote the manifesto at Snowbird, Utah, in February 2001.",
+   "long": "Seventeen practitioners met at The Lodge at Snowbird ski resort in Utah on 11 to 13 February 2001 and wrote the Agile Manifesto. They represented Extreme Programming, Scrum, DSDM, Crystal and other methods, united against documentation-driven, heavyweight processes. Its four values prefer individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan. Scrum, presented at OOPSLA in 1995 by Ken Schwaber and Jeff Sutherland, and Extreme Programming, which Kent Beck refined on Chrysler's C3 payroll project from 1996, are the best-known forms. C3 itself was cancelled in 2000, but XP's practices of continuous integration, unit tests and refactoring went mainstream. Surveys of Agile adoption are self-reported and often run by tool vendors.",
+   "sleeper": "Agile began as a protest by working programmers. It has become an industry of certifications, consultants and frameworks such as SAFe, and signatory Dave Thomas wrote in 2014 that the word had been subverted until it was effectively meaningless.",
+   "status": "thriving",
+   "tags": [
+    "scrum",
+    "xp",
+    "manifesto",
+    "iterative"
+   ],
+   "refs": [
+    {
+     "label": "The Agile Manifesto: history",
+     "url": "https://agilemanifesto.org/history.html"
+    },
+    {
+     "label": "Dave Thomas: Agile Is Dead (Long Live Agility)",
+     "url": "https://pragdave.me/thoughts/active/2014-03-04-time-to-kill-agile.html"
+    }
+   ]
+  },
+  {
+   "id": "proc.mmm",
+   "title": "The Mythical Man-Month",
+   "cat": "process",
+   "tier": 3,
+   "year": 1975,
+   "short": "Fred Brooks's lessons from IBM's OS/360: adding people to a late project makes it later.",
+   "long": "Fred Brooks managed IBM's OS/360 project, which ran late, and distilled its lessons into essays published in 1975. The best known, Brooks's law, says that adding manpower to a late software project makes it later. Others cover the second-system effect (an architect's second design tends to be bloated with everything held back from the first), the surgical team and conceptual integrity. The 1995 anniversary edition added four chapters and reprinted \"No Silver Bullet\" (1986), which argued that no single technique promises even one order of magnitude of improvement within a decade, and that the hardest part is deciding precisely what to build. Melvin Conway had made the logic of Brooks's law in 1968: two people working for a year are not equal to a hundred working for a week. The evidence is one large project and simulation studies, not controlled experiments.",
+   "sleeper": "Brooks's law is a rule of thumb, not a theorem: it depends on the stage of the project and how divisible the work is. Brooks himself later withdrew \"plan to throw one away\" as an idea from the waterfall era.",
+   "status": "thriving",
+   "tags": [
+    "brooks",
+    "os360",
+    "brooks-law",
+    "second-system"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: The Mythical Man-Month",
+     "url": "https://en.wikipedia.org/wiki/The_Mythical_Man-Month"
+    },
+    {
+     "label": "Wikipedia: No Silver Bullet",
+     "url": "https://en.wikipedia.org/wiki/No_Silver_Bullet"
+    }
+   ]
+  },
+  {
+   "id": "proc.devops",
+   "title": "DevOps",
+   "cat": "process",
+   "tier": 3,
+   "year": 2009,
+   "short": "Developers and operators sharing responsibility, automating releases and monitoring.",
+   "long": "DevOps tries to end the wall between developers, who write software, and operations staff, who run it, through shared ownership, automation and frequent small releases. The first DevOpsDays conference was held in Ghent, Belgium, in 2009 and was founded by Patrick Debois; it followed a 2009 Velocity talk by John Allspaw and Paul Hammond on ten-plus deployments a day at Flickr. The practices combine version control, continuous integration and delivery, infrastructure as code and monitoring. The research base is DORA, whose surveys link such practices to faster, more reliable delivery; the data are correlations, and DORA warns against using its metrics as targets. Google's Site Reliability Engineering, begun in 2003, is a related discipline, and platform engineering in the 2020s builds internal self-service toolchains.",
+   "sleeper": "In 1990 developers handed finished software to a separate operations group. Many teams now deploy their own code, often many times a day: IMVU reported about fifty deployments a day in 2009.",
+   "status": "thriving",
+   "tags": [
+    "operations",
+    "deployment",
+    "sre",
+    "dora"
+   ],
+   "refs": [
+    {
+     "label": "DORA: software delivery metrics",
+     "url": "https://dora.dev/guides/dora-metrics/"
+    },
+    {
+     "label": "Wikipedia: DevOps",
+     "url": "https://en.wikipedia.org/wiki/DevOps"
+    }
+   ]
+  },
+  {
+   "id": "fail.hub",
+   "title": "Dead Ends & Cautionary Tales",
+   "cat": "failures",
+   "tier": 1,
+   "year": 1985,
+   "short": "Ideas that promised to end programming's hard parts and did not, plus the famous disasters and what they taught.",
+   "long": "This hub collects what was tried and failed, and what each failure taught. Silver-bullet tools promised to remove the need for skilled programmers: Fourth-Generation Languages, CASE Tools, UML code generation, low-code and now AI. Each wave widened who could build software and none removed professional developers. Proxy metrics were turned into targets and corrupted, as with Lines of Code as a Metric. Fashions and mandates applied by default included the Big-Bang Rewrite, CORBA and The Ada Mandate, and big bets such as Fifth Generation Computer Systems and Itanium (EPIC) did not pay off.\n\nThe best-documented disasters, among them Therac-25, Ariane 5 Flight 501, Knight Capital Incident and CrowdStrike Outage, share a few causes: old code reused in a new context, missing rollout controls, and organizational pressure. Start with CASE Tools, Y2K, Therac-25 and left-pad Incident.",
+   "sleeper": "Several famous failures here traveled through shared code, which barely existed in 1990: left-pad Incident, Log4Shell and the xz-utils Backdoor all came through libraries that many other programs depended on.",
+   "status": "n/a",
+   "tags": [
+    "silver-bullet",
+    "disasters",
+    "lessons"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: No Silver Bullet",
+     "url": "https://en.wikipedia.org/wiki/No_Silver_Bullet"
+    },
+    {
+     "label": "Wikipedia: Computer-aided software engineering",
+     "url": "https://en.wikipedia.org/wiki/Computer-aided_software_engineering"
+    }
+   ]
+  },
+  {
+   "id": "fail.case",
+   "title": "CASE Tools",
+   "cat": "failures",
+   "tier": 2,
+   "year": 1985,
+   "short": "Computer-aided software engineering: draw the design, generate the code. About 200 products peaked around 1990, then the category collapsed.",
+   "long": "CASE (computer-aided software engineering) tools drew analysis and design diagrams and generated code from them. The idea goes back to the ISDOS project at the University of Michigan in 1968 and peaked around 1990: PC Magazine counted more than 100 companies offering nearly 200 CASE tools in January 1990. IBM's AD/Cycle alliance, a mainframe-centered effort to tie such tools together, collapsed with the decline of the mainframe, \"Big CASE\" died, and Computer Associates bought many of the leaders. In 1994 Bill Curtis said of CASE, structured programming and the third to fifth generation languages: \"We've heard great promises for technology, many of which weren't delivered.\" Brooks had predicted in 1986 that tools and environments would give only incremental gains. UML code generation and Model-Driven Architecture repeated the pattern, and UML survives mainly as a sketching notation.",
+   "sleeper": "The same pitch, draw or describe what you want and the program appears, returns as low-code platforms and AI assistants. Each wave since CASE has widened who can build software without removing the need for professional developers.",
+   "status": "dead",
+   "tags": [
+    "uml",
+    "model-driven",
+    "code-generation",
+    "low-code"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Computer-aided software engineering",
+     "url": "https://en.wikipedia.org/wiki/Computer-aided_software_engineering"
+    },
+    {
+     "label": "Wikipedia: Fourth-generation programming language",
+     "url": "https://en.wikipedia.org/wiki/Fourth-generation_programming_language"
+    }
+   ]
+  },
+  {
+   "id": "fail.loc",
+   "title": "Lines of Code as a Metric",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1970,
+   "short": "Counting lines of code rewards bloat. In 1982 Apple's Bill Atkinson reported minus 2,000 lines for a rewrite that made QuickDraw faster.",
+   "long": "Lines of code (LOC) is easy to count, which is why managers keep reaching for it as a measure of productivity. It rewards verbose code and punishes concise code, and the count varies hugely with language and style. In February 1982 managers on Apple's Lisa project asked engineers to report lines written each week. Bill Atkinson had just rewritten QuickDraw's region engine so region operations ran almost six times faster, saving about 2,000 lines, and he wrote -2000 on the form; he was soon excused from reporting. Martin Fowler argued in 2003 that productivity cannot be measured because software output cannot be measured. A quip comparing it to measuring aircraft building by weight is attributed to Bill Gates but is unverified. Outcome measures such as DORA's delivery metrics are the usual replacement. The practice is discredited yet persistent.",
+   "sleeper": "Story points and test-coverage percentages are modern cousins: useful as private diagnostics, but gamed once they become targets, as DORA and Google both warn. Goodhart's Law names the pattern.",
+   "status": "dead",
+   "tags": [
+    "productivity",
+    "metrics",
+    "goodhart"
+   ],
+   "refs": [
+    {
+     "label": "Folklore.org: -2000 Lines Of Code",
+     "url": "https://www.folklore.org/Negative_2000_Lines_Of_Code.html"
+    },
+    {
+     "label": "Fowler: Cannot Measure Productivity",
+     "url": "https://martinfowler.com/bliki/CannotMeasureProductivity.html"
+    }
+   ]
+  },
+  {
+   "id": "fail.y2k",
+   "title": "Y2K",
+   "cat": "failures",
+   "tier": 3,
+   "year": 1999,
+   "short": "Programs that stored years as two digits risked misreading 2000 as 1900. Years of costly repair were followed by few failures.",
+   "long": "To save scarce memory and storage, many programs stored the year as two digits, so 2000 could be read as 1900. Bob Bemer noticed the problem in 1958 and spent about 20 years trying to raise awareness; by 1987 the New York Stock Exchange had reportedly spent over $20 million and hired 100 programmers. Companies predicted global repair costs of 400 to 600 billion dollars, and the affected code included many COBOL business systems. When 1 January 2000 came, few major failures occurred: up to 20 million bank cards were unusable in Germany, and Telecom Italia billed for January and February 1900. Supporters credit a decade of remediation; critics point out that countries and sectors that did little also saw few problems. Both accounts are partly true, since the defect was real and the counterfactual cannot be measured.",
+   "sleeper": "The two-digit year was a sensible saving when memory was scarce; the cost came decades later, as a deadline-driven inventory and repair of old systems. President Clinton called the outcome \"the first challenge of the 21st century successfully met\".",
+   "code": {
+    "lang": "c",
+    "text": "int born_yy = 65;                /* 1965, stored as two digits */\nint now_yy  = 99;                /* 1999 */\nint age = now_yy - born_yy;      /* 34, correct */\nnow_yy = 0;                      /* 2000 is stored as 00 */\nage = now_yy - born_yy;          /* -65, but the true age is 35 */"
+   },
+   "status": "dead",
+   "tags": [
+    "two-digit-year",
+    "remediation",
+    "bemer",
+    "cobol"
+   ],
+   "refs": [
+    {
+     "label": "Wikipedia: Year 2000 problem",
+     "url": "https://en.wikipedia.org/wiki/Year_2000_problem"
+    }
+   ]
+  },
+  {
+   "id": "fail.leftpad",
+   "title": "left-pad Incident",
+   "cat": "failures",
+   "tier": 3,
+   "year": 2016,
+   "short": "In March 2016 a developer unpublished his npm packages, including the tiny left-pad, and builds broke worldwide for about two and a half hours.",
+   "long": "On 22 March 2016, after npm's dispute policy decided that the package name kik should be maintained by the messaging company Kik, developer Azer Koçulu unpublished 273 of his packages, among them left-pad. Russ Cox calls left-pad an eight-line utility function; it padded a string on the left. Many projects depended on it indirectly, and failures ran at hundreds per minute from 2:30 PM Pacific. A new left-pad 1.0.0 appeared within 10 minutes, but many projects required version 0.0.3, so npm took the unprecedented step of republishing the original from a backup and restored it by 4:55 PM. npm promised to make unpublishing harder when doing so would break other packages. The episode showed how much rests on tiny packages and deep dependency chains. Later attacks, from event-stream in 2018 to the Shai-Hulud npm Worm in 2025, made the lesson sharper.",
+   "sleeper": "Padding a string is now built into JavaScript as padStart (ES2017), so the dependency was never needed. In 1990 a library was a file you copied into your project; a registry now lets one author's unpublish click break builds across the web.",
+   "code": {
+    "lang": "javascript",
+    "text": "// a function like left-pad, and the built-in that replaced it\nfunction leftPad(str, len, ch = \" \") {\n  str = String(str);\n  while (str.length < len) str = ch + str;\n  return str;\n}\nleftPad(5, 3, \"0\");          // \"005\"\nString(5).padStart(3, \"0\");  // \"005\", no dependency needed"
+   },
+   "status": "dead",
+   "tags": [
+    "npm",
+    "unpublish",
+    "dependency",
+    "kik"
+   ],
+   "refs": [
+    {
+     "label": "npm blog: kik, left-pad, and npm",
+     "url": "https://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm"
+    },
+    {
+     "label": "Russ Cox: Our Software Dependency Problem",
+     "url": "https://research.swtch.com/deps"
+    }
+   ]
+  },
+  {
+   "id": "org.hub",
+   "title": "Companies & Institutions",
+   "cat": "orgs",
+   "tier": 1,
+   "year": 1911,
+   "short": "The firms, labs and foundations that moved software forward, from IBM and Bell Labs to Google, Microsoft and the AI labs.",
+   "long": "Three layers of organizations moved software forward. First, platform vendors whose products defined what programmers targeted: IBM, DEC, Microsoft, Apple, Sun Microsystems and Oracle Corporation. Second, research labs such as Bell Labs and Xerox PARC, whose ideas (Unix, C, the graphical interface, Ethernet, Smalltalk) outlived their sponsors' business models. Third, since about 2005, cloud, open-source and AI-era companies, among them Google, Amazon Web Services, Meta, Docker, Inc., OpenAI and Anthropic, which now set tool and infrastructure standards. Start with IBM, Bell Labs, Microsoft and Google. Universities, agencies and foundations also mattered: MIT, UC Berkeley, CERN, DARPA, the GNU Project and the FSF, and the Linux Foundation.",
+   "sleeper": "Several giants of 1990 are gone or absorbed: DEC (bought by Compaq in 1998), Sun (bought by Oracle, completed January 2010) and Borland. The firms that now set standards, Google, Amazon and Meta, did not exist in 1990, and Microsoft owns GitHub.",
+   "status": "thriving",
+   "tags": [
+    "companies",
+    "labs",
+    "foundations"
+   ],
+   "refs": [
+    {
+     "label": "IBM history",
+     "url": "https://www.ibm.com/history"
+    },
+    {
+     "label": "Wikipedia: Bell Labs",
+     "url": "https://en.wikipedia.org/wiki/Bell_Labs"
+    }
+   ]
+  },
+  {
+   "id": "org.ibm",
+   "title": "IBM",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1911,
+   "short": "Funded FORTRAN, built System/360 and OS/360, produced the relational model and SQL, launched the 1981 PC, and bought Red Hat in 2019.",
+   "long": "IBM was founded on 16 June 1911 as the Computing-Tabulating-Recording Company and took its present name in 1924. It produced FORTRAN (John Backus's team; first compiler for the IBM 704, April 1957); System/360, announced on 7 April 1964, with one instruction set across a product line, whose operating system OS/360 ran late and inspired Fred Brooks's The Mythical Man-Month; the relational model and SQL (Edgar Codd's 1970 paper, then System R in the 1970s and DB2 in 1983); and the IBM PC of 1981, with PC-DOS supplied by Microsoft. Oracle, not IBM, shipped the first commercial SQL database, in 1979. In 1969 IBM began pricing software separately from hardware, which let an independent software industry exist. Later purchases include Lotus (1995), Red Hat (about $34 billion, completed July 2019) and HashiCorp (completed February 2025).",
+   "sleeper": "In 1990 IBM sold proprietary systems and its own OS/2. It has since bought Red Hat, a Linux company, and HashiCorp, the maker of Terraform, and now sells hybrid cloud, consulting and AI.",
+   "status": "thriving",
+   "tags": [
+    "mainframe",
+    "system360",
+    "fortran",
+    "sql",
+    "red-hat"
+   ],
+   "refs": [
+    {
+     "label": "IBM history",
+     "url": "https://www.ibm.com/history"
+    },
+    {
+     "label": "Wikipedia: IBM",
+     "url": "https://en.wikipedia.org/wiki/IBM"
+    }
+   ]
+  },
+  {
+   "id": "org.bell-labs",
+   "title": "Bell Labs",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1925,
+   "short": "Where the transistor, Unix, C, C++, lint and awk were invented.",
+   "long": "Bell Labs was the research arm of AT&T and Western Electric from 1925. It invented the transistor (1947) and information theory (Claude Shannon, 1948). In software it produced Unix (Ken Thompson and Dennis Ritchie, 1969), the C language (Ritchie, 1972 to 1973), pipes (Doug McIlroy), yacc and lint (Stephen Johnson), make (Stuart Feldman, 1976), awk (Aho, Weinberger and Kernighan, 1977), C++ (Bjarne Stroustrup, from 1979), Plan 9, and UTF-8 (Thompson and Pike, 1992). A 1956 antitrust consent decree barred AT&T from selling computer products, so Unix was licensed cheaply to universities, which spread it. The 1984 breakup of the Bell System, the 1996 spin-off of Lucent Technologies and Lucent's collapse in 2000 and 2001 ended the era. Alcatel-Lucent formed in 2006, Nokia completed its purchase of Alcatel-Lucent in January 2016, and Nokia Bell Labs continues as a research lab.",
+   "sleeper": "By 1990 AT&T's monopoly was already broken up, and a 1996 spin-off, a 2006 merger and a 2016 sale to Nokia ended the lab's independence. Its tools are everywhere, from grep and make to the C language and Unix itself.",
+   "status": "legacy",
+   "tags": [
+    "att",
+    "transistor",
+    "unix",
+    "research-lab"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie and Thompson: The UNIX Time-Sharing System, CACM 1974",
+     "url": "https://dl.acm.org/doi/10.1145/361011.361061"
+    },
+    {
+     "label": "Wikipedia: Bell Labs",
+     "url": "https://en.wikipedia.org/wiki/Bell_Labs"
+    }
+   ]
+  },
+  {
+   "id": "org.microsoft",
+   "title": "Microsoft",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1975,
+   "short": "From BASIC and MS-DOS to Windows, Visual Studio, .NET, TypeScript, VS Code and GitHub.",
+   "long": "Bill Gates and Paul Allen founded Microsoft on 4 April 1975 in Albuquerque to write BASIC for the Altair 8800. It supplied MS-DOS for the IBM PC in August 1981, then Windows (1.0 in 1985, 3.0 in 1990, NT in 1993, Windows 95 in 1995) and Office. For developers it added Visual Basic (1991), Visual Studio (1997), .NET (2002), C# (announced 2000, led by Anders Hejlsberg), TypeScript (2012) and Visual Studio Code (2015). Under Satya Nadella, CEO since February 2014, it embraced open source: it joined the Linux Foundation as a platinum member in 2016 and bought GitHub in 2018 for $7.5 billion. It put $1 billion into OpenAI in 2019 and later more, and GitHub Copilot launched in 2021 on OpenAI's Codex model. United States v. Microsoft (1998 to 2001) concerned bundling a browser with Windows.",
+   "sleeper": "In 1990 Microsoft was known for closed-source DOS and Windows. Under Nadella it owns GitHub, publishes TypeScript and VS Code as open source, and ships a Windows Subsystem for Linux.",
+   "status": "thriving",
+   "tags": [
+    "windows",
+    "dos",
+    "vscode",
+    "github",
+    "nadella"
+   ],
+   "refs": [
+    {
+     "label": "Microsoft News: Microsoft to acquire GitHub for $7.5 billion",
+     "url": "https://news.microsoft.com/2018/06/04/microsoft-to-acquire-github-for-7-5-billion/"
+    },
+    {
+     "label": "Wikipedia: Microsoft",
+     "url": "https://en.wikipedia.org/wiki/Microsoft"
+    }
+   ]
+  },
+  {
+   "id": "org.google",
+   "title": "Google",
+   "cat": "orgs",
+   "tier": 2,
+   "year": 1998,
+   "short": "Scale pioneers: MapReduce, Bigtable, Kubernetes, Go, Chrome's V8 and the Transformer paper.",
+   "long": "Larry Page and Sergey Brin founded Google on 4 September 1998. Its systems papers defined big-data engineering: the Google File System (2003), MapReduce (2004, Jeff Dean and Sanjay Ghemawat), Bigtable (2006) and Spanner (2012). Its internal cluster manager Borg led to Kubernetes, announced in June 2014 and donated to the Cloud Native Computing Foundation. It also open-sourced Protocol Buffers, gRPC and Blaze as Bazel, created Go (design begun in 2007 by Robert Griesemer, Rob Pike and Ken Thompson), launched the Chrome browser and V8 engine (2008) and Android (bought 2005, first phone 2008), and released TensorFlow (2015). Google researchers published the Transformer architecture in June 2017. Site Reliability Engineering began there in 2003. Almost all its source lives in one repository, shared by roughly 50,000 engineers and managed by an in-house system, Piper.",
+   "sleeper": "Google began in 1998, after you stopped following, yet its internal designs became public tools: Borg became Kubernetes, Blaze became Bazel, and its published MapReduce and Bigtable papers shaped a generation of data systems.",
+   "status": "thriving",
+   "tags": [
+    "search",
+    "big-data",
+    "android",
+    "chrome",
+    "bazel"
+   ],
+   "refs": [
+    {
+     "label": "Dean and Ghemawat: MapReduce",
+     "url": "https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/"
+    },
+    {
+     "label": "Vaswani et al.: Attention Is All You Need",
+     "url": "https://arxiv.org/abs/1706.03762"
+    },
+    {
+     "label": "Kubernetes blog: Borg, the predecessor to Kubernetes",
+     "url": "https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/"
+    }
+   ]
+  },
+  {
+   "id": "ppl.hub",
+   "title": "Pioneers",
+   "cat": "people",
+   "tier": 1,
+   "year": 1843,
+   "short": "A handful of people whose ideas still shape every program.",
+   "long": "This hub gathers people whose ideas, languages or systems shaped how software is built. Early figures include Ada Lovelace (1843), Alan Turing and John von Neumann. The language builders include Grace Hopper, John Backus, John McCarthy, Niklaus Wirth, Dennis Ritchie, Bjarne Stroustrup and Guido van Rossum. Edsger Dijkstra, Donald Knuth and Tony Hoare shaped how programs are reasoned about, and Fred Brooks how projects are run. Ken Thompson, Richard Stallman and Linus Torvalds built Unix, GNU and Linux, and Tim Berners-Lee the web. Start with Grace Hopper, Dennis Ritchie and Linus Torvalds. Several of the best-known stories about these people are partly legend, and the nodes say so where the sources disagree.",
+   "sleeper": "Some names that now seem as basic as Turing did their best-known work around the time you stopped following: Berners-Lee (the web, 1989 to 1991), Torvalds (Linux, 1991) and van Rossum (Python, 1991).",
+   "status": "n/a",
+   "tags": [
+    "biography",
+    "founders",
+    "computing-history"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo: The Early Development of Programming Languages",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    },
+    {
+     "label": "Ritchie: The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    }
+   ]
+  },
+  {
+   "id": "ppl.hopper",
+   "title": "Grace Hopper",
+   "cat": "people",
+   "tier": 2,
+   "year": 1952,
+   "short": "Navy rear admiral whose A-0 (1952) is often called the first compiler and whose FLOW-MATIC fed into COBOL. The first-bug story is disputed.",
+   "long": "Grace Hopper (1906 to 1992) programmed the Harvard Mark I from 1944, then joined Remington Rand, where her group wrote programming tools for the UNIVAC I. Her A-0 system first ran in May 1952: it read a pseudo-code, pulled the matching subroutines from a library and linked them into a complete program. It is often called the first compiler, but Knuth and Trabb Pardo credit Alick Glennie's Autocode, because A-0 was closer to a macro expander and linker. FLOW-MATIC, her group's English-like data-processing compiler of the mid-1950s, had a significant effect on the design of COBOL. She retired as a rear admiral in 1986 and was awarded the Presidential Medal of Freedom in 2016, after her death.\n\nThe story that she found the first computer bug is disputed. Operators found the moth taped into the Harvard Mark II log on 9 September 1947, and engineers had used the word bug since the 1870s.",
+   "sleeper": "In 1955 Hopper wrote that automatic coding might someday \"replace the coder or release him to become a master or executive programmer\", a hope that has returned with each wave of tools, AI assistants included.",
+   "status": "n/a",
+   "tags": [
+    "compiler",
+    "cobol",
+    "flow-matic",
+    "navy",
+    "a-0"
+   ],
+   "refs": [
+    {
+     "label": "Knuth and Trabb Pardo: The Early Development of Programming Languages",
+     "url": "https://bitsavers.org/pdf/stanford/cs_techReports/STAN-CS-76-562_EarlyDevelPgmgLang_Aug76.pdf"
+    },
+    {
+     "label": "Wikipedia: Grace Hopper",
+     "url": "https://en.wikipedia.org/wiki/Grace_Hopper"
+    }
+   ]
+  },
+  {
+   "id": "ppl.ritchie",
+   "title": "Dennis Ritchie",
+   "cat": "people",
+   "tier": 2,
+   "year": 1972,
+   "short": "Created C and, with Ken Thompson, Unix. His work underlies nearly every modern system.",
+   "long": "Dennis Ritchie (1941 to 2011) worked at Bell Labs. In 1971 he extended Ken Thompson's B, a stripped-down BCPL, with a character type and a compiler that emitted machine code for the byte-addressed PDP-11; the result became C. During 1973 the Unix kernel was rewritten in C, which made the operating system portable. With Brian Kernighan he wrote The C Programming Language (1978), known as K&R. Unix itself began as Thompson's 1969 PDP-7 system; Ritchie, who insisted that it was born in 1969, not 1974, helped design its file system, and he and Thompson published the first paper on it in 1974. They received the 1983 Turing Award for the Unix operating system. Ritchie died in October 2011, a week after Steve Jobs, with far less press coverage.",
+   "sleeper": "C, the language Ritchie designed to write an operating system, ranked second in the September 2026 TIOBE index, and the Unix he and Thompson built lives on in Linux, macOS, iOS and Android.",
+   "status": "n/a",
+   "tags": [
+    "c",
+    "unix",
+    "turing-award",
+    "bell-labs",
+    "kr"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie: The Evolution of the Unix Time-sharing System",
+     "url": "https://www.read.seas.harvard.edu/~kohler/class/aosref/ritchie84evolution.pdf"
+    },
+    {
+     "label": "Ritchie: The Development of the C Language",
+     "url": "https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html"
+    }
+   ]
+  },
+  {
+   "id": "ppl.torvalds",
+   "title": "Linus Torvalds",
+   "cat": "people",
+   "tier": 2,
+   "year": 1991,
+   "short": "Student in Helsinki who announced the Linux kernel in August 1991 and wrote Git in April 2005. He has led kernel development ever since.",
+   "long": "Linus Torvalds (born 28 December 1969 in Helsinki) was a student when, on 25 August 1991, he posted to the comp.os.minix newsgroup that he was making a free operating system, \"just a hobby, won't be big and professional like gnu\". Version 0.01 followed in September 1991, and the kernel was under the GNU General Public License by early 1992. Combined with the GNU tools it became the free Unix-like system called Linux. In January 1992 Andrew Tanenbaum, author of MINIX, wrote that \"LINUX is obsolete\" because it was monolithic rather than a microkernel; Torvalds replied that Linux wins on being available now. After BitKeeper's free license ended he began Git in April 2005 and had it running on the kernel within about ten days. Junio Hamano has maintained Git since July 2005.",
+   "sleeper": "He did not set out to start a movement: the announcement called it a hobby. He has said he names all his projects after himself, \"First Linux, now git\", and git is British slang for an unpleasant person.",
+   "status": "n/a",
+   "tags": [
+    "linux",
+    "git",
+    "kernel",
+    "helsinki",
+    "open-source"
+   ],
+   "refs": [
+    {
+     "label": "Linux Foundation: 10 Years of Git, interview with Linus Torvalds",
+     "url": "https://www.linuxfoundation.org/blog/blog/10-years-of-git-an-interview-with-git-creator-linus-torvalds"
+    },
+    {
+     "label": "Open Sources, appendix A: the Tanenbaum-Torvalds debate",
+     "url": "https://www.oreilly.com/openbook/opensources/book/appa.html"
+    }
+   ]
+  },
+  {
+   "id": "plat.hub",
+   "title": "Platforms: OS, Web, Cloud, Mobile",
+   "cat": "platforms",
+   "tier": 1,
+   "year": 1969,
+   "short": "What software runs on: operating systems, the Internet, the web, the cloud and phones.",
+   "long": "A platform is what software runs on, and each shift changed what developers build and how they ship it. Start with Operating System for the idea, then Unix (1969), whose design underlies Linux, macOS, iOS and Android, and Microsoft Windows for the DOS line. TCP/IP and ARPANET and Packet Switching carried the network, and The World Wide Web (1989 to 1991) made it an application platform. Cloud Computing, from Amazon's S3 and EC2 in 2006, replaced buying servers with renting them, and Docker & Containers (2013) standardized packaging. iPhone and iOS (2007) and Android made the phone a platform. In September 2026 Windows had about 76 percent of desktop use, Android about 69 percent of phones, and Unix-family systems ran 92.1 percent of websites with a known operating system.",
+   "sleeper": "In 1990 you bought a computer and an operating system, and a program ran on that. Now the computer is often a rented slice of a data center, the program is packaged with its dependencies in a container, and many users meet software only as a web page or a phone app.",
+   "status": "thriving",
+   "tags": [
+    "os",
+    "internet",
+    "web",
+    "cloud",
+    "mobile"
+   ],
+   "refs": [
+    {
+     "label": "W3Techs: operating systems used by websites",
+     "url": "https://w3techs.com/technologies/overview/operating_system"
+    },
+    {
+     "label": "StatCounter: mobile operating system market share",
+     "url": "https://gs.statcounter.com/os-market-share/mobile/worldwide"
+    }
+   ]
+  },
+  {
+   "id": "plat.unix",
+   "title": "Unix",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1969,
+   "short": "A small, portable operating system from Bell Labs whose ideas power Linux, macOS and Android.",
+   "long": "Ken Thompson began Unix at Bell Labs in 1969 on a little-used PDP-7, after Bell Labs withdrew from the Multics project; Dennis Ritchie and colleagues wanted a system around which a fellowship could form. A PDP-11 version followed in 1971, pipes arrived in 1972, and during 1973 the kernel was rewritten in C, which made the system portable. Its design became the template for most later operating systems except the DOS and Windows line: a hierarchical file system, fork and exec for starting processes, pipes, a shell, small tools that do one job, and everything as a file. A 1956 consent decree kept AT&T out of the computer business, so universities got the source cheaply. Berkeley's BSD added virtual memory, and 4.2BSD (1983) the sockets interface and TCP/IP. The late-1980s Unix wars weakened commercial Unix as Linux and Windows NT arrived; POSIX (1988) standardized the interface.",
+   "sleeper": "Most commercial Unixes of 1990 have faded: Solaris lost the x86 server market to Linux, and HP-UX, Tru64 and IRIX are gone or in sunset. The ideas won through other systems: Linux, Android, macOS and iOS all follow the Unix design.",
+   "status": "thriving",
+   "tags": [
+    "bsd",
+    "posix",
+    "pipes",
+    "shell",
+    "pdp-11"
+   ],
+   "refs": [
+    {
+     "label": "Ritchie: The Evolution of the Unix Time-sharing System",
+     "url": "https://www.read.seas.harvard.edu/~kohler/class/aosref/ritchie84evolution.pdf"
+    },
+    {
+     "label": "The Open Group: UNIX",
+     "url": "https://www.opengroup.org/unix"
+    }
+   ]
+  },
+  {
+   "id": "plat.linux",
+   "title": "Linux",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1991,
+   "short": "The free Unix-like kernel Linus Torvalds announced in August 1991. Distributions add GNU tools; Android is built on the same kernel.",
+   "long": "Linux is a kernel, the core of an operating system. Linus Torvalds announced a hobby kernel for 386 PCs on 25 August 1991 and had it under the GNU General Public License by early 1992. Combined with the GNU tools of Richard Stallman's project, announced in 1983, it formed a free Unix-like system. Distributions, or distros, bundle the kernel with tools, an installer and a package manager: Slackware and Debian (1993), Red Hat (1994 to 1995), Ubuntu (2004). In January 1992 Andrew Tanenbaum argued that a monolithic kernel was obsolete; Linux later ran on nearly every processor, which answered his portability objection. Likely reasons for its dominance: no per-copy license, source access, a license that keeps improvements flowing back, neutral governance and heavy corporate funding. Android, which uses the Linux kernel, ran about 69 percent of phones in September 2026.",
+   "sleeper": "In 1990 the GNU project had most of a free Unix-like system but no usable kernel, and Linux filled the gap. Linux dominates servers and phones, yet held only 4.54 percent of desktop use in StatCounter's September 2026 figures.",
+   "status": "thriving",
+   "tags": [
+    "kernel",
+    "gnu",
+    "distro",
+    "gpl",
+    "android"
+   ],
+   "refs": [
+    {
+     "label": "kernel.org",
+     "url": "https://www.kernel.org/"
+    },
+    {
+     "label": "Open Sources, appendix A: the Tanenbaum-Torvalds debate",
+     "url": "https://www.oreilly.com/openbook/opensources/book/appa.html"
+    },
+    {
+     "label": "W3Techs: operating systems used by websites",
+     "url": "https://w3techs.com/technologies/overview/operating_system"
+    }
+   ]
+  },
+  {
+   "id": "plat.web",
+   "title": "The World Wide Web",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 1991,
+   "short": "Tim Berners-Lee's hypertext system from CERN: URLs, HTTP and HTML. Mosaic and Netscape brought it to the public; JavaScript made it an application platform.",
+   "long": "Tim Berners-Lee proposed a web of linked notes at CERN in March 1989 (he first called it Mesh) and chose the name World Wide Web in 1990. It combines three inventions: URLs, text addresses for documents; HTTP, the request-and-reply conversation between browser and server; and HTML, a tagged text format with links. The first web server and page appeared in November 1990, the code was released on CERN machines on 17 May 1991 and posted to newsgroups that August, and on 30 April 1993 CERN declared the technology free for anyone to use. NCSA's Mosaic (1993) put images inline with text, and Netscape Navigator shipped in December 1994; Netscape's IPO on 9 August 1995 began the dot-com boom. Microsoft's Internet Explorer won the browser war by about 1998 to 2000. JavaScript turned pages into applications.",
+   "sleeper": "The web began as a way to share documents; it is now the default way to ship software. Applications run in the browser, and even desktop programs such as Visual Studio Code are built from web technology.",
+   "status": "thriving",
+   "tags": [
+    "html",
+    "http",
+    "browser",
+    "mosaic",
+    "netscape",
+    "cern"
+   ],
+   "refs": [
+    {
+     "label": "W3C: A Little History of the World Wide Web",
+     "url": "https://www.w3.org/History.html"
+    },
+    {
+     "label": "Berners-Lee: Information Management, A Proposal (1989)",
+     "url": "https://www.w3.org/History/1989/proposal.html"
+    }
+   ]
+  },
+  {
+   "id": "plat.cloud",
+   "title": "Cloud Computing",
+   "cat": "platforms",
+   "tier": 2,
+   "year": 2006,
+   "short": "Rent computers by the hour. Amazon launched S3 and EC2 in 2006, then everyone followed.",
+   "long": "Cloud computing means renting computing, from machines and storage to databases and single functions, by the hour or the request over a network, instead of buying and racking servers. NIST's 2011 definition stresses on-demand access to a shared pool of configurable resources. Amazon Web Services launched S3 in March 2006 and EC2 in beta in August 2006; Google App Engine (2008), Azure (announced 2008, generally available February 2010) and Google Compute Engine (December 2013) followed. Infrastructure as a Service rents virtual machines, Platform as a Service a ready runtime, Software as a Service finished applications, and serverless runs one function per event. Docker (2013) and Kubernetes (2014) standardized packaging and running. In the third quarter of 2025, Synergy Research counted Amazon, Microsoft and Google at 63 percent of $106.9 billion in cloud infrastructure spending.",
+   "sleeper": "Servers used to be bought, racked and named. Now infrastructure is described in code and rented by the hour, and some firms have moved back: 37signals said in 2023 it had left the cloud, expecting to save at least $1.5 million a year.",
+   "status": "thriving",
+   "tags": [
+    "aws",
+    "azure",
+    "iaas",
+    "serverless",
+    "virtualization"
+   ],
+   "refs": [
+    {
+     "label": "NIST SP 800-145: The NIST Definition of Cloud Computing",
+     "url": "https://csrc.nist.gov/pubs/sp/800/145/final"
+    },
+    {
+     "label": "Synergy Research: cloud market share, Q3 2025",
+     "url": "https://www.srgresearch.com/articles/cloud-market-share-trends-big-three-together-hold-63-while-oracle-and-the-neoclouds-inch-higher"
+    }
+   ]
+  },
+  {
+   "id": "plat.docker",
+   "title": "Docker & Containers",
+   "cat": "platforms",
+   "tier": 3,
+   "year": 2013,
+   "short": "Docker (2013) packages an app and its dependencies as an image that runs as an isolated Linux process. 71.1 percent of 2025 Stack Overflow respondents use it.",
+   "long": "A container is an ordinary process that the Linux kernel isolates, sharing the host's kernel, so it typically starts in under a second; a virtual machine, by contrast, emulates a whole computer. The building blocks were old: chroot (Unix V7, 1979), FreeBSD jails (2000), Solaris Zones (2004), Linux namespaces and cgroups (2007 to 2008) and LXC (2008). Docker, from the company dotCloud, was unveiled by Solomon Hykes at PyCon in March 2013 and added an easy layered image format built from a Dockerfile, a registry (Docker Hub) and a simple command line. The Open Container Initiative (2015) standardized the formats. Kubernetes, from Google (2014), orchestrates containers across clusters, and Docker Swarm and Apache Mesos lost to it by about 2017 to 2018. In Stack Overflow's 2025 survey 71.1 percent of respondents used Docker, up 17 points in a year.",
+   "sleeper": "In 1990 moving a program to another computer meant reinstalling its libraries and settings by hand. A container image carries them along, so the same image runs on a laptop, a build server and a cloud provider.",
+   "code": {
+    "lang": "dockerfile",
+    "text": "# Dockerfile\nFROM python:3.12-slim\nCOPY . /app\nRUN pip install -r /app/requirements.txt\nCMD [\"python\", \"/app/main.py\"]\n\n# docker build -t myapp .   builds an image from this recipe\n# docker run myapp          starts a container from that image"
+   },
+   "status": "thriving",
+   "tags": [
+    "container",
+    "image",
+    "kubernetes",
+    "dockerfile",
+    "oci"
+   ],
+   "refs": [
+    {
+     "label": "Open Container Initiative",
+     "url": "https://opencontainers.org/"
+    },
+    {
+     "label": "Kubernetes blog: 10 Years of Kubernetes",
+     "url": "https://kubernetes.io/blog/2024/06/06/10-years-of-kubernetes/"
+    }
+   ]
+  },
+  {
+   "id": "mod.hub",
+   "title": "AI-Assisted Coding & the Modern Era",
+   "cat": "modern",
+   "tier": 1,
+   "year": 2021,
+   "short": "Language models now write, review and fix code. The evidence on their effect is still being gathered.",
+   "long": "This hub covers the 2020s: AI assistance and the practices growing around it. GitHub Copilot (technical preview 29 June 2021) began as autocomplete, ChatGPT (30 November 2022) added chat, and agents that read a repository, run commands and open pull requests followed in 2024 and 2025. Start with AI Coding Assistants, AI Coding Agents, Model Context Protocol, Vibe Coding and METR Randomized Trials. The evidence is mixed: a GitHub-run experiment in 2022 found a task 55 percent faster with Copilot, METR's 2025 trial found experienced developers took 19 percent longer with AI, and DORA's 2025 report links AI use to higher throughput but lower delivery stability. What Is Popular in 2026 compares the rankings, TypeScript and The Rust-Rewrite Wave of Tools cover the languages and tools of the decade, and CISA Secure by Design and EU Cyber Resilience Act cover the new security rules.",
+   "sleeper": "Compilers and debuggers act only when told. Coding agents now plan and carry out multi-step tasks: GitHub's Octoverse counted over 1 million pull requests opened by agents between May and September 2025, though more developers distrust AI output (46 percent) than trust it (33 percent).",
+   "status": "thriving",
+   "tags": [
+    "ai",
+    "llm",
+    "agents",
+    "copilot"
+   ],
+   "refs": [
+    {
+     "label": "Stack Overflow Developer Survey 2025: AI",
+     "url": "https://survey.stackoverflow.co/2025/ai"
+    },
+    {
+     "label": "METR: early-2025 study of experienced open-source developers",
+     "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/"
+    },
+    {
+     "label": "DORA: 2025 report on AI-assisted software development",
+     "url": "https://dora.dev/research/2025/dora-report/"
+    }
+   ]
+  },
+  {
+   "id": "mod.copilot",
+   "title": "AI Coding Assistants",
+   "cat": "modern",
+   "tier": 2,
+   "year": 2021,
+   "short": "Tools that complete, explain and write code using large language models: GitHub Copilot (2021), Cursor, Claude Code. Studies of their effect are mixed.",
+   "long": "AI coding assistants use large language models trained on code. GitHub announced Copilot on 29 June 2021 as an AI pair programmer powered by OpenAI Codex, in a technical preview in Visual Studio Code; it became a paid product on 21 June 2022 at $10 a month. Chat and agent modes followed, and tools now include Cursor, Claude Code, OpenAI Codex and Gemini CLI. In Stack Overflow's 2025 survey 84 percent of respondents used or planned to use AI tools and 51 percent of professionals used them daily, yet 46 percent distrusted their accuracy, and the top frustration (66 percent) was answers that are almost right, but not quite. GitHub's 2022 controlled task was 55 percent faster with Copilot, while METR's 2025 trial found experienced developers took 19 percent longer. Researchers report that models sometimes recommend packages that do not exist; see Slopsquatting.",
+   "sleeper": "In 1990 the nearest thing was code completion and templates. A model now drafts whole functions from a comment or a chat request, and reviewers must check the result, since \"almost right, but not quite\" is the commonest complaint.",
+   "status": "thriving",
+   "tags": [
+    "llm",
+    "autocomplete",
+    "cursor",
+    "claude-code",
+    "codex"
+   ],
+   "refs": [
+    {
+     "label": "GitHub Blog: Introducing GitHub Copilot, your AI pair programmer",
+     "url": "https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/"
+    },
+    {
+     "label": "METR: early-2025 study of experienced open-source developers",
+     "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/"
+    },
+    {
+     "label": "Stack Overflow Developer Survey 2025: AI",
+     "url": "https://survey.stackoverflow.co/2025/ai"
+    }
+   ]
+  },
+  {
+   "id": "mod.typescript",
+   "title": "TypeScript",
+   "cat": "modern",
+   "tier": 3,
+   "year": 2012,
+   "short": "Microsoft's typed superset of JavaScript, announced 1 October 2012. It compiles to plain JavaScript, and by August 2025 led GitHub by monthly contributors.",
+   "long": "TypeScript was announced on 1 October 2012 by Microsoft, from Anders Hejlsberg's team. The launch post called it a superset of JavaScript that combines type checking, static analysis and explicit interfaces in one language and compiler. Types are optional, the compiler can infer them, and the output is plain JavaScript that runs in any browser or host, with the annotations erased. Editors use the types for completion and refactoring. A study that added types by hand to real JavaScript bugs found that TypeScript and Flow would have caught 15 percent of them. GitHub's Octoverse 2025 reported TypeScript overtaking Python and JavaScript in August 2025 as the language with the most monthly contributors. TypeScript 7.0 (8 July 2026) is a native port written in Go that Microsoft says is about ten times faster; see TypeScript 7 Native Compiler.",
+   "sleeper": "JavaScript began as a May 1995 prototype built in about two weeks. TypeScript now gives it the type checking large programs need, yet browsers still run plain JavaScript. One reading is that this, not language design, is why it beat rivals such as Dart and CoffeeScript.",
+   "code": {
+    "lang": "typescript",
+    "text": "function total(prices: number[]): number {\n  return prices.reduce((sum, p) => sum + p, 0);\n}\n\ntotal([12.5, 3]);   // 15.5\ntotal(\"12.5\");      // error TS2345: Argument of type 'string' is not assignable to parameter of type 'number[]'.\n// the compiled output is plain JavaScript with the type annotations removed"
+   },
+   "status": "thriving",
+   "tags": [
+    "types",
+    "javascript",
+    "hejlsberg",
+    "compiler"
+   ],
+   "refs": [
+    {
+     "label": "Somasegar: TypeScript, JavaScript Development at Application Scale (2012)",
+     "url": "https://learn.microsoft.com/en-us/archive/blogs/somasegar/typescript-javascript-development-at-application-scale"
+    },
+    {
+     "label": "TypeScript blog: A 10x Faster TypeScript",
+     "url": "https://devblogs.microsoft.com/typescript/typescript-native-port/"
+    },
+    {
+     "label": "GitHub Octoverse 2025",
+     "url": "https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/"
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "s": "tool.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.hub",
+   "t": "se",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.typescript",
+   "t": "lang.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.typescript",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.linux",
+   "t": "lang.rust",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "org.google",
+   "t": "data.nosql",
+   "w": 2,
+   "k": "influenced"
+  },
+  {
+   "s": "tool.vcs",
+   "t": "tool.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.make",
+   "t": "tool.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "tool.vcs",
+   "t": "tool.git",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "tool.git",
+   "t": "ppl.torvalds",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.git",
+   "t": "org.microsoft",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "tool.git",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "tool.make",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "tool.make",
+   "t": "lang.c",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "pkg.manager",
+   "t": "pkg.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.npm",
+   "t": "pkg.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.pip",
+   "t": "pkg.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "pkg.npm",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.pip",
+   "t": "pkg.manager",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "pkg.npm",
+   "t": "fail.leftpad",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "qual.lint",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.testing",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.ci",
+   "t": "qual.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "qual.eslint",
+   "t": "qual.lint",
+   "w": 3,
+   "k": "implements"
+  },
+  {
+   "s": "qual.lint",
+   "t": "lang.c",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "qual.lint",
+   "t": "org.bell-labs",
+   "w": 2,
+   "k": "created-by"
+  },
+  {
+   "s": "qual.testing",
+   "t": "qual.ci",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "qual.testing",
+   "t": "proc.agile",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "proc.waterfall",
+   "t": "proc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.agile",
+   "t": "proc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.mmm",
+   "t": "proc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.devops",
+   "t": "proc.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "proc.waterfall",
+   "t": "proc.agile",
+   "w": 3,
+   "k": "replaced-by"
+  },
+  {
+   "s": "proc.agile",
+   "t": "proc.devops",
+   "w": 2,
+   "k": "evolved-into"
+  },
+  {
+   "s": "proc.devops",
+   "t": "qual.ci",
+   "w": 2,
+   "k": "uses"
+  },
+  {
+   "s": "proc.devops",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "proc.mmm",
+   "t": "org.ibm",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "proc.mmm",
+   "t": "fail.loc",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "fail.case",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.loc",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.y2k",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.leftpad",
+   "t": "fail.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "fail.y2k",
+   "t": "lang.cobol",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "fail.case",
+   "t": "proc.waterfall",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.ibm",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.bell-labs",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.microsoft",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.google",
+   "t": "org.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "org.ibm",
+   "t": "lang.cobol",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "plat.unix",
+   "t": "org.bell-labs",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "org.microsoft",
+   "t": "lang.js",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "org.google",
+   "t": "plat.cloud",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "org.google",
+   "t": "math.pytorch",
+   "w": 1,
+   "k": "competes-with"
+  },
+  {
+   "s": "ppl.hopper",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.ritchie",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.torvalds",
+   "t": "ppl.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "ppl.hopper",
+   "t": "lang.cobol",
+   "w": 3,
+   "k": "influenced"
+  },
+  {
+   "s": "plat.unix",
+   "t": "ppl.ritchie",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.linux",
+   "t": "ppl.torvalds",
+   "w": 3,
+   "k": "created-by"
+  },
+  {
+   "s": "plat.unix",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.linux",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.web",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.cloud",
+   "t": "plat.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.docker",
+   "t": "plat.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "plat.unix",
+   "t": "plat.linux",
+   "w": 3,
+   "k": "evolved-into"
+  },
+  {
+   "s": "plat.cloud",
+   "t": "plat.docker",
+   "w": 3,
+   "k": "related"
+  },
+  {
+   "s": "mod.copilot",
+   "t": "mod.hub",
+   "w": 3,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.typescript",
+   "t": "mod.hub",
+   "w": 2,
+   "k": "part-of"
+  },
+  {
+   "s": "mod.copilot",
+   "t": "org.microsoft",
+   "w": 2,
+   "k": "related"
+  },
+  {
+   "s": "mod.copilot",
+   "t": "qual.testing",
+   "w": 1,
+   "k": "related"
+  },
+  {
+   "s": "mod.copilot",
+   "t": "lang.python",
+   "w": 1,
+   "k": "related"
+  }
+ ]
+}

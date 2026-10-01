@@ -13,7 +13,7 @@
     "build:release": "node scripts/merge-data.mjs && node scripts/build.mjs --strict",
     "test:data": "node --test \"tests/data.test.mjs\" \"tests/layout.test.mjs\"",
     "test:e2e": "node --test --test-concurrency=1 \"tests/e2e.test.mjs\"",
-    "test": "node scripts/merge-data.mjs && node scripts/build.mjs && node --test --test-concurrency=1 \"tests/*.test.mjs\""
+    "test": "node scripts/merge-data.mjs && node scripts/build.mjs --strict && node --test --test-concurrency=1 \"tests/*.test.mjs\""
   },
   "dependencies": {
     "d3-force-3d": "^3.0.6",

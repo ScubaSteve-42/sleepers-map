@@ -1,19 +1,87 @@
 [
-  { "node": "found.stored-program", "title": "1948: Programs become data", "text": "You begin where software began: a computer that keeps its instructions in memory beside its data. Changing the program now means changing numbers, not rewiring a machine." },
-  { "node": "found.assembly", "title": "1949: Names for numbers", "text": "Programmers stop writing raw binary. Short names for instructions, translated by a program, are the first step in a long line of tools that write code for you." },
-  { "node": "lang.fortran", "title": "1957: The compiler wins", "text": "FORTRAN shows that a compiler can match hand-written machine code. After this, programmers describe what they want and let the machine work out how." },
-  { "node": "proc.software-crisis", "title": "1968: A crisis gets a name", "text": "Big projects run late and break. A NATO meeting calls the problem \"software engineering\", and the rest of this map is a search for what actually helps." },
-  { "node": "lang.c", "title": "1972: C and Unix", "text": "Dennis Ritchie's small, fast language and the operating system written in it become the template for nearly everything that follows, including Linux today." },
-  { "node": "data.sql", "title": "1974: Ask for what you want", "text": "Databases get a question language. You describe the answer you need and the system plans how to fetch it. Fifty years on, SQL is still the default." },
-  { "node": "proc.mmm", "title": "1975: The mythical man-month", "text": "Fred Brooks, drawing on IBM's System/360 project, reports that adding people to a late project makes it later. Many of today's arguments about process start here." },
-  { "node": "lang.cpp", "title": "1983: Objects go mainstream", "text": "C++ adds classes to C, and object-oriented programming spreads from research labs into everyday work." },
-  { "node": "plat.web", "title": "1991: The web arrives", "text": "A hypertext system from CERN becomes the default place for software to live. In the same year a student announces a free Unix-like kernel called Linux." },
-  { "node": "lang.js", "title": "1995: JavaScript", "text": "Within weeks in May 1995, Brendan Eich builds the first prototype of a scripting language that ends up in every browser. It outgrows its origins and, with Node.js, escapes the browser entirely." },
-  { "node": "proc.agile", "title": "2001: Agile", "text": "Seventeen developers meet in Utah and write a manifesto for short iterations and working software. Whether teams do it well is another matter." },
-  { "node": "tool.git", "title": "2005: Git", "text": "After the Linux kernel loses its BitKeeper license, Linus Torvalds starts writing a distributed version control system. It becomes the universal way to share and merge code." },
-  { "node": "plat.cloud", "title": "2006: The cloud", "text": "Amazon starts renting servers by the hour. Containers and Kubernetes follow, and infrastructure becomes something you write as code." },
-  { "node": "pkg.manager", "title": "Other people's code", "text": "One command now pulls in hundreds of libraries. It is the magic of modern programming and its biggest risk." },
-  { "node": "qual.lint", "title": "Machines that check machines", "text": "Linters, type checkers, tests and continuous integration review every change before a person sees it. A 1978 tool called lint started the line." },
-  { "node": "fail.leftpad", "title": "2016: Eleven lines break the web", "text": "A tiny deleted package breaks thousands of builds. The lesson about fragile dependency chains is sharpened by later attacks." },
-  { "node": "mod.copilot", "title": "Now: code written with AI", "text": "Language models write, review and repair code. The evidence on how much they help is mixed and still being gathered. You wake up in the middle of that change." }
+  {
+    "node": "found.stored-program",
+    "title": "1948: Programs become data",
+    "text": "You begin where software began: a computer that keeps its instructions in memory beside its data. Changing the program now means changing numbers, not rewiring a machine."
+  },
+  {
+    "node": "found.assembly",
+    "title": "Late 1940s: Names for numbers",
+    "text": "Programmers stop writing raw binary. Short names for instructions, translated by a program, are the first step in a long line of tools that write code for you."
+  },
+  {
+    "node": "lang.fortran",
+    "title": "1957: The compiler wins",
+    "text": "FORTRAN shows that a compiler can match hand-written machine code. After this, programmers describe what they want and let the machine work out how."
+  },
+  {
+    "node": "proc.software-crisis",
+    "title": "1968: A crisis gets a name",
+    "text": "Big projects run late and break. A NATO meeting calls the problem \"software engineering\", and the rest of this map is a search for what actually helps."
+  },
+  {
+    "node": "lang.c",
+    "title": "1972: C and Unix",
+    "text": "Dennis Ritchie's small, fast language and the operating system written in it become the template for nearly everything that follows, including Linux today."
+  },
+  {
+    "node": "data.sql",
+    "title": "1974: Ask for what you want",
+    "text": "Databases get a question language. You describe the answer you need and the system plans how to fetch it. Fifty years on, SQL is still the default."
+  },
+  {
+    "node": "proc.mmm",
+    "title": "1975: The mythical man-month",
+    "text": "Fred Brooks, drawing on IBM's System/360 project, reports that adding people to a late project makes it later. Many of today's arguments about process start here."
+  },
+  {
+    "node": "lang.cpp",
+    "title": "1983: Objects go mainstream",
+    "text": "C++ adds classes to C, and object-oriented programming spreads from research labs into everyday work."
+  },
+  {
+    "node": "plat.web",
+    "title": "1991: The web arrives",
+    "text": "A hypertext system from CERN becomes the default place for software to live. In the same year a student announces a free Unix-like kernel called Linux."
+  },
+  {
+    "node": "lang.js",
+    "title": "1995: JavaScript",
+    "text": "Within weeks in May 1995, Brendan Eich builds the first prototype of a scripting language that ends up in every browser. It outgrows its origins and, with Node.js, escapes the browser entirely."
+  },
+  {
+    "node": "proc.agile",
+    "title": "2001: Agile",
+    "text": "Seventeen developers meet in Utah and write a manifesto for short iterations and working software. Whether teams do it well is another matter."
+  },
+  {
+    "node": "tool.git",
+    "title": "2005: Git",
+    "text": "After the Linux kernel loses its BitKeeper license, Linus Torvalds starts writing a distributed version control system. It becomes the universal way to share and merge code."
+  },
+  {
+    "node": "plat.cloud",
+    "title": "2006: The cloud",
+    "text": "Amazon starts renting servers by the hour. Containers and Kubernetes follow, and infrastructure becomes something you write as code."
+  },
+  {
+    "node": "pkg.manager",
+    "title": "Other people's code",
+    "text": "One command now pulls in hundreds of libraries. It is the magic of modern programming and its biggest risk."
+  },
+  {
+    "node": "qual.lint",
+    "title": "Machines that check machines",
+    "text": "Linters, type checkers, tests and continuous integration review every change before a person sees it. A 1978 tool called lint started the line."
+  },
+  {
+    "node": "fail.leftpad",
+    "title": "2016: A tiny package breaks the web",
+    "text": "A tiny deleted package breaks thousands of builds. The lesson about fragile dependency chains is sharpened by later attacks."
+  },
+  {
+    "node": "mod.copilot",
+    "title": "Now: code written with AI",
+    "text": "Language models write, review and repair code. The evidence on how much they help is mixed and still being gathered. You wake up in the middle of that change."
+  }
 ]

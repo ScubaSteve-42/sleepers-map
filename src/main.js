@@ -60,6 +60,8 @@ app.canBack = () => app.hi > 0;
 app.canForward = () => app.hi < app.hist.length - 1;
 app.select = (i, { fly = true, push = true, panel = true } = {}) => {
   if (i < 0 || i == null) { app.selected = -1; scene?.setSelected(-1); ui.closePanel(); syncHash(); return; }
+  skipIntro();
+  if (panel && app.tourActive) clearTimeout(app.tourTimer);   // the reader chose something; stop the tour from flying away mid-read
   const nd = graph.nodes[i];
   if (app.hiddenCats.has(nd.cat)) { app.hiddenCats.delete(nd.cat); ui.updateLegend(); }
   if (nd.year > app.year) { app.playing = false; app.year = nd.year; ui.updateTimeline(); }
@@ -82,8 +84,10 @@ app.neighbor = (d) => {
 };
 
 // ---------- layout ----------
+const LAYOUTS = ['constellation', 'timeline', 'galaxy'];
 app.setLayout = (name, { fly = true } = {}) => {
-  if (!graph.layouts[name]) return;
+  if (!LAYOUTS.includes(name) || !graph.layouts[name]) return;
+  skipIntro();
   app.layout = name; ui.updateLayoutButtons(); scene?.setLayout(name); syncHash();
   if (fly && scene) { if (app.selected >= 0) scene.flyToNode(app.selected, { duration: 2.2 }); else scene.overview(1, name === 'galaxy' ? 0.85 : name === 'timeline' ? 0.08 : 0.2); }
 };
@@ -94,11 +98,13 @@ app.setLabels = (v) => app.labels?.setEnabled(v);
 app.tourIdx = 0;
 app.startTour = () => {
   if (!graph.tour?.length) return;
+  skipIntro();
   app.tourActive = true; $('#btn-tour').innerHTML = '&#10005; Exit tour'; setIntro(false);
   app.setYear(maxYear); app.showAllCategories(); app.select(-1); gotoStop(0);
 };
 function gotoStop(k) {
   app.tourIdx = k; const s = graph.tour[k]; ui.renderTour(k);
+  ui.closePanel();   // a panel opened with "Read more" belongs to the previous stop
   app.select(indexOf.get(s.node), { panel: false, push: false });
   clearTimeout(app.tourTimer);
   if (!test) app.tourTimer = setTimeout(() => { if (app.tourActive && app.tourIdx < graph.tour.length - 1) gotoStop(app.tourIdx + 1); }, 14000);
@@ -129,9 +135,12 @@ if (scene) {
   addEventListener('resize', () => scene.resize());
 }
 addEventListener('keydown', (ev) => {
-  const t = ev.target; const typing = t && (t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA');
+  // keys belong to a control that uses them: text fields, dropdowns, and the arrow keys of the year slider; checkboxes do not use letters
+  const t = ev.target; const isField = t && (t.tagName === 'SELECT' || t.tagName === 'TEXTAREA' || (t.tagName === 'INPUT' && !/^(checkbox|radio|button|submit)$/i.test(t.type)));
+  const typing = isField && !(t.type === 'range' && !/^(Arrow|Home$|End$|Page)/.test(ev.key));
   app.idle = 0;
   if (ev.key === 'Escape') {
+    if (typing) return;   // a text field or dropdown handles its own Escape; it should not also close the panel behind it
     if (!$('#help').hidden) ui.toggleHelp(false); else if (!$('#listview').hidden) ui.toggleList(false); else if (!$('#settings').hidden) { $('#settings').hidden = true; }
     else if (app.tourActive) app.exitTour(); else if (app.selected >= 0) app.select(-1); else setIntro(false);
     return;
@@ -156,7 +165,7 @@ addEventListener('keydown', (ev) => {
 // ---------- hash deep link ----------
 function readHash() {
   const h = new URLSearchParams(location.hash.replace(/^#/, ''));
-  if (h.get('l') && graph.layouts[h.get('l')]) { app.layout = h.get('l'); ui.updateLayoutButtons(); scene?.setLayout(app.layout, { animate: false }); }
+  if (LAYOUTS.includes(h.get('l')) && graph.layouts[h.get('l')]) { app.layout = h.get('l'); ui.updateLayoutButtons(); scene?.setLayout(app.layout, { animate: false }); }
   const id = h.get('n'); return id && indexOf.has(id) ? indexOf.get(id) : -1;
 }
 addEventListener('hashchange', () => { const i = readHash(); if (i >= 0 && i !== app.selected) app.select(i); });
@@ -184,13 +193,16 @@ function frame(now) {
 ui.updateLayoutButtons(); ui.updateLegend(); ui.updateTimeline();
 const startNode = readHash();
 function setIntro(show) { $('#intro').classList.toggle('show', show); document.body.classList.toggle('intro-open', show); }
+// anything the reader does during the opening animation (a deep link, a search, a layout key) ends it, so the intro's per-frame
+// camera moves do not pull the view back and the welcome card does not cover what they asked for
+function skipIntro() { if (scene?.intro) scene.finishIntro(); introShown = true; setIntro(false); }
 $('#intro-tour').addEventListener('click', () => { setIntro(false); app.startTour(); });
 $('#intro-free').addEventListener('click', () => setIntro(false));
 $('#intro').addEventListener('click', (ev) => { if (ev.target === $('#intro')) setIntro(false); });
 if (scene) {
-  const skip = test && params.get('intro') !== '1';
+  const skip = (test && params.get('intro') !== '1') || startNode >= 0;   // a deep link goes straight to its node
   if (skip || reduced) { scene.finishIntro(); } else scene.startIntro();
-  if (startNode >= 0) app.select(startNode, { fly: true });
+  if (startNode >= 0) { introShown = true; app.select(startNode, { fly: true }); }
   requestAnimationFrame(frame);
 } else {
   ui.toggleList(true);
@@ -207,7 +219,7 @@ if (test) {
       cam: scene ? { pos: scene.camera.position.toArray(), target: scene.controls.target.toArray(), dist: scene.camera.position.distanceTo(scene.controls.target) } : null,
       fps: scene?.fps, intro: scene?.intro, flying: scene?.flying, layoutMoving: scene?.layoutMoving, tour: app.tourActive ? app.tourIdx : null,
       gl: scene ? (() => { const gl = scene.renderer.getContext(), d = gl.getExtension('WEBGL_debug_renderer_info'); return { webgl2: gl instanceof WebGL2RenderingContext, renderer: d ? gl.getParameter(d.UNMASKED_RENDERER_WEBGL) : 'unknown' }; })() : null,
-      quality: scene?.state.quality,
+      quality: scene?.state.quality, scale: scene?.state.scale,
     }),
     labels: () => ({ visible: app.labels.visibleIds(), described: app.labels.describedIds(), rects: app.labels.rects() }),
     fx: (id) => { const i = indexOf.get(id); return { vis: scene.vis[i], ...scene.fxOf(i) }; },
@@ -218,7 +230,7 @@ if (test) {
     flyTo: (id, opts) => scene.flyToNode(indexOf.get(id), opts),
     jumpTo: (id, dist) => { const i = indexOf.get(id); scene.stopFlight(); const p = scene.nodePoint(i); const d = scene.camera.position.clone().sub(scene.controls.target).normalize(); scene.controls.target.copy(p); scene.camera.position.copy(p).addScaledVector(d, dist); scene.controls.update(); },
     overview: () => scene.overview(),
-    jumpOverview: (elev = 0.2) => { scene.stopFlight(); const dist = scene.fitDistance(); scene.controls.target.set(0, 0, 0); scene.camera.position.set(0, dist * elev, dist); scene.controls.update(); },
+    jumpOverview: (elev = 0.2) => { scene.stopFlight(); const p = scene.overviewPose(1, elev); scene.controls.target.copy(p.target); scene.camera.position.copy(p.position); scene.controls.update(); },
     setLayout: (n) => app.setLayout(n), setYear: (y) => app.setYear(y), toggleCategory: (k) => app.toggleCategory(k), showAll: () => app.showAllCategories(),
     search: (q) => ui.search(q).map((i) => graph.nodes[i].id),
     startTour: () => app.startTour(), tourStep: (d) => app.tourStep(d),

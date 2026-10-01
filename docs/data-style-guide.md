@@ -82,3 +82,7 @@ The keys, in order: `foundations`, `compilers`, `languages`, `concepts`, `data`,
 ## Tour
 
 `data/tour.json` lists 10 to 16 stops in chronological order, each `{node, title, text}`. `title` is short and may start with a year. `text` is one or two sentences in the second person that move the story forward ("You wake up in...").
+
+## Starter questions
+
+`data/questions.json` lists the questions the map was built to answer, each `{q, node}`. They appear when the search box is focused and empty. `q` is a plain question of at most 70 characters, and `node` is the id of the one node that answers it best. The strict validator requires at least 10 and checks that every `node` exists.

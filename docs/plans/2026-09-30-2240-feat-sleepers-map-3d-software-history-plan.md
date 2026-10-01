@@ -5,6 +5,7 @@ date: 2026-09-30
 artifact_contract: ce-unified-plan/v1
 product_contract_source: ce-plan-bootstrap
 execution: code
+status: completed
 ---
 
 # The Sleeper's Map - Plan
@@ -311,3 +312,33 @@ Screenshots in `screenshots/` are read and judged against R6 to R10 before relea
 - The dataset passes strict validation and its facts were checked against the research notes.
 - Screenshots show legible titles at overview, descriptions on zoom, no label collisions, and a coherent polished design on desktop and phone.
 - README, dataset, source, tests and screenshots are present, and abandoned experiment code and scratch folders are removed.
+
+---
+
+## Outcome
+
+Completed on 2026-10-01. Every command in the Verification Contract passes, on the real GPU and on software rendering.
+
+**Delivered**
+
+- `Software Engineering Map.html`: one offline file of about 2.3 MB with 841 ideas, 4,151 weighted connections, 17 tour stops and 18 starter questions.
+- The research notes (12 files) and the 31,000-word report in the parent folder, the dataset (`data/`), the source, the tests (44 on the GPU), nine README screenshots plus one for the starter questions, the README, the data style guide, the authoring task files and three learning notes in `docs/solutions/`.
+
+**Verification results**
+
+- `npm test` (strict data validation, build, data, layout and browser tests): all pass. The full map holds about 150 frames per second on a Radeon RX 7800 XT, and a generated 3,000-node graph about the same.
+- `SMAP_SOFTWARE_GL=1 npm run test:e2e`: all pass. The page detects a software renderer and starts on the low preset at reduced resolution, which gives about 9 frames per second; the first software run at full quality managed 1.3.
+- `node scripts/check-links.mjs`: 912 unique links, 870 answered, 42 refused automated requests, none dead.
+
+**Where the work differed from the plan**
+
+- A starter-question list (opened from the empty search box) was added, because the user's original request was a list of questions and a newcomer needs a way into the map from them.
+- The 77 seed nodes were rewritten late, after an inventory showed they were far thinner than the 764 authored ones.
+- The run was interrupted several times by account usage limits. The research and authoring were therefore done in small batches with notes saved early, and the heavier ceremony steps of the delivery workflow (a multi-agent plan review and a full multi-reviewer code review) were replaced by a single read-only code-review agent, seven fact-check agents and the automated tests. The code review found 14 issues; all were fixed, and covered by tests where practical.
+- The plan said software rendering would be usable at more than 20 frames per second. Software rendering is limited by pixel fill, so the page lowers its own resolution instead, and the floor in the tests is 5 frames per second.
+
+**Known limits**
+
+- Facts dated 2026 were read through summarizing tools. The text labels them as reported where the sources were secondary, but they may have moved on.
+- The tests drive Microsoft Edge only. Firefox and Safari should work (the page uses WebGL 2 and no browser-specific features) but were not run.
+- Python and most compilers were not installed on the build machine, so many code samples were checked by hand against the notes rather than executed.
